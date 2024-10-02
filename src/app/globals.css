@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 16rem;
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    scroll-padding-top: 8rem;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  width: 100%;
+  height: 10px;
+  margin: 0;
+  border: none;
+  padding: 1px 2px;
+  border-radius: 14px;
+  background: #E5E5E5;
+  box-shadow: inset 0 1px 0 0 #E5E5E5, inset 0 -1px 0 0 #E5E5E5;
+  -webkit-box-shadow: inset 0 1px 0 0 #E5E5E5, inset 0 -1px 0 0 #E5E5E5;
+  outline: none;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  background-color: #c70740;
+  border-radius: 100%;
+  height: 1.7rem;
+  width: 1.7rem;
+}
+
+
+.text-line-4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+.text-line-3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.text-line-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.text-line-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+
+.overflow-custom::-webkit-scrollbar-track {
+  @apply bg-blue-01 bg-opacity-10  rounded-sm;
+}
+
+.overflow-custom::-webkit-scrollbar {
+  @apply bg-blue-01 bg-opacity-10 w-1 rounded-sm;
+}
+
+.overflow-custom::-webkit-scrollbar-thumb {
+  @apply bg-blue-01 border-2 border-blue-01 rounded-sm;
+}
