@@ -13,7 +13,6 @@ import { ACT_GetMainMenuNavbar } from './$action/action.get.main-menu-navbar';
 import GlobalHeader from '@/lib/element/global/global.header';
 import { ACT_GetMainMenuFooter } from './$action/action.get.main-footer';
 import { ACT_GetBottomMenuFooter } from './$action/action.get.bottom-footer';
-
 export const metadata: Metadata = {
   title: 'Home - Bank BRI | Melayani Dengan Setulus Hati',
 };

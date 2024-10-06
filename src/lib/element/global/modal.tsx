@@ -38,7 +38,7 @@ export default function Modal({
           className="absolute top-7 right-7 mdmax:top-2 mdmax:right-2"
           onClick={() => setOpen(false)}
         >
-          <CloseIcon className="text-blue-02 cursor-pointer" />
+          <CloseIcon className="text-blue-02 cursor-pointer" stroke={''} />
         </div>
         {children}
       </div>
