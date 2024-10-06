@@ -6,10 +6,12 @@ export default function ArrowRightIcon({
   width,
   height,
   fill,
+  stroke,
 }: T_Icon) {
   return (
     <svg
       className={className}
+      stroke={stroke}
       fill={fill}
       width={width}
       height={height}

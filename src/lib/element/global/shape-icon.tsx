@@ -1,10 +1,16 @@
 import React from 'react';
 import { T_Icon } from '@/lib/element/client/icon';
 
-export default function ShapeIcon({ width, height, className }: T_Icon) {
+export default function ShapeIcon({
+  width,
+  height,
+  className,
+  stroke,
+}: T_Icon) {
   return (
     <svg
       className={className}
+      stroke={stroke}
       fill="#DCDCDC"
       width={width}
       height={height}

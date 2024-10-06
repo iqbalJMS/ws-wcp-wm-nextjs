@@ -6,23 +6,28 @@ export default function ProtectionIcon({
   height,
   className,
   fill,
+  stroke,
 }: T_Icon) {
   return (
     <svg
       width={width}
-      height={height}
       className={className}
+      height={height}
+      stroke={stroke}
+      fill={fill}
       version="1.1"
       id="Icons"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
-      fill={fill}
     >
-      <style type="text/css"></style>
+      {/* <style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10;}
+</style> */}
       <path
         className="st0"
         d="M25,6.7c-3.4,0-6.6-1.4-9-3.7c-2.4,2.3-5.6,3.7-9,3.7C5.6,6.7,4.3,6.4,3,6c0,14,5.5,19.6,13,23
-   c7.5-3.4,13-9,13-23C27.7,6.4,26.4,6.7,25,6.7z"
+	c7.5-3.4,13-9,13-23C27.7,6.4,26.4,6.7,25,6.7z"
       />
       <path
         className="st0"

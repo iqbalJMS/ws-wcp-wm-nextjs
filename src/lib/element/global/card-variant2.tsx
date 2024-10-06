@@ -44,7 +44,12 @@ export default function CardVariant2() {
             key={index}
             className="group w-full h-60 flex flex-col items-center justify-center hover:bg-black hover:rounded-b-xl duration-300"
           >
-            <item.icon className="pb-8 group-hover:text-white" width={100} />
+            <item.icon
+              className="pb-8 group-hover:fill-white group-hover:stroke-[#080087]"
+              width={100}
+              stroke="white"
+              fill="#080087"
+            />
 
             <h1 className="text-[#140C63] font-bold text-lg group-hover:text-white">
               {item.label}

@@ -4,4 +4,5 @@ export type T_Icon = {
   className?: string;
   strokeWidth?: string;
   fill?: string;
+  stroke: string;
 };

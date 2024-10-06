@@ -40,7 +40,7 @@ export default function CardVariant4() {
                   {item.label}
                   <span className="text-4xl font-light">{item.category}</span>
                 </h1>
-                <ArrowRightIcon width={25} className="" />
+                <ArrowRightIcon width={25} height={25} stroke="" className="" />
               </div>
               <span>
                 <h1 className="text-white text-base font-medium">
@@ -51,8 +51,16 @@ export default function CardVariant4() {
           ))}
         </div>
       </section>
-      <ShapeIcon width={200} className="absolute left-40 top-60 -z-10" />
-      <ShapeIcon width={200} className="absolute right-40 top-28 -z-10" />
+      <ShapeIcon
+        stroke=""
+        width={200}
+        className="absolute left-40 top-60 -z-10"
+      />
+      <ShapeIcon
+        stroke=""
+        width={200}
+        className="absolute right-40 top-28 -z-10"
+      />
     </main>
   );
 }
