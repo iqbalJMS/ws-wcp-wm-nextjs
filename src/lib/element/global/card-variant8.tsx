@@ -57,7 +57,12 @@ export default function CardVariant8() {
               <button className="flex items-center w-full uppercase text-[#080087]">
                 Lihat detail{' '}
                 <span className="pl-10">
-                  <ArrowRightIcon className="" fill="#080087" width={20} />
+                  <ArrowRightIcon
+                    className=""
+                    fill="#080087"
+                    width={20}
+                    stroke=""
+                  />
                 </span>
               </button>
             </div>

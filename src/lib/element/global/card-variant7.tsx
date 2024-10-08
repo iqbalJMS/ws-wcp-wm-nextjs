@@ -76,7 +76,7 @@ export default function CardVariant7() {
               <h3 className="text-sm">{item.phone}</h3>
             </div>
             <div className="flex items-center space-x-3">
-              <LocationIcon className="" width={20} />
+              <LocationIcon className="" width={20} stroke="" />
               <button className="text-[#3E4182] text-sm">Lihat di Peta</button>
             </div>
           </div>

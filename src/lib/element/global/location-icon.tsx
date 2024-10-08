@@ -1,8 +1,14 @@
 import React from 'react';
 import { T_Icon } from '@/lib/element/client/icon';
-export default function LocationIcon({ className, width, height }: T_Icon) {
+export default function LocationIcon({
+  className,
+  width,
+  height,
+  stroke,
+}: T_Icon) {
   return (
     <svg
+      stroke={stroke}
       className={className}
       width={width}
       height={height}

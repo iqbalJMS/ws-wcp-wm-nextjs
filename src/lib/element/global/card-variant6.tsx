@@ -7,17 +7,17 @@ export default function CardVariant6() {
       <section className=" grid grid-cols-1 md:grid-cols-2 md:place-items-center lg:w-11/12 xl:w-8/12">
         <section className="">
           <div className="pb-4 sm:hidden">
-            <h1 className="text-3xl font-bold uppercase">
+            <h1 className="text-2xl font-bold uppercase">
               informasi Investasi
             </h1>
           </div>
-          <div className="">
+          <div className="relative w-full h-72 overflow-hidden">
             <Image
-              src={'/images/dummy/banner.jpg'}
-              width={100}
-              height={100}
+              src={'/images/dummy/side-image-investment-min.jpg'}
+              width={1000}
+              height={1000}
               alt="image dummy"
-              className="w-full h-72 "
+              className="w-full h-72 bg-no-repeat bg-cover hover:scale-110 bg-center transition-all ease-in-out transform-gpu delay-75"
             />
           </div>
         </section>

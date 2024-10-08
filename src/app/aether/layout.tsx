@@ -16,12 +16,14 @@ import CardVariant10 from '@/lib/element/global/card-variant10';
 import CardVariant12 from '@/lib/element/global/card-variant12';
 import CardVariant13 from '@/lib/element/global/card-variant13';
 import CardVariant14 from '@/lib/element/global/card-variant14';
+import { CarouselVariant1 } from '@/lib/element/global/client.carousel.variant01';
 
 import { ACT_GetMainMenuNavbar } from './$action/action.get.main-menu-navbar';
 import GlobalHeader from '@/lib/element/global/global.header';
 import { ACT_GetMainMenuFooter } from './$action/action.get.main-footer';
 import { ACT_GetBottomMenuFooter } from './$action/action.get.bottom-footer';
 import CardVariant10b from '@/lib/element/global/card-variant10b';
+import CardVariant11 from '@/lib/element/global/card-variant11';
 export const metadata: Metadata = {
   title: 'Home - Bank BRI | Melayani Dengan Setulus Hati',
 };
@@ -47,18 +49,17 @@ export default async function AetherLayout({
       <div className="space-y-12 px-2">
         <CardVariant1 />
         <CardVariant2 />
-        <CardVariant3 />
         <CardVariant4 />
         <CardVariant5 />
         <CardVariant6 />
-        <CardVariant7 />
-        <CardVariant8 />
+        <CardVariant3 />
+        {/* <CardVariant8 />
         <CardVariant9 />
         <CardVariant10 />
         <CardVariant10b />
         <CardVariant12 />
         <CardVariant13 />
-        <CardVariant14 />
+        <CardVariant14 /> */}
       </div>
       {children}
       <GlobalFooter
