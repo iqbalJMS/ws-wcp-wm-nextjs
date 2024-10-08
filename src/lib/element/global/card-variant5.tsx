@@ -3,6 +3,7 @@ import React from 'react';
 import ArrowRightIcon from './arrow-rigth-icon';
 import { useState } from 'react';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
+import ArrowLeftIcon from './arrow-left-icon';
 
 export default function CardVariant5() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -11,7 +12,7 @@ export default function CardVariant5() {
   const slidesToScroll = 1;
 
   const nextSlide = () => {
-    if (currentSlide < LIST_CARD_CONTENT.length - slidesToShow) {
+    if (currentSlide <= LIST_CARD_CONTENT.length - slidesToShow) {
       setCurrentSlide(currentSlide + slidesToScroll);
     }
   };
@@ -33,16 +34,11 @@ export default function CardVariant5() {
       textBtn: 'Bancassurance',
       label: 'BRI',
     },
-    {
-      imgUrl: '/images/dummy/img-produk-unggulan2.jpg',
-      textBtn: 'Bancassurance',
-      label: 'BRI',
-    },
   ];
 
   return (
-    <main className="flex justify-center">
-      <section className="w-full lg:w-11/12 xl:w-8/12 grid grid-cols-1 lg:grid-cols-2 lg:content-center">
+    <div className="w-full h-auto flex justify-center">
+      <section className="w-full md:w-10/12 lg:w-11/12 xl:w-9/12 grid grid-cols-1 lg:grid-cols-2 lg:content-center xl:px-8">
         <div className="pb-10 w-96 lg:flex flex-col justify-center">
           <h1 className="pb-3 text-3xl font-bold uppercase ">
             produk unggulan
@@ -51,20 +47,20 @@ export default function CardVariant5() {
             Temukan lebih lanjut tentang produk Investasi dan Bancassurance
           </p>
         </div>
-        <section className="w-full overflow-hidden bg-red-300 flex">
+        <section className="w-full overflow-hidden mdmax:w-full mdmax:flex-none">
           <div
-            className="w-full flex transition-all ease-in-out duration-300 "
+            className="w-full flex transition-all ease-in-out duration-300 lg:space-x-5"
             style={{
-              transform: `translateX(-${currentSlide * (180 / slidesToShow)}%)`,
+              transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
             }}
           >
             {LIST_CARD_CONTENT.map((item, index) => (
-              <picture
+              <div
                 key={index}
-                className="relative w-full h-80 overflow-hidden cursor-pointer"
+                className="relative w-full h-80 overflow-hidden cursor-pointer flex-none lg:flex-1"
               >
                 <div
-                  className="flex items-end justify-between w-96 h-80 bg-no-repeat bg-cover hover:scale-125 bg-center transition-all ease-in-out transform-gpu delay-75"
+                  className="w-full h-80 flex items-end justify-between bg-no-repeat bg-cover hover:scale-125 bg-center transition-all ease-in-out transform-gpu delay-75"
                   style={{ backgroundImage: `url(${item.imgUrl})` }}
                 >
                   <div className="w-full h-full bg-black opacity-50">.</div>
@@ -73,16 +69,56 @@ export default function CardVariant5() {
                   {item.label} <span>{item.textBtn}</span>
                 </button>
                 <ArrowRightIcon
-                  className="absolute right-5 bottom-5"
-                  width={20}
+                  className="absolute right-16 bottom-5"
+                  width={25}
                   fill="white"
                   stroke="white"
                 />
-              </picture>
+              </div>
             ))}
+          </div>
+          <div className="lg:hidden w-full flex justify-end px-10 py-3 space-x-3 ">
+            <button
+              className={[
+                'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white mdmax:',
+                currentSlide === 0
+                  ? 'text-opacity-10 cursor-default'
+                  : 'cursor-pointer',
+              ].join(' ')}
+              onClick={prevSlide}
+            >
+              <ArrowLeftIcon
+                width={40}
+                height={40}
+                stroke={'#4640A5'}
+                className={
+                  currentSlide === 0 ? 'opacity-50' : 'text-white text-red'
+                }
+              />
+            </button>
+            <button
+              className={[
+                'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white',
+                currentSlide < LIST_CARD_CONTENT.length - 1 - slidesToShow
+                  ? 'cursor-pointer '
+                  : 'bg-opacity-10 cursor-default',
+              ].join(' ')}
+              onClick={nextSlide}
+            >
+              <ArrowRightIcon
+                width={40}
+                height={40}
+                stroke="#4640A5"
+                className={
+                  currentSlide === LIST_CARD_CONTENT?.length - 1
+                    ? 'opacity-50'
+                    : 'text-white text-red'
+                }
+              />
+            </button>
           </div>
         </section>
       </section>
-    </main>
+    </div>
   );
 }

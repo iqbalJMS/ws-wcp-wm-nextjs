@@ -4,24 +4,24 @@ import Image from 'next/image';
 export default function CardVariant6() {
   return (
     <main className="w-full flex justify-center">
-      <section className=" grid grid-cols-1 md:grid-cols-2 md:place-items-center lg:w-11/12 xl:w-8/12">
-        <section className="">
+      <section className="grid grid-cols-1 md:grid-cols-2 md:place-items-center lg:w-11/12 xl:w-9/12 xl:px-8">
+        <section className="w-full">
           <div className="pb-4 sm:hidden">
             <h1 className="text-2xl font-bold uppercase">
               informasi Investasi
             </h1>
           </div>
-          <div className="relative w-full h-72 overflow-hidden">
+          <div className="relative w-full  overflow-hidden">
             <Image
               src={'/images/dummy/side-image-investment-min.jpg'}
               width={1000}
               height={1000}
               alt="image dummy"
-              className="w-full h-72 bg-no-repeat bg-cover hover:scale-110 bg-center transition-all ease-in-out transform-gpu delay-75"
+              className="w-10/12 h-full bg-no-repeat bg-cover hover:scale-125 bg-center transition-all ease-in-out transform-gpu delay-75"
             />
           </div>
         </section>
-        <section className="space-y-4 sm:pt-5 md:w-10/12 xl:w-9/12 ">
+        <section className="space-y-4 sm:pt-5 w-8/12 flex flex-col  items-start">
           <div className="hidden sm:flex">
             <h1 className="text-3xl font-bold uppercase">
               informasi Investasi
