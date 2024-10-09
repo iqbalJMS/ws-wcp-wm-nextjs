@@ -13,6 +13,7 @@ import { ACT_GetMainMenuNavbar } from './$action/action.get.main-menu-navbar';
 import GlobalHeader from '@/lib/element/global/global.header';
 import { ACT_GetMainMenuFooter } from './$action/action.get.main-footer';
 import { ACT_GetBottomMenuFooter } from './$action/action.get.bottom-footer';
+import CardVariant1 from '@/lib/element/global/card-variant1';
 export const metadata: Metadata = {
   title: 'Home - Bank BRI | Melayani Dengan Setulus Hati',
 };
@@ -36,7 +37,7 @@ export default async function AetherLayout({
       />
       <GlobalBanner />
       <div className="space-y-12 px-2">
-        {/* <CardVariant1 /> */}
+        <CardVariant1 />
         <CardVariant2 />
         <CardVariant4 />
         <CardVariant5 />
