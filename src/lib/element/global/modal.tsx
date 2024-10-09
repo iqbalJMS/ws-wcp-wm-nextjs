@@ -20,10 +20,10 @@ const Modal = ({
       }
     >
       <div
-        className="flex justify-center items-center p-4 w-full h-screen"
+        className="flex justify-center items-center p-5 lg:p-4 w-full h-screen"
         onClick={onCancel}
       >
-        <div className="relative w-5/12 h-2/3 bg-white  shadow">
+        <div className="relative w-full h-96 md:w-9/12 lg:w-5/12 lg:h-2/3 bg-white  shadow">
           <div className="h-3/4">
             <iframe
               height="450"
@@ -33,12 +33,12 @@ const Modal = ({
               className="w-full"
             ></iframe>
           </div>
-          <div className=" p-4 md:p-5 border-t border-gray-200 rounded-b ">
-            <h3 className="text-sm font-light">20 Jan 2023</h3>
-            <h1 className="font-semibold text-xl pt-2">
+          <div className="h-auto bg-white p-4 md:p-5 border-t border-gray-200 rounded-b space-y-2">
+            <h3 className="text-xs lg:text-sm font-light">20 Jan 2023</h3>
+            <h1 className="font-semibold text-lg lg:text-xl pt-2">
               Pakai BRImo, #LoginKeseruanmu Semua Beres dari Rumah
             </h1>
-            <p className="text-[#555555] font-light">
+            <p className="text-[#555555] font-light text-sm lg:text-base">
               Buka Rekening sambil kerja di rumah, Bayar listrik gak perlu lama,
               Transfer dana gak perlu ke mana-mana, Isi pulsa biar selalu ada
               kuota, Top up BRIZZI so easy di hape aja
