@@ -23,7 +23,7 @@ import { CE_CardVariant12 } from '@/app/$element/client.card.variant12';
 import { CE_CardVariant13 } from '@/app/$element/client.card.variant13';
 import { CE_CardVariant14 } from '@/app/$element/client.card.variant14';
 import { CE_CardVariant15 } from '@/app/$element/client.card.variant15';
-import SE_PortletMain from '@/app/aether/$element/portlet/server.portlet.main';
+import SE_PortletMain from '@/app/wealth-management/$element/portlet/server.portlet.main';
 import Accordion from '@/lib/element/global/accordion';
 import Image from '@/lib/element/global/image';
 

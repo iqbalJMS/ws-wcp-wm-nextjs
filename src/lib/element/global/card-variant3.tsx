@@ -2,8 +2,8 @@
 import React from 'react';
 import { useState } from 'react';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
-import ArrowRightIcon from './arrow-rigth-icon';
-import ArrowLeftIcon from './arrow-left-icon';
+import ArrowRightIcon from './icons/arrow-rigth-icon';
+import ArrowLeftIcon from './icons/arrow-left-icon';
 
 export default function CardVariant3() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -224,7 +224,7 @@ export default function CardVariant3() {
 
       <div className="inline-flex items-center justify-center w-full">
         <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
-        <button className="bg-[#09028B] hover:bg-gray-600 duration-300 text-white py-3 px-5 rounded-full uppercase font-semibold">
+        <button className="bg-wmcolor hover:bg-gray-600 duration-300 text-white py-3 px-5 rounded-full uppercase font-semibold">
           lihat semua promo
         </button>
         <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />

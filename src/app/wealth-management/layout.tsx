@@ -1,13 +1,18 @@
 import GlobalFooter from '@/lib/element/global/global.footer';
-
+import { ACT_GetTopMenuNavbar } from './$action/action.get.top-menu-navbar';
 import { Metadata } from 'next';
 import React from 'react';
 
+import { ACT_GetMainMenuNavbar } from './$action/action.get.main-menu-navbar';
 import GlobalHeader from '@/lib/element/global/global.header';
-import { ACT_GetTopMenuNavbar } from '@/app/wealth-management/$action/action.get.top-menu-navbar';
-import { ACT_GetMainMenuNavbar } from '@/app/wealth-management/$action/action.get.main-menu-navbar';
-import { ACT_GetMainMenuFooter } from '@/app/wealth-management/$action/action.get.main-footer';
-import { ACT_GetBottomMenuFooter } from '@/app/wealth-management/$action/action.get.bottom-footer';
+import { ACT_GetMainMenuFooter } from './$action/action.get.main-footer';
+import { ACT_GetBottomMenuFooter } from './$action/action.get.bottom-footer';
+import CardVariant4 from './$element/card-variant4';
+import CardVariant2 from './$element/card-variant2';
+import CardVariant5 from './$element/card-variant5';
+import CardVariant6 from './$element/card-variant6';
+import CardVariant3 from '@/lib/element/global/card-variant3';
+import CE_BannerMain from './$element/client.banner.main';
 
 export const metadata: Metadata = {
   title: 'Homepage - Wealth Management',
@@ -30,6 +35,14 @@ export default async function AetherLayout({
         headerBottom={listHeaderBottom}
         headerTop={listHeaderTop}
       />
+      <CE_BannerMain data={[]} variant={'01'} />
+      <div className="space-y-12 px-2">
+        <CardVariant2 />
+        <CardVariant4 />
+        <CardVariant5 />
+        <CardVariant6 />
+        <CardVariant3 />
+      </div>
       {children}
       <GlobalFooter
         main_footer={listMainFooter}

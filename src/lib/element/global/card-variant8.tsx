@@ -1,5 +1,5 @@
 import React from 'react';
-import ArrowRightIcon from './arrow-rigth-icon';
+import ArrowRightIcon from './icons/arrow-rigth-icon';
 import Image from 'next/image';
 export default function CardVariant8() {
   const LIST_CARD_CONTENT = [
