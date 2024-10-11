@@ -1,31 +1,31 @@
 'use client';
 
-import ButtonSecondary from '@/lib/element/global/button.secondary';
-// import Image from '@/lib/element/global/image';
 import Image from 'next/image';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
+import BannerIcon from '@/lib/element/global/icons/banner-icon';
 
 export function CE_BannerVariant02() {
   const data = [
     {
-      imgUrl: '/images/dummy/bg-cv-4b.jpg',
-      label: 'Helping You Get Where You Want to be',
-      text: 'We are the one stop financial solutions for the advancement your business',
+      imgUrl: '/images/dummy/bannerWm5.jpg',
+      label: 'For those who want to share their vision',
+      text: 'Introducing BRI Private, a premium banking service from Bank BRI. Because we believe In your value we bring you a completely exclusive banking experience services tailored to your request',
+      btnText: 'Find Out More',
     },
     {
-      imgUrl: '/images/dummy/bg-cv-4b.jpg',
-      label: 'Helping You Get Where You Want to be',
-      text: 'We are the one stop financial solutions for the advancement your business',
+      imgUrl: '/images/dummy/bannerWm6.jpg',
+      label: 'Our most valuable cards for the most valuable clients',
+      text: 'As lives are driven by values, we believe those values need to be passed on to the next generations. Let every value protected and shared as our legacy.',
     },
     {
-      imgUrl: '/images/dummy/bg-cv-4b.jpg',
-      label: 'Helping You Get Where You Want to be',
-      text: 'We are the one stop financial solutions for the advancement your business',
+      imgUrl: '/images/dummy/bannerWm4.jpg',
+      label: 'the best dining experience on every trip',
+      text: 'We have just the right solutions for your financial goals. Our mission is to focus on the details, so you can focus on the big picture.',
     },
   ];
-  const [index, setIndex] = useState(0);
 
+  const [index, setIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [translateX, setTranslateX] = useState(0);
@@ -36,7 +36,7 @@ export function CE_BannerVariant02() {
       setIndex((prevIndex) =>
         prevIndex === data?.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000);
+    }, 50000);
 
     return () => clearInterval(interval);
   }, [data?.length]);
@@ -71,7 +71,7 @@ export function CE_BannerVariant02() {
     setIsDragging(false);
 
     // If dragged enough, change the image
-    if (translateX > 50) {
+    if (translateX > 40) {
       goToPrevious();
     } else if (translateX < -50) {
       goToNext();
@@ -89,14 +89,14 @@ export function CE_BannerVariant02() {
 
   return (
     <>
-      <div className="overflow-hidden relative pb-5">
+      <div className="w-full overflow-hidden relative pb-2 ">
         <div
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
           ref={sliderRef}
-          className="overflow-hidden relative rounded-br-[14rem] h-[30rem] mdmax:h-[10rem] mdmax:rounded-br-[7rem] z-10"
+          className="w-full overflow-hidden relative h-[80vh] xl:h-screen z-10"
         >
           {data?.map((bannerItem, bannerIndex: number) => {
             return (
@@ -108,39 +108,32 @@ export function CE_BannerVariant02() {
                   ${bannerIndex === index ? '' : 'opacity-0'}
                   `}
               >
-                <div className=" overflow-hidden w-full h-full relative ">
+                <div className="overflow-hidden w-full h-full relative flex justify-center ">
                   <Image
-                    // extern={true}
                     src={bannerItem.imgUrl}
                     alt="image"
                     width={1920}
                     height={1080}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
-                  <div className="absolute top-1/2 transform -translate-y-1/2 z-30 left-[12rem] mdmax:left-5">
-                    <div>
+
+                  <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40"></div>
+                  <div className="w-full lg:w-9/12 xl:w-10/12 2xl:w-8/12 flex justify-center lg:justify-start absolute top-56 p-5 md:px-32 lg:px-0 transform z-30">
+                    <div className="space-y-5">
                       {bannerItem?.label && (
-                        <div className="text-[5rem] mdmax:text-3xl font-semibold text-white">
+                        <div className="text-4xl mdmax:text-3xl font-semibold text-white uppercase">
                           {parseHTMLToReact(bannerItem?.label)}
                         </div>
                       )}
                       {bannerItem?.text && (
-                        <div className="text-[1rem] mdmax:text-sm font-medium text-white">
+                        <div className="text-sm xl:text-base w-full xl:w-8/12  font-light text-white mb-10">
                           {parseHTMLToReact(bannerItem?.text)}
                         </div>
                       )}
-                      {bannerItem?.label && (
-                        <div>
-                          <ButtonSecondary
-                            size="lg"
-                            color="red-01"
-                            rounded="full"
-                            className="px-20"
-                          >
-                            {bannerItem?.label}
-                          </ButtonSecondary>
-                        </div>
+                      {bannerItem?.btnText && (
+                        <button className="bg-privatecolor text-white uppercase font-semibold py-2 px-5 rounded-full hover:bg-neutral-500">
+                          {bannerItem.btnText}
+                        </button>
                       )}
                     </div>
                   </div>
@@ -148,22 +141,27 @@ export function CE_BannerVariant02() {
               </div>
             );
           })}
+          <div className="">
+            <BannerIcon
+              className="w-full h-44 object-cover absolute z-10 bottom-0"
+              stroke={''}
+            />
+          </div>
         </div>
         {data.length > 1 && (
           <div
             className={[
-              'absolute top-1/2 transform -translate-y-1/2 z-30 right-[12rem]',
-              'mdmax:top-[initial] mdmax:bottom-2 mdmax:right-[initial] mdmax:left-1/2 mdmax:-translate-x-1/2',
+              'absolute w-full flex justify-center z-30 bottom-44 md:bottom-16',
             ].join(' ')}
           >
-            <div className="-mt-10 mdmax:m-0 mdmax:flex mdmax:gap-2">
+            <div className="space-x-1 md:space-x-4 -mt-20 right-20 mdmax:m-0 flex mdmax:gap-2">
               {data?.map((_: any, bannerIndex: number) => (
                 <div
                   key={bannerIndex}
                   className={[
-                    'w-5 h-5 rounded-full bg-red-01 mb-3 ',
-                    'mdmax:w-4 mdmax:h-4',
-                    `${bannerIndex === index ? '' : 'bg-opacity-50'}`,
+                    'w-2 h-2 md:w-[10px] md:h-[10px] rounded-full cursor-pointer',
+                    '',
+                    `${bannerIndex === index ? 'outline outline-1 outline-privatecolor bg-privatecolor outline-offset-2 ' : 'bg-white bg-opacity-65 '}`,
                     'cursor-pointer',
                   ].join(' ')}
                   onClick={() => {
@@ -174,8 +172,7 @@ export function CE_BannerVariant02() {
             </div>
           </div>
         )}
-
-        <div className="w-full h-[30rem] absolute top-4 left-0 bg-black rounded-br-[14rem] mdmax:h-[10rem] mdmax:rounded-br-[7rem] overflow-hidden bg-opacity-10 z-0"></div>
+        <div className="w-full h-[50rem] mdmax:h-[20rem] absolute top-4 left-0 bg-black rounded-br-[14rem] mdmax:rounded-br-[7rem] overflow-hidden bg-opacity-10 z-0"></div>
       </div>
     </>
   );

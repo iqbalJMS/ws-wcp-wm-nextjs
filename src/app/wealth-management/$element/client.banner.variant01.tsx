@@ -1,7 +1,5 @@
 'use client';
 
-// import ButtonSecondary from '@/lib/element/global/button.secondary';
-// import Image from '@/lib/element/global/image';
 import Image from 'next/image';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
@@ -27,7 +25,6 @@ export function CE_BannerVariant01() {
   ];
 
   const [index, setIndex] = useState(0);
-
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [translateX, setTranslateX] = useState(0);
@@ -73,7 +70,7 @@ export function CE_BannerVariant01() {
     setIsDragging(false);
 
     // If dragged enough, change the image
-    if (translateX > 50) {
+    if (translateX > 40) {
       goToPrevious();
     } else if (translateX < -50) {
       goToNext();
@@ -148,17 +145,17 @@ export function CE_BannerVariant01() {
         {data.length > 1 && (
           <div
             className={[
-              'absolute w-full flex justify-center z-30 bottom-44 md:bottom-24',
+              'absolute w-full flex justify-center z-30 bottom-44 md:bottom-16',
             ].join(' ')}
           >
-            <div className="space-x-1 md:space-x-3 -mt-20 right-20 mdmax:m-0 flex mdmax:gap-2">
+            <div className="space-x-1 md:space-x-4 -mt-20 right-20 mdmax:m-0 flex mdmax:gap-2">
               {data?.map((_: any, bannerIndex: number) => (
                 <div
                   key={bannerIndex}
                   className={[
-                    'w-2 h-2 md:w-3 md:h-3 rounded-full bg-white ',
+                    'w-2 h-2 md:w-[10px] md:h-[10px] rounded-full ',
                     '',
-                    `${bannerIndex === index ? 'outline outline-1 outline-white outline-offset-2 ' : 'bg-opacity-50 '}`,
+                    `${bannerIndex === index ? 'outline outline-1 outline-white bg-white outline-offset-2 ' : 'bg-white bg-opacity-65 '}`,
                     'cursor-pointer',
                   ].join(' ')}
                   onClick={() => {

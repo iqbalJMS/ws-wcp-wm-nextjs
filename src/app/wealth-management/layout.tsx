@@ -35,7 +35,7 @@ export default async function AetherLayout({
         headerBottom={listHeaderBottom}
         headerTop={listHeaderTop}
       />
-      <CE_BannerMain data={[]} variant={'01'} />
+      <CE_BannerMain data={[]} variant={'03'} />
       <div className="space-y-12 px-2">
         <CardVariant2 />
         <CardVariant4 />
