@@ -2,6 +2,12 @@ import GlobalFooter from '@/lib/element/global/global.footer';
 import { ACT_GetTopMenuNavbar } from './$action/action.get.top-menu-navbar';
 import { Metadata } from 'next';
 import React from 'react';
+import { GlobalBanner } from '@/lib/element/global/global.banner';
+import CardVariant3 from '@/lib/element/global/card-variant3';
+import CardVariant2 from '@/lib/element/global/card-variant2';
+import CardVariant4 from '@/lib/element/global/card-variant4';
+import CardVariant5 from '@/lib/element/global/card-variant5';
+import CardVariant6 from '@/lib/element/global/card-variant6';
 
 import { ACT_GetMainMenuNavbar } from './$action/action.get.main-menu-navbar';
 import GlobalHeader from '@/lib/element/global/global.header';
@@ -29,6 +35,15 @@ export default async function AetherLayout({
         headerBottom={listHeaderBottom}
         headerTop={listHeaderTop}
       />
+      <GlobalBanner />
+      <div className="space-y-12 px-2">
+        {/* <CardVariant1 /> */}
+        <CardVariant2 />
+        <CardVariant4 />
+        <CardVariant5 />
+        <CardVariant6 />
+        <CardVariant3 />
+      </div>
       {children}
       <GlobalFooter
         main_footer={listMainFooter}

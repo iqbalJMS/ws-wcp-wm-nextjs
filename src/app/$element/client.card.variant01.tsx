@@ -18,7 +18,7 @@ type T_CardVariant01Props = {
 
 export function CE_CardVariant01({ data }: T_CardVariant01Props) {
   return (
-    <>
+    <main>
       <div className=" py-10">
         <div className="flex mdmax:flex-wrap">
           {data.map((item, index) => {
@@ -68,6 +68,6 @@ export function CE_CardVariant01({ data }: T_CardVariant01Props) {
           })}
         </div>
       </div>
-    </>
+    </main>
   );
 }

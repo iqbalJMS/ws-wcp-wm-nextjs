@@ -161,7 +161,7 @@ export function LoginButton() {
     },
     {
       title: 'Internet Banking Corporate',
-      color: 'green-500',
+      color: 'green-01',
       link: 'https://biz.bri.co.id/',
     },
   ];
@@ -169,11 +169,7 @@ export function LoginButton() {
   return (
     <div
       ref={elementRef}
-      className="text-white px-6 pr-4 py-2 mdmax:py-1 mdmax:px-4 mdmax:pr-2 rounded-full inline-flex items-center cursor-pointer relative"
-      style={{
-        background:
-          'transparent linear-gradient(90deg, #f59823 0%, #d94a00 100%) 0% 0% no-repeat padding-box',
-      }}
+      className="bg-white text-[#191056] px-6 pr-4 py-2 mdmax:py-1 mdmax:px-4 mdmax:pr-2 rounded-full inline-flex items-center cursor-pointer relative hover:bg-blue-900 hover:text-white duration-300"
       onClick={() => setActive(!active)}
     >
       <div>Login</div>
@@ -260,12 +256,12 @@ export default function GlobalHeader({
   };
 
   return (
-    <>
+    <main>
       <header
         className={[
           `${isScrolling ? 'bg-white shadow-md' : ''}`,
           'z-50 fixed w-full ',
-          `${variant === 'transparent' ? 'mdmax:bg-white mdmax:shadow-md' : 'bg-white'}`,
+          `${variant === 'transparent' ? 'mdmax:bg-white mdmax:shadow-md' : 'bg-black'}`,
         ].join(' ')}
       >
         <div className="container hidden mdmax:block py-4">
@@ -481,6 +477,6 @@ export default function GlobalHeader({
         </div>
         <Search active={activeSearch} setActive={setActiveSearch} />
       </header>
-    </>
+    </main>
   );
 }
