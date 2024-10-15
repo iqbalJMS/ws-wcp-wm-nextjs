@@ -13,6 +13,7 @@ import CardVariant5 from './$element/card-variant5';
 import CardVariant6 from './$element/card-variant6';
 import CardVariant3 from '@/app/wealth-management/$element/card-variant3';
 import CE_BannerMain from './$element/client.banner.main';
+import CarouselVariant2 from './$element/client.carousel.variant02';
 
 export const metadata: Metadata = {
   title: 'Homepage - Wealth Management',
@@ -51,6 +52,7 @@ export default async function AetherLayout({
         <CardVariant5 />
         <CardVariant6 />
         <CardVariant3 />
+        <CarouselVariant2 />
       </div>
       {children}
       <GlobalFooter
