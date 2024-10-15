@@ -11,7 +11,7 @@ import CardVariant2 from '@/lib/element/global/card-variant2';
 import CardVariant4 from '@/app/wealth-management/$element/card-variant4';
 import CardVariant6 from '@/app/wealth-management/$element/card-variant6';
 import CardVariant5 from '@/app/wealth-management/$element/card-variant5';
-import CardVariant3 from '@/lib/element/global/card-variant3';
+import CardVariant3 from '@/app/wealth-management/$element/card-variant3';
 
 export const metadata: Metadata = {
   title: 'Homepage - Wealth Management',

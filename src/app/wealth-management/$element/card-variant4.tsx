@@ -36,7 +36,7 @@ export default function CardVariant4() {
                   backgroundImage: `url(${item.imgUrl})`,
                 }}
               >
-                <div className="w-full h-full bg-black opacity-50">.</div>
+                <div className="w-full h-full bg-black opacity-50"></div>
               </div>
               <div className="flex justify-between">
                 <Image

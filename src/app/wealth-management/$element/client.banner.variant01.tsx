@@ -1,24 +1,21 @@
 'use client';
-
-import Image from 'next/image';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
-import BannerIcon from '@/lib/element/global/icons/banner-icon';
 
 export function CE_BannerVariant01() {
   const data = [
     {
-      imgUrl: '/images/dummy/bannerWm1.jpg',
+      imgUrl: '/images/dummy/bannerWm1.png',
       label: 'A New Perspective of Investment',
       text: 'We are the one stop financial solution for the advancement of your business.',
     },
     {
-      imgUrl: '/images/dummy/bannerWm2.jpg',
+      imgUrl: '/images/dummy/bannerWm2.png',
       label: 'An Old Tradition for a New Generations',
       text: 'As lives are driven by values, we believe those values need to be passed on to the next generations. Let every value protected and shared as our legacy.',
     },
     {
-      imgUrl: '/images/dummy/bannerWm3.jpg',
+      imgUrl: '/images/dummy/bannerWm3.png',
       label: 'Helping You Get Where You Want to be',
       text: 'We have just the right solutions for your financial goals. Our mission is to focus on the details, so you can focus on the big picture.',
     },
@@ -35,7 +32,7 @@ export function CE_BannerVariant01() {
       setIndex((prevIndex) =>
         prevIndex === data?.length - 1 ? 0 : prevIndex + 1
       );
-    }, 10000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, [data?.length]);
@@ -95,37 +92,33 @@ export function CE_BannerVariant01() {
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
           ref={sliderRef}
-          className="w-full overflow-hidden relative h-[80vh] xl:h-screen z-10"
+          className="w-full overflow-hidden relative h-[70vh] lg:h-screen z-10"
         >
           {data?.map((bannerItem, bannerIndex: number) => {
             return (
               <div
                 key={bannerIndex}
                 className={`
-                  absolute w-full h-full top-0 left-0
+                  absolute w-full h-[70vh] lg:h-screen top-0 left-0
                   transition-all ease-in-out duration-500
                   ${bannerIndex === index ? '' : 'opacity-0'}
                   `}
               >
-                <div className="overflow-hidden w-full h-full relative flex justify-center ">
-                  <Image
-                    src={bannerItem.imgUrl}
-                    alt="image"
-                    width={1920}
-                    height={1080}
-                    className="w-full h-full object-cover"
-                  />
-
-                  <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40"></div>
-                  <div className="w-full lg:w-9/12 xl:w-10/12 2xl:w-8/12 flex justify-center lg:justify-start absolute top-56 p-5 md:px-32 lg:px-0 transform z-30 ">
+                <div className=" w-full h-[70vh] lg:h-full flex justify-center bg-fixed">
+                  <div
+                    style={{ backgroundImage: `url(${bannerItem.imgUrl})` }}
+                    className="w-full h-[70vh] lg:h-full bg-cover bg-center bg-no-repeat xl:bg-cover xl:bg-fixed xl:bg-center"
+                  ></div>
+                  <div className="absolute top-0 left-0 w-full h-full "></div>
+                  <div className="w-full lg:w-9/12 xl:w-10/12 2xl:w-8/12 flex justify-center lg:justify-start absolute top-56 lg:top-80 p-5 md:px-32 lg:px-0 transform z-30">
                     <div className="space-y-5">
                       {bannerItem?.label && (
-                        <div className="text-4xl mdmax:text-3xl font-semibold text-white">
+                        <div className="text-2xl lg:text-4xl font-semibold text-white">
                           {parseHTMLToReact(bannerItem?.label)}
                         </div>
                       )}
                       {bannerItem?.text && (
-                        <div className="text-sm xl:text-base w-full xl:w-8/12  font-light text-white mb-10">
+                        <div className="text-sm xl:text-base w-full xl:w-8/12 font-light text-white mb-10">
                           {parseHTMLToReact(bannerItem?.text)}
                         </div>
                       )}
@@ -135,20 +128,14 @@ export function CE_BannerVariant01() {
               </div>
             );
           })}
-          <div className="">
-            <BannerIcon
-              className="w-full h-44 object-cover absolute z-10 bottom-0"
-              stroke={''}
-            />
-          </div>
         </div>
         {data.length > 1 && (
           <div
             className={[
-              'absolute w-full flex justify-center z-30 bottom-44 md:bottom-16',
+              'absolute w-full flex justify-center z-30 bottom-28 md:bottom-16',
             ].join(' ')}
           >
-            <div className="space-x-1 md:space-x-4 -mt-20 right-20 mdmax:m-0 flex mdmax:gap-2">
+            <div className="space-x-2 md:space-x-4 -mt-20 right-20 mdmax:m-0 flex mdmax:gap-2">
               {data?.map((_: any, bannerIndex: number) => (
                 <div
                   key={bannerIndex}
