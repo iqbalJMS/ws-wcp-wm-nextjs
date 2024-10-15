@@ -155,13 +155,18 @@ export function LoginButton() {
   const [active, setActive] = useState(false);
   const logins = [
     {
+      title: 'Internet Banking Personal',
+      color: 'orange-04',
+      link: 'https://biz.bri.co.id/',
+    },
+    {
       title: 'Internet Banking Business',
       color: 'orange-01',
       link: 'https://biz.bri.co.id/',
     },
     {
       title: 'Internet Banking Corporate',
-      color: 'green-01',
+      color: 'green-400',
       link: 'https://biz.bri.co.id/',
     },
   ];
@@ -202,7 +207,9 @@ export function LoginButton() {
               className="w-full bg-white mb-2 px-5 py-4 rounded-3xl"
             >
               <Link href={loginItem.link} target="_blank">
-                <div className={`flex items-center  text-${loginItem.color}`}>
+                <div
+                  className={`flex items-center  ${loginItem.color === 'orange-01' ? 'text-orange-01' : loginItem.color === 'green-400' ? 'text-green-400' : 'text-orange-03'}`}
+                >
                   <div className="mr-2">
                     <svg
                       className="w-6 h-6"
@@ -269,7 +276,7 @@ export default function GlobalHeader({
             <div className="w-[5rem]">
               <Image
                 alt="logo-bri"
-                src="/images/headers/logo-bri.png"
+                src="/images/headers/logo.png"
                 width={128}
                 height={53}
                 className="w-full object-contain"
@@ -299,7 +306,7 @@ export default function GlobalHeader({
         </div>
         <div
           className={[
-            'container py-5 mdmax:p-0 mdmax:fixed mdmax:w-full mdmax:h-screen mdmax:top-0 mdmax:z-50 mdmax:ease-in-out mdmax:transition-all mdmax:duration-300',
+            'container py-5 pb-2 mdmax:p-0 mdmax:fixed mdmax:w-full mdmax:h-screen mdmax:top-0 mdmax:z-50 mdmax:ease-in-out mdmax:transition-all mdmax:duration-300',
             activeMenu
               ? 'mdmax:visible mdmax:opacity-100'
               : 'mdmax:invisible mdmax:opacity-0',
@@ -386,10 +393,10 @@ export default function GlobalHeader({
               </div>
             </div>
             <div className="flex items-end justify-between mdmax:border-b mdmax:border-black mdmax:w-full mdmax:pb-5 mdmax:mb-5">
-              <div className="mdmax:hidden">
+              <div className="mdmax:hidden pb-4 ">
                 <Image
                   alt="logo-bri"
-                  src="/images/headers/logo-bri.png"
+                  src="/images/headers/logo.png"
                   width={128}
                   height={53}
                   className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
@@ -401,7 +408,7 @@ export default function GlobalHeader({
                     return (
                       <div
                         key={index}
-                        className="pb-2 mdmax:pb-0 group border-b-4 border-transparent hover:border-red-01 "
+                        className="pb-2 mdmax:pb-0 group border-b-4 border-transparent hover:border-blue-01 "
                       >
                         <Link
                           href={`/aether/${item.nid}/${item.title
@@ -413,7 +420,7 @@ export default function GlobalHeader({
                           ].join(' ')}
                         >
                           {item?.title}
-
+                          {item?.below?.length > 0 && (
                           <div
                             className={[
                               `invisible group-hover:visible group-hover:opacity-100 opacity-0 transition-all ease-in-out duration-100`,
@@ -422,48 +429,52 @@ export default function GlobalHeader({
                               `border-l-transparent border-r-transparent border-white`,
                               `h-5 w-5`,
                             ].join(' ')}
+                            
                           ></div>
+                          )}
                         </Link>
-                        <div className="absolute left-0 w-full invisible group-hover:visible group-hover:opacity-100 opacity-0 transition-all ease-in-out duration-300 pt-10">
-                          <div className="bg-white">
-                            <div className="container py-5">
-                              <div className="text-[1.5rem] mb-4 font-medium">
-                                {item?.title}
-                              </div>
-                              <div className="flex">
-                                {item?.below?.map((subItem, subIndex) => {
-                                  return (
-                                    <div key={subIndex} className="mr-40">
-                                      <div className="text-red-01 font-semibold mb-2">
-                                        {subItem?.title}
-                                      </div>
-                                      <div>
-                                        {subItem?.below?.map(
-                                          (item, itemIndex) => {
-                                            return (
-                                              <div key={itemIndex}>
-                                                <div className="flex items-center justify-between">
-                                                  {item.title}
-                                                  <Image
-                                                    src={`/images/headers/arrow-right.svg`}
-                                                    width={18}
-                                                    height={18}
-                                                    alt={`icon-arrow-right`}
-                                                    className="w-3 h-3 ml-4"
-                                                  />
+                        {item?.below?.length > 0 && (
+                          <div className="absolute left-0 w-full invisible group-hover:visible group-hover:opacity-100 opacity-0 transition-all ease-in-out duration-300 pt-10">
+                            <div className="bg-white">
+                              <div className="container py-5">
+                                <div className="text-[1.5rem] mb-4 font-medium">
+                                  {item?.title}
+                                </div>
+                                <div className="flex">
+                                  {item?.below?.map((subItem, subIndex) => {
+                                    return (
+                                      <div key={subIndex} className="mr-40">
+                                        <div className="text-red-01 font-semibold mb-2">
+                                          {subItem?.title}
+                                        </div>
+                                        <div>
+                                          {subItem?.below?.map(
+                                            (item, itemIndex) => {
+                                              return (
+                                                <div key={itemIndex}>
+                                                  <div className="flex items-center justify-between">
+                                                    {item.title}
+                                                    <Image
+                                                      src={`/images/headers/arrow-right.svg`}
+                                                      width={18}
+                                                      height={18}
+                                                      alt={`icon-arrow-right`}
+                                                      className="w-3 h-3 ml-4"
+                                                    />
+                                                  </div>
                                                 </div>
-                                              </div>
-                                            );
-                                          }
-                                        )}
+                                              );
+                                            }
+                                          )}
+                                        </div>
                                       </div>
-                                    </div>
-                                  );
-                                })}
+                                    );
+                                  })}
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        )}
                       </div>
                     );
                   })}
