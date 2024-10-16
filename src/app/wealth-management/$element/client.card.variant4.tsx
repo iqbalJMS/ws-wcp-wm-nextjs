@@ -3,7 +3,7 @@ import Image from 'next/image';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ShapeIcon from '@/lib/element/global/icons/shape-icon';
 
-export default function CardVariant4() {
+export default function CE_CardVariant4() {
   const LIST_CARD_CONTENT = [
     {
       imgUrl: '/images/dummy/bg-cv-4b.jpg',

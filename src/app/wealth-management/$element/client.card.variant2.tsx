@@ -3,7 +3,7 @@ import GrowthIcon from '@/lib/element/global/icons/growth-icon';
 import ProtectionIcon from '@/lib/element/global/icons/protection-icon';
 import React from 'react';
 
-export default function CardVariant2() {
+export default function CE_CardVariant2() {
   const LIST_CARD_CONTENT = [
     {
       icon: ProtectionIcon,

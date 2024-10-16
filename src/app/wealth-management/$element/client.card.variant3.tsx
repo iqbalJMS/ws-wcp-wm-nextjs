@@ -5,7 +5,7 @@ import useScreenWidth from '@/lib/hook/useScreenWidth';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 
-export default function CardVariant3() {
+export default function CE_CardVariant3() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const screenWidth = useScreenWidth();
   const slidesToShow = screenWidth > 768 ? 4 : 2;

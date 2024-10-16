@@ -1,8 +1,8 @@
 'use client';
-import useScreenWidth from '@/lib/hook/useScreenWidth';
-import React, { useEffect, useState, MouseEvent, useRef } from 'react';
+// import useScreenWidth from '@/lib/hook/useScreenWidth';
+import React, { useState, MouseEvent, useRef } from 'react';
 
-export default function CE_BannerVariant01() {
+export default function TesterBanner() {
   const data = [
     {
       imgUrl: '/images/dummy/bannerWm1.png',
@@ -16,8 +16,8 @@ export default function CE_BannerVariant01() {
     },
     {
       imgUrl: '/images/dummy/bannerWm3.png',
-      label: 'Helping You Get Where You Want to be',
-      text: 'We have just the right solutions for your financial goals. Our mission is to focus on the details, so you can focus on the big picture.',
+      label: 'A New Perspective of Investment',
+      text: 'We are the one stop financial solution for the advancement of your business.',
     },
   ];
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -25,18 +25,18 @@ export default function CE_BannerVariant01() {
   const [startX, setStartX] = useState(0);
   const [translateX, setTranslateX] = useState(0);
   const sliderRef = useRef<HTMLDivElement | null>(null);
-  const screenWidth = useScreenWidth();
-  const slidesToShow = screenWidth > 768 ? 2 : 1;
+  // const screenWidth = useScreenWidth();
+  const slidesToShow = 2000 > 768 ? 2 : 1;
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prevIndex) =>
-        prevIndex === data?.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 7000);
+  // useEffect(() => {
+  //     const interval = setInterval(() => {
+  //         setCurrentSlide((prevIndex) =>
+  //             prevIndex === data?.length - 1 ? 0 : prevIndex + 1
+  //         );
+  //     }, 5000);
 
-    return () => clearInterval(interval);
-  }, [data?.length]);
+  //     return () => clearInterval(interval);
+  // }, [data?.length]);
 
   const goToNext = () => {
     setCurrentSlide((prevIndex) =>
@@ -58,8 +58,9 @@ export default function CE_BannerVariant01() {
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!isDragging) return;
-    const currentX = e.clientX;
-    const deltaX = currentX - startX;
+    const x = e.clientX;
+    const deltaX = x - startX;
+
     setTranslateX(deltaX);
   };
 
@@ -68,9 +69,9 @@ export default function CE_BannerVariant01() {
     setIsDragging(false);
 
     // If dragged enough, change the image
-    if (translateX > 40) {
+    if (translateX > 200) {
       goToPrevious();
-    } else if (translateX < -50) {
+    } else if (translateX < -200) {
       goToNext();
     }
 
@@ -87,16 +88,24 @@ export default function CE_BannerVariant01() {
   return (
     <div className="w-full overflow-hidden">
       <section className="w-full flex justify-center">
-        <div className="relative overflow-hidden flex justify-center">
+        <div
+          className={
+            isDragging
+              ? 'cursor-grabbing'
+              : 'cursor-grab relative overflow-hidden flex justify-center'
+          }
+        >
           <div
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseLeave}
             ref={sliderRef}
-            className="w-full h-[70vh] lg:h-screen flex transition-all ease-in-out duration-500 cursor-move"
+            className="w-full h-[70vh] lg:h-screen flex transition-all ease-in-out duration-500"
             style={{
-              transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
+              transform: isDragging
+                ? `translateX(${startX}%)`
+                : `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
             }}
           >
             {data.map((item, index) => (

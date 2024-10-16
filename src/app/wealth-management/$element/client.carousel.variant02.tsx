@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import KutipIcon from '@/lib/element/global/icons/kutip-icon';
 
-export default function CarouselVariant2() {
+export default function CE_CarouselVariant2() {
   const LIST_CARD_CONTENT = [
     {
       imgUrl: '/images/dummy/img-promo-cv3.png',

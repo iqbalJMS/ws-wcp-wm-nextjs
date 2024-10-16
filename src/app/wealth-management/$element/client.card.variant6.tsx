@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-export default function CardVariant6() {
+export default function CE_CardVariant6() {
   return (
     <main className="w-full flex justify-center">
       <section className="grid grid-cols-1 md:grid-cols-2 md:place-items-center lg:w-11/12 xl:w-9/12 xl:px-8">

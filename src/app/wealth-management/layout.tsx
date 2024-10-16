@@ -7,13 +7,13 @@ import { ACT_GetMainMenuNavbar } from './$action/action.get.main-menu-navbar';
 import GlobalHeader from '@/lib/element/global/global.header';
 import { ACT_GetMainMenuFooter } from './$action/action.get.main-footer';
 import { ACT_GetBottomMenuFooter } from './$action/action.get.bottom-footer';
-import CardVariant4 from './$element/card-variant4';
-import CardVariant2 from './$element/card-variant2';
-import CardVariant5 from './$element/card-variant5';
-import CardVariant6 from './$element/card-variant6';
-import CardVariant3 from '@/app/wealth-management/$element/card-variant3';
 import CE_BannerMain from './$element/client.banner.main';
-import CarouselVariant2 from './$element/client.carousel.variant02';
+import CE_CardVariant2 from './$element/client.card.variant2';
+import CE_CardVariant3 from './$element/client.card.variant3';
+import CE_CardVariant4 from './$element/client.card.variant4';
+import CE_CardVariant6 from './$element/client.card.variant6';
+import CE_CardVariant5 from './$element/client.card.variant5';
+import CE_CarouselVariant1 from './$element/client.carousel.variant01';
 
 export const metadata: Metadata = {
   title: 'Homepage - Wealth Management',
@@ -38,8 +38,9 @@ export default async function AetherLayout({
       />
       <div className="w-full">
         <CE_BannerMain data={[]} variant={'03'} />
+        {/* <TesterBanner /> */}
       </div>
-      <div className="space-y-32 relative overflow-hidden">
+      <div className=" relative overflow-hidden">
         <Image
           src={'/images/dummy/bg-investment-min.jpg'}
           alt="bg-main-img"
@@ -47,12 +48,12 @@ export default async function AetherLayout({
           height={1000}
           className="w-full absolute -z-10 bottom-52"
         />
-        <CardVariant2 />
-        <CardVariant4 />
-        <CardVariant5 />
-        <CardVariant6 />
-        <CardVariant3 />
-        <CarouselVariant2 />
+        <CE_CarouselVariant1 />
+        <CE_CardVariant2 />
+        <CE_CardVariant5 />
+        <CE_CardVariant4 />
+        <CE_CardVariant6 />
+        <CE_CardVariant3 />
       </div>
       {children}
       <GlobalFooter
