@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import PlayIcon from './play-icon';
+import PlayIcon from './icons/play-icon';
 import Modal from './modal';
 import { useState } from 'react';
 

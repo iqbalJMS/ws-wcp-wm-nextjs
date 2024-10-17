@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import ShareIcon from './share-icon';
+import ShareIcon from './icons/share-icon';
 
 export default function CardVariant10() {
   return (

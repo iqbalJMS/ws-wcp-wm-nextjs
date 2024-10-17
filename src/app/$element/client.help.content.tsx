@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowDownIcon } from '@/lib/element/global/arrow-down-icon';
+import { ArrowDownIcon } from '@/lib/element/global/icons/arrow-down-icon';
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import SE_HelpSectionSelect from './server.help.select';

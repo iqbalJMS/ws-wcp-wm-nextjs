@@ -1,7 +1,7 @@
 'use client';
 
-import { ChevronRightIcon } from '@/lib/element/global/chevron-right-icon';
-import { ChevronUpIcon } from '@/lib/element/global/chevron-up-icon';
+import { ChevronRightIcon } from '@/lib/element/global/icons/chevron-right-icon';
+import { ChevronUpIcon } from '@/lib/element/global/icons/chevron-up-icon';
 import Image from '@/lib/element/global/image';
 import Link from '@/lib/element/global/link';
 import React from 'react';
@@ -73,6 +73,7 @@ export default function CE_InfoSahamMain({
               width={20}
               height={20}
               className="ml-2 stroke-blue-01"
+              stroke={''}
             />
           </Link>
         </div>
@@ -126,6 +127,7 @@ export default function CE_InfoSahamMain({
                       width={30}
                       height={30}
                       className="stroke-green-500"
+                      stroke={''}
                     />
                     <p className="text-2xl text-blue-01 font-medium">
                       {`+${Number(high) - Number(buyPrice)}.00(+${percentChange}%)`}
@@ -137,6 +139,7 @@ export default function CE_InfoSahamMain({
                       width={30}
                       height={30}
                       className="stroke-red-01"
+                      stroke={''}
                     />
                     <p className="text-2xl text-blue-01 font-medium">
                       {`-${Math.abs(Number(high) - Number(buyPrice))}.00(-${percentChange}%)`}
