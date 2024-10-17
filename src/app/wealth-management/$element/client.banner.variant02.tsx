@@ -1,6 +1,6 @@
 'use client';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import useScreenWidth from '@/lib/hook/useScreenWidth';
+import React, { useEffect, useState, MouseEvent, useRef } from 'react';
 
 export function CE_BannerVariant02() {
   const data = [
@@ -22,30 +22,32 @@ export function CE_BannerVariant02() {
     },
   ];
 
-  const [index, setIndex] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [translateX, setTranslateX] = useState(0);
   const sliderRef = useRef<HTMLDivElement | null>(null);
+  const screenWidth = useScreenWidth();
+  const slidesToShow = screenWidth > 768 ? 2 : 1;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) =>
+      setCurrentSlide((prevIndex) =>
         prevIndex === data?.length - 1 ? 0 : prevIndex + 1
       );
-    }, 7000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [data?.length]);
 
   const goToNext = () => {
-    setIndex((prevIndex) =>
+    setCurrentSlide((prevIndex) =>
       prevIndex === data?.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const goToPrevious = () => {
-    setIndex((prevIndex) =>
+    setCurrentSlide((prevIndex) =>
       prevIndex === 0 ? data?.length - 1 : prevIndex - 1
     );
   };
@@ -85,83 +87,71 @@ export function CE_BannerVariant02() {
   };
 
   return (
-    <>
-      <div className="w-full overflow-hidden relative pb-2 ">
-        <div
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseLeave}
-          ref={sliderRef}
-          className="w-full overflow-hidden relative h-[70vh] lg:h-screen z-10"
-        >
-          {data?.map((bannerItem, bannerIndex: number) => {
-            return (
+    <div className="w-full overflow-hidden">
+      <section className="w-full flex justify-center">
+        <div className="relative overflow-hidden flex justify-center">
+          <div
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+            ref={sliderRef}
+            className="w-full h-[70vh] lg:h-screen flex transition-all ease-in-out duration-500"
+            style={{
+              transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
+            }}
+          >
+            {data.map((item, index) => (
               <div
-                key={bannerIndex}
-                className={`
-                  absolute w-full h-[70vh] lg:h-screen top-0 left-0
-                  transition-all ease-in-out duration-500
-                  ${bannerIndex === index ? '' : 'opacity-0'}
-                  `}
+                style={{
+                  backgroundImage: `url(${item.imgUrl})`,
+                }}
+                key={index}
+                className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-fixed bg-center bg-cover bg-no-repeat xl:bg-fixed"
               >
-                <div className=" w-full h-[70vh] lg:h-full flex justify-center bg-fixed">
-                  <div
-                    style={{ backgroundImage: `url(${bannerItem?.imgUrl})` }}
-                    className="w-full h-[70vh] lg:h-full bg-cover bg-center bg-no-repeat xl:bg-cover xl:bg-fixed xl:bg-center"
-                  ></div>
-                  <div className="absolute top-0 left-0 w-full h-full "></div>
-                  <div className="w-full lg:w-9/12 xl:w-10/12 2xl:w-8/12 flex justify-center lg:justify-start absolute top-56 lg:top-80 p-5 md:px-32 lg:px-0 transform z-30">
-                    <div className="space-y-5">
-                      {bannerItem?.label && (
-                        <div className="text-2xl lg:text-4xl font-semibold text-white">
-                          {parseHTMLToReact(bannerItem?.label)}
-                        </div>
-                      )}
-                      {bannerItem?.text && (
-                        <div className="text-sm xl:text-base w-full xl:w-8/12 font-light text-white mb-10">
-                          {parseHTMLToReact(bannerItem?.text)}
-                        </div>
-                      )}
-                      {bannerItem?.btnText && (
-                        <button className="group relative overflow-hidden bg-privatecolor text-white uppercase font-semibold py-2 px-5 rounded-full">
-                          {bannerItem.btnText}
-                          <span className="group-hover:bg-white absolute w-full opacity-20 duration-200 z-10 rounded-full py-5 px-5 top-0 left-0"></span>
-                        </button>
-                      )}
-                    </div>
-                  </div>
+                <div className="text-start w-10/12 md:w-8/12 space-y-4 ml-5 lg:ml-0">
+                  <h1 className="text-3xl lg:text-4xl font-semibold text-white">
+                    {item.label}
+                  </h1>
+                  <p className="text-sm xl:text-base w-full xl:w-8/12 font-light text-white mb-10">
+                    {item.text}
+                  </p>
+                  {item?.btnText && (
+                    <button className="group relative overflow-hidden bg-privatecolor text-white uppercase font-semibold py-2 px-5 rounded-full">
+                      {item?.btnText}
+                      <span className="group-hover:bg-white absolute w-full opacity-20 duration-200 z-10 rounded-full py-5 px-5 top-0 left-0"></span>
+                    </button>
+                  )}
                 </div>
               </div>
-            );
-          })}
-        </div>
-        {data.length > 1 && (
-          <div
-            className={[
-              'absolute w-full flex justify-center z-30 bottom-28 md:bottom-16',
-            ].join(' ')}
-          >
-            <div className="space-x-2 md:space-x-4 -mt-20 right-20 mdmax:m-0 flex mdmax:gap-2">
-              {data?.map((_: any, bannerIndex: number) => (
-                <div
-                  key={bannerIndex}
-                  className={[
-                    'w-2 h-2 md:w-[10px] md:h-[10px] rounded-full ',
-                    '',
-                    `${bannerIndex === index ? 'outline outline-1 outline-privatecolor bg-privatecolor outline-offset-2 ' : 'bg-white bg-opacity-65 '}`,
-                    'cursor-pointer',
-                  ].join(' ')}
-                  onClick={() => {
-                    setIndex(bannerIndex);
-                  }}
-                />
-              ))}
-            </div>
+            ))}
           </div>
-        )}
-        <div className="w-full h-[50rem] mdmax:h-[20rem] absolute top-4 left-0 bg-black rounded-br-[14rem] mdmax:rounded-br-[7rem] overflow-hidden bg-opacity-10 z-0"></div>
-      </div>
-    </>
+          {data.length > 1 && (
+            <div
+              className={[
+                'absolute w-full flex justify-center z-30 bottom-20 md:bottom-9',
+              ].join(' ')}
+            >
+              <div className="space-x-2 md:space-x-4 -mt-20 right-20 mdmax:m-0 flex mdmax:gap-2">
+                {data?.map((_: any, bannerIndex: number) => (
+                  <div
+                    key={bannerIndex}
+                    className={[
+                      'w-2 h-2 md:w-[10px] md:h-[10px] rounded-full ',
+                      '',
+                      `${bannerIndex === currentSlide ? 'outline outline-1 outline-white bg-white outline-offset-2 ' : 'bg-white bg-opacity-65 '}`,
+                      'cursor-pointer',
+                    ].join(' ')}
+                    onClick={() => {
+                      setCurrentSlide(bannerIndex);
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
   );
 }
