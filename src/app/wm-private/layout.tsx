@@ -8,10 +8,10 @@ import { ACT_GetMainMenuFooter } from '@/app/wm-private/$action/action.get.main-
 import { ACT_GetBottomMenuFooter } from '@/app/wm-private/$action/action.get.bottom-footer';
 import CardVariant1 from '@/lib/element/global/card-variant1';
 import CardVariant2 from '@/lib/element/global/card-variant2';
-import CardVariant4 from '@/app/wealth-management/$element/client.card.variant4';
-import CardVariant6 from '@/app/wealth-management/$element/client.card.variant6';
-import CardVariant5 from '@/app/wealth-management/$element/client.card.variant5';
-import CardVariant3 from '@/app/wealth-management/$element/client.card.variant3';
+import CardVariant4 from '@/app/wealth-management/$element/card-variant4';
+import CardVariant6 from '@/app/wealth-management/$element/card-variant6';
+import CardVariant5 from '@/app/wealth-management/$element/card-variant5';
+import CardVariant3 from '@/app/wealth-management/$element/card-variant3';
 
 export const metadata: Metadata = {
   title: 'Homepage - Wealth Management',
