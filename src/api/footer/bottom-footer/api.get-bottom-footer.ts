@@ -2,38 +2,47 @@
 import { T_ResponseGetBottomFooterMenu } from "./api.get-bottom-footer.type";
 
 const ABSTRACTION_RESPONSE_DATA = {
-  data: [
-    {
-      value: "Privasi",
-      url: "https://bri.co.id/privacy",
-      extern: true,
-    },
-    {
-      value: "Syarat & Ketentuan",
-      url: "https://bri.co.id/term-of-use",
-      extern: true,
-    },
-    {
-      value: "Sitemap",
-      url: "https://bri.co.id/sitemap",
-      extern: true,
-    },
-    {
-      value: "Karir",
-      url: "https://bri.co.id/web/erecruitment",
-      extern: true,
-    },
-    {
-      value: "CMS BRI",
-      url: "https://ibank.bri.co.id/cms/",
-      extern: true,
-    },
-    {
-      value: "E-form BRI",
-      url: "https://eform.bri.co.id/",
-      extern: true,
-    },
-  ],
+  data:
+  {
+    list: [
+      {
+        value: "Privasi",
+        url: "https://bri.co.id/privacy",
+        extern: true,
+      },
+      {
+        value: "Syarat & Ketentuan",
+        url: "https://bri.co.id/term-of-use",
+        extern: true,
+      },
+    ],
+    social_media: [
+      {
+        name: "",
+        icon: "facebook",
+        url: "https://www.facebook.com/BRIofficialpage",
+        className: "text-white ",
+      },
+      {
+        name: "",
+        icon: "instagram",
+        url: "https://www.instagram.com/bankbri_id",
+        className: "text-white ",
+      },
+      {
+        name: "",
+        icon: "twitter",
+        url: "https://x.com/kontakbri",
+        className: "text-white ",
+      },
+      {
+        name: "",
+        icon: "youTube",
+        url: "https://www.youtube.com/channel/UCRHFE_ooDrkEiRRJbog3EjA",
+        className: "text-white ",
+      },
+    ],
+  }
 };
 export async function API_GetBottomFooterMenu({
   // TODO: used as a param - integration API
