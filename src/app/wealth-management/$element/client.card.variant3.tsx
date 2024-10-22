@@ -142,7 +142,7 @@ export default function CE_CardVariant3() {
           <div className="basis-20 flex justify-center items-center">
             <button
               className={[
-                'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white mdmax:',
+                'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white ',
                 currentSlide === 0
                   ? 'text-opacity-10 cursor-default'
                   : 'cursor-pointer',
@@ -159,11 +159,11 @@ export default function CE_CardVariant3() {
               />
             </button>
           </div>
-          <div className="overflow-hidden basis-11/12 flex justify-center p-5">
+          <div className="overflow-hidden basis-full flex justify-center p-5">
             <div
               className="w-full flex -mx-5 transition-all ease-in-out duration-300 space-x-5 "
               style={{
-                transform: `translateX(-${currentSlide * (180 / slidesToShow)}%)`,
+                transform: `translateX(-${currentSlide * (150 / slidesToShow)}%)`,
               }}
             >
               {LIST_CARD_CONTENT.map((item, index) => (
@@ -201,9 +201,9 @@ export default function CE_CardVariant3() {
             <button
               className={[
                 'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white',
-                currentSlide < LIST_CARD_CONTENT.length - 1 - slidesToShow
-                  ? 'cursor-pointer '
-                  : 'bg-opacity-10 cursor-default',
+                currentSlide >= LIST_CARD_CONTENT.length - 1 - slidesToShow
+                  ? 'cursor-default '
+                  : 'bg-opacity-10 cursor-pointer',
               ].join(' ')}
               onClick={nextSlide}
             >
@@ -212,7 +212,7 @@ export default function CE_CardVariant3() {
                 height={40}
                 stroke="#4640A5"
                 className={
-                  currentSlide === LIST_CARD_CONTENT?.length - 1
+                  currentSlide === LIST_CARD_CONTENT?.length
                     ? 'opacity-50'
                     : 'text-white text-red'
                 }

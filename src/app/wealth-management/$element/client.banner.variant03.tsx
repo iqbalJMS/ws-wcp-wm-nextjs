@@ -2,6 +2,18 @@
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
 
+const getSlideToShow = (screenWidth: number) => {
+  if (!screenWidth) return 3;
+
+  if (screenWidth > 1200) {
+    return 2;
+  } else if (screenWidth <= 1200 && screenWidth >= 768) {
+    return 2;
+  } else {
+    return 2;
+  }
+};
+
 export function CE_BannerVariant03() {
   const data = [
     {
@@ -27,7 +39,7 @@ export function CE_BannerVariant03() {
   const [translateX, setTranslateX] = useState(0);
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const screenWidth = useScreenWidth();
-  const slidesToShow = screenWidth > 768 ? 2 : 1;
+  const slidesToShow = getSlideToShow(screenWidth);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -95,18 +107,20 @@ export function CE_BannerVariant03() {
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseLeave}
             ref={sliderRef}
-            className="w-full h-[70vh] lg:h-screen flex transition-all ease-in-out duration-500 cursor-move"
+            className="w-full h-[70vh] lg:h-screen flex transition-all ease-in-out duration-500"
             style={{
               transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
             }}
           >
             {data.map((item, index) => (
               <div
+                className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-center bg-cover bg-no-repeat bg-fixed duration-500"
                 style={{
                   backgroundImage: `url(${item.imgUrl})`,
+                  backgroundAttachment: 'fixed',
+                  backgroundPosition: 'fixed',
                 }}
                 key={index}
-                className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-fixed bg-center bg-cover bg-no-repeat xl:bg-fixed"
               >
                 <div className="text-start w-10/12 md:w-8/12 space-y-4 ml-5 lg:ml-0">
                   <h1 className="text-3xl lg:text-4xl font-semibold text-white">

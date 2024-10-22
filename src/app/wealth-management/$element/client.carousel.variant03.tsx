@@ -11,14 +11,14 @@ const getSlideToShow = (screenWidth: number) => {
 
   if (screenWidth > 1200) {
     return 3;
-  } else if (screenWidth < 1200 && screenWidth > 768) {
+  } else if (screenWidth <= 1200 && screenWidth >= 768) {
     return 2;
   } else {
     return 1;
   }
 };
 
-export default function CE_CarouselVariant1() {
+export default function CE_CarouselVariant3() {
   const data = [
     {
       imgUrl:
@@ -82,9 +82,24 @@ export default function CE_CarouselVariant1() {
       setCurrentIndex((prevIndex) => prevIndex + slidesToScroll);
     }
   };
+  const goToNextMobile = () => {
+    if (currentIndex >= data.length - 1) return;
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setCurrentIndex((prevIndex) => prevIndex + slidesToScroll);
+    }
+  };
 
   const goToPrev = () => {
     if (currentIndex <= -1) return;
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setCurrentIndex((prevIndex) => prevIndex - slidesToScroll);
+    }
+  };
+
+  const goToPrevMobile = () => {
+    if (currentIndex <= 0) return;
     if (!isTransitioning) {
       setIsTransitioning(true);
       setCurrentIndex((prevIndex) => prevIndex - slidesToScroll);
@@ -179,53 +194,97 @@ export default function CE_CarouselVariant1() {
             </span>
           </Link>
         </div>
-        <div className="space-x-3 ">
-          <button
-            className={[
-              ' p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
-              currentIndex < 0
-                ? 'bg-opacity-35 cursor-default'
-                : 'cursor-pointer',
-            ].join('')}
-            onClick={goToPrev}
-          >
-            <LeftArrow
-              width={27}
-              height={27}
-              stroke={''}
-              fill="white"
-              className={currentIndex < 0 ? 'opacity-20' : 'text-white'}
-            />
-          </button>
-          <button
-            className={[
-              ' p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
-              currentIndex >= data.length - 2
-                ? 'bg-opacity-35 cursor-default'
-                : 'cursor-pointer ',
-            ].join('')}
-            onClick={goToNext}
-          >
-            <RightArrow
-              width={27}
-              height={27}
-              stroke={''}
-              fill="white"
-              className={
-                currentIndex >= data.length - 2 ? 'opacity-20' : 'text-white'
-              }
-            />
-          </button>
+
+        {/* Button Section */}
+        <div className="">
+          <div className="hidden md:flex space-x-3">
+            <button
+              className={[
+                ' p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
+                currentIndex < 0
+                  ? 'bg-opacity-35 cursor-default'
+                  : 'cursor-pointer',
+              ].join('')}
+              onClick={goToPrev}
+            >
+              <LeftArrow
+                width={27}
+                height={27}
+                stroke={''}
+                fill="white"
+                className={currentIndex < 0 ? 'opacity-20' : 'text-white'}
+              />
+            </button>
+            <button
+              className={[
+                '  p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
+                currentIndex >= data.length - 2
+                  ? 'bg-opacity-35 cursor-default'
+                  : 'cursor-pointer ',
+              ].join('')}
+              onClick={goToNext}
+            >
+              <RightArrow
+                width={27}
+                height={27}
+                stroke={''}
+                fill="white"
+                className={
+                  currentIndex >= data.length - 2 ? 'opacity-20' : 'text-white'
+                }
+              />
+            </button>
+          </div>
+
+          {/* button for mobile screen */}
+          <div className="flex md:hidden space-x-3">
+            <button
+              className={[
+                'lg:hidden p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
+                currentIndex <= 0
+                  ? 'bg-opacity-35 cursor-default'
+                  : 'cursor-pointer',
+              ].join('')}
+              onClick={goToPrevMobile}
+            >
+              <LeftArrow
+                width={27}
+                height={27}
+                stroke={''}
+                fill="white"
+                className={currentIndex <= 0 ? 'opacity-20' : 'text-white'}
+              />
+            </button>
+            <button
+              className={[
+                'lg:hidden p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
+                currentIndex >= data.length - 1
+                  ? 'bg-opacity-35 cursor-default'
+                  : 'cursor-pointer ',
+              ].join('')}
+              onClick={goToNextMobile}
+            >
+              <RightArrow
+                width={27}
+                height={27}
+                stroke={''}
+                fill="white"
+                className={
+                  currentIndex >= data.length - 1 ? 'opacity-20' : 'text-white'
+                }
+              />
+            </button>
+          </div>
         </div>
       </section>
-      <section className="relative w-11/12 lg:w-11/12 xl:w-9/12 overflow-hidden">
+      <section className="relative w-10/12 lg:w-11/12 xl:w-9/12 overflow-hidden">
         <div
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
           ref={sliderRef}
-          className={`flex transition-transform duration-700 ease-in-out transform-gpu w-full`}
+          className={`flex justify-start items-center transition-transform duration-700 ease-in-out transform-gpu w-full drop-shadow-2xl`}
         >
           {[...data].map((slide, index) => (
             <div
@@ -247,7 +306,7 @@ export default function CE_CarouselVariant1() {
                 >
                   <div className=" w-full h-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
                 </div>
-                {/* <div className="absolute h-60 flex flex-col justify-between items-center bottom-0 p-5"> */}
+
                 <PlayIcon
                   width={50}
                   height={50}
@@ -255,15 +314,12 @@ export default function CE_CarouselVariant1() {
                   className="absolute top-40 left-56 duration-500 p-2 rounded-full border"
                   fill="white"
                 />
-                {/* <div> */}
                 <h1 className="absolute text-white text-xl bottom-20 font-semibold px-7">
                   {slide.label}
                 </h1>
                 <p className="absolute text-white text-sm bottom-8 line-clamp-2 pr-10 pl-7">
                   {slide.text}
                 </p>
-                {/* </div> */}
-                {/* </div> */}
               </picture>
             </div>
           ))}

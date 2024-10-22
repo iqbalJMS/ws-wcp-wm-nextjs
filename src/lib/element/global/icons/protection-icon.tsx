@@ -10,20 +10,20 @@ export default function ProtectionIcon({
 }: T_Icon) {
   return (
     <svg
+      version="1.1"
       width={width}
       className={className}
       height={height}
       stroke={stroke}
       fill={fill}
-      version="1.1"
       id="Icons"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
     >
-      {/* <style type="text/css">
-	.st0{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st1{fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10;}
-</style> */}
+      <style type="text/css">
+        fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10
+        none;stroke:#000000;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10
+      </style>
       <path
         className="st0"
         d="M25,6.7c-3.4,0-6.6-1.4-9-3.7c-2.4,2.3-5.6,3.7-9,3.7C5.6,6.7,4.3,6.4,3,6c0,14,5.5,19.6,13,23

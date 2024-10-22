@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
-import ShapeIcon from '@/lib/element/global/icons/shape-icon';
 
 export default function CE_CardVariant4() {
   const LIST_CARD_CONTENT = [
@@ -19,7 +18,7 @@ export default function CE_CardVariant4() {
     },
   ];
   return (
-    <main className="relative w-full h-auto flex justify-center">
+    <main className="relative w-full h-auto flex justify-center  overflow-hidden">
       <section className="w-full lg:w-11/12">
         <h1 className="text-center pb-20 text-3xl font-semibold uppercase">
           layanan kami
@@ -31,7 +30,7 @@ export default function CE_CardVariant4() {
               className="cursor-pointer group relative w-full md:w-10/12 lg:w-full h-60 lg:h-72 overflow-hidden"
             >
               <div
-                className=" flex flex-col justify-between h-72 bg-no-repeat bg-cover hover:scale-110 bg-center transition-all ease-in-out transform-gpu delay-75"
+                className="flex flex-col justify-between h-72 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-center transition-all ease-in-out transform-gpu delay-75"
                 style={{
                   backgroundImage: `url(${item.imgUrl})`,
                 }}
@@ -50,7 +49,7 @@ export default function CE_CardVariant4() {
                   width={25}
                   height={25}
                   stroke="white"
-                  className="absolute top-12 right-14 lg:right-16 group-hover:right-10 duration-300"
+                  className="absolute top-12 right-14 lg:right-16 group-hover:right-10 duration-500"
                   fill="white"
                 />
               </div>
@@ -63,16 +62,8 @@ export default function CE_CardVariant4() {
           ))}
         </div>
       </section>
-      <ShapeIcon
-        stroke=""
-        width={200}
-        className="absolute left-40 top-60 -z-10"
-      />
-      <ShapeIcon
-        stroke=""
-        width={200}
-        className="absolute right-40 top-28 -z-10"
-      />
+      <div className="bg-[#DCDCDC] w-[400px] h-[120px] absolute -z-10 bottom-0 left-20"></div>
+      <div className="bg-[#DCDCDC] w-[400px] h-[120px] absolute -z-10 top-[116px] right-20"></div>
     </main>
   );
 }

@@ -13,7 +13,7 @@ const CE_BannerMain = ({
     desc: string;
     button: string;
   }>;
-  variant: '01' | '02' | '03' | '04' | '05';
+  variant: '01' | '02' | '03';
 }) => {
   return (
     <>
