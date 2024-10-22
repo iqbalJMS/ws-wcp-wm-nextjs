@@ -2,6 +2,18 @@
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import React, { useEffect, useState, MouseEvent, useRef } from 'react';
 
+const getSlideToShow = (screenWidth: number) => {
+  if (!screenWidth) return 3;
+
+  if (screenWidth > 1200) {
+    return 2;
+  } else if (screenWidth <= 1200 && screenWidth >= 768) {
+    return 2;
+  } else {
+    return 2;
+  }
+};
+
 export function CE_BannerVariant02() {
   const data = [
     {
@@ -28,7 +40,7 @@ export function CE_BannerVariant02() {
   const [translateX, setTranslateX] = useState(0);
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const screenWidth = useScreenWidth();
-  const slidesToShow = screenWidth > 768 ? 2 : 1;
+  const slidesToShow = getSlideToShow(screenWidth);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -107,7 +119,7 @@ export function CE_BannerVariant02() {
                   backgroundImage: `url(${item.imgUrl})`,
                 }}
                 key={index}
-                className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-fixed bg-center bg-cover bg-no-repeat xl:bg-fixed"
+                className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-fixed bg-center bg-cover bg-no-repeat "
               >
                 <div className="text-start w-10/12 md:w-8/12 space-y-4 ml-5 lg:ml-0">
                   <h1 className="text-3xl lg:text-4xl font-semibold text-white">

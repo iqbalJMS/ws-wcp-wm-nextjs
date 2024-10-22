@@ -1,8 +1,5 @@
 'use client';
 
-// import ButtonSecondary from '@/lib/element/global/button.secondary';
-// import Image from 'next/image';
-
 export function CE_BannerVariant04() {
   const data = [
     {

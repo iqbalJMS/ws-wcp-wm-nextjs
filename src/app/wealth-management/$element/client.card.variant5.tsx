@@ -38,15 +38,15 @@ export default function CE_CardVariant5() {
 
   return (
     <div className="w-full h-auto flex justify-center">
-      <section className="w-full md:w-10/12 lg:w-11/12 xl:w-9/12 grid grid-cols-1 lg:grid-cols-2 lg:content-center xl:px-8">
-        <div className="pb-10 w-96 lg:flex flex-col justify-center">
+      <div className="w-full md:w-10/12 lg:w-11/12 xl:w-9/12 grid grid-cols-1 lg:grid-cols-2 lg:content-center xl:px-8">
+        <section className="pb-10 w-96 lg:flex flex-col justify-center">
           <h1 className="pb-3 text-3xl font-bold uppercase ">
             produk unggulan
           </h1>
           <p className="text-[#826B64] font-normal text-sm lg:text-base">
             Temukan lebih lanjut tentang produk Investasi dan Bancassurance
           </p>
-        </div>
+        </section>
         <section className="w-full overflow-hidden mdmax:w-full mdmax:flex-none">
           <div
             className="w-full flex transition-all ease-in-out duration-300 lg:space-x-5"
@@ -60,12 +60,12 @@ export default function CE_CardVariant5() {
                 className="relative w-full h-80 overflow-hidden cursor-pointer flex-none lg:flex-1"
               >
                 <div
-                  className="w-full h-80 flex items-end justify-between bg-no-repeat bg-cover hover:scale-125 bg-center transition-all ease-in-out transform-gpu delay-75"
+                  className="w-full h-96 flex items-end justify-between bg-no-repeat bg-cover hover:scale-125 bg-center transition-all ease-in-out transform-gpu delay-75 duration-300"
                   style={{ backgroundImage: `url(${item.imgUrl})` }}
                 >
-                  <div className="w-full h-full bg-black opacity-50">.</div>
+                  <div className="w-full h-full bg-black opacity-40">.</div>
                 </div>
-                <button className="text-white font-medium absolute left-5 bottom-5">
+                <button className="text-white text-lg font-medium absolute left-5 bottom-5">
                   {item.label} <span>{item.textBtn}</span>
                 </button>
                 <ArrowRightIcon
@@ -118,7 +118,7 @@ export default function CE_CardVariant5() {
             </button>
           </div>
         </section>
-      </section>
+      </div>
     </div>
   );
 }
