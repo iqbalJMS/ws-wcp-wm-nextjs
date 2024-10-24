@@ -1,8 +1,13 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
-import PlayIcon from './play-icon';
+import PlayIcon from './icons/play-icon';
+import Modal from './modal';
+import { useState } from 'react';
 
 export default function CardVariant1() {
+  const [isShowModal, setIsShowModal] = useState<boolean>(false);
+
   const LIST_CARD = [
     {
       imgUrl: '/images/dummy/banner.jpg',
@@ -31,16 +36,18 @@ export default function CardVariant1() {
     },
   ];
   return (
-    <main className="w-full h-auto flex flex-col justify-center items-center">
+    <div className="w-full h-auto flex flex-col justify-center items-center">
       <h1 className="text-3xl font-semibold uppercase">Video</h1>
+
       <p className="font-extralight pt-2 pb-16">
         Daftar putar teratas minggu ini
       </p>
       <section className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
         {LIST_CARD.map((item, index) => (
           <div
+            onClick={() => setIsShowModal(true)}
             key={index}
-            className="group relative min-w-80  h-max flex flex-col cursor-pointer rounded-lg"
+            className="group relative min-w-80 h-max flex flex-col cursor-pointer rounded-lg"
           >
             <picture className=" relative overflow-hidden rounded-lg ">
               <Image
@@ -66,7 +73,11 @@ export default function CardVariant1() {
             </h1>
           </div>
         ))}
+        <Modal
+          isShow={isShowModal}
+          onCancel={() => setIsShowModal((prev) => !prev)}
+        />
       </section>
-    </main>
+    </div>
   );
 }

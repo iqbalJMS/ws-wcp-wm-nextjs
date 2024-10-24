@@ -11,7 +11,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Home BRI - Melayani setulus hati',
+  title: 'Homepage - Wealth Management',
 };
 
 export default function RootLayout({
