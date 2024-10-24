@@ -8,6 +8,7 @@ import { ACT_GetTopMenuNavbar } from '@/app/wealth-management/$action/action.get
 import { ACT_GetMainMenuNavbar } from '@/app/wealth-management/$action/action.get.main-menu-navbar';
 import { ACT_GetMainMenuFooter } from '@/app/wealth-management/$action/action.get.main-footer';
 import { ACT_GetBottomMenuFooter } from '@/app/wealth-management/$action/action.get.bottom-footer';
+import CE_MenuMain from '@/app/wealth-management/$element/client.menu.main';
 
 export const metadata: Metadata = {
   title: 'Homepage - Wealth Management',
@@ -30,6 +31,9 @@ export default async function AetherLayout({
         headerBottom={listHeaderBottom}
         headerTop={listHeaderTop}
       />
+      <CE_MenuMain/>
+      <div className='h-screen bg-blue-300'></div>
+
       {children}
       <GlobalFooter
         main_footer={listMainFooter}
