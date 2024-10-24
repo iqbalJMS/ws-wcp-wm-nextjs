@@ -23,9 +23,10 @@ import { CE_CardVariant12 } from '@/app/$element/client.card.variant12';
 import { CE_CardVariant13 } from '@/app/$element/client.card.variant13';
 import { CE_CardVariant14 } from '@/app/$element/client.card.variant14';
 import { CE_CardVariant15 } from '@/app/$element/client.card.variant15';
-import SE_PortletMain from '@/app/wealth-management/$element/portlet/server.portlet.main';
-import Accordion from '@/lib/element/global/accordion';
-import Image from '@/lib/element/global/image';
+
+import SE_PortletMain from '@/app/aether/$element/portlet/server.portlet.main';
+// import Accordion from '@/lib/element/global/accordion';
+// import Image from '@/lib/element/global/image';
 
 export default async function PageTester() {
   const dataDummy: T_CarouselMainProps['data'] = [
@@ -666,7 +667,7 @@ export default async function PageTester() {
         imageContent="/sites/default/files/images/promo-carousel-01.jpeg"
         // imageTitle="/sites/default/files/images/1073-860x640.jpg"
       />
-      <div className="py-4 container">
+      {/* <div className="py-4 container">
         <Accordion
           renderTitle={
             <p className="text-l-bold text-left font-medium leading-8">
@@ -782,7 +783,7 @@ export default async function PageTester() {
             />
           }
         />
-      </div>
+      </div> */}
       <ScrollToTop />
     </React.Fragment>
   );
