@@ -9,7 +9,7 @@ import { useRef, useState } from 'react';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from './link';
 import { Tabs } from './tabs';
-import { CloseIcon } from './close-icon';
+import { CloseIcon } from './icons/close-icon';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
