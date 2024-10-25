@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { CE_ContentGridMain } from '@/app/$element/client.content-grid.main';
+
 // import ScrollToTop from '@/lib/element/global/scroll.top';
 // import { T_CarouselMainProps } from '@/app/$action/constants';
 // import CE_BannerMain from '@/app/$element/client.banner.main';
@@ -29,10 +31,26 @@ import React from 'react';
 // import Image from '@/lib/element/global/image';
 
 export default async function PageTester() {
-  
-
   return (
-    <></>
+    <>
+      <CE_ContentGridMain
+        data={[
+          {
+            desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+            title: 'Lorem Ipsum',
+            image: '/sites/default/files/images/1073-860x640.jpg',
+            
+          },
+          {
+            desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+            title: 'Lorem Ipsum',
+            
+            
+          },
+        ]}
+        
+      />
+    </>
     // <React.Fragment>
     //   <CE_BannerMain
     //     variant="01"

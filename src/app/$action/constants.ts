@@ -39,3 +39,12 @@ export type T_ContentMainProps = {
   }>;
   variant: '01' | '02' | '03' | '04' | '05';
 }
+
+export type T_ContentGridMainProps = {
+  data: Array<{
+    image?: string;
+    title: string;
+    desc: string;
+  }>;
+  
+}
