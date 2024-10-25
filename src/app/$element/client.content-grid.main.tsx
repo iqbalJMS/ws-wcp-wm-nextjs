@@ -14,9 +14,9 @@ export function CE_ContentGridMain({ data }: T_ContentGridMainProps) {
                 key={index}
                 className={['mb-10', dataItem.image ? '' : ''].join(' ')}
               >
-                <div className={['', dataItem.image ? 'flex ' : ''].join(' ')}>
+                <div className={['', dataItem.image ? 'flex mdmax:flex-wrap' : ''].join(' ')}>
                   {dataItem.image && (
-                    <div className="w-[40%] h-[30rem] flex-none mr-10 bg-black bg-opacity-10">
+                    <div className="w-[40%] mdmax:w-full h-[30rem] mdmax:h-[20rem] flex-none mr-10 bg-black bg-opacity-10">
                       <Image
                         extern={true}
                         src={dataItem.image}
