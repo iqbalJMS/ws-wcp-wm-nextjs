@@ -7,6 +7,13 @@ import { T_Subscription } from './types/widget/subscription';
 import { T_ImageSlider } from './types/widget/image-slider';
 import { T_MultiTab } from './types/widget/multi_tab';
 import { T_Header } from './types/widget/header';
+// {--------------}
+import { T_Carousel } from './types/widget/carousel';
+import { T_CardVariant02 } from './types/widget/card-variant2';
+import { T_CardVariant04 } from './types/widget/card-variant4';
+import { T_CardVariant05 } from './types/widget/card-variant5';
+import { T_CardVariant06 } from './types/widget/card-variant6';
+import { T_CardVariant03 } from './types/widget/card-variant3';
 
 const SE_SubscriberContent = dynamic(
   () => import('@/app/$element/server.subscriber.content')
@@ -26,13 +33,41 @@ const CE_HelpContent = dynamic(
   () => import('@/app/$element/client.help.content')
 );
 
-const CE_BannerMain = dynamic(
-  () => import('@/app/$element/client.banner.main')
-);
-
 const CE_SectionPromo = dynamic(
   () => import('@/app/wealth-management/$element/promo/client.section-promo')
 );
+
+// {----------------------}
+const CE_BannerMain = dynamic(
+  () => import('@/app/wealth-management/$element/banner/client.banner.main')
+);
+
+const CE_CarouselVariant3 = dynamic(
+  () =>
+    import(
+      '@/app/wealth-management/$element/carousel/client.carousel.variant03'
+    )
+);
+
+const CE_CardVariant2 = dynamic(
+  () => import('@/app/wealth-management/$element/card/client.card.variant2')
+);
+
+const CE_CardVariant4 = dynamic(
+  () => import('@/app/wealth-management/$element/card/client.card.variant4')
+);
+
+const CE_CardVariant5 = dynamic(
+  () => import('@/app/wealth-management/$element/card/client.card.variant5')
+);
+const CE_CardVariant6 = dynamic(
+  () => import('@/app/wealth-management/$element/card/client.card.variant6')
+);
+const CE_CardVariant3 = dynamic(
+  () => import('@/app/wealth-management/$element/card/client.card.variant3')
+);
+
+// {-------------------------}
 
 export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
   slider: {
@@ -50,6 +85,109 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
       };
     },
   },
+  // {-----------------------}
+  // {Carousel Variant 3}
+  carousel: {
+    component: CE_CarouselVariant3,
+    props: (_component: T_Carousel) => {
+      return {
+        data: _component?.field_carousel_items?.map((item) => {
+          return {
+            image: item?.field_image?.[0]?.field_media_image?.[0]?.uri[0]?.url,
+            title: item?.field_title?.[0]?.value,
+            desc: item?.field_content?.[0]?.value,
+            link: item?.field_primary_cta[0]?.title,
+          };
+        }),
+      };
+    },
+  },
+  // {Card Variant 2}
+  card2: {
+    component: CE_CardVariant2,
+    props: (_component: T_CardVariant02) => {
+      return {
+        data: _component?.field_card_items?.map((item) => {
+          return {
+            icon: item?.field_image?.[0]?.field_media_image?.[0]?.uri[0]?.url,
+            label: item?.field_title?.[0]?.value,
+            desc: item?.field_content?.[0]?.value,
+          };
+        }),
+      };
+    },
+  },
+
+  // {Card Variant 4}
+  card4: {
+    component: CE_CardVariant4,
+    props: (_component: T_CardVariant04) => {
+      return {
+        data: _component?.field_card_items?.map((item) => {
+          return {
+            image: item?.field_image?.[0]?.field_media_image?.[0]?.uri[0]?.url,
+            logo: item?.field_image?.[0]?.field_media_image?.[0]?.uri[0]?.url,
+            desc: item?.field_content?.[0]?.value,
+            link: item?.field_primary_cta[0]?.title,
+          };
+        }),
+      };
+    },
+  },
+
+  // {Card Variant 5}
+  card5: {
+    component: CE_CardVariant5,
+    props: (_component: T_CardVariant05) => {
+      return {
+        data: _component?.field_card_items?.map((item) => {
+          return {
+            image: item?.field_image?.[0]?.field_media_image?.[0]?.uri[0]?.url,
+            label: item?.field_title?.[0]?.value,
+            icon: item?.field_image?.[0]?.field_media_image?.[0]?.uri[0]?.url,
+            link: item?.field_primary_cta[0]?.title,
+          };
+        }),
+      };
+    },
+  },
+
+  // {Card Variant 6}
+  card6: {
+    component: CE_CardVariant6,
+    props: (_component: T_CardVariant06) => {
+      return {
+        data: _component?.field_card_items?.map((item) => {
+          return {
+            image: item?.field_image?.[0]?.field_media_image?.[0]?.uri[0]?.url,
+            label: item?.field_title?.[0]?.value,
+            desc: item?.field_content?.[0]?.value,
+            link: item?.field_primary_cta[0]?.title,
+            buttonText: item?.field_title?.[0]?.value,
+          };
+        }),
+      };
+    },
+  },
+
+  // {Card Variant 3}
+  card3: {
+    component: CE_CardVariant3,
+    props: (_component: T_CardVariant03) => {
+      return {
+        data: _component?.field_card_items?.map((item) => {
+          return {
+            image: item?.field_image?.[0]?.field_media_image?.[0]?.uri[0]?.url,
+            label: item?.field_title?.[0]?.value,
+            textbutton: item?.field_content?.[0]?.value,
+            link: item?.field_primary_cta[0]?.title,
+          };
+        }),
+      };
+    },
+  },
+
+  // {-------------------}
   dropdown_action: {
     component: CE_HelpContent,
     props: (_component: T_DropdownAction) => {
