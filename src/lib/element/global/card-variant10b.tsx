@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import ShareIcon from './icons/share-icon';
 
-export default function CardVariant10() {
+export default function CardVariant10b() {
   const LIST_TABEL_CONTENT = [
     {
       premi: '10 Tahun',

@@ -33,7 +33,7 @@ export function Search({ active, setActive }: T_SearchProps) {
         className="absolute top-2 right-4 text-lg cursor-pointer"
         onClick={() => setActive(false)}
       >
-        <CloseIcon className="text-blue-02 cursor-pointer" />
+        <CloseIcon className="text-blue-02 cursor-pointer" stroke={''} />
       </div>
       <div className="py-20 container">
         <div className="pb-10 border-b border-black">
@@ -321,7 +321,7 @@ export default function GlobalHeader({
               className="absolute top-7 right-7 mdmax:top-2 mdmax:right-2 hidden mdmax:block"
               onClick={() => setActiveMenu(false)}
             >
-              <CloseIcon className="text-blue-02 cursor-pointer" />
+              <CloseIcon className="text-blue-02 cursor-pointer" stroke={''} />
             </div>
             <div
               className={[

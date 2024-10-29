@@ -14,4 +14,10 @@ export type T_Widget =
   | 'header'
   | 'multi_tab'
   | 'section'
-  | 'two_column';
+  | 'two_column'
+  | 'card2'
+  | 'card3'
+  | 'card4'
+  | 'card5'
+  | 'card6'
+  | 'carousel';
