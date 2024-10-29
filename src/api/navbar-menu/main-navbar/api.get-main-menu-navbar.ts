@@ -1,6 +1,6 @@
 "use server";
 
-import { get } from "@/api/common/fetch";
+// import { get } from "@/api/common/fetch";
 import { T_ResponseGetMainMenuNavbar } from "./api.get-main-menu-navbar.type";
 
 export async function API_GetMainMenuNavbar({
@@ -10,11 +10,51 @@ export async function API_GetMainMenuNavbar({
   lang: string;
 }): Promise<T_ResponseGetMainMenuNavbar> {
   try {
-    const response: T_ResponseGetMainMenuNavbar = await get(
-      "/bricc-api/menu-items/main?_format=json",
-    );
+    // const response: T_ResponseGetMainMenuNavbar = await get(
+    //   "/bricc-api/menu-items/main?_format=json",
+    // );
 
-    return response;
+    return [
+      {
+        alias: 'kalulator-finansial',
+        enabled: true,
+        expanded: false,
+        key: 'kalulator-finansial',
+        options: [],
+        relative: '/',
+        title: 'BRI PRIVATE',
+        uri: '/',
+        weight: '',
+        below: [],
+        nid: '1',
+      },
+      {
+        alias: 'kalulator-finansial',
+        enabled: true,
+        expanded: false,
+        key: 'kalulator-finansial',
+        options: [],
+        relative: '/',
+        title: 'BRI PRIORITAS',
+        uri: '/',
+        weight: '',
+        below: [],
+        nid: '1',
+      },
+      {
+        alias: 'kalulator-finansial',
+        enabled: true,
+        expanded: false,
+        key: 'kalulator-finansial',
+        options: [],
+        relative: '/',
+        title: 'CERITA KAMI',
+        uri: '/',
+        weight: '',
+        below: [],
+        nid: '1',
+      },
+    ];
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error("An error occurred during Get Main Menu Navbar:", error);

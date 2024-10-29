@@ -32,6 +32,7 @@ export default function CE_BannerVariant01() {
       text: 'We have just the right solutions for your financial goals. Our mission is to focus on the details, so you can focus on the big picture.',
     },
   ];
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
