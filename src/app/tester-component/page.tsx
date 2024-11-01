@@ -3,6 +3,12 @@
 import React from 'react';
 
 import { CE_ContentGridMain } from '@/app/$element/client.content-grid.main';
+import CE_WYSIWSGVariant01 from '@/app/$element/client.wysiwsg.variant01';
+import CE_WYSIWSGVariant02 from '@/app/$element/client.wysiwsg.variant02';
+import CE_DetailCardMain from '@/app/$element/client.detail-card.main';
+import CE_PortletMain from '@/app/$element/client.portlet.main';
+import CE_CardGrid5Main from '@/app/$element/client.card-grid-5.main';
+import CE_CardGrid6Main from '@/app/$element/client.card-grid-6.main';
 
 // import ScrollToTop from '@/lib/element/global/scroll.top';
 // import { T_CarouselMainProps } from '@/app/$action/constants';
@@ -39,16 +45,120 @@ export default async function PageTester() {
             desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
             title: 'Lorem Ipsum',
             image: '/sites/default/files/images/1073-860x640.jpg',
-            
           },
           {
             desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
             title: 'Lorem Ipsum',
-            
-            
           },
         ]}
-        
+      />
+      <CE_WYSIWSGVariant01
+        body="<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+        category="Lorem Ipsum"
+        date="2022-01-01"
+        image="/sites/default/files/images/1073-860x640.jpg"
+        title="Lorem Ipsum"
+      />
+      <CE_WYSIWSGVariant02
+        body="<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+        category="Lorem Ipsum"
+        date="2022-01-01"
+        title="Lorem Ipsum"
+      />
+      <CE_DetailCardMain
+        card={{
+          button: {
+            external: true,
+            link: 'https://bri.co.id',
+            text: 'Selengkapnya',
+          },
+          category: 'Lorem Ipsum',
+          description:
+            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+          image: '/sites/default/files/images/1073-860x640.jpg',
+          title: 'Lorem Ipsum',
+        }}
+        tnc={{
+          details: [
+            {
+              description:
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+              title: 'Lorem Ipsum',
+            },
+            {
+              description:
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+              title: 'Lorem Ipsum',
+            },
+          ],
+          title: 'Lorem Ipsum',
+        }}
+      />
+      <CE_PortletMain
+        button={{
+          external: true,
+          link: 'https://bri.co.id',
+          text: 'Selengkapnya',
+        }}
+        description="<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>"
+        image="/sites/default/files/images/1073-860x640.jpg"
+        title="Lorem Ipsum"
+      />
+      <CE_CardGrid5Main
+        cards={[
+          {
+            button: {
+              external: true,
+              link: 'https://bri.co.id',
+              text: 'Selengkapnya',
+            },
+            category: 'Lorem Ipsum',
+            description:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+            image: '/sites/default/files/images/1073-860x640.jpg',
+            title: 'Lorem Ipsum',
+            date: '2022-01-01',
+          },
+          {
+            button: {
+              external: true,
+              link: 'https://bri.co.id',
+              text: 'Selengkapnya',
+            },
+            category: 'Lorem Ipsum',
+            description:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+            image: '/sites/default/files/images/1073-860x640.jpg',
+            title: 'Lorem Ipsum',
+            date: '2022-01-01',
+          },
+        ]}
+      />
+      <CE_CardGrid6Main
+        cards={[
+          {
+            button: {
+              external: true,
+              link: 'https://bri.co.id',
+              text: 'Selengkapnya',
+            },
+            description:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+            image: '/sites/default/files/images/1073-860x640.jpg',
+            title: 'Lorem Ipsum',
+          },
+          {
+            button: {
+              external: true,
+              link: 'https://bri.co.id',
+              text: 'Selengkapnya',
+            },
+            description:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+            image: '/sites/default/files/images/1073-860x640.jpg',
+            title: 'Lorem Ipsum',
+          },
+        ]}
       />
     </>
     // <React.Fragment>
