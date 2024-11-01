@@ -6,14 +6,10 @@ import { ACT_GetMainMenuNavbar } from './$action/action.get.main-menu-navbar';
 import GlobalHeader from '@/lib/element/global/global.header';
 import { ACT_GetMainMenuFooter } from './$action/action.get.main-footer';
 import { ACT_GetBottomMenuFooter } from './$action/action.get.bottom-footer';
-import CE_BannerMain from './$element/client.banner.main';
-import CE_CardVariant2 from './$element/client.card.variant2';
-import CE_CardVariant3 from './$element/client.card.variant3';
-import CE_CardVariant4 from './$element/client.card.variant4';
-import CE_CardVariant6 from './$element/client.card.variant6';
-import CE_CardVariant5 from './$element/client.card.variant5';
-import CE_CarouselVariant3 from './$element/client.carousel.variant03';
-
+import CE_BannerMain from './$element/banner/client.banner.main';
+import CE_CardVariant15 from './$element/card/client.card.variant15';
+import CE_CarouselVariant3 from './$element/carousel/client.carousel.variant03';
+import CE_CardMegazine from './$element/card/client.card.megazine';
 export const metadata: Metadata = {
   title: 'Homepage - Wealth Management',
 };
@@ -39,12 +35,9 @@ export default async function AetherLayout({
         <CE_BannerMain data={[]} variant={'03'} />
       </div>
       <div className="space-y-32 relative overflow-hidden">
+        <CE_CardVariant15 />
         <CE_CarouselVariant3 />
-        <CE_CardVariant2 />
-        <CE_CardVariant4 />
-        <CE_CardVariant5 />
-        <CE_CardVariant6 />
-        <CE_CardVariant3 />
+        <CE_CardMegazine />
       </div>
       {children}
       <GlobalFooter
