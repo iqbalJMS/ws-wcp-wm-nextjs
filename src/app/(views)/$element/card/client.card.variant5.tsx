@@ -53,11 +53,9 @@ export default function CE_CardVariant5({
     <div className="w-full h-auto flex justify-center">
       <div className="w-full md:w-10/12 lg:w-11/12 xl:w-9/12 grid grid-cols-1 lg:grid-cols-2 lg:content-center xl:px-8">
         <section className="pb-10 w-96 lg:flex flex-col justify-center">
-          <h1 className="pb-3 text-3xl font-bold uppercase ">
-            produk unggulan
-          </h1>
+          <h1 className="pb-3 text-3xl font-bold uppercase ">{label}</h1>
           <p className="text-[#826B64] font-normal text-sm lg:text-base">
-            Temukan lebih lanjut tentang produk Investasi dan Bancassurance
+            {sublabel}
           </p>
         </section>
         <section className="w-full overflow-hidden mdmax:w-full mdmax:flex-none">

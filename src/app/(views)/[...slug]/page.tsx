@@ -2,14 +2,13 @@
 
 import React from 'react';
 import { ACT_GetSinglePage } from '@/app/(views)/$action/action.get.single-page';
-// import { Locale } from '@/i18n-config';
+import { Locale } from '@/i18n-config';
 import { T_FieldComponent } from '@/api/single-page/api.get-single-page.type';
 import ScrollToTop from '@/lib/element/global/scroll.top';
 import { T_Widget } from '@/app/(views)/$constant/types';
 import { COMPONENT_MAP_WIDGET } from '@/app/(views)/$constant';
 
 export default async function PageAetherDetail({
-  params: { slug },
   searchParams: { lang },
 }: {
   params: {
@@ -19,7 +18,7 @@ export default async function PageAetherDetail({
     lang: Locale;
   };
 }) {
-  const getNodeId = slug?.[1];
+  // const getNodeId = slug?.[1];
   const data = await ACT_GetSinglePage({
     lang: lang ?? 'en',
     alias: 'wealth',
