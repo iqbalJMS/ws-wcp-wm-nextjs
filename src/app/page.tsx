@@ -3,5 +3,5 @@
 import { redirect } from 'next/navigation';
 
 export default async function Home() {
-  redirect('/wealth-management');
+  redirect('/web/wealth-management');
 }
