@@ -4,11 +4,11 @@ import { Metadata } from 'next';
 import React from 'react';
 
 import GlobalHeader from '@/lib/element/global/global.header';
-import { ACT_GetTopMenuNavbar } from '@/app/wealth-management/$action/action.get.top-menu-navbar';
-import { ACT_GetMainMenuNavbar } from '@/app/wealth-management/$action/action.get.main-menu-navbar';
-import { ACT_GetMainMenuFooter } from '@/app/wealth-management/$action/action.get.main-footer';
-import { ACT_GetBottomMenuFooter } from '@/app/wealth-management/$action/action.get.bottom-footer';
-import CE_MenuMain from '@/app/wealth-management/$element/client.menu.main';
+import { ACT_GetTopMenuNavbar } from '@/app/(views)/$action/action.get.top-menu-navbar';
+import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
+import { ACT_GetMainMenuFooter } from '@/app/(views)/$action/action.get.main-footer';
+import { ACT_GetBottomMenuFooter } from '@/app/(views)/$action/action.get.bottom-footer';
+import CE_MenuMain from '@/app/(views)/$element/client.menu.main';
 
 export const metadata: Metadata = {
   title: 'Homepage - Wealth Management',
@@ -30,9 +30,10 @@ export default async function AetherLayout({
         variant="transparent"
         headerBottom={listHeaderBottom}
         headerTop={listHeaderTop}
+        itemLogin={[]}
       />
-      <CE_MenuMain/>
-      <div className='h-screen bg-blue-300'></div>
+      <CE_MenuMain />
+      <div className="h-screen bg-blue-300"></div>
 
       {children}
       <GlobalFooter

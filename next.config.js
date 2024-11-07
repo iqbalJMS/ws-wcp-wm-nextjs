@@ -2,7 +2,7 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/aether',
+        source: '/wealth',
         destination: '/',
       },
     ];

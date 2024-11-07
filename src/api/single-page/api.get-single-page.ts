@@ -3,17 +3,15 @@
 import { get } from '@/api/common/fetch';
 
 export async function API_GetSinglePage({
-  lang,
-  node = '15',
+  // lang,
+  alias = 'wealth',
 }: {
-  lang: string;
-  node: string;
+  // lang: string;
+  alias: string;
 }): Promise<any> {
   try {
-    const isEnglish = lang === 'en' ? '' : '/id';
-    const response = await get(
-      `${isEnglish}/node/${node}?_format=json_recursive`
-    );
+    // const isEnglish = lang === 'en' ? '' : '/id';
+    const response = await get(`/${alias}?_format=json_recursive`);
 
     return response;
   } catch (error) {

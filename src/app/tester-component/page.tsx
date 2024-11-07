@@ -29,8 +29,6 @@ import React from 'react';
 // import Image from '@/lib/element/global/image';
 
 export default async function PageTester() {
-  
-
   return (
     <></>
     // <React.Fragment>

@@ -10,6 +10,9 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontFamily: {
+      poppins: ['Poppins', 'sans-serif'],
+    },
     container: {
       padding: '12px',
       center: true,
