@@ -129,10 +129,14 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
       return {
         data: _component?.field_video_items?.map((item) => {
           return {
+            id: item?.id?.[0]?.value,
             image: item?.field_image?.[0]?.thumbnail?.[0]?.uri[0]?.url,
             alt: item?.field_image?.[0]?.thumbnail?.[0]?.filename?.value,
             label: item?.field_video?.[0]?.name?.[0]?.value,
             desc: item?.field_title?.[0]?.value,
+            video: item?.field_video?.[0]?.field_media_oembed_video?.[0]?.value,
+            labelVideo: item?.field_video?.[0]?.name?.[0]?.value,
+            subLabel: item?.field_title?.[0]?.value,
           };
         }),
         title: _component?.field_title[0]?.value,
@@ -174,6 +178,12 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
       const label = props?.[0]?.label;
       const sublabel = props?.[0]?.sublabel;
 
+      // console.log(
+      //   findVariantStyle,
+      //   'xxxxxxxxxxxxx',
+      //   WIDGET_VARIANT.variant01,
+      //   props[0]
+      // );
       switch (findVariantStyle) {
         case WIDGET_VARIANT.variant01:
           return (
@@ -189,13 +199,13 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
             <CE_CardVariant5 data={data} label={label} sublabel={sublabel} />
           );
         default:
-          return null;
+          return <>ini default</>;
       }
     },
-    // @ts-expect-error
     props: (_component: T_Section) => {
       const findVariantStyle =
         _component?.field_web_variant_styles?.[0]?.field_key?.[0]?.value;
+
       const subtitle = _component?.field_column?.[0]?.field_title?.[0]?.value;
       const title = _component?.field_column?.[0]?.field_content?.[0]?.value;
       const desctitle =
@@ -203,45 +213,51 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
       const label = _component?.field_formatted_title?.[0]?.value;
       const sublabel = _component?.field_content?.[0]?.value;
 
-      const dataCardIcon = _component?.field_column?.map((item) => {
-        return {
-          iconcard:
-            item?.field_column?.[0]?.field_image?.[0]?.field_media_image?.[0]
-              ?.uri?.[0]?.url,
-          labelcard: item?.field_column?.[0]?.field_title?.[0]?.value,
-          desccard: item?.field_column?.[0]?.field_content?.[0]?.value,
-        };
-      });
+      const dataCard = _component?.field_column?.[2]?.field_column?.map(
+        (item) => {
+          return {
+            iconcard: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+            labelcard: item?.field_title?.[0]?.value,
+            desccard: item?.field_content?.[0]?.value,
+          };
+        }
+      );
 
       const dataProduk = _component?.field_column?.map((item) => {
         return {
-          image:
-            item?.field_column?.[0]?.field_image?.[0]?.field_media_image?.[0]
-              ?.uri?.[0]?.url,
-          title: item?.field_column?.[0]?.field_title?.[0]?.value,
-          link: item?.field_column?.[0]?.field_image?.[0]?.path?.[0]?.alias,
+          image: item?.field_image?.[0]?.field_media_image?.[0]?.uri?.[0]?.url,
+          title: item?.field_title?.[0]?.value,
+          link: item?.field_image?.[0]?.path?.[0]?.alias,
         };
       });
 
       switch (findVariantStyle) {
         case WIDGET_VARIANT.variant01:
           return {
+            variant: findVariantStyle,
             title: title,
             subtitle: subtitle,
             desctitle: desctitle,
-            data: dataCardIcon,
+            data: dataCard,
           };
         case WIDGET_VARIANT.variant02:
           return {
+            variant: findVariantStyle,
             label: label,
             sublabel: sublabel,
             data: dataProduk,
           };
         default:
-          return null;
+          return {
+            title: null,
+            subtitle: null,
+            desctitle: null,
+            data: null,
+          };
       }
     },
   },
+
   // {Card Variant 4}
   card4: {
     component: CE_CardVariant4,

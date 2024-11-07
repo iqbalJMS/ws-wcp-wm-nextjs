@@ -5,6 +5,7 @@ import useScreenWidth from '@/lib/hook/useScreenWidth';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import Link from 'next/link';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 export default function CE_CardVariant5({
   data,
@@ -53,10 +54,16 @@ export default function CE_CardVariant5({
     <div className="w-full h-auto flex justify-center">
       <div className="w-full md:w-10/12 lg:w-11/12 xl:w-9/12 grid grid-cols-1 lg:grid-cols-2 lg:content-center xl:px-8">
         <section className="pb-10 w-96 lg:flex flex-col justify-center">
-          <h1 className="pb-3 text-3xl font-bold uppercase ">{label}</h1>
-          <p className="text-[#826B64] font-normal text-sm lg:text-base">
-            {sublabel}
-          </p>
+          {label && (
+            <h1 className="pb-3 text-3xl font-bold uppercase ">
+              {parseHTMLToReact(label)}
+            </h1>
+          )}
+          {sublabel && (
+            <p className="text-[#826B64] font-normal text-sm lg:text-base">
+              {parseHTMLToReact(sublabel)}
+            </p>
+          )}
         </section>
         <section className="w-full overflow-hidden mdmax:w-full mdmax:flex-none">
           <div
@@ -74,7 +81,9 @@ export default function CE_CardVariant5({
               >
                 <div
                   className="w-full h-96 flex items-end justify-between bg-no-repeat bg-cover hover:scale-125 bg-center transition-all ease-in-out transform-gpu delay-75 duration-300"
-                  style={{ backgroundImage: `url(${item?.image})` }}
+                  style={{
+                    backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
+                  }}
                 >
                   <div className="w-full h-full bg-black opacity-40">.</div>
                 </div>

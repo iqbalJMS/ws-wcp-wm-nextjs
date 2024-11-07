@@ -12,3 +12,5 @@ export const WIDGET_VARIANT = {
   variant11: '',
   variant12: '',
 };
+
+export const API_BASE_URL = 'https://admin-bri-corpsite.dev-kjt.id';

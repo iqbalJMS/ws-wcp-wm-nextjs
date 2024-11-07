@@ -26,61 +26,22 @@ export default function CE_CarouselVariant3({
   linkcta,
 }: {
   data: Array<{
+    id: number;
     image: string;
     alt: string;
     label: string;
     desc: string;
+    video: string;
+    labelVideo: string;
+    subLabel: string;
   }>;
   title: any;
   subtitle: any;
   titlelink: any;
   linkcta: any;
 }) {
+  const [modalIndex, setModalIndex] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
-  // const data = [
-  //   {
-  //     imgUrl:
-  //       'https://bri.co.id/documents/1044486/b27c455d-f0c9-1dfd-4538-b6b1dbb29a1d?download=false',
-  //     label: 'An Old Tradition for a New Generations',
-  //     text: 'As lives are driven by values, we believe those values need to be passed on to the next generations. Let every value protected and shared as our legacy.',
-  //     btnText: 'test',
-  //   },
-  //   {
-  //     imgUrl:
-  //       'https://bri.co.id/documents/1044486/b9d018d9-0b7f-6a63-add2-81393d1bf8a8?download=false',
-  //     label: 'A New Perspective of Investment',
-  //     text: 'We are the one stop financial solution for the advancement of your business.',
-  //     btnText: 'test',
-  //   },
-  //   {
-  //     imgUrl:
-  //       'https://bri.co.id/documents/1044486/31406447-ca4b-dcb6-87aa-a5c51c4bb1de?download=false',
-  //     label: 'Helping You Get Where You Want to be',
-  //     text: 'We have just the right solutions for your financial goals. Our mission is to focus on the details',
-  //     btnText: 'test',
-  //   },
-  //   {
-  //     imgUrl:
-  //       'https://bri.co.id/documents/1044486/a0c1360b-8105-7777-5806-b82e785ce424?download=false',
-  //     label: 'Helping You Get Where You Want to be',
-  //     text: 'We have just the right solutions for your financial goals. Our mission is to focus on the details, so you can focus on the big picture.',
-  //     btnText: 'test',
-  //   },
-  //   {
-  //     imgUrl:
-  //       'https://bri.co.id/documents/1044486/29c21355-0a46-0c54-aedd-b568b6d52a80?download=false',
-  //     label: 'Helping You Get Where You Want to be',
-  //     text: 'We have just the right solutions for your financial goals. Our mission is to focus on the details, so you can focus on the big picture.',
-  //     btnText: 'test',
-  //   },
-  //   {
-  //     imgUrl:
-  //       'https://bri.co.id/documents/1044486/29c21355-0a46-0c54-aedd-b568b6d52a80?download=false',
-  //     label: 'Helping You Get Where You Want to be',
-  //     text: 'We have just the right solutions for your financial goals. Our mission is to focus on the details, so you can focus on the big picture.',
-  //     btnText: 'test',
-  //   },
-  // ];
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
   const screenWidth = useScreenWidth();
@@ -94,6 +55,7 @@ export default function CE_CarouselVariant3({
 
   const closeModal = () => {
     setModalOpen(false);
+    setModalIndex(null);
   };
 
   // {Button Next & Prev}
@@ -309,8 +271,7 @@ export default function CE_CarouselVariant3({
                 <div className="h-3/4">
                   <iframe
                     height="450"
-                    src="https://www.youtube.com/embed/RIt437CR7bY"
-                    title="Pakai BRImo, #LoginKeseruanmu Semua Beres dari Rumah"
+                    src={data?.[modalIndex as number]?.video}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     className="w-full"
                   ></iframe>
@@ -318,12 +279,10 @@ export default function CE_CarouselVariant3({
                 <div className="h-auto bg-white p-4 md:p-5 border-t border-gray-200 rounded-b space-y-2">
                   <h3 className="text-xs lg:text-sm font-light">20 Jan 2023</h3>
                   <h1 className="font-semibold text-lg lg:text-xl pt-2">
-                    Pakai BRImo, #LoginKeseruanmu Semua Beres dari Rumah
+                    {data?.[modalIndex as number]?.labelVideo}
                   </h1>
                   <p className="text-[#555555] font-light text-sm lg:text-base">
-                    Buka Rekening sambil kerja di rumah, Bayar listrik gak perlu
-                    lama, Transfer dana gak perlu ke mana-mana, Isi pulsa biar
-                    selalu ada kuota, Top up BRIZZI so easy di hape aja
+                    {data?.[modalIndex as number]?.subLabel}
                   </p>
                 </div>
               </div>
@@ -342,7 +301,10 @@ export default function CE_CarouselVariant3({
         >
           {[...data].map((slide, index) => (
             <div
-              onClick={() => setModalOpen(true)}
+              onClick={() => {
+                setModalIndex(index);
+                setModalOpen(true);
+              }}
               key={index}
               className={`w-full flex justify-center items-center transition-transform drop-shadow-2xl duration-300 *: ${getSlideClass(index)}`}
               style={{

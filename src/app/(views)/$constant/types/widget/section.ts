@@ -64,13 +64,13 @@ type T_FieldImage = {
   status: any[];
   uid: any[];
   name: any[];
-  thumbnail: any[];
+  thumbnail: Array<T_FieldMediaImage>;
   created: any[];
   changed: any[];
   default_langcode: any[];
   revision_translation_affected: any[];
-  path: Array<{ alias: null }>;
-  field_media_image: Array<T_FieldMediaImage>;
+  path: Array<{ alias: null | string }>;
+  field_media_image: any[];
 };
 
 type T_FieldColumnChild = {
@@ -109,7 +109,7 @@ type T_FieldColumn = {
   field_image: any[];
   field_maximum_lines: Array<{ value: any[] }>;
   field_primary_cta: any[];
-  field_column: Array<T_FieldColumnChild>;
+  field_column?: Array<T_FieldColumnChild>;
   field_title: Array<{ value: string }>;
   field_column_per_row: any[];
   field_column_reversed_on_mobile: any[];

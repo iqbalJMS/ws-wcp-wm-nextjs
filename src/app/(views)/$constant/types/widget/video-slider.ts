@@ -1,7 +1,29 @@
+type T_EntityVideo = {
+  entity_type: any[];
+  entity_bundle: any[];
+  mid: any[];
+  uuid: any[];
+  vid: any[];
+  langcode: any[];
+  bundle: any[];
+  revision_created: any[];
+  revision_user: any[];
+  status: any[];
+  uid: any[];
+  name: Array<{ value: string }>;
+  thumbnail: any[];
+  created: any[];
+  changed: any[];
+  default_langcode: any[];
+  revision_translation_affected: any[];
+  path: any[];
+  field_media_oembed_video: Array<{ value: string }>;
+};
+
 type T_EntityData = {
   entity_type: any[];
   entity_bundle: any[];
-  id: any[];
+  id: Array<{ value: number }>;
   uuid: any[];
   parent_id: any[];
   parent_type: any[];
@@ -11,8 +33,8 @@ type T_EntityData = {
   content_translation_changed: any[];
   field_content: any[];
   field_image: any[];
-  field_title: any[];
-  field_video: any[];
+  field_title: Array<{ value: string }>;
+  field_video: Array<T_EntityVideo>;
 };
 
 type T_EntityCta = {

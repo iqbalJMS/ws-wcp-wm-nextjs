@@ -46,31 +46,32 @@ export default function CE_CardVariant2({
           </div>
         </section>
         <section className="w-full lg:w-10/12 xl:w-8/12 h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {data?.map((item, index: number) => (
-            <div
-              key={index}
-              className="group w-full h-60 flex flex-col items-center justify-center hover:bg-black hover:rounded-b-xl duration-300"
-            >
-              <Image
-                src={item?.iconcard}
-                alt={'icon-card'}
-                width={90}
-                height={90}
-              />
+          {data?.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className="group w-full h-60 flex flex-col items-center justify-center hover:bg-black hover:rounded-b-xl duration-300"
+              >
+                <Image
+                  src={item?.iconcard}
+                  alt={'icon-card'}
+                  width={70}
+                  height={70}
+                />
 
-              {item?.labelcard && (
-                <h1 className="text-wmcolor font-bold text-base group-hover:text-white">
-                  {parseHTMLToReact(item?.labelcard)}
-                </h1>
-              )}
-
-              {item?.desccard && (
-                <h2 className="text-sm font-light group-hover:text-white">
-                  {parseHTMLToReact(item?.desccard)}
-                </h2>
-              )}
-            </div>
-          ))}
+                {item?.labelcard && (
+                  <h1 className="text-wmcolor font-bold text-base group-hover:text-white">
+                    {item?.labelcard}
+                  </h1>
+                )}
+                {item?.desccard && (
+                  <h2 className="text-sm font-light group-hover:text-white">
+                    {parseHTMLToReact(item?.desccard)}
+                  </h2>
+                )}
+              </div>
+            );
+          })}
         </section>
       </div>
     </>
