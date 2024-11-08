@@ -8,9 +8,9 @@ import ScrollToTop from '@/lib/element/global/scroll.top';
 import { T_Widget } from '@/app/(views)/$constant/types';
 import { COMPONENT_MAP_WIDGET } from '@/app/(views)/$constant';
 
-export default async function PageAetherDetail({
+export default async function PageWealthDetail({
   params: { slug },
-  searchParams: { lang },
+  // searchParams: { lang },
 }: {
   params: {
     slug: Array<string>;
@@ -19,9 +19,9 @@ export default async function PageAetherDetail({
     lang: Locale;
   };
 }) {
-  const getNodeId = slug?.[1];
+  const getNodeId = slug?.[0];
   const data = await ACT_GetSinglePage({
-    lang: lang ?? 'en',
+    // lang: lang ?? 'en',
     alias: getNodeId ?? '',
   });
 

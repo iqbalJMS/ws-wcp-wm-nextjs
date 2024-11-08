@@ -16,13 +16,15 @@ import GlobalFooter from '@/lib/element/global/global.footer';
 import { ACT_GetMenuItemNavbar } from './(views)/$action/action.get-menu-item-navbar';
 import { Locale } from '@/i18n-config';
 
-export default async function PageAether({
-  searchParams,
-}: {
-  searchParams: { lang: Locale };
-}) {
+export default async function PageWealth(
+  {
+    // searchParams,
+  }: {
+    searchParams: { lang: Locale };
+  }
+) {
   const data = await ACT_GetSinglePage({
-    lang: searchParams?.lang,
+    // lang: searchParams?.lang,
     alias: 'wealth',
   });
 
