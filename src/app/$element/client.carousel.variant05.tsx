@@ -1,18 +1,23 @@
 'use client';
 
-import { T_CarouselMainProps } from '@/app/$action/constants';
 import Image from '@/lib/element/global/image';
 import Link from '@/lib/element/global/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import { useState } from 'react';
 
-export function CE_CarouselVariant05({
-  title,
-  data,
-  description,
-  button,
-}: Omit<T_CarouselMainProps, 'variant'>) {
+export function CE_CarouselVariant05() {
+  const data = [
+    {
+      dummy: {
+        link: '',
+        image: '',
+        title: '',
+      },
+      title: 'data dumy',
+      description: 'data dumy',
+    },
+  ];
   const [currentSlide, setCurrentSlide] = useState(0);
   const screenWidth = useScreenWidth();
   const slidesToShow = screenWidth > 768 ? 4 : 2;
@@ -34,12 +39,14 @@ export function CE_CarouselVariant05({
       <div className="py-20 container">
         <div>
           <div className="text-center mb-5">
-            <div className="text-3xl ">{parseHTMLToReact(title || '')}</div>
+            <div className="text-3xl ">
+              {parseHTMLToReact(data?.[0]?.title || '')}
+            </div>
           </div>
           <div className="flex items-center justify-between">
             <div>
               <div className="text-xl mdmax:text-sm mb-4">
-                {parseHTMLToReact(description || '')}
+                {parseHTMLToReact(data?.[0]?.description || '')}
               </div>
             </div>
             <div className="flex gap-2">
@@ -76,12 +83,12 @@ export function CE_CarouselVariant05({
             >
               {data.map((dataItem, index) => (
                 <div key={index} className="w-1/4 mdmax:w-1/2 flex-none px-2">
-                  <Link href={dataItem.button?.link || ''} target="_blank">
+                  <Link href={dataItem?.dummy?.link || ''} target="_blank">
                     <div className="p-4 shadow-lg">
                       <div className="w-full h-[12rem] mb-2">
                         <Image
                           extern={true}
-                          src={dataItem.image}
+                          src={dataItem?.dummy?.image}
                           alt="image"
                           width={400}
                           height={400}
@@ -90,13 +97,13 @@ export function CE_CarouselVariant05({
                       </div>
                       <div>
                         <div className=" text-red-01 font-semibold mb-1 text-line-1">
-                          {parseHTMLToReact(dataItem.title)}
+                          {parseHTMLToReact(dataItem?.title)}
                         </div>
                         <div className="text-xs text-line-1 mb-2">
-                          {parseHTMLToReact(dataItem.subDesc || '')}
+                          {parseHTMLToReact(dataItem?.description || '')}
                         </div>
                         <div className="text-xs h-[4rem] overflow-auto">
-                          {parseHTMLToReact(dataItem.desc)}
+                          {parseHTMLToReact(dataItem?.description)}
                         </div>
                       </div>
                     </div>
@@ -106,10 +113,10 @@ export function CE_CarouselVariant05({
             </div>
           </div>
           <div className="text-center">
-            {button && (
-              <Link href={button?.link} target="_blank">
+            {data?.[0]?.dummy?.link && (
+              <Link href={data?.[0]?.dummy?.link} target="_blank">
                 <div className="inline-flex gap-2 items-center text-blue-01">
-                  {parseHTMLToReact(button?.name || '')}{' '}
+                  {parseHTMLToReact(data?.[0]?.dummy?.link || '')}{' '}
                   <span className="text-xs">&#10095;</span>
                 </div>
               </Link>

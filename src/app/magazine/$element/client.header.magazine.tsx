@@ -411,7 +411,7 @@ export default function CE_HeaderMagazine({
                         className="pb-2 mdmax:pb-0 group border-b-4 border-transparent hover:border-blue-01 "
                       >
                         <Link
-                          href={`/aether/${item.nid}/${item.title
+                          href={`/aether/${item.below}/${item.title
                             ?.toLowerCase()
                             .replaceAll(' ', '-')}`}
                           className={[

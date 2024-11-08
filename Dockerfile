@@ -3,13 +3,13 @@ FROM node:20-bookworm
 WORKDIR /workspace/next
 
 COPY . . 
-COPY .env ./
+# COPY .env ./
 
 RUN npm install
 
-# RUN npm run build
+RUN npm run build
 
-RUN npm run obfuscate  
+# RUN npm run obfuscate  
 
 EXPOSE 1223
 

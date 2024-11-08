@@ -1,5 +1,5 @@
 export type T_ResponseGetBottomFooterMenu = {
-  data: {
+  data: Array<{
     list: Array<{
       value: string;
       url: string;
@@ -11,5 +11,5 @@ export type T_ResponseGetBottomFooterMenu = {
       url: string;
       className: string;
     }>;
-  }
+  }>;
 };

@@ -1,6 +1,3 @@
-// import DistributionIcon from '@/lib/element/global/icons/distribution-icon';
-// import GrowthIcon from '@/lib/element/global/icons/growth-icon';
-// import ProtectionIcon from '@/lib/element/global/icons/protection-icon';
 'use client';
 import React from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
@@ -24,7 +21,7 @@ export default function CE_CardVariant2({
   return (
     <>
       <div className="w-full h-auto flex flex-col items-center p-5">
-        <section className="w-full lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 pb-16">
+        <section className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 pb-16">
           <div className="uppercase space-y-2 pb-5">
             {subtitle && (
               <h3 className="text-base font-light">
@@ -32,7 +29,7 @@ export default function CE_CardVariant2({
               </h3>
             )}
             {title && (
-              <h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold">
+              <h1 className="text-4xl lg:text-3xl xl:text-4xl font-bold">
                 {parseHTMLToReact(title)}
               </h1>
             )}
@@ -60,7 +57,7 @@ export default function CE_CardVariant2({
                 />
 
                 {item?.labelcard && (
-                  <h1 className="text-wmcolor font-bold text-base group-hover:text-white">
+                  <h1 className="text-wmcolor font-bold text-base group-hover:text-white pt-7">
                     {item?.labelcard}
                   </h1>
                 )}

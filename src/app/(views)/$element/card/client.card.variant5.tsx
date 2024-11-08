@@ -51,23 +51,23 @@ export default function CE_CardVariant5({
   // ];
 
   return (
-    <div className="w-full h-auto flex justify-center">
-      <div className="w-full md:w-10/12 lg:w-11/12 xl:w-9/12 grid grid-cols-1 lg:grid-cols-2 lg:content-center xl:px-8">
-        <section className="pb-10 w-96 lg:flex flex-col justify-center">
+    <div className="w-full h-auto flex justify-center ">
+      <div className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:content-center">
+        <section className="pb-10 w-96 md:flex flex-col justify-center">
           {label && (
             <h1 className="pb-3 text-3xl font-bold uppercase ">
               {parseHTMLToReact(label)}
             </h1>
           )}
           {sublabel && (
-            <p className="text-[#826B64] font-normal text-sm lg:text-base">
+            <p className="text-[#826B64] font-normal text-sm lg:text-base pr-0 md:pr-16">
               {parseHTMLToReact(sublabel)}
             </p>
           )}
         </section>
         <section className="w-full overflow-hidden mdmax:w-full mdmax:flex-none">
           <div
-            className="w-full flex transition-all ease-in-out duration-300 lg:space-x-5"
+            className="w-full flex transition-all ease-in-out duration-300 md:space-x-3"
             style={{
               transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
             }}
@@ -77,7 +77,7 @@ export default function CE_CardVariant5({
                 href={'#'}
                 target="_blank"
                 key={index}
-                className="relative w-full h-80 overflow-hidden cursor-pointer flex-none lg:flex-1"
+                className="relative w-full h-80 overflow-hidden cursor-pointer flex-none md:flex-1 "
               >
                 <div
                   className="w-full h-96 flex items-end justify-between bg-no-repeat bg-cover hover:scale-125 bg-center transition-all ease-in-out transform-gpu delay-75 duration-300"
@@ -99,7 +99,7 @@ export default function CE_CardVariant5({
               </Link>
             ))}
           </div>
-          <div className="lg:hidden w-full flex justify-end px-10 py-3 space-x-3 ">
+          <div className="md:hidden w-full flex justify-end px-10 py-3 space-x-3 ">
             <button
               className={[
                 'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white mdmax:',

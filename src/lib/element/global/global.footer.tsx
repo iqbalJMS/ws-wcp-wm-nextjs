@@ -161,8 +161,8 @@ export default async function GlobalFooter({
       </div>
 
       <TermsAllReservedElement
-        list={bottom_footer?.data.list}
-        socialMedia={bottom_footer?.data.social_media}
+        list={bottom_footer?.data?.[0]?.list}
+        socialMedia={bottom_footer?.data?.[0]?.social_media}
       />
     </footer>
   );

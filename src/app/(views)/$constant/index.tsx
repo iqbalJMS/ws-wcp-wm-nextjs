@@ -23,8 +23,6 @@ const SE_PortletMain = dynamic(
   () => import('@/app/(views)/$element/portlet/server.portlet.main')
 );
 
-const SE_IconMain = dynamic(() => import('@/app/$element/server.icon.main'));
-
 const CE_ImageSliderMain = dynamic(
   () => import('@/app/$element/client.image-slider.main')
 );
@@ -206,7 +204,7 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
       const findVariantStyle =
         _component?.field_web_variant_styles?.[0]?.field_key?.[0]?.value;
 
-      const subtitle = _component?.field_column?.[0]?.field_title?.[0]?.value;
+      const subtitle = _component?.field_formatted_title?.[0]?.value;
       const title = _component?.field_column?.[0]?.field_content?.[0]?.value;
       const desctitle =
         _component?.field_column?.[1]?.field_content?.[0]?.value;
@@ -335,7 +333,7 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
     },
   },
   personalized_shortcut: {
-    component: SE_IconMain,
+    component: SE_PortletMain,
     props: (_component) => {
       return {};
     },

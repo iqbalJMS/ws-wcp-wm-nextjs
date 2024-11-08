@@ -105,7 +105,6 @@ export function CE_CarouselVariant04() {
                     <div className="p-4 bg-white h-full shadow-lg text-center">
                       <div className="w-[5rem] h-[5rem] mb-2 rounded-full overflow-hidden inline-block">
                         <Image
-                          extern={true}
                           src={dataItem.imgUrl}
                           alt="image"
                           width={400}

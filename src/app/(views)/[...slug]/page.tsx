@@ -48,7 +48,6 @@ export default async function PageAetherDetail(
 
   return (
     <React.Fragment>
-      {/* {JSON.stringify(data)} */}
       {components?.map(({ Component, props }, key) => (
         <React.Fragment key={key}>
           <Component {...props} />
