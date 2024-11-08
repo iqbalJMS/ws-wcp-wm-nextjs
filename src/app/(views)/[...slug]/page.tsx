@@ -8,22 +8,21 @@ import ScrollToTop from '@/lib/element/global/scroll.top';
 import { T_Widget } from '@/app/(views)/$constant/types';
 import { COMPONENT_MAP_WIDGET } from '@/app/(views)/$constant';
 
-export default async function PageAetherDetail(
-  {
-    // searchParams: { lang },
-  }: {
-    params: {
-      slug: Array<string>;
-    };
-    searchParams: {
-      lang: Locale;
-    };
-  }
-) {
-  // const getNodeId = slug?.[1];
+export default async function PageAetherDetail({
+  params: { slug },
+  searchParams: { lang },
+}: {
+  params: {
+    slug: Array<string>;
+  };
+  searchParams: {
+    lang: Locale;
+  };
+}) {
+  const getNodeId = slug?.[1];
   const data = await ACT_GetSinglePage({
-    // lang: lang ?? 'en',
-    alias: 'wealth',
+    lang: lang ?? 'en',
+    alias: getNodeId ?? '',
   });
 
   const components = data?.field_components

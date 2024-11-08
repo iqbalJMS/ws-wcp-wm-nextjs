@@ -1,7 +1,74 @@
 'use server';
 
-import { redirect } from 'next/navigation';
+import React from 'react';
+import { COMPONENT_MAP_WIDGET } from './(views)/$constant';
+import { ACT_GetSinglePage } from './(views)/$action/action.get.single-page';
+import { T_FieldComponent } from '@/api/single-page/api.get-single-page.type';
+import { T_Widget } from './(views)/$constant/types';
+// import { Locale } from '@/i18n-config';
+import ScrollToTop from '@/lib/element/global/scroll.top';
+import { ACT_GetTopMenuNavbar } from './(views)/$action/action.get.top-menu-navbar';
+import { ACT_GetMainMenuNavbar } from './(views)/$action/action.get.main-menu-navbar';
+import { ACT_GetMainMenuFooter } from './(views)/$action/action.get.main-footer';
+import { ACT_GetBottomMenuFooter } from './(views)/$action/action.get.bottom-footer';
+import GlobalHeader from '@/lib/element/global/global.header';
+import GlobalFooter from '@/lib/element/global/global.footer';
+import { ACT_GetMenuItemNavbar } from './(views)/$action/action.get-menu-item-navbar';
+import { Locale } from '@/i18n-config';
 
-export default async function Home() {
-  redirect('/web/wealth-management');
+export default async function PageAether({
+  searchParams,
+}: {
+  searchParams: { lang: Locale };
+}) {
+  const data = await ACT_GetSinglePage({
+    lang: searchParams?.lang,
+    alias: 'wealth',
+  });
+
+  const components = data?.field_components
+    ?.map((component: T_FieldComponent) => {
+      const entityBundle = component?.entity_bundle?.[0]?.value as T_Widget;
+
+      const componentConfig = COMPONENT_MAP_WIDGET[entityBundle];
+      if (componentConfig) {
+        const { component: Component, props } = componentConfig;
+        return {
+          Component,
+          props: props(component),
+        };
+      }
+
+      return null;
+    })
+    .filter(Boolean) as Array<{
+    Component: React.ComponentType<any>;
+    props: Record<string, any>;
+  }>;
+
+  const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
+  const listHeaderBottom = await ACT_GetMainMenuNavbar({ lang: 'en' });
+  const listMainFooter = await ACT_GetMainMenuFooter({ lang: 'en' });
+  const listBottomFooter = await ACT_GetBottomMenuFooter({ lang: 'en' });
+  const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
+  return (
+    <React.Fragment>
+      <GlobalHeader
+        variant="transparent"
+        headerBottom={listHeaderBottom}
+        headerTop={listHeaderTop}
+        itemLogin={itemMenuLogin}
+      />
+      {components?.map(({ Component, props }, key) => (
+        <React.Fragment key={key}>
+          <Component {...props} />
+        </React.Fragment>
+      ))}
+      <GlobalFooter
+        main_footer={listMainFooter}
+        bottom_footer={listBottomFooter}
+      />
+      <ScrollToTop />
+    </React.Fragment>
+  );
 }
