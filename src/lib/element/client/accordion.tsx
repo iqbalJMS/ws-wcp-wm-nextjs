@@ -1,8 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-
-import { ChevronRightIcon } from './chevron-right-icon';
-import { ChevronUpIcon } from './chevron-up-icon';
+import { ChevronUpIcon } from '@/lib/element/global/icons/chevron-up-icon';
+import { ChevronRightIcon } from '@/lib/element/global/icons/chevron-right-icon';
 
 type T_AccordionProps = {
   renderContent: React.ReactNode;
