@@ -1,29 +1,26 @@
 import Image from '@/lib/element/global/image';
 import Link from '@/lib/element/global/link';
 import React from 'react';
-import GlobalHeader from '@/lib/element/global/global.header';
 import { ACT_GetTopMenuNavbar } from '@/app/(views)/$action/action.get.top-menu-navbar';
 import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
-import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
+import CE_HeaderMagazine from '@/app/magazine/$element/client.header.magazine';
 
 export default async function NotFoundPage() {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listHeaderBottom = await ACT_GetMainMenuNavbar({ lang: 'en' });
-  const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
   return (
     <>
-      <GlobalHeader
-        variant="no-transparent"
-        headerBottom={listHeaderBottom}
+      <CE_HeaderMagazine
         headerTop={listHeaderTop}
-        itemLogin={itemMenuLogin}
+        headerBottom={listHeaderBottom}
+        variant={'transparent'}
       />
-      <div className="flex h-[100vh] items-center justify-center">
+      <div className="flex h-[100vh] items-center justify-center ">
         <div className="flex lg:flex-row flex-col items-center">
           <div className="relative object-contain lg:w-[600px] lg:h-[400px] w-[320px] min-w-[320px] h-[240px]">
             <Image
               extern={true}
-              src="/web/guest/images/not-found.png"
+              src="/images/not-found.png"
               fill
               alt="img-not-found"
             />

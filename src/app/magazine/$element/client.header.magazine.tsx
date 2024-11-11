@@ -5,7 +5,7 @@ import { T_ResponseGetTopMenuNavbar } from '@/api/navbar-menu/top-navbar/api.get
 import useScrollActive from '@/lib/hook/useScroll';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
-import Image from '@/lib/element/global/image';
+import Image from 'next/image';
 import Link from '@/lib/element/global/link';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import { CloseIcon } from '@/lib/element/global/icons/close-icon';
@@ -273,13 +273,13 @@ export default function CE_HeaderMagazine({
       >
         <div className="container hidden mdmax:block py-4">
           <div className="flex items-center justify-between">
-            <div className="w-[5rem]">
+            <div className="w-[10rem]">
               <Image
                 alt="logo-bri"
                 src="/images/headers/logo.png"
-                width={128}
-                height={53}
-                className="w-full object-contain"
+                width={500}
+                height={500}
+                className="w-full h-96 bg-red-300 object-contain"
               />
             </div>
             <div>
@@ -343,7 +343,6 @@ export default function CE_HeaderMagazine({
                       >
                         {header.icon && (
                           <Image
-                            extern={true}
                             src={`${header.icon}`}
                             width={18}
                             height={18}

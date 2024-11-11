@@ -4,11 +4,13 @@ import React from 'react';
 import Image from './image';
 import Link from './link';
 import { T_ResponseGetMainFooterMenu } from '@/api/footer/main-footer/api.get-main-footer.type';
-import { T_ResponseGetBottomFooterMenu } from '@/api/footer/bottom-footer/api.get-bottom-footer.type';
+import { T_ResponseGetBottomLeftFooter } from '@/api/footer/bottom-footer/api.get-bottom-left-footer.type';
+import { T_ResponseGetBottomRightFooter } from '@/api/footer/bottom-footer/api.get-bottom-right-footer.type';
 
 type T_FooterProps = {
   main_footer: T_ResponseGetMainFooterMenu;
-  bottom_footer: T_ResponseGetBottomFooterMenu;
+  bottom_right_footer: T_ResponseGetBottomRightFooter;
+  bottom_left_footer: T_ResponseGetBottomLeftFooter;
 };
 
 type T_RowElementProps = {
@@ -73,19 +75,20 @@ const RowElement = ({ description, label, socialMedia }: T_RowElementProps) => {
   );
 };
 
-type T_PropsTermsAllReservedElement = {
-  list: Array<{
-    value: string;
-    url: string;
-    extern: boolean;
-  }>;
-  socialMedia?: Array<{ name: string; icon: string; url: string }>;
-};
-
 function TermsAllReservedElement({
-  list,
-  socialMedia,
-}: T_PropsTermsAllReservedElement) {
+  termsData,
+  socialMediaData,
+}: {
+  termsData: Array<{
+    title: string;
+    uri: string;
+  }>;
+  socialMediaData: Array<{
+    icon: string;
+    title: string;
+    uri: string;
+  }>;
+}) {
   return (
     <div className="bg-black lg:py-[1.375rem] py-4">
       <div className="text-center flex items-center lg:flex-row flex-col lg:container justify-between lg:px-0 px-4 lg:items-center lg:justify-between">
@@ -96,37 +99,37 @@ function TermsAllReservedElement({
         <div className="items-center mt-6 lg:mt-0">
           <div className="flex flex-wrap justify-center items-center divide-x-2">
             <div className="flex justify-start items-center px-4">
-              {list?.map(({ extern, url, value }, index) => (
+              {termsData?.map(({ title, uri }, index) => (
                 <div key={index}>
                   <Link
-                    href={url}
-                    extern={extern}
-                    className="text-sm font-normal text-white"
+                    href={uri}
+                    className="text-sm font-normal text-white hover:underline"
                   >
-                    {value}
+                    {title}
                   </Link>
-                  {index + 1 !== list.length && (
+                  {index + 1 !== termsData.length && (
                     <span className="text-white mx-2">&#x2022;</span>
                   )}
                 </div>
               ))}
             </div>
-            {socialMedia?.length !== 0 && (
+            {socialMediaData?.length !== 0 && (
               <div className="flex justify-center items-center gap-6 px-4">
-                {socialMedia?.map(({ url, icon }, index) => (
+                {socialMediaData?.map(({ uri, icon, title }, index) => (
                   <Link
                     extern={true}
-                    href={url ?? '/'}
+                    target="blank"
+                    href={uri}
                     key={index}
-                    className="text-white flex items-center gap-2  lg:text-sm text-sm justify-center font-normal"
+                    className="text-white flex items-center gap-2  lg:text-sm text-sm justify-center font-normal hover:bg-blue-600 rounded-full p-1"
                   >
                     {icon && (
                       <Image
-                        src={`images/footers/${icon}.svg`}
-                        width={18}
+                        src={icon}
+                        width={20}
                         extern={false}
-                        height={18}
-                        alt={`icon-${icon}`}
+                        height={20}
+                        alt={title}
                       />
                     )}
                   </Link>
@@ -142,7 +145,8 @@ function TermsAllReservedElement({
 
 export default async function GlobalFooter({
   main_footer,
-  bottom_footer,
+  bottom_left_footer,
+  bottom_right_footer,
 }: T_FooterProps) {
   return (
     <footer className="pt-6 lg:pt-11 shadow-[0_-4px_4px_-2px_rgba(0,0,0,0.1)] bg-[#1C1C1C]">
@@ -161,8 +165,8 @@ export default async function GlobalFooter({
       </div>
 
       <TermsAllReservedElement
-        list={bottom_footer?.data?.[0]?.list}
-        socialMedia={bottom_footer?.data?.[0]?.social_media}
+        termsData={bottom_left_footer}
+        socialMediaData={bottom_right_footer}
       />
     </footer>
   );

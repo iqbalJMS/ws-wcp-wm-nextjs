@@ -3,7 +3,7 @@
 import { API_GetFooterBottomRight } from '@/api/footer/bottom-footer/api.get-bottom-right-footer';
 import { T_ResponseGetBottomRightFooter } from '@/api/footer/bottom-footer/api.get-bottom-right-footer.type';
 
-export async function ACT_GetBottomMenuFooter({
+export async function ACT_GetBottomRightFooter({
   lang,
 }: {
   lang: string;

@@ -9,12 +9,13 @@ import { T_Widget } from './(views)/$constant/types';
 import ScrollToTop from '@/lib/element/global/scroll.top';
 import { ACT_GetTopMenuNavbar } from './(views)/$action/action.get.top-menu-navbar';
 import { ACT_GetMainMenuNavbar } from './(views)/$action/action.get.main-menu-navbar';
-import { ACT_GetMainMenuFooter } from './(views)/$action/action.get.main-footer';
-import { ACT_GetBottomMenuFooter } from './(views)/$action/action.get.bottom-footer';
+// import { ACT_GetMainMenuFooter } from './(views)/$action/action.get.main-footer';
+import { ACT_GetBottomRightFooter } from './(views)/$action/bottom-footer/action.get.bottom.right.footer';
 import GlobalHeader from '@/lib/element/global/global.header';
-import GlobalFooter from '@/lib/element/global/global.footer';
 import { ACT_GetMenuItemNavbar } from './(views)/$action/action.get-menu-item-navbar';
 import { Locale } from '@/i18n-config';
+import { ACT_GetBottomLeftFooter } from './(views)/$action/bottom-footer/action.get.bottom.left.footer';
+import GlobalFooter from '@/lib/element/global/global.footer';
 
 export default async function PageWealth(
   {
@@ -50,8 +51,8 @@ export default async function PageWealth(
 
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listHeaderBottom = await ACT_GetMainMenuNavbar({ lang: 'en' });
-  const listMainFooter = await ACT_GetMainMenuFooter({ lang: 'en' });
-  const listBottomFooter = await ACT_GetBottomMenuFooter({ lang: 'en' });
+  const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
+  const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
   return (
     <React.Fragment>
@@ -67,9 +68,13 @@ export default async function PageWealth(
         </React.Fragment>
       ))}
       <GlobalFooter
-        main_footer={listMainFooter}
-        bottom_footer={listBottomFooter}
+        main_footer={{
+          data: [],
+        }}
+        bottom_right_footer={listBottomRightFooter}
+        bottom_left_footer={listBottomLeftFooter}
       />
+
       <ScrollToTop />
     </React.Fragment>
   );

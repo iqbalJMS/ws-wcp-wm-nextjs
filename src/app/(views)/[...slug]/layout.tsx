@@ -6,7 +6,7 @@ import { ACT_GetTopMenuNavbar } from '../$action/action.get.top-menu-navbar';
 import { ACT_GetMainMenuNavbar } from '../$action/action.get.main-menu-navbar';
 import { ACT_GetMenuItemNavbar } from '../$action/action.get-menu-item-navbar';
 import { ACT_GetMainMenuFooter } from '../$action/action.get.main-footer';
-import { ACT_GetBottomMenuFooter } from '../$action/action.get.bottom-footer';
+import { ACT_GetBottomRightFooter } from '../$action/bottom-footer/action.get.bottom.right.footer';
 
 export default async function WmSlugLayout({
   children,
@@ -18,7 +18,7 @@ export default async function WmSlugLayout({
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
 
   const listMainFooter = await ACT_GetMainMenuFooter({ lang: 'en' });
-  const listBottomFooter = await ACT_GetBottomMenuFooter({ lang: 'en' });
+  const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   return (
     <>
       <GlobalHeader
@@ -30,7 +30,8 @@ export default async function WmSlugLayout({
       <main className="pb-10">{children}</main>
       <GlobalFooter
         main_footer={listMainFooter}
-        bottom_footer={listBottomFooter}
+        bottom_footer={'listBottomFooter'}
+        bottom_right_footer={listBottomRightFooter}
       />
     </>
   );

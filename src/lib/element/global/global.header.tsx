@@ -12,6 +12,7 @@ import Link from './link';
 import { Tabs } from './tabs';
 import { CloseIcon } from './icons/close-icon';
 import Image from 'next/image';
+import ChevronDown from './icons/chevron-button-navbar';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -159,39 +160,53 @@ export function LoginButton({
 }) {
   const elementRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
-  // const logins = [
-  //   {
-  //     title: 'Internet Banking Personal',
-  //     color: 'orange-04',
-  //     link: 'https://biz.bri.co.id/',
-  //   },
-  //   {
-  //     title: 'Internet Banking Business',
-  //     color: 'orange-01',
-  //     link: 'https://biz.bri.co.id/',
-  //   },
-  //   {
-  //     title: 'Internet Banking Corporate',
-  //     color: 'green-400',
-  //     link: 'https://biz.bri.co.id/',
-  //   },
-  // ];
+  const isScrolling = useScrollActive();
+
   useOnClickOutside(elementRef, () => setActive(false));
 
   return (
     <div
       ref={elementRef}
-      className="bg-white text-[#191056] px-6 pr-4 py-2 mdmax:py-1 mdmax:px-4 mdmax:pr-2 rounded-full inline-flex items-center cursor-pointer relative hover:bg-blue-900 hover:text-white duration-300"
+      className={[
+        `${isScrolling ? 'bg-black' : 'bg-white'}`,
+        `${isScrolling ? 'hover:border-blue-800 border-2' : 'hover:bg-[#080087]'}`,
+        `text-[#191056] px-6 pr-4 py-2 mdmax:py-1 mdmax:px-4 mdmax:pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
+      ].join(' ')}
       onClick={() => setActive(!active)}
     >
-      <div>Login</div>
+      <div
+        className={[
+          `${isScrolling ? 'text-white' : 'text-[#191787]'}`,
+          'uppercase font-semibold group-hover:text-white',
+        ].join(' ')}
+      >
+        Login
+      </div>
       <div className="pl-2">
-        <svg className="w-5 h-5" width="32" height="32" viewBox="0 0 24 24">
-          <path
-            fill="currentColor"
-            d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z"
-          />
-        </svg>
+        <ChevronDown
+          className={[
+            `${isScrolling ? 'hidden' : ''}`,
+            `group-hover:hidden`,
+          ].join(' ')}
+          stroke="#191787"
+          width={30}
+          height={30}
+        />
+        <ChevronDown
+          className={[
+            `${isScrolling ? 'group-hover:hidden' : ''}`,
+            `hidden group-hover:flex`,
+          ].join(' ')}
+          stroke="white"
+          width={30}
+          height={30}
+        />
+        <ChevronDown
+          className={[`${isScrolling ? '' : 'hidden'}`, ,].join(' ')}
+          stroke="white"
+          width={30}
+          height={30}
+        />
       </div>
       <div
         className={[
@@ -273,7 +288,7 @@ export default function GlobalHeader({
         className={[
           `${isScrolling ? 'bg-white shadow-md' : ''}`,
           'z-50 fixed w-full ',
-          `${variant === 'transparent' ? 'mdmax:bg-white mdmax:shadow-md' : 'bg-black'}`,
+          `${variant === 'transparent' ? '' : 'bg-black'}`,
         ].join(' ')}
       >
         <div className="container hidden mdmax:block py-4">
@@ -284,7 +299,7 @@ export default function GlobalHeader({
                 src="/images/headers/logo.png"
                 width={128}
                 height={53}
-                className="w-full object-contain"
+                className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
               />
             </div>
             <div>
@@ -300,7 +315,7 @@ export default function GlobalHeader({
                     viewBox="0 0 256 256"
                   >
                     <path
-                      fill="currentColor"
+                      fill="white"
                       d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12M40 76h176a12 12 0 0 0 0-24H40a12 12 0 0 0 0 24m176 104H40a12 12 0 0 0 0 24h176a12 12 0 0 0 0-24"
                     />
                   </svg>
@@ -311,7 +326,7 @@ export default function GlobalHeader({
         </div>
         <div
           className={[
-            'container py-5 pb-2 mdmax:p-0 mdmax:fixed mdmax:w-full mdmax:h-screen mdmax:top-0 mdmax:z-50 mdmax:ease-in-out mdmax:transition-all mdmax:duration-300',
+            'container py-5 pb-2 mdmax:p-0 mdmax:fixed mdmax:w-full mdmax:h-screen mdmax:top-0 mdmax:z-50 mdmax:ease-in-out mdmax:transition-all mdmax:duration-300 flex justify-center',
             activeMenu
               ? 'mdmax:visible mdmax:opacity-100'
               : 'mdmax:invisible mdmax:opacity-0',
@@ -321,16 +336,16 @@ export default function GlobalHeader({
             onClick={() => setActiveMenu(false)}
             className="mdmax:block hidden bg-black bg-opacity-80 absolute top-0 left-0 w-full h-screen"
           ></div>
-          <div className="mdmax:bg-white mdmax:w-[80%] mdmax:relative mdmax:z-20 mdmax:flex mdmax:flex-col-reverse mdmax:h-full mdmax:items-start mdmax:justify-end mdmax:p-5 mdmax:pt-10">
+          <div className="w-[85%] mdmax:relative mdmax:z-20 mdmax:flex mdmax:flex-col-reverse mdmax:h-full mdmax:items-start mdmax:justify-end mdmax:p-5 mdmax:pt-10">
             <div
-              className="absolute top-7 right-7 mdmax:top-2 mdmax:right-2 hidden mdmax:block"
+              className="absolute top-7 right-7 mdmax:top-2 mdmax:right-2 hidden mdmax:block "
               onClick={() => setActiveMenu(false)}
             >
               <CloseIcon className="text-blue-02 cursor-pointer" stroke={''} />
             </div>
             <div
               className={[
-                `flex items-center mdmax:items-start  mdmax:flex-col gap-5 mdmax:gap-0 justify-end mb-5 `,
+                `flex items-center mdmax:items-start  mdmax:flex-col gap-5 mdmax:gap-0 justify-end mb-5`,
                 `${isScrolling ? 'hidden mdmax:flex' : ''}`,
               ].join(' ')}
             >
@@ -358,7 +373,7 @@ export default function GlobalHeader({
                         <div
                           // href={header?.uri}
                           className={[
-                            `text-[0.813rem] font-light`,
+                            `text-[15px] font-light`,
                             `${variant === 'transparent' ? 'text-white mdmax:text-black' : ''}`,
                           ].join(' ')}
                         >
@@ -397,14 +412,14 @@ export default function GlobalHeader({
                 ))}
               </div>
             </div>
-            <div className="flex items-end justify-between mdmax:border-b mdmax:border-black mdmax:w-full mdmax:pb-5 mdmax:mb-5">
-              <Link className="mdmax:hidden pb-4 " href={'/'}>
+            <div className="flex items-center justify-between mdmax:border-b mdmax:border-black mdmax:w-full mdmax:pb-5 mdmax:mb-5 py-2">
+              <Link className="" href={'/'}>
                 <Image
                   alt="logo-bri"
                   src="/images/headers/logo.png"
                   width={128}
-                  height={53}
-                  className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
+                  height={128}
+                  className={`${isScrolling ? '' : 'filter brightness-0 invert'}`}
                 />
               </Link>
               <div className="mdmax:w-full">
@@ -421,7 +436,7 @@ export default function GlobalHeader({
                             ?.toLowerCase()
                             .replaceAll(' ', '-')}`}
                           className={[
-                            `text-sm font-normal cursor-pointer uppercase relative `,
+                            `text-base font-light cursor-pointer uppercase relative `,
                             `${isScrolling ? 'text-black' : variant === 'transparent' ? 'text-white mdmax:text-black' : ''}`,
                           ].join(' ')}
                         >
