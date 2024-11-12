@@ -166,6 +166,12 @@ export default function CE_CarouselVariant3({
           >
             {titlelink}
           </Link>
+          <Link
+            href={linkcta}
+            className="hidden items-center text-wmcolor font-semibold uppercase hover:underline"
+          >
+            {titlelink}
+          </Link>
         </div>
 
         {/* Button Section */}

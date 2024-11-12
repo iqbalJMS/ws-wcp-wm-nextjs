@@ -166,7 +166,7 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
               image={image}
               label={label}
               desc={desc}
-              link={null}
+              link={link}
               backGround={backGround}
             />
           );
