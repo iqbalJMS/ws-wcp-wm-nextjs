@@ -69,7 +69,7 @@ type T_FieldImage = {
   changed: any[];
   default_langcode: any[];
   revision_translation_affected: any[];
-  path: Array<{ alias: null | string }>;
+  path: Array<{ alias: any }>;
   field_media_image: any[];
 };
 
@@ -85,7 +85,7 @@ type T_FieldColumnChild = {
   content_translation_outdated: any[];
   content_translation_changed: any[];
   field_alignment: any[];
-  field_content: any[];
+  field_content: Array<{ value: string }>;
   field_icon_cta_style: any[];
   field_image: Array<T_FieldImage>;
   field_maximum_lines: any[];
@@ -106,9 +106,10 @@ type T_FieldColumn = {
   content_translation_changed: any[];
   field_alignment: any[];
   field_content: Array<T_FieldContent>;
-  field_image: any[];
+  field_image: Array<T_FieldImage>;
+  field_second_image: Array<T_FieldImage>;
   field_maximum_lines: Array<{ value: any[] }>;
-  field_primary_cta: any[];
+  field_primary_cta: Array<{ uri: string; full_url: string; title: string }>;
   field_column?: Array<T_FieldColumnChild>;
   field_title: Array<{ value: string }>;
   field_column_per_row: any[];
@@ -147,7 +148,7 @@ export type T_Section = {
   field_container: any[];
   field_content: Array<T_FieldContent>;
   field_formatted_title: Array<T_FieldContent>;
-  field_image: any[];
+  field_image: Array<T_FieldImage>;
   field_margin_left: any[];
   field_note: any[];
   field_primary_cta: any[];

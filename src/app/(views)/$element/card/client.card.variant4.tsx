@@ -1,32 +1,20 @@
 import React from 'react';
+// import Image from '@/lib/element/global/image';
 import Image from 'next/image';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import Link from 'next/link';
-// {
-//   data,
-// }: {
-//   data: Array<{
-//     image: string;
-//     logo: string;
-//     desc: string;
-//     link: string;
-//   }>;
-// }
-export default function CE_CardVariant4() {
-  const data = [
-    {
-      image: '/images/dummy/bg-cv-4b.jpg',
-      label: 'BRI',
-      logoUrl: '/images/dummy/logo-private-cv4.png',
-      text: 'Untuk Pribadi Istimewa',
-    },
-    {
-      image: '/images/dummy/bg-cv-4.jpg',
-      label: 'BRI',
-      logoUrl: '/images/dummy/logo-prioritas-cv4.png',
-      text: 'Untuk Pribadi Terpilih',
-    },
-  ];
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+
+export default function CE_CardVariant4({
+  data,
+}: {
+  data: Array<{
+    image: string;
+    logo: string;
+    label: string;
+    link: string;
+  }>;
+}) {
   return (
     <main className="relative w-full h-auto flex justify-center  overflow-hidden">
       <section className="w-full lg:w-11/12">
@@ -36,21 +24,21 @@ export default function CE_CardVariant4() {
         <div className="w-full grid grid-cols-1 gap-y-5 place-items-center lg:grid-cols-2 xl:px-48 ">
           {data?.map((item, index) => (
             <Link
-              href={'#'}
+              href={'/bri-private'}
               key={index}
               className="cursor-pointer group relative w-full md:w-10/12 lg:w-full h-60 lg:h-72 overflow-hidden"
             >
               <div
                 className="flex flex-col justify-between h-72 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-center transition-all ease-in-out transform-gpu delay-75"
                 style={{
-                  backgroundImage: `url(${item?.image})`,
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
                 }}
               >
                 <div className="w-full h-full bg-black opacity-50"></div>
               </div>
               <div className="flex justify-between">
                 <Image
-                  src={item?.logoUrl}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.logo}`}
                   width={1000}
                   height={1000}
                   alt="service us logo"
@@ -65,9 +53,11 @@ export default function CE_CardVariant4() {
                 />
               </div>
               <span>
-                <h1 className="absolute text-white text-base font-medium bottom-12 left-10 lg:left-16">
-                  {item?.text}
-                </h1>
+                {item?.label && (
+                  <h1 className="absolute text-white text-base font-medium bottom-12 left-10 lg:left-16">
+                    {parseHTMLToReact(item?.label)}
+                  </h1>
+                )}
               </span>
             </Link>
           ))}

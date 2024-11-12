@@ -27,7 +27,7 @@ export default async function WmSlugLayout({
         variant={'transparent'}
         itemLogin={itemMenuLogin}
       />
-      <main className="pb-10">{children}</main>
+      <main>{children}</main>
       <GlobalFooter
         main_footer={{
           data: [],

@@ -18,18 +18,7 @@ module.exports = {
       {
         protocol: 'https',
         hostname: 'admin-bri-corpsite.dev-kjt.id',
-      },
-      {
-        protocol: 'https',
-        hostname: 'encrypted-tbn0.gstatic.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'craftypixels.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'dummyimage.com',
+        pathname: '/**',
       },
     ],
   },

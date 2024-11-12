@@ -10,6 +10,7 @@ import Link from '@/lib/element/global/link';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import { CloseIcon } from '@/lib/element/global/icons/close-icon';
 import { Tabs } from '@/lib/element/global/tabs';
+import LogoWefo from '@/../../public/images/headers/logo.png';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -273,15 +274,15 @@ export default function CE_HeaderMagazine({
       >
         <div className="container hidden mdmax:block py-4">
           <div className="flex items-center justify-between">
-            <div className="w-[10rem]">
+            <Link className="w-[10rem]" href={'/'}>
               <Image
                 alt="logo-bri"
-                src="/images/headers/logo.png"
+                src={LogoWefo}
                 width={500}
-                height={500}
-                className="w-full h-96 bg-red-300 object-contain"
+                height={53}
+                className="w-full object-contain cursor-pointer"
               />
-            </div>
+            </Link>
             <div>
               <div className="flex items-center gap-2">
                 <div>
@@ -392,15 +393,15 @@ export default function CE_HeaderMagazine({
               </div>
             </div>
             <div className="flex items-end justify-between mdmax:border-b mdmax:border-black mdmax:w-full mdmax:pb-5 mdmax:mb-5">
-              <div className="mdmax:hidden pb-4 ">
+              <Link className="mdmax:hidden pb-4 " href={'/'}>
                 <Image
                   alt="logo-bri"
-                  src="/images/headers/logo.png"
+                  src={LogoWefo}
                   width={128}
                   height={53}
-                  className={`${isScrolling ? '' : ''} `}
+                  className={`${isScrolling ? '' : ''} cursor-pointer`}
                 />
-              </div>
+              </Link>
               <div className="mdmax:w-full">
                 <div className="flex mdmax:flex-col mdmax:items-start items-center gap-10 mdmax:gap-0 ">
                   {headerBottom?.map((item, index) => {

@@ -13,6 +13,7 @@ import { Tabs } from './tabs';
 import { CloseIcon } from './icons/close-icon';
 import Image from 'next/image';
 import ChevronDown from './icons/chevron-button-navbar';
+import LogoHeader from '@/../../public/images/headers/logo.png';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -292,11 +293,11 @@ export default function GlobalHeader({
         ].join(' ')}
       >
         <div className="container hidden mdmax:block py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between ">
             <div className="w-[5rem]">
               <Image
                 alt="logo-bri"
-                src="/images/headers/logo.png"
+                src={LogoHeader}
                 width={128}
                 height={53}
                 className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
@@ -412,14 +413,14 @@ export default function GlobalHeader({
                 ))}
               </div>
             </div>
-            <div className="flex items-center justify-between mdmax:border-b mdmax:border-black mdmax:w-full mdmax:pb-5 mdmax:mb-5 py-2">
+            <div className="flex items-center justify-between mdmax:border-b mdmax:border-black mdmax:w-full mdmax:pb-5 mdmax:mb-5 ">
               <Link className="" href={'/'}>
                 <Image
                   alt="logo-bri"
-                  src="/images/headers/logo.png"
+                  src={LogoHeader}
                   width={128}
-                  height={128}
-                  className={`${isScrolling ? '' : 'filter brightness-0 invert'}`}
+                  height={53}
+                  className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
                 />
               </Link>
               <div className="mdmax:w-full">
@@ -436,7 +437,7 @@ export default function GlobalHeader({
                             ?.toLowerCase()
                             .replaceAll(' ', '-')}`}
                           className={[
-                            `text-base font-light cursor-pointer uppercase relative `,
+                            `text-sm tracking-wide font-normal cursor-pointer uppercase relative `,
                             `${isScrolling ? 'text-black' : variant === 'transparent' ? 'text-white mdmax:text-black' : ''}`,
                           ].join(' ')}
                         >

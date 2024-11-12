@@ -126,9 +126,9 @@ function TermsAllReservedElement({
                     {icon && (
                       <Image
                         src={icon}
-                        width={20}
+                        width={16}
                         extern={false}
-                        height={20}
+                        height={16}
                         alt={title}
                       />
                     )}

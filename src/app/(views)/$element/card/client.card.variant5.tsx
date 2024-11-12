@@ -37,19 +37,6 @@ export default function CE_CardVariant5({
     }
   };
 
-  // const data = [
-  //   {
-  //     imgUrl: '/images/dummy/img-produk-unggulan.jpg',
-  //     textBtn: 'Investasi',
-  //     label: 'BRI',
-  //   },
-  //   {
-  //     imgUrl: '/images/dummy/img-produk-unggulan2.jpg',
-  //     textBtn: 'Bancassurance',
-  //     label: 'BRI',
-  //   },
-  // ];
-
   return (
     <div className="w-full h-auto flex justify-center ">
       <div className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:content-center">
@@ -74,8 +61,7 @@ export default function CE_CardVariant5({
           >
             {data?.map((item, index) => (
               <Link
-                href={'#'}
-                target="_blank"
+                href={'/investasiBri'}
                 key={index}
                 className="relative w-full h-80 overflow-hidden cursor-pointer flex-none md:flex-1 "
               >

@@ -66,21 +66,6 @@ const CE_CardVariant3 = dynamic(
 // {-----------end--------------}
 
 export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
-  // slider: {
-  //   component: CE_BannerMain,
-  //   props: (_component: T_Slider) => {
-  //     return {
-  //       data: _component?.field_slider_items?.map((item) => {
-  //         return {
-  //           image: item?.field_image?.[0]?.field_media_image?.[0]?.uri[0]?.url,
-  //           title: item?.field_title?.[0]?.value,
-  //           desc: item?.field_content?.[0]?.value,
-  //           button: item?.field_primary_cta[0]?.title,
-  //         };
-  //       }),
-  //     };
-  //   },
-  // },
   // {---------start--------------}
   slider: {
     component: (...props) => {
@@ -145,27 +130,6 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
     },
   },
 
-  // {Card Variant 2}
-  // section: {
-  //   component: CE_CardVariant2,
-  //   props: (_component: T_Section) => {
-  //     return {
-  //       data: _component?.field_column?.map((item) => {
-  //         return {
-  //           iconcard:
-  //             item?.field_column?.[0]?.field_image?.[0]?.field_media_image?.[0]
-  //               ?.uri?.[0]?.url,
-  //           labelcard: item?.field_column?.[0]?.field_title?.[0]?.value,
-  //           desccard: item?.field_column?.[0]?.field_content?.[0]?.value,
-  //         };
-  //       }),
-  //       subtitle: _component?.field_formatted_title?.[0]?.value,
-  //       title: _component?.field_column?.[0]?.field_content?.[0]?.value,
-  //       desctitle: _component?.field_column?.[1]?.field_content?.[0]?.value,
-  //     };
-  //   },
-  // },
-
   section: {
     component: (...props) => {
       const findVariantStyle = props?.[0]?.variant;
@@ -175,13 +139,11 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
       const data = props?.[0]?.data;
       const label = props?.[0]?.label;
       const sublabel = props?.[0]?.sublabel;
+      const image = props?.[0]?.image;
+      const desc = props?.[0]?.desc;
+      const link = props?.[0]?.link;
+      const backGround = props?.[0]?.backGround;
 
-      // console.log(
-      //   findVariantStyle,
-      //   'xxxxxxxxxxxxx',
-      //   WIDGET_VARIANT.variant01,
-      //   props[0]
-      // );
       switch (findVariantStyle) {
         case WIDGET_VARIANT.variant01:
           return (
@@ -196,8 +158,20 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
           return (
             <CE_CardVariant5 data={data} label={label} sublabel={sublabel} />
           );
+        case WIDGET_VARIANT.variant03:
+          return <CE_CardVariant4 data={data} />;
+        case WIDGET_VARIANT.variant04:
+          return (
+            <CE_CardVariant6
+              image={image}
+              label={label}
+              desc={desc}
+              link={null}
+              backGround={backGround}
+            />
+          );
         default:
-          return <>ini default</>;
+          return <></>;
       }
     },
     props: (_component: T_Section) => {
@@ -229,6 +203,27 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
         };
       });
 
+      const dataCardVariant4 = _component?.field_column.map((item) => {
+        return {
+          image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+          label: item?.field_content?.[0]?.value,
+          link: item?.field_primary_cta?.[0]?.uri,
+          logo: item?.field_second_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+        };
+      });
+
+      const dataImageCardV6 =
+        _component?.field_column?.[0]?.field_image?.[0]?.thumbnail?.[0]
+          ?.uri?.[0]?.url;
+      const dataLabelCardV6 =
+        _component?.field_column?.[1]?.field_title?.[0]?.value;
+      const dataDescCardV6 =
+        _component?.field_column?.[1]?.field_content?.[0]?.value;
+      const dataLinkCardV6 =
+        _component?.field_column?.[0]?.field_image?.[0]?.path?.[0]?.alias;
+      const dataBgCardV6 =
+        _component?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url;
+
       switch (findVariantStyle) {
         case WIDGET_VARIANT.variant01:
           return {
@@ -244,6 +239,20 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
             label: label,
             sublabel: sublabel,
             data: dataProduk,
+          };
+        case WIDGET_VARIANT.variant03:
+          return {
+            variant: findVariantStyle,
+            data: dataCardVariant4,
+          };
+        case WIDGET_VARIANT.variant04:
+          return {
+            variant: findVariantStyle,
+            image: dataImageCardV6,
+            label: dataLabelCardV6,
+            desc: dataDescCardV6,
+            link: dataLinkCardV6,
+            backGround: dataBgCardV6,
           };
         default:
           return {

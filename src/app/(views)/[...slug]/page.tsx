@@ -10,7 +10,7 @@ import { COMPONENT_MAP_WIDGET } from '@/app/(views)/$constant';
 
 export default async function PageWealthDetail({
   params: { slug },
-  // searchParams: { lang },
+  searchParams: { lang },
 }: {
   params: {
     slug: Array<string>;
@@ -21,7 +21,7 @@ export default async function PageWealthDetail({
 }) {
   const getNodeId = slug?.[0];
   const data = await ACT_GetSinglePage({
-    // lang: lang ?? 'en',
+    lang: lang ?? 'en',
     alias: getNodeId ?? '',
   });
 

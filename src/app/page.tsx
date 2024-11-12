@@ -17,15 +17,13 @@ import { Locale } from '@/i18n-config';
 import { ACT_GetBottomLeftFooter } from './(views)/$action/bottom-footer/action.get.bottom.left.footer';
 import GlobalFooter from '@/lib/element/global/global.footer';
 
-export default async function PageWealth(
-  {
-    // searchParams,
-  }: {
-    searchParams: { lang: Locale };
-  }
-) {
+export default async function PageWealth({
+  searchParams,
+}: {
+  searchParams: { lang: Locale };
+}) {
   const data = await ACT_GetSinglePage({
-    // lang: searchParams?.lang,
+    lang: searchParams?.lang,
     alias: 'wealth',
   });
 
