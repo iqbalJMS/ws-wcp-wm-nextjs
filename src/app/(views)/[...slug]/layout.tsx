@@ -29,11 +29,9 @@ export default async function WmSlugLayout({
       />
       <main>{children}</main>
       <GlobalFooter
-        main_footer={{
-          data: [],
-        }}
         bottom_right_footer={listBottomRightFooter}
         bottom_left_footer={listBottomLeftFooter}
+        main_middle_footer={[]}
       />
     </>
   );
