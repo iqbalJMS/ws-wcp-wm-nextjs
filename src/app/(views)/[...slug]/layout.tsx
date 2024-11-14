@@ -8,6 +8,8 @@ import { ACT_GetMenuItemNavbar } from '../$action/action.get-menu-item-navbar';
 
 import { ACT_GetBottomRightFooter } from '../$action/bottom-footer/action.get.bottom.right.footer';
 import { ACT_GetBottomLeftFooter } from '../$action/bottom-footer/action.get.bottom.left.footer';
+import CE_MenuMain from '../$element/client.menu.main';
+import { ACT_GetFloatNavigation } from '../$action/action.get-float-navigation';
 
 export default async function WmSlugLayout({
   children,
@@ -19,6 +21,8 @@ export default async function WmSlugLayout({
   const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
+  const itemMenuFloatNavigation = await ACT_GetFloatNavigation({ lang: 'en' });
+
   return (
     <>
       <GlobalHeader
@@ -27,11 +31,12 @@ export default async function WmSlugLayout({
         variant={'transparent'}
         itemLogin={itemMenuLogin}
       />
+      <CE_MenuMain data={[]} />
       <main>{children}</main>
       <GlobalFooter
         bottom_right_footer={listBottomRightFooter}
         bottom_left_footer={listBottomLeftFooter}
-        main_middle_footer={[]}
+        main_middle_footer={itemMenuFloatNavigation}
       />
     </>
   );
