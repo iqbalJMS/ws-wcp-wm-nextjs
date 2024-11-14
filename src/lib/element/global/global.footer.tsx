@@ -42,19 +42,14 @@ const RowElement = ({ title, alias, icon }: T_RowElementProps) => {
       {/* {socialMedia?.length !== 0 && (
         <div className="flex justify-start items-center gap-6">
           {socialMedia?.map(({ url, icon }, index) => (
-            <Link
-              extern={true}
-              href={url ?? '/'}
-              key={index}
-              className="text-white flex items-center gap-2 lg:mb-3 mb-2 lg:text-sm text-sm justify-center lg:justify-start font-normal"
-            >
+            <Link extern={true} href={url ?? '/'} key={index}>
               {icon && (
                 <Image
-                  src={`images/footers/${icon}.svg`}
+                  src={`/images/footers/${icon}.svg`}
                   width={18}
-                  extern={false}
                   height={18}
                   alt={`icon-${icon}`}
+                  extern={false}
                 />
               )}
             </Link>
