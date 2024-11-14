@@ -7,6 +7,10 @@ export type T_ResponseGetTopMenuNavbar = Array<{
   weight: string;
   expanded: boolean;
   enabled: boolean;
+  icon: string;
+  uuid: string | null;
   options: Array<any>;
-  icon?: string;
+  alt: string;
+  url: string;
+  field_image: Array<any>;
 }>;

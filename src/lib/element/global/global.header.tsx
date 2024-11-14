@@ -1,15 +1,18 @@
 'use client';
 
 import useScrollActive from '@/lib/hook/useScroll';
-import Image from './image';
 import { T_ResponseGetTopMenuNavbar } from '@/api/navbar-menu/top-navbar/api.get-top-menu-navbar.type';
 import { T_ResponseGetMainMenuNavbar } from '@/api/navbar-menu/main-navbar/api.get-main-menu-navbar.type';
+import { T_ResponseGetMenuItemNavbar } from '@/api/navbar-menu/menu-items/api.get-menu-items-navbar.type';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from './link';
 import { Tabs } from './tabs';
 import { CloseIcon } from './icons/close-icon';
+import Image from 'next/image';
+import ChevronDown from './icons/chevron-button-navbar';
+import LogoHeader from '@/../../public/images/headers/logo.png';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -33,7 +36,7 @@ export function Search({ active, setActive }: T_SearchProps) {
         className="absolute top-2 right-4 text-lg cursor-pointer"
         onClick={() => setActive(false)}
       >
-        <CloseIcon className="text-blue-02 cursor-pointer" />
+        <CloseIcon className="text-blue-02 cursor-pointer" stroke={''} />
       </div>
       <div className="py-20 container">
         <div className="pb-10 border-b border-black">
@@ -150,36 +153,60 @@ export function Search({ active, setActive }: T_SearchProps) {
   );
 }
 
-export function LoginButton() {
+export function LoginButton({
+  menuItems,
+}: {
+  menuItems: T_ResponseGetMenuItemNavbar;
+}) {
   const elementRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
-  const logins = [
-    {
-      title: 'Internet Banking Business',
-      color: 'orange-01',
-      link: 'https://biz.bri.co.id/',
-    },
-    {
-      title: 'Internet Banking Corporate',
-      color: 'green-01',
-      link: 'https://biz.bri.co.id/',
-    },
-  ];
+  const isScrolling = useScrollActive();
+
   useOnClickOutside(elementRef, () => setActive(false));
+
   return (
     <div
       ref={elementRef}
-      className="bg-white text-[#191056] px-6 pr-4 py-2 mdmax:py-1 mdmax:px-4 mdmax:pr-2 rounded-full inline-flex items-center cursor-pointer relative hover:bg-blue-900 hover:text-white duration-300"
+      className={[
+        `${isScrolling ? 'bg-black' : 'bg-white'}`,
+        `${isScrolling ? 'hover:border-blue-800 border-2' : 'hover:bg-[#080087]'}`,
+        `text-[#191056] px-6 pr-4 py-2 mdmax:py-1 mdmax:px-4 mdmax:pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
+      ].join(' ')}
       onClick={() => setActive(!active)}
     >
-      <div>Login</div>
+      <div
+        className={[
+          `${isScrolling ? 'text-white' : 'text-[#191787]'}`,
+          'uppercase font-semibold group-hover:text-white',
+        ].join(' ')}
+      >
+        Login
+      </div>
       <div className="pl-2">
-        <svg className="w-5 h-5" width="32" height="32" viewBox="0 0 24 24">
-          <path
-            fill="currentColor"
-            d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z"
-          />
-        </svg>
+        <ChevronDown
+          className={[
+            `${isScrolling ? 'hidden' : ''}`,
+            `group-hover:hidden`,
+          ].join(' ')}
+          stroke="#191787"
+          width={30}
+          height={30}
+        />
+        <ChevronDown
+          className={[
+            `${isScrolling ? 'group-hover:hidden' : ''}`,
+            `hidden group-hover:flex`,
+          ].join(' ')}
+          stroke="white"
+          width={30}
+          height={30}
+        />
+        <ChevronDown
+          className={[`${isScrolling ? '' : 'hidden'}`, ,].join(' ')}
+          stroke="white"
+          width={30}
+          height={30}
+        />
       </div>
       <div
         className={[
@@ -195,27 +222,25 @@ export function LoginButton() {
           border-l-transparent border-r-transparent border-white
           h-5 w-5`}
         />
-        {logins.map((loginItem, index) => {
+        {menuItems?.map((loginItem, index) => {
           return (
             <div
               key={index}
               className="w-full bg-white mb-2 px-5 py-4 rounded-3xl"
             >
-              <Link href={loginItem.link} target="_blank">
-                <div className={`flex items-center  text-${loginItem.color}`}>
+              <Link href={loginItem?.uri} target="_blank">
+                <div
+                  className={`flex items-center space-x-3  ${loginItem.field_theme_color == 'green' ? 'text-orange-01' : 'text-green-400'}`}
+                >
                   <div className="mr-2">
-                    <svg
-                      className="w-6 h-6"
-                      width="32"
-                      height="32"
-                      viewBox="0 0 256 256"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M216 56h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V72a16 16 0 0 0-16-16M96 48a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm120 24v41.61A184 184 0 0 1 128 136a184.1 184.1 0 0 1-88-22.38V72Zm0 128H40v-68.36A200.2 200.2 0 0 0 128 152a200.25 200.25 0 0 0 88-20.37zm-112-88a8 8 0 0 1 8-8h32a8 8 0 0 1 0 16h-32a8 8 0 0 1-8-8"
-                      />
-                    </svg>
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon}`}
+                      alt=""
+                      width={30}
+                      height={30}
+                    />
                   </div>
+
                   <div className="">{loginItem.title}</div>
                 </div>
               </Link>
@@ -231,10 +256,12 @@ export default function GlobalHeader({
   headerTop,
   headerBottom,
   variant = 'transparent',
+  itemLogin,
 }: {
   headerTop: T_ResponseGetTopMenuNavbar;
   headerBottom: T_ResponseGetMainMenuNavbar;
   variant: 'transparent' | 'no-transparent';
+  itemLogin: T_ResponseGetMenuItemNavbar;
 }) {
   const pathname = usePathname();
   const currentLanguage = useSearchParams().get('lang');
@@ -256,29 +283,29 @@ export default function GlobalHeader({
   };
 
   return (
-    <main>
+    <>
       <header
         className={[
           `${isScrolling ? 'bg-white shadow-md' : ''}`,
           'z-50 fixed w-full ',
-          `${variant === 'transparent' ? 'mdmax:bg-white mdmax:shadow-md' : 'bg-black'}`,
+          `${variant === 'transparent' ? '' : 'bg-black'}`,
         ].join(' ')}
       >
         <div className="container hidden mdmax:block py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between ">
             <div className="w-[5rem]">
               <Image
                 alt="logo-bri"
-                src="/images/headers/logo-bri.png"
+                src={LogoHeader}
                 width={128}
                 height={53}
-                className="w-full object-contain"
+                className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
               />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <div>
-                  <LoginButton />
+                  <LoginButton menuItems={itemLogin} />
                 </div>
                 <div onClick={() => setActiveMenu(true)}>
                   <svg
@@ -288,7 +315,7 @@ export default function GlobalHeader({
                     viewBox="0 0 256 256"
                   >
                     <path
-                      fill="currentColor"
+                      fill="white"
                       d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12M40 76h176a12 12 0 0 0 0-24H40a12 12 0 0 0 0 24m176 104H40a12 12 0 0 0 0 24h176a12 12 0 0 0 0-24"
                     />
                   </svg>
@@ -299,7 +326,7 @@ export default function GlobalHeader({
         </div>
         <div
           className={[
-            'container py-5 mdmax:p-0 mdmax:fixed mdmax:w-full mdmax:h-screen mdmax:top-0 mdmax:z-50 mdmax:ease-in-out mdmax:transition-all mdmax:duration-300',
+            'container py-5 pb-2 mdmax:p-0 mdmax:fixed mdmax:w-full mdmax:h-screen mdmax:top-0 mdmax:z-50 mdmax:ease-in-out mdmax:transition-all mdmax:duration-300 flex justify-center',
             activeMenu
               ? 'mdmax:visible mdmax:opacity-100'
               : 'mdmax:invisible mdmax:opacity-0',
@@ -309,16 +336,16 @@ export default function GlobalHeader({
             onClick={() => setActiveMenu(false)}
             className="mdmax:block hidden bg-black bg-opacity-80 absolute top-0 left-0 w-full h-screen"
           ></div>
-          <div className="mdmax:bg-white mdmax:w-[80%] mdmax:relative mdmax:z-20 mdmax:flex mdmax:flex-col-reverse mdmax:h-full mdmax:items-start mdmax:justify-end mdmax:p-5 mdmax:pt-10">
+          <div className="w-[85%] mdmax:relative mdmax:z-20 mdmax:flex mdmax:flex-col-reverse mdmax:h-full mdmax:items-start mdmax:justify-end mdmax:p-5 mdmax:pt-10">
             <div
-              className="absolute top-7 right-7 mdmax:top-2 mdmax:right-2 hidden mdmax:block"
+              className="absolute top-7 right-7 mdmax:top-2 mdmax:right-2 hidden mdmax:block "
               onClick={() => setActiveMenu(false)}
             >
-              <CloseIcon className="text-blue-02 cursor-pointer" />
+              <CloseIcon className="text-blue-02 cursor-pointer" stroke={''} />
             </div>
             <div
               className={[
-                `flex items-center mdmax:items-start  mdmax:flex-col gap-5 mdmax:gap-0 justify-end mb-5 `,
+                `flex items-center mdmax:items-start  mdmax:flex-col gap-5 mdmax:gap-0 justify-end mb-5`,
                 `${isScrolling ? 'hidden mdmax:flex' : ''}`,
               ].join(' ')}
             >
@@ -336,17 +363,17 @@ export default function GlobalHeader({
                       >
                         {header.icon && (
                           <Image
-                            extern={true}
-                            src={`${header.icon}`}
-                            width={18}
-                            height={18}
-                            alt={`icon-${header.icon}`}
-                            className="w-3 h-3 mr-2 filter brightness-0 invert mdmax:filter-none"
+                            src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${header?.icon}`}
+                            alt={`icon-${header.alt}`}
+                            width={500}
+                            height={500}
+                            className="w-5 h-5 mr-2 filter brightness-0 invert  bg-red"
                           />
                         )}
                         <div
+                          // href={header?.uri}
                           className={[
-                            `text-[0.813rem] font-light`,
+                            `text-[15px] font-light`,
                             `${variant === 'transparent' ? 'text-white mdmax:text-black' : ''}`,
                           ].join(' ')}
                         >
@@ -385,90 +412,92 @@ export default function GlobalHeader({
                 ))}
               </div>
             </div>
-            <div className="flex items-end justify-between mdmax:border-b mdmax:border-black mdmax:w-full mdmax:pb-5 mdmax:mb-5">
-              <div className="mdmax:hidden">
+            <div className="flex items-center justify-between mdmax:border-b mdmax:border-black mdmax:w-full mdmax:pb-5 mdmax:mb-5 ">
+              <Link className="" href={'/'}>
                 <Image
                   alt="logo-bri"
-                  src="/images/headers/logo-bri.png"
+                  src={LogoHeader}
                   width={128}
                   height={53}
                   className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
                 />
-              </div>
+              </Link>
               <div className="mdmax:w-full">
                 <div className="flex mdmax:flex-col mdmax:items-start items-center gap-10 mdmax:gap-0 ">
                   {headerBottom?.map((item, index) => {
                     return (
                       <div
                         key={index}
-                        className="pb-2 mdmax:pb-0 group border-b-4 border-transparent hover:border-red-01 "
+                        className="pb-2 mdmax:pb-0 group border-b-4 border-transparent hover:border-blue-01 "
                       >
+                        {/* url ganti nanti kalo udah ada url dari drupal */}
                         <Link
-                          href={`/aether/${item.nid}/${item.title
-                            ?.toLowerCase()
-                            .replaceAll(' ', '-')}`}
+                          href={`/${item?.alias}`}
                           className={[
-                            `text-sm font-normal cursor-pointer uppercase relative `,
+                            `text-sm tracking-wide font-normal cursor-pointer uppercase relative `,
                             `${isScrolling ? 'text-black' : variant === 'transparent' ? 'text-white mdmax:text-black' : ''}`,
                           ].join(' ')}
                         >
                           {item?.title}
-
-                          <div
-                            className={[
-                              `invisible group-hover:visible group-hover:opacity-100 opacity-0 transition-all ease-in-out duration-100`,
-                              `absolute top-[210%] left-1/2 transform -translate-x-1/2 rotate-180`,
-                              `border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] `,
-                              `border-l-transparent border-r-transparent border-white`,
-                              `h-5 w-5`,
-                            ].join(' ')}
-                          ></div>
+                          {item?.below?.length > 0 && (
+                            <div
+                              className={[
+                                `invisible group-hover:visible group-hover:opacity-100 opacity-0 transition-all ease-in-out duration-100`,
+                                `absolute top-[210%] left-1/2 transform -translate-x-1/2 rotate-180`,
+                                `border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] `,
+                                `border-l-transparent border-r-transparent border-white`,
+                                `h-5 w-5`,
+                              ].join(' ')}
+                            ></div>
+                          )}
                         </Link>
-                        <div className="absolute left-0 w-full invisible group-hover:visible group-hover:opacity-100 opacity-0 transition-all ease-in-out duration-300 pt-10">
-                          <div className="bg-white">
-                            <div className="container py-5">
-                              <div className="text-[1.5rem] mb-4 font-medium">
-                                {item?.title}
-                              </div>
-                              <div className="flex">
-                                {item?.below?.map((subItem, subIndex) => {
-                                  return (
-                                    <div key={subIndex} className="mr-40">
-                                      <div className="text-red-01 font-semibold mb-2">
-                                        {subItem?.title}
-                                      </div>
-                                      <div>
-                                        {subItem?.below?.map(
-                                          (item, itemIndex) => {
-                                            return (
-                                              <div key={itemIndex}>
-                                                <div className="flex items-center justify-between">
-                                                  {item.title}
-                                                  <Image
-                                                    src={`/images/headers/arrow-right.svg`}
-                                                    width={18}
-                                                    height={18}
-                                                    alt={`icon-arrow-right`}
-                                                    className="w-3 h-3 ml-4"
-                                                  />
+                        {item?.below?.length > 0 && (
+                          <div className="absolute left-0 w-full invisible group-hover:visible group-hover:opacity-100 opacity-0 transition-all ease-in-out duration-300 pt-10">
+                            <div className="bg-white">
+                              <div className="container py-5">
+                                <div className="text-[1.5rem] mb-4 font-medium">
+                                  {item?.title}
+                                </div>
+                                <div className="flex">
+                                  {item?.below?.map((subItem, subIndex) => {
+                                    return (
+                                      <div key={subIndex} className="mr-40">
+                                        <div className="text-red-01 font-semibold mb-2">
+                                          {subItem?.title}
+                                        </div>
+                                        <div>
+                                          {subItem?.below?.map(
+                                            (item, itemIndex) => {
+                                              return (
+                                                <div key={itemIndex}>
+                                                  <div className="flex items-center justify-between">
+                                                    {item.title}
+                                                    <Image
+                                                      src={`/images/headers/arrow-right.svg`}
+                                                      width={18}
+                                                      height={18}
+                                                      alt={`icon-arrow-right`}
+                                                      className="w-3 h-3 ml-4"
+                                                    />
+                                                  </div>
                                                 </div>
-                                              </div>
-                                            );
-                                          }
-                                        )}
+                                              );
+                                            }
+                                          )}
+                                        </div>
                                       </div>
-                                    </div>
-                                  );
-                                })}
+                                    );
+                                  })}
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        )}
                       </div>
                     );
                   })}
                   <div className="pb-2 border-b-4 border-transparent mdmax:hidden">
-                    <LoginButton />
+                    <LoginButton menuItems={itemLogin} />
                   </div>
                 </div>
               </div>
@@ -477,6 +506,6 @@ export default function GlobalHeader({
         </div>
         <Search active={activeSearch} setActive={setActiveSearch} />
       </header>
-    </main>
+    </>
   );
 }

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import * as Linx from "next/link";
-import { useSearchParams } from "next/navigation";
-import React, { AnchorHTMLAttributes, RefAttributes } from "react";
+import * as Linx from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import React, { AnchorHTMLAttributes, RefAttributes } from 'react';
 
 type T_LinkProps = Linx.LinkProps &
   AnchorHTMLAttributes<HTMLAnchorElement> &
@@ -11,21 +11,21 @@ type T_LinkProps = Linx.LinkProps &
     target?: string;
     rel?: string;
     extern?: boolean;
-    lang?: "en" | "id";
+    lang?: 'en' | 'id';
   };
 
-const wildcard = ["http://", "https://"];
+const wildcard = ['http://', 'https://'];
 
 export default function Link(prop: T_LinkProps) {
-  const locales = useSearchParams().get("lang") ?? "id";
-  const { href = "#" } = prop;
+  const locales = useSearchParams().get('lang') ?? 'id';
+  const { href = '#' } = prop;
 
   if (!href) {
     return (
       <Linx.default
         {...{
           ...prop,
-          href: "/",
+          href: '/',
           target: prop.target,
           rel: prop.rel,
         }}
