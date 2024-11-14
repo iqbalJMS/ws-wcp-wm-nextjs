@@ -24,8 +24,9 @@ import { CE_CardVariant13 } from '@/app/$element/client.card.variant13';
 import { CE_CardVariant14 } from '@/app/$element/client.card.variant14';
 import { CE_CardVariant15 } from '@/app/$element/client.card.variant15';
 
-import SE_PortletMain from '@/app/aether/$element/portlet/server.portlet.main';
-// import Accordion from '@/lib/element/global/accordion';
+import SE_PortletMain from '@/app/wealth-management/$element/portlet/server.portlet.main';
+import CE_MenuGrid from '@/app/$element/client.menu-grid';
+import Accordion from '@/lib/element/global/accordion';
 // import Image from '@/lib/element/global/image';
 
 export default async function PageTester() {
@@ -80,6 +81,25 @@ export default async function PageTester() {
 
   return (
     <React.Fragment>
+      <CE_MenuGrid
+        title="Unggulan"
+        listItem={[
+          {
+            label: 'Perlindungan Kekayaan',
+            text: 'Proteksi & Diversifikasi Kekayaan',
+          },
+          {
+            label: 'Akumulasi Kekayaan',
+            text: 'Dilengkapi dengan BRI Premium Concierge Service yang memberikan layanan personal terbaik 24 jam 7 hari seminggu.',
+          },
+          {
+            label: 'Distribusi Kekayaan',
+            text: 'Rencana Pensiun',
+          },
+        ]}
+        bgImage="/sites/default/files/images/whybanking.jpg"
+        variant="wm-private"
+      />
       <CE_BannerMain
         variant="01"
         data={[
@@ -667,93 +687,11 @@ export default async function PageTester() {
         imageContent="/sites/default/files/images/promo-carousel-01.jpeg"
         // imageTitle="/sites/default/files/images/1073-860x640.jpg"
       />
-      {/* <div className="py-4 container">
-        <Accordion
-          renderTitle={
-            <p className="text-l-bold text-left font-medium leading-8">
-              Laporan
-            </p>
-          }
-          isOpen
-          renderContent={
-            <CE_CardVariant11
-              title="Lorem Ipsum"
-              data={[
-                {
-                  title: 'Lorem Ipsum',
-                  image: '/sites/default/files/images/1073-860x640.jpg',
-                  description:
-                    'Lorem Ipsum is simply dummy text of the printing',
-                },
-                {
-                  title: 'Lorem Ipsum',
-                  image: '/sites/default/files/images/1073-860x640.jpg',
-                  description:
-                    'Lorem Ipsum is simply dummy text of the printing',
-                },
-                {
-                  title: 'Lorem Ipsum',
-                  image: '/sites/default/files/images/1073-860x640.jpg',
-                  description:
-                    'Lorem Ipsum is simply dummy text of the printing',
-                },
-              ]}
-            />
-          }
-        />
-      </div>
-      <div className="py-4">
-        <Accordion
-          variant="full"
-          renderTitle={
-            <p className="text-l-bold text-left font-medium leading-8">
-              Laporan
-            </p>
-          }
-          isOpen
-          renderContent={
-            <CE_CardVariant11
-              title="Lorem Ipsum"
-              data={[
-                {
-                  title: 'Lorem Ipsum',
-                  image: '/sites/default/files/images/1073-860x640.jpg',
-                  description:
-                    'Lorem Ipsum is simply dummy text of the printing',
-                },
-                {
-                  title: 'Lorem Ipsum',
-                  image: '/sites/default/files/images/1073-860x640.jpg',
-                  description:
-                    'Lorem Ipsum is simply dummy text of the printing',
-                },
-                {
-                  title: 'Lorem Ipsum',
-                  image: '/sites/default/files/images/1073-860x640.jpg',
-                  description:
-                    'Lorem Ipsum is simply dummy text of the printing',
-                },
-              ]}
-            />
-          }
-        />
-      </div>
       <div className="py-4 container">
         <Accordion
-          variant="rounded"
           renderTitle={
             <>
-              <div className="flex items-center gap-2">
-                <Image
-                  src="/sites/default/files/images/1073-860x640.jpg"
-                  width={40}
-                  height={40}
-                  alt="image"
-                  extern={true}
-                  className="rounded-md"
-                />
-                <p className="text-xl-semibold text-left leading-8">Laporan</p>
-              </div>
+              <p className="text-xl-semibold text-left leading-8">Laporan</p>
             </>
           }
           isOpen
@@ -783,7 +721,7 @@ export default async function PageTester() {
             />
           }
         />
-      </div> */}
+      </div>
       <ScrollToTop />
     </React.Fragment>
   );

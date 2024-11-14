@@ -1,15 +1,19 @@
 export type T_ResponseGetMainFooterMenu = {
   data: Array<{
     title?: string;
-    list: Array<{
+    listItem?: Array<{
       name: string;
-      className?: string;
       icon?: string;
       extern?: boolean;
       url?: string;
+      className?: string
     }>;
-    social_media?: Array<{
-      name: string;
+    listImage?: Array<{
+      image: string
+      extern?: boolean
+    }>
+    socialMedia?: Array<{
+      name?: string;
       icon: string;
       url: string;
     }>;

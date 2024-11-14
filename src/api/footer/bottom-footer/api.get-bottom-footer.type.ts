@@ -1,15 +1,14 @@
 export type T_ResponseGetBottomFooterMenu = {
   data: {
-    list: Array<{
+    listItem?: Array<{
       value: string;
       url: string;
       extern: boolean;
     }>;
-    social_media: Array<{
-      name: string;
+    socialMedia?: Array<{
+      name?: string;
       icon: string;
       url: string;
-      className: string;
     }>;
   }
 };

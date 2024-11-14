@@ -12,60 +12,88 @@ type T_FooterProps = {
 };
 
 type T_RowElementProps = {
-  label: string;
-  socialMedia?: Array<{ name: string; icon: string; url: string }>;
-  description: Array<{
-    className?: string;
+  label?: string;
+  listItem?: Array<{
     name: string;
     icon?: string;
-    url?: string;
     extern?: boolean;
+    className?: string;
+    url?: string;
+  }>;
+  listImage?: Array<{
+    image: string;
+    extern?: boolean;
+  }>;
+  socialMedia?: Array<{
+    name?: string;
+    icon: string;
+    url: string;
   }>;
 };
 
-const RowElement = ({ description, label, socialMedia }: T_RowElementProps) => {
+const RowElement = ({
+  label,
+  listItem,
+  listImage,
+  socialMedia,
+}: T_RowElementProps) => {
   return (
     <>
-      <h1 className="text-[#9F9F9F] lg:mb-5 mb-2 font-semibold lg:text-xl text-lg">
+      <h1 className="text-[#9F9F9F] lg:mb-6 mb-4 font-semibold lg:text-xl text-lg">
         {label}
       </h1>
-      {description?.map(({ className, name, icon, url, extern }) => (
-        <Link
-          extern={extern}
-          href={url ?? '/'}
-          key={name}
-          className={`px-0 flex items-center gap-2 lg:mb-3 mb-2 lg:text-sm text-sm justify-start font-normal ${className}`}
-        >
-          {icon && (
-            <Image
-              src={`/images/footers/${icon}.svg`}
-              width={18}
-              height={18}
-              alt={`icon-${icon}`}
-            />
-          )}
-          {name}
-        </Link>
-      ))}
-      {socialMedia?.length !== 0 && (
-        <div className="flex justify-start items-center gap-6">
-          {socialMedia?.map(({ url, icon }, index) => (
+      {listItem?.length !== 0 && (
+        <div className="flex flex-col gap-6">
+          {listItem?.map(({ name, icon, url, extern, className }) => (
             <Link
-              extern={true}
+              extern={extern}
               href={url ?? '/'}
-              key={index}
-              className="text-white flex items-center gap-2 lg:mb-3 mb-2 lg:text-sm text-sm justify-center lg:justify-start font-normal"
+              key={name}
+              className={`flex items-start gap-2 text-sm font-normal ${className}`}
             >
               {icon && (
                 <Image
-                  src={`images/footers/${icon}.svg`}
-                  width={18}
                   extern={false}
-                  height={18}
+                  src={`/images/footers/${icon}.svg`}
+                  width={20}
+                  height={20}
                   alt={`icon-${icon}`}
                 />
               )}
+              {name}
             </Link>
+          ))}
+        </div>
+      )}
+      {socialMedia?.length !== 0 && (
+        <div className="flex items-center gap-6">
+          {socialMedia?.map(({ url, icon }, index) => (
+            <Link extern={true} href={url ?? '/'} key={index}>
+              {icon && (
+                <Image
+                  src={`/images/footers/${icon}.svg`}
+                  width={18}
+                  height={18}
+                  alt={`icon-${icon}`}
+                  extern={false}
+                />
+              )}
+            </Link>
+          ))}
+        </div>
+      )}
+      {listImage?.length !== 0 && (
+        <div className="flex items-center gap-4">
+          {listImage?.map(({ image }, index) => (
+            <Image
+              key={index}
+              src={`/images/footers/${image}.png`}
+              extern={false}
+              width={200}
+              height={200}
+              className="w-auto max-w-full h-12"
+              alt={`image-${index}`}
+            />
           ))}
         </div>
       )}
@@ -74,29 +102,33 @@ const RowElement = ({ description, label, socialMedia }: T_RowElementProps) => {
 };
 
 type T_PropsTermsAllReservedElement = {
-  list: Array<{
+  listItem?: Array<{
     value: string;
     url: string;
     extern: boolean;
   }>;
-  socialMedia?: Array<{ name: string; icon: string; url: string }>;
+  socialMedia?: Array<{
+    name?: string;
+    icon: string;
+    url: string;
+  }>;
 };
 
 function TermsAllReservedElement({
-  list,
+  listItem,
   socialMedia,
 }: T_PropsTermsAllReservedElement) {
   return (
     <div className="bg-black lg:py-[1.375rem] py-4">
-      <div className="text-center flex items-center lg:flex-row flex-col lg:container justify-between lg:px-0 px-4 lg:items-center lg:justify-between">
-        <p className="text-white boxiner inline font-normal text-sm !text-center">
+      <div className="flex justify-between items-center lg:flex-row flex-col container lg:px-0 px-4">
+        <p className="text-white font-normal text-sm">
           © 2024 PT.Bank Rakyat Indonesia (Persero) Tbk. | All Rights Reserved.
         </p>
 
-        <div className="items-center mt-6 lg:mt-0">
-          <div className="flex flex-wrap justify-center items-center divide-x-2">
-            <div className="flex justify-start items-center px-4">
-              {list?.map(({ extern, url, value }, index) => (
+        <div className="mt-6 lg:mt-0 mdmax:w-full">
+          <div className="flex lg:flex-row flex-col items-center">
+            <div className="flex justify-start items-center lg:px-4 px-0 lg:py-0 py-4 lg:border-0 border-b border-[white] mdmax:w-full mdmax:justify-center">
+              {listItem?.map(({ extern, url, value }, index) => (
                 <div key={index}>
                   <Link
                     href={url}
@@ -105,21 +137,17 @@ function TermsAllReservedElement({
                   >
                     {value}
                   </Link>
-                  {index + 1 !== list.length && (
+                  {index + 1 !== listItem.length && (
                     <span className="text-white mx-2">&#x2022;</span>
                   )}
                 </div>
               ))}
             </div>
+            <div className="text-white lg:block hidden">|</div>
             {socialMedia?.length !== 0 && (
-              <div className="flex justify-center items-center gap-6 px-4">
+              <div className="flex items-center gap-6 lg:px-4 px-0 lg:py-0 py-4">
                 {socialMedia?.map(({ url, icon }, index) => (
-                  <Link
-                    extern={true}
-                    href={url ?? '/'}
-                    key={index}
-                    className="text-white flex items-center gap-2  lg:text-sm text-sm justify-center font-normal"
-                  >
+                  <Link extern={true} href={url ?? '/'} key={index}>
                     {icon && (
                       <Image
                         src={`images/footers/${icon}.svg`}
@@ -146,14 +174,15 @@ export default async function GlobalFooter({
 }: T_FooterProps) {
   return (
     <footer className="pt-6 lg:pt-11 shadow-[0_-4px_4px_-2px_rgba(0,0,0,0.1)] bg-[#1C1C1C]">
-      <div className="container text-left lg:mb-6">
-        <div className="grid lg:grid-cols-9 grid-cols-1 lg:space-x-6 lg:mt-6 mt-3">
+      <div className="container lg:mb-6 py-5">
+        <div className="flex flex-wrap justify-center lg:mt-6 mt-3">
           {main_footer?.data?.map((list_item, index) => (
-            <div className="lg:col-span-2 col-span-1 lg:mb-0 mb-4" key={index}>
+            <div className="lg:w-1/3 w-full lg:mb-0 mb-4" key={index}>
               <RowElement
                 label={String(list_item?.title ?? '')}
-                socialMedia={list_item?.social_media ?? []}
-                description={list_item?.list ?? []}
+                listItem={list_item?.listItem ?? []}
+                listImage={list_item?.listImage ?? []}
+                socialMedia={list_item?.socialMedia ?? []}
               />
             </div>
           ))}
@@ -161,8 +190,8 @@ export default async function GlobalFooter({
       </div>
 
       <TermsAllReservedElement
-        list={bottom_footer?.data.list}
-        socialMedia={bottom_footer?.data.social_media}
+        listItem={bottom_footer?.data.listItem ?? []}
+        socialMedia={bottom_footer?.data.socialMedia}
       />
     </footer>
   );

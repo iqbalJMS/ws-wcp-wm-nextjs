@@ -4,42 +4,34 @@ import { T_ResponseGetBottomFooterMenu } from "./api.get-bottom-footer.type";
 const ABSTRACTION_RESPONSE_DATA = {
   data:
   {
-    list: [
+    listItem: [
       {
         value: "Privasi",
         url: "https://bri.co.id/privacy",
         extern: true,
       },
       {
-        value: "Syarat & Ketentuan",
+        value: "Ketentuan Pengguna",
         url: "https://bri.co.id/term-of-use",
         extern: true,
       },
     ],
-    social_media: [
+    socialMedia: [
       {
-        name: "",
         icon: "facebook",
         url: "https://www.facebook.com/BRIofficialpage",
-        className: "text-white ",
       },
       {
-        name: "",
         icon: "instagram",
         url: "https://www.instagram.com/bankbri_id",
-        className: "text-white ",
       },
       {
-        name: "",
         icon: "twitter",
         url: "https://x.com/kontakbri",
-        className: "text-white ",
       },
       {
-        name: "",
         icon: "youTube",
         url: "https://www.youtube.com/channel/UCRHFE_ooDrkEiRRJbog3EjA",
-        className: "text-white ",
       },
     ],
   }
@@ -65,6 +57,6 @@ export async function API_GetBottomFooterMenu({
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error("An error occurred during Get Bottom Footer Menu:", error);
-    return { data: [] };
+    return { data: {} };
   }
 }

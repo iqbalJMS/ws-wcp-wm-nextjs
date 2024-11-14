@@ -5,14 +5,13 @@ const ABSTRACTION_RESPONSE_DATA = {
   data: [
     {
       title: "Kantor Pusat BRI",
-      list: [
+      listItem: [
         {
           name: "PT. Bank Rakyat Indonesia (Persero) Tbk",
           className:
             "lg:max-w-[11.563rem] px-24 lg:px-0 cursor-default text-white",
         },
         {
-          icon: '',
           name: "Gedung BRI Jl. Jenderal Sudirman Kav.44-46. Jakarta 10210 Indonesia",
           className:
             "lg:max-w-[11.563rem] px-24 lg:px-0 cursor-default text-white",
@@ -21,33 +20,35 @@ const ABSTRACTION_RESPONSE_DATA = {
     },
     {
       title: "Hubungi Kami",
-      list: [
+      listItem: [
         {
-          name: "14017 / 1500017",
+          name: "BRI Premium Call Center (021) 575 8899/ 080 010 17017",
           icon: "call",
-          extern: true,
           url: "tel:1500017",
-          className: "text-white ",
+          className: "text-white"
         },
         {
-          name: "callbri@bri.co.id",
-          icon: "envelop",
-          extern: true,
+          name: "Tinggalkan Pesan",
+          icon: "email",
           url: "mailto:callbri@bri.co.id",
-          className: "text-white ",
+          className: "text-white"
+        },
+        {
+          name: "Temukan BRI Prioritas",
+          icon: "email",
+          url: "mailto:callbri@bri.co.id",
+          className: "text-white"
         },
       ],
     },
     {
       title: 'Terdaftar Dan Diawasi Oleh:',
-      list: [
+      listImage: [
         {
-          className: "lg:px-0 px-16 cursor-default text-white",
-          name: "BRI terdaftar dan diawasi oleh Otoritas Jasa Keuangan",
+          image: "ojk",
         },
         {
-          className: "cursor-default text-white",
-          name: "BRI merupakan peserta penjamin LPS",
+          image: "lps",
         },
       ],
     },

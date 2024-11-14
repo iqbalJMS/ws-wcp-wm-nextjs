@@ -39,7 +39,7 @@ export default function Image(prop: T_ImageProps) {
   const { src } = prop;
   let newSrc = `${src}`;
   if (!src) {
-    newSrc = `/images/no-image.png`;
+    newSrc = `/web/guest/images/no-image.png`;
   }
   if (typeof src === 'string') {
     if (prop.extern) {

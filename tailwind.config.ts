@@ -303,7 +303,7 @@ const config: Config = {
         'red-01': '#c70740',
         wmcolor: '#080087',
         privatecolor: '#A28F52',
-        prioritycolor: '1B1333',
+        prioritycolor: '#1B1333',
       },
     },
   },
