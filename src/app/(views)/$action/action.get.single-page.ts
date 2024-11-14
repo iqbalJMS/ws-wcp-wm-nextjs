@@ -10,6 +10,5 @@ export async function ACT_GetSinglePage({
   alias: string;
 }): Promise<any> {
   const response = await API_GetSinglePage({ lang, alias });
-  // console.log({ lang, alias, response });
   return response;
 }

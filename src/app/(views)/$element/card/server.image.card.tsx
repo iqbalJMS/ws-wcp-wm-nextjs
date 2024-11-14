@@ -12,13 +12,15 @@ export default async function SE_ImagePromo({
   title: string;
 }) {
   return (
-    <div className="w-full relative h-[10.125rem] object-contain">
-      <Image
-        alt={`promo-${title}`}
-        extern={!!image.toString()}
-        fill
-        src={image ? `${creditImage}` : ''}
-      />
-    </div>
+    <>
+      <div className="w-full relative h-[10.125rem] object-contain">
+        <Image
+          alt={`promo-${title}`}
+          extern={!!image.toString()}
+          fill
+          src={image ? `${creditImage}` : ''}
+        />
+      </div>
+    </>
   );
 }

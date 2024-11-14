@@ -1,7 +1,6 @@
 'use client';
 
 import useScrollActive from '@/lib/hook/useScroll';
-// import Image from './image';
 import { T_ResponseGetTopMenuNavbar } from '@/api/navbar-menu/top-navbar/api.get-top-menu-navbar.type';
 import { T_ResponseGetMainMenuNavbar } from '@/api/navbar-menu/main-navbar/api.get-main-menu-navbar.type';
 import { T_ResponseGetMenuItemNavbar } from '@/api/navbar-menu/menu-items/api.get-menu-items-navbar.type';
@@ -284,7 +283,7 @@ export default function GlobalHeader({
   };
 
   return (
-    <main>
+    <>
       <header
         className={[
           `${isScrolling ? 'bg-white shadow-md' : ''}`,
@@ -433,9 +432,7 @@ export default function GlobalHeader({
                       >
                         {/* url ganti nanti kalo udah ada url dari drupal */}
                         <Link
-                          href={`/${item.uuid}/${item.title
-                            ?.toLowerCase()
-                            .replaceAll(' ', '-')}`}
+                          href={`/${item?.alias}`}
                           className={[
                             `text-sm tracking-wide font-normal cursor-pointer uppercase relative `,
                             `${isScrolling ? 'text-black' : variant === 'transparent' ? 'text-white mdmax:text-black' : ''}`,
@@ -509,6 +506,6 @@ export default function GlobalHeader({
         </div>
         <Search active={activeSearch} setActive={setActiveSearch} />
       </header>
-    </main>
+    </>
   );
 }

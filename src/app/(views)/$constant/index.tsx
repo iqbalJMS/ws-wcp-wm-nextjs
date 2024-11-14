@@ -74,7 +74,7 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
       switch (findVariantStyle) {
         case 'header_curved':
         default:
-          return <CE_BannerMain variant="02" data={data} />;
+          return <CE_BannerMain variant="01" data={data} />;
       }
     },
     props: (_component: T_Slider) => {

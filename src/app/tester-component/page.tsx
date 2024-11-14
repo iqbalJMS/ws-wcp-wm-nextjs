@@ -606,7 +606,7 @@ export default async function PageTester() {
     //     variant="03"
     //     headerAlignment="left"
     //     imageContentAlignment="right"
-    //     // title="Yo"
+    // title="Yo"
     //     listItems={[
     //       {
     //         text: '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, omnis illo consectetur expedita similique voluptates adipisci iste modi corporis quod vitae ut ex non eum minus eos nemo repellat dolorem magni error repudiandae. Maxime animi accusantium voluptates sit ad voluptatibus, ex aliquid molestias aspernatur consequatur consectetur accusamus temporibus culpa adipisci.</p>',
@@ -617,7 +617,7 @@ export default async function PageTester() {
     //     ]}
     //     bgImage="/sites/default/files/images/whybanking.jpg"
     //     imageContent="/sites/default/files/images/promo-carousel-01.jpeg"
-    //     // imageTitle="/sites/default/files/images/1073-860x640.jpg"
+    // imageTitle="/sites/default/files/images/1073-860x640.jpg"
     //   />
     //   <div className="py-4 container">
     //     <Accordion

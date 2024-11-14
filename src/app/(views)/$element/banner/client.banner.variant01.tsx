@@ -115,7 +115,8 @@ export default function CE_BannerVariant01({
                     key={index}
                     className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-fixed bg-center bg-cover bg-no-repeat xl:bg-fixed"
                   >
-                    <div className="text-start w-10/12 md:w-8/12 space-y-4 ml-5 lg:ml-0">
+                    <div className="bg-black opacity-20 w-full h-full absolute z-10"></div>
+                    <div className="text-start w-10/12 md:w-8/12 space-y-4 ml-5 lg:ml-0 z-20">
                       {item?.title && (
                         <h1 className="text-3xl lg:text-4xl font-semibold text-white font-poppins">
                           {parseHTMLToReact(item?.title)}

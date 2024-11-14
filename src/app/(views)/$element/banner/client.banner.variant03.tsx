@@ -25,24 +25,6 @@ export function CE_BannerVariant03({
     button: string;
   }>;
 }) {
-  // const data = [
-  //   {
-  //     image: '/images/dummy/bannerWm7.png',
-  //     title: 'A New Perspective of Investment',
-  //     desc: 'We are the one stop financial solution for the advancement of your business.',
-  //   },
-  //   {
-  //     image: '/images/dummy/bannerWm8.png',
-  //     title: 'An Old Tradition for a New Generations',
-  //     desc: 'As lives are driven by values, we believe those values need to be passed on to the next generations. Let every value protected and shared as our legacy.',
-  //   },
-  //   {
-  //     image: '/images/dummy/bannerWm9.png',
-  //     title: 'Helping You Get Where You Want to be',
-  //     desc: 'We have just the right solutions for your financial goals. Our mission is to focus on the details, so you can focus on the big picture.',
-  //   },
-  // ];
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -133,7 +115,8 @@ export function CE_BannerVariant03({
                   }}
                   key={index}
                 >
-                  <div className="text-start w-10/12 md:w-8/12 space-y-4 ml-5 lg:ml-0">
+                  <div className="bg-black opacity-20 w-full h-full absolute z-10"></div>
+                  <div className="text-start w-10/12 md:w-8/12 space-y-4 ml-5 lg:ml-0 z-20">
                     {item?.title && (
                       <h1 className="text-3xl lg:text-4xl font-semibold text-white">
                         {parseHTMLToReact(item?.title)}

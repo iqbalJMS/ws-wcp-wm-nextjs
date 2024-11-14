@@ -16,7 +16,7 @@ import { ACT_GetMenuItemNavbar } from './(views)/$action/action.get-menu-item-na
 import { Locale } from '@/i18n-config';
 import { ACT_GetBottomLeftFooter } from './(views)/$action/bottom-footer/action.get.bottom.left.footer';
 import GlobalFooter from '@/lib/element/global/global.footer';
-
+import { ACT_GetMiddleMenuFooter } from './(views)/$action/main-footer/action.get.main-footer';
 export default async function PageWealth({
   searchParams,
 }: {
@@ -52,6 +52,7 @@ export default async function PageWealth({
   const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
+  const itemMainFooter = await ACT_GetMiddleMenuFooter({ lang: 'en' });
   return (
     <React.Fragment>
       <GlobalHeader
@@ -66,13 +67,10 @@ export default async function PageWealth({
         </React.Fragment>
       ))}
       <GlobalFooter
-        main_footer={{
-          data: [],
-        }}
         bottom_right_footer={listBottomRightFooter}
         bottom_left_footer={listBottomLeftFooter}
+        main_middle_footer={itemMainFooter}
       />
-
       <ScrollToTop />
     </React.Fragment>
   );
