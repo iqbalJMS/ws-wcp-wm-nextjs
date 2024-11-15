@@ -1,3 +1,28 @@
+type T_VarianStyles = {
+  entity_type: any[];
+  entity_bundle: any[];
+  nid: any[];
+  uuid: any[];
+  vid: any[];
+  langcode: any[];
+  type: any[];
+  revision_timestamp: any[];
+  revision_uid: any[];
+  status: any[];
+  uid: any[];
+  title: any[];
+  created: any[];
+  changed: any[];
+  promote: any[];
+  sticky: any[];
+  default_langcode: any[];
+  revision_translation_affected: any[];
+  path: any[];
+  content_translation_source: any[];
+  content_translation_outdated: any[];
+  field_key: Array<{ value: string }>;
+};
+
 type T_EntityVideo = {
   entity_type: any[];
   entity_bundle: any[];
@@ -49,4 +74,5 @@ export type T_VideoSlider = {
   field_title: Array<{ value: string }>;
   field_subtitle: Array<{ value: string }>;
   field_primary_cta: Array<T_EntityCta>;
+  field_web_variant_styles: Array<T_VarianStyles>;
 };

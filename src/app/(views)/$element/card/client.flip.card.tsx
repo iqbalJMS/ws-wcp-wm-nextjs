@@ -5,7 +5,13 @@ import creditcard from '@/../../public/images/dummy/cardCredit.png';
 import creditcard2 from '@/../../public/images/dummy/cardCredit2.png';
 import Image from 'next/image';
 
-export default function CE_FlipCard() {
+export default function CE_FlipCard({
+  frontImage,
+  backImage,
+}: {
+  frontImage: string;
+  backImage: string;
+}) {
   const [flip, setFlip] = useState(true);
 
   return (
@@ -24,7 +30,7 @@ export default function CE_FlipCard() {
           >
             <div className="flip-card-front w-full h-full bg-cover cursor-pointer">
               <Image
-                src={creditcard}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${frontImage}`}
                 alt="card credit image"
                 width={1000}
                 height={1000}
@@ -32,7 +38,7 @@ export default function CE_FlipCard() {
             </div>
             <div className="flip-card-back w-full h-full bg-cover cursor-pointer">
               <Image
-                src={creditcard2}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${backImage}`}
                 alt="card credit image"
                 width={1000}
                 height={1000}

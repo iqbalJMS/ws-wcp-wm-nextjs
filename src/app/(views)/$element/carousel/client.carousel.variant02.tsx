@@ -1,159 +1,354 @@
 'use client';
-import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
-import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
+import React, { useEffect, useRef, useState, MouseEvent } from 'react';
+import RightArrow from '@/lib/element/global/icons/right-arrow';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import KutipIcon from '@/lib/element/global/icons/kutip-icon';
+import Link from 'next/link';
+import PlayIcon from '@/lib/element/global/icons/play-icon';
+import LeftArrow from '@/lib/element/global/icons/left-arrow';
+import ModalTester from '@/lib/element/global/modal.tedter';
+const getSlideToShow = (screenWidth: number) => {
+  if (!screenWidth) return 3;
 
-export default function CE_CarouselVariant2() {
-  const LIST_CARD_CONTENT = [
-    {
-      imgUrl: '/images/dummy/img-promo-cv3.png',
-      text: 'Pengalaman saya dengan BRI Prioritas dari tahun ke tahun sangatlah berkesan. Bank BRI bagi saya sudah seperti partner sekaligus teman. Para officer dari Bank BRI benar-benar memberikan kemudahan dari aktivitas perbankan sehari-hari hingga mengembangkan keuangan saya.',
-      name: 'Andi Ananda',
-      credit: 'Nasabah Sejak 2018',
-    },
-    {
-      imgUrl: '/images/dummy/img-promo-cv3.png',
-      text: 'Pengalaman saya dengan BRI Prioritas dari tahun ke tahun sangatlah berkesan. Bank BRI bagi saya sudah seperti partner sekaligus teman. Para officer dari Bank BRI benar-benar memberikan kemudahan dari aktivitas perbankan sehari-hari hingga mengembangkan keuangan saya.',
-      name: 'Jenny Poespita',
-      credit: 'Nasabah Sejak 2017',
-    },
-    {
-      imgUrl: '/images/dummy/img-promo-cv3.png',
-      text: 'Pengalaman saya dengan BRI Prioritas dari tahun ke tahun sangatlah berkesan. Bank BRI bagi saya sudah seperti partner sekaligus teman. Para officer dari Bank BRI benar-benar memberikan kemudahan dari aktivitas perbankan sehari-hari hingga mengembangkan keuangan saya.',
-      name: 'Jenny Poespita',
-      credit: 'Nasabah Sejak 2017',
-    },
-  ];
-  const [currentSlide, setCurrentSlide] = useState(0);
+  if (screenWidth > 1200) {
+    return 3;
+  } else if (screenWidth <= 1200 && screenWidth >= 768) {
+    return 2;
+  } else {
+    return 1;
+  }
+};
+
+export default function CE_CarouselVariant2({
+  data,
+  title,
+  subtitle,
+  titlelink,
+  linkcta,
+}: {
+  data: Array<{
+    id: number;
+    image: string;
+    alt: string;
+    label: string;
+    desc: string;
+    video: string;
+    labelVideo: string;
+    subLabel: string;
+  }>;
+  title: any;
+  subtitle: any;
+  titlelink: any;
+  linkcta: any;
+}) {
+  const [modalIndex, setModalIndex] = useState<number | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
   const screenWidth = useScreenWidth();
-  const slidesToShow = screenWidth > 768 ? 2 : 1;
+  const slidesToShow = getSlideToShow(screenWidth);
   const slidesToScroll = 1;
+  const totalSlides = data.length;
+  const sliderRef = useRef<HTMLDivElement | null>(null);
+  const [startX, setStartX] = useState(0);
+  const [translateX, setTranslateX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prevIndex) =>
-        prevIndex === LIST_CARD_CONTENT?.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000);
+  const closeModal = () => {
+    setModalOpen(false);
+    setModalIndex(null);
+  };
 
-    return () => clearInterval(interval);
-  }, [LIST_CARD_CONTENT?.length]);
-
-  const nextSlide = () => {
-    if (currentSlide <= LIST_CARD_CONTENT.length - slidesToShow) {
-      setCurrentSlide(currentSlide + slidesToScroll);
+  // {Button Next & Prev}
+  const goToNext = () => {
+    if (currentIndex >= data.length - 2) return;
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setCurrentIndex((prevIndex) => prevIndex + slidesToScroll);
+    }
+  };
+  const goToNextMobile = () => {
+    if (currentIndex >= data.length - 1) return;
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setCurrentIndex((prevIndex) => prevIndex + slidesToScroll);
     }
   };
 
-  const prevSlide = () => {
-    if (currentSlide >= LIST_CARD_CONTENT?.length) {
-      setCurrentSlide(currentSlide - slidesToScroll);
+  const goToPrev = () => {
+    if (currentIndex <= -1) return;
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setCurrentIndex((prevIndex) => prevIndex - slidesToScroll);
     }
+  };
+
+  const goToPrevMobile = () => {
+    if (currentIndex <= 0) return;
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setCurrentIndex((prevIndex) => prevIndex - slidesToScroll);
+    }
+  };
+
+  // {Dragging Slider}
+  const handleMouseDown = (e: MouseEvent) => {
+    setIsDragging(true);
+    setStartX(e.clientX);
+    setTranslateX(0); // Reset translate value when a new drag starts
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!isDragging) return;
+    const currentX = e.clientX;
+    const deltaX = currentX - startX;
+    setTranslateX(deltaX);
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+
+    // If dragged enough, change the image
+    if (translateX > 40) {
+      goToPrev();
+    } else if (translateX < -50) {
+      goToNext();
+    }
+
+    setTranslateX(0); // Reset translate after slide
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      setIsDragging(false);
+      setTranslateX(0);
+    }
+  };
+
+  // {Transitioning}
+  useEffect(() => {
+    if (isTransitioning) {
+      const transitionTimeout = setTimeout(() => {
+        setIsTransitioning(false);
+      }, 600); // match this duration with your CSS transition duration
+
+      return () => clearTimeout(transitionTimeout);
+    }
+  }, [isTransitioning, currentIndex, totalSlides, slidesToShow]);
+
+  useEffect(() => {
+    if (currentIndex == -1) {
+      sliderRef.current!.style.transition = 'transform 0.5s ease-in-out';
+      sliderRef.current!.style.transform = `translateX(${100 / slidesToShow}%)`;
+    } else {
+      sliderRef.current!.style.transition = 'transform 0.5s ease-in-out';
+      sliderRef.current!.style.transform = `translateX(-${(100 / slidesToShow) * currentIndex}%)`;
+    }
+  }, [currentIndex, slidesToShow]);
+
+  const getSlideClass = (index: number) => {
+    const middleIndex = currentIndex + Math.floor(slidesToShow / 2);
+    const actualIndex = index % totalSlides;
+    return actualIndex === middleIndex % totalSlides
+      ? 'scale-100 z-10 cursor-pointer '
+      : 'scale-75 z-0 opacity-60 ';
   };
 
   return (
-    <div
-      className="w-full h-screen md:h-[70vh] relative overflow-hidden flex"
-      style={{
-        backgroundImage: `url('/images/dummy/bg-testimonial-min.jpg')`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed',
-      }}
-    >
-      <div className="w-full h-full bg-black opacity-80 absolute z-0"></div>
-      <div className="w-full flex flex-col justify-center items-center z-10">
-        <h1 className="text-white text-4xl font-bold pb-20">
-          Testimoni Nasabah
-        </h1>
-        <section className="max-w-7xl flex justify-center px-3">
-          <div className="w-10/12 h-[75vh] md:w-9/12 md:h-fit flex flex-row justify-center">
-            <div className="hidden basis-10 md:flex justify-center items-center">
-              <button
-                className={[
-                  'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white mdmax:',
-                  currentSlide === 0
-                    ? 'text-opacity-10 cursor-default'
-                    : 'cursor-pointer',
-                ].join(' ')}
-                onClick={prevSlide}
-              >
-                <ArrowLeftIcon
-                  width={40}
-                  height={40}
-                  stroke={'white'}
-                  className={currentSlide === 0 ? 'opacity-50' : 'text-white'}
-                />
-              </button>
-            </div>
-            <div className="overflow-hidden basis-11/12 flex justify-center px-1 md:px-0">
-              <div
-                className="w-[98%] flex transition-all ease-in-out duration-300 space-x-5"
-                style={{
-                  transform: `translateX(-${currentSlide * (207 / slidesToShow)}%)`,
-                }}
-              >
-                {LIST_CARD_CONTENT.map((item, index) => (
-                  <div
-                    key={index}
-                    className="relative w-full h-full flex-none flex flex-col md:flex-row items-center bg-white scroll-pb-5 px-10 md:px-0 md:space-x-3"
-                  >
-                    <Image
-                      src={item.imgUrl}
-                      alt="testimoni image"
-                      width={2000}
-                      height={2000}
-                      className="w-60 h-96 object-cover object-center "
-                    />
-                    <div className="p-5 z-10">
-                      <KutipIcon
-                        className="pb-2"
-                        stroke="#080087"
-                        width={35}
-                        height={35}
-                      />
-                      <p className="pt-5 text-black text-base md:text-sm lg:text-base font-light">
-                        {item.text}
-                      </p>
-                      <h1 className="pt-8 text-lg font-bold italic text-wmcolor">
-                        {item.name}
-                      </h1>
-                      <h2 className="text-sm font-extralight italic text-wmcolor">
-                        {item.credit}
-                      </h2>
-                    </div>
-                  </div>
-                ))}
+    <div className="w-full h-[80vh] flex flex-col items-center justify-center relative overflow-hidden">
+      <section className="flex justify-between w-11/12 xl:w-8/12  pb-5 md:pb-0">
+        <div className="space-y-1">
+          <h1 className="text-3xl font-bold text-privatecolor">{title}</h1>
+          <p className="font-light text-sm pb-3">{subtitle}</p>
+          <Link
+            href={'/videos'}
+            className="flex items-center text-privatecolor font-semibold uppercase hover:underline"
+          >
+            {titlelink}
+          </Link>
+          <Link
+            href={linkcta}
+            className="hidden items-center text-privatecolor font-semibold uppercase hover:underline"
+          >
+            {titlelink}
+          </Link>
+        </div>
+
+        {/* Button Section */}
+        <div className="">
+          <div className="hidden md:flex space-x-3">
+            <button
+              className={[
+                ' p-1 bg-privatecolor text-white hover:bg-gray-500 duration-300 delay-75',
+                currentIndex < 0
+                  ? 'bg-opacity-35 cursor-default'
+                  : 'cursor-pointer',
+              ].join('')}
+              onClick={goToPrev}
+            >
+              <LeftArrow
+                width={27}
+                height={27}
+                stroke={''}
+                fill="white"
+                className={currentIndex < 0 ? 'opacity-20' : 'text-white'}
+              />
+            </button>
+            <button
+              className={[
+                '  p-1 bg-privatecolor text-white hover:bg-gray-500 duration-300 delay-75',
+                currentIndex >= data.length - 2
+                  ? 'bg-opacity-35 cursor-default'
+                  : 'cursor-pointer ',
+              ].join('')}
+              onClick={goToNext}
+            >
+              <RightArrow
+                width={27}
+                height={27}
+                stroke={''}
+                fill="white"
+                className={
+                  currentIndex >= data.length - 2 ? 'opacity-20' : 'text-white'
+                }
+              />
+            </button>
+          </div>
+
+          {/* button for mobile screen */}
+          <div className="flex md:hidden space-x-3">
+            <button
+              className={[
+                'lg:hidden p-1 bg-privatecolor text-white hover:bg-gray-500 duration-300 delay-75',
+                currentIndex <= 0
+                  ? 'bg-opacity-35 cursor-default'
+                  : 'cursor-pointer',
+              ].join('')}
+              onClick={goToPrevMobile}
+            >
+              <LeftArrow
+                width={27}
+                height={27}
+                stroke={''}
+                fill="white"
+                className={currentIndex <= 0 ? 'opacity-20' : 'text-white'}
+              />
+            </button>
+            <button
+              className={[
+                'lg:hidden p-1 bg-privatecolor text-white hover:bg-gray-500 duration-300 delay-75',
+                currentIndex >= data.length - 1
+                  ? 'bg-opacity-35 cursor-default'
+                  : 'cursor-pointer ',
+              ].join('')}
+              onClick={goToNextMobile}
+            >
+              <RightArrow
+                width={27}
+                height={27}
+                stroke={''}
+                fill="white"
+                className={
+                  currentIndex >= data.length - 1 ? 'opacity-20' : 'text-white'
+                }
+              />
+            </button>
+          </div>
+        </div>
+      </section>
+      {/* Modal */}
+      {modalOpen && (
+        <ModalTester>
+          <div
+            id="default-modal"
+            tabIndex={-1}
+            aria-hidden="true"
+            className={
+              !modalOpen
+                ? 'hidden'
+                : 'bg-black/70 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-screen md:inset-0 max-h-full'
+            }
+          >
+            <div
+              className="flex justify-center items-center p-5 lg:p-4 w-full h-screen"
+              onClick={() => closeModal()}
+            >
+              <div className="relative w-full md:w-9/12 lg:w-5/12 lg:h-2/3 bg-white  shadow">
+                <div className="h-3/4">
+                  <iframe
+                    height="450"
+                    src={data?.[modalIndex as number]?.video}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    className="w-full"
+                  ></iframe>
+                </div>
+                <div className="h-auto bg-white p-4 md:p-5 border-t border-gray-200 rounded-b space-y-2">
+                  <h3 className="text-xs lg:text-sm font-light">20 Jan 2023</h3>
+                  <h1 className="font-semibold text-lg lg:text-xl pt-2">
+                    {data?.[modalIndex as number]?.labelVideo}
+                  </h1>
+                  <p className="text-[#555555] font-light text-sm lg:text-base">
+                    {data?.[modalIndex as number]?.subLabel}
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="basis-10 hidden md:flex justify-center items-center">
-              <button
-                className={[
-                  'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white',
-                  currentSlide < LIST_CARD_CONTENT.length - 1 - slidesToShow
-                    ? 'cursor-pointer '
-                    : 'bg-opacity-10 cursor-default',
-                ].join(' ')}
-                onClick={nextSlide}
-              >
-                <ArrowRightIcon
-                  width={40}
-                  height={40}
-                  stroke="white"
-                  className={
-                    currentSlide === LIST_CARD_CONTENT?.length - 1
-                      ? 'opacity-50'
-                      : 'text-white text-red'
-                  }
-                />
-              </button>
-            </div>
           </div>
-        </section>
-      </div>
+        </ModalTester>
+      )}
+      <section className="relative w-10/12 lg:w-11/12 xl:w-9/12 overflow-hidden">
+        <div
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          ref={sliderRef}
+          className={`flex justify-start items-center transition-transform duration-700 ease-in-out transform-gpu w-full drop-shadow-2xl`}
+        >
+          {[...data].map((slide, index) => (
+            <div
+              onClick={() => {
+                setModalIndex(index);
+                setModalOpen(true);
+              }}
+              key={index}
+              className={`w-full flex justify-center items-center transition-transform drop-shadow-2xl duration-300 *: ${getSlideClass(index)}`}
+              style={{
+                minWidth: `${100 / slidesToShow}%`,
+              }}
+            >
+              <picture
+                key={index}
+                className="cursor-pointer relative w-full overflow-hidden z-0"
+              >
+                <div
+                  className="group flex flex-col justify-between w-full h-96 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-center transition-all ease-in-out transform-gpu delay-75 "
+                  style={{
+                    backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${slide.image})`,
+                  }}
+                >
+                  <div className=" w-full h-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
+                </div>
+
+                <PlayIcon
+                  width={50}
+                  height={50}
+                  stroke="white"
+                  className="absolute top-40 left-56 duration-500 p-2 rounded-full border"
+                  fill="white"
+                />
+                <h1 className="absolute text-white text-xl bottom-20 font-semibold px-7">
+                  {slide.label}
+                </h1>
+                <p className="absolute text-white text-sm bottom-8 line-clamp-2 pr-10 pl-7">
+                  {slide.desc}
+                </p>
+              </picture>
+            </div>
+          ))}
+        </div>
+      </section>
+      <div className="absolute bg-[#DCDCDC] w-10/12 h-60 -z-10 bottom-20 left-0 rounded-r-full"></div>
     </div>
   );
 }

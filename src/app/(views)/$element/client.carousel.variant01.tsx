@@ -156,120 +156,122 @@ export default function CE_CarouselVariant1() {
   };
 
   return (
-    <div className="w-full h-[80vh] flex flex-col items-center justify-center relative overflow-hidden">
-      <section className="flex justify-between w-11/12 xl:w-8/12  pb-5 md:pb-0">
-        <div className="space-y-1">
-          <h1 className="text-3xl font-bold">Video</h1>
-          <p className="font-light text-sm pb-3">
-            Daftar putar teratas minggu ini
-          </p>
-          <Link
-            href={'#'}
-            className="flex items-center text-wmcolor font-semibold uppercase hover:underline"
-          >
-            Lihat Lainnya{' '}
-            <span className="pl-3">
-              <RightArrow
-                className=""
-                width={17}
-                height={17}
-                fill="#080087"
-                stroke="#080087"
-              />
-            </span>
-          </Link>
-        </div>
-        <div className="space-x-3 ">
-          <button
-            className={[
-              ' p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
-              currentIndex < 0
-                ? 'bg-opacity-35 cursor-default'
-                : 'cursor-pointer',
-            ].join('')}
-            onClick={goToPrev}
-          >
-            <LeftArrow
-              width={27}
-              height={27}
-              stroke={''}
-              fill="white"
-              className={currentIndex < 0 ? 'opacity-20' : 'text-white'}
-            />
-          </button>
-          <button
-            className={[
-              ' p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
-              currentIndex >= data.length - 2
-                ? 'bg-opacity-35 cursor-default'
-                : 'cursor-pointer ',
-            ].join('')}
-            onClick={goToNext}
-          >
-            <RightArrow
-              width={27}
-              height={27}
-              stroke={''}
-              fill="white"
-              className={
-                currentIndex >= data.length - 2 ? 'opacity-20' : 'text-white'
-              }
-            />
-          </button>
-        </div>
-      </section>
-      <section className="relative w-11/12 lg:w-11/12 xl:w-9/12 overflow-hidden">
-        <div
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseLeave}
-          ref={sliderRef}
-          className={`flex transition-transform duration-700 ease-in-out transform-gpu w-full`}
-        >
-          {[...data].map((slide, index) => (
-            <div
-              key={index}
-              className={`w-full flex justify-center items-center transition-transform drop-shadow-2xl duration-300 *: ${getSlideClass(index)}`}
-              style={{
-                minWidth: `${100 / slidesToShow}%`,
-              }}
+    <>
+      <div className="w-full h-[80vh] flex flex-col items-center justify-center relative overflow-hidden">
+        <section className="flex justify-between w-11/12 xl:w-8/12  pb-5 md:pb-0">
+          <div className="space-y-1">
+            <h1 className="text-3xl font-bold">Video</h1>
+            <p className="font-light text-sm pb-3">
+              Daftar putar teratas minggu ini
+            </p>
+            <Link
+              href={'#'}
+              className="flex items-center text-wmcolor font-semibold uppercase hover:underline"
             >
-              <picture
-                key={index}
-                className="cursor-pointer relative w-full overflow-hidden z-0"
-              >
-                <div
-                  className="group flex flex-col justify-between w-full h-96 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-center transition-all ease-in-out transform-gpu delay-75 "
-                  style={{
-                    backgroundImage: `url(${slide.imgUrl})`,
-                  }}
-                >
-                  <div className=" w-full h-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
-                </div>
-                {/* <div className="absolute h-60 flex flex-col justify-between items-center bottom-0 p-5"> */}
-                <PlayIcon
-                  width={50}
-                  height={50}
-                  stroke="white"
-                  className="absolute top-40 left-56 duration-500 p-2 rounded-full border"
-                  fill="white"
+              Lihat Lainnya{' '}
+              <span className="pl-3">
+                <RightArrow
+                  className=""
+                  width={17}
+                  height={17}
+                  fill="#080087"
+                  stroke="#080087"
                 />
-                {/* <div> */}
-                <h1 className="absolute text-white text-xl bottom-20 font-semibold px-7">
-                  {slide.label}
-                </h1>
-                <p className="absolute text-white text-sm bottom-8 line-clamp-2 pr-10 pl-7">
-                  {slide.text}
-                </p>
-                {/* </div> */}
-                {/* </div> */}
-              </picture>
-            </div>
-          ))}
-        </div>
-      </section>
-      <div className="absolute bg-[#DCDCDC] w-10/12 h-60 -z-10 bottom-20 left-0 rounded-r-full"></div>
-    </div>
+              </span>
+            </Link>
+          </div>
+          <div className="space-x-3 ">
+            <button
+              className={[
+                ' p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
+                currentIndex < 0
+                  ? 'bg-opacity-35 cursor-default'
+                  : 'cursor-pointer',
+              ].join('')}
+              onClick={goToPrev}
+            >
+              <LeftArrow
+                width={27}
+                height={27}
+                stroke={''}
+                fill="white"
+                className={currentIndex < 0 ? 'opacity-20' : 'text-white'}
+              />
+            </button>
+            <button
+              className={[
+                ' p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
+                currentIndex >= data.length - 2
+                  ? 'bg-opacity-35 cursor-default'
+                  : 'cursor-pointer ',
+              ].join('')}
+              onClick={goToNext}
+            >
+              <RightArrow
+                width={27}
+                height={27}
+                stroke={''}
+                fill="white"
+                className={
+                  currentIndex >= data.length - 2 ? 'opacity-20' : 'text-white'
+                }
+              />
+            </button>
+          </div>
+        </section>
+        <section className="relative w-11/12 lg:w-11/12 xl:w-9/12 overflow-hidden">
+          <div
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+            ref={sliderRef}
+            className={`flex transition-transform duration-700 ease-in-out transform-gpu w-full`}
+          >
+            {[...data].map((slide, index) => (
+              <div
+                key={index}
+                className={`w-full flex justify-center items-center transition-transform drop-shadow-2xl duration-300 *: ${getSlideClass(index)}`}
+                style={{
+                  minWidth: `${100 / slidesToShow}%`,
+                }}
+              >
+                <picture
+                  key={index}
+                  className="cursor-pointer relative w-full overflow-hidden z-0"
+                >
+                  <div
+                    className="group flex flex-col justify-between w-full h-96 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-center transition-all ease-in-out transform-gpu delay-75 "
+                    style={{
+                      backgroundImage: `url(${slide.imgUrl})`,
+                    }}
+                  >
+                    <div className=" w-full h-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
+                  </div>
+                  {/* <div className="absolute h-60 flex flex-col justify-between items-center bottom-0 p-5"> */}
+                  <PlayIcon
+                    width={50}
+                    height={50}
+                    stroke="white"
+                    className="absolute top-40 left-56 duration-500 p-2 rounded-full border"
+                    fill="white"
+                  />
+                  {/* <div> */}
+                  <h1 className="absolute text-white text-xl bottom-20 font-semibold px-7">
+                    {slide.label}
+                  </h1>
+                  <p className="absolute text-white text-sm bottom-8 line-clamp-2 pr-10 pl-7">
+                    {slide.text}
+                  </p>
+                  {/* </div> */}
+                  {/* </div> */}
+                </picture>
+              </div>
+            ))}
+          </div>
+        </section>
+        <div className="absolute bg-[#DCDCDC] w-10/12 h-60 -z-10 bottom-20 left-0 rounded-r-full"></div>
+      </div>
+    </>
   );
 }

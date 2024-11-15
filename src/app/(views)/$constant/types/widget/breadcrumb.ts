@@ -1,0 +1,23 @@
+export type T_Breadcrumb = {
+  entity_type: Array<{ value: string }>;
+  entity_bundle: Array<{ value: string }>;
+  id: Array<{ value: number }>;
+  uuid: Array<{ value: string }>;
+  revision_id: Array<{ value: number }>;
+  langcode: Array<{ value: string }>;
+  type: Array<{ target_id: string; target_type: string }>;
+  target_uuid: Array<{ value: string }>;
+  status: Array<{ value: boolean }>;
+  created: Array<{ value: string; format: string }>;
+  parent_id: Array<{ value: string }>;
+  parent_type: Array<{ value: string }>;
+  parent_field_name: Array<{ value: string }>;
+  behavior_settings: any[];
+  default_langcode: Array<{ value: boolean }>;
+  revision_translation_affected: Array<{ value: string }>;
+  content_translation_source: Array<{ value: boolean }>;
+  content_translation_outdated: Array<{ value: boolean }>;
+  content_translation_changed: Array<{ value: string; format: string }>;
+  field_menu: Array<{ target_id: string; target_type: string }>;
+  data: Array<{ title: string; url: string }>;
+};

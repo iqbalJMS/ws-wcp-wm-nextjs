@@ -58,7 +58,7 @@ export function CarouselVariant1() {
     },
   ];
   return (
-    <main>
+    <>
       <div className="py-20 container">
         <div className="flex mdmax:flex-wrap items-center">
           <div className="w-[20%] mdmax:w-full flex-none">
@@ -137,6 +137,6 @@ export function CarouselVariant1() {
           </div>
         </div>
       </div>
-    </main>
+    </>
   );
 }
