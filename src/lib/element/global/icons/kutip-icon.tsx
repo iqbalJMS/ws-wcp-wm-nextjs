@@ -7,7 +7,7 @@ export default function KutipIcon({
   className,
 }: T_Icon) {
   return (
-    <div>
+    <>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={width}
@@ -24,6 +24,6 @@ export default function KutipIcon({
           fill="#080087"
         />
       </svg>
-    </div>
+    </>
   );
 }

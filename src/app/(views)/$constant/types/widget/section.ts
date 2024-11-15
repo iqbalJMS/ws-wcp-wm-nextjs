@@ -4,12 +4,6 @@ type T_FieldContent = {
   processed: string;
 };
 
-// type FieldPrimaryCTA = {
-//   uri: string;
-//   title: string;
-//   options: any[];
-// };
-
 type T_VarianStyles = {
   entity_type: any[];
   entity_bundle: any[];
@@ -112,6 +106,7 @@ type T_FieldColumn = {
   field_primary_cta: Array<{ uri: string; full_url: string; title: string }>;
   field_column?: Array<T_FieldColumnChild>;
   field_title: Array<{ value: string }>;
+  field_subtitle: Array<{ value: string }>;
   field_column_per_row: any[];
   field_column_reversed_on_mobile: any[];
   field_container: any[];
@@ -151,7 +146,7 @@ export type T_Section = {
   field_image: Array<T_FieldImage>;
   field_margin_left: any[];
   field_note: any[];
-  field_primary_cta: any[];
+  field_primary_cta: Array<{ uri: string; title: string; full_url: string }>;
   field_title_alignment: any[];
   field_web_variant_styles: Array<T_VarianStyles>;
   column_count: any[];
