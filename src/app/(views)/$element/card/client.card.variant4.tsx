@@ -19,12 +19,18 @@ export default function CE_CardVariant4({
     <>
       <main className="relative w-full h-auto flex justify-center  overflow-hidden">
         <section className="w-full lg:w-11/12">
-          <h1 className="text-center pb-20 text-3xl font-semibold uppercase">
+          <h1
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            className="text-center pb-20 text-3xl font-semibold uppercase"
+          >
             layanan kami
           </h1>
           <div className="w-full grid grid-cols-1 gap-y-5 place-items-center lg:grid-cols-2 xl:px-48 ">
             {data?.map((item, index) => (
               <Link
+                data-aos="fade-right"
+                data-aos-duration="1000"
                 href={'/bri-private'}
                 key={index}
                 className="cursor-pointer group relative w-full md:w-10/12 lg:w-full h-60 lg:h-72 overflow-hidden"

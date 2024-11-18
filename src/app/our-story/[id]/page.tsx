@@ -10,24 +10,21 @@ import GlobalFooter from '@/lib/element/global/global.footer';
 import { ACT_GetBottomRightFooter } from '@/app/(views)/$action/bottom-footer/action.get.bottom.right.footer';
 import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/action.get.bottom.left.footer';
 import { ACT_GetMiddleMenuFooter } from '@/app/(views)/$action/main-footer/action.get.main-footer';
+import { ACT_GetOurStoryDetail } from '@/app/(views)/$action/action.get.our-story.detail';
 
-// {
-//   storyData,
-// }: {
-//   storyData: Array<{
-//     image: string;
-//     desc: string;
-//     name: string;
-//     title: string;
-//   }>;
-// }
-
-export default async function page() {
+export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listHeaderBottom = await ACT_GetMainMenuNavbar({ lang: 'en' });
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
   const itemMainFooter = await ACT_GetMiddleMenuFooter({ lang: 'en' });
+
+  // eslint-disable-next-line no-unused-vars
+  const getOurstoryData = await ACT_GetOurStoryDetail({
+    lang: 'en',
+    alias: 'node',
+    nid: +params.id,
+  });
 
   return (
     <>
@@ -47,14 +44,13 @@ export default async function page() {
           success stories
         </h1>
       </div>
-
       <section className="w-full h-[400px] bg-red-300 flex flex-col items-center">
         <div className="w-9/12 bg-yellow-200 flex justify-around ">
           <div className="w-5/12 bg-green-300">
             <Image src={''} alt={''} />
           </div>
           <div className="w-full pt-10 bg-slate-600 space-y-4">
-            <h1 className="text-3xl font-semibold">name</h1>
+            <h1 className="text-3xl font-semibold"></h1>
             <h2>sub title</h2>
           </div>
         </div>

@@ -39,8 +39,8 @@ type T_FieldImage = {
 type T_FieldOurStory = {
   entity_type: any[];
   entity_bundle: any[];
-  nid: any[];
-  uuid: any[];
+  nid: Array<{ value: number }>;
+  uuid: Array<{ value: string }>;
   vid: any[];
   langcode: any[];
   revision_timestamp: any[];

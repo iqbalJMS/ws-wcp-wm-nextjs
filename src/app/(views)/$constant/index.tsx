@@ -138,11 +138,11 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
       const linkcta = props?.[0]?.linkcta;
 
       switch (findVariantStyle) {
-        case WIDGET_VARIANT.variant06:
+        case 'carousel_video_01':
         default:
           return (
             <CE_CarouselMain
-              variant="02"
+              variant="wm-main-navigation"
               data={data}
               title={title}
               subtitle={subtitle}
@@ -161,20 +161,30 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
       const linkcta = _component?.field_primary_cta?.[0]?.uri;
 
       const dataCarousel = _component?.field_video_items?.map((item) => {
+        const id = item?.id?.[0]?.value;
+        const image = item?.field_image?.[0]?.thumbnail?.[0]?.uri[0]?.url;
+        const alt = item?.field_image?.[0]?.thumbnail?.[0]?.filename?.value;
+        const label = item?.field_video?.[0]?.name?.[0]?.value;
+        const desc = item?.field_title?.[0]?.value;
+        const video =
+          item?.field_video?.[0]?.field_media_oembed_video?.[0]?.value;
+        const labelVideo = item?.field_video?.[0]?.name?.[0]?.value;
+        const subLabel = item?.field_title?.[0]?.value;
+
         return {
-          id: item?.id?.[0]?.value,
-          image: item?.field_image?.[0]?.thumbnail?.[0]?.uri[0]?.url,
-          alt: item?.field_image?.[0]?.thumbnail?.[0]?.filename?.value,
-          label: item?.field_video?.[0]?.name?.[0]?.value,
-          desc: item?.field_title?.[0]?.value,
-          video: item?.field_video?.[0]?.field_media_oembed_video?.[0]?.value,
-          labelVideo: item?.field_video?.[0]?.name?.[0]?.value,
-          subLabel: item?.field_title?.[0]?.value,
+          image: image,
+          id: id,
+          alt: alt,
+          label: label,
+          desc: desc,
+          video: video,
+          labelVideo: labelVideo,
+          subLabel: subLabel,
         };
       });
 
       switch (findVariantStyle) {
-        case WIDGET_VARIANT.variant06:
+        case 'carousel_video_01':
         default:
           return {
             variant: findVariantStyle,
@@ -188,30 +198,6 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
     },
   },
 
-  // {Carousel Variant 3}
-  // video_slider: {
-  //   component: CE_CarouselVariant3,
-  //   props: (_component: T_VideoSlider) => {
-  //     return {
-  //       data: _component?.field_video_items?.map((item) => {
-  //         return {
-  // id: item?.id?.[0]?.value,
-  // image: item?.field_image?.[0]?.thumbnail?.[0]?.uri[0]?.url,
-  // alt: item?.field_image?.[0]?.thumbnail?.[0]?.filename?.value,
-  // label: item?.field_video?.[0]?.name?.[0]?.value,
-  // desc: item?.field_title?.[0]?.value,
-  // video: item?.field_video?.[0]?.field_media_oembed_video?.[0]?.value,
-  // labelVideo: item?.field_video?.[0]?.name?.[0]?.value,
-  // subLabel: item?.field_title?.[0]?.value,
-  //         };
-  //       }),
-  // title: _component?.field_title[0]?.value,
-  // subtitle: _component?.field_subtitle[0]?.value,
-  // titlelink: _component?.field_primary_cta?.[0]?.title,
-  // linkcta: _component?.field_primary_cta?.[0]?.full_url,
-  //     };
-  //   },
-  // },
   section: {
     component: (...props) => {
       const findVariantStyle = props?.[0]?.variant;
@@ -433,6 +419,8 @@ export const COMPONENT_MAP_WIDGET: Record<T_Widget, T_ComponentMapWidget> = {
             title: item?.title?.[0]?.value,
             desc: item?.field_text?.[0]?.value,
             image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+            id: item?.uuid?.[0]?.value,
+            nid: item?.nid?.[0]?.value,
           };
         }),
       };

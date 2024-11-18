@@ -20,9 +20,13 @@ export default function CE_CardVariant2({
 }) {
   return (
     <>
-      <div className="w-full h-auto flex flex-col items-center p-5">
+      <div className="w-full h-auto flex flex-col items-center p-5 pb-20">
         <section className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 pb-16">
-          <div className="uppercase space-y-2 pb-5">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            className="uppercase space-y-2 pb-5"
+          >
             {subtitle && (
               <h3 className="text-base font-light">
                 {parseHTMLToReact(subtitle)}
@@ -34,7 +38,11 @@ export default function CE_CardVariant2({
               </h1>
             )}
           </div>
-          <div className="flex items-end">
+          <div
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            className="flex items-end"
+          >
             {desctitle && (
               <h1 className="text-sm md:text-base ">
                 {parseHTMLToReact(desctitle)}
@@ -46,8 +54,10 @@ export default function CE_CardVariant2({
           {data?.map((item, index) => {
             return (
               <div
+                data-aos="fade-up"
+                data-aos-duration="1000"
                 key={index}
-                className="group w-full h-60 flex flex-col items-center justify-center hover:bg-black hover:rounded-b-xl duration-300"
+                className="group w-full h-60 flex flex-col items-center justify-center hover:bg-black hover:rounded-xl duration-300"
               >
                 <Image
                   src={item?.iconcard}

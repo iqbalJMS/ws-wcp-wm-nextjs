@@ -19,14 +19,18 @@ export default function CE_CardVariant2Private({
   return (
     <>
       <div
-        className="w-full h-[60vh] flex flex-col items-center justify-center p-5 "
+        className="w-full h-[60vh] flex flex-col items-center justify-center p-5"
         style={{
           backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage})`,
           backgroundPosition: 'center',
         }}
       >
         <section className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12  pb-16">
-          <div className="uppercase space-y-2 pb-5">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            className="uppercase space-y-2 pb-5"
+          >
             {title && (
               <h1 className="text-4xl lg:text-3xl xl:text-4xl font-bold text-center text-privatecolor ">
                 {parseHTMLToReact(title)}
@@ -38,6 +42,8 @@ export default function CE_CardVariant2Private({
           {data?.map(({ label, icon, desc }, index) => {
             return (
               <div
+                data-aos="fade-up"
+                data-aos-duration="1000"
                 key={index}
                 className="group w-full h-60 flex flex-col items-center justify-center hover:bg-privatecolor hover:rounded-xl duration-300"
               >
