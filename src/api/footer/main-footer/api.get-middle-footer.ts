@@ -12,6 +12,7 @@ export async function API_GetMiddleFooterMenu({
     const response: T_ResponseGetMiddleFooterMenu = await get(
       '/bricc-api/menu-items/wm-middle-footer?_format=json'
     );
+
     return response;
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -19,3 +20,25 @@ export async function API_GetMiddleFooterMenu({
     return [];
   }
 }
+
+// const axios = require('axios');
+
+// let config = {
+//   method: 'get',
+//   maxBodyLength: Infinity,
+//   url: 'https://admin-bri-corpsite.dev-kjt.id/config_pages/wealth_management_footer?_format=json_recursive',
+//   headers: {
+//     Authorization: 'Basic Z3VtaW5pOnF5dEVVcjl5TTM5TmVCaw==',
+//     Cookie:
+//       'SESS389ab8a081a7b386c5dd97a8790ce7eb=qzBH5EqjlBpNl47AHQyBM0jr6zZEs7Tk0hhBzphxZwLtX903',
+//   },
+// };
+
+// axios
+//   .request(config)
+//   .then((response) => {
+//     console.log(JSON.stringify(response.data));
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });

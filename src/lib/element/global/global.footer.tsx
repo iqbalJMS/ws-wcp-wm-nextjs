@@ -23,7 +23,7 @@ const RowElement = ({ title, alias, icon }: T_RowElementProps) => {
   return (
     <>
       <h1 className="text-[#c7bdbd] lg:mb-5 mb-2 font-semibold lg:text-xl text-lg">
-        tester
+        Kantor Pusat BRI
       </h1>
       <Link
         href={alias ?? '/'}
@@ -139,14 +139,10 @@ export default async function GlobalFooter({
   return (
     <footer className="pt-6 lg:pt-11 shadow-[0_-4px_4px_-2px_rgba(0,0,0,0.1)] bg-[#1C1C1C]">
       <div className="container text-left lg:mb-6">
-        <div className="grid lg:grid-cols-9 grid-cols-1 lg:space-x-6 lg:mt-6 mt-3">
-          {main_middle_footer?.map((list_item, index) => (
+        <div className="grid lg:grid-cols-9 grid-cols-1 lg:space-x-6 lg:mt-6 mt-3 ">
+          {main_middle_footer?.map(({ title, icon, alias }, index) => (
             <div className="lg:col-span-2 col-span-1 lg:mb-0 mb-4" key={index}>
-              <RowElement
-                title={list_item?.title}
-                icon={list_item?.icon}
-                alias={list_item?.alias}
-              />
+              <RowElement title={title} icon={icon} alias={alias} />
             </div>
           ))}
         </div>

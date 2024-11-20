@@ -212,7 +212,7 @@ export default function CE_CarouselVariant3({
               <button
                 className={[
                   '  p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
-                  currentIndex >= data.length - 2
+                  currentIndex >= data?.length - 2
                     ? 'bg-opacity-35 cursor-default'
                     : 'cursor-pointer ',
                 ].join('')}
@@ -224,7 +224,7 @@ export default function CE_CarouselVariant3({
                   stroke={''}
                   fill="white"
                   className={
-                    currentIndex >= data.length - 2
+                    currentIndex >= data?.length - 2
                       ? 'opacity-20'
                       : 'text-white'
                   }
@@ -259,7 +259,7 @@ export default function CE_CarouselVariant3({
               <button
                 className={[
                   'lg:hidden p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
-                  currentIndex >= data.length - 1
+                  currentIndex >= data?.length - 1
                     ? 'bg-opacity-35 cursor-default'
                     : 'cursor-pointer ',
                 ].join('')}
@@ -271,7 +271,7 @@ export default function CE_CarouselVariant3({
                   stroke={''}
                   fill="white"
                   className={
-                    currentIndex >= data.length - 1
+                    currentIndex >= data?.length - 1
                       ? 'opacity-20'
                       : 'text-white'
                   }
@@ -339,7 +339,7 @@ export default function CE_CarouselVariant3({
             ref={sliderRef}
             className={`flex justify-start items-center transition-transform duration-700 ease-in-out transform-gpu w-full drop-shadow-2xl`}
           >
-            {[...data].map((slide, index) => (
+            {[...data]?.map((slide, index) => (
               <div
                 onClick={() => {
                   setModalIndex(index);

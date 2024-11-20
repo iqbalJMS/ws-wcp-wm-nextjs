@@ -25,10 +25,7 @@ const CE_CarouselMain = ({
   subtitle: any;
   titlelink: any;
   linkcta: any;
-  variant:
-    | 'wm-main-navigation'
-    | 'wm-private-main-navigation'
-    | 'wm-priority-main-navigation';
+  variant: any;
 }) => {
   return (
     <>
