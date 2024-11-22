@@ -15,7 +15,6 @@ export default function CE_CardVariant12({
     nid: number;
   }>;
 }) {
-  // const router = useRouter();
   return (
     <>
       <div className="w-full flex flex-col justify-center space-y-20 items-center pb-20 ">

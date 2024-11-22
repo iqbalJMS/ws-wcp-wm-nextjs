@@ -17,6 +17,7 @@ import { T_Section } from './types/widget/section';
 import { T_Breadcrumb } from './types/widget/breadcrumb';
 import { T_OurStory } from './types/widget/our-story';
 import { T_CarouselV2 } from './types/widget/carouselV2';
+import { T_TwoColumn } from './types/widget/two-column';
 
 const SE_SubscriberContent = dynamic(
   () => import('@/app/$element/server.subscriber.content')
@@ -38,7 +39,6 @@ const CE_SectionPromo = dynamic(
   () => import('@/app/(views)/$element/promo/client.section-promo')
 );
 
-// {---------start-------------}
 const CE_BannerMain = dynamic(
   () => import('@/app/(views)/$element/banner/client.banner.main')
 );
@@ -74,7 +74,6 @@ const CE_CardVariant12 = dynamic(
 const CE_CarouselVariant2 = dynamic(
   () => import('@/app/(views)/$element/carousel/client.carousel.variant2')
 );
-// --------------------
 const CE_CardVariant4 = dynamic(
   () => import('@/app/(views)/$element/card/client.card.variant4')
 );
@@ -84,6 +83,10 @@ const CE_CardVariant6 = dynamic(
 );
 const CE_CardVariant3 = dynamic(
   () => import('@/app/(views)/$element/card/client.card.variant3')
+);
+
+const CE_GridVariant02 = dynamic(
+  () => import('@/app/(views)/$element/grid/client.grid.variant02')
 );
 
 export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
@@ -621,9 +624,29 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       },
     },
     two_column: {
-      component: () => <></>,
-      props: (_component) => {
-        return {};
+      component: CE_GridVariant02,
+      props: (_component: T_TwoColumn) => {
+        return {
+          textTitle:
+            _component?.field_first_column?.[0]?.field_title?.[0]?.value,
+          textDesc:
+            _component?.field_first_column?.[0]?.field_content?.[0]?.value,
+
+          imageContent:
+            _component?.field_second_column?.[0]?.field_image?.[0]
+              ?.field_media_image?.[0]?.uri?.[0]?.url,
+
+          listMenu: _component?.field_first_column?.[0]?.field_paragraphs?.map(
+            (item) => {
+              return {
+                urlLink: item?.field_primary_cta?.[0]?.uri,
+                image:
+                  item?.field_image?.[0]?.field_media_image?.[0]?.uri?.[0]?.url,
+                textLink: item?.field_title?.[0]?.value,
+              };
+            }
+          ),
+        };
       },
     },
   };
