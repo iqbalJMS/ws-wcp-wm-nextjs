@@ -5,11 +5,9 @@ import { COMPONENT_MAP_WIDGET } from './(views)/$constant';
 import { ACT_GetSinglePage } from './(views)/$action/action.get.single-page';
 import { T_FieldComponent } from '@/api/single-page/api.get-single-page.type';
 import { T_Widget } from './(views)/$constant/types';
-// import { Locale } from '@/i18n-config';
 import ScrollToTop from '@/lib/element/global/scroll.top';
 import { ACT_GetTopMenuNavbar } from './(views)/$action/action.get.top-menu-navbar';
 import { ACT_GetMainMenuNavbar } from './(views)/$action/action.get.main-menu-navbar';
-// import { ACT_GetMainMenuFooter } from './(views)/$action/action.get.main-footer';
 import { ACT_GetBottomRightFooter } from './(views)/$action/bottom-footer/action.get.bottom.right.footer';
 import GlobalHeader from '@/lib/element/global/global.header';
 import { ACT_GetMenuItemNavbar } from './(views)/$action/action.get-menu-item-navbar';
@@ -17,8 +15,8 @@ import { Locale } from '@/i18n-config';
 import { ACT_GetBottomLeftFooter } from './(views)/$action/bottom-footer/action.get.bottom.left.footer';
 import GlobalFooter from '@/lib/element/global/global.footer';
 import { ACT_GetMiddleMenuFooter } from './(views)/$action/main-footer/action.get.main-footer';
-import CE_MenuMain from './(views)/$element/client.menu.main';
 import { ACT_GetFloatNavigation } from './(views)/$action/action.get-float-navigation';
+import CE_FloatingMain from './(views)/$element/floating-menu/client.floating.main';
 export default async function PageWealth({
   searchParams,
 }: {
@@ -33,7 +31,10 @@ export default async function PageWealth({
     ?.map((component: T_FieldComponent) => {
       const entityBundle = component?.entity_bundle?.[0]?.value as T_Widget;
 
-      const componentConfig = COMPONENT_MAP_WIDGET[entityBundle];
+      const componentConfig = COMPONENT_MAP_WIDGET(
+        entityBundle,
+        data?.field_main_menu?.[0]?.target_id
+      );
       if (componentConfig) {
         const { component: Component, props } = componentConfig;
         return {
@@ -48,6 +49,8 @@ export default async function PageWealth({
     Component: React.ComponentType<any>;
     props: Record<string, any>;
   }>;
+
+  const theme = data?.field_main_menu?.[0]?.target_id;
 
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listHeaderBottom = await ACT_GetMainMenuNavbar({ lang: 'en' });
@@ -64,7 +67,7 @@ export default async function PageWealth({
         headerTop={listHeaderTop}
         itemLogin={itemMenuLogin}
       />
-      <CE_MenuMain data={itemMenuFloatNavigation} />
+      <CE_FloatingMain data={itemMenuFloatNavigation} variant={theme} />
       {components?.map(({ Component, props }, key) => (
         <React.Fragment key={key}>
           <Component {...props} />

@@ -20,6 +20,10 @@ module.exports = {
         hostname: 'admin-bri-corpsite.dev-kjt.id',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
     ],
   },
 };

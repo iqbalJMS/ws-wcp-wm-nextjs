@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import CE_FlipCard from './client.flip.card';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
@@ -26,7 +27,11 @@ export default function CE_CardVariant15({
     <>
       <div className="w-full flex justify-center pt-20">
         <div className=" w-[40rem] h-full md:w-[50rem] xl:w-[60rem] grid grid-cols-1 ">
-          <section className="w-full flex flex-col items-center px-16">
+          <section
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            className="w-full flex flex-col items-center px-16"
+          >
             {topTitle && (
               <h1 className="uppercase text-privatecolor text-2xl md:text-3xl font-bold tracking-wider">
                 {parseHTMLToReact(topTitle)}
@@ -39,7 +44,11 @@ export default function CE_CardVariant15({
             )}
           </section>
           <section className="grid grid-cols-1 md:grid-cols-2 pt-16 space-x-0 lg:space-x-16">
-            <div className="flex justify-center items-start">
+            <div
+              data-aos="fade-right"
+              data-aos-duration="1000"
+              className="flex justify-center items-start"
+            >
               {data && (
                 <CE_FlipCard
                   frontImage={data?.[0]?.frontImage}
@@ -47,7 +56,11 @@ export default function CE_CardVariant15({
                 />
               )}
             </div>
-            <div className="text-center md:text-start pt-0 md:pt-4">
+            <div
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              className="text-center md:text-start pt-0 md:pt-4"
+            >
               <div className="space-y-2 px-16 md:px-0">
                 {data?.[0]?.title && (
                   <h3 className="text-privatecolor text-base font-light uppercase">

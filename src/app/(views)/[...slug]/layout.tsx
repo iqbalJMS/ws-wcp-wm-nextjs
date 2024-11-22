@@ -5,10 +5,8 @@ import GlobalFooter from '@/lib/element/global/global.footer';
 import { ACT_GetTopMenuNavbar } from '../$action/action.get.top-menu-navbar';
 import { ACT_GetMainMenuNavbar } from '../$action/action.get.main-menu-navbar';
 import { ACT_GetMenuItemNavbar } from '../$action/action.get-menu-item-navbar';
-
 import { ACT_GetBottomRightFooter } from '../$action/bottom-footer/action.get.bottom.right.footer';
 import { ACT_GetBottomLeftFooter } from '../$action/bottom-footer/action.get.bottom.left.footer';
-import CE_MenuMain from '../$element/client.menu.main';
 import { ACT_GetFloatNavigation } from '../$action/action.get-float-navigation';
 
 export default async function WmSlugLayout({
@@ -31,7 +29,6 @@ export default async function WmSlugLayout({
         variant={'transparent'}
         itemLogin={itemMenuLogin}
       />
-      <CE_MenuMain data={[]} />
       <main>{children}</main>
       <GlobalFooter
         bottom_right_footer={listBottomRightFooter}

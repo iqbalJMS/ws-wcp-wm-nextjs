@@ -2,7 +2,7 @@
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState, MouseEvent } from 'react';
 import Image from 'next/image';
 import KutipIcon from '@/lib/element/global/icons/kutip-icon';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
@@ -19,7 +19,10 @@ export default function CE_CarouselVariant2({
   const [currentSlide, setCurrentSlide] = useState(0);
   const screenWidth = useScreenWidth();
   const slidesToShow = screenWidth > 768 ? 2 : 1;
-  const slidesToScroll = 1;
+  const [isDragging, setIsDragging] = useState(false);
+  const [translateX, setTranslateX] = useState(0);
+  const [startX, setStartX] = useState(0);
+  const sliderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -32,14 +35,48 @@ export default function CE_CarouselVariant2({
   }, [data?.length]);
 
   const nextSlide = () => {
-    if (currentSlide <= data.length - slidesToShow) {
-      setCurrentSlide(currentSlide + slidesToScroll);
-    }
+    setCurrentSlide((prevIndex) =>
+      prevIndex === data?.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   const prevSlide = () => {
-    if (currentSlide >= data?.length) {
-      setCurrentSlide(currentSlide - slidesToScroll);
+    setCurrentSlide((prevIndex) =>
+      prevIndex === 0 ? data?.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleMouseDown = (e: MouseEvent) => {
+    setIsDragging(true);
+    setStartX(e.clientX);
+    setTranslateX(0); // Reset translate value when a new drag starts
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!isDragging) return;
+    const currentX = e.clientX;
+    const deltaX = currentX - startX;
+    setTranslateX(deltaX);
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+
+    // If dragged enough, change the image
+    if (translateX > 40) {
+      prevSlide();
+    } else if (translateX < -50) {
+      nextSlide();
+    }
+
+    setTranslateX(0); // Reset translate after slide
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      setIsDragging(false);
+      setTranslateX(0);
     }
   };
 
@@ -56,8 +93,18 @@ export default function CE_CarouselVariant2({
       >
         <div className="w-full h-full bg-black opacity-80 absolute z-0"></div>
         <div className="w-full flex flex-col justify-center items-center z-10">
-          <h1 className="text-white text-4xl font-bold pb-20">{title}</h1>
-          <section className="max-w-7xl flex justify-center px-3">
+          <h1
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            className="text-white text-4xl font-bold pb-20"
+          >
+            {title}
+          </h1>
+          <section
+            data-aos-duration="1000"
+            data-aos="fade-up"
+            className="max-w-7xl flex justify-center px-3"
+          >
             <div className="w-10/12 h-[75vh] md:w-9/12 md:h-fit flex flex-row justify-center">
               <div className="hidden basis-10 md:flex justify-center items-center">
                 <button
@@ -79,6 +126,11 @@ export default function CE_CarouselVariant2({
               </div>
               <div className="overflow-hidden basis-11/12 flex justify-center px-1 md:px-0">
                 <div
+                  onMouseDown={handleMouseDown}
+                  onMouseMove={handleMouseMove}
+                  onMouseUp={handleMouseUp}
+                  onMouseLeave={handleMouseLeave}
+                  ref={sliderRef}
                   className="w-[98%] flex transition-all ease-in-out duration-300 space-x-5"
                   style={{
                     transform: `translateX(-${currentSlide * (207 / slidesToShow)}%)`,

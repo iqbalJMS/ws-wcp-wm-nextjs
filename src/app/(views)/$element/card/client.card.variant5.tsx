@@ -39,9 +39,13 @@ export default function CE_CardVariant5({
 
   return (
     <>
-      <div className="w-full h-auto flex justify-center ">
+      <div className="w-full h-auto flex justify-center py-20">
         <div className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:content-center">
-          <section className="pb-10 w-96 md:flex flex-col justify-center">
+          <section
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            className="pb-10 w-96 md:flex flex-col justify-center"
+          >
             {label && (
               <h1 className="pb-3 text-3xl font-bold uppercase ">
                 {parseHTMLToReact(label)}
@@ -53,7 +57,11 @@ export default function CE_CardVariant5({
               </p>
             )}
           </section>
-          <section className="w-full overflow-hidden mdmax:w-full mdmax:flex-none">
+          <section
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            className="w-full overflow-hidden mdmax:w-full mdmax:flex-none"
+          >
             <div
               className="w-full flex transition-all ease-in-out duration-300 md:space-x-3"
               style={{

@@ -14,7 +14,6 @@ async function fetchData<T>(
   options: T_FetchOptions = {}
 ): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
-  // console.log(url, 'yyyyyyyy');
 
   const response = await fetch(url, {
     ...options,

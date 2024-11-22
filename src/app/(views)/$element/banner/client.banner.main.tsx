@@ -14,13 +14,17 @@ const CE_BannerMain = ({
     desc: string;
     button: string;
   }>;
-  variant: '01' | '02' | '03';
+  variant: any;
 }) => {
   return (
     <>
-      {variant === '01' && <CE_BannerVariant01 data={data} />}
-      {variant === '02' && <CE_BannerVariant02 data={data} />}
-      {variant === '03' && <CE_BannerVariant03 data={data} />}
+      {variant === 'wm-main-navigation' && <CE_BannerVariant01 data={data} />}
+      {variant === 'wm-private-main-navigation' && (
+        <CE_BannerVariant02 data={data} />
+      )}
+      {variant === 'wm-priority-main-navigation' && (
+        <CE_BannerVariant03 data={data} />
+      )}
     </>
   );
 };

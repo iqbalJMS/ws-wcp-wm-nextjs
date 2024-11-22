@@ -4,7 +4,7 @@ import CE_CarouselVariant3 from '@/app/(views)/$element/carousel/client.carousel
 import CE_CarouselVariant2 from '@/app/(views)/$element/carousel/client.carousel.variant02';
 import CE_CarouselVariant1 from '@/app/(views)/$element/carousel/client.carousel.variant01';
 const CE_CarouselMain = ({
-  variant = '03',
+  variant,
   data,
   title,
   subtitle,
@@ -25,12 +25,12 @@ const CE_CarouselMain = ({
   subtitle: any;
   titlelink: any;
   linkcta: any;
-  variant: '01' | '02' | '03';
+  variant: any;
 }) => {
   return (
     <>
-      {variant === '01' && (
-        <CE_CarouselVariant3
+      {variant === 'wm-priority-main-navigation' && (
+        <CE_CarouselVariant1
           data={data}
           title={title}
           subtitle={subtitle}
@@ -38,7 +38,7 @@ const CE_CarouselMain = ({
           linkcta={linkcta}
         />
       )}
-      {variant === '02' && (
+      {variant === 'wm-private-main-navigation' && (
         <CE_CarouselVariant2
           data={data}
           title={title}
@@ -47,8 +47,8 @@ const CE_CarouselMain = ({
           linkcta={linkcta}
         />
       )}
-      {variant === '03' && (
-        <CE_CarouselVariant1
+      {variant === 'wm-main-navigation' && (
+        <CE_CarouselVariant3
           data={data}
           title={title}
           subtitle={subtitle}
