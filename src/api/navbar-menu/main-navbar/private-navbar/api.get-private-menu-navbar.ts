@@ -1,17 +1,17 @@
 'use server';
 
 import { get } from '@/api/common/fetch';
-import { T_ResponseGetMainMenuNavbar } from './private-navbar/api.get-main-menu-navbar.type';
+import { T_ResponseGetPrivateMenuNavbar } from './api.get-private-menu-navbar.type';
 
-export async function API_GetMainMenuNavbar({
+export async function API_GetPrivateMenuNavbar({
   // eslint-disable-next-line no-unused-vars
   lang,
 }: {
   lang: string;
-}): Promise<T_ResponseGetMainMenuNavbar> {
+}): Promise<T_ResponseGetPrivateMenuNavbar> {
   try {
-    const response: T_ResponseGetMainMenuNavbar = await get(
-      '/bricc-api/menu-items/wm-main-navigation?_format=json'
+    const response: T_ResponseGetPrivateMenuNavbar = await get(
+      '/bricc-api/menu-items/wm-private-main-navigation?_format=json'
     );
 
     return response;

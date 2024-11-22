@@ -2,17 +2,17 @@
 
 import useScrollActive from '@/lib/hook/useScroll';
 import { T_ResponseGetTopMenuNavbar } from '@/api/navbar-menu/top-navbar/api.get-top-menu-navbar.type';
-import { T_ResponseGetMainMenuNavbar } from '@/api/navbar-menu/main-navbar/api.get-main-menu-navbar.type';
 import { T_ResponseGetMenuItemNavbar } from '@/api/navbar-menu/menu-items/api.get-menu-items-navbar.type';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
-import Link from './link';
-import { Tabs } from './tabs';
-import { CloseIcon } from './icons/close-icon';
+import Link from '@/lib/element/global/link';
+import { Tabs } from '@/lib/element/global/tabs';
+import { CloseIcon } from '@/lib/element/global/icons/close-icon';
 import Image from 'next/image';
-import ChevronDown from './icons/chevron-button-navbar';
+import ChevronDown from '@/lib/element/global/icons/chevron-button-navbar';
 import LogoHeader from '@/../../public/images/headers/logo.png';
+import { T_ResponseGetPriorityMenuNavbar } from '@/api/navbar-menu/main-navbar/priority-navbar/api.get-priority-menu-navbar.type';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -169,14 +169,14 @@ export function LoginButton({
       ref={elementRef}
       className={[
         `${isScrolling ? 'bg-black' : 'bg-white'}`,
-        `${isScrolling ? 'hover:border-blue-800 border-2' : 'hover:bg-[#080087]'}`,
+        `${isScrolling ? 'hover:border-privatecolor border-2' : 'hover:bg-privatecolor'}`,
         `text-[#191056] px-6 pr-4 py-2 mdmax:py-1 mdmax:px-4 mdmax:pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
       ].join(' ')}
       onClick={() => setActive(!active)}
     >
       <div
         className={[
-          `${isScrolling ? 'text-white' : 'text-[#191787]'}`,
+          `${isScrolling ? 'text-white' : 'text-privatecolor'}`,
           'uppercase font-semibold group-hover:text-white',
         ].join(' ')}
       >
@@ -188,7 +188,7 @@ export function LoginButton({
             `${isScrolling ? 'hidden' : ''}`,
             `group-hover:hidden`,
           ].join(' ')}
-          stroke="#191787"
+          stroke="#A29679"
           width={30}
           height={30}
         />
@@ -252,14 +252,14 @@ export function LoginButton({
   );
 }
 
-export default function GlobalHeader({
+export default function PrivateHeader({
   headerTop,
   headerBottom,
   variant = 'transparent',
   itemLogin,
 }: {
   headerTop: T_ResponseGetTopMenuNavbar;
-  headerBottom: T_ResponseGetMainMenuNavbar;
+  headerBottom: T_ResponseGetPriorityMenuNavbar;
   variant: 'transparent' | 'no-transparent';
   itemLogin: T_ResponseGetMenuItemNavbar;
 }) {
@@ -428,7 +428,7 @@ export default function GlobalHeader({
                     return (
                       <div
                         key={index}
-                        className="pb-2 mdmax:pb-0 group border-b-4 border-transparent hover:border-blue-01 "
+                        className="pb-2 mdmax:pb-0 group border-b-4 border-transparent hover:border-privatecolor "
                       >
                         {/* url ganti nanti kalo udah ada url dari drupal */}
                         <Link

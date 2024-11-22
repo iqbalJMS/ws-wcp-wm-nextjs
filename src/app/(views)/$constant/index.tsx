@@ -63,8 +63,8 @@ const CE_CardVariant2Private = dynamic(
   () => import('@/app/(views)/$element/card/client.card.variant2.private')
 );
 
-const CE_Breadcrumb = dynamic(
-  () => import('@/app/(views)/$element/breadcrumb/client.breadcrumb')
+const CE_BreadcrumbMain = dynamic(
+  () => import('@/app/(views)/$element/breadcrumb/client.breadcrumb.main')
 );
 
 const CE_CardVariant12 = dynamic(
@@ -396,16 +396,32 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
     },
 
     breadcrumb: {
-      component: CE_Breadcrumb,
+      component: (...props) => {
+        const findVariantStyle = props?.[0]?.variant;
+        const data = props?.[0]?.data;
+
+        switch (findVariantStyle) {
+          case 'breadcrumb':
+          default:
+            return <CE_BreadcrumbMain variant={theme} data={data} />;
+        }
+      },
       props: (_component: T_Breadcrumb) => {
-        return {
-          data: _component?.data?.map((item) => {
+        const findVariantStyle = _component?.field_menu?.[0]?.target_id;
+        const data = _component?.data.map((item) => {
+          return {
+            title: item?.title,
+            url: item?.url,
+          };
+        });
+        switch (findVariantStyle) {
+          case 'breadcrumb':
+          default:
             return {
-              title: item?.title,
-              url: item?.url,
+              variant: findVariantStyle,
+              data: data,
             };
-          }),
-        };
+        }
       },
     },
 

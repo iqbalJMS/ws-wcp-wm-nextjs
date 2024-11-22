@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-const CE_Breadcrumb = ({
+const CE_BreadcrumbHome = ({
   data,
 }: {
   data: Array<{
@@ -60,4 +60,4 @@ const CE_Breadcrumb = ({
   );
 };
 
-export default CE_Breadcrumb;
+export default CE_BreadcrumbHome;
