@@ -58,7 +58,7 @@ export default function CE_GridVariant02({
               </div>
             )}
           </div>
-          <div className="mdmax:order-1 max-w-[50%]">
+          <div className="mdmax:order-1 md:max-w-[50%]">
             <Image
               src={imageContent ?? '/images/headers/no-image.png'}
               className="w-full h-auto bg-no-repeat bg-cover rounded-lg"
