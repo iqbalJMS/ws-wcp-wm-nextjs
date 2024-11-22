@@ -5,11 +5,9 @@ import { COMPONENT_MAP_WIDGET } from './(views)/$constant';
 import { ACT_GetSinglePage } from './(views)/$action/action.get.single-page';
 import { T_FieldComponent } from '@/api/single-page/api.get-single-page.type';
 import { T_Widget } from './(views)/$constant/types';
-import ScrollToTop from '@/lib/element/global/scroll.top';
 import { ACT_GetTopMenuNavbar } from './(views)/$action/action.get.top-menu-navbar';
 import { ACT_GetMainMenuNavbar } from './(views)/$action/action.get.main-menu-navbar';
 import { ACT_GetBottomRightFooter } from './(views)/$action/bottom-footer/action.get.bottom.right.footer';
-import GlobalHeader from '@/lib/element/global/global.header';
 import { ACT_GetMenuItemNavbar } from './(views)/$action/action.get-menu-item-navbar';
 import { Locale } from '@/i18n-config';
 import { ACT_GetBottomLeftFooter } from './(views)/$action/bottom-footer/action.get.bottom.left.footer';
@@ -17,6 +15,14 @@ import GlobalFooter from '@/lib/element/global/global.footer';
 import { ACT_GetMiddleMenuFooter } from './(views)/$action/main-footer/action.get.main-footer';
 import { ACT_GetFloatNavigation } from './(views)/$action/action.get-float-navigation';
 import CE_FloatingMain from './(views)/$element/floating-menu/client.floating.main';
+import HomeHeader from '@/lib/element/global/header/home-header';
+import PriorityHeader from '@/lib/element/global/header/priority-header';
+import PrivateHeader from '@/lib/element/global/header/private-header';
+import { ACT_GetPriorityMenuNavbar } from './(views)/$action/priority-header/action.get.priority-menu-navbar';
+import { ACT_GetPrivateMenuNavbar } from './(views)/$action/private-header/action.get.private-menu-navbar';
+import ScrollToTopHome from '@/lib/element/global/scroll-top/scroll.top-home';
+import ScrollToTopPrivate from '@/lib/element/global/scroll-top/scroll.top-private';
+import ScrollToTopPriority from '@/lib/element/global/scroll-top/scroll.top-priority';
 export default async function PageWealth({
   searchParams,
 }: {
@@ -53,20 +59,43 @@ export default async function PageWealth({
   const theme = data?.field_main_menu?.[0]?.target_id;
 
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
-  const listHeaderBottom = await ACT_GetMainMenuNavbar({ lang: 'en' });
+
+  const listHomeNavbar = await ACT_GetMainMenuNavbar({ lang: 'id' });
   const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
   const itemMainFooter = await ACT_GetMiddleMenuFooter({ lang: 'en' });
   const itemMenuFloatNavigation = await ACT_GetFloatNavigation({ lang: 'en' });
+
+  const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });
+  const listPrivateNavbar = await ACT_GetPrivateMenuNavbar({ lang: 'id' });
+
   return (
     <React.Fragment>
-      <GlobalHeader
-        variant="transparent"
-        headerBottom={listHeaderBottom}
-        headerTop={listHeaderTop}
-        itemLogin={itemMenuLogin}
-      />
+      {theme === 'wm-main-navigation' && (
+        <HomeHeader
+          headerTop={listHeaderTop}
+          headerBottom={listHomeNavbar}
+          variant={'transparent'}
+          itemLogin={itemMenuLogin}
+        />
+      )}
+      {theme === 'wm-priority-main-navigation' && (
+        <PriorityHeader
+          headerTop={listHeaderTop}
+          headerBottom={listPriorityNavbar}
+          variant={'transparent'}
+          itemLogin={itemMenuLogin}
+        />
+      )}
+      {theme === 'wm-private-main-navigation' && (
+        <PrivateHeader
+          headerTop={listHeaderTop}
+          headerBottom={listPrivateNavbar}
+          variant={'transparent'}
+          itemLogin={itemMenuLogin}
+        />
+      )}
       <CE_FloatingMain data={itemMenuFloatNavigation} variant={theme} />
       {components?.map(({ Component, props }, key) => (
         <React.Fragment key={key}>
@@ -78,7 +107,9 @@ export default async function PageWealth({
         bottom_left_footer={listBottomLeftFooter}
         main_middle_footer={itemMainFooter}
       />
-      <ScrollToTop />
+      {theme === 'wm-main-navigation' && <ScrollToTopHome />}
+      {theme === 'wm-private-main-navigation' && <ScrollToTopPrivate />}
+      {theme === 'wm-priority-main-navigation' && <ScrollToTopPriority />}
     </React.Fragment>
   );
 }
