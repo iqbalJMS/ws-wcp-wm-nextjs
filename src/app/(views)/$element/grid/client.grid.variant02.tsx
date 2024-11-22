@@ -22,8 +22,8 @@ export default function CE_GridVariant02({
 }: T_GridVariant02Props) {
   return (
     <section className="relative">
-      <div className="container py-20 px-20">
-        <div className="flex md:flex-row flex-col mdmax:gap-4 justify-between">
+      <div className="container py-20 md:px-20">
+        <div className="flex md:flex-row flex-col justify-between">
           <div className={`space-y-8 max-w-lg mdmax:order-2 mt-12`}>
             {textTitle && (
               <h1 className="text-xl font-semibold uppercase">{textTitle}</h1>
