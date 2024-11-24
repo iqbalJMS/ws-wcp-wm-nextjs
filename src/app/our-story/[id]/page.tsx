@@ -11,7 +11,7 @@ import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/act
 import { ACT_GetMiddleMenuFooter } from '@/app/(views)/$action/main-footer/action.get.main-footer';
 import { ACT_GetOurStoryDetail } from '@/app/(views)/$action/action.get.our-story.detail';
 import CE_BreadcrumbStory from '@/app/our-story/$element/client.breadcrumb.our-story';
-import GlobalHeader from '@/lib/element/global/global.header';
+import GlobalHeader from '@/lib/element/global/header/home-header';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });

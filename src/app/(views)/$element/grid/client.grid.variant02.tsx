@@ -1,7 +1,13 @@
-import Image from '@/lib/element/global/image';
 import Link from '@/lib/element/global/link';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import Image from '@/lib/element/global/image';
 
-type T_GridVariant02Props = {
+export default function CE_GridVariant02({
+  textTitle,
+  textDesc,
+  listMenu,
+  imageContent,
+}: {
   textTitle?: string;
   textDesc?: string;
   listMenu?: Array<{
@@ -11,24 +17,24 @@ type T_GridVariant02Props = {
   }>;
   imageContent?: string;
   imageAlignment?: string;
-};
-
-export default function CE_GridVariant02({
-  textTitle,
-  textDesc,
-  listMenu,
-  imageContent,
-  // imageAlignment,
-}: T_GridVariant02Props) {
+}) {
   return (
     <section className="relative">
       <div className="container py-20 md:px-20">
         <div className="flex md:flex-row flex-col justify-between">
-          <div className={`space-y-8 max-w-lg mdmax:order-2 mt-12`}>
+          <div
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            className={`space-y-8 max-w-lg mdmax:order-2 mt-12`}
+          >
             {textTitle && (
-              <h1 className="text-xl font-semibold uppercase">{textTitle}</h1>
+              <h1 className="text-xl font-semibold uppercase">
+                {parseHTMLToReact(textTitle)}
+              </h1>
             )}
-            {textDesc && <p className="text-sm">{textDesc}</p>}
+            {textDesc && (
+              <p className="text-sm">{parseHTMLToReact(textDesc)}</p>
+            )}
             {listMenu && listMenu.length > 0 && (
               <div className="flex gap-5 mt-5">
                 {listMenu.map((item, index) => (
@@ -42,8 +48,8 @@ export default function CE_GridVariant02({
                         <Image
                           className="w-10 h-10"
                           src={item.image}
-                          width={10}
-                          height={10}
+                          width={1000}
+                          height={1000}
                           alt={`image-${item.image}`}
                         />
                       </div>
@@ -58,14 +64,20 @@ export default function CE_GridVariant02({
               </div>
             )}
           </div>
-          <div className="mdmax:order-1 md:max-w-[50%]">
-            <Image
-              src={imageContent ?? '/images/headers/no-image.png'}
-              className="w-full h-auto bg-no-repeat bg-cover rounded-lg"
-              width={1000}
-              height={1000}
-              alt={`image-${imageContent}`}
-            />
+          <div
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            className="mdmax:order-1 md:max-w-[50%]"
+          >
+            {imageContent && (
+              <Image
+                src={imageContent}
+                className="w-full h-auto bg-no-repeat bg-cover rounded-lg"
+                width={1000}
+                height={1000}
+                alt={`image-${imageContent}`}
+              />
+            )}
           </div>
         </div>
       </div>
