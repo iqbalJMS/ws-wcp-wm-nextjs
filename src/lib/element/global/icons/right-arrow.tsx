@@ -3,7 +3,7 @@ import { T_Icon } from '@/lib/element/client/icon';
 
 export default function RightArrow({ className, width, height, fill }: T_Icon) {
   return (
-    <div>
+    <>
       <svg
         width={width}
         height={height}
@@ -17,6 +17,6 @@ export default function RightArrow({ className, width, height, fill }: T_Icon) {
           fill={fill}
         />
       </svg>
-    </div>
+    </>
   );
 }

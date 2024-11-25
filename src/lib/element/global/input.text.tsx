@@ -1,14 +1,14 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 export type T_InputTextOnChange = string | number;
 type T_InputTextProps = {
-  type?: "text" | "password" | "number";
+  type?: 'text' | 'password' | 'number';
   value?: T_InputTextOnChange;
   placeholder?: string;
   label?: string;
   rightText?: string;
   leftText?: string;
   disabled?: boolean;
-  state?: "init" | "error";
+  state?: 'init' | 'error';
   onEnter?: () => void;
   // eslint-disable-next-line no-unused-vars
   onChange?: (value: T_InputTextOnChange) => void;
@@ -27,14 +27,14 @@ function useFormat() {
 }
 
 export default function InputText({
-  type = "text",
-  value = "",
-  placeholder = "",
-  label = "",
-  rightText = "",
-  leftText = "",
+  type = 'text',
+  value = '',
+  placeholder = '',
+  label = '',
+  rightText = '',
+  leftText = '',
   disabled = false,
-  state = "init",
+  state = 'init',
   onEnter,
   onChange,
   rightSlot,
@@ -44,16 +44,16 @@ export default function InputText({
   const { number } = useFormat();
 
   const formatModelValue = () => {
-    if (type === "number") {
+    if (type === 'number') {
       return number.decimal(Number(value || 0));
     }
-    return value ? value.toString().replace(label, "") : "";
+    return value ? value.toString().replace(label, '') : '';
   };
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (type === "number") {
-      onChange?.(number.value(event.target.value || "0"));
-    } else if (type === "text" || type === "password") {
+    if (type === 'number') {
+      onChange?.(number.value(event.target.value || '0'));
+    } else if (type === 'text' || type === 'password') {
       if (label) {
         onChange?.(`${label}${event.target.value}`);
       } else {
@@ -65,7 +65,7 @@ export default function InputText({
   const handleIsNumber = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const charCode = event.which ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
-      if (type === "number") {
+      if (type === 'number') {
         event.preventDefault();
       }
     } else {
@@ -74,14 +74,14 @@ export default function InputText({
   };
 
   return (
-    <div>
+    <>
       <div
         className={`flex w-full h-12 py-1 items-center border overflow-hidden px-4 rounded-md bg-transparent ${
-          disabled ? "bg-gray-500 bg-opacity-5" : "bg-transparent"
+          disabled ? 'bg-gray-500 bg-opacity-5' : 'bg-transparent'
         } ${
-          state === "error"
-            ? "border-red-500"
-            : "border-black border-opacity-10 focus-within:border-blue-01 focus-within:border-opacity-50 focus-within:ring-4 focus-within:ring-light-02 focus-within:ring-opacity-30"
+          state === 'error'
+            ? 'border-red-500'
+            : 'border-black border-opacity-10 focus-within:border-blue-01 focus-within:border-opacity-50 focus-within:ring-4 focus-within:ring-light-02 focus-within:ring-opacity-30'
         }`}
       >
         {leftSlot || leftText ? (
@@ -96,9 +96,9 @@ export default function InputText({
           value={formatModelValue()}
           className="w-full h-full text-base mdmax:text-sm placeholder-black placeholder-opacity-40 focus:outline-none bg-transparent flex-1"
           disabled={disabled}
-          type={type === "password" ? "password" : "text"}
+          type={type === 'password' ? 'password' : 'text'}
           placeholder={placeholder}
-          onKeyUp={(event) => event.key === "Enter" && onEnter && onEnter()}
+          onKeyUp={(event) => event.key === 'Enter' && onEnter && onEnter()}
           onKeyDown={handleIsNumber}
           onInput={handleInput}
         />
@@ -109,6 +109,6 @@ export default function InputText({
           </div>
         ) : null}
       </div>
-    </div>
+    </>
   );
 }

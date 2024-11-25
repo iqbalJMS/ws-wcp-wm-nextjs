@@ -9,7 +9,7 @@ export default function PlayIcon({
   className,
 }: T_Icon) {
   return (
-    <div>
+    <>
       <svg
         stroke={stroke}
         className={className}
@@ -24,6 +24,6 @@ export default function PlayIcon({
           fill={fill}
         />
       </svg>
-    </div>
+    </>
   );
 }

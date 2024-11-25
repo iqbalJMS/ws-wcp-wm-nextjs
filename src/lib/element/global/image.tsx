@@ -5,6 +5,7 @@ import {
   StaticImport,
 } from 'next/dist/shared/lib/get-img-props';
 import * as Imagex from 'next/image';
+import { API_BASE_URL } from '@/app/(views)/$constant/variables';
 
 type T_ImageProps = Omit<
   React.DetailedHTMLProps<
@@ -39,11 +40,13 @@ export default function Image(prop: T_ImageProps) {
   const { src } = prop;
   let newSrc = `${src}`;
   if (!src) {
-    newSrc = `/images/no-image.png`;
+    newSrc = `/images/headers/no-image.png`;
   }
   if (typeof src === 'string') {
     if (prop.extern) {
-      newSrc = `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${src}`;
+      newSrc = src;
+    } else {
+      newSrc = `${API_BASE_URL}${src}`;
     }
   }
   return <Imagex.default {...{ ...prop, src: newSrc }} />;
