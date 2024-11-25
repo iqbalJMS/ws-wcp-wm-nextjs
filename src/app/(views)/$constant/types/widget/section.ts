@@ -71,7 +71,7 @@ type T_FieldColumnChild = {
   entity_type: any[];
   entity_bundle: any[];
   id: any[];
-  uuid: any[];
+  uuid: Array<{ value: string }>;
   parent_id: any[];
   parent_type: any[];
   parent_field_name: any[];
@@ -89,9 +89,9 @@ type T_FieldColumnChild = {
 
 type T_FieldColumn = {
   entity_type: any[];
-  entity_bundle: any[];
+  entity_bundle: Array<{ value: string }>;
   id: any[];
-  uuid: any[];
+  uuid: Array<{ value: string }>;
   parent_id: any[];
   parent_type: any[];
   parent_field_name: any[];
@@ -116,6 +116,7 @@ type T_FieldColumn = {
   field_title_alignment: any[];
   field_web_variant_styles: any[];
   column_count: any[];
+  field_paragraphs: Array<T_FieldColumnChild>;
 };
 
 export type T_Section = {

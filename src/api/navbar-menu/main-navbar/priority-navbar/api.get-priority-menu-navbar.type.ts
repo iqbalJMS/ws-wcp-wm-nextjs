@@ -2,12 +2,12 @@ type T_MenuItemBase = {
   key: string;
   title: string;
   uri: string;
-  alias: string | null;
+  alias: string;
   relative: string;
   weight: string;
   expanded: boolean;
   enabled: boolean;
-  uuid: string | null;
+  uuid: string;
   options: Array<unknown>;
 };
 

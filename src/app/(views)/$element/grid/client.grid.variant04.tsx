@@ -1,14 +1,15 @@
-import Image from '@/lib/element/global/image';
+import Image from 'next/image';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 export default function CE_GridVariant04({
   title,
-  listItem,
+  data,
   bgImage,
 }: {
   title?: string;
-  listItem?: Array<{
-    image?: string;
-    desc?: string;
+  data: Array<{
+    image: string;
+    desc: string;
   }>;
   bgImage?: string;
 }) {
@@ -30,28 +31,31 @@ export default function CE_GridVariant04({
       <div className="container py-20">
         {title && (
           <div className="mb-20 flex flex-col items-center">
-            <h1 className="text-3xl font-semibold uppercase">{title}</h1>
-            <div className="w-[50px] h-0.5 bg-black mt-3"></div>
+            {title && (
+              <h1 className="text-3xl text-[#3D405F] font-semibold uppercase">
+                {parseHTMLToReact(title)}
+              </h1>
+            )}
+            <div className="w-[50px] h-0.5 bg-[#404041] mt-3"></div>
           </div>
         )}
         <div className="flex flex-wrap items-center justify-center">
-          {listItem &&
-            listItem.length > 0 &&
-            listItem.map((item, index) => (
+          {data &&
+            data.length > 0 &&
+            data.map((item, index) => (
               <div
+                data-aos="fade-up"
+                data-aos-duration="1000"
                 className="flex flex-col items-center mx-6 basis-[12%]"
                 key={index}
               >
                 <div className="w-[160px] h-[160px] hover:border-[.3rem] hover:border-solid hover:border-privatecolor rounded-full transition-all duration-300">
                   <Image
-                    src={
-                      item.image ?? '/web/wealth-management/images/no-image.png'
-                    }
+                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image}`}
                     alt={`img-${index}`}
                     width={100}
                     height={100}
                     className="bg-no-repeat bg-cover w-full h-full rounded-full"
-                    extern={item.image ? false : true}
                   />
                 </div>
                 <p className="text-md my-4 text-center font-semibold uppercase">

@@ -12,7 +12,7 @@ import { CloseIcon } from '@/lib/element/global/icons/close-icon';
 import Image from 'next/image';
 import ChevronDown from '@/lib/element/global/icons/chevron-button-navbar';
 import LogoHeader from '@/../../public/images/headers/logo.png';
-import { T_ResponseGetPriorityMenuNavbar } from '@/api/navbar-menu/main-navbar/priority-navbar/api.get-priority-menu-navbar.type';
+import { T_ResponseGetPrivateMenuNavbar } from '@/api/navbar-menu/main-navbar/private-navbar/api.get-private-menu-navbar.type';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -259,7 +259,7 @@ export default function PrivateHeader({
   itemLogin,
 }: {
   headerTop: T_ResponseGetTopMenuNavbar;
-  headerBottom: T_ResponseGetPriorityMenuNavbar;
+  headerBottom: T_ResponseGetPrivateMenuNavbar;
   variant: 'transparent' | 'no-transparent';
   itemLogin: T_ResponseGetMenuItemNavbar;
 }) {
@@ -428,9 +428,8 @@ export default function PrivateHeader({
                     return (
                       <div
                         key={index}
-                        className="pb-2 mdmax:pb-0 group border-b-4 border-transparent hover:border-privatecolor "
+                        className="pb-2 mdmax:pb-0 group border-b-4 border-transparent hover:border-privatecolor visited:border-privatecolor focus:border-privatecolor "
                       >
-                        {/* url ganti nanti kalo udah ada url dari drupal */}
                         <Link
                           href={`/${item?.alias}`}
                           className={[

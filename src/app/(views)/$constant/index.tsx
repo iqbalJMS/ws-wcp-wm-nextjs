@@ -89,6 +89,14 @@ const CE_GridVariant02 = dynamic(
   () => import('@/app/(views)/$element/grid/client.grid.variant02')
 );
 
+const CE_CardVariant16 = dynamic(
+  () => import('@/app/(views)/$element/card/client.card.variant16')
+);
+
+const CE_GridVariant04 = dynamic(
+  () => import('@/app/(views)/$element/grid/client.grid.variant04')
+);
+
 export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
   const components: Record<T_Widget, T_ComponentMapWidget> = {
     slider: {
@@ -260,6 +268,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
                 title={title}
               />
             );
+          case WIDGET_VARIANT.variant08:
+            return (
+              <CE_CardVariant16 title={title} subTitle={subTitle} data={data} />
+            );
+          case WIDGET_VARIANT.variant09:
+            return (
+              <CE_GridVariant04 title={title} data={data} bgImage={bgImage} />
+            );
+
           default:
             return <></>;
         }
@@ -341,6 +358,29 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           };
         });
 
+        const titleCardV16 = _component?.field_formatted_title?.[0]?.value;
+        const subTitleCardV16 = _component?.field_content?.[0]?.value;
+        const dataCardV16 = _component?.field_column?.map((item) => {
+          return {
+            uuid: item?.uuid?.[0]?.value,
+            label: item?.field_title?.[0]?.value,
+            desc: item?.field_content?.[0]?.value,
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+            linkCta: item?.field_primary_cta?.[0]?.full_url,
+          };
+        });
+
+        const titleCardGridV4 = _component?.field_formatted_title?.[0]?.value;
+        const bgImageCardGridV4 =
+          _component?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url;
+        const dataItemCardGridV4 =
+          _component?.field_column?.[0]?.field_paragraphs?.map((item) => {
+            return {
+              image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+              desc: item?.field_title?.[0]?.value,
+            };
+          });
+
         switch (findVariantStyle) {
           case WIDGET_VARIANT.variant01:
             return {
@@ -386,6 +426,20 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               data: dataCardV2,
               title: titleCardV2,
               bgImage: bgImageCardV2,
+            };
+          case WIDGET_VARIANT.variant08:
+            return {
+              variant: findVariantStyle,
+              data: dataCardV16,
+              title: titleCardV16,
+              subTitle: subTitleCardV16,
+            };
+          case WIDGET_VARIANT.variant09:
+            return {
+              variant: findVariantStyle,
+              title: titleCardGridV4,
+              bgImage: bgImageCardGridV4,
+              data: dataItemCardGridV4,
             };
           default:
             return {

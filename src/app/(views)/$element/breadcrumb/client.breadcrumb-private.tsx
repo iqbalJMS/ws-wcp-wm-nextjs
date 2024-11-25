@@ -20,8 +20,8 @@ const CE_BreadcrumbPrivate = ({
             <li>
               <div className="flex items-center">
                 <a
-                  href={'/web/wealth-management'}
-                  className="font-light text-[#C0CCE2] hover:text-privatecolor hover:underline"
+                  href={'/web/wealth-management/bri-private?lang=id'}
+                  className="font-light text-[#C0CCE2] hover:text-privatecolor hover:underline uppercase"
                 >
                   {data?.[0]?.title}
                 </a>
@@ -46,7 +46,7 @@ const CE_BreadcrumbPrivate = ({
                 </svg>
                 {data && (
                   <div className="flex items-center">
-                    <span className="cursor-default text-privatecolor font-normal hover:text-primary-blue">
+                    <span className="cursor-default text-privatecolor font-normal hover:text-primary-blue uppercase">
                       {data?.[1]?.title}
                     </span>
                   </div>

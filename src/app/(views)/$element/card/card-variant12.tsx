@@ -34,7 +34,7 @@ export default function CE_CardVariant12({
               <h1 className="font-bold text-2xl text-[#3D3D3D] uppercase">
                 {item?.title}
               </h1>
-              <p className="text-[#52185A] text-sm">{item?.desc}</p>
+              <h2 className="text-[#52185A] text-sm">{item?.desc}</h2>
               <div className="pt-8">
                 <Link
                   href={`/our-story/${item?.nid}`}
@@ -69,7 +69,7 @@ export default function CE_CardVariant12({
               <h1 className="font-bold text-2xl text-[#3D3D3D] uppercase">
                 {item?.title}
               </h1>
-              <p className="text-[#52185A] text-sm">{item?.desc}</p>
+              <h2 className="text-[#52185A] text-sm">{item?.desc}</h2>
               <div className="pt-10">
                 <Link
                   href={`/our-story/${item?.nid}`}
