@@ -113,8 +113,10 @@ type T_FieldSecondColumn = {
   content_translation_source: Array<{ value: string }>;
   content_translation_outdated: Array<{ value: boolean }>;
   content_translation_changed: Array<{ value: string; format: string }>;
-  field_image: Array<T_FieldImage>;
+  field_content: Array<{ value: string; format: string; processed: string }>;
   field_paragraphs: Array<T_FieldParagraphs>;
+  field_title: Array<{ value: string }>;
+  field_image: Array<T_FieldImage>;
 };
 
 export type T_TwoColumn = {

@@ -627,25 +627,49 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: CE_GridVariant02,
       props: (_component: T_TwoColumn) => {
         return {
-          textTitle:
-            _component?.field_first_column?.[0]?.field_title?.[0]?.value,
-          textDesc:
-            _component?.field_first_column?.[0]?.field_content?.[0]?.value,
-
-          imageContent:
+          dataCard1: _component?.field_first_column?.map((item) => {
+            return {
+              textTitle: item?.field_title?.[0]?.value,
+              textDesc: item?.field_content?.[0]?.value,
+              listMenu:
+                _component?.field_first_column?.[0]?.field_paragraphs?.map(
+                  (item) => {
+                    return {
+                      urlLink: item?.field_primary_cta?.[0]?.uri,
+                      image:
+                        item?.field_image?.[0]?.field_media_image?.[0]?.uri?.[0]
+                          ?.url,
+                      textLink: item?.field_title?.[0]?.value,
+                    };
+                  }
+                ),
+            };
+          }),
+          imageContent1:
             _component?.field_second_column?.[0]?.field_image?.[0]
               ?.field_media_image?.[0]?.uri?.[0]?.url,
 
-          listMenu: _component?.field_first_column?.[0]?.field_paragraphs?.map(
-            (item) => {
-              return {
-                urlLink: item?.field_primary_cta?.[0]?.uri,
-                image:
-                  item?.field_image?.[0]?.field_media_image?.[0]?.uri?.[0]?.url,
-                textLink: item?.field_title?.[0]?.value,
-              };
-            }
-          ),
+          dataCard2: _component?.field_second_column?.map((item) => {
+            return {
+              textTitle: item?.field_title?.[0]?.value,
+              textDesc: item?.field_content?.[0]?.value,
+              listMenu:
+                _component?.field_second_column?.[0]?.field_paragraphs?.map(
+                  (item) => {
+                    return {
+                      urlLink: item?.field_primary_cta?.[0]?.uri,
+                      image:
+                        item?.field_image?.[0]?.field_media_image?.[0]?.uri?.[0]
+                          ?.url,
+                      textLink: item?.field_title?.[0]?.value,
+                    };
+                  }
+                ),
+            };
+          }),
+          imageContent2:
+            _component?.field_first_column?.[0]?.field_image?.[0]
+              ?.field_media_image?.[0]?.uri?.[0]?.url,
         };
       },
     },
