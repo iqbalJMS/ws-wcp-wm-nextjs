@@ -5,6 +5,9 @@ import { ACT_GetTopMenuNavbar } from '@/app/(views)/$action/action.get.top-menu-
 import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
 import CE_HeaderMagazine from '@/app/magazine/$element/client.header.magazine';
 import LogoNotFound from '@/../../public/images/not-found.png';
+// import CE_GridVariant02 from '@/app/(views)/$element/grid/client.grid.variant02';
+// import CE_GridVariant03 from '@/app/(views)/$element/grid/client.grid.variant03';
+// import CE_GridVariant04 from '@/app/(views)/$element/grid/client.grid.variant04';
 
 export default async function NotFoundPage() {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -48,6 +51,74 @@ export default async function NotFoundPage() {
           </div>
         </div>
       </div>
+      {/* <CE_GridVariant02
+        textTitle="Investasi"
+        textDesc="Produk yang disiapkan untuk memenuhi kebutuhan finansial sesuai profil nasabah, untuk mendapatkan potensi maksimal dan manfaat perlindungan yang lengkap"
+        listMenu={[
+          {
+            image:
+              '/sites/default/files/images/pay-goods-by-credit-card-through-smartphone-coffee-shop.jpg',
+            textLink: 'Reksa Dana',
+            urlLink: '/reksa-dana',
+          },
+          {
+            image:
+              '/sites/default/files/images/pay-goods-by-credit-card-through-smartphone-coffee-shop.jpg',
+            textLink: 'Reksa Dana',
+            urlLink: '/reksa-dana',
+          },
+        ]}
+        imageContent="/sites/default/files/images/pay-goods-by-credit-card-through-smartphone-coffee-shop.jpg"
+      /> */}
+      {/* <CE_GridVariant03
+        title="BRI Private Signature Outlet"
+        desc="Gedung BRI 2 Lantai 2 Jl. Jendral Sudirman Kav. 44-46 Jakarta 10210, Indonesia"
+        textLink="Lihat di map"
+        imageLink="/web/wealth-management/images/dummy/icon-menu-02.png"
+        urlLink="#"
+        imageContent="/web/wealth-management/images/dummy/img-produk-unggulan.jpg"
+      /> */}
+      {/* <CE_GridVariant04
+        title="Lounge"
+        listItem={[
+          {
+            image:
+              '/web/wealth-management/images/dummy/img-produk-unggulan.jpg',
+            desc: 'NUSANTARA GALLERY LOBBY',
+          },
+          {
+            image:
+              '/web/wealth-management/images/dummy/img-produk-unggulan.jpg',
+            desc: 'NUSANTARA GALLERY LOBBY',
+          },
+          {
+            image:
+              '/web/wealth-management/images/dummy/img-produk-unggulan.jpg',
+            desc: 'NUSANTARA GALLERY LOBBY',
+          },
+          {
+            image:
+              '/web/wealth-management/images/dummy/img-produk-unggulan.jpg',
+            desc: 'NUSANTARA GALLERY LOBBY',
+          },
+          {
+            image:
+              '/web/wealth-management/images/dummy/img-produk-unggulan.jpg',
+            desc: 'NUSANTARA GALLERY LOBBY',
+          },
+          {
+            image:
+              '/web/wealth-management/images/dummy/img-produk-unggulan.jpg',
+            desc: 'NUSANTARA GALLERY LOBBY',
+          },
+          {
+            image:
+              '/web/wealth-management/images/dummy/img-produk-unggulan.jpg',
+            desc: 'NUSANTARA GALLERY LOBBY',
+          },
+        ]}
+        bgImage="/web/wealth-management/images/dummy/bg-cv-4b.jpg"
+      /> */}
     </>
   );
 }
