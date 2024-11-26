@@ -91,7 +91,7 @@ export function CE_BannerVariant03({
 
   return (
     <>
-      <div className="w-full overflow-hidden">
+      <div className="w-full">
         <section className="w-full flex justify-center">
           <div className="relative overflow-hidden flex justify-center">
             <div
@@ -100,30 +100,30 @@ export function CE_BannerVariant03({
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseLeave}
               ref={sliderRef}
-              className="w-full h-[70vh] lg:h-screen flex transition-all ease-in-out duration-500"
+              className="w-full h-[70vh] md:h-screen flex transition-all ease-in-out duration-500"
               style={{
                 transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
               }}
             >
               {data.map((item, index) => (
                 <div
-                  className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-center bg-cover bg-no-repeat bg-fixed duration-500"
+                  key={index}
+                  className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-center bg-cover"
                   style={{
                     backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
                     backgroundAttachment: 'fixed',
                     backgroundPosition: 'fixed',
                   }}
-                  key={index}
                 >
-                  <div className="bg-black opacity-20 w-full h-full absolute z-10"></div>
-                  <div className="text-start w-10/12 md:w-8/12 space-y-4 ml-5 lg:ml-0 z-20">
+                  <div className="bg-prioritycolor opacity-40 w-full h-full absolute z-10"></div>
+                  <div className="text-start w-9/12 lg:w-8/12 2xl:w-6/12 space-y-4 ml-16 lg:-ml-32 2xl:-ml-72 z-20 px-0 xl:px-5 mb-20">
                     {item?.title && (
-                      <h1 className="text-3xl lg:text-4xl font-semibold text-white">
+                      <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-white font-poppins">
                         {parseHTMLToReact(item?.title)}
                       </h1>
                     )}
                     {item?.desc && (
-                      <p className="text-sm xl:text-base w-full xl:w-8/12 font-light text-white mb-10">
+                      <p className="text-sm xl:text-base w-full xl:w-8/12 font-light text-white mb-10 font-poppins">
                         {parseHTMLToReact(item?.desc)}
                       </p>
                     )}
@@ -137,10 +137,25 @@ export function CE_BannerVariant03({
                 </div>
               ))}
             </div>
+            <svg
+              className=" absolute z-10 top-[55vh] md:top-[80vh]"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1920.001"
+              height="300.001"
+            >
+              <path
+                d="M960 130.001c-57.229 0-117.474-1.3-179.063-3.867-55.987-2.333-114.337-5.763-173.437-10.195-99.528-7.465-202.986-17.874-307.5-30.938L177.188 68.477 82.5 54.063 0 40.001l70.789 7.988 188.769 17.574c91.331 7.42 182.627 13.333 271.35 17.574 110.9 5.3 218.073 7.988 318.533 7.988L960.001 90c57.228-1.192 117.473-3.459 179.062-6.738l173.438-11.543c99.531-7.879 202.988-18.13 307.5-30.469l217.5-28.594L1920.001 0v40l-.048.01-82.452 14.053-94.687 14.414L1620 85.001c-104.514 13.064-207.971 23.473-307.5 30.937-59.1 4.432-117.45 7.863-173.437 10.2-61.593 2.563-121.833 3.863-179.063 3.863z"
+                fill="#e9eaea"
+              />
+              <path
+                d="M1920 300H0V40s30.58 5.719 82.5 14.062l94.688 14.415L300 85c104.529 13.065 207.987 23.474 307.5 30.937 59.093 4.432 117.446 7.862 173.437 10.2C842.515 128.7 902.761 130 960 130c57.206 0 117.451-1.3 179.063-3.864 55.984-2.336 114.336-5.768 173.436-10.2C1412.01 108.476 1515.468 98.067 1620 85l122.814-16.525 94.687-14.414L1920 40v260z"
+                fill="#fff"
+              />
+            </svg>
             {data && (
               <div
                 className={[
-                  'absolute w-full flex justify-center z-30 bottom-20 md:bottom-9',
+                  'absolute w-full flex justify-center z-30 bottom-20 md:bottom-20',
                 ].join(' ')}
               >
                 <div className="space-x-2 md:space-x-4 -mt-20 right-20 mdmax:m-0 flex mdmax:gap-2">
@@ -150,7 +165,7 @@ export function CE_BannerVariant03({
                       className={[
                         'w-2 h-2 md:w-[10px] md:h-[10px] rounded-full ',
                         '',
-                        `${bannerIndex === currentSlide ? 'outline outline-1 outline-white bg-white outline-offset-2 ' : 'bg-white bg-opacity-65 '}`,
+                        `${bannerIndex === currentSlide ? 'outline outline-1 outline-prioritycolor bg-prioritycolor outline-offset-2 ' : 'bg-white bg-opacity-65 '}`,
                         'cursor-pointer',
                       ].join(' ')}
                       onClick={() => {

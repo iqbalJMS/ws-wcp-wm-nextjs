@@ -42,16 +42,18 @@ export default function CE_CardVariant2Private({
           {data?.map(({ label, icon, desc }, index) => {
             return (
               <div
-                data-aos="fade-up"
-                data-aos-duration="1000"
                 key={index}
-                className="group w-full h-60 flex flex-col items-center justify-center hover:bg-privatecolor hover:rounded-xl duration-300"
+                // data-aos="fade-up"
+                // data-aos-duration="1000"
+                className="group w-full h-60 flex flex-col items-center justify-center  hover:bg-gradient-to-b from-[#C3B073] to-privatecolor/90 rounded-xl duration-500 transition-all ease-in-out cursor-pointer"
               >
                 <Image
                   alt={'icon-card'}
                   width={70}
                   height={70}
                   src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon}`}
+                  color="black"
+                  className="group-hover:invert group-hover:brightness-[12.90]"
                 />
 
                 {label && (

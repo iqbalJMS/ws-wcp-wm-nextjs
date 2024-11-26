@@ -374,7 +374,7 @@ export default function OurStoryHeader({
                           // href={header?.uri}
                           className={[
                             `text-[15px] font-light`,
-                            `${variant === 'transparent' ? 'text-white mdmax:text-black' : ''}`,
+                            `${variant === 'transparent' ? 'text-white mdmax:text-black hover:underline' : ''}`,
                           ].join(' ')}
                         >
                           {header.title}

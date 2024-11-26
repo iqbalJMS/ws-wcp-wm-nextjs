@@ -11,6 +11,8 @@ import { CloseIcon } from '@/lib/element/global/icons/close-icon';
 import { Tabs } from '@/lib/element/global/tabs';
 import LogoWefo from '@/../../public/images/headers/logo.png';
 import { T_ResponseGetMainMenuNavbar } from '@/api/navbar-menu/main-navbar/private-navbar/api.get-main-menu-navbar.type';
+import { T_ResponseGetMenuItemNavbar } from '@/api/navbar-menu/menu-items/api.get-menu-items-navbar.type';
+import ChevronDown from '@/lib/element/global/icons/chevron-button-navbar';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -151,41 +153,59 @@ export function Search({ active, setActive }: T_SearchProps) {
   );
 }
 
-export function LoginButton() {
+export function LoginButton({
+  menuItems,
+}: {
+  menuItems: T_ResponseGetMenuItemNavbar;
+}) {
   const elementRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
-  const logins = [
-    {
-      title: 'Internet Banking Personal',
-      color: 'orange-04',
-      link: 'https://biz.bri.co.id/',
-    },
-    {
-      title: 'Internet Banking Business',
-      color: 'orange-01',
-      link: 'https://biz.bri.co.id/',
-    },
-    {
-      title: 'Internet Banking Corporate',
-      color: 'green-400',
-      link: 'https://biz.bri.co.id/',
-    },
-  ];
+  const isScrolling = useScrollActive();
   useOnClickOutside(elementRef, () => setActive(false));
+
   return (
     <div
       ref={elementRef}
-      className="bg-white text-[#191056] px-6 pr-4 py-2 mdmax:py-1 mdmax:px-4 mdmax:pr-2 rounded-full inline-flex items-center cursor-pointer relative hover:bg-blue-900 hover:text-white duration-300"
+      className={[
+        `${isScrolling ? 'bg-black' : 'bg-wmcolor'}`,
+        `${isScrolling ? 'hover:border-blue-800 border-2' : 'hover:bg-white hover:border-blue-800 border-2'}`,
+        `text-[#191056] px-6 pr-4 py-2 mdmax:py-1 mdmax:px-4 mdmax:pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
+      ].join(' ')}
       onClick={() => setActive(!active)}
     >
-      <div>Login</div>
+      <div
+        className={[
+          `${isScrolling ? 'text-wmcolor' : 'text-white'}`,
+          'uppercase font-semibold group-hover:text-wmcolor',
+        ].join(' ')}
+      >
+        Login
+      </div>
       <div className="pl-2">
-        <svg className="w-5 h-5" width="32" height="32" viewBox="0 0 24 24">
-          <path
-            fill="currentColor"
-            d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z"
-          />
-        </svg>
+        <ChevronDown
+          className={[
+            `${isScrolling ? 'hidden' : ''}`,
+            `group-hover:hidden`,
+          ].join(' ')}
+          stroke="white"
+          width={30}
+          height={30}
+        />
+        <ChevronDown
+          className={[
+            `${isScrolling ? 'group-hover:hidden' : ''}`,
+            `hidden group-hover:flex`,
+          ].join(' ')}
+          stroke="#191056"
+          width={30}
+          height={30}
+        />
+        <ChevronDown
+          className={[`${isScrolling ? '' : 'hidden'}`, ,].join(' ')}
+          stroke="white"
+          width={30}
+          height={30}
+        />
       </div>
       <div
         className={[
@@ -196,34 +216,30 @@ export function LoginButton() {
       >
         <div
           className={`
-            absolute top-[1%] right-4 rotate-180
-            border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] 
-            border-l-transparent border-r-transparent border-white
-            h-5 w-5`}
+          absolute top-[1%] right-4 rotate-180
+          border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] 
+          border-l-transparent border-r-transparent border-white
+          h-5 w-5`}
         />
-        {logins.map((loginItem, index) => {
+        {menuItems?.map((loginItem, index) => {
           return (
             <div
               key={index}
               className="w-full bg-white mb-2 px-5 py-4 rounded-3xl"
             >
-              <Link href={loginItem.link} target="_blank">
+              <Link href={loginItem?.uri} target="_blank">
                 <div
-                  className={`flex items-center  ${loginItem.color === 'orange-01' ? 'text-orange-01' : loginItem.color === 'green-400' ? 'text-green-400' : 'text-orange-03'}`}
+                  className={`flex items-center space-x-3  ${loginItem.field_theme_color == 'green' ? 'text-orange-01' : 'text-green-400'}`}
                 >
                   <div className="mr-2">
-                    <svg
-                      className="w-6 h-6"
-                      width="32"
-                      height="32"
-                      viewBox="0 0 256 256"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M216 56h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V72a16 16 0 0 0-16-16M96 48a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm120 24v41.61A184 184 0 0 1 128 136a184.1 184.1 0 0 1-88-22.38V72Zm0 128H40v-68.36A200.2 200.2 0 0 0 128 152a200.25 200.25 0 0 0 88-20.37zm-112-88a8 8 0 0 1 8-8h32a8 8 0 0 1 0 16h-32a8 8 0 0 1-8-8"
-                      />
-                    </svg>
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon}`}
+                      alt=""
+                      width={30}
+                      height={30}
+                    />
                   </div>
+
                   <div className="">{loginItem.title}</div>
                 </div>
               </Link>
@@ -239,10 +255,12 @@ export default function CE_HeaderMagazine({
   headerTop,
   headerBottom,
   variant = 'transparent',
+  itemLogin,
 }: {
   headerTop: T_ResponseGetTopMenuNavbar;
   headerBottom: T_ResponseGetMainMenuNavbar;
   variant: 'transparent' | 'no-transparent';
+  itemLogin: T_ResponseGetMenuItemNavbar;
 }) {
   const pathname = usePathname();
   const currentLanguage = useSearchParams().get('lang');
@@ -262,6 +280,25 @@ export default function CE_HeaderMagazine({
       router.refresh();
     }
   };
+
+  //   const LIST_NAV_MENU = [
+  //   {
+  //     link: '/web/wealth-management/bri-private?lang=id',
+  //     title: 'bri private',
+  //   },
+  //   {
+  //     link: '/web/wealth-management/bri-prioritas?lang=id',
+  //     title: 'bri prioritas',
+  //   },
+  //   {
+  //     link: '/web/wealth-management/our-stories?lang=id',
+  //     title: 'cerita kami',
+  //   },
+  //   {
+  //     link: '',
+  //     title: '',
+  //   },
+  // ];
 
   return (
     <main>
@@ -286,7 +323,7 @@ export default function CE_HeaderMagazine({
             <div>
               <div className="flex items-center gap-2">
                 <div>
-                  <LoginButton />
+                  <LoginButton menuItems={itemLogin} />
                 </div>
                 <div onClick={() => setActiveMenu(true)}>
                   <svg
@@ -354,7 +391,7 @@ export default function CE_HeaderMagazine({
                         <div
                           className={[
                             `text-[0.813rem] font-light`,
-                            `${variant === 'transparent' ? 'text-black mdmax:text-black' : ''}`,
+                            `${variant === 'transparent' ? 'text-black mdmax:text-black hover:underline' : ''}`,
                           ].join(' ')}
                         >
                           {header.title}
@@ -411,7 +448,7 @@ export default function CE_HeaderMagazine({
                         className="pb-2 mdmax:pb-0 group border-b-4 border-transparent hover:border-blue-01 "
                       >
                         <Link
-                          href={`/aether/${item.below}/${item.title
+                          href={`/${item?.alias
                             ?.toLowerCase()
                             .replaceAll(' ', '-')}`}
                           className={[
@@ -478,7 +515,7 @@ export default function CE_HeaderMagazine({
                     );
                   })}
                   <div className="pb-2 border-b-4 border-transparent mdmax:hidden">
-                    <LoginButton />
+                    <LoginButton menuItems={itemLogin} />
                   </div>
                 </div>
               </div>

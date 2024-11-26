@@ -59,14 +59,12 @@ export default async function PageWealth({
   const theme = data?.field_main_menu?.[0]?.target_id;
 
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
-
   const listHomeNavbar = await ACT_GetMainMenuNavbar({ lang: 'id' });
   const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
   const itemMainFooter = await ACT_GetMiddleMenuFooter({ lang: 'en' });
   const itemMenuFloatNavigation = await ACT_GetFloatNavigation({ lang: 'en' });
-
   const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });
   const listPrivateNavbar = await ACT_GetPrivateMenuNavbar({ lang: 'id' });
 
