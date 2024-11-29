@@ -28,15 +28,6 @@ async function fetchData<T>(
     ...(options?.body && { body: JSON.stringify(options.body) }),
   });
 
-  if (
-    url.endsWith(
-      '/config_pages/wealth_management_footer?_format=json_recursive'
-    )
-  ) {
-    console.log('headers', headers);
-    console.log('asli ini', response);
-  }
-
   const contentType = response.headers.get('content-type');
 
   if (!response.ok) {
