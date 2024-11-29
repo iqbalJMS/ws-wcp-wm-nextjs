@@ -8,9 +8,9 @@ export const WIDGET_VARIANT = {
   variant07: 'div_menu_center_02',
   variant08: 'div_card_02',
   variant09: 'div_lounge',
-  variant10: '',
-  variant11: '',
-  variant12: '',
+  variant10: 'insight',
+  variant11: 'article',
+  variant12: 'program',
 };
 
 export const API_BASE_URL = 'https://admin-bri-corpsite.dev-kjt.id';

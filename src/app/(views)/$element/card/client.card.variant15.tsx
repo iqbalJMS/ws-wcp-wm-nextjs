@@ -25,7 +25,7 @@ export default function CE_CardVariant15({
 }) {
   return (
     <>
-      <div className="w-full flex justify-center pt-20">
+      <div className="w-full h-auto flex justify-center pt-20 pb-10">
         <div className=" w-[40rem] h-full md:w-[50rem] xl:w-[60rem] grid grid-cols-1 ">
           <section
             data-aos="fade-up"
@@ -43,7 +43,7 @@ export default function CE_CardVariant15({
               </h2>
             )}
           </section>
-          <section className="grid grid-cols-1 md:grid-cols-2 pt-16 space-x-0 lg:space-x-16">
+          <section className="grid grid-cols-1 md:grid-cols-2 pt-0 md:pt-16 space-x-0 lg:space-x-16">
             <div
               data-aos="fade-right"
               data-aos-duration="1000"

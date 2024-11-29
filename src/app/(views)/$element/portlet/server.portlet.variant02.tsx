@@ -24,7 +24,7 @@ export default async function SE_PortletVariant02({
             style={{
               backgroundImage: `url(${background ?? '/images/no-image.png'})`,
               backgroundSize: 'cover',
-              backgroundPositionY: 'center',
+              backgroundPosition: 'center',
             }}
           >
             <div className="absolute w-full h-full flex flex-col pl-12 justify-center items-center">
@@ -44,7 +44,7 @@ export default async function SE_PortletVariant02({
                 <div className="flex gap-4">
                   {buttonItems.map(({ buttonText, buttonLink }, index) => (
                     <Link href={buttonLink ?? ''} extern key={index}>
-                      <button className="font-semibold px-12 capitalize text-base bg-privatecolor hover:bg-white lg:rounded-full rounded-lg py-3 text-white hover:text-privatecolor duration-200">
+                      <button className="font-semibold px-12 capitalize text-base bg-privatecolor hover:bg-white rounded-full py-3 text-white hover:text-privatecolor duration-200">
                         {buttonText}
                       </button>
                     </Link>
