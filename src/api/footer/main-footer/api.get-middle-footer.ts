@@ -1,9 +1,9 @@
 'use server';
-import { T_ResponseGetMiddleFooterMenu } from './api.get-middle-footer.type';
 import { get } from '@/api/common/fetch';
+import { T_ResponseGetMiddleFooterMenu } from './api.get-middle-footer.type';
 
-const user = process.env.HEADERS_AUTHORIZATION;
-const pass = process.env.HEADERS_COOKIE;
+const user = process.env.DRUPAL_AUTH;
+const pass = process.env.DRUPAL_PASSWORD;
 
 export async function API_GetMiddleFooterMenu({
   // eslint-disable-next-line no-unused-vars
@@ -12,12 +12,12 @@ export async function API_GetMiddleFooterMenu({
   lang: string;
 }): Promise<T_ResponseGetMiddleFooterMenu> {
   try {
-    const auth = Buffer.from(`${user}:${pass}`).toString('base64');
-    const headers = { Authorization: `Basic${auth}` };
     const response: T_ResponseGetMiddleFooterMenu = await get(
       '/config_pages/wealth_management_footer?_format=json_recursive',
-      { headers }
+      { Authorization: `Basic ${btoa(`${user}:${pass}`)}` }
     );
+
+    console.log(response);
 
     return response;
   } catch (error) {

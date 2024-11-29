@@ -14,19 +14,28 @@ async function fetchData<T>(
   headers.append('Content-Type', 'application/json');
 
   if (options.headers) {
-    Object.keys(options.headers).map((value) =>
-      headers.append(value, options?.headers?.[value] ?? '')
-    );
+    Object.keys(options.headers).forEach((key) => {
+      if (options.headers) {
+        headers.append(key, options.headers[key]);
+      }
+    });
   }
 
   const response = await fetch(url, {
-    ...options,
-    next: {
-      revalidate: 120,
-    },
+    method: options.method,
+    next: { revalidate: 120 },
     headers,
-    body: options?.body ? JSON.stringify(options.body) : null,
+    ...(options?.body && { body: JSON.stringify(options.body) }),
   });
+
+  if (
+    url.endsWith(
+      '/config_pages/wealth_management_footer?_format=json_recursive'
+    )
+  ) {
+    console.log('headers', headers);
+    console.log('asli ini', response);
+  }
 
   const contentType = response.headers.get('content-type');
 
