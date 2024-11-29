@@ -17,8 +17,6 @@ export async function API_GetMiddleFooterMenu({
       { Authorization: `Basic ${btoa(`${user}:${pass}`)}` }
     );
 
-    console.log(response);
-
     return response;
   } catch (error) {
     // eslint-disable-next-line no-console
