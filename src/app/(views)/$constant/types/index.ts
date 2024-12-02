@@ -22,4 +22,5 @@ export type T_Widget =
   | 'breadcrumb'
   | 'our_story'
   | 'quote_slider'
+  | 'content_type'
   | 'video_slider';

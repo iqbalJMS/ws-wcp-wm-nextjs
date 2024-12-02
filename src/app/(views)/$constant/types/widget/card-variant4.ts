@@ -11,8 +11,9 @@ type T_EntityData = {
   content_translation_changed: any[];
   field_content: any[];
   field_image: any[];
-  field_primary_cta: any[];
+  field_primary_cta: Array<{ full_url: string }>;
   field_title: any[];
+  field_formatted_title: Array<{ value: string }>;
 };
 
 export type T_CardVariant04 = {

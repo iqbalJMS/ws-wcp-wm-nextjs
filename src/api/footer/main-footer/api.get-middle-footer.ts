@@ -1,6 +1,9 @@
 'use server';
-import { T_ResponseGetMiddleFooterMenu } from './api.get-middle-footer.type';
 import { get } from '@/api/common/fetch';
+import { T_ResponseGetMiddleFooterMenu } from './api.get-middle-footer.type';
+
+const user = process.env.DRUPAL_AUTH;
+const pass = process.env.DRUPAL_PASSWORD;
 
 export async function API_GetMiddleFooterMenu({
   // eslint-disable-next-line no-unused-vars
@@ -10,7 +13,8 @@ export async function API_GetMiddleFooterMenu({
 }): Promise<T_ResponseGetMiddleFooterMenu> {
   try {
     const response: T_ResponseGetMiddleFooterMenu = await get(
-      '/bricc-api/menu-items/wm-middle-footer?_format=json'
+      '/config_pages/wealth_management_footer?_format=json_recursive',
+      { Authorization: `Basic ${btoa(`${user}:${pass}`)}` }
     );
 
     return response;
@@ -22,6 +26,11 @@ export async function API_GetMiddleFooterMenu({
 }
 
 // const axios = require('axios');
+
+// const response: T_ResponseGetMiddleFooterMenu = await get(
+//   '/config_pages/wealth_management_footer?_format=json_recursive',
+//   { headers }
+// );
 
 // let config = {
 //   method: 'get',

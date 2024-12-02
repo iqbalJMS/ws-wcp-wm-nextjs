@@ -12,7 +12,7 @@ import { CloseIcon } from '@/lib/element/global/icons/close-icon';
 import Image from 'next/image';
 import ChevronDown from '@/lib/element/global/icons/chevron-button-navbar';
 import LogoHeader from '@/../../public/images/headers/logo.png';
-import { T_ResponseGetPrivateMenuNavbar } from '@/api/navbar-menu/main-navbar/private-navbar/api.get-private-menu-navbar.type';
+import { T_ResponseGetPriorityMenuNavbar } from '@/api/navbar-menu/main-navbar/priority-navbar/api.get-priority-menu-navbar.type';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -259,7 +259,7 @@ export default function PriorityHeader({
   itemLogin,
 }: {
   headerTop: T_ResponseGetTopMenuNavbar;
-  headerBottom: T_ResponseGetPrivateMenuNavbar;
+  headerBottom: T_ResponseGetPriorityMenuNavbar;
   variant: 'transparent' | 'no-transparent';
   itemLogin: T_ResponseGetMenuItemNavbar;
 }) {
@@ -371,10 +371,9 @@ export default function PriorityHeader({
                           />
                         )}
                         <div
-                          // href={header?.uri}
                           className={[
                             `text-[15px] font-light`,
-                            `${variant === 'transparent' ? 'text-white mdmax:text-black' : ''}`,
+                            `${variant === 'transparent' ? 'text-white mdmax:text-black hover:underline' : ''}`,
                           ].join(' ')}
                         >
                           {header.title}

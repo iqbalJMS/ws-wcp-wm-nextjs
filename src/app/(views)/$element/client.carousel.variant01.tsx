@@ -21,43 +21,31 @@ const getSlideToShow = (screenWidth: number) => {
 export default function CE_CarouselVariant1() {
   const data = [
     {
-      imgUrl:
-        'https://bri.co.id/documents/1044486/b9d018d9-0b7f-6a63-add2-81393d1bf8a8?download=false',
       label: 'A New Perspective of Investment',
       text: 'We are the one stop financial solution for the advancement of your business.',
       btnText: 'test',
     },
     {
-      imgUrl:
-        'https://bri.co.id/documents/1044486/b27c455d-f0c9-1dfd-4538-b6b1dbb29a1d?download=false',
       label: 'An Old Tradition for a New Generations',
       text: 'As lives are driven by values, we believe those values need to be passed on to the next generations. Let every value protected and shared as our legacy.',
       btnText: 'test',
     },
     {
-      imgUrl:
-        'https://bri.co.id/documents/1044486/31406447-ca4b-dcb6-87aa-a5c51c4bb1de?download=false',
       label: 'Helping You Get Where You Want to be',
       text: 'We have just the right solutions for your financial goals. Our mission is to focus on the details',
       btnText: 'test',
     },
     {
-      imgUrl:
-        'https://bri.co.id/documents/1044486/a0c1360b-8105-7777-5806-b82e785ce424?download=false',
       label: 'Helping You Get Where You Want to be',
       text: 'We have just the right solutions for your financial goals. Our mission is to focus on the details, so you can focus on the big picture.',
       btnText: 'test',
     },
     {
-      imgUrl:
-        'https://bri.co.id/documents/1044486/29c21355-0a46-0c54-aedd-b568b6d52a80?download=false',
       label: 'Helping You Get Where You Want to be',
       text: 'We have just the right solutions for your financial goals. Our mission is to focus on the details, so you can focus on the big picture.',
       btnText: 'test',
     },
     {
-      imgUrl:
-        'https://bri.co.id/documents/1044486/29c21355-0a46-0c54-aedd-b568b6d52a80?download=false',
       label: 'Helping You Get Where You Want to be',
       text: 'We have just the right solutions for your financial goals. Our mission is to focus on the details, so you can focus on the big picture.',
       btnText: 'test',
@@ -240,14 +228,6 @@ export default function CE_CarouselVariant1() {
                   key={index}
                   className="cursor-pointer relative w-full overflow-hidden z-0"
                 >
-                  <div
-                    className="group flex flex-col justify-between w-full h-96 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-center transition-all ease-in-out transform-gpu delay-75 "
-                    style={{
-                      backgroundImage: `url(${slide.imgUrl})`,
-                    }}
-                  >
-                    <div className=" w-full h-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
-                  </div>
                   {/* <div className="absolute h-60 flex flex-col justify-between items-center bottom-0 p-5"> */}
                   <PlayIcon
                     width={50}

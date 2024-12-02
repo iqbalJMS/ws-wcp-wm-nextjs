@@ -44,7 +44,7 @@ export default function CE_CardVariant5({
           <section
             data-aos="fade-up"
             data-aos-duration="1000"
-            className="pb-10 w-96 md:flex flex-col justify-center"
+            className="pb-10 pr-10 lg:pr-0 w-96 md:flex flex-col justify-center"
           >
             {label && (
               <h1 className="pb-3 text-3xl font-bold uppercase ">
@@ -72,7 +72,7 @@ export default function CE_CardVariant5({
                 <Link
                   href={'/investasiBri'}
                   key={index}
-                  className="relative w-full h-80 overflow-hidden cursor-pointer flex-none md:flex-1 "
+                  className="bg-blue-400 relative w-full h-60 md:h-80 overflow-hidden cursor-pointer flex-none md:flex-1 "
                 >
                   <div
                     className="w-full h-96 flex items-end justify-between bg-no-repeat bg-cover hover:scale-125 bg-center transition-all ease-in-out transform-gpu delay-75 duration-300"
@@ -82,11 +82,11 @@ export default function CE_CardVariant5({
                   >
                     <div className="w-full h-full bg-black opacity-40">.</div>
                   </div>
-                  <button className="text-white text-lg font-medium absolute left-5 bottom-5">
+                  <button className="text-white text-lg font-medium absolute left-5 md:left-2 lg:left-10 bottom-5">
                     {item?.title}
                   </button>
                   <ArrowRightIcon
-                    className="absolute right-16 bottom-5"
+                    className="absolute right-5 md:right-2 lg:right-10 bottom-5"
                     width={25}
                     fill="white"
                     stroke="white"
@@ -94,7 +94,7 @@ export default function CE_CardVariant5({
                 </Link>
               ))}
             </div>
-            <div className="md:hidden w-full flex justify-end px-10 py-3 space-x-3 ">
+            <div className="md:hidden w-full flex justify-end px-1 py-3 space-x-3">
               <button
                 className={[
                   'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white mdmax:',

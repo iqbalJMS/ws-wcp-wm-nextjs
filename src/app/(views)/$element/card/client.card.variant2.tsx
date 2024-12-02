@@ -64,6 +64,7 @@ export default function CE_CardVariant2({
                   alt={'icon-card'}
                   width={70}
                   height={70}
+                  className="group-hover:invert brightness-50"
                 />
 
                 {item?.labelcard && (

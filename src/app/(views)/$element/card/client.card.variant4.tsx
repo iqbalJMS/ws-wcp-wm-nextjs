@@ -7,7 +7,9 @@ import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 export default function CE_CardVariant4({
   data,
+  title,
 }: {
+  title: string;
   data: Array<{
     image: string;
     logo: string;
@@ -17,26 +19,28 @@ export default function CE_CardVariant4({
 }) {
   return (
     <>
-      <main className="relative w-full h-auto flex justify-center  overflow-hidden">
+      <div className="relative w-full h-auto flex justify-center p-5 overflow-hidden">
         <section className="w-full lg:w-11/12">
-          <h1
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            className="text-center pb-20 text-3xl font-semibold uppercase"
-          >
-            layanan kami
-          </h1>
-          <div className="w-full grid grid-cols-1 gap-y-5 place-items-center lg:grid-cols-2 xl:px-48 ">
+          {title && (
+            <h1
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              className="text-center pb-20 text-3xl font-semibold uppercase"
+            >
+              {parseHTMLToReact(title)}
+            </h1>
+          )}
+          <div className="w-full grid grid-cols-1 gap-y-4 place-items-center lg:grid-cols-2 xl:px-48 ">
             {data?.map((item, index) => (
               <Link
                 data-aos="fade-right"
                 data-aos-duration="1000"
-                href={'/bri-private'}
+                href={`/${item?.link}`}
                 key={index}
-                className="cursor-pointer group relative w-full md:w-10/12 lg:w-full h-60 lg:h-72 overflow-hidden"
+                className="cursor-pointer group relative w-full md:w-10/12 lg:w-full h-44 lg:h-72 overflow-hidden bg-center"
               >
                 <div
-                  className="flex flex-col justify-between h-72 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-center transition-all ease-in-out transform-gpu delay-75"
+                  className="flex flex-col justify-between h-72 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-bottom transition-all ease-in-out transform-gpu delay-75"
                   style={{
                     backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
                   }}
@@ -61,7 +65,7 @@ export default function CE_CardVariant4({
                 </div>
                 <span>
                   {item?.label && (
-                    <h1 className="absolute text-white text-base font-medium bottom-12 left-10 lg:left-16">
+                    <h1 className="absolute text-white text-base font-medium bottom-5 left-10 lg:left-16">
                       {parseHTMLToReact(item?.label)}
                     </h1>
                   )}
@@ -72,7 +76,7 @@ export default function CE_CardVariant4({
         </section>
         <div className="bg-[#DCDCDC] w-[400px] h-[120px] absolute -z-10 bottom-0 left-20"></div>
         <div className="bg-[#DCDCDC] w-[400px] h-[120px] absolute -z-10 top-[116px] right-20"></div>
-      </main>
+      </div>
     </>
   );
 }

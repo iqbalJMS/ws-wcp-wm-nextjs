@@ -17,9 +17,9 @@ export default function CE_CardVariant6({
 }) {
   return (
     <>
-      <main className="w-full flex justify-center pb-20">
+      <div className="w-full flex justify-center p-5">
         <div
-          className="w-full h-[50vh] -z-10 absolute"
+          className="w-full h-[50vh] -z-10 absolute "
           style={{
             backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${backGround})`,
           }}
@@ -48,12 +48,12 @@ export default function CE_CardVariant6({
                   width={1000}
                   height={1000}
                   alt="image dummy"
-                  className="w-10/12 h-full bg-no-repeat bg-cover hover:scale-125 bg-center transition-all ease-in-out transform-gpu duration-300"
+                  className="w-full md:w-10/12 h-full bg-no-repeat bg-cover hover:scale-125 bg-center transition-all ease-in-out transform-gpu duration-300"
                 />
               )}
             </div>
           </section>
-          <section className="space-y-4 sm:pt-5 w-8/12 flex flex-col  items-start">
+          <section className="space-y-4 sm:pt-5 w-8/12 flex flex-col items-start">
             <div
               data-aos="fade-up"
               data-aos-duration="1000"
@@ -96,7 +96,7 @@ export default function CE_CardVariant6({
             <section />
           </section>
         </div>
-      </main>
+      </div>
     </>
   );
 }

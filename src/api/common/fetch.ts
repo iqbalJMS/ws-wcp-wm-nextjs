@@ -5,26 +5,27 @@ import { T_FetchOptions } from './fetch.type';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT || '';
 
-const DEFAULT_HEADERS: HeadersInit = {
-  'Content-Type': 'application/json',
-};
-
 async function fetchData<T>(
   endpoint: string,
   options: T_FetchOptions = {}
 ): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
+  const headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+
+  if (options.headers) {
+    Object.keys(options.headers).forEach((key) => {
+      if (options.headers) {
+        headers.append(key, options.headers[key]);
+      }
+    });
+  }
 
   const response = await fetch(url, {
-    ...options,
-    next: {
-      revalidate: 120,
-    },
-    headers: {
-      ...DEFAULT_HEADERS,
-      ...options.headers,
-    },
-    body: options?.body ? JSON.stringify(options.body) : null,
+    method: options.method,
+    next: { revalidate: 120 },
+    headers,
+    ...(options?.body && { body: JSON.stringify(options.body) }),
   });
 
   const contentType = response.headers.get('content-type');
@@ -50,7 +51,7 @@ async function fetchData<T>(
 }
 export async function get<T>(
   endpoint: string,
-  headers?: Record<string, string>
+  headers: Record<string, any>
 ): Promise<T> {
   return fetchData<T>(endpoint, { method: 'GET', headers });
 }
