@@ -9,10 +9,11 @@ import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from '@/lib/element/global/link';
 import { Tabs } from '@/lib/element/global/tabs';
 import { CloseIcon } from '@/lib/element/global/icons/close-icon';
-import Image from 'next/image';
 import ChevronDown from '@/lib/element/global/icons/chevron-button-navbar';
-import LogoHeader from '@/../../public/images/headers/logo.png';
 import { T_ResponseGetPrivateMenuNavbar } from '@/api/navbar-menu/main-navbar/private-navbar/api.get-private-menu-navbar.type';
+import { T_ResponGetHeaderLogo } from '@/api/header-logo/api.get-header-logo.type';
+import { T_ResponGetHeaderLogoPrivate } from '@/api/header-logo/header-private-logo/api.get-header-logo.private.type';
+import Image from 'next/image';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -257,11 +258,15 @@ export default function PrivateHeader({
   headerBottom,
   variant = 'transparent',
   itemLogin,
+  headerLogo,
+  privateLogo,
 }: {
   headerTop: T_ResponseGetTopMenuNavbar;
   headerBottom: T_ResponseGetPrivateMenuNavbar;
   variant: 'transparent' | 'no-transparent';
   itemLogin: T_ResponseGetMenuItemNavbar;
+  headerLogo?: T_ResponGetHeaderLogo;
+  privateLogo?: T_ResponGetHeaderLogoPrivate;
 }) {
   const pathname = usePathname();
   const currentLanguage = useSearchParams().get('lang');
@@ -296,7 +301,14 @@ export default function PrivateHeader({
             <div className="w-[5rem]">
               <Image
                 alt="logo-bri"
-                src={LogoHeader}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
+                width={128}
+                height={53}
+                className={`${isScrolling ? '' : ''} `}
+              />
+              <Image
+                alt="logo-bri"
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${privateLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
                 width={128}
                 height={53}
                 className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
@@ -415,7 +427,14 @@ export default function PrivateHeader({
               <Link className="" href={'/'}>
                 <Image
                   alt="logo-bri"
-                  src={LogoHeader}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
+                  width={128}
+                  height={53}
+                  className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
+                />
+                <Image
+                  alt="logo-bri"
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${privateLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
                   width={128}
                   height={53}
                   className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}

@@ -1,64 +1,103 @@
 'use server';
 
 import React from 'react';
-import Image from './image';
-import Link from './link';
-import { T_ResponseGetMiddleFooterMenu } from '@/api/footer/main-footer/api.get-middle-footer.type';
+import { T_ResponseGetMainFooterMenu } from '@/api/footer/main-footer/api.get-middle-footer.type';
 import { T_ResponseGetBottomLeftFooter } from '@/api/footer/bottom-footer/api.get-bottom-left-footer.type';
 import { T_ResponseGetBottomRightFooter } from '@/api/footer/bottom-footer/api.get-bottom-right-footer.type';
+import Image from 'next/image';
+import { T_ResponseGetMainMiddleFooter } from '@/api/footer/middle-main-footer/api.get-main-middle-footer.type';
+import Link from 'next/link';
 
 type T_FooterProps = {
-  main_middle_footer: T_ResponseGetMiddleFooterMenu;
+  main_footer?: T_ResponseGetMainFooterMenu;
+  middle_main_footer: T_ResponseGetMainMiddleFooter;
   bottom_right_footer: T_ResponseGetBottomRightFooter;
   bottom_left_footer: T_ResponseGetBottomLeftFooter;
 };
 
-type T_RowElementProps = {
-  title: string;
-  icon: string;
-  alias: null | string;
-};
-
-const RowElement = ({ title, alias, icon }: T_RowElementProps) => {
+function RowElement({
+  data,
+  middleData,
+}: {
+  data?: T_ResponseGetMainFooterMenu;
+  middleData: T_ResponseGetMainMiddleFooter;
+}) {
   return (
     <>
-      <h1 className="text-[#c7bdbd] lg:mb-5 mb-2 font-semibold lg:text-xl text-lg">
-        Kantor Pusat BRI
-      </h1>
-      <Link
-        href={alias ?? '/'}
-        className={`px-0 flex items-center gap-2 lg:mb-3 mb-2 lg:text-sm text-sm justify-start font-normal`}
-      >
-        {icon && (
-          <Image
-            src={`/images/footers/${icon}.svg`}
-            width={18}
-            height={18}
-            alt={`icon-${icon}`}
-          />
-        )}
-        {title}
-      </Link>
-      {/* {socialMedia?.length !== 0 && (
-        <div className="flex justify-start items-center gap-6">
-          {socialMedia?.map(({ url, icon }, index) => (
-            <Link extern={true} href={url ?? '/'} key={index}>
-              {icon && (
+      <div className="w-full py-2 flex justify-center lg:flex-none">
+        <div className="w-full md:w-10/12 lg:w-full h-full grid grid-cols-1 lg:grid-cols-3 px-5 xl:px-52 place-items-center ">
+          <div className="w-full xl:w-80 h-44 flex flex-col items-start border-b lg:border-none border-white py-5 lg:py-0">
+            <h1 className="text-[#B2B2B2] text-xl font-bold pb-3">
+              Kantor Pusat BRI
+            </h1>
+            <div>
+              <h1 className="text-white text-sm font-extralight">
+                {data?.field_company_name?.[0]?.value}
+              </h1>
+            </div>
+            <div className="flex items-start pt-2">
+              <Image
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${data?.field_company_address_icon?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
+                width={30}
+                height={30}
+                alt=""
+              />
+              {data?.field_company_address?.map(({ value }, index) => (
+                <div key={index} className="w-8/12 pl-2">
+                  <h1 className="text-white text-sm font-extralight leading-7">
+                    {value}
+                  </h1>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="w-full xl:w-80 h-44 flex flex-col items-start border-b lg:border-none border-white py-5 lg:py-0">
+            <h1 className="text-[#B2B2B2] text-xl font-bold pb-3">
+              Hubungi Kami
+            </h1>
+            {middleData?.map(({ title, icon, alias }, index) => (
+              <Link
+                key={index}
+                className="group hover:cursor-pointer flex items-start py-2 "
+                href={`/${alias}`}
+              >
                 <Image
-                  src={`/images/footers/${icon}.svg`}
-                  width={18}
-                  height={18}
-                  alt={`icon-${icon}`}
-                  extern={false}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon}`}
+                  width={20}
+                  height={20}
+                  alt=""
                 />
-              )}
-            </Link>
-          ))}
+                <div className="w-full pl-3">
+                  <h1 className="text-white group-hover:underline text-sm font-extralight">
+                    {title}
+                  </h1>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="w-full xl:w-80 h-44 flex flex-col items-start py-5 lg:py-0">
+            <h1 className="text-[#B2B2B2] text-xl font-bold pb-3">
+              Terdaftar Dan Diawasi Oleh:
+            </h1>
+            <div className="flex items-center space-x-3">
+              {data?.field_multiple_logo.map((item, index) => (
+                <div key={index} className="w-40">
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.thumbnail?.[0]?.uri?.[0]?.url}`}
+                    width={100}
+                    height={100}
+                    alt=""
+                    className="w-36 h-16"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      )} */}
+      </div>
     </>
   );
-};
+}
 
 function TermsAllReservedElement({
   termsData,
@@ -104,7 +143,6 @@ function TermsAllReservedElement({
                 <div className="flex justify-center items-center gap-6 px-4">
                   {socialMediaData?.map(({ uri, icon, title }, index) => (
                     <Link
-                      extern={true}
                       target="blank"
                       href={uri}
                       key={index}
@@ -112,9 +150,8 @@ function TermsAllReservedElement({
                     >
                       {icon && (
                         <Image
-                          src={icon}
+                          src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon}`}
                           width={16}
-                          extern={false}
                           height={16}
                           alt={title}
                         />
@@ -132,19 +169,16 @@ function TermsAllReservedElement({
 }
 
 export default async function GlobalFooter({
-  main_middle_footer,
+  main_footer,
+  middle_main_footer,
   bottom_left_footer,
   bottom_right_footer,
 }: T_FooterProps) {
   return (
-    <footer className="pt-6 lg:pt-11 shadow-[0_-4px_4px_-2px_rgba(0,0,0,0.1)] bg-[#1C1C1C]">
-      <div className="container text-left lg:mb-6">
-        <div className="grid lg:grid-cols-9 grid-cols-1 lg:space-x-6 lg:mt-6 mt-3 ">
-          {main_middle_footer?.map(({ title, icon, alias }, index) => (
-            <div className="lg:col-span-2 col-span-1 lg:mb-0 mb-4" key={index}>
-              <RowElement title={title} icon={icon} alias={alias} />
-            </div>
-          ))}
+    <footer className="shadow-[0_-4px_4px_-2px_rgba(0,0,0,0.1)] bg-[#1C1C1C]">
+      <div className="w-full h-auto py-10">
+        <div className="w-full">
+          <RowElement data={main_footer} middleData={middle_main_footer} />
         </div>
       </div>
 

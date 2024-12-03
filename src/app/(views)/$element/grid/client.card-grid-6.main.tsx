@@ -34,10 +34,10 @@ const CE_CardGrid6Main = ({
                     )}
                   </div>
                   <div className="p-5">
-                    <div className="text-privatecolor text-xl mb-2">
+                    <div className="text-privatecolor text-xl font-bold mb-2">
                       {card.title}
                     </div>
-                    <div className="mb-5">
+                    <div className="mb-5 text-slate-600">
                       {parseHTMLToReact(card.description)}
                     </div>
                     <div>

@@ -4,7 +4,7 @@ import Link from '@/lib/element/global/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
 
-const CE_CardGrid5Main = ({
+const CE_CardGrid7Main = ({
   dataCard,
 }: {
   dataCard: Array<{
@@ -57,10 +57,10 @@ const CE_CardGrid5Main = ({
                         {formatDate(item?.date ?? 'date')}
                       </span>
                     </div>
-                    <div className="text-privatecolor font-bold text-xl mb-5 pt-3">
+                    <div className="text-privatecolor line-clamp-2 font-bold text-xl mb-5 pt-3">
                       {parseHTMLToReact(item?.title)}
                     </div>
-                    <div className="font-light">
+                    <div className="font-light line-clamp-3">
                       {parseHTMLToReact(item?.description)}
                     </div>
                   </div>
@@ -74,4 +74,4 @@ const CE_CardGrid5Main = ({
   );
 };
 
-export default CE_CardGrid5Main;
+export default CE_CardGrid7Main;

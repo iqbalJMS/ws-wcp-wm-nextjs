@@ -14,7 +14,7 @@ type T_FieldMediaImage = {
   changed: any[];
 };
 
-type T_FieldCompanyAddressIcon = {
+type T_FieldLogo = {
   entity_type: any[];
   entity_bundle: any[];
   mid: any[];
@@ -36,21 +36,25 @@ type T_FieldCompanyAddressIcon = {
   field_media_image: any[];
 };
 
-export type T_ResponseGetMainFooterMenu = {
+type T_FieldType = {
+  uuid: string;
+  langcode: string;
+  status: boolean;
+  id: string;
+  label: string;
+  context: Array<{ show_warning: boolean }>;
+  menu: Array<{ path: string; description: string }>;
+};
+
+export type T_ResponGetHeaderLogoPrivate = {
   entity_type: Array<{ value: string }>;
   entity_bundle: Array<{ value: string }>;
   id: Array<{ value: number }>;
   uuid: Array<{ value: string }>;
   label: Array<{ value: string }>;
-  type: any[];
-  context: any[];
-  changed: any[];
-  options: Array<{ external: true }>;
-  field_image: any[];
-  icon: string;
-  field_company_address: Array<{ value: string }>;
-  field_company_address_icon: Array<T_FieldCompanyAddressIcon>;
-  field_company_name: Array<{ value: string }>;
-  field_copyright: Array<{ value: string }>;
-  field_multiple_logo: Array<T_FieldCompanyAddressIcon>;
+  type: Array<T_FieldType>;
+  context: Array<{ value: string }>;
+  changed: Array<{ value: string }>;
+  field_logo: Array<T_FieldLogo>;
+  field_logo_alternative: Array<T_FieldLogo>;
 };

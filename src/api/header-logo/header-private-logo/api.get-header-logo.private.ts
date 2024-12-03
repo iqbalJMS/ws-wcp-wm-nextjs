@@ -1,19 +1,19 @@
 'use server';
 import { get } from '@/api/common/fetch';
-import { T_ResponseGetMainFooterMenu } from './api.get-middle-footer.type';
+import { T_ResponGetHeaderLogoPrivate } from './api.get-header-logo.private.type';
 
 const user = process.env.DRUPAL_AUTH;
 const pass = process.env.DRUPAL_PASSWORD;
 
-export async function API_GetMainFooterMenu({
+export async function API_GetHeaderLogoPrivate({
   // eslint-disable-next-line no-unused-vars
   lang,
 }: {
   lang: string;
-}): Promise<T_ResponseGetMainFooterMenu | null> {
+}): Promise<T_ResponGetHeaderLogoPrivate | null> {
   try {
-    const response: T_ResponseGetMainFooterMenu = await get(
-      '/config_pages/wealth_management_footer?_format=json_recursive',
+    const response: T_ResponGetHeaderLogoPrivate = await get(
+      '/config_pages/wealth_management_private?_format=json_recursive',
       { Authorization: `Basic ${btoa(`${user}:${pass}`)}` }
     );
 

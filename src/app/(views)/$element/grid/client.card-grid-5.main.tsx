@@ -1,8 +1,8 @@
 'use client';
 
-import Link from '@/lib/element/global/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const CE_CardGrid5Main = ({
   dataCard,
@@ -13,7 +13,7 @@ const CE_CardGrid5Main = ({
     date: string;
     image: string;
     description: string;
-    link: string;
+    nid: string;
   }>;
 }) => {
   const formatDate = (dateString: string): string => {
@@ -32,7 +32,7 @@ const CE_CardGrid5Main = ({
             {dataCard?.map((item, index) => (
               <Link
                 key={index}
-                href={item?.link}
+                href={`/${item?.nid}`}
                 className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
               >
                 <div>
@@ -57,10 +57,10 @@ const CE_CardGrid5Main = ({
                         {formatDate(item?.date ?? 'date')}
                       </span>
                     </div>
-                    <div className="text-privatecolor font-bold text-xl mb-5 pt-3">
+                    <div className="text-privatecolor line-clamp-2 font-bold text-xl mb-5 pt-3">
                       {parseHTMLToReact(item?.title)}
                     </div>
-                    <div className="font-light">
+                    <div className="font-light line-clamp-3">
                       {parseHTMLToReact(item?.description)}
                     </div>
                   </div>

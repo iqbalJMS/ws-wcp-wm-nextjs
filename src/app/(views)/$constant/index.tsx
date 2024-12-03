@@ -106,6 +106,10 @@ const CE_CardGrid6Main = dynamic(
   () => import('@/app/(views)/$element/grid/client.card-grid-6.main')
 );
 
+const CE_CardGrid7Main = dynamic(
+  () => import('@/app/(views)/$element/grid/client.card-grid-7.main')
+);
+
 export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
   const components: Record<T_Widget, T_ComponentMapWidget> = {
     slider: {
@@ -742,25 +746,14 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: (...props) => {
         const findEntityBundle = props?.[0]?.entity;
         const data = props?.[0]?.data;
-        // const title = props?.[0]?.title;
-        // const subtitle = props?.[0]?.subtitle;
-        // const desctitle = props?.[0]?.desctitle;
-        // const data = props?.[0]?.data;
-        // const label = props?.[0]?.label;
-        // const sublabel = props?.[0]?.sublabel;
-        // const image = props?.[0]?.image;
-        // const desc = props?.[0]?.desc;
-        // const link = props?.[0]?.link;
-        // const backGround = props?.[0]?.backGround;
-        // const bgImage = props?.[0]?.bgImage;
-        // const buttonText = props?.[0]?.buttonText;
-        // const subTitle = props?.[0]?.subTitle;
 
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
             return <CE_CardGrid5Main dataCard={data} />;
           case WIDGET_VARIANT.variant12:
             return <CE_CardGrid6Main dataCard={data} />;
+          case WIDGET_VARIANT.variant11:
+            return <CE_CardGrid7Main dataCard={data} />;
 
           default:
             return <></>;
@@ -768,22 +761,32 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       },
       props: (_component: T_Insight) => {
         const findEntityBundle =
-          _component?.field_reference_content?.[0]?.entity_bundle?.[0]?.value;
-        const dataGridV5 = _component?.field_reference_content.map((item) => {
+          _component?.field_content_type?.[0]?.type?.[0]?.type;
+        const dataGridV5 = _component?.field_content_type?.map((item) => {
           return {
             title: item?.title?.[0]?.value,
             date: item?.created?.[0]?.value,
             category: item?.field_items?.[0]?.field_title?.[0]?.value,
             description: item?.field_summary?.[0]?.value,
             image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
-            link: item?.path?.[0]?.alias,
+            nid: item?.nid?.[0]?.value,
           };
         });
 
-        const dataGridV6 = _component?.field_reference_content.map((item) => {
+        const dataGridV6 = _component?.field_content_type?.map((item) => {
           return {
             title: item?.title?.[0]?.value,
             description: item?.field_summary?.[0]?.value,
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+            link: item?.path?.[0]?.alias,
+          };
+        });
+        const dataGridV7 = _component?.field_content_type.map((item) => {
+          return {
+            title: item?.title?.[0]?.value,
+            date: item?.created?.[0]?.value,
+            category: item?.field_article_category?.[0]?.name?.[0]?.value,
+            description: item?.body?.[0]?.value,
             image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
             link: item?.path?.[0]?.alias,
           };
@@ -799,6 +802,11 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return {
               entity: findEntityBundle,
               data: dataGridV6,
+            };
+          case WIDGET_VARIANT.variant11:
+            return {
+              entity: findEntityBundle,
+              data: dataGridV7,
             };
 
           default:

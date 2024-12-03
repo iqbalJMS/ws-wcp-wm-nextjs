@@ -19,6 +19,12 @@ import OurStoryHeader from '@/lib/element/global/header/our-story-header';
 import ScrollToTopHome from '@/lib/element/global/scroll-top/scroll.top-home';
 import ScrollToTopPrivate from '@/lib/element/global/scroll-top/scroll.top-private';
 import ScrollToTopPriority from '@/lib/element/global/scroll-top/scroll.top-priority';
+import GlobalFooter from '@/lib/element/global/global.footer';
+import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-footer/action.get.main-middle-footer';
+import { ACT_GetMainMenuFooter } from '@/app/(views)/$action/main-footer/action.get.main-footer';
+import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/action.get.bottom.left.footer';
+import { ACT_GetBottomRightFooter } from '@/app/(views)/$action/bottom-footer/action.get.bottom.right.footer';
+import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
 
 export default async function PageWealthDetail({
   params: { slug },
@@ -65,9 +71,12 @@ export default async function PageWealthDetail({
   const listHomeNavbar = await ACT_GetMainMenuNavbar({ lang: 'id' });
   const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });
   const listPrivateNavbar = await ACT_GetPrivateMenuNavbar({ lang: 'id' });
-
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
-
+  const itemMiddleMainFooter = await ACT_GetMainMiddleFooter({ lang: 'en' });
+  const itemMainFooter = await ACT_GetMainMenuFooter({ lang: 'en' });
+  const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
+  const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
+  const itemPrivateLogo = await ACT_GetHeaderLogoPrivate({ lang: 'en' });
   const theme = data?.field_main_menu?.[0]?.target_id;
 
   return (
@@ -94,6 +103,7 @@ export default async function PageWealthDetail({
           headerBottom={listPrivateNavbar}
           variant={'transparent'}
           itemLogin={itemMenuLogin}
+          privateLogo={itemPrivateLogo || undefined}
         />
       )}
       <CE_FloatingMain data={itemMenuFloatNavigation} variant={theme} />
@@ -102,6 +112,12 @@ export default async function PageWealthDetail({
           <Component {...props} />
         </React.Fragment>
       ))}
+      <GlobalFooter
+        bottom_right_footer={listBottomRightFooter}
+        bottom_left_footer={listBottomLeftFooter}
+        main_footer={itemMainFooter || undefined}
+        middle_main_footer={itemMiddleMainFooter}
+      />
       {theme === 'wm-main-navigation' && <ScrollToTopHome />}
       {theme === 'wm-private-main-navigation' && <ScrollToTopPrivate />}
       {theme === 'wm-priority-main-navigation' && <ScrollToTopPriority />}
