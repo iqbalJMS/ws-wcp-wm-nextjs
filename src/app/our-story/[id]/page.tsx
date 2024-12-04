@@ -8,18 +8,21 @@ import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import GlobalFooter from '@/lib/element/global/global.footer';
 import { ACT_GetBottomRightFooter } from '@/app/(views)/$action/bottom-footer/action.get.bottom.right.footer';
 import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/action.get.bottom.left.footer';
-import { ACT_GetMiddleMenuFooter } from '@/app/(views)/$action/main-footer/action.get.main-footer';
+import { ACT_GetMainMenuFooter } from '@/app/(views)/$action/main-footer/action.get.main-footer';
 import { ACT_GetOurStoryDetail } from '@/app/(views)/$action/action.get.our-story.detail';
 import CE_BreadcrumbStory from '@/app/our-story/$element/client.breadcrumb.our-story';
 import GlobalHeader from '@/lib/element/global/header/home-header';
+import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-footer/action.get.main-middle-footer';
+import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listHeaderBottom = await ACT_GetMainMenuNavbar({ lang: 'en' });
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
-  const itemMainFooter = await ACT_GetMiddleMenuFooter({ lang: 'en' });
-
+  const itemMainFooter = await ACT_GetMainMenuFooter({ lang: 'en' });
+  const itemMiddleMainFooter = await ACT_GetMainMiddleFooter({ lang: 'en' });
+  const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
   const getOurstoryData = await ACT_GetOurStoryDetail({
     lang: 'en',
     alias: 'node',
@@ -35,7 +38,7 @@ export default async function page({ params }: { params: { id: string } }) {
           headerTop={listHeaderTop}
           headerBottom={listHeaderBottom}
           variant={'transparent'}
-          itemLogin={[]}
+          itemLogin={itemMenuLogin}
         />
         <div className="relative overflow-hidden h-[65vh] lg:mb-[3.125rem] w-full bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full flex justify-center items-center before:bg-gradient-to-b before:from-black before:to-black before:opacity-40 z-0 border-b-[15px] border-[#D2D2D2]">
           <Image
@@ -83,9 +86,10 @@ export default async function page({ params }: { params: { id: string } }) {
           </div>
         </section>
         <GlobalFooter
-          main_middle_footer={itemMainFooter}
           bottom_right_footer={listBottomRightFooter}
           bottom_left_footer={listBottomLeftFooter}
+          main_footer={itemMainFooter || undefined}
+          middle_main_footer={itemMiddleMainFooter}
         />
       </div>
     </>

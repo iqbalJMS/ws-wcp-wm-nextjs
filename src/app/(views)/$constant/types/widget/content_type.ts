@@ -53,6 +53,7 @@ type T_FieldImage = {
 };
 
 type T_field_reference_content = {
+  field_article_category: Array<{ name: Array<{ value: string }> }>;
   entity_type: Array<{ value: string }>;
   entity_bundle: Array<{ value: string }>;
   nid: Array<{ value: number }>;
@@ -95,6 +96,25 @@ type T_field_reference_content = {
   }>;
 };
 
+type T_content_type = {
+  nid: Array<{ value: string }>;
+  uuid: Array<{ value: string }>;
+  vid: Array<{ value: string }>;
+  langcode: Array<{ value: string }>;
+  type: Array<{ type: string }>;
+  uid: any[];
+  title: Array<{ value: string }>;
+  created: Array<{ value: string }>;
+  path: Array<{ alias: string }>;
+  body: Array<{ value: string }>;
+  field_article_category: Array<{ name: Array<{ value: string }> }>;
+  field_hero_image: any[];
+  field_image: Array<T_FieldImage>;
+  field_site_id: any[];
+  field_summary: Array<{ value: string }>;
+  field_items: Array<{ field_title: Array<{ value: string }> }>;
+};
+
 export type T_Insight = {
   entity_type: any[];
   entity_bundle: Array<{ value: string }>;
@@ -106,6 +126,6 @@ export type T_Insight = {
   content_translation_source: Array<{ value: string }>;
   content_translation_outdated: Array<{ value: boolean }>;
   content_translation_changed: Array<{ value: string; format: string }>;
-  field_content_type: any[];
+  field_content_type: Array<T_content_type>;
   field_reference_content: Array<T_field_reference_content>;
 };

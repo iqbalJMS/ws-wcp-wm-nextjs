@@ -22,7 +22,7 @@ const CE_BannerMain = ({
       {variant === 'wm-private-main-navigation' && (
         <CE_BannerVariant02 data={data} />
       )}
-      {variant === 'wm-priority-main-navigation' && (
+      {variant === 'wm-prioritas-main-navigation' && (
         <CE_BannerVariant03 data={data} />
       )}
     </>

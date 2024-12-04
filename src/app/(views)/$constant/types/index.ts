@@ -23,4 +23,5 @@ export type T_Widget =
   | 'our_story'
   | 'quote_slider'
   | 'content_type'
-  | 'video_slider';
+  | 'video_slider'
+  | 'external_magazine';

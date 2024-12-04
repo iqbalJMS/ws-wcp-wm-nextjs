@@ -25,6 +25,7 @@ export function CE_BannerVariant02({
     button: string;
   }>;
 }) {
+  const [slider, setSlider] = useState(data);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -34,19 +35,21 @@ export function CE_BannerVariant02({
   const slidesToShow = getSlideToShow(screenWidth);
 
   useEffect(() => {
+    if (currentSlide === slider?.length - 1) {
+      setSlider((currSlider) => [...currSlider, ...data]);
+    }
     const interval = setInterval(() => {
-      setCurrentSlide((prevIndex) =>
-        prevIndex === data?.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000);
+      setCurrentSlide((prevIndex) => prevIndex + 1);
+    }, 7000);
 
     return () => clearInterval(interval);
-  }, [data?.length]);
+  }, [currentSlide, data, data.length, slider?.length]);
 
   const goToNext = () => {
-    setCurrentSlide((prevIndex) =>
-      prevIndex === data?.length - 1 ? 0 : prevIndex + 1
-    );
+    if (currentSlide === slider?.length - 1) {
+      setSlider((currSlider) => [...currSlider, ...data]);
+    }
+    setCurrentSlide((prevIndex) => prevIndex + 1);
   };
 
   const goToPrevious = () => {
@@ -78,7 +81,6 @@ export function CE_BannerVariant02({
     } else if (translateX < -50) {
       goToNext();
     }
-
     setTranslateX(0); // Reset translate after slide
   };
 
@@ -105,7 +107,7 @@ export function CE_BannerVariant02({
                 transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
               }}
             >
-              {data.map((item, index: number) => (
+              {slider.map((item, index: number) => (
                 <div
                   key={index}
                   className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-center bg-cover"

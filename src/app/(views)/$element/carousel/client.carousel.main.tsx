@@ -29,7 +29,7 @@ const CE_CarouselMain = ({
 }) => {
   return (
     <>
-      {variant === 'wm-priority-main-navigation' && (
+      {variant === 'wm-prioritas-main-navigation' && (
         <CE_CarouselVariant1
           data={data}
           title={title}

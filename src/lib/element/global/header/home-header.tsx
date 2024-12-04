@@ -11,8 +11,8 @@ import { Tabs } from '@/lib/element/global/tabs';
 import { CloseIcon } from '@/lib/element/global/icons/close-icon';
 import Image from 'next/image';
 import ChevronDown from '@/lib/element/global/icons/chevron-button-navbar';
-import LogoHeader from '@/../../public/images/headers/logo.png';
 import { T_ResponseGetMainMenuNavbar } from '@/api/navbar-menu/main-navbar/private-navbar/api.get-main-menu-navbar.type';
+import { T_ResponGetHeaderLogo } from '@/api/header-logo/api.get-header-logo.type';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -257,11 +257,13 @@ export default function HomeHeader({
   headerBottom,
   variant = 'transparent',
   itemLogin,
+  headerLogo,
 }: {
   headerTop: T_ResponseGetTopMenuNavbar;
   headerBottom: T_ResponseGetMainMenuNavbar;
   variant: 'transparent' | 'no-transparent';
   itemLogin: T_ResponseGetMenuItemNavbar;
+  headerLogo?: T_ResponGetHeaderLogo;
 }) {
   const pathname = usePathname();
   const currentLanguage = useSearchParams().get('lang');
@@ -296,10 +298,10 @@ export default function HomeHeader({
             <div className="w-[5rem]">
               <Image
                 alt="logo-bri"
-                src={LogoHeader}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
                 width={128}
                 height={53}
-                className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
+                className={`${isScrolling ? '' : ''} `}
               />
             </div>
             <div>
@@ -411,13 +413,13 @@ export default function HomeHeader({
                 ))}
               </div>
             </div>
-            <div className="flex items-center justify-between mdmax:border-b mdmax:border-black mdmax:w-full mdmax:pb-5 mdmax:mb-5 ">
-              <Link className="" href={'/'}>
+            <div className="flex items-start justify-between mdmax:border-b mdmax:border-black mdmax:w-full mdmax:pb-5 mdmax:mb-5 ">
+              <Link className="flex items-center space-x-3" href={'/'}>
                 <Image
                   alt="logo-bri"
-                  src={LogoHeader}
-                  width={128}
-                  height={53}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
+                  width={150}
+                  height={60}
                   className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
                 />
               </Link>

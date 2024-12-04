@@ -12,7 +12,7 @@ import { ACT_GetMenuItemNavbar } from './(views)/$action/action.get-menu-item-na
 import { Locale } from '@/i18n-config';
 import { ACT_GetBottomLeftFooter } from './(views)/$action/bottom-footer/action.get.bottom.left.footer';
 import GlobalFooter from '@/lib/element/global/global.footer';
-import { ACT_GetMiddleMenuFooter } from './(views)/$action/main-footer/action.get.main-footer';
+import { ACT_GetMainMenuFooter } from './(views)/$action/main-footer/action.get.main-footer';
 import { ACT_GetFloatNavigation } from './(views)/$action/action.get-float-navigation';
 import CE_FloatingMain from './(views)/$element/floating-menu/client.floating.main';
 import HomeHeader from '@/lib/element/global/header/home-header';
@@ -23,6 +23,10 @@ import { ACT_GetPrivateMenuNavbar } from './(views)/$action/private-header/actio
 import ScrollToTopHome from '@/lib/element/global/scroll-top/scroll.top-home';
 import ScrollToTopPrivate from '@/lib/element/global/scroll-top/scroll.top-private';
 import ScrollToTopPriority from '@/lib/element/global/scroll-top/scroll.top-priority';
+import { ACT_GetMainMiddleFooter } from './(views)/$action/main-middle-footer/action.get.main-middle-footer';
+import { ACT_GetHeaderLogo } from './(views)/$action/header-logo/action.get.header-logo';
+import { ACT_GetHeaderLogoPrivate } from './(views)/$action/header-logo/action.get.header-logo-private';
+
 export default async function PageWealth({
   searchParams,
 }: {
@@ -63,10 +67,13 @@ export default async function PageWealth({
   const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
-  const itemMainFooter = await ACT_GetMiddleMenuFooter({ lang: 'en' });
+  const itemMainFooter = await ACT_GetMainMenuFooter({ lang: 'en' });
   const itemMenuFloatNavigation = await ACT_GetFloatNavigation({ lang: 'en' });
   const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });
   const listPrivateNavbar = await ACT_GetPrivateMenuNavbar({ lang: 'id' });
+  const itemMiddleMainFooter = await ACT_GetMainMiddleFooter({ lang: 'en' });
+  const itemHeaderLogo = await ACT_GetHeaderLogo({ lang: 'en' });
+  const itemPrivateLogo = await ACT_GetHeaderLogoPrivate({ lang: 'en' });
 
   return (
     <React.Fragment>
@@ -76,9 +83,10 @@ export default async function PageWealth({
           headerBottom={listHomeNavbar}
           variant={'transparent'}
           itemLogin={itemMenuLogin}
+          headerLogo={itemHeaderLogo || undefined}
         />
       )}
-      {theme === 'wm-priority-main-navigation' && (
+      {theme === 'wm-prioritas-main-navigation' && (
         <PriorityHeader
           headerTop={listHeaderTop}
           headerBottom={listPriorityNavbar}
@@ -92,6 +100,8 @@ export default async function PageWealth({
           headerBottom={listPrivateNavbar}
           variant={'transparent'}
           itemLogin={itemMenuLogin}
+          privateLogo={itemPrivateLogo || undefined}
+          headerLogo={itemHeaderLogo || undefined}
         />
       )}
       <CE_FloatingMain data={itemMenuFloatNavigation} variant={theme} />
@@ -103,11 +113,12 @@ export default async function PageWealth({
       <GlobalFooter
         bottom_right_footer={listBottomRightFooter}
         bottom_left_footer={listBottomLeftFooter}
-        main_middle_footer={itemMainFooter}
+        main_footer={itemMainFooter || undefined}
+        middle_main_footer={itemMiddleMainFooter}
       />
       {theme === 'wm-main-navigation' && <ScrollToTopHome />}
       {theme === 'wm-private-main-navigation' && <ScrollToTopPrivate />}
-      {theme === 'wm-priority-main-navigation' && <ScrollToTopPriority />}
+      {theme === 'wm-prioritas-main-navigation' && <ScrollToTopPriority />}
     </React.Fragment>
   );
 }

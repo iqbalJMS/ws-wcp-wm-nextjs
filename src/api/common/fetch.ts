@@ -51,7 +51,7 @@ async function fetchData<T>(
 }
 export async function get<T>(
   endpoint: string,
-  headers: Record<string, any>
+  headers?: Record<string, any>
 ): Promise<T> {
   return fetchData<T>(endpoint, { method: 'GET', headers });
 }
