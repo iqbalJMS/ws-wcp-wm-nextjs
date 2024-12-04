@@ -25,6 +25,7 @@ import { ACT_GetMainMenuFooter } from '@/app/(views)/$action/main-footer/action.
 import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/action.get.bottom.left.footer';
 import { ACT_GetBottomRightFooter } from '@/app/(views)/$action/bottom-footer/action.get.bottom.right.footer';
 import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
+import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 
 export default async function PageWealthDetail({
   params: { slug },
@@ -77,6 +78,7 @@ export default async function PageWealthDetail({
   const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const itemPrivateLogo = await ACT_GetHeaderLogoPrivate({ lang: 'en' });
+  const itemHeaderLogo = await ACT_GetHeaderLogo({ lang: 'en' });
   const theme = data?.field_main_menu?.[0]?.target_id;
 
   return (
@@ -104,6 +106,7 @@ export default async function PageWealthDetail({
           variant={'transparent'}
           itemLogin={itemMenuLogin}
           privateLogo={itemPrivateLogo || undefined}
+          headerLogo={itemHeaderLogo || undefined}
         />
       )}
       <CE_FloatingMain data={itemMenuFloatNavigation} variant={theme} />

@@ -1,6 +1,5 @@
 'use client';
 
-
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 const CE_WYSIWSGVariant02 = ({
@@ -24,17 +23,21 @@ const CE_WYSIWSGVariant02 = ({
   };
   return (
     <>
-      <div className='container py-10'>
-        <div className='px-20 mdmax:px-0'>
-        <div className='bg-black bg-opacity-5'>
-          <div className='px-20 mdmax:px-6 py-4 text-privatecolor'>
-            {category} | {formatDate(date)}
+      <div className="container py-10">
+        <div className="px-20 mdmax:px-0">
+          <div className="bg-black bg-opacity-5">
+            <div className="px-20 mdmax:px-6 py-4 text-privatecolor">
+              {category} | {formatDate(date)}
+            </div>
+            <div className="px-20 mdmax:px-6 py-5 bg-privatecolor text-white text-2xl font-semibold text-center">
+              {parseHTMLToReact(title)}
+            </div>
+            <div className="px-20 mdmax:px-6 py-5 wysiwsg-body">
+              <div className="text-lg mdmax:text-base text-black text-opacity-60">
+                {parseHTMLToReact(body)}
+              </div>
+            </div>
           </div>
-          <div className='px-20 mdmax:px-6 py-5 bg-privatecolor text-white text-2xl font-semibold'>{title}</div>
-          <div className='px-20 mdmax:px-6 py-5 wysiwsg-body'>
-            <div className='text-lg mdmax:text-base text-black text-opacity-60'>{parseHTMLToReact(body)}</div>
-          </div>
-        </div>
         </div>
       </div>
     </>

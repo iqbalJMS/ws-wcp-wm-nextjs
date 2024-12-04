@@ -778,7 +778,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             title: item?.title?.[0]?.value,
             description: item?.field_summary?.[0]?.value,
             image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
-            link: item?.path?.[0]?.alias,
+            nid: item?.nid?.[0]?.value,
           };
         });
         const dataGridV7 = _component?.field_content_type.map((item) => {
@@ -788,7 +788,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             category: item?.field_article_category?.[0]?.name?.[0]?.value,
             description: item?.body?.[0]?.value,
             image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
-            link: item?.path?.[0]?.alias,
+            nid: item?.nid?.[0]?.value,
           };
         });
 

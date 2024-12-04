@@ -13,7 +13,7 @@ const CE_CardGrid7Main = ({
     date: string;
     image: string;
     description: string;
-    link: string;
+    nid: string;
   }>;
 }) => {
   const formatDate = (dateString: string): string => {
@@ -32,7 +32,7 @@ const CE_CardGrid7Main = ({
             {dataCard?.map((item, index) => (
               <Link
                 key={index}
-                href={item?.link}
+                href={`/article-detail/${item?.nid}`}
                 className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
               >
                 <div>
