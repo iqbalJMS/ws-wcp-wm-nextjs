@@ -9,13 +9,14 @@ import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/act
 import { ACT_GetMainMenuFooter } from '@/app/(views)/$action/main-footer/action.get.main-footer';
 import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-footer/action.get.main-middle-footer';
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
-import CE_BreadCrumbInsight from '@/app/insight/$element/client.breadcrumb.insight';
 import PrivateHeader from '@/lib/element/global/header/private-header';
 import { ACT_GetPrivateMenuNavbar } from '@/app/(views)/$action/private-header/action.get.private-menu-navbar';
 import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
-import CE_WYSIWSGVariant02 from '@/app/$element/client.wysiwsg.variant02';
+import CE_BreadCrumbProgram from '@/app/program-detail/$element/client.breadcrumb.program';
+import Accordion from '@/lib/element/global/accordion';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -36,7 +37,7 @@ export default async function page({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className="w-full">
+      <div>
         <PrivateHeader
           headerTop={listHeaderTop}
           headerBottom={listPrivateNavbar}
@@ -45,7 +46,7 @@ export default async function page({ params }: { params: { id: string } }) {
           privateLogo={itemPrivateLogo || undefined}
           headerLogo={itemHeaderLogo || undefined}
         />
-        <div className="relative overflow-hidden h-[65vh] lg:mb-[3.125rem] w-full bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full flex justify-center items-center before:bg-gradient-to-b before:from-black before:to-black before:opacity-40 z-0 border-b-[15px] border-[#D2D2D2]">
+        <section className="relative overflow-hidden h-[65vh] lg:mb-[3.125rem] w-full bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full flex justify-center items-center before:bg-gradient-to-b before:from-black before:to-black before:opacity-40 z-0 border-b-[15px] border-[#D2D2D2]">
           <Image
             src={background}
             alt="bg-image"
@@ -54,19 +55,29 @@ export default async function page({ params }: { params: { id: string } }) {
             className="w-full h-full object-cover object-top"
           />
           <h1 className="z-10 absolute text-4xl text-white font-bold uppercase">
-            wawasan
+            WMFA FESTIVAL MONEY MARKET FUND 2023
+          </h1>
+        </section>
+        <CE_BreadCrumbProgram
+          currentPage={getOurstoryData?.title?.[0]?.value}
+        />
+        <div className="w-full flex justify-center pb-14 pt-4">
+          <h1 className="text-xl xl:text-3xl text-privatecolor font-bold uppercase text-center">
+            {getOurstoryData?.title?.[0]?.value}
           </h1>
         </div>
-
-        <CE_BreadCrumbInsight
-          currentPage={getOurstoryData?.title?.[0]?.value || ''}
-        />
-        <CE_WYSIWSGVariant02
-          category={getOurstoryData?.field_items?.[0]?.field_title?.[0]?.value}
-          title={getOurstoryData?.field_summary?.[0]?.value}
-          date={getOurstoryData?.created?.[0]?.value}
-          body={getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value}
-        />
+        <section className="w-full flex flex-col justify-center items-center pb-10">
+          {getOurstoryData?.field_items?.map((item: any, index: number) => (
+            <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
+              <Accordion
+                renderContent={parseHTMLToReact(
+                  item?.field_content?.[0]?.value
+                )}
+                renderTitle={item?.field_title?.[0]?.value}
+              />
+            </div>
+          ))}
+        </section>
         <GlobalFooter
           bottom_right_footer={listBottomRightFooter}
           bottom_left_footer={listBottomLeftFooter}

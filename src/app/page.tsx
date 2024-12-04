@@ -101,6 +101,7 @@ export default async function PageWealth({
           variant={'transparent'}
           itemLogin={itemMenuLogin}
           privateLogo={itemPrivateLogo || undefined}
+          headerLogo={itemHeaderLogo || undefined}
         />
       )}
       <CE_FloatingMain data={itemMenuFloatNavigation} variant={theme} />

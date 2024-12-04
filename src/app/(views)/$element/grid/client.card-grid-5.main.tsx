@@ -32,7 +32,7 @@ const CE_CardGrid5Main = ({
             {dataCard?.map((item, index) => (
               <Link
                 key={index}
-                href={`/${item?.nid}`}
+                href={`/insight/${item?.nid}`}
                 className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
               >
                 <div>

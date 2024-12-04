@@ -301,7 +301,7 @@ export default function PrivateHeader({
             <div className="w-[5rem]">
               <Image
                 alt="logo-bri"
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
                 width={128}
                 height={53}
                 className={`${isScrolling ? '' : ''} `}
@@ -311,7 +311,7 @@ export default function PrivateHeader({
                 src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${privateLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
                 width={128}
                 height={53}
-                className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
+                className={`${isScrolling ? '' : ''} `}
               />
             </div>
             <div>
@@ -423,21 +423,21 @@ export default function PrivateHeader({
                 ))}
               </div>
             </div>
-            <div className="flex items-center justify-between mdmax:border-b mdmax:border-black mdmax:w-full mdmax:pb-5 mdmax:mb-5 ">
-              <Link className="" href={'/'}>
+            <div className="flex items-start justify-between mdmax:border-b mdmax:border-black mdmax:w-full mdmax:pb-5 mdmax:mb-5 ">
+              <Link className="flex items-center space-x-3" href={'/'}>
                 <Image
                   alt="logo-bri"
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
-                  width={128}
-                  height={53}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
+                  width={150}
+                  height={60}
                   className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
                 />
                 <Image
                   alt="logo-bri"
                   src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${privateLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
-                  width={128}
-                  height={53}
-                  className={`${isScrolling ? '' : 'filter brightness-0 invert'} `}
+                  width={150}
+                  height={60}
+                  className={`${isScrolling ? 'pl-4 border-l border-black' : 'filter brightness-0 invert pl-4 border-l border-white'} `}
                 />
               </Link>
               <div className="mdmax:w-full">

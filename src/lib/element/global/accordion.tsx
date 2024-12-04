@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-
 import { PlusIcon } from './icons/plus-icon';
 import { MinusIcon } from './icons/minus-icon';
 
@@ -24,7 +23,7 @@ export default function Accordion({
   return (
     <section className="flex flex-col">
       <div
-        className={`shadow-lg rounded-[40px] px-6 py-4 border bg-wmcolor relative z-10`}
+        className={`shadow-lg rounded-[40px] px-6 py-4 bg-privatecolor relative z-10`}
       >
         <div>
           <div>
@@ -32,7 +31,7 @@ export default function Accordion({
               onClick={() => setAccordionOpen(!accordionOpen)}
               className={`${styles.buttonContainer}`}
             >
-              <div className="w-full text-white">{renderTitle}</div>
+              <div className="w-full text-white text-start">{renderTitle}</div>
 
               {accordionOpen ? (
                 <MinusIcon

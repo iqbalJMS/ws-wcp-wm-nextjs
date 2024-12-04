@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
 
-const CE_BreadcrumbStory = ({ currentPage }: { currentPage: string }) => {
+const CE_BreadCrumbProgram = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management',
+      url: '/web/wealth-management/bri-private?lang=id',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/our-stories?lang=id',
-      title: 'Cerita Kami',
+      url: '/web/wealth-management/program?lang=id',
+      title: 'Program',
     },
   ];
   return (
@@ -25,7 +25,7 @@ const CE_BreadcrumbStory = ({ currentPage }: { currentPage: string }) => {
                 <div className="flex items-center space-x-2">
                   <a
                     href={item.url}
-                    className="font-light text-base text-[#C0CCE2] hover:text-wmcolor hover:underline"
+                    className="font-light text-base text-[#C0CCE2] hover:text-privatecolor hover:underline uppercase"
                   >
                     {item.title}
                   </a>
@@ -51,7 +51,7 @@ const CE_BreadcrumbStory = ({ currentPage }: { currentPage: string }) => {
             ))}
             <div className="flex items-center space-x-3 ">
               <div className="flex items-center">
-                <span className="cursor-default text-wmcolor font-normal hover:text-primary-blue">
+                <span className="cursor-default text-privatecolor font-normal hover:text-primary-blue uppercase">
                   {currentPage}
                 </span>
               </div>
@@ -63,4 +63,4 @@ const CE_BreadcrumbStory = ({ currentPage }: { currentPage: string }) => {
   );
 };
 
-export default CE_BreadcrumbStory;
+export default CE_BreadCrumbProgram;

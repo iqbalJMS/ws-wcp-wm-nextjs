@@ -1,6 +1,6 @@
 'use client';
 
-import Image from '@/lib/element/global/image';
+import Image from 'next/image';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 const CE_WYSIWSGVariant01 = ({
@@ -53,8 +53,7 @@ const CE_WYSIWSGVariant01 = ({
             {image && (
               <div className="h-full">
                 <Image
-                  extern={true}
-                  src={image}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image}`}
                   alt="image"
                   width={400}
                   height={400}
