@@ -86,7 +86,7 @@ export default async function PageWealth({
           headerLogo={itemHeaderLogo || undefined}
         />
       )}
-      {theme === 'wm-priority-main-navigation' && (
+      {theme === 'wm-prioritas-main-navigation' && (
         <PriorityHeader
           headerTop={listHeaderTop}
           headerBottom={listPriorityNavbar}
@@ -118,7 +118,7 @@ export default async function PageWealth({
       />
       {theme === 'wm-main-navigation' && <ScrollToTopHome />}
       {theme === 'wm-private-main-navigation' && <ScrollToTopPrivate />}
-      {theme === 'wm-priority-main-navigation' && <ScrollToTopPriority />}
+      {theme === 'wm-prioritas-main-navigation' && <ScrollToTopPriority />}
     </React.Fragment>
   );
 }

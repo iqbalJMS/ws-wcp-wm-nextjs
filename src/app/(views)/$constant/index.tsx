@@ -19,6 +19,7 @@ import { T_OurStory } from './types/widget/our-story';
 import { T_CarouselV2 } from './types/widget/carouselV2';
 import { T_TwoColumn } from './types/widget/two-column';
 import { T_Insight } from './types/widget/content_type';
+import { T_ExternalMagazine } from './types/widget/external_magazine';
 
 const SE_SubscriberContent = dynamic(
   () => import('@/app/$element/server.subscriber.content')
@@ -54,10 +55,6 @@ const CE_CardVariant2 = dynamic(
 
 const CE_CardVariant5 = dynamic(
   () => import('@/app//(views)/$element/card/client.card.variant5')
-);
-
-const CE_CardVariant15 = dynamic(
-  () => import('@/app/(views)/$element/card/client.card.variant15')
 );
 
 const CE_CardVariant2Private = dynamic(
@@ -108,6 +105,18 @@ const CE_CardGrid6Main = dynamic(
 
 const CE_CardGrid7Main = dynamic(
   () => import('@/app/(views)/$element/grid/client.card-grid-7.main')
+);
+
+const CE_CardVariant2Prioritas = dynamic(
+  () => import('@/app/(views)/$element/card/client.card.variant2.prioritas')
+);
+
+const CE_CardFlipMain = dynamic(
+  () => import('@/app/(views)/$element/card-flip/card-flip-main')
+);
+
+const CE_CardMagazineMain = dynamic(
+  () => import('@/app/(views)/$element/card-magazine/card.magazine.main')
 );
 
 export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
@@ -265,12 +274,13 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             );
           case WIDGET_VARIANT.variant05:
             return (
-              <CE_CardVariant15
+              <CE_CardFlipMain
                 data={data}
                 topTitle={title}
                 subTitle={subTitle}
                 buttonText={buttonText}
                 buttonUri={link}
+                variant={theme}
               />
             );
           case WIDGET_VARIANT.variant07:
@@ -288,6 +298,14 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           case WIDGET_VARIANT.variant09:
             return (
               <CE_GridVariant04 title={title} data={data} bgImage={bgImage} />
+            );
+          case WIDGET_VARIANT.variant13:
+            return (
+              <CE_CardVariant2Prioritas
+                data={data}
+                bgImage={bgImage}
+                title={title}
+              />
             );
 
           default:
@@ -455,6 +473,13 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               title: titleCardGridV4,
               bgImage: bgImageCardGridV4,
               data: dataItemCardGridV4,
+            };
+          case WIDGET_VARIANT.variant13:
+            return {
+              variant: findVariantStyle,
+              data: dataCardV2,
+              title: titleCardV2,
+              bgImage: bgImageCardV2,
             };
           default:
             return {
@@ -689,6 +714,17 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               ),
             };
           }),
+        };
+      },
+    },
+    external_magazine: {
+      component: CE_CardMagazineMain,
+      props: (_component: T_ExternalMagazine) => {
+        return {
+          variant: theme,
+          title: _component?.field_title?.[0]?.value,
+          label: _component?.field_content?.[0]?.value,
+          linkMagezine: _component?.endpoint_path,
         };
       },
     },
