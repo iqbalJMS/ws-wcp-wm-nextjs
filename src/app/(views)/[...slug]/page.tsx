@@ -28,6 +28,7 @@ import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/acti
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 
+
 export default async function PageWealthDetail({
   params: { slug },
   searchParams: { lang },
@@ -81,6 +82,7 @@ export default async function PageWealthDetail({
   const itemPrivateLogo = await ACT_GetHeaderLogoPrivate({ lang: 'en' });
   const itemHeaderLogo = await ACT_GetHeaderLogo({ lang: 'en' });
   const itemPriorityLogo = await ACT_GetHeaderLogoPriority({ lang: 'en' });
+
   const theme = data?.field_main_menu?.[0]?.target_id;
 
   return (
