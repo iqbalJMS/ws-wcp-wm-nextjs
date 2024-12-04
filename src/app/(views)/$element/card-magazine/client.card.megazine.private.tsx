@@ -5,6 +5,7 @@ import useScreenWidth from '@/lib/hook/useScreenWidth';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import Link from 'next/link';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
@@ -17,7 +18,15 @@ const getSlideToShow = (screenWidth: number) => {
     return 2;
   }
 };
-export default function CE_CardMegazine() {
+export default function CE_CardMegazinePrivate({
+  title,
+  label,
+  linkMagezine,
+}: {
+  title: string;
+  label: string;
+  linkMagezine: string;
+}) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const screenWidth = useScreenWidth();
   const slidesToShow = getSlideToShow(screenWidth);
@@ -74,13 +83,14 @@ export default function CE_CardMegazine() {
       <div className="w-full h-auto flex flex-col items-center justify-center">
         <section className="w-full flex flex-col items-center pb-16">
           <h1 className="text-privatecolor font-semibold text-3xl uppercase">
-            e-magazine
+            {title}
           </h1>
           <h2 className="text-sm font-light text-center w-11/12 md:w-9/12 xl:w-3/12 pt-3 text-[#4C4C4C]">
-            Buat pilihan yang lebih baik dengan uang. Dapatkan jawaban atas
-            semua pertanyaan keuangan Anda dengan artikel dari pakar keuangan
-            kami
+            {parseHTMLToReact(label)}
           </h2>
+          <Link
+            href={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${linkMagezine}`}
+          />
         </section>
 
         {/* mobile section */}

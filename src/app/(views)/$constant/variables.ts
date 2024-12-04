@@ -11,6 +11,7 @@ export const WIDGET_VARIANT = {
   variant10: 'insight',
   variant11: 'article',
   variant12: 'program',
+  variant13: 'div_menu_center_02a',
 };
 
 export const API_BASE_URL = 'https://admin-bri-corpsite.dev-kjt.id';

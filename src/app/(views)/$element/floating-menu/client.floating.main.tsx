@@ -20,7 +20,7 @@ const CE_FloatingMain = ({
       {variant === 'wm-private-main-navigation' && (
         <CE_FloatingVariant02 data={data} />
       )}
-      {variant === 'wm-priority-main-navigation' && (
+      {variant === 'wm-prioritas-main-navigation' && (
         <CE_FloatingVariant03 data={data} />
       )}
     </>

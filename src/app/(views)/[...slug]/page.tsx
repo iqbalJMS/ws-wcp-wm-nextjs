@@ -26,6 +26,8 @@ import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/act
 import { ACT_GetBottomRightFooter } from '@/app/(views)/$action/bottom-footer/action.get.bottom.right.footer';
 import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
+import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
+
 
 export default async function PageWealthDetail({
   params: { slug },
@@ -79,6 +81,8 @@ export default async function PageWealthDetail({
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const itemPrivateLogo = await ACT_GetHeaderLogoPrivate({ lang: 'en' });
   const itemHeaderLogo = await ACT_GetHeaderLogo({ lang: 'en' });
+  const itemPriorityLogo = await ACT_GetHeaderLogoPriority({ lang: 'en' });
+
   const theme = data?.field_main_menu?.[0]?.target_id;
 
   return (
@@ -91,12 +95,14 @@ export default async function PageWealthDetail({
           itemLogin={itemMenuLogin}
         />
       )}
-      {theme === 'wm-priority-main-navigation' && (
+      {theme === 'wm-prioritas-main-navigation' && (
         <PriorityHeader
           headerTop={listHeaderTop}
           headerBottom={listPriorityNavbar}
           variant={'transparent'}
           itemLogin={itemMenuLogin}
+          headerLogo={itemHeaderLogo || undefined}
+          priorityLogo={itemPriorityLogo || undefined}
         />
       )}
       {theme === 'wm-private-main-navigation' && (
@@ -123,7 +129,7 @@ export default async function PageWealthDetail({
       />
       {theme === 'wm-main-navigation' && <ScrollToTopHome />}
       {theme === 'wm-private-main-navigation' && <ScrollToTopPrivate />}
-      {theme === 'wm-priority-main-navigation' && <ScrollToTopPriority />}
+      {theme === 'wm-prioritas-main-navigation' && <ScrollToTopPriority />}
     </React.Fragment>
   );
 }
