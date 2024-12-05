@@ -236,7 +236,35 @@ input[type='range']::-webkit-slider-thumb {
   backface-visibility: hidden;
 }
 
-
 .wysiwsg-body p {
   margin-bottom: 1rem;
+}
+
+.accordion-content ul,
+.accordion-content ol {
+  @apply pl-5;
+}
+
+.accordion-content p {
+  @apply mb-3 text-sm text-pretty font-light;
+}
+
+.accordion-content ul li,
+.accordion-content ol li {
+  @apply mb-3 text-sm text-pretty font-light relative pl-12;
+}
+
+.accordion-content ul li::before,
+.accordion-content ol li::before {
+  content: '';
+  background-image: url('/web/wealth-management/images/icon-menu/ic-list-accordion.svg');
+  background-size: cover;
+  width: 22px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+}
+
+.field__label.visually-hidden {
+  display: none;
 }

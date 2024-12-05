@@ -21,7 +21,7 @@ export default function Accordion({
   }, [isOpen]);
 
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col mb-4">
       <div
         className={`shadow-lg rounded-[40px] px-6 py-4 bg-privatecolor relative z-10`}
       >
@@ -53,9 +53,9 @@ export default function Accordion({
         </div>
       </div>
       <div
-        className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+        className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100 pt-16 px-16 pb-6' : 'grid-rows-[0fr] opacity-0'}`}
       >
-        <div className="overflow-hidden">{renderContent}</div>
+        <div className="overflow-hidden accordion-content">{renderContent}</div>
       </div>
     </section>
   );
@@ -64,5 +64,5 @@ export default function Accordion({
 const styles = {
   buttonContainer: 'flex items-center w-full',
   renderContent:
-    'grid overflow-hidden transition-all duration-500 ease-in-out rounded-b-[40px] bg-gray-300 -mt-10 py-10',
+    'grid overflow-hidden transition-all duration-500 ease-in-out rounded-b-[40px] bg-[#EEEE] -mt-10 py-6 px-16',
 };
