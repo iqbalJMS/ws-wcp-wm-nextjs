@@ -20,6 +20,22 @@ module.exports = {
         hostname: 'admin-bri-corpsite.dev-kjt.id',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost:3000',
+      },
+      {
+        protocol: 'https',
+        hostname: 'bri-corpsite.dev-kjt.id',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cms-drupal.indesc.com',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
     ],
   },
 };
