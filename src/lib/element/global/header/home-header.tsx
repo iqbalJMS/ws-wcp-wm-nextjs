@@ -363,7 +363,7 @@ export default function HomeHeader({
                             : false
                         }
                       >
-                        {header.icon && (
+                        {header?.icon && (
                           <Image
                             src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${header?.icon}`}
                             alt={`icon-${header.alt}`}
