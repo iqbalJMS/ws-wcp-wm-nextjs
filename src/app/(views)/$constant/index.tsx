@@ -183,6 +183,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             );
         }
       },
+
       props: (_component: T_VideoSlider) => {
         const findVariantStyle =
           _component?.field_web_variant_styles?.[0]?.field_key?.[0]?.value;
@@ -732,6 +733,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: CE_GridVariant02,
       props: (_component: T_TwoColumn) => {
         return {
+          variant: theme,
           dataCard1: _component?.field_first_column?.map((item) => {
             return {
               textTitle: item?.field_title?.[0]?.value,
