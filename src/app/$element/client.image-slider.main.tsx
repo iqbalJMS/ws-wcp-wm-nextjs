@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
-// import Image from '@/lib/element/global/image';
-import Link from '@/lib/element/global/link';
+import Link from 'next/link';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import { useEffect, useRef, useState } from 'react';
 

@@ -1,4 +1,4 @@
-import { useIsomorphicLayoutEffect } from "framer-motion";
+import { useIsomorphicLayoutEffect } from 'framer-motion';
 
 export type IntersectionObserverParams = {
   selector: string;
@@ -6,7 +6,7 @@ export type IntersectionObserverParams = {
   listener: (
     _value: IntersectionObserverEntry,
     _index: number,
-    _array: IntersectionObserverEntry[],
+    _array: IntersectionObserverEntry[]
   ) => void;
   deps?: any[];
   multiElement?: boolean;
@@ -14,7 +14,7 @@ export type IntersectionObserverParams = {
 };
 
 export default function useIntersectionObserver(
-  params: IntersectionObserverParams,
+  params: IntersectionObserverParams
 ) {
   const { selector, options, listener, deps, multiElement, callback } = params;
 

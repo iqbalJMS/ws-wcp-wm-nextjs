@@ -159,7 +159,7 @@ export default function CE_CarouselVariant1({
       <section className="flex justify-between w-11/12 xl:w-8/12  pb-5 md:pb-0">
         <div className="space-y-1">
           <h1 className="text-3xl font-bold text-prioritycolor">{title}</h1>
-          <p className="font-light text-sm pb-3">{subtitle}</p>
+          <h2 className="font-light text-sm pb-3">{subtitle}</h2>
           <Link
             href={'/videos'}
             className="flex items-center text-prioritycolor font-semibold uppercase hover:underline"
@@ -287,9 +287,9 @@ export default function CE_CarouselVariant1({
                   <h1 className="font-semibold text-lg lg:text-xl pt-2">
                     {data?.[modalIndex as number]?.labelVideo}
                   </h1>
-                  <p className="text-[#555555] font-light text-sm lg:text-base">
+                  <h2 className="text-[#555555] font-light text-sm lg:text-base">
                     {data?.[modalIndex as number]?.subLabel}
-                  </p>
+                  </h2>
                 </div>
               </div>
             </div>
@@ -340,9 +340,9 @@ export default function CE_CarouselVariant1({
                 <h1 className="absolute text-white text-xl bottom-20 font-semibold px-7">
                   {slide.label}
                 </h1>
-                <p className="absolute text-white text-sm bottom-8 line-clamp-2 pr-10 pl-7">
+                <h2 className="absolute text-white text-sm bottom-8 line-clamp-2 pr-10 pl-7">
                   {slide.desc}
-                </p>
+                </h2>
               </picture>
             </div>
           ))}

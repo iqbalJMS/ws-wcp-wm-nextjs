@@ -53,7 +53,9 @@ export default function CardVariant8() {
             </div>
             <div className="p-5 space-y-8">
               <h1 className="text-2xl font-bold">{item.label}</h1>
-              <p className="text-[#C1AB9E] text-sm w-96 xl:w-80">{item.text}</p>
+              <h2 className="text-[#C1AB9E] text-sm w-96 xl:w-80">
+                {item.text}
+              </h2>
               <button className="flex items-center w-full uppercase text-[#080087]">
                 Lihat detail{' '}
                 <span className="pl-10">

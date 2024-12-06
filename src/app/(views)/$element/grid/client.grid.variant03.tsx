@@ -1,6 +1,5 @@
 import Image from '@/lib/element/global/image';
-import Link from '@/lib/element/global/link';
-
+import Link from 'next/link';
 export default function CE_GridVariant03({
   title,
   desc,
@@ -25,7 +24,7 @@ export default function CE_GridVariant03({
               {title}
             </h1>
           )}
-          {desc && <p className="text-sm min-h-[100px]">{desc}</p>}
+          {desc && <h2 className="text-sm min-h-[100px]">{desc}</h2>}
           {textLink && (
             <Link
               href={urlLink ?? '#'}

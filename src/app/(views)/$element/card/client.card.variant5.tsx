@@ -52,9 +52,9 @@ export default function CE_CardVariant5({
               </h1>
             )}
             {sublabel && (
-              <p className="text-[#826B64] font-normal text-sm lg:text-base pr-0 md:pr-16">
+              <h2 className="text-[#826B64] font-normal text-sm lg:text-base pr-0 md:pr-16">
                 {parseHTMLToReact(sublabel)}
-              </p>
+              </h2>
             )}
           </section>
           <section

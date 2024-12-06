@@ -6,7 +6,7 @@ import { T_ResponseGetMenuItemNavbar } from '@/api/navbar-menu/menu-items/api.ge
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
-import Link from '@/lib/element/global/link';
+import Link from 'next/link';
 import { Tabs } from '@/lib/element/global/tabs';
 import { CloseIcon } from '@/lib/element/global/icons/close-icon';
 import Image from 'next/image';

@@ -21,8 +21,8 @@ export default function ProtectionIcon({
       viewBox="0 0 32 32"
     >
       <style type="text/css">
-        fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10
-        none;stroke:#000000;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10
+        fill:none;stroke:#000000;strokeWidth:2;stroke-linecap:round;strokeLinejoin:round;stroke-miterlimit:10
+        none;stroke:#000000;strokeWidth:2;strokeLinejoin:round;stroke-miterlimit:10
       </style>
       <path
         className="st0"

@@ -1,7 +1,6 @@
 'use client';
 
-// import { T_CarouselMainProps } from '@/app/$action/constants';
-import Link from '@/lib/element/global/link';
+import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { useState } from 'react';
 import useScreenWidth from '@/lib/hook/useScreenWidth';

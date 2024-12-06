@@ -1,6 +1,6 @@
 'use server';
 
-import Link from '@/lib/element/global/link';
+import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import React from 'react';
 import { T_PortletProps } from '@/app/(views)/$element/types/portlet';
@@ -43,7 +43,7 @@ export default async function SE_PortletVariant02({
               {buttonItems && (
                 <div className="flex gap-4">
                   {buttonItems.map(({ buttonText, buttonLink }, index) => (
-                    <Link href={buttonLink ?? ''} extern key={index}>
+                    <Link href={buttonLink ?? ''} key={index}>
                       <button className="font-semibold px-12 capitalize text-base bg-privatecolor hover:bg-white rounded-full py-3 text-white hover:text-privatecolor duration-200">
                         {buttonText}
                       </button>

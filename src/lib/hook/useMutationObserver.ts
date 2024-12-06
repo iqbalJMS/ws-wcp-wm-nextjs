@@ -1,4 +1,4 @@
-import { useIsomorphicLayoutEffect } from "framer-motion";
+import { useIsomorphicLayoutEffect } from 'framer-motion';
 
 export type MutationObserverParams = {
   selector: string;
@@ -6,7 +6,7 @@ export type MutationObserverParams = {
   listener: (
     _mutation: MutationRecord,
     _index: number,
-    _array: MutationRecord[],
+    _array: MutationRecord[]
   ) => void;
   deps?: any[];
   callback?: (_nodes: Element) => void;

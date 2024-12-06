@@ -125,9 +125,9 @@ export default function CE_BannerVariant01({
                         </h1>
                       )}
                       {item?.desc && (
-                        <p className="text-sm xl:text-base w-full xl:w-8/12 font-light text-white mb-10 font-poppins">
+                        <h2 className="text-sm xl:text-base w-full xl:w-8/12 font-light text-white mb-10 font-h2oppins">
                           {parseHTMLToReact(item?.desc)}
-                        </p>
+                        </h2>
                       )}
                       {item?.button && (
                         <button className="group relative overflow-hidden bg-privatecolor text-white uppercase font-semibold py-2 px-5 rounded-full">

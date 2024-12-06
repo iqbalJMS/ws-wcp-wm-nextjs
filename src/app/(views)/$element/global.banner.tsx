@@ -109,7 +109,7 @@ export function GlobalBanner() {
           >
             <div className="text-white">
               <h1 className="font-semibold text-4xl">{bannerItem.label}</h1>
-              <p className="">{bannerItem.text}</p>
+              <h2 className="">{bannerItem.text}</h2>
             </div>
           </section>
         ))}

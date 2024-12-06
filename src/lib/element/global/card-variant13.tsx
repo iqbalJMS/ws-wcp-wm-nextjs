@@ -12,10 +12,10 @@ export default function CardVariant13() {
           <h1 className="font-bold text-2xl text-[#3D3D3D] uppercase">
             andi ananda manggabarani, the young leader
           </h1>
-          <p className="text-[#52185A] text-sm">
+          <h2 className="text-[#52185A] text-sm">
             Muda dan penuh semangat menjadikan Pribadi Terpilih BRI Prioritas
             kali ini begitu inspiratif dalam perbincangan yang begitu menarik.
-          </p>
+          </h2>
           <div className="pt-8">
             <button className="py-2 px-8 hover:bg-gray-600 duration-300 rounded-full uppercase font-semibold text-white bg-[#080087]">
               selengkapnya
@@ -38,10 +38,10 @@ export default function CardVariant13() {
           <h1 className="font-bold text-2xl text-[#3D3D3D] uppercase">
             andi ananda manggabarani, the young leader
           </h1>
-          <p className="text-[#52185A] text-sm">
+          <h2 className="text-[#52185A] text-sm">
             Muda dan penuh semangat menjadikan Pribadi Terpilih BRI Prioritas
             kali ini begitu inspiratif dalam perbincangan yang begitu menarik.
-          </p>
+          </h2>
           <div className="pt-10">
             <button className="py-2 px-8 hover:bg-gray-600 duration-300 rounded-full uppercase font-semibold text-white bg-[#080087]">
               selengkapnya

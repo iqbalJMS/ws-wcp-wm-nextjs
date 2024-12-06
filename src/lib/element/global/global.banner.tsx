@@ -38,10 +38,10 @@ export function GlobalBanner() {
           <h1 className="font-semibold text-4xl">
             Helping You Get Where You Want to be
           </h1>
-          <p className="">
+          <h2 className="">
             We are the one stop financial solutions for the advancement your
             business
-          </p>
+          </h2>
         </div>
       </section>
     </main>

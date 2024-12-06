@@ -1,6 +1,6 @@
-import Link from '@/lib/element/global/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from '@/lib/element/global/image';
+import Link from 'next/link';
 
 export default function CE_GridVariant02({
   variant,
@@ -58,9 +58,9 @@ export default function CE_GridVariant02({
             </h1>
           )}
           {dataCard1?.[0]?.textDesc && (
-            <p className="text-sm text-[#521452]">
+            <h2 className="text-sm text-[#521452]">
               {parseHTMLToReact(dataCard1?.[0]?.textDesc)}
-            </p>
+            </h2>
           )}
           {dataCard1?.[0]?.listMenu && dataCard1?.[0]?.listMenu.length > 0 && (
             <div className="flex gap-5 mt-5">
@@ -85,11 +85,11 @@ export default function CE_GridVariant02({
                       </div>
                     )}
                     {item.textLink && (
-                      <p
+                      <h2
                         className={`text-${colorTheme} text-sm group-hover/menu:underline`}
                       >
                         {item.textLink}
-                      </p>
+                      </h2>
                     )}
                   </Link>
                 ) : (
@@ -98,9 +98,9 @@ export default function CE_GridVariant02({
                       className={`px-5 py-3 bg-${colorTheme} rounded-3xl hover:opacity-10`}
                     >
                       {item.textLink && (
-                        <p className={`text-white text-sm uppercase`}>
+                        <h2 className={`text-white text-sm uppercase`}>
                           {item.textLink}
-                        </p>
+                        </h2>
                       )}
                     </div>
                   </Link>
@@ -157,9 +157,9 @@ export default function CE_GridVariant02({
             </h1>
           )}
           {dataCard2?.[0]?.textDesc && (
-            <p className="text-sm text-[#521452]">
+            <h2 className="text-sm text-[#521452]">
               {parseHTMLToReact(dataCard2?.[0]?.textDesc)}
-            </p>
+            </h2>
           )}
           {dataCard2?.[0]?.listMenu && dataCard2?.[0]?.listMenu.length > 0 && (
             <div className="flex gap-5 mt-5">
@@ -184,11 +184,11 @@ export default function CE_GridVariant02({
                       </div>
                     )}
                     {item.textLink && (
-                      <p
+                      <h2
                         className={`text-${colorTheme} text-sm group-hover/menu:underline`}
                       >
                         {item.textLink}
-                      </p>
+                      </h2>
                     )}
                   </Link>
                 ) : (
@@ -197,9 +197,9 @@ export default function CE_GridVariant02({
                       className={`px-5 py-3 bg-${colorTheme} rounded-3xl hover:opacity-10`}
                     >
                       {item.textLink && (
-                        <p className={`text-white text-sm uppercase`}>
+                        <h2 className={`text-white text-sm uppercase`}>
                           {item.textLink}
-                        </p>
+                        </h2>
                       )}
                     </div>
                   </Link>

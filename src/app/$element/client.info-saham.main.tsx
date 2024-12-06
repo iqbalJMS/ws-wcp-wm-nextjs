@@ -3,7 +3,7 @@
 import { ChevronRightIcon } from '@/lib/element/global/icons/chevron-right-icon';
 import { ChevronUpIcon } from '@/lib/element/global/icons/chevron-up-icon';
 import Image from '@/lib/element/global/image';
-import Link from '@/lib/element/global/link';
+import Link from 'next/link';
 import React from 'react';
 
 type T_InfoSahamMainProps = {
@@ -99,7 +99,6 @@ export default function CE_InfoSahamMain({
                 >
                   {social_media?.map(({ url, icon }, index) => (
                     <Link
-                      extern={true}
                       href={url ?? '/'}
                       key={index}
                       className="text-blue-02 flex items-center gap-2 lg:mb-3 mb-2 lg:text-sm text-sm justify-center lg:justify-start font-normal"
@@ -118,9 +117,9 @@ export default function CE_InfoSahamMain({
                 </div>
               </div>
               <div>
-                <p className="text-2xl text-blue-01 font-medium md:text-end text-start">
+                <h2 className="text-2xl text-blue-01 font-medium md:text-end text-start">
                   {buyPrice}
-                </p>
+                </h2>
                 <div>
                   {buyPrice < high ? (
                     <div className="flex items-center gap-2">
@@ -130,9 +129,9 @@ export default function CE_InfoSahamMain({
                         className="stroke-green-500"
                         stroke={''}
                       />
-                      <p className="text-2xl text-blue-01 font-medium">
+                      <h2 className="text-2xl text-blue-01 font-medium">
                         {`+${Number(high) - Number(buyPrice)}.00(+${percentChange}%)`}
-                      </p>
+                      </h2>
                     </div>
                   ) : (
                     <div className="flex items-center gap-2">
@@ -142,9 +141,9 @@ export default function CE_InfoSahamMain({
                         className="stroke-red-01"
                         stroke={''}
                       />
-                      <p className="text-2xl text-blue-01 font-medium">
+                      <h2 className="text-2xl text-blue-01 font-medium">
                         {`-${Math.abs(Number(high) - Number(buyPrice))}.00(-${percentChange}%)`}
-                      </p>
+                      </h2>
                     </div>
                   )}
                 </div>
@@ -152,13 +151,13 @@ export default function CE_InfoSahamMain({
             </div>
             <div className="grid md:grid-cols-2 md:w-1/2 w-full grid-cols-1 p-4 gap-3">
               <h3 className="col-span-1">Volume</h3>
-              <p className="col-span-1 text-2xl text-blue-01 font-medium">
+              <h2 className="col-span-1 text-2xl text-blue-01 font-medium">
                 {cumulativeVol}
-              </p>
+              </h2>
               <h3 className="col-span-1 ">Day&apos;s Range</h3>
-              <p className="col-span-1 text-2xl text-blue-01 font-medium">{`${low} - ${high}`}</p>
+              <h2 className="col-span-1 text-2xl text-blue-01 font-medium">{`${low} - ${high}`}</h2>
               <h3 className="col-span-1">52wk Range</h3>
-              <p className="col-span-1 text-2xl text-blue-01 font-medium">{`${low52WKS} - ${high52WKS}`}</p>
+              <h2 className="col-span-1 text-2xl text-blue-01 font-medium">{`${low52WKS} - ${high52WKS}`}</h2>
             </div>
           </div>
         </div>

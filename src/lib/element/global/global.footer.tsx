@@ -117,10 +117,10 @@ function TermsAllReservedElement({
     <>
       <div className="bg-black lg:py-[1.375rem] py-4">
         <div className="text-center flex items-center lg:flex-row flex-col lg:container justify-between lg:px-0 px-4 lg:items-center lg:justify-between">
-          <p className="text-white boxiner inline font-normal text-sm !text-center">
+          <h2 className="text-white boxiner inline font-normal text-sm !text-center">
             © 2024 PT.Bank Rakyat Indonesia (Persero) Tbk. | All Rights
             Reserved.
-          </p>
+          </h2>
 
           <div className="items-center mt-6 lg:mt-0">
             <div className="flex flex-wrap justify-center items-center divide-x-2">

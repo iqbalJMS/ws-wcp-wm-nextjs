@@ -1,10 +1,10 @@
 'use client';
-import Link from '@/lib/element/global/link';
 import React, { useState } from 'react';
 import GrowthIcon from '@/lib/element/global/icons/growth-icon';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
+import Link from 'next/link';
 
 type T_MenuGridProps = {
   title: string;
@@ -123,9 +123,9 @@ export default function CE_MenuGrid({
                   >
                     {item.label}
                   </h2>
-                  <p className="text-xs font-light group-hover:text-white text-center">
+                  <h2 className="text-xs font-light group-hover:text-white text-center">
                     {item.text}
-                  </p>
+                  </h2>
                 </Link>
               );
             })}

@@ -58,9 +58,9 @@ export default function CE_GridVariant04({
                     className="bg-no-repeat bg-cover w-full h-full rounded-full"
                   />
                 </div>
-                <p className="text-md my-4 text-center font-semibold uppercase">
+                <h2 className="text-md my-4 text-center font-semibold uppercase">
                   {item.desc}
-                </p>
+                </h2>
               </div>
             ))}
         </div>

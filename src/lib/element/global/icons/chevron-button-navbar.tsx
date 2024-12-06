@@ -20,8 +20,8 @@ export default function ChevronDown({
       <path
         d="M17 9.5L12 14.5L7 9.5"
         stroke={stroke}
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

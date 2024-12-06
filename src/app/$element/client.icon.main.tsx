@@ -1,9 +1,7 @@
 'use client';
 
 import Image from '@/lib/element/global/image';
-// import Modal from '@/lib/element/global/modal';
-import Link from '@/lib/element/global/link';
-
+import Link from 'next/link';
 type T_IconMenuProps = {
   image: string;
   title?: string;
