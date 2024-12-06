@@ -12,7 +12,7 @@ export type T_Widget =
   | 'image_slider'
   | 'subscription'
   | 'header'
-  // | 'multi_tab'
+  | 'multi_tab'
   | 'section'
   | 'two_column'
   | 'card3'

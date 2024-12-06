@@ -4,7 +4,7 @@ import { T_ComponentMapWidget, T_Widget } from './types';
 import { T_DropdownAction } from './types/widget/dropdown-action';
 import { T_Subscription } from './types/widget/subscription';
 import { T_ImageSlider } from './types/widget/image-slider';
-// import { T_MultiTab } from './types/widget/multi_tab';
+import { T_MultiTab } from './types/widget/multi_tab';
 import { T_Header } from './types/widget/header';
 // {--------------}
 import { WIDGET_VARIANT } from './variables';
@@ -37,9 +37,9 @@ const CE_HelpContent = dynamic(
   () => import('@/app/$element/client.help.content')
 );
 
-// const CE_SectionPromo = dynamic(
-//   () => import('@/app/(views)/$element/promo/client.section-promo')
-// );
+const CE_SectionPromo = dynamic(
+  () => import('@/app/(views)/$element/promo/client.section-promo')
+);
 
 const CE_BannerMain = dynamic(
   () => import('@/app/(views)/$element/banner/client.banner.main')
@@ -686,38 +686,38 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         };
       },
     },
-    // multi_tab: {
-    //   component: CE_SectionPromo,
-    //   props: (_component: T_MultiTab) => {
-    //     return {
-    //       title: _component?.field_title_custom[0]?.value,
-    //       listTab: _component?.field_tab?.map((item) => {
-    //         return {
-    //           group: {
-    //             title: item.field_title[0].value,
-    //             informationText:
-    //               item.field_paragraphs[0].field_title_custom[0].value,
-    //             showMore: {
-    //               title: item.field_primary_cta[0].title,
-    //               url: item.field_primary_cta[0].full_url,
-    //             },
-    //           },
-    //           contents: item.field_paragraphs[0]?.field_carousel_items?.map(
-    //             (items) => {
-    //               return {
-    //                 img: items.field_image[0].field_media_image[0].uri[0].url,
-    //                 title: items.field_title[0].value,
-    //                 date: items.field_simple_text[0].value,
-    //                 href: items.field_primary_cta[0].full_url,
-    //                 description: items.field_content[0]?.value,
-    //               };
-    //             }
-    //           ),
-    //         };
-    //       }),
-    //     };
-    //   },
-    // },
+    multi_tab: {
+      component: CE_SectionPromo,
+      props: (_component: T_MultiTab) => {
+        return {
+          title: _component?.field_title_custom[0]?.value,
+          listTab: _component?.field_tab?.map((item) => {
+            return {
+              group: {
+                title: item.field_title[0].value,
+                informationText:
+                  item.field_paragraphs[0].field_title_custom[0].value,
+                showMore: {
+                  title: item.field_primary_cta[0].title,
+                  url: item.field_primary_cta[0].full_url,
+                },
+              },
+              contents: item.field_paragraphs[0]?.field_carousel_items?.map(
+                (items) => {
+                  return {
+                    img: items.field_image[0].field_media_image[0].uri[0].url,
+                    title: items.field_title[0].value,
+                    date: items.field_simple_text[0].value,
+                    href: items.field_primary_cta[0].full_url,
+                    description: items.field_content[0]?.value,
+                  };
+                }
+              ),
+            };
+          }),
+        };
+      },
+    },
     external_magazine: {
       component: CE_CardMagazineMain,
       props: (_component: T_ExternalMagazine) => {
