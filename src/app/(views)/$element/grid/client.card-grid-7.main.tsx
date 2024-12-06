@@ -1,8 +1,8 @@
 'use client';
 
-import Link from '@/lib/element/global/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const CE_CardGrid7Main = ({
   dataCard,

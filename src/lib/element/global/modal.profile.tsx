@@ -35,9 +35,9 @@ const CE_ModalProfile: React.FC<ProfileModalProps> = ({
             onClick={onClose}
             className="absolute flex items-center gap-2 top-3 right-5 text-gray-500 hover:text-gray-800"
           >
-            <p className="bg-yellow-500 flex items-center justify-center h-5 w-5 rounded-full text-white text-xs">
+            <h2 className="bg-yellow-500 flex items-center justify-center h-5 w-5 rounded-full text-white text-xs">
               ✕
-            </p>
+            </h2>
             Close
           </button>
         )}
@@ -56,7 +56,7 @@ const CE_ModalProfile: React.FC<ProfileModalProps> = ({
               <h2 className="text-2xl font-semibold mt-4">{user?.username}</h2>
             )}
             {user?.role && (
-              <p className="text-sm text-blue-900 mb-6 mt-2">{user?.role}</p>
+              <h2 className="text-sm text-blue-900 mb-6 mt-2">{user?.role}</h2>
             )}
             {user?.list.map((item) => (
               <div key={item.title} className="mb-6">
@@ -64,9 +64,9 @@ const CE_ModalProfile: React.FC<ProfileModalProps> = ({
                   {item?.title}
                 </h3>
                 {item?.subTitle.map((sub, index) => (
-                  <p key={index} className="text-gray-700 text-sm mt-3">
+                  <h2 key={index} className="text-gray-700 text-sm mt-3">
                     {sub?.title}
-                  </p>
+                  </h2>
                 ))}
               </div>
             ))}

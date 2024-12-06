@@ -39,9 +39,9 @@ export default function CardVariant1() {
     <div className="w-full h-auto flex flex-col justify-center items-center">
       <h1 className="text-3xl font-semibold uppercase">Video</h1>
 
-      <p className="font-extralight pt-2 pb-16">
+      <h2 className="font-extralight pt-2 pb-16">
         Daftar putar teratas minggu ini
-      </p>
+      </h2>
       <section className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
         {LIST_CARD.map((item, index) => (
           <div

@@ -57,34 +57,34 @@ export default function CardVariant10b() {
                 <h1 className="text-[#100087] font-semibold text-base">
                   Deskripsi Program:
                 </h1>
-                <p className="pt-1 pb-7">
+                <h2 className="pt-1 pb-7">
                   Program reward ini untuk nasabah BRI Private atau nasabah BRI
                   Prioritas yang melakukan pembelian Produk Asuransi AMORA
                   sesuai dengan syarat dan ketentuan yang ditetapkan
-                </p>
+                </h2>
                 <h1 className="text-[#100087] font-semibold text-base">
                   Periode Program:
                 </h1>
-                <p className="pt-1 pb-7">
+                <h2 className="pt-1 pb-7">
                   Program ini berlaku hingga 30 September 2024 (tanggal
                   submission terakhir)
-                </p>
+                </h2>
                 <h1 className="text-[#100087] font-semibold text-base">
                   Peserta Program:
                 </h1>
-                <p className="pt-1 pb-7">
+                <h2 className="pt-1 pb-7">
                   Peserta Program ini adalah nasabah yang membelu polis Produk
                   Asuransi AMora di seluruh Indonesia sesuai dengan syarat dan
                   ketentuan yang ditetapkan.
-                </p>
+                </h2>
                 <h1 className="text-[#100087] font-semibold text-base">
                   Benefit Program:
                 </h1>
-                <p className="pt-1 pb-7">
+                <h2 className="pt-1 pb-7">
                   Bagi nasabah yang memenuhi ketentuan syarat program pemasaran
                   Produk Asuransi Amora dengan model bisnis referensi dengan
                   detail sebagai berikut:
-                </p>
+                </h2>
                 <div>
                   <table className="w-full md:w-9/12 lg:w-8/12 table-auto">
                     <thead className="bg-white">

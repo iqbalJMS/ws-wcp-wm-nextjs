@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from 'react';
 
 export type MediaQueryParam = {
   query: string;
@@ -17,11 +17,11 @@ export default function useMediaQuery(params: MediaQueryParam) {
       setMatches(mql.matches);
     }
 
-    mql.addEventListener("change", _query);
+    mql.addEventListener('change', _query);
     setMatches(mql.matches);
 
     return () => {
-      mql.removeEventListener("change", _query);
+      mql.removeEventListener('change', _query);
     };
   }, [query, revalidate]);
 

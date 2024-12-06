@@ -1,6 +1,5 @@
-import Link from '@/lib/element/global/link';
 import Image from 'next/image';
-
+import Link from 'next/link';
 export default function CE_FloatingVariant01({
   data,
 }: {
@@ -17,7 +16,7 @@ export default function CE_FloatingVariant01({
           {data?.map((item, index) => {
             return (
               <div key={index} className="">
-                <Link href={item?.alias} extern={false}>
+                <Link href={item?.alias}>
                   <div className="flex items-center bg-[#444444] hover:bg-wmcolor p-3 px-4 border-b-2 border-white ">
                     <Image
                       className="text-white w-5 h-5 mr-5"

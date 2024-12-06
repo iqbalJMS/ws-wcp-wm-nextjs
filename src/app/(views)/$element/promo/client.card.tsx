@@ -39,7 +39,7 @@ export default function CE_Card(props: T_CardProps) {
             {content?.title}
           </h3>
           <div className="space-y-[0.875rem]">
-            <p className="line-clamp-1 text-sm">{content?.date}</p>
+            <h2 className="line-clamp-1 text-sm">{content?.date}</h2>
             {content?.description && (
               <div className="line-clamp-2 text-xs text-gray-500">
                 {parseHTMLToReact(content?.description)}

@@ -1,8 +1,9 @@
 'use client';
 
-import CE_CarouselVariant3 from '@/app/(views)/$element/carousel/client.carousel.variant03';
-import CE_CarouselVariant2 from '@/app/(views)/$element/carousel/client.carousel.variant02';
-import CE_CarouselVariant1 from '@/app/(views)/$element/carousel/client.carousel.variant01';
+import CE_CarouselVariant1 from './client.carousel.variant01';
+import CE_CarouselVariant2 from './client.carousel.variant02';
+import CE_CarouselVariant3 from './client.carousel.variant03';
+
 const CE_CarouselMain = ({
   variant,
   data,
@@ -21,16 +22,16 @@ const CE_CarouselMain = ({
     labelVideo: string;
     subLabel: string;
   }>;
-  title: any;
-  subtitle: any;
-  titlelink: any;
-  linkcta: any;
-  variant: any;
+  title: string;
+  subtitle: string;
+  titlelink: string;
+  linkcta: string;
+  variant: string;
 }) => {
   return (
     <>
-      {variant === 'wm-prioritas-main-navigation' && (
-        <CE_CarouselVariant1
+      {variant === 'wm-main-navigation' && (
+        <CE_CarouselVariant3
           data={data}
           title={title}
           subtitle={subtitle}
@@ -47,8 +48,8 @@ const CE_CarouselMain = ({
           linkcta={linkcta}
         />
       )}
-      {variant === 'wm-main-navigation' && (
-        <CE_CarouselVariant3
+      {variant === 'wm-prioritas-main-navigation' && (
+        <CE_CarouselVariant1
           data={data}
           title={title}
           subtitle={subtitle}

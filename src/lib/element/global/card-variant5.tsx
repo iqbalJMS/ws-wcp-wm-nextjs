@@ -43,9 +43,9 @@ export default function CardVariant5() {
           <h1 className="pb-3 text-3xl font-bold uppercase ">
             produk unggulan
           </h1>
-          <p className="text-[#826B64] font-normal text-sm lg:text-base">
+          <h2 className="text-[#826B64] font-normal text-sm lg:text-base">
             Temukan lebih lanjut tentang produk Investasi dan Bancassurance
-          </p>
+          </h2>
         </div>
         <section className="w-full overflow-hidden mdmax:w-full mdmax:flex-none">
           <div

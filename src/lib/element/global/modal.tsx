@@ -38,11 +38,11 @@ const Modal = ({
             <h1 className="font-semibold text-lg lg:text-xl pt-2">
               Pakai BRImo, #LoginKeseruanmu Semua Beres dari Rumah
             </h1>
-            <p className="text-[#555555] font-light text-sm lg:text-base">
+            <h2 className="text-[#555555] font-light text-sm lg:text-base">
               Buka Rekening sambil kerja di rumah, Bayar listrik gak perlu lama,
               Transfer dana gak perlu ke mana-mana, Isi pulsa biar selalu ada
               kuota, Top up BRIZZI so easy di hape aja
-            </p>
+            </h2>
           </div>
         </div>
       </div>
