@@ -6,6 +6,8 @@ import Link from 'next/link';
 import PlayIcon from '@/lib/element/global/icons/play-icon';
 import LeftArrow from '@/lib/element/global/icons/left-arrow';
 import ModalTester from '@/lib/element/global/modal.tedter';
+import { motion, useInView, useAnimation } from 'motion/react';
+
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
 
@@ -52,6 +54,16 @@ export default function CE_CarouselVariant1({
   const [startX, setStartX] = useState(0);
   const [translateX, setTranslateX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
 
   const closeModal = () => {
     setModalOpen(false);
@@ -157,26 +169,46 @@ export default function CE_CarouselVariant1({
   return (
     <div className="w-full h-[80vh] flex flex-col items-center justify-center relative overflow-hidden">
       <section className="flex justify-between w-11/12 xl:w-8/12  pb-5 md:pb-0">
-        <div className="space-y-1">
-          <h1 className="text-3xl font-bold text-prioritycolor">{title}</h1>
-          <h2 className="font-light text-sm pb-3">{subtitle}</h2>
-          <Link
-            href={'/videos'}
-            className="flex items-center text-prioritycolor font-semibold uppercase hover:underline"
+        <div ref={ref}>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="space-y-1"
           >
-            {titlelink}
-          </Link>
-          <Link
-            href={linkcta}
-            className="hidden items-center text-prioritycolor font-semibold uppercase hover:underline"
-          >
-            {titlelink}
-          </Link>
+            <h1 className="text-3xl font-bold text-prioritycolor">{title}</h1>
+            <h2 className="font-light text-sm pb-3">{subtitle}</h2>
+            <Link
+              href={'/videos'}
+              className="flex items-center text-prioritycolor font-semibold uppercase hover:underline"
+            >
+              {titlelink}
+            </Link>
+            <Link
+              href={linkcta}
+              className="hidden items-center text-prioritycolor font-semibold uppercase hover:underline"
+            >
+              {titlelink}
+            </Link>
+          </motion.div>
         </div>
 
         {/* Button Section */}
-        <div className="">
-          <div className="hidden md:flex space-x-3">
+        <div ref={ref} className="">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className="hidden md:flex space-x-3"
+          >
             <button
               className={[
                 ' p-1 bg-prioritycolor text-white hover:bg-gray-500 duration-300 delay-75',
@@ -213,10 +245,19 @@ export default function CE_CarouselVariant1({
                 }
               />
             </button>
-          </div>
+          </motion.div>
 
           {/* button for mobile screen */}
-          <div className="flex md:hidden space-x-3">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className="flex md:hidden space-x-3"
+          >
             <button
               className={[
                 'lg:hidden p-1 bg-prioritycolor text-white hover:bg-gray-500 duration-300 delay-75',
@@ -253,7 +294,7 @@ export default function CE_CarouselVariant1({
                 }
               />
             </button>
-          </div>
+          </motion.div>
         </div>
       </section>
       {/* Modal */}
@@ -296,8 +337,18 @@ export default function CE_CarouselVariant1({
           </div>
         </ModalTester>
       )}
-      <section className="relative w-10/12 lg:w-11/12 xl:w-9/12 overflow-hidden">
-        <div
+      <section
+        ref={ref}
+        className="relative w-10/12 lg:w-11/12 xl:w-9/12 overflow-hidden"
+      >
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 75 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate={mainControls}
+          transition={{ duration: 0.5, delay: 0.45 }}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -346,7 +397,7 @@ export default function CE_CarouselVariant1({
               </picture>
             </div>
           ))}
-        </div>
+        </motion.div>
       </section>
       <div className="absolute bg-[#DCDCDC] w-10/12 h-60 -z-10 bottom-20 left-0 rounded-r-full"></div>
     </div>

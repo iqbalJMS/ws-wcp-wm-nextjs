@@ -1,6 +1,9 @@
+'use client';
+
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-
+import { motion, useInView, useAnimation } from 'motion/react';
 export default function CE_GridVariant04({
   title,
   data,
@@ -17,6 +20,16 @@ export default function CE_GridVariant04({
     ? `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage}`
     : '';
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
+
   return (
     <section
       className="w-full"
@@ -28,18 +41,36 @@ export default function CE_GridVariant04({
         backgroundSize: 'cover',
       }}
     >
-      <div className="container py-20">
+      <div ref={ref} className="container py-20">
         {title && (
-          <div className="mb-20 flex flex-col items-center">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="mb-20 flex flex-col items-center"
+          >
             {title && (
               <h1 className="text-3xl text-[#3D405F] font-semibold uppercase">
                 {parseHTMLToReact(title)}
               </h1>
             )}
             <div className="w-[50px] h-0.5 bg-[#404041] mt-3"></div>
-          </div>
+          </motion.div>
         )}
-        <div className="flex flex-wrap items-center justify-center">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 75 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate={mainControls}
+          transition={{ duration: 0.5, delay: 0.55 }}
+          className="flex flex-wrap items-center justify-center"
+        >
           {data &&
             data.length > 0 &&
             data.map((item, index) => (
@@ -63,7 +94,7 @@ export default function CE_GridVariant04({
                 </h2>
               </div>
             ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

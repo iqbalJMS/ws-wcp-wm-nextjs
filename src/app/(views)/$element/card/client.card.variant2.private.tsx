@@ -1,11 +1,12 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import { useState } from 'react';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
+import { motion, useInView, useAnimation } from 'motion/react';
 
 export default function CE_CardVariant2Private({
   data,
@@ -36,6 +37,15 @@ export default function CE_CardVariant2Private({
       setCurrentSlide(currentSlide - slidesToScroll);
     }
   };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
   return (
     <>
       <div
@@ -45,10 +55,18 @@ export default function CE_CardVariant2Private({
           backgroundPosition: 'center',
         }}
       >
-        <section className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12  pb-16">
-          <div
-            data-aos="fade-up"
-            data-aos-duration="1000"
+        <section
+          ref={ref}
+          className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 pb-16"
+        >
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.25 }}
             className="uppercase space-y-2 pb-5 flex justify-center"
           >
             {title && (
@@ -56,10 +74,20 @@ export default function CE_CardVariant2Private({
                 {parseHTMLToReact(title)}
               </h1>
             )}
-          </div>
+          </motion.div>
         </section>
-        <section className="md:hidden w-full overflow-hidden mdmax:w-full mdmax:flex-none">
-          <div
+        <section
+          ref={ref}
+          className="md:hidden w-full overflow-hidden mdmax:w-full mdmax:flex-none"
+        >
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.25 }}
             className="w-full flex md:grid grid-cols-3 transition-all ease-in-out duration-300 md:space-x-3"
             style={{
               transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
@@ -69,8 +97,6 @@ export default function CE_CardVariant2Private({
               return (
                 <div
                   key={index}
-                  // data-aos="fade-up"
-                  // data-aos-duration="1000"
                   className="group hover:bg-privatecolor relative w-full h-60 md:h-80 px-5 overflow-hidden flex-none flex flex-col items-center justify-center hover:bg-gradient-to-b from-[#C3B073] to-privatecolor/90 rounded-xl duration-500 transition-all ease-in-out cursor-pointer"
                 >
                   <Image
@@ -95,16 +121,26 @@ export default function CE_CardVariant2Private({
                 </div>
               );
             })}
-          </div>
+          </motion.div>
         </section>
-        <section className="hidden md:flex justify-center w-full overflow-hidden mdmax:w-full mdmax:flex-none">
-          <div className="w-full lg:w-10/12 xl:w-9/12 flex md:grid grid-cols-3 transition-all ease-in-out duration-300 md:space-x-3">
+        <section
+          ref={ref}
+          className="hidden md:flex justify-center w-full overflow-hidden mdmax:w-full mdmax:flex-none"
+        >
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="w-full lg:w-10/12 xl:w-9/12 flex md:grid grid-cols-3 transition-all ease-in-out duration-300 md:space-x-3"
+          >
             {data?.map(({ label, icon, desc }, index) => {
               return (
                 <div
                   key={index}
-                  // data-aos="fade-up"
-                  // data-aos-duration="1000"
                   className="group hover:bg-privatecolor relative w-full xl:w-11/12 h-60 md:h-80 px-5 overflow-hidden flex-none flex flex-col items-center justify-center hover:bg-gradient-to-b from-[#C3B073] to-privatecolor/90 rounded-xl duration-500 transition-all ease-in-out cursor-pointer"
                 >
                   <Image
@@ -129,7 +165,7 @@ export default function CE_CardVariant2Private({
                 </div>
               );
             })}
-          </div>
+          </motion.div>
         </section>
         <div className="md:hidden w-full flex justify-end px-1 py-3 space-x-3">
           <button

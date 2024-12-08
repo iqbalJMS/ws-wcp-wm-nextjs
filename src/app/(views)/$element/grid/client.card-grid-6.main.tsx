@@ -1,8 +1,10 @@
 'use client';
 
+import React, { useEffect, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion, useInView, useAnimation } from 'motion/react';
 
 const CE_CardGrid6Main = ({
   dataCard,
@@ -14,10 +16,20 @@ const CE_CardGrid6Main = ({
     nid: string;
   }>;
 }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
+
   return (
     <>
       <div className="container py-10">
-        <div className="flex flex-wrap -mx-10">
+        <div ref={ref} className="flex flex-wrap -mx-10">
           {dataCard.map((item, index) => (
             <Link
               href={`/program-detail/${item?.nid}`}
@@ -25,7 +37,16 @@ const CE_CardGrid6Main = ({
               className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
             >
               <div className="bg-white shadow-xl cursor-pointer">
-                <div className="w-full h-[20rem]  overflow-hidden mb-2">
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 75 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  initial="hidden"
+                  animate={mainControls}
+                  transition={{ duration: 0.5, delay: 0.25 }}
+                  className="w-full h-[20rem]  overflow-hidden mb-2"
+                >
                   {item?.image && (
                     <Image
                       src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image}`}
@@ -35,8 +56,17 @@ const CE_CardGrid6Main = ({
                       className="w-full h-full object-cover object-bottom"
                     />
                   )}
-                </div>
-                <div className="p-5">
+                </motion.div>
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 75 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  initial="hidden"
+                  animate={mainControls}
+                  transition={{ duration: 0.5, delay: 0.55 }}
+                  className="p-5"
+                >
                   <div className="text-privatecolor text-xl font-bold mb-2">
                     {item?.title}
                   </div>
@@ -60,7 +90,7 @@ const CE_CardGrid6Main = ({
                       </svg>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </Link>
           ))}

@@ -1,7 +1,9 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from '@/lib/element/global/image';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import { motion, useInView, useAnimation } from 'motion/react';
 export default function CE_CardVariant6({
   image,
   label,
@@ -15,33 +17,56 @@ export default function CE_CardVariant6({
   link: null | string;
   backGround: string;
 }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
+
   return (
     <>
       <div className="w-full flex justify-center p-5">
+        <div ref={ref}>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className=" h-[50vh] -z-10 absolute "
+            style={{
+              backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${backGround})`,
+            }}
+          ></motion.div>
+        </div>
         <div
-          className="w-full h-[50vh] -z-10 absolute "
-          style={{
-            backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${backGround})`,
-          }}
-        ></div>
-        <div className="grid grid-cols-1 md:grid-cols-2 md:place-items-center lg:w-11/12 xl:w-9/12 xl:px-8 z-10">
-          <section className="w-full">
-            <div
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              className="pb-4 sm:hidden"
-            >
+          ref={ref}
+          className="grid grid-cols-1 md:grid-cols-2 md:place-items-center lg:w-11/12 xl:w-9/12 xl:px-8 z-10"
+        >
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className="w-full"
+          >
+            <div className="pb-4 sm:hidden">
               {label && (
                 <h1 className="text-2xl font-bold uppercase">
                   {parseHTMLToReact(label)}
                 </h1>
               )}
             </div>
-            <div
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              className="relative w-full overflow-hidden"
-            >
+            <div className="relative w-full overflow-hidden">
               {image && (
                 <Image
                   src={image}
@@ -52,13 +77,18 @@ export default function CE_CardVariant6({
                 />
               )}
             </div>
-          </section>
-          <section className="space-y-4 sm:pt-5 w-8/12 flex flex-col items-start">
-            <div
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              className="hidden sm:flex"
-            >
+          </motion.div>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className="space-y-4 sm:pt-5 w-8/12 flex flex-col items-start"
+          >
+            <div className="hidden sm:flex">
               {label && (
                 <h1 className="text-3xl font-bold uppercase">
                   {parseHTMLToReact(label)}
@@ -66,18 +96,12 @@ export default function CE_CardVariant6({
               )}
             </div>
             {desc && (
-              <h1
-                data-aos="fade-up"
-                data-aos-duration="1000"
-                className="text-[#89829F] text-sm sm:text-base sm:pb-3"
-              >
+              <h1 className="text-[#89829F] text-sm sm:text-base sm:pb-3">
                 {parseHTMLToReact(desc)}
               </h1>
             )}
             {link === null ? (
               <Link
-                data-aos="fade-up"
-                data-aos-duration="1000"
                 ref={link}
                 className="bg-wmcolor py-2 px-5 rounded-full hover:bg-gray-700 duration-200 cursor-pointer text-white font-semibold uppercase"
                 href={'/infovesta'}
@@ -94,7 +118,7 @@ export default function CE_CardVariant6({
               </Link>
             )}
             <section />
-          </section>
+          </motion.div>
         </div>
       </div>
     </>

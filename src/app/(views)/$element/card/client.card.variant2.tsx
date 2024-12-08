@@ -1,7 +1,8 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from '@/lib/element/global/image';
+import { motion, useInView, useAnimation } from 'motion/react';
 
 export default function CE_CardVariant2({
   data,
@@ -18,13 +19,31 @@ export default function CE_CardVariant2({
   title: string;
   subtitle: string;
 }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
+
   return (
     <>
       <div className="w-full h-auto flex flex-col items-center p-5 pb-20">
-        <section className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 pb-16">
-          <div
-            data-aos="fade-right"
-            data-aos-duration="1000"
+        <section
+          ref={ref}
+          className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 pb-16"
+        >
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, x: -75 },
+              visible: { opacity: 1, x: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.25 }}
             className="uppercase space-y-2 pb-5"
           >
             {subtitle && (
@@ -37,10 +56,15 @@ export default function CE_CardVariant2({
                 {parseHTMLToReact(title)}
               </h1>
             )}
-          </div>
-          <div
-            data-aos="fade-left"
-            data-aos-duration="1000"
+          </motion.div>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, x: 75 },
+              visible: { opacity: 1, x: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.25 }}
             className="flex items-end"
           >
             {desctitle && (
@@ -48,14 +72,22 @@ export default function CE_CardVariant2({
                 {parseHTMLToReact(desctitle)}
               </h1>
             )}
-          </div>
+          </motion.div>
         </section>
-        <section className="w-full lg:w-10/12 xl:w-8/12 h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <section
+          ref={ref}
+          className="w-full lg:w-10/12 xl:w-8/12 h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+        >
           {data?.map((item, index) => {
             return (
-              <div
-                data-aos="fade-up"
-                data-aos-duration="1000"
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 75 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                initial="hidden"
+                animate={mainControls}
+                transition={{ duration: 0.5, delay: 0.25 }}
                 key={index}
                 className="group w-full h-60 flex flex-col items-center justify-center hover:bg-black hover:rounded-xl duration-300"
               >
@@ -77,7 +109,7 @@ export default function CE_CardVariant2({
                     {parseHTMLToReact(item?.desccard)}
                   </h2>
                 )}
-              </div>
+              </motion.div>
             );
           })}
         </section>

@@ -53,7 +53,7 @@ export default function CE_CardVariant12({
                 src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image}`}
                 width={1000}
                 height={1000}
-                alt="image andi ananda"
+                alt="image"
                 className="object-center object-cover w-full h-full rounded-xl"
               />
             </div>

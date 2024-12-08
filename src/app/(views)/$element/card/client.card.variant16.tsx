@@ -1,7 +1,9 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useRef } from 'react';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import { motion, useInView, useAnimation } from 'motion/react';
 
 export default function CE_CardVariant16({
   title,
@@ -18,18 +20,49 @@ export default function CE_CardVariant16({
     desc: string;
   }>;
 }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
+
   return (
     <>
-      <div className="w-full pb-80 md:pb-60 lg:pb-20 flex flex-col items-center space-y-10">
-        <section className="w-full text-center">
+      <div
+        ref={ref}
+        className="w-full pb-80 md:pb-60 lg:pb-20 flex flex-col items-center space-y-10"
+      >
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 75 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate={mainControls}
+          transition={{ duration: 0.5, delay: 0.25 }}
+          className="w-full text-center"
+        >
           {title && (
             <h1 className="uppercase text-privatecolor text-4xl font-bold -tracking-tighter ">
               {parseHTMLToReact(title)}
             </h1>
           )}
           {subTitle && <h1 className="pt-3">{parseHTMLToReact(subTitle)}</h1>}
-        </section>
-        <section className="w-8/12 h-full md:w-10/12 md:h-fit lg:w-11/12 xl:w-10/12 2xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center ">
+        </motion.div>
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 75 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate={mainControls}
+          transition={{ duration: 0.5, delay: 0.55 }}
+          className="w-8/12 h-full md:w-10/12 md:h-fit lg:w-11/12 xl:w-10/12 2xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center "
+        >
           {data?.map((item, index) => (
             <Link
               data-aos="fade-up"
@@ -67,7 +100,7 @@ export default function CE_CardVariant16({
               </div>
             </Link>
           ))}
-        </section>
+        </motion.div>
       </div>
     </>
   );
