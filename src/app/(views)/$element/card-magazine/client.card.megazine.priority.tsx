@@ -1,12 +1,12 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-
+import { motion, useInView, useAnimation } from 'motion/react';
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
 
@@ -43,6 +43,15 @@ export default function CE_CardMegazinePriority({
       setCurrentSlide(currentSlide - slidesToScroll);
     }
   };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
 
   const data = [
     {
@@ -80,8 +89,20 @@ export default function CE_CardMegazinePriority({
   ];
   return (
     <>
-      <div className="w-full h-auto flex flex-col items-center justify-center">
-        <section className="w-full flex flex-col items-center pb-16">
+      <div
+        ref={ref}
+        className="w-full h-auto flex flex-col items-center justify-center"
+      >
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 75 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate={mainControls}
+          transition={{ duration: 0.5, delay: 0.25 }}
+          className="w-full flex flex-col items-center pb-16"
+        >
           <h1 className="text-prioritycolor font-semibold text-3xl uppercase">
             {title}
           </h1>
@@ -91,10 +112,19 @@ export default function CE_CardMegazinePriority({
           <Link
             href={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${linkMagezine}`}
           />
-        </section>
+        </motion.div>
 
         {/* mobile section */}
-        <section className="md:hidden lg:hidden relative overflow-hidden mdmax:w-full mdmax:flex-none p-10 mdmax:p-1 justify-center">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 75 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate={mainControls}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="md:hidden lg:hidden relative overflow-hidden mdmax:w-full mdmax:flex-none p-10 mdmax:p-1 justify-center"
+        >
           <div
             className="md:w-10/12 lg:w-8/12 flex justify-start transition-all ease-in-out duration-300"
             style={{
@@ -176,10 +206,19 @@ export default function CE_CardMegazinePriority({
               />
             </button>
           </div>
-        </section>
+        </motion.div>
 
         {/* Tab Section */}
-        <section className="w-full hidden md:flex lg:hidden justify-center px-5">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 75 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate={mainControls}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="w-full hidden md:flex lg:hidden justify-center px-5"
+        >
           <div className="w-full h-[50vh] flex flex-row justify-center">
             <div className="basis-20 flex justify-center items-center">
               <button
@@ -267,10 +306,19 @@ export default function CE_CardMegazinePriority({
               </button>
             </div>
           </div>
-        </section>
+        </motion.div>
 
         {/* Web Section */}
-        <section className="hidden lg:flex w-full h-[60vh] justify-center items-center ">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 75 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate={mainControls}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="hidden lg:flex w-full h-[60vh] justify-center items-center "
+        >
           <div className="w-11/12 h-full flex justify-center ">
             <div className="w-full h-full flex flex-col ">
               <div className="w-full h-full flex justify-center space-x-4 ">
@@ -309,15 +357,24 @@ export default function CE_CardMegazinePriority({
               </div>
             </div>
           </div>
-        </section>
+        </motion.div>
 
-        <section className="inline-flex items-center justify-center w-full pt-5">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 75 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate={mainControls}
+          transition={{ duration: 0.5, delay: 0.45 }}
+          className="inline-flex items-center justify-center w-full pt-5"
+        >
           <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
           <button className=" hover:bg-gray-600 duration-300 text-[#404041] py-3 px-5 rounded-full uppercase font-semibold border border-gray-500 hover:text-white">
             lihat semua e-magazine
           </button>
           <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
-        </section>
+        </motion.div>
       </div>
     </>
   );

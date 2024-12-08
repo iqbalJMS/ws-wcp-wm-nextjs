@@ -1,8 +1,9 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import CE_FlipCard from './client.flip.card';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Link from 'next/link';
+import { motion, useInView, useAnimation } from 'motion/react';
 
 export default function CE_CardVariant15Priority({
   data,
@@ -23,13 +24,31 @@ export default function CE_CardVariant15Priority({
   buttonText: string;
   buttonUri: null | string;
 }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
+
   return (
     <>
       <div className="w-full h-auto flex justify-center pt-20 pb-10">
-        <div className=" w-[40rem] h-full md:w-[50rem] xl:w-[60rem] grid grid-cols-1 ">
-          <section
-            data-aos="fade-up"
-            data-aos-duration="1000"
+        <div
+          ref={ref}
+          className=" w-[40rem] h-full md:w-[50rem] xl:w-[60rem] grid grid-cols-1 "
+        >
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.45 }}
             className="w-full flex flex-col items-center px-16"
           >
             {topTitle && (
@@ -42,11 +61,16 @@ export default function CE_CardVariant15Priority({
                 {parseHTMLToReact(subTitle)}
               </h2>
             )}
-          </section>
+          </motion.div>
           <section className="grid grid-cols-1 md:grid-cols-2 pt-0 md:pt-16 space-x-0 lg:space-x-16">
-            <div
-              data-aos="fade-right"
-              data-aos-duration="1000"
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, x: -75 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              initial="hidden"
+              animate={mainControls}
+              transition={{ duration: 0.5, delay: 0.45 }}
               className="flex justify-center items-start"
             >
               {data && (
@@ -55,10 +79,15 @@ export default function CE_CardVariant15Priority({
                   backImage={data?.[0]?.backImage}
                 />
               )}
-            </div>
-            <div
-              data-aos="fade-left"
-              data-aos-duration="1000"
+            </motion.div>
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, x: 75 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              initial="hidden"
+              animate={mainControls}
+              transition={{ duration: 0.5, delay: 0.45 }}
               className="text-center md:text-start pt-0 md:pt-4"
             >
               <div className="space-y-2 px-16 md:px-0">
@@ -86,7 +115,7 @@ export default function CE_CardVariant15Priority({
                   {buttonText}
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </section>
         </div>
       </div>

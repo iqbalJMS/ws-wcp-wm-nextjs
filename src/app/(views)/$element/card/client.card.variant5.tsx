@@ -1,11 +1,12 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import { motion, useInView, useAnimation } from 'motion/react';
 
 export default function CE_CardVariant5({
   data,
@@ -36,14 +37,31 @@ export default function CE_CardVariant5({
       setCurrentSlide(currentSlide - slidesToScroll);
     }
   };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
 
   return (
     <>
       <div className="w-full h-auto flex justify-center py-20">
-        <div className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:content-center">
-          <section
-            data-aos="fade-up"
-            data-aos-duration="1000"
+        <div
+          ref={ref}
+          className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:content-center"
+        >
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.45 }}
             className="pb-10 pr-10 lg:pr-0 w-96 md:flex flex-col justify-center"
           >
             {label && (
@@ -56,10 +74,15 @@ export default function CE_CardVariant5({
                 {parseHTMLToReact(sublabel)}
               </h2>
             )}
-          </section>
-          <section
-            data-aos="fade-up"
-            data-aos-duration="1000"
+          </motion.div>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.25 }}
             className="w-full overflow-hidden mdmax:w-full mdmax:flex-none"
           >
             <div
@@ -134,7 +157,7 @@ export default function CE_CardVariant5({
                 />
               </button>
             </div>
-          </section>
+          </motion.div>
         </div>
       </div>
     </>

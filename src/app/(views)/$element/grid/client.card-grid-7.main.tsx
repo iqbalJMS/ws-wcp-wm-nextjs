@@ -1,8 +1,10 @@
 'use client';
 
+import React, { useEffect, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion, useInView, useAnimation } from 'motion/react';
 
 const CE_CardGrid7Main = ({
   dataCard,
@@ -24,9 +26,20 @@ const CE_CardGrid7Main = ({
       year: 'numeric',
     });
   };
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
+
   return (
     <>
-      <div className="container py-10">
+      <div ref={ref} className="container py-10">
         <div className="flex flex-wrap -mx-10">
           <>
             {dataCard?.map((item, index) => (
@@ -36,7 +49,16 @@ const CE_CardGrid7Main = ({
                 className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
               >
                 <div>
-                  <div className="w-full h-[20rem] rounded-xl overflow-hidden mb-5">
+                  <motion.div
+                    variants={{
+                      hidden: { opacity: 0, y: 75 },
+                      visible: { opacity: 1, y: 0 },
+                    }}
+                    initial="hidden"
+                    animate={mainControls}
+                    transition={{ duration: 0.5, delay: 0.25 }}
+                    className="w-full h-[20rem] rounded-xl overflow-hidden mb-5"
+                  >
                     {item?.image && (
                       <Image
                         src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image}`}
@@ -46,8 +68,16 @@ const CE_CardGrid7Main = ({
                         className="w-full h-full object-cover object-bottom"
                       />
                     )}
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    variants={{
+                      hidden: { opacity: 0, y: 75 },
+                      visible: { opacity: 1, y: 0 },
+                    }}
+                    initial="hidden"
+                    animate={mainControls}
+                    transition={{ duration: 0.5, delay: 0.55 }}
+                  >
                     <div className="text-xs text-black font-semibold uppercase">
                       <span className="pr-2">
                         {item?.category ?? 'category'}
@@ -63,7 +93,7 @@ const CE_CardGrid7Main = ({
                     <div className="font-light line-clamp-3">
                       {parseHTMLToReact(item?.description)}
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </Link>
             ))}
