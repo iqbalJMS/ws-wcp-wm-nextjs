@@ -39,7 +39,7 @@
   "devDependencies": {
     "@types/aos": "^3.0.7",
     "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/react": "18.3.10",
     "@types/react-dom": "18.3.0",
     "concurrently": "^9.0.0",
     "elastic-apm-node": "^4.5.4",
