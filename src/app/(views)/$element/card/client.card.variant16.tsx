@@ -47,7 +47,11 @@ export default function CE_CardVariant16({
           className="w-full text-center"
         >
           {title && (
-            <h1 className="uppercase text-privatecolor text-4xl font-bold -tracking-tighter ">
+            <h1
+              className={
+                'uppercase text-privatecolor text-4xl font-bold -tracking-tighter'
+              }
+            >
               {parseHTMLToReact(title)}
             </h1>
           )}
