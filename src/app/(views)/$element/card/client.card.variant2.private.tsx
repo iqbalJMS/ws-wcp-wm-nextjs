@@ -12,6 +12,7 @@ export default function CE_CardVariant2Private({
   data,
   bgImage,
   title,
+  variant,
 }: {
   data: Array<{
     icon: string;
@@ -20,6 +21,7 @@ export default function CE_CardVariant2Private({
   }>;
   bgImage: string;
   title: string;
+  variant: string;
 }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const screenWidth = useScreenWidth();
@@ -49,7 +51,7 @@ export default function CE_CardVariant2Private({
   return (
     <>
       <div
-        className="w-full h-auto flex flex-col items-center justify-center p-5 pb-10"
+        className=" w-full h-auto flex flex-col items-center justify-center p-5 pb-10"
         style={{
           backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage})`,
           backgroundPosition: 'center',
@@ -97,7 +99,7 @@ export default function CE_CardVariant2Private({
               return (
                 <div
                   key={index}
-                  className="group hover:bg-privatecolor relative w-full h-60 md:h-80 px-5 overflow-hidden flex-none flex flex-col items-center justify-center hover:bg-gradient-to-b from-[#C3B073] to-privatecolor/90 rounded-xl duration-500 transition-all ease-in-out cursor-pointer"
+                  className="group hover:bg-red-500 relative w-full h-60 md:h-80 px-5 overflow-hidden flex-none flex flex-col items-center justify-center hover:bg-gradient-to-b from-[#C3B073] to-privatecolor/90 rounded-xl duration-500 transition-all ease-in-out cursor-pointer"
                 >
                   <Image
                     alt={'icon-card'}
@@ -107,7 +109,7 @@ export default function CE_CardVariant2Private({
                     color="black"
                     className="group-hover:invert group-hover:brightness-[12.90]"
                   />
-
+                  {JSON.stringify(variant)}
                   {label && (
                     <h1 className="text-black text-lg font-medium group-hover:text-white pt-7">
                       {parseHTMLToReact(label)}
