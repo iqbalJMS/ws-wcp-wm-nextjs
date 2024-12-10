@@ -45,7 +45,7 @@ const CE_CardGrid6Main = ({
                   initial="hidden"
                   animate={mainControls}
                   transition={{ duration: 0.5, delay: 0.25 }}
-                  className="w-full h-[20rem]  overflow-hidden mb-2"
+                  className="w-full h-[30rem]  overflow-hidden mb-2"
                 >
                   {item?.image && (
                     <Image
@@ -53,7 +53,7 @@ const CE_CardGrid6Main = ({
                       alt="image"
                       width={400}
                       height={400}
-                      className="w-full h-full object-cover object-bottom group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
+                      className="w-full h-full object-contain object-top group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
                     />
                   )}
                 </motion.div>
