@@ -32,8 +32,8 @@ export default function CE_GridVariant02({
       urlLink?: string;
     }>;
   }>;
-  imageContent1?: string;
-  imageContent2?: string;
+  imageContent1: string;
+  imageContent2: string;
 }) {
   let colorTheme;
 
@@ -59,7 +59,7 @@ export default function CE_GridVariant02({
         <div className="flex md:flex-row flex-col justify-center relative">
           {imageContent1 && (
             <div
-              className={`-z-10 bg-${colorTheme} bg-red-400 bg-opacity-15 w-5/12 h-40 absolute right-0 top-0 mdmax:-mr-32`}
+              className={`-z-10 bg-${colorTheme} bg-opacity-15 w-5/12 h-40 absolute right-0 top-0 mdmax:-mr-32`}
             ></div>
           )}
           <motion.div

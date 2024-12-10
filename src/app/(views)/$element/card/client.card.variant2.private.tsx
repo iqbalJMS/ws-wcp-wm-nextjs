@@ -48,6 +48,14 @@ export default function CE_CardVariant2Private({
       mainControls.start('visible');
     }
   }, [isInView, mainControls]);
+
+  let colorTheme = '';
+  if (variant === 'wm-private-main-navigation') {
+    colorTheme = 'privatecolor';
+  } else if (variant === 'wm-prioritas-main-navigation') {
+    colorTheme = 'prioritycolor';
+  }
+
   return (
     <>
       <div
@@ -72,7 +80,9 @@ export default function CE_CardVariant2Private({
             className="uppercase space-y-2 pb-5 flex justify-center"
           >
             {title && (
-              <h1 className=" w-fit text-2xl  xl:text-3xl font-bold text-center text-privatecolor border-b-2 p-2 border-black">
+              <h1
+                className={`w-fit text-2xl  xl:text-3xl font-bold text-center text-${colorTheme} border-b-2 p-2 border-black`}
+              >
                 {parseHTMLToReact(title)}
               </h1>
             )}
@@ -99,7 +109,7 @@ export default function CE_CardVariant2Private({
               return (
                 <div
                   key={index}
-                  className="group hover:bg-red-500 relative w-full h-60 md:h-80 px-5 overflow-hidden flex-none flex flex-col items-center justify-center hover:bg-gradient-to-b from-[#C3B073] to-privatecolor/90 rounded-xl duration-500 transition-all ease-in-out cursor-pointer"
+                  className={`group relative w-full h-60 md:h-80 px-5 overflow-hidden flex-none flex flex-col items-center justify-center hover:bg-gradient-to-b from-${colorTheme} to-${colorTheme}/90 rounded-xl duration-500 transition-all ease-in-out cursor-pointer`}
                 >
                   <Image
                     alt={'icon-card'}
@@ -107,9 +117,9 @@ export default function CE_CardVariant2Private({
                     height={70}
                     src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon}`}
                     color="black"
-                    className="group-hover:invert group-hover:brightness-[12.90]"
+                    className={`group-hover:invert ${variant == 'wm-private-main-navigation' ? 'group-hover:brightness-[12.90]' : 'group-hover:brightness-[.80]'}`}
                   />
-                  {JSON.stringify(variant)}
+
                   {label && (
                     <h1 className="text-black text-lg font-medium group-hover:text-white pt-7">
                       {parseHTMLToReact(label)}
@@ -143,7 +153,7 @@ export default function CE_CardVariant2Private({
               return (
                 <div
                   key={index}
-                  className="group hover:bg-privatecolor relative w-full xl:w-11/12 h-60 md:h-80 px-5 overflow-hidden flex-none flex flex-col items-center justify-center hover:bg-gradient-to-b from-[#C3B073] to-privatecolor/90 rounded-xl duration-500 transition-all ease-in-out cursor-pointer"
+                  className={`group relative w-full xl:w-11/12 h-60 md:h-80 px-5 overflow-hidden flex-none flex flex-col items-center justify-center  hover:bg-${colorTheme} rounded-xl duration-500 transition-all ease-in-out cursor-pointer`}
                 >
                   <Image
                     alt={'icon-card'}
@@ -151,7 +161,7 @@ export default function CE_CardVariant2Private({
                     height={70}
                     src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon}`}
                     color="black"
-                    className="group-hover:invert group-hover:brightness-[12.90]"
+                    className={`group-hover:invert ${variant == 'wm-private-main-navigation' ? 'group-hover:brightness-[12.90]' : 'group-hover:brightness-[.80]'}`}
                   />
 
                   {label && (

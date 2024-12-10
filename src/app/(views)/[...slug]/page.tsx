@@ -28,7 +28,6 @@ import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/acti
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 
-
 export default async function PageWealthDetail({
   params: { slug },
   searchParams: { lang },
