@@ -100,6 +100,7 @@ type T_FieldFirstColumn = {
   field_paragraphs: Array<T_FieldParagraphs>;
   field_title: Array<{ value: string }>;
   field_image: Array<T_FieldImage>;
+  field_primary_cta: Array<{ uri: string; title: string }>;
 };
 
 type T_FieldSecondColumn = {
@@ -117,6 +118,7 @@ type T_FieldSecondColumn = {
   field_paragraphs: Array<T_FieldParagraphs>;
   field_title: Array<{ value: string }>;
   field_image: Array<T_FieldImage>;
+  field_primary_cta: Array<{ uri: string; title: string }>;
 };
 
 export type T_TwoColumn = {

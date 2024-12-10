@@ -119,6 +119,14 @@ const CE_CardMagazineMain = dynamic(
   () => import('@/app/(views)/$element/card-magazine/card.magazine.main')
 );
 
+const CE_CardVariant8Upper = dynamic(
+  () => import('@/app/(views)/$element/grid/client.card-grid-8-upper')
+);
+
+const CE_CardVariant8Deeper = dynamic(
+  () => import('@/app/(views)/$element/grid/client.card-grid-8-deeper')
+);
+
 export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
   const components: Record<T_Widget, T_ComponentMapWidget> = {
     slider: {
@@ -483,6 +491,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               title: titleCardV2,
               bgImage: bgImageCardV2,
             };
+
           default:
             return {
               title: null,
@@ -731,54 +740,132 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       },
     },
     two_column: {
-      component: CE_GridVariant02,
-      props: (_component: T_TwoColumn) => {
-        return {
-          variant: theme,
-          dataCard1: _component?.field_first_column?.map((item) => {
-            return {
-              textTitle: item?.field_title?.[0]?.value,
-              textDesc: item?.field_content?.[0]?.value,
-              listMenu:
-                _component?.field_first_column?.[0]?.field_paragraphs?.map(
-                  (item) => {
-                    return {
-                      urlLink: item?.field_primary_cta?.[0]?.uri,
-                      image:
-                        item?.field_image?.[0]?.field_media_image?.[0]?.uri?.[0]
-                          ?.url,
-                      textLink: item?.field_title?.[0]?.value,
-                    };
-                  }
-                ),
-            };
-          }),
-          imageContent1:
-            _component?.field_second_column?.[0]?.field_image?.[0]
-              ?.field_media_image?.[0]?.uri?.[0]?.url,
+      component: (...props) => {
+        const findVariantStyle = props?.[0]?.variant;
+        const data1 = props?.[0]?.data1;
+        const data2 = props?.[0]?.data2;
+        const dataCard1 = props?.[0]?.dataCard1;
+        const dataCard2 = props?.[0]?.dataCard2;
+        const imgContent1 = props?.[0]?.imgContent1;
+        const imgContent2 = props?.[0]?.imgContent2;
 
-          dataCard2: _component?.field_second_column?.map((item) => {
+        switch (findVariantStyle) {
+          case WIDGET_VARIANT.variant14:
+            return (
+              <CE_CardVariant8Upper firstColumn={data1} secondColumn={data2} />
+            );
+          case WIDGET_VARIANT.variant15:
+            return (
+              <CE_CardVariant8Deeper firstColumn={data1} secondColumn={data2} />
+            );
+          case WIDGET_VARIANT.variant16:
+            return (
+              <CE_GridVariant02
+                variant={theme}
+                dataCard1={dataCard1}
+                dataCard2={dataCard2}
+                imageContent1={imgContent1}
+                imageContent2={imgContent2}
+              />
+            );
+          default:
+            return <></>;
+        }
+      },
+      props: (_component: T_TwoColumn) => {
+        const findVariantStyle =
+          _component?.field_web_variant_styles?.[0]?.field_key?.[0]?.value;
+        const gridData1 = _component?.field_first_column?.map((item) => {
+          return {
+            title: item?.field_title?.[0]?.value,
+            link: item?.field_primary_cta?.[0]?.uri,
+            titleLink: item?.field_primary_cta?.[0]?.title,
+            desc: item?.field_content?.[0]?.value,
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+          };
+        });
+        const gridData2 = _component?.field_second_column?.map((item) => {
+          return {
+            title: item?.field_title?.[0]?.value,
+            link: item?.field_primary_cta?.[0]?.uri,
+            titleLink: item?.field_primary_cta?.[0]?.title,
+            desc: item?.field_content?.[0]?.value,
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+          };
+        });
+        const dataCard1 = _component?.field_first_column?.map((item) => {
+          return {
+            textTitle: item?.field_title?.[0]?.value,
+            textDesc: item?.field_content?.[0]?.value,
+            listMenu:
+              _component?.field_first_column?.[0]?.field_paragraphs?.map(
+                (item) => {
+                  return {
+                    urlLink: item?.field_primary_cta?.[0]?.uri,
+                    image:
+                      item?.field_image?.[0]?.field_media_image?.[0]?.uri?.[0]
+                        ?.url,
+                    textLink: item?.field_title?.[0]?.value,
+                  };
+                }
+              ),
+          };
+        });
+        const imageContent2 =
+          _component?.field_first_column?.[0]?.field_image?.[0]?.thumbnail?.[0]
+            ?.uri?.[0]?.url;
+
+        const imageContent1 =
+          _component?.field_second_column?.[0]?.field_image?.[0]
+            ?.field_media_image?.[0]?.uri?.[0]?.url;
+        const dataCard2 = _component?.field_second_column?.map((item) => {
+          return {
+            textTitle: item?.field_title?.[0]?.value,
+            textDesc: item?.field_content?.[0]?.value,
+            listMenu:
+              _component?.field_second_column?.[0]?.field_paragraphs?.map(
+                (item) => {
+                  return {
+                    urlLink: item?.field_primary_cta?.[0]?.uri,
+                    image:
+                      item?.field_image?.[0]?.field_media_image?.[0]?.uri?.[0]
+                        ?.url,
+                    textLink: item?.field_title?.[0]?.value,
+                  };
+                }
+              ),
+          };
+        });
+
+        switch (findVariantStyle) {
+          case WIDGET_VARIANT.variant14:
             return {
-              textTitle: item?.field_title?.[0]?.value,
-              textDesc: item?.field_content?.[0]?.value,
-              listMenu:
-                _component?.field_second_column?.[0]?.field_paragraphs?.map(
-                  (item) => {
-                    return {
-                      urlLink: item?.field_primary_cta?.[0]?.uri,
-                      image:
-                        item?.field_image?.[0]?.field_media_image?.[0]?.uri?.[0]
-                          ?.url,
-                      textLink: item?.field_title?.[0]?.value,
-                    };
-                  }
-                ),
+              variant: findVariantStyle,
+              data1: gridData1,
+              data2: gridData2,
             };
-          }),
-          imageContent2:
-            _component?.field_first_column?.[0]?.field_image?.[0]
-              ?.field_media_image?.[0]?.uri?.[0]?.url,
-        };
+          case WIDGET_VARIANT.variant15:
+            return {
+              variant: findVariantStyle,
+              data1: gridData1,
+              data2: gridData2,
+            };
+          case WIDGET_VARIANT.variant16:
+            return {
+              variant: findVariantStyle,
+              dataCard1: dataCard1,
+              dataCard2: dataCard2,
+              imgContent1: imageContent1,
+              imgContent2: imageContent2,
+            };
+          default:
+            return {
+              title: null,
+              subtitle: null,
+              desctitle: null,
+              data: null,
+            };
+        }
       },
     },
     content_type: {

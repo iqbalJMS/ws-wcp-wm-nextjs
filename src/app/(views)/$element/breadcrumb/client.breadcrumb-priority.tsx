@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-const CE_BreadcrumbPrivate = ({
+const CE_BreadcrumbPriority = ({
   data,
 }: {
   data: Array<{
@@ -20,8 +20,8 @@ const CE_BreadcrumbPrivate = ({
             <li>
               <div className="flex items-center">
                 <a
-                  href={'/web/wealth-management/bri-private'}
-                  className="font-light text-[#C0CCE2] hover:text-privatecolor hover:underline uppercase"
+                  href={'/web/wealth-management/bri-prioritas'}
+                  className="font-light text-[#C0CCE2] hover:text-prioritycolor hover:underline uppercase"
                 >
                   {data?.[0]?.title}
                 </a>
@@ -46,7 +46,7 @@ const CE_BreadcrumbPrivate = ({
                 </svg>
                 {data && (
                   <div className="flex items-center">
-                    <span className="cursor-default text-privatecolor font-normal hover:text-primary-blue uppercase">
+                    <span className="cursor-default text-prioritycolor font-normal hover:text-primary-blue uppercase">
                       {data?.[1]?.title}
                     </span>
                   </div>
@@ -60,4 +60,4 @@ const CE_BreadcrumbPrivate = ({
   );
 };
 
-export default CE_BreadcrumbPrivate;
+export default CE_BreadcrumbPriority;
