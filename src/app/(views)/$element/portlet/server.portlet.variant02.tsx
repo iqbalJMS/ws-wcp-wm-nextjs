@@ -28,14 +28,14 @@ export default async function SE_PortletVariant02({
             }}
           >
             <div className="absolute w-full h-full flex flex-col pl-12 justify-center items-center">
-              <div className="mb-3 max-w-[40.125rem]">
+              <div className="mb-6 max-w-[40.125rem]">
                 {title && (
-                  <div className="text-white text-2xl font-medium mb-3 text-center">
+                  <div className="text-white text-3xl font-medium mb-3 text-center">
                     {parseHTMLToReact(title)}
                   </div>
                 )}
                 {subtitle && (
-                  <div className="text-white font-light text-lg text-center pt-5">
+                  <div className="text-white font-light text-2xl text-center pt-2">
                     {parseHTMLToReact(subtitle)}
                   </div>
                 )}

@@ -48,7 +48,7 @@ const CE_CardGrid5Main = ({
                 href={`/insight/${item?.nid}`}
                 className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
               >
-                <div>
+                <div className='group'>
                   <motion.div
                     variants={{
                       hidden: { opacity: 0, y: 75 },
@@ -57,7 +57,7 @@ const CE_CardGrid5Main = ({
                     initial="hidden"
                     animate={mainControls}
                     transition={{ duration: 0.5, delay: 0.25 }}
-                    className="w-full h-[20rem] rounded-xl overflow-hidden mb-5"
+                    className="w-full h-[20rem] rounded-xl overflow-hidden mb-5 "
                   >
                     {item?.image && (
                       <Image
@@ -65,7 +65,7 @@ const CE_CardGrid5Main = ({
                         alt="image"
                         width={400}
                         height={400}
-                        className="w-full h-full object-cover object-bottom"
+                        className="w-full h-full object-cover object-bottom group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
                       />
                     )}
                   </motion.div>

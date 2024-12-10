@@ -28,7 +28,7 @@ const CE_CardGrid6Main = ({
 
   return (
     <>
-      <div className="container py-10">
+      <div className="container py-10 px-20 mdmax:px-10">
         <div ref={ref} className="flex flex-wrap -mx-10">
           {dataCard.map((item, index) => (
             <Link
@@ -36,7 +36,7 @@ const CE_CardGrid6Main = ({
               key={index}
               className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
             >
-              <div className="bg-white shadow-xl cursor-pointer">
+              <div className="bg-white shadow-xl cursor-pointer group">
                 <motion.div
                   variants={{
                     hidden: { opacity: 0, y: 75 },
@@ -53,7 +53,7 @@ const CE_CardGrid6Main = ({
                       alt="image"
                       width={400}
                       height={400}
-                      className="w-full h-full object-cover object-bottom"
+                      className="w-full h-full object-cover object-bottom group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
                     />
                   )}
                 </motion.div>
