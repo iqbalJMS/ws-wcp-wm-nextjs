@@ -30,7 +30,7 @@ export function Tabs({
               variant === 'full' ? 'py-3 ' : 'pb-3 ',
               item.slug === value
                 ? variant === 'full'
-                  ? 'bg-blue-01'
+                  ? 'bg-bluedark01'
                   : ''
                 : '',
             ].join(' ')}
@@ -42,8 +42,8 @@ export function Tabs({
                   item.slug === value
                     ? variant === 'full'
                       ? 'text-white'
-                      : 'text-blue-01'
-                    : 'text-gray-500 group-hover/tab:text-blue-01'
+                      : 'text-bluedark01'
+                    : 'text-gray-500 group-hover/tab:text-bluedark01'
                 }`,
               ].join(' ')}
             >
@@ -54,7 +54,7 @@ export function Tabs({
               <div
                 className={[
                   'absolute bottom-0 left-0',
-                  'w-full h-[.2rem] bg-blue-01',
+                  'w-full h-[.2rem] bg-bluedark01',
                   item.slug === value ? 'visible' : 'invisible',
                   'group-hover/tab:visible',
                 ].join(' ')}
@@ -63,7 +63,7 @@ export function Tabs({
                   className={`
                                     absolute top-[100%] left-1/2 transform -translate-x-1/2 
                                     border-l-[0.5rem] border-r-[0.5rem] border-t-[0.5rem] 
-                                    border-l-transparent border-r-transparent border-blue-01
+                                    border-l-transparent border-r-transparent border-bluedark01
                                     h-1 w-1`}
                 ></div>
               </div>
@@ -72,7 +72,7 @@ export function Tabs({
               <div
                 className={[
                   'absolute bottom-0 left-0',
-                  'w-full h-[.2rem] bg-blue-01',
+                  'w-full h-[.2rem] bg-bluedark01',
                   item.slug === value ? 'visible' : 'invisible',
                   'group-hover/tab:visible',
                 ].join(' ')}
