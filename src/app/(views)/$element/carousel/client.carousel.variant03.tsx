@@ -161,8 +161,8 @@ export default function CE_CarouselVariant3({
     const middleIndex = currentIndex + Math.floor(slidesToShow / 2);
     const actualIndex = index % totalSlides;
     return actualIndex === middleIndex % totalSlides
-      ? 'scale-100 z-10 cursor-pointer '
-      : 'scale-75 z-0 opacity-60 ';
+      ? 'scale-100 md:scale-125  z-10 cursor-pointer '
+      : 'scale-75 z-0 opacity-80 ';
   };
 
   return (
@@ -180,7 +180,7 @@ export default function CE_CarouselVariant3({
               animate={mainControls}
               transition={{ duration: 0.5, delay: 0.25 }}
             >
-              <h1 className="text-3xl font-bold">{title}</h1>
+              <h1 className="text-3xl font-extrabold">{title}</h1>
               <h2 className="font-light text-sm pb-3">{subtitle}</h2>
               <Link
                 href={'/videos'}
@@ -346,7 +346,7 @@ export default function CE_CarouselVariant3({
             </div>
           </ModalTester>
         )}
-        <div className="relative w-10/12 lg:w-11/12 xl:w-9/12 overflow-hidden">
+        <section className="relative w-10/12 lg:w-11/12 xl:w-9/12 overflow-hidden">
           <motion.div
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -367,37 +367,66 @@ export default function CE_CarouselVariant3({
                   minWidth: `${100 / slidesToShow}%`,
                 }}
               >
-                <picture
-                  key={index}
-                  className="cursor-pointer relative w-full overflow-hidden z-0"
-                >
-                  <div
-                    className="group flex flex-col justify-between w-full h-96 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-center transition-all ease-in-out transform-gpu delay-75 "
-                    style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${slide.image})`,
-                    }}
+                {currentIndex + 1 === index ? (
+                  <picture
+                    key={index}
+                    className="cursor-pointer relative w-full overflow-hidden z-0"
                   >
-                    <div className=" w-full h-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
-                  </div>
+                    <div
+                      className="group flex flex-col justify-between w-full h-96 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-center transition-all ease-in-out transform-gpu delay-75 "
+                      style={{
+                        backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${slide.image})`,
+                      }}
+                    >
+                      <div className=" w-full h-full bg-gradient-to-b from-transparent to-black"></div>
+                    </div>
 
-                  <PlayIcon
-                    width={50}
-                    height={50}
-                    stroke="white"
-                    className="absolute top-40 left-56 duration-500 p-2 rounded-full border"
-                    fill="white"
-                  />
-                  <h1 className="absolute text-white text-xl bottom-20 font-semibold px-7">
-                    {slide.label}
-                  </h1>
-                  <h2 className="absolute text-white text-sm bottom-8 line-clamp-2 pr-10 pl-7">
-                    {slide.desc}
-                  </h2>
-                </picture>
+                    <PlayIcon
+                      width={40}
+                      height={40}
+                      stroke="white"
+                      className="absolute top-40 left-52 duration-500 p-2 rounded-full border"
+                      fill="white"
+                    />
+                    <h1 className="absolute text-white text-base bottom-24 font-semibold px-7">
+                      {slide.label}
+                    </h1>
+                    <h2 className="absolute text-white text-xs bottom-14 line-clamp-2  px-7">
+                      {slide.desc}
+                    </h2>
+                  </picture>
+                ) : null}
+                {currentIndex + 1 !== index ? (
+                  <picture key={index} className="w-full z-0">
+                    <div
+                      className="group flex flex-col justify-between w-full h-96 bg-no-repeat bg-cover delay-75 "
+                      style={{
+                        backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${slide.image})`,
+                      }}
+                    >
+                      <div className="flex md:hidden w-full h-full bg-gradient-to-b from-transparent to-black"></div>
+                      <PlayIcon
+                        width={50}
+                        height={50}
+                        stroke="white"
+                        className="flex md:hidden absolute top-36 left-56  duration-500 p-2 rounded-full border"
+                        fill="white"
+                      />
+                    </div>
+                    <div className="absolute bottom-7 md:-bottom-10 cursor-pointer w-full overflow-hidden pointer-events-none noselect">
+                      <h1 className="text-white md:text-slate-600 text-base md:text-xl line-clamp-1 font-semibold md:font-light px-7">
+                        {slide.label}
+                      </h1>
+                      <h2 className="flex md:hidden text-white text-xs line-clamp-2  px-7">
+                        {slide.desc}
+                      </h2>
+                    </div>
+                  </picture>
+                ) : null}
               </div>
             ))}
           </motion.div>
-        </div>
+        </section>
         <div className="absolute bg-[#DCDCDC] w-10/12 h-60 -z-10 bottom-20 left-0 rounded-r-full"></div>
       </div>
     </>

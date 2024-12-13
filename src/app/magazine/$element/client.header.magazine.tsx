@@ -229,7 +229,7 @@ export function LoginButton({
             >
               <Link href={loginItem?.uri} target="_blank">
                 <div
-                  className={`flex items-center space-x-3  ${loginItem.field_theme_color == 'green' ? 'text-orange-01' : 'text-green-400'}`}
+                  className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
                 >
                   <div className="mr-2">
                     <Image

@@ -24,12 +24,13 @@ type T_SearchProps = {
 export function Search({ active, setActive }: T_SearchProps) {
   const elementRef = useRef(null);
   useOnClickOutside(elementRef, () => setActive(false));
+  let [tab, setTab] = useState('pro');
   return (
     <div
       ref={elementRef}
       className={[
-        'fixed top-0 left-0 w-full mdmax:h-screen bg-white z-50',
-        active ? 'visible' : 'invisible',
+        'fixed left-0 w-full mdmax:h-screen bg-white z-50',
+        active ? 'top-0' : '-top-full',
       ].join(' ')}
     >
       <div
@@ -62,15 +63,14 @@ export function Search({ active, setActive }: T_SearchProps) {
             </div>
           </div>
         </div>
-        <div>
+        <div className="pt-5">
           <Tabs
             list={[
               { title: 'PRODUK', slug: 'pro' },
               { title: 'BERITA', slug: 'ber' },
             ]}
-            value="pro"
-            variant="full"
-            onChange={() => {}}
+            value={tab}
+            onChange={(e) => setTab(e)}
           />
         </div>
         <div>
@@ -93,7 +93,7 @@ export function Search({ active, setActive }: T_SearchProps) {
           </div>
           <div></div>
         </div>
-        <div className="flex px-[15rem] mdmax:hidden">
+        {/* <div className="flex px-[15rem] mdmax:hidden">
           {[
             {
               title: 'Simpanan',
@@ -147,7 +147,7 @@ export function Search({ active, setActive }: T_SearchProps) {
               </div>
             );
           })}
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -230,7 +230,7 @@ export function LoginButton({
             >
               <Link href={loginItem?.uri} target="_blank">
                 <div
-                  className={`flex items-center space-x-3  ${loginItem.field_theme_color == 'green' ? 'text-orange-01' : 'text-green-400'}`}
+                  className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
                 >
                   <div className="mr-2">
                     <Image
@@ -256,7 +256,7 @@ export default function OurStoryHeader({
   headerTop,
   headerBottom,
   variant = 'transparent',
-  itemLogin,
+  // itemLogin,
 }: {
   headerTop: T_ResponseGetTopMenuNavbar;
   headerBottom: T_ResponseGetMainMenuNavbar;
@@ -496,9 +496,9 @@ export default function OurStoryHeader({
                       </div>
                     );
                   })}
-                  <div className="pb-2 border-b-4 border-transparent mdmax:hidden">
+                  {/* <div className="pb-2 border-b-4 border-transparent mdmax:hidden">
                     <LoginButton menuItems={itemLogin} />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
