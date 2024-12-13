@@ -21,7 +21,7 @@ const CE_BreadcrumbPrivate = ({
               <div className="flex items-center">
                 <a
                   href={'/web/wealth-management/bri-private'}
-                  className="font-light text-[#C0CCE2] hover:text-privatecolor hover:underline uppercase"
+                  className="font-light text-[#C0CCE2] hover:text-privatecolor hover:underline uppercase cursor-pointer"
                 >
                   {data?.[0]?.title}
                 </a>

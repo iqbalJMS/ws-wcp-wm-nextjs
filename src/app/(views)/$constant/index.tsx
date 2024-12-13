@@ -25,8 +25,12 @@ const SE_SubscriberContent = dynamic(
   () => import('@/app/$element/server.subscriber.content')
 );
 
-const SE_PortletMain = dynamic(
-  () => import('@/app/(views)/$element/portlet/server.portlet.main')
+const CE_PortletHeader = dynamic(
+  () => import('@/app/(views)/$element/portlet/client.portlet.header')
+);
+
+const CE_PortletVariant02 = dynamic(
+  () => import('@/app/(views)/$element/portlet/client.portlet.variant')
 );
 
 const CE_ImageSliderMain = dynamic(
@@ -649,7 +653,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       },
     },
     personalized_shortcut: {
-      component: SE_PortletMain,
+      component: CE_PortletVariant02,
       props: (_component) => {
         return {};
       },
@@ -679,21 +683,60 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       },
     },
     header: {
-      component: SE_PortletMain,
+      component: (...props) => {
+        const findVariantStyle = props?.[0]?.variant;
+        const titleProps = props?.[0]?.titleProps;
+        const subtitleProps = props?.[0]?.subtitleProps;
+        const buttonTextProps = props?.[0]?.buttonTextProps;
+        const buttonLinkProps = props?.[0]?.buttonLinkProps;
+        const bgImageProps = props?.[0]?.bgImageProps;
+
+        switch (findVariantStyle) {
+          case 'div_portlet_01':
+            return (
+              <CE_PortletVariant02
+                title={titleProps}
+                subtitle={subtitleProps}
+                bgImage={bgImageProps}
+                variant={theme}
+                buttonText={buttonTextProps}
+                buttonLink={buttonLinkProps}
+              />
+            );
+
+          default:
+            return (
+              <CE_PortletHeader title={titleProps} bgImage={bgImageProps} />
+            );
+        }
+      },
       props: (_component: T_Header) => {
-        return {
-          title: _component?.field_title[0]?.value,
-          subtitle: _component?.field_content[0]?.value,
-          buttonItems: _component?.field_primary_cta?.map((item) => {
+        const findVariantStyle =
+          _component?.field_web_variant_styles?.[0]?.field_key?.[0]?.value;
+        const title = _component?.field_title[0]?.value;
+        const subtitle = _component?.field_content[0]?.value;
+        const buttonLink = _component?.field_primary_cta?.[0]?.uri;
+        const buttonText = _component?.field_primary_cta?.[0]?.title;
+        const bgImage =
+          _component?.field_image[0]?.field_media_image[0]?.uri[0]?.url;
+
+        switch (findVariantStyle) {
+          case 'div_portlet_01':
             return {
-              buttonText: item?.title,
-              buttonLink: item?.uri,
+              titleProps: title,
+              subtitleProps: subtitle,
+              buttonTextProps: buttonText,
+              buttonLinkProps: buttonLink,
+              bgImageProps: bgImage,
+              variant: findVariantStyle,
             };
-          }),
-          bgImage:
-            _component?.field_image[0]?.field_media_image[0]?.uri[0]?.url,
-          variant: '02',
-        };
+          default:
+            return {
+              titleProps: title,
+              bgImageProps: bgImage,
+              variant: findVariantStyle,
+            };
+        }
       },
     },
     multi_tab: {

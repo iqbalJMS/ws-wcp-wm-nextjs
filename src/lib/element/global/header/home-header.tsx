@@ -21,11 +21,10 @@ type T_SearchProps = {
   setActive: (_active: boolean) => void;
 };
 
-
 export function Search({ active, setActive }: T_SearchProps) {
   const elementRef = useRef(null);
   useOnClickOutside(elementRef, () => setActive(false));
-  let [tab, setTab] = useState('pro')
+  let [tab, setTab] = useState('pro');
   return (
     <div
       ref={elementRef}
@@ -64,7 +63,7 @@ export function Search({ active, setActive }: T_SearchProps) {
             </div>
           </div>
         </div>
-        <div className='pt-5'>
+        <div className="pt-5">
           <Tabs
             list={[
               { title: 'PRODUK', slug: 'pro' },
@@ -94,7 +93,7 @@ export function Search({ active, setActive }: T_SearchProps) {
           </div>
           <div></div>
         </div>
-        <div className="flex px-[15rem] mdmax:hidden">
+        {/* <div className="flex px-[15rem] mdmax:hidden">
           {[
             {
               title: 'Simpanan',
@@ -148,7 +147,7 @@ export function Search({ active, setActive }: T_SearchProps) {
               </div>
             );
           })}
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -230,7 +229,7 @@ export function LoginButton({
             >
               <Link href={loginItem?.uri} target="_blank">
                 <div
-                  className={`flex items-center space-x-3  ${loginItem.field_theme_color == 'green' ? 'text-orange-01' : 'text-green-400'}`}
+                  className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
                 >
                   <div className="mr-2">
                     <Image
@@ -240,8 +239,7 @@ export function LoginButton({
                       height={30}
                     />
                   </div>
-
-                  <div className="">{loginItem.title}</div>
+                  <h1>{loginItem.title}</h1>
                 </div>
               </Link>
             </div>
@@ -393,11 +391,7 @@ export default function HomeHeader({
               >
                 |
               </div>
-              <div
-                className={[
-                  'relative z-50 group text-white',
-                ].join('')}
-              >
+              <div className={['relative z-50 group text-white'].join('')}>
                 <div className="flex cursor-pointer items-center gap-2">
                   <div>
                     <svg
