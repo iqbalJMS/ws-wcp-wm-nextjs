@@ -6,20 +6,22 @@ import React from 'react';
 export default function CE_PortletHeader({
   title,
   bgImage,
+  subTitle,
 }: {
   title: string;
   bgImage: string;
+  subTitle: string;
 }) {
   return (
     <>
       <div>
         <div className="relative bg-transparent lg:min-h-[25.75rem] mx-auto w-full ">
           <div
-            className="relative h-[50vh] lg:mb-[3.125rem] w-full overflow-hidden bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black before:to-black before:opacity-40"
+            className="relative h-[65vh] lg:mb-[3.125rem] w-full overflow-hidden bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black before:to-black before:opacity-40"
             style={{
               backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? '/images/no-image.png'})`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center',
+              backgroundPosition: 'top',
             }}
           >
             <div className="absolute w-full h-full flex flex-col pl-12 justify-center items-center">
@@ -29,8 +31,14 @@ export default function CE_PortletHeader({
                     {parseHTMLToReact(title)}
                   </div>
                 )}
+                {subTitle && (
+                  <div className="text-white font-normal md:text-base text-lg md:max-w-4xl leading-8 mdmax:text-center">
+                    {parseHTMLToReact(subTitle)}
+                  </div>
+                )}
               </div>
             </div>
+            <div className="bg-[#D2D2D2] w-full h-5 absolute bottom-0 z-10"></div>
           </div>
         </div>
       </div>

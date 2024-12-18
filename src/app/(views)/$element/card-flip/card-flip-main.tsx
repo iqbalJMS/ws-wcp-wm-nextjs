@@ -22,7 +22,7 @@ const CE_CardFlipMain = ({
   topTitle: string;
   subTitle: string;
   buttonText: string;
-  buttonUri: null | string;
+  buttonUri: string;
 }) => {
   return (
     <>

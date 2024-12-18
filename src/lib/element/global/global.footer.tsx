@@ -13,21 +13,34 @@ type T_FooterProps = {
   middle_main_footer: T_ResponseGetMainMiddleFooter;
   bottom_right_footer: T_ResponseGetBottomRightFooter;
   bottom_left_footer: T_ResponseGetBottomLeftFooter;
+  variant: string;
 };
 
 function RowElement({
   data,
   middleData,
+  variantColor,
 }: {
   data?: T_ResponseGetMainFooterMenu;
   middleData: T_ResponseGetMainMiddleFooter;
+  variantColor: string;
 }) {
+  let theme = '';
+
+  if (variantColor == 'wm-private-main-navigation') {
+    theme = 'privatecolor';
+  } else if (variantColor == 'wm-prioritas-main-navigation') {
+    theme = 'white';
+  } else if (variantColor == 'wm-main-navigation') {
+    theme = 'white';
+  }
+
   return (
     <>
       <div className="w-full py-2 flex justify-center lg:flex-none">
         <div className="w-full md:w-10/12 lg:w-full h-full grid grid-cols-1 lg:grid-cols-3 px-5 xl:px-52 place-items-center ">
           <div className="w-full xl:w-80 h-44 flex flex-col items-start border-b lg:border-none border-white py-5 lg:py-0">
-            <h1 className="text-[#B2B2B2] text-xl font-bold pb-3">
+            <h1 className={`text-${theme} text-xl font-bold pb-3`}>
               Kantor Pusat BRI
             </h1>
             <div>
@@ -52,7 +65,7 @@ function RowElement({
             </div>
           </div>
           <div className="w-full xl:w-80 h-44 flex flex-col items-start border-b lg:border-none border-white py-5 lg:py-0">
-            <h1 className="text-[#B2B2B2] text-xl font-bold pb-3">
+            <h1 className={`text-${theme} text-xl font-bold pb-3`}>
               Hubungi Kami
             </h1>
             {middleData?.map(({ title, icon, alias }, index) => (
@@ -76,7 +89,7 @@ function RowElement({
             ))}
           </div>
           <div className="w-full xl:w-80 h-44 flex flex-col items-start py-5 lg:py-0">
-            <h1 className="text-[#B2B2B2] text-xl font-bold pb-3">
+            <h1 className={`text-${theme} text-xl font-bold pb-3`}>
               Terdaftar Dan Diawasi Oleh:
             </h1>
             <div className="flex items-center space-x-3">
@@ -105,7 +118,7 @@ function TermsAllReservedElement({
 }: {
   termsData: Array<{
     title: string;
-    uri: string;
+    relative: string;
   }>;
   socialMediaData: Array<{
     icon: string;
@@ -125,10 +138,10 @@ function TermsAllReservedElement({
           <div className="items-center mt-6 lg:mt-0">
             <div className="flex flex-wrap justify-center items-center divide-x-2">
               <div className="flex justify-start items-center px-4">
-                {termsData?.map(({ title, uri }, index) => (
+                {termsData?.map(({ title, relative }, index) => (
                   <div key={index}>
                     <Link
-                      href={uri}
+                      href={relative}
                       className="text-sm font-normal text-white hover:underline"
                     >
                       {title}
@@ -173,12 +186,27 @@ export default async function GlobalFooter({
   middle_main_footer,
   bottom_left_footer,
   bottom_right_footer,
+  variant,
 }: T_FooterProps) {
+  let bgColor = '';
+  if (variant == 'wm-private-main-navigation') {
+    bgColor = 'black';
+  } else if (variant == 'wm-prioritas-main-navigation') {
+    bgColor = 'prioritycolor';
+  } else if (variant == 'wm-main-navigation') {
+    bgColor = 'black';
+  }
   return (
-    <footer className="shadow-[0_-4px_4px_-2px_rgba(0,0,0,0.1)] bg-[#1C1C1C]">
+    <footer
+      className={`shadow-[0_-4px_4px_-2px_rgba(0,0,0,0.1)] bg-${bgColor}`}
+    >
       <div className="w-full h-auto py-10">
         <div className="w-full">
-          <RowElement data={main_footer} middleData={middle_main_footer} />
+          <RowElement
+            data={main_footer}
+            middleData={middle_main_footer}
+            variantColor={variant}
+          />
         </div>
       </div>
 

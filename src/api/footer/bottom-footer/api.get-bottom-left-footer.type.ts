@@ -2,7 +2,7 @@ export type T_ResponseGetBottomLeftFooter = Array<{
   key: string;
   title: string;
   uri: string;
-  alias: string | null;
+  alias: string;
   relative: string;
   weight: string;
   expanded: boolean;

@@ -15,6 +15,10 @@ export const WIDGET_VARIANT = {
   variant14: 'div_menu_center_03',
   variant15: 'div_menu_center_03a',
   variant16: 'div_card_01',
+  variant17: 'div menu center 02b',
+  variant18: 'div_card_03',
+  variant19: 'section_card_center_2',
+  variant20: 'div_requirement_box',
 };
 
 export const API_BASE_URL = 'https://admin-bri-corpsite.dev-kjt.id';
