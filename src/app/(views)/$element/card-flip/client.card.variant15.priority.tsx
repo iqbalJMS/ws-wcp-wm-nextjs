@@ -22,7 +22,7 @@ export default function CE_CardVariant15Priority({
   topTitle: string;
   subTitle: string;
   buttonText: string;
-  buttonUri: null | string;
+  buttonUri: string;
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });

@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Link from 'next/link';
 
 const CE_BreadcrumbHome = ({
   data,
@@ -19,38 +20,30 @@ const CE_BreadcrumbHome = ({
           <ol className="inline-flex items-center space-x-1 text-h7 sm:mb-0 md:space-x-2 rtl:space-x-reverse ">
             <li>
               <div className="flex items-center">
-                <a
-                  href={'/web/wealth-management'}
-                  className="font-light text-[#C0CCE2] hover:text-wmcolor hover:underline"
-                >
-                  {data?.[0]?.title}
-                </a>
-              </div>
-            </li>
-            <li aria-current="page">
-              <div className="flex items-center space-x-3 ">
-                <svg
-                  className=" size-3 text-gray-400 rtl:rotate-180"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 6 10"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m1 9 4-4-4-4"
-                  />
-                </svg>
-                {data && (
-                  <div className="flex items-center">
-                    <span className="cursor-default text-wmcolor font-normal hover:text-primary-blue">
-                      {data?.[1]?.title}
-                    </span>
-                  </div>
-                )}
+                {data?.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item?.url}
+                    className="font-light text-[#C0CCE2] hover:text-wmcolor hover:underline flex items-center"
+                  >
+                    {item?.title}
+                    <svg
+                      className=" size-3 text-gray-400 rtl:rotate-180 ml-2"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 6 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 9 4-4-4-4"
+                      />
+                    </svg>
+                  </Link>
+                ))}
               </div>
             </li>
           </ol>

@@ -20,6 +20,8 @@ import { T_CarouselV2 } from './types/widget/carouselV2';
 import { T_TwoColumn } from './types/widget/two-column';
 import { T_Insight } from './types/widget/content_type';
 import { T_ExternalMagazine } from './types/widget/external_magazine';
+import { T_RequirementBox } from './types/widget/requirement-box';
+import { T_RichText } from './types/widget/rich-text';
 
 const SE_SubscriberContent = dynamic(
   () => import('@/app/$element/server.subscriber.content')
@@ -129,6 +131,25 @@ const CE_CardVariant8Upper = dynamic(
 
 const CE_CardVariant8Deeper = dynamic(
   () => import('@/app/(views)/$element/grid/client.card-grid-8-deeper')
+);
+
+const CE_CardVariant2Detail = dynamic(
+  () => import('@/app/(views)/$element/card/client.card.variant2.detail')
+);
+
+const CE_VideosCard = dynamic(
+  () => import('@/app/(views)/$element/card/client.video.card')
+);
+const CE_CardGrid9 = dynamic(
+  () => import('@/app/(views)/$element/grid/client.card-grid-9')
+);
+
+const CE_RequirementBox = dynamic(
+  () => import('@/app/(views)/$element/requirement-box/client.requirement.box')
+);
+
+const CE_Terms = dynamic(
+  () => import('@/app/(views)/$element/terms/client.terms')
 );
 
 export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
@@ -254,7 +275,6 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         const image = props?.[0]?.image;
         const desc = props?.[0]?.desc;
         const link = props?.[0]?.link;
-        const backGround = props?.[0]?.backGround;
         const bgImage = props?.[0]?.bgImage;
         const buttonText = props?.[0]?.buttonText;
         const subTitle = props?.[0]?.subTitle;
@@ -271,7 +291,11 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             );
           case WIDGET_VARIANT.variant02:
             return (
-              <CE_CardVariant5 data={data} label={label} sublabel={sublabel} />
+              <CE_CardVariant5
+                dataCard={data}
+                label={label}
+                sublabel={sublabel}
+              />
             );
           case WIDGET_VARIANT.variant03:
             return <CE_CardVariant4 data={data} title={title} />;
@@ -281,8 +305,8 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
                 image={image}
                 label={label}
                 desc={desc}
-                link={link}
-                backGround={backGround}
+                linkCta={link}
+                backGround={bgImage}
               />
             );
           case WIDGET_VARIANT.variant05:
@@ -321,6 +345,19 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
                 title={title}
               />
             );
+          case WIDGET_VARIANT.variant17:
+            return (
+              <CE_CardVariant2Detail
+                data={data}
+                bgImage={bgImage}
+                title={title}
+              />
+            );
+          case WIDGET_VARIANT.variant18:
+            return <CE_VideosCard data={data} variant={theme} />;
+
+          case WIDGET_VARIANT.variant19:
+            return <CE_CardGrid9 dataCard={data} />;
 
           default:
             return <></>;
@@ -347,12 +384,11 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           }
         );
 
-        const dataProduk = _component?.field_column?.map((item) => {
+        const dataProduk = _component?.field_column.map((item) => {
           return {
-            image:
-              item?.field_image?.[0]?.field_media_image?.[0]?.uri?.[0]?.url,
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
             title: item?.field_title?.[0]?.value,
-            link: item?.field_image?.[0]?.path?.[0]?.alias,
+            linkCta: item?.field_primary_cta?.[0]?.full_url.replace('/id', ''),
           };
         });
 
@@ -360,7 +396,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           return {
             image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
             label: item?.field_content?.[0]?.value,
-            link: item?.field_primary_cta?.[0]?.uri,
+            link: item?.field_primary_cta?.[0]?.full_url.replace('/id', ''),
             logo: item?.field_second_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
           };
         });
@@ -374,7 +410,10 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         const dataDescCardV6 =
           _component?.field_column?.[1]?.field_content?.[0]?.value;
         const dataLinkCardV6 =
-          _component?.field_column?.[0]?.field_image?.[0]?.path?.[0]?.alias;
+          _component?.field_column?.[1]?.field_primary_cta?.[0]?.full_url.replace(
+            '/id',
+            ''
+          );
         const dataBgCardV6 =
           _component?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url;
 
@@ -388,10 +427,11 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               item?.field_second_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
           };
         });
+
         const topTitle = _component?.field_formatted_title?.[0]?.value;
         const subTitle = _component?.field_content?.[0]?.value;
         const buttonText = _component?.field_primary_cta?.[0]?.title;
-        const buttonUri = _component?.field_primary_cta?.[0]?.uri;
+        const buttonUri = _component?.field_primary_cta?.[0]?.full_url;
 
         const bgImageCardV2 =
           _component?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url;
@@ -427,6 +467,24 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             };
           });
 
+        const videoCardData = _component?.field_column?.map((item) => {
+          return {
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+            title: item?.field_title?.[0]?.value,
+            date: item?.field_content?.[0]?.value,
+            link: item?.field_primary_cta?.[0]?.full_url,
+          };
+        });
+
+        const cardGrid9data = _component?.field_column?.map((item) => {
+          return {
+            title: item?.field_title?.[0]?.value,
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+            description: item?.field_content?.[0]?.value,
+            uuid: item?.uuid?.[0]?.value,
+          };
+        });
+
         switch (findVariantStyle) {
           case WIDGET_VARIANT.variant01:
             return {
@@ -440,8 +498,8 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return {
               variant: findVariantStyle,
               label: label,
-              sublabel: sublabel,
               data: dataProduk,
+              sublabel: sublabel,
             };
           case WIDGET_VARIANT.variant03:
             return {
@@ -456,7 +514,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               label: dataLabelCardV6,
               desc: dataDescCardV6,
               link: dataLinkCardV6,
-              backGround: dataBgCardV6,
+              bgImage: dataBgCardV6,
             };
           case WIDGET_VARIANT.variant05:
             return {
@@ -465,7 +523,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               title: topTitle,
               subTitle: subTitle,
               buttonText: buttonText,
-              buttonUri: buttonUri,
+              link: buttonUri,
             };
           case WIDGET_VARIANT.variant07:
             return {
@@ -495,7 +553,23 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               title: titleCardV2,
               bgImage: bgImageCardV2,
             };
-
+          case WIDGET_VARIANT.variant17:
+            return {
+              variant: findVariantStyle,
+              data: dataCardV2,
+              title: titleCardV2,
+              bgImage: bgImageCardV2,
+            };
+          case WIDGET_VARIANT.variant18:
+            return {
+              variant: findVariantStyle,
+              data: videoCardData,
+            };
+          case WIDGET_VARIANT.variant19:
+            return {
+              variant: findVariantStyle,
+              data: cardGrid9data,
+            };
           default:
             return {
               title: null,
@@ -706,7 +780,11 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
 
           default:
             return (
-              <CE_PortletHeader title={titleProps} bgImage={bgImageProps} />
+              <CE_PortletHeader
+                title={titleProps}
+                bgImage={bgImageProps}
+                subTitle={subtitleProps}
+              />
             );
         }
       },
@@ -735,6 +813,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               titleProps: title,
               bgImageProps: bgImage,
               variant: findVariantStyle,
+              subtitleProps: subtitle,
             };
         }
       },
@@ -986,6 +1065,28 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               data: null,
             };
         }
+      },
+    },
+    requirement_box: {
+      component: CE_RequirementBox,
+      props: (_component: T_RequirementBox) => {
+        return {
+          variant: theme,
+          data: _component?.field_requirement_items?.map((item) => {
+            return {
+              label: item?.field_label?.[0]?.value,
+              title: item?.field_value?.[0]?.value,
+            };
+          }),
+        };
+      },
+    },
+    rich_text: {
+      component: CE_Terms,
+      props: (_component: T_RichText) => {
+        return {
+          desc: _component?.field_content?.[0]?.value,
+        };
       },
     },
   };

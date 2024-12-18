@@ -9,14 +9,14 @@ import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { motion, useInView, useAnimation } from 'motion/react';
 
 export default function CE_CardVariant5({
-  data,
+  dataCard,
   label,
   sublabel,
 }: {
-  data: Array<{
+  dataCard: Array<{
     image: string;
     title: string;
-    link: string;
+    linkCta: string;
   }>;
   label: string;
   sublabel: string;
@@ -27,7 +27,7 @@ export default function CE_CardVariant5({
   const slidesToScroll = 1;
 
   const nextSlide = () => {
-    if (currentSlide <= data?.length - slidesToShow) {
+    if (currentSlide <= dataCard?.length - slidesToShow) {
       setCurrentSlide(currentSlide + slidesToScroll);
     }
   };
@@ -91,9 +91,9 @@ export default function CE_CardVariant5({
                 transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
               }}
             >
-              {data?.map((item, index) => (
+              {dataCard?.map((item, index) => (
                 <Link
-                  href={'/investasiBri'}
+                  href={item?.linkCta}
                   key={index}
                   className="bg-blue-400 relative w-full h-60 md:h-80 overflow-hidden cursor-pointer flex-none md:flex-1 "
                 >
@@ -139,7 +139,7 @@ export default function CE_CardVariant5({
               <button
                 className={[
                   'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white',
-                  currentSlide < data?.length - 1 - slidesToShow
+                  currentSlide < dataCard?.length - 1 - slidesToShow
                     ? 'cursor-pointer '
                     : 'bg-opacity-10 cursor-default',
                 ].join(' ')}
@@ -150,7 +150,7 @@ export default function CE_CardVariant5({
                   height={40}
                   stroke="#4640A5"
                   className={
-                    currentSlide === data?.length - 1
+                    currentSlide === dataCard?.length - 1
                       ? 'opacity-50'
                       : 'text-white text-red'
                   }
