@@ -70,6 +70,7 @@ export default async function page({ params }: { params: { id: string } }) {
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
               <Accordion
+                isOpen={index === 0}
                 renderContent={parseHTMLToReact(
                   item?.field_content?.[0]?.value
                 )}
