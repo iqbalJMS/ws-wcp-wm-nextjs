@@ -8,13 +8,13 @@ export default function CE_CardVariant6({
   image,
   label,
   desc,
-  link,
+  linkCta,
   backGround,
 }: {
   image: string;
   label: string;
   desc: string;
-  link: null | string;
+  linkCta: string;
   backGround: string;
 }) {
   const ref = useRef(null);
@@ -26,25 +26,15 @@ export default function CE_CardVariant6({
       mainControls.start('visible');
     }
   }, [isInView, mainControls]);
-
+  const backgroundImg = backGround
+    ? `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${backGround}`
+    : '';
   return (
     <>
-      <div className="w-full flex justify-center p-5">
-        <div ref={ref}>
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            animate={mainControls}
-            transition={{ duration: 0.5, delay: 0.45 }}
-            className=" h-[50vh] -z-10 absolute "
-            style={{
-              backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${backGround})`,
-            }}
-          ></motion.div>
-        </div>
+      <div
+        className="w-full flex justify-center p-5"
+        style={{ backgroundImage: `url(${backgroundImg})` }}
+      >
         <div
           ref={ref}
           className="grid grid-cols-1 md:grid-cols-2 md:place-items-center lg:w-11/12 xl:w-9/12 xl:px-8 z-10"
@@ -100,23 +90,12 @@ export default function CE_CardVariant6({
                 {parseHTMLToReact(desc)}
               </h1>
             )}
-            {link === null ? (
-              <Link
-                ref={link}
-                className="bg-wmcolor py-2 px-5 rounded-full hover:bg-gray-700 duration-200 cursor-pointer text-white font-semibold uppercase"
-                href={'/infovesta'}
-              >
-                lihat selengkapnya
-              </Link>
-            ) : (
-              <Link
-                ref={link}
-                className="bg-wmcolor py-2 px-5 rounded-full hover:bg-gray-700 duration-200 cursor-pointer text-white font-semibold uppercase"
-                href={'/infovesta'}
-              >
-                lihat selengkapnya
-              </Link>
-            )}
+            <Link
+              className="bg-wmcolor py-2 px-5 rounded-full hover:bg-gray-700 duration-200 cursor-pointer text-white font-semibold uppercase"
+              href={linkCta}
+            >
+              lihat selengkapnya
+            </Link>
             <section />
           </motion.div>
         </div>

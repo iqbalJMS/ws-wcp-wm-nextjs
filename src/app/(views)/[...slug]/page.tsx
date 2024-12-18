@@ -125,6 +125,7 @@ export default async function PageWealthDetail({
         bottom_left_footer={listBottomLeftFooter}
         main_footer={itemMainFooter || undefined}
         middle_main_footer={itemMiddleMainFooter}
+        variant={theme}
       />
       {theme === 'wm-main-navigation' && <ScrollToTopHome />}
       {theme === 'wm-private-main-navigation' && <ScrollToTopPrivate />}

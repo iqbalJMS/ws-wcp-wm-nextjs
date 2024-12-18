@@ -90,6 +90,7 @@ export default async function page({ params }: { params: { id: string } }) {
           bottom_left_footer={listBottomLeftFooter}
           main_footer={itemMainFooter || undefined}
           middle_main_footer={itemMiddleMainFooter}
+          variant={'wm-main-navigation'}
         />
       </div>
     </>

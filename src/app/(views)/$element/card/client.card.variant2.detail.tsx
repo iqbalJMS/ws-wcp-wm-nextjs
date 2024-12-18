@@ -8,7 +8,7 @@ import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import { motion, useInView, useAnimation } from 'motion/react';
 
-export default function CE_CardVariant2Prioritas({
+export default function CE_CardVariant2Detail({
   data,
   bgImage,
   title,
@@ -46,6 +46,7 @@ export default function CE_CardVariant2Prioritas({
       mainControls.start('visible');
     }
   }, [isInView, mainControls]);
+
   return (
     <>
       <div
@@ -57,7 +58,7 @@ export default function CE_CardVariant2Prioritas({
       >
         <section
           ref={ref}
-          className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 pb-16"
+          className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12"
         >
           <motion.div
             variants={{
@@ -98,8 +99,8 @@ export default function CE_CardVariant2Prioritas({
               return (
                 <div
                   key={index}
-                  data-aos="fade-up"
-                  data-aos-duration="1000"
+                  // data-aos="fade-up"
+                  // data-aos-duration="1000"
                   className="group hover:bg-prioritycolor relative w-full h-60 md:h-80 px-5 overflow-hidden flex-none flex flex-col items-center justify-center hover:bg-gradient-to-b from-prioritycolor to-[#04040A] rounded-xl duration-500 transition-all ease-in-out cursor-pointer"
                 >
                   <Image
@@ -108,7 +109,7 @@ export default function CE_CardVariant2Prioritas({
                     height={70}
                     src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon}`}
                     color="black"
-                    className="group-hover:invert group-hover:brightness-[12.90]"
+                    className="group-hover:invert group-hover:brightness-[.90]"
                   />
 
                   {label && (
@@ -130,7 +131,7 @@ export default function CE_CardVariant2Prioritas({
           ref={ref}
           className="hidden md:flex justify-center w-full overflow-hidden mdmax:w-full mdmax:flex-none"
         >
-          <div className="w-full lg:w-10/12 xl:w-9/12 flex md:grid grid-cols-3 transition-all ease-in-out duration-300 md:space-x-3">
+          <div className="w-full lg:w-10/12 xl:w-9/12 flex md:grid grid-cols-4 transition-all ease-in-out duration-300 md:space-x-3">
             {data?.map(({ label, icon, desc }, index) => {
               return (
                 <motion.div
@@ -154,7 +155,7 @@ export default function CE_CardVariant2Prioritas({
                   />
 
                   {label && (
-                    <h1 className="text-black text-lg font-bold group-hover:text-white pt-7">
+                    <h1 className="text-[#404041] text-lg text-center font-extrabold group-hover:text-white pt-7">
                       {parseHTMLToReact(label)}
                     </h1>
                   )}

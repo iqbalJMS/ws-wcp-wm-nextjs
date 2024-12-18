@@ -307,7 +307,7 @@ const config: Config = {
         wmcolor: '#080087',
         privatecolor: '#A28F52',
         prioritycolor: '#1B1333',
-
+        footercolor: '#1C1C1C',
         bluedark01: '#141333',
         orange01: '#f59f23',
         orange02: '#f57823',
