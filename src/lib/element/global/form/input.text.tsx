@@ -15,6 +15,7 @@ type T_InputTextProps = {
   children?: React.ReactNode;
   rightSlot?: React.ReactNode;
   leftSlot?: React.ReactNode;
+  forInputPhone?: boolean;
 };
 
 function useFormat() {
@@ -39,6 +40,7 @@ export default function InputText({
   onChange,
   rightSlot,
   leftSlot,
+  forInputPhone,
 }: T_InputTextProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const { number } = useFormat();
@@ -76,16 +78,18 @@ export default function InputText({
   return (
     <>
       <div
-        className={`flex w-full h-12 py-1 items-center border overflow-hidden px-4 rounded-md bg-transparent ${
+        className={`flex py-1  w-full h-12 items-center border border-solid overflow-hidden rounded-2xl bg-transparent ${
           disabled ? 'bg-gray-500 bg-opacity-5' : 'bg-transparent'
         } ${
           state === 'error'
             ? 'border-red-500'
-            : 'border-black border-opacity-10 focus-within:border-blue-01 focus-within:border-opacity-50 focus-within:ring-4 focus-within:ring-light-02 focus-within:ring-opacity-30'
-        }`}
+            : 'border-black focus-within:border-blue-01 focus-within:border-opacity-50 focus-within:ring-4 focus-within:ring-light-02 focus-within:ring-opacity-30'
+        } ${forInputPhone ? 'pl-28' : 'px-4'}`}
       >
         {leftSlot || leftText ? (
-          <div className="flex items-center justify-center mr-10 h-full text-black02 text-15 leading-15 whitespace-nowrap">
+          <div
+            className={`flex  items-center justify-center h-full text-black02 text-15 leading-15 whitespace-nowrap mr-10`}
+          >
             {leftSlot}
             {leftText}
           </div>
@@ -94,7 +98,7 @@ export default function InputText({
         <input
           ref={inputRef}
           value={formatModelValue()}
-          className="w-full h-full text-base mdmax:text-sm placeholder-black placeholder-opacity-40 focus:outline-none bg-transparent flex-1"
+          className="w-full h-full text-base mdmax:text-sm placeholder:text-black/50 placeholder:font-medium focus:outline-none bg-transparent flex-1"
           disabled={disabled}
           type={type === 'password' ? 'password' : 'text'}
           placeholder={placeholder}
@@ -103,7 +107,9 @@ export default function InputText({
           onInput={handleInput}
         />
         {rightSlot || rightText ? (
-          <div className="flex items-center justify-center ml-10 h-full text-black02 text-opacity-90 text-15 whitespace-nowrap">
+          <div
+            className={`flex items-center justify-center h-full text-black02 text-opacity-90 text-15 whitespace-nowrap ml-10`}
+          >
             {rightSlot}
             {rightText}
           </div>
