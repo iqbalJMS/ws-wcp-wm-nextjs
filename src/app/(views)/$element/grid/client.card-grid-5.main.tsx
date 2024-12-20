@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'motion/react';
 
 const CE_CardGrid5Main = ({
+  variant,
   dataCard,
 }: {
   dataCard: Array<{
@@ -17,7 +18,16 @@ const CE_CardGrid5Main = ({
     description: string;
     nid: string;
   }>;
+  variant: string;
 }) => {
+  let theme = '';
+
+  if (variant == 'wm-private-main-navigation') {
+    theme = 'privatecolor';
+  } else if (variant == 'wm-prioritas-main-navigation') {
+    theme = 'prioritycolor';
+  }
+
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-GB', {
@@ -48,7 +58,7 @@ const CE_CardGrid5Main = ({
                 href={`/insight/${item?.nid}`}
                 className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
               >
-                <div className='group'>
+                <div className="group">
                   <motion.div
                     variants={{
                       hidden: { opacity: 0, y: 75 },
@@ -87,7 +97,9 @@ const CE_CardGrid5Main = ({
                         {formatDate(item?.date ?? 'date')}
                       </span>
                     </div>
-                    <div className="text-privatecolor line-clamp-2 font-bold text-xl mb-5 pt-3">
+                    <div
+                      className={`text-${theme} line-clamp-2 font-bold text-xl mb-5 pt-3`}
+                    >
                       {parseHTMLToReact(item?.title)}
                     </div>
                     <div className="font-light line-clamp-3">
