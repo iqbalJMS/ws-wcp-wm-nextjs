@@ -1,0 +1,52 @@
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+import imageLocation from '@/../../public/images/dummy/location.png';
+
+export default function CE_Search() {
+  return (
+    <>
+      <div className="w-full h-60 flex flex-col items-center justify-center">
+        <section className="uppercase text-2xl lg:text-3xl xl:text-4xl pb-5 text-prioritycolor font-extrabold">
+          find us
+        </section>
+        <section className="w-11/12 md:w-9/12 lg:w-7/12 xl:w-5/12 flex flex-col items-center justify-center space-x-4 px-5 2xl:px-7 py-4 bg-white rounded-3xl md:rounded-full shadow-2xl border border-slate-300">
+          <div className="flex items-center justify-center w-full space-x-3">
+            <div>
+              <Image
+                alt=""
+                src={imageLocation}
+                width={35}
+                height={35}
+                className="w-10/12"
+              />
+            </div>
+            <form className="w-10/12">
+              <input
+                type="text"
+                className="w-full px-3 py-2"
+                placeholder="Search For Location"
+              />
+            </form>
+            <div className="hidden md:flex text-center w-3/12">
+              <Link
+                href={'#'}
+                className="w-full bg-prioritycolor rounded-full px-4 py-3 text-white font-semibold text-base uppercase"
+              >
+                search
+              </Link>
+            </div>
+          </div>
+          <div className="flex md:hidden pt-4">
+            <Link
+              href={'#'}
+              className=" bg-prioritycolor rounded-full px-8 font-semibold text-sm uppercase py-3 text-white"
+            >
+              search
+            </Link>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+}

@@ -59,9 +59,7 @@ export default async function PageWealth({
     Component: React.ComponentType<any>;
     props: Record<string, any>;
   }>;
-
   const theme = data?.field_main_menu?.[0]?.target_id;
-
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listHomeNavbar = await ACT_GetMainMenuNavbar({ lang: 'id' });
   const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });

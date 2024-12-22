@@ -4,11 +4,11 @@ import React from 'react';
 const CE_BreadCrumbInsight = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-prioritas',
+      url: '/web/wealth-management/bri-private?lang=id',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/insight-prioritas',
+      url: '/web/wealth-management/insight?lang=id',
       title: 'Wawasan',
     },
   ];
@@ -25,7 +25,7 @@ const CE_BreadCrumbInsight = ({ currentPage }: { currentPage: string }) => {
                 <div className="flex items-center space-x-2">
                   <a
                     href={item.url}
-                    className="font-light text-base text-[#C0CCE2] hover:text-prioritycolor hover:underline uppercase"
+                    className="font-light text-base text-[#C0CCE2] hover:text-privatecolor hover:underline"
                   >
                     {item.title}
                   </a>
@@ -51,7 +51,7 @@ const CE_BreadCrumbInsight = ({ currentPage }: { currentPage: string }) => {
             ))}
             <div className="flex items-center space-x-3 ">
               <div className="flex items-center">
-                <span className="cursor-default text-prioritycolor font-normal hover:text-primary-blue uppercase">
+                <span className="cursor-default text-privatecolor font-normal hover:text-primary-blue uppercase">
                   {currentPage}
                 </span>
               </div>
