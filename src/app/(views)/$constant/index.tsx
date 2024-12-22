@@ -6,7 +6,6 @@ import { T_Subscription } from './types/widget/subscription';
 import { T_ImageSlider } from './types/widget/image-slider';
 import { T_MultiTab } from './types/widget/multi_tab';
 import { T_Header } from './types/widget/header';
-// {--------------}
 import { WIDGET_VARIANT } from './variables';
 import { T_VideoSlider } from './types/widget/video-slider';
 import { T_CardVariant04 } from './types/widget/card-variant4';
@@ -22,6 +21,8 @@ import { T_Insight } from './types/widget/content_type';
 import { T_ExternalMagazine } from './types/widget/external_magazine';
 import { T_RequirementBox } from './types/widget/requirement-box';
 import { T_RichText } from './types/widget/rich-text';
+import { T_Map } from './types/widget/map';
+import { T_Promo } from './types/widget/promo';
 
 const SE_SubscriberContent = dynamic(
   () => import('@/app/$element/server.subscriber.content')
@@ -72,7 +73,7 @@ const CE_BreadcrumbMain = dynamic(
 );
 
 const CE_CardVariant12 = dynamic(
-  () => import('@/app/(views)/$element/card/card-variant12')
+  () => import('@/app/(views)/$element/card/client.card.variant12')
 );
 
 const CE_CarouselVariant2 = dynamic(
@@ -86,7 +87,7 @@ const CE_CardVariant6 = dynamic(
   () => import('@/app/(views)/$element/card/client.card.variant6')
 );
 const CE_CardVariant3 = dynamic(
-  () => import('@/app/(views)/$element/card/client.card.variant3')
+  () => import('@/app/(views)/$element/card/client.card.promo')
 );
 
 const CE_GridVariant02 = dynamic(
@@ -101,7 +102,7 @@ const CE_GridVariant04 = dynamic(
   () => import('@/app/(views)/$element/grid/client.grid.variant04')
 );
 
-const CE_CardGrid5Main = dynamic(
+const CE_GridCard5Main = dynamic(
   () => import('@/app/(views)/$element/grid/client.card-grid-5.main')
 );
 
@@ -113,8 +114,12 @@ const CE_CardGrid6Main = dynamic(
   () => import('@/app/(views)/$element/grid/client.card-grid-6.main')
 );
 
-const CE_CardGrid7Main = dynamic(
+const CE_GridCard7Main = dynamic(
   () => import('@/app/(views)/$element/grid/client.card-grid-7.main')
+);
+
+const CE_CardOutlet = dynamic(
+  () => import('@/app/(views)/$element/card/client.card.variant7')
 );
 
 const CE_CardVariant2Prioritas = dynamic(
@@ -154,6 +159,14 @@ const CE_RequirementBox = dynamic(
 
 const CE_Terms = dynamic(
   () => import('@/app/(views)/$element/terms/client.terms')
+);
+
+const CE_CardOutletMap = dynamic(
+  () => import('@/app/(views)/$element/card/client.card.outlet.map')
+);
+
+const CE_CardPromo = dynamic(
+  () => import('@/app/(views)/$element/card/client.card.promo')
 );
 
 export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
@@ -574,6 +587,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               variant: findVariantStyle,
               data: cardGrid9data,
             };
+
           default:
             return {
               title: null,
@@ -1031,14 +1045,13 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
 
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
-            return <CE_CardGrid5Main dataCard={data} variant={theme} />;
+            return <CE_GridCard5Main dataCard={data} variant={theme} />;
           case WIDGET_VARIANT.variant12:
             return <CE_CardGrid6Main dataCard={data} variant={theme} />;
           case WIDGET_VARIANT.variant11:
-            return <CE_CardGrid7Main dataCard={data} variant={theme} />;
-
+            return <CE_GridCard7Main dataCard={data} variant={theme} />;
           default:
-            return <></>;
+            return <CE_CardOutlet dataCard={data} />;
         }
       },
       props: (_component: T_Insight) => {
@@ -1074,6 +1087,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           };
         });
 
+        const dataOutlet = _component?.field_content_type?.map((item) => {
+          return {
+            OfficeName: item?.title?.[0]?.value,
+            Address: item?.body?.[0]?.value,
+            phone: item?.field_phone?.[0]?.value,
+            gmaps: item?.field_coordinate?.[0]?.value,
+          };
+        });
+
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
             return {
@@ -1093,10 +1115,8 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
 
           default:
             return {
-              title: null,
-              subtitle: null,
-              desctitle: null,
-              data: null,
+              entity: findEntityBundle,
+              data: dataOutlet,
             };
         }
       },
@@ -1121,6 +1141,53 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         return {
           desc: _component?.field_content?.[0]?.value,
         };
+      },
+    },
+    map: {
+      component: CE_CardOutletMap,
+      props: (_component: T_Map) => {
+        return {
+          title: _component?.field_bri_location?.[0]?.location_name,
+          linkCta: _component?.field_primary_cta?.[0]?.full_url,
+          desc: _component?.location_detail?.address,
+          image: _component?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+          linkTitle: _component?.field_primary_cta?.[0]?.title,
+        };
+      },
+    },
+    promo: {
+      component: (...props) => {
+        const dataProps = props?.[0]?.dataProps;
+        const findVariantStyle = props?.[0]?.variant;
+        const titleProps = props?.[0]?.titleProps;
+        const subtitleProps = props?.[0]?.subtitleProps;
+
+        switch (findVariantStyle) {
+          case WIDGET_VARIANT.variant23:
+          default:
+            return (
+              <CE_CardPromo
+                data={dataProps}
+                title={titleProps}
+                subtitle={subtitleProps}
+              />
+            );
+        }
+      },
+      props: (_component: T_Promo) => {
+        const findVariantStyle =
+          _component?.field_web_variant_styles?.[0]?.field_key?.[0]?.value;
+        const labelCard = _component?.field_title?.[0]?.value;
+        const subtitleCard = _component?.field_subtitle?.[0]?.value;
+        switch (findVariantStyle) {
+          case WIDGET_VARIANT.variant23:
+          default:
+            return {
+              variant: findVariantStyle,
+              titleProps: labelCard,
+              subtitleProps: subtitleCard,
+            };
+        }
       },
     },
   };

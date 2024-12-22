@@ -6,17 +6,18 @@ import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import Link from 'next/link';
 
-// {
-//   data,
-// }: {
-//   data: Array<{
-//     image: string;
-//     label: string;
-//     textButton: string;
-//     link: string;
-//   }>;
-// }
-export default function CE_CardVariant3() {
+export default function CE_CardPromo({
+  data,
+  title,
+  subtitle,
+}: {
+  data: Array<{
+    image: string;
+    label: string;
+  }>;
+  title: string;
+  subtitle: string;
+}) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const screenWidth = useScreenWidth();
   const slidesToShow = screenWidth > 768 ? 4 : 2;
@@ -34,38 +35,14 @@ export default function CE_CardVariant3() {
     }
   };
 
-  const data = [
-    {
-      imgUrl: '/images/dummy/img-promo-cv3.png',
-      label: 'Asuransi Griya Proteksi Maksima dan Layanan Safe Deposit Box',
-      textBtn: 'Lihat Promo',
-    },
-    {
-      imgUrl: '/images/dummy/img-promo-cv3.png',
-      label: 'Layanan BRI Prioritas, Investasi Reksadana dan Tabungan Emas',
-      textBtn: 'Lihat Promo',
-    },
-    {
-      imgUrl: '/images/dummy/img-promo-cv3.png',
-      label: 'Layanan Advisory BRI Prioritas dan Aplikasi BRIGHTS',
-      textBtn: 'Lihat Promo',
-    },
-    {
-      imgUrl: '/images/dummy/img-promo-cv3.png',
-      label: 'Airport Lounge',
-      textBtn: 'Lihat Promo',
-    },
-  ];
   return (
     <>
-      <div className="w-full h-auto flex flex-col items-center justify-center">
+      <div className="w-full h-auto flex flex-col items-center justify-center bg-red-300">
         <section className="w-full flex flex-col items-center pb-16">
           <h1 className="text-[#3D3D3D] font-semibold text-3xl uppercase">
-            Promo Terbaru
+            {title}
           </h1>
-          <h2 className="text-sm font-light text-center">
-            Nikmati berbagai promo kami dan dapatkan keuntungannya
-          </h2>
+          <h2 className="text-sm font-light text-center">{subtitle}</h2>
         </section>
 
         {/* mobile section */}
@@ -81,7 +58,7 @@ export default function CE_CardVariant3() {
                 key={index}
                 className="relative w-1/4 mdmax:w-11/12 h-80 lg:h-64 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                 style={{
-                  backgroundImage: `url(${item?.imgUrl})`,
+                  backgroundImage: `url(${item?.image})`,
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                 }}
@@ -94,10 +71,9 @@ export default function CE_CardVariant3() {
                 </h1>
                 <Link
                   href={'#'}
-                  target="_blank"
                   className="pb-4 px-5 z-50 hover:underline text-white flex items-center"
                 >
-                  {item?.textBtn}
+                  lihat promo
                   <span className="pl-4">
                     <ArrowRightIcon
                       width={20}
@@ -187,7 +163,7 @@ export default function CE_CardVariant3() {
                     key={index}
                     className="relative w-[32%] h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
-                      backgroundImage: `url(${item?.imgUrl})`,
+                      backgroundImage: `url(${item?.image})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -200,10 +176,9 @@ export default function CE_CardVariant3() {
                     </h1>
                     <Link
                       href={'#'}
-                      target="_blank"
                       className="pb-4 px-2 z-50 hover:underline text-white flex items-center text-sm"
                     >
-                      {item?.textBtn}
+                      lihat promo
                       <span className="pl-4">
                         <ArrowRightIcon
                           width={20}
@@ -252,7 +227,7 @@ export default function CE_CardVariant3() {
                     key={index}
                     className="relative overflow-hidden lg:w-60 lg:h-52 xl:w-80 xl:h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
-                      backgroundImage: `url(${item?.imgUrl})`,
+                      backgroundImage: `url(${item?.image})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -265,10 +240,9 @@ export default function CE_CardVariant3() {
                     </h1>
                     <Link
                       href={'#'}
-                      target="_blank"
                       className="lg:pb-3 xl:pb-8 px-5 z-50 hover:underline text-white flex items-center text-sm"
                     >
-                      {item?.textBtn}
+                      lihat promo
                       <span className="pl-4">
                         <ArrowRightIcon
                           width={20}
