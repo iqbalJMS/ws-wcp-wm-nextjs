@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'motion/react';
 
-const CE_CardGrid9 = ({
+const CE_CardGrid10 = ({
   dataCard,
 }: {
   dataCard: Array<{
@@ -32,7 +32,7 @@ const CE_CardGrid9 = ({
         <div ref={ref} className="flex flex-wrap -mx-10">
           {dataCard.map((item, index) => (
             <Link
-              href={`/product-detail/${item?.nid}`}
+              href={`/bancassurance-detail/${item?.nid}`}
               key={index}
               className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
             >
@@ -67,7 +67,7 @@ const CE_CardGrid9 = ({
                   transition={{ duration: 0.5, delay: 0.55 }}
                   className="p-3"
                 >
-                  <div className="text-black text-xl font-extrabold">
+                  <div className="text-black text-xl font-extrabold uppercase">
                     {item?.title}
                   </div>
                   <div className="py-5 text-slate-600">
@@ -100,4 +100,4 @@ const CE_CardGrid9 = ({
   );
 };
 
-export default CE_CardGrid9;
+export default CE_CardGrid10;
