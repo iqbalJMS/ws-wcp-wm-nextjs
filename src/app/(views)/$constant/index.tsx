@@ -169,6 +169,10 @@ const CE_CardPromo = dynamic(
   () => import('@/app/(views)/$element/card/client.card.promo')
 );
 
+const CE_CardGrid10 = dynamic(
+  () => import('@/app/(views)/$element/grid/client.card-grid-10')
+);
+
 export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
   const components: Record<T_Widget, T_ComponentMapWidget> = {
     slider: {
@@ -1047,8 +1051,11 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return <CE_CardGrid6Main dataCard={data} variant={theme} />;
           case WIDGET_VARIANT.variant11:
             return <CE_GridCard7Main dataCard={data} variant={theme} />;
-          case WIDGET_VARIANT.variant19:
+          case 'outlet':
             return <CE_CardOutlet dataCard={data} />;
+          case 'bancassurance':
+            return <CE_CardGrid10 dataCard={data} />;
+
           default:
             return <CE_CardGrid9 dataCard={data} />;
         }
@@ -1094,6 +1101,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             gmaps: item?.field_coordinate?.[0]?.value,
           };
         });
+
         const cardGrid9data = _component?.field_content_type?.map((item) => {
           return {
             title: item?.title?.[0]?.value,
@@ -1102,7 +1110,14 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             nid: item?.nid?.[0]?.value,
           };
         });
-
+        const cardGrid10data = _component?.field_content_type?.map((item) => {
+          return {
+            title: item?.title?.[0]?.value,
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+            description: item?.field_summary?.[0]?.value,
+            nid: item?.nid?.[0]?.value,
+          };
+        });
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
             return {
@@ -1119,10 +1134,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               entity: findEntityBundle,
               data: dataGridV7,
             };
-          case WIDGET_VARIANT.variant19:
+          case 'outlet':
             return {
               entity: findEntityBundle,
               data: dataOutlet,
+            };
+          case 'bancassurance':
+            return {
+              entity: findEntityBundle,
+              data: cardGrid10data,
             };
 
           default:
