@@ -373,9 +373,6 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           case WIDGET_VARIANT.variant18:
             return <CE_VideosCard data={data} variant={theme} />;
 
-          case WIDGET_VARIANT.variant19:
-            return <CE_CardGrid9 dataCard={data} />;
-
           default:
             return <></>;
         }
@@ -1050,8 +1047,10 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return <CE_CardGrid6Main dataCard={data} variant={theme} />;
           case WIDGET_VARIANT.variant11:
             return <CE_GridCard7Main dataCard={data} variant={theme} />;
-          default:
+          case WIDGET_VARIANT.variant19:
             return <CE_CardOutlet dataCard={data} />;
+          default:
+            return <CE_CardGrid9 dataCard={data} />;
         }
       },
       props: (_component: T_Insight) => {
@@ -1095,6 +1094,14 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             gmaps: item?.field_coordinate?.[0]?.value,
           };
         });
+        const cardGrid9data = _component?.field_content_type?.map((item) => {
+          return {
+            title: item?.title?.[0]?.value,
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+            description: item?.field_summary?.[0]?.value,
+            nid: item?.nid?.[0]?.value,
+          };
+        });
 
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
@@ -1112,11 +1119,16 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               entity: findEntityBundle,
               data: dataGridV7,
             };
-
-          default:
+          case WIDGET_VARIANT.variant19:
             return {
               entity: findEntityBundle,
               data: dataOutlet,
+            };
+
+          default:
+            return {
+              variant: findEntityBundle,
+              data: cardGrid9data,
             };
         }
       },

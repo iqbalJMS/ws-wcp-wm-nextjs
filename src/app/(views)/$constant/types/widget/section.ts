@@ -90,9 +90,9 @@ type T_FieldColumnChild = {
 type T_FieldColumn = {
   entity_type: any[];
   entity_bundle: Array<{ value: string }>;
-  id: any[];
+  id: Array<{ value: number }>;
   uuid: Array<{ value: string }>;
-  parent_id: any[];
+  parent_id: Array<{ value: string }>;
   parent_type: any[];
   parent_field_name: any[];
   content_translation_source: any[];

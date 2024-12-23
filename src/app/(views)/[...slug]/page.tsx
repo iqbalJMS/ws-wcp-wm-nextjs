@@ -6,7 +6,6 @@ import { Locale } from '@/i18n-config';
 import { T_FieldComponent } from '@/api/single-page/api.get-single-page.type';
 import { T_Widget } from '@/app/(views)/$constant/types';
 import { COMPONENT_MAP_WIDGET } from '@/app/(views)/$constant';
-import CE_FloatingMain from '@/app/(views)/$element/floating-menu/client.floating.main';
 import { ACT_GetFloatNavigation } from '@/app/(views)/$action/action.get-float-navigation';
 import { ACT_GetTopMenuNavbar } from '@/app/(views)/$action/action.get.top-menu-navbar';
 import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
@@ -27,6 +26,11 @@ import { ACT_GetBottomRightFooter } from '@/app/(views)/$action/bottom-footer/ac
 import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
+import CE_FloatingVariant01 from '@/app/(views)/$element/floating-menu/client.floating.variant01';
+import CE_FloatingVariant03 from '@/app/(views)/$element/floating-menu/client.floating.variant03';
+import CE_FloatingVariant02 from '@/app/(views)/$element/floating-menu/client.floating.variant02';
+import { ACT_GetFloatNavPriority } from '@/app/(views)/$action/action.get-float-nav-priority';
+import { ACT_GetFloatNavPrivate } from '@/app/(views)/$action/action.get-float-nav-private';
 
 export default async function PageWealthDetail({
   params: { slug },
@@ -68,6 +72,10 @@ export default async function PageWealthDetail({
     props: Record<string, any>;
   }>;
   const itemMenuFloatNavigation = await ACT_GetFloatNavigation({ lang: 'en' });
+  const itemMenuFloatNavPrivate = await ACT_GetFloatNavPrivate({ lang: 'en' });
+  const itemMenuFloatNavPriority = await ACT_GetFloatNavPriority({
+    lang: 'en',
+  });
 
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listHomeNavbar = await ACT_GetMainMenuNavbar({ lang: 'id' });
@@ -114,7 +122,16 @@ export default async function PageWealthDetail({
           headerLogo={itemHeaderLogo || undefined}
         />
       )}
-      <CE_FloatingMain data={itemMenuFloatNavigation} variant={theme} />
+      {theme === 'wm-main-navigation' && (
+        <CE_FloatingVariant01 data={itemMenuFloatNavigation} />
+      )}
+      {theme === 'wm-private-main-navigation' && (
+        <CE_FloatingVariant02 data={itemMenuFloatNavPrivate} />
+      )}
+      {theme === 'wm-prioritas-main-navigation' && (
+        <CE_FloatingVariant03 data={itemMenuFloatNavPriority} />
+      )}
+      {/* <CE_FloatingMain data={itemMenuFloatNavigation} variant={theme} /> */}
       {components?.map(({ Component, props }, key) => (
         <React.Fragment key={key}>
           <Component {...props} />
