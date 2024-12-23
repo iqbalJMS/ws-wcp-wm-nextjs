@@ -16,7 +16,7 @@ export default function CE_FloatingVariant01({
           {data?.map((item, index) => {
             return (
               <div key={index} className="">
-                <Link href={item?.alias}>
+                <Link href={`/${item?.alias}`}>
                   <div className="flex items-center bg-[#444444] hover:bg-wmcolor p-3 px-4 border-b-2 border-white ">
                     <Image
                       className="text-white w-5 h-5 mr-5"

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+// import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'motion/react';
@@ -13,7 +13,7 @@ const CE_CardGrid9 = ({
     title: string;
     image: string;
     description: string;
-    uuid: string;
+    nid: string;
   }>;
 }) => {
   const ref = useRef(null);
@@ -32,7 +32,7 @@ const CE_CardGrid9 = ({
         <div ref={ref} className="flex flex-wrap -mx-10">
           {dataCard.map((item, index) => (
             <Link
-              href={`/program-detail/${item?.uuid}`}
+              href={`/product-detail/${item?.nid}`}
               key={index}
               className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
             >
@@ -70,9 +70,7 @@ const CE_CardGrid9 = ({
                   <div className="text-black text-xl font-extrabold">
                     {item?.title}
                   </div>
-                  <div className="py-5 text-slate-600">
-                    {parseHTMLToReact(item?.description)}
-                  </div>
+                  <div className="py-5 text-slate-600">{item?.description}</div>
                   <div>
                     <div className="text-wmcolor font-bold uppercase text-sm inline-flex items-center justify-center gap-2">
                       lihat detail
