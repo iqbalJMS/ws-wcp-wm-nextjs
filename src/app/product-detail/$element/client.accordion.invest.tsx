@@ -23,7 +23,7 @@ export default function CE_AcordionInvestasi({
   return (
     <section className="flex flex-col mb-4">
       <div
-        className={`shadow-lg rounded-[40px] px-6 py-4 bg-prioritycolor relative z-10`}
+        className={`shadow-lg rounded-[40px] px-6 py-4 bg-[#080087] relative z-10`}
       >
         <div>
           <div>

@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import noImage from '@/../../public/images/no-image.png';
 
 export default function CE_CardVariant12({
   data,
@@ -47,15 +48,25 @@ export default function CE_CardVariant12({
             <div
               data-aos="fade-right"
               data-aos-duration="1000"
-              className="w-full h-96 pb-8"
+              className="w-full h-[50vh] pb-8"
             >
-              <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image}`}
-                width={1000}
-                height={1000}
-                alt="image"
-                className="object-center object-cover w-full h-full rounded-xl"
-              />
+              {item?.image ? (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image}`}
+                  width={500}
+                  height={500}
+                  alt="image"
+                  className="object-center object-cover w-full h-full rounded-xl"
+                />
+              ) : (
+                <Image
+                  src={`${noImage}`}
+                  width={500}
+                  height={500}
+                  alt="image"
+                  className="object-center object-cover w-full h-full rounded-xl"
+                />
+              )}
             </div>
 
             <div

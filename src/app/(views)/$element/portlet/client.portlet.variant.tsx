@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import React from 'react';
-// import { T_PortletProps } from '@/app/(views)/$element/types/portlet';
 
 export default function CE_PortletVariant02({
   title,
@@ -26,19 +25,18 @@ export default function CE_PortletVariant02({
 
   if (variant == 'wm-private-main-navigation') {
     theme = 'privatecolor';
-  } else {
-    theme = 'white';
+  } else if (variant == 'wm-main-navigation') {
+    theme = 'wmcolor';
   }
-
   if (variant == 'wm-private-main-navigation') {
     bgHover = 'white';
-  } else {
-    bgHover = 'transparent';
+  } else if (variant == 'wm-main-navigation') {
+    bgHover = 'black';
   }
   if (variant == 'wm-private-main-navigation') {
     textColor = 'privatecolor';
-  } else {
-    textColor = 'prioritycolor';
+  } else if (variant == 'wm-main-navigation') {
+    textColor = 'white';
   }
 
   return (
@@ -78,19 +76,12 @@ export default function CE_PortletVariant02({
                 ) : (
                   <Link href={buttonLink ?? ''}>
                     <button
-                      className={`font-semibold px-12 capitalize text-base bg-${theme} hover:bg-${bgHover} rounded-full py-3 text-${textColor} hover:text-white duration-200 border-2`}
+                      className={`font-semibold px-12 capitalize text-base bg-${theme} hover:bg-${bgHover} rounded-full py-3 text-${textColor} hover:text-white duration-200`}
                     >
                       {buttonText}
                     </button>
                   </Link>
                 )}
-                {/* <Link href={buttonLink ?? ''}>
-                  <button
-                    className={`font-semibold px-12 capitalize text-base bg-${theme} hover:bg-${bgHover} rounded-full py-3 text-${textColor} hover:text-privatecolor duration-200 border-2`}
-                  >
-                    {buttonText}
-                  </button>
-                </Link> */}
               </div>
             </div>
           </div>

@@ -11,18 +11,20 @@ import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/act
 import { ACT_GetMainMenuFooter } from '@/app/(views)/$action/main-footer/action.get.main-footer';
 import { ACT_GetOurStoryDetail } from '@/app/(views)/$action/action.get.our-story.detail';
 import CE_BreadcrumbStory from '@/app/our-story/$element/client.breadcrumb.our-story';
-import GlobalHeader from '@/lib/element/global/header/home-header';
 import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-footer/action.get.main-middle-footer';
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
+import HomeHeader from '@/lib/element/global/header/home-header';
+import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
-  const listHeaderBottom = await ACT_GetMainMenuNavbar({ lang: 'en' });
+  const listHomeNavbar = await ACT_GetMainMenuNavbar({ lang: 'id' });
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
   const itemMainFooter = await ACT_GetMainMenuFooter({ lang: 'en' });
   const itemMiddleMainFooter = await ACT_GetMainMiddleFooter({ lang: 'en' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
+  const itemHeaderLogo = await ACT_GetHeaderLogo({ lang: 'en' });
   const getOurstoryData = await ACT_GetOurStoryDetail({
     lang: 'en',
     alias: 'node',
@@ -34,11 +36,12 @@ export default async function page({ params }: { params: { id: string } }) {
   return (
     <>
       <div className="w-full">
-        <GlobalHeader
+        <HomeHeader
           headerTop={listHeaderTop}
-          headerBottom={listHeaderBottom}
+          headerBottom={listHomeNavbar}
           variant={'transparent'}
           itemLogin={itemMenuLogin}
+          headerLogo={itemHeaderLogo || undefined}
         />
         <div className="relative overflow-hidden h-[65vh] lg:mb-[3.125rem] w-full bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full flex justify-center items-center before:bg-gradient-to-b before:from-black before:to-black before:opacity-40 z-0 border-b-[15px] border-[#D2D2D2]">
           <Image
