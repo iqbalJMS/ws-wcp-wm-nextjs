@@ -26,6 +26,6 @@ export type T_Widget =
   | 'video_slider'
   | 'requirement_box'
   | 'rich_text'
-  | 'promo'
+  | 'promo_widget'
   | 'external_magazine'
   | 'map';

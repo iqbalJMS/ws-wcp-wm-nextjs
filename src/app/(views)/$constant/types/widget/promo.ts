@@ -52,7 +52,7 @@ export type T_Promo = {
   promo_data: {
     items: {
       data: {
-        title: string;
+        title: Array<{ value: string }>;
         nid: number;
         field_promo_image: Array<T_FieldImage>;
       };

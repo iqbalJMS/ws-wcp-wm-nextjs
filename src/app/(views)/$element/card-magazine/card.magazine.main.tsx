@@ -4,30 +4,37 @@ import CE_CardMegazinePriority from './client.card.megazine.priority';
 import CE_CardMegazinePrivate from './client.card.megazine.private';
 
 const CE_CardMagazineMain = ({
+  // data,
+  heading,
+  subHeading,
   variant,
-  title,
-  label,
-  linkMagezine,
 }: {
-  variant: any;
-  title: string;
-  label: string;
-  linkMagezine: string;
+  data: Array<{
+    title: string;
+    subtitle: string;
+    image: string;
+    date: string;
+    category: string;
+    link: string;
+  }>;
+  heading: string;
+  subHeading: string;
+  variant: string;
 }) => {
   return (
     <>
       {variant === 'wm-prioritas-main-navigation' && (
         <CE_CardMegazinePriority
-          title={title}
-          label={label}
-          linkMagezine={linkMagezine}
+          // cardData={data}
+          heading={heading}
+          subHeading={subHeading}
         />
       )}
       {variant === 'wm-private-main-navigation' && (
         <CE_CardMegazinePrivate
-          title={title}
-          label={label}
-          linkMagezine={linkMagezine}
+          // cardData={data}
+          heading={heading}
+          subHeading={subHeading}
         />
       )}
     </>
