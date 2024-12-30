@@ -8,8 +8,8 @@ const CE_BreadCrumbInvestasi = ({ currentPage }: { currentPage: string }) => {
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/promo',
-      title: 'Promo',
+      url: '/web/wealth-management/investasi-prioritas',
+      title: 'Investasi',
     },
   ];
   return (

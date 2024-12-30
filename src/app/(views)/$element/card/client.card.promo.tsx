@@ -10,13 +10,18 @@ export default function CE_CardPromo({
   data,
   title,
   subtitle,
+  link,
+  variant,
 }: {
   data: Array<{
+    nid: number;
     image: string;
     label: string;
   }>;
   title: string;
   subtitle: string;
+  link: string;
+  variant: string;
 }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const screenWidth = useScreenWidth();
@@ -35,9 +40,24 @@ export default function CE_CardPromo({
     }
   };
 
+  let colorTheme = '';
+  if (variant === 'wm-private-main-navigation') {
+    colorTheme = 'white';
+  } else if (variant === 'wm-prioritas-main-navigation') {
+    colorTheme = 'prioritycolor';
+  } else {
+    colorTheme = 'wmcolor';
+  }
+  let textColor = '';
+  if (variant === 'wm-private-main-navigation') {
+    textColor = 'black';
+  } else {
+    textColor = 'white';
+  }
+
   return (
     <>
-      <div className="w-full h-auto flex flex-col items-center justify-center bg-red-300">
+      <div className="w-full h-auto flex flex-col items-center justify-center pb-20 pt-14">
         <section className="w-full flex flex-col items-center pb-16">
           <h1 className="text-[#3D3D3D] font-semibold text-3xl uppercase">
             {title}
@@ -58,7 +78,7 @@ export default function CE_CardPromo({
                 key={index}
                 className="relative w-1/4 mdmax:w-11/12 h-80 lg:h-64 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                 style={{
-                  backgroundImage: `url(${item?.image})`,
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                 }}
@@ -163,7 +183,7 @@ export default function CE_CardPromo({
                     key={index}
                     className="relative w-[32%] h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
-                      backgroundImage: `url(${item?.image})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -218,16 +238,16 @@ export default function CE_CardPromo({
         </section>
 
         {/* Web Section */}
-        <section className="w-full hidden lg:flex justify-center ">
+        <section className="w-full hidden lg:flex justify-center">
           <div className="w-full flex justify-center ">
-            <div className="w-fit flex justify-center p-5">
-              <div className="w-full flex space-x-5 ">
+            <div className="w-fit h-full flex justify-center p-5">
+              <div className="w-full h-full grid grid-cols-4 gap-5">
                 {data?.map((item, index) => (
                   <div
                     key={index}
-                    className="relative overflow-hidden lg:w-60 lg:h-52 xl:w-80 xl:h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
+                    className="relative overflow-hidden lg:w-60 lg:h-72 xl:w-80 xl:h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
-                      backgroundImage: `url(${item?.image})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -239,7 +259,7 @@ export default function CE_CardPromo({
                       {item?.label}
                     </h1>
                     <Link
-                      href={'#'}
+                      href={`/promo-detail/${item?.nid}`}
                       className="lg:pb-3 xl:pb-8 px-5 z-50 hover:underline text-white flex items-center text-sm"
                     >
                       lihat promo
@@ -260,9 +280,12 @@ export default function CE_CardPromo({
         </section>
         <section className="inline-flex items-center justify-center w-full pt-5">
           <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
-          <button className="bg-wmcolor hover:bg-gray-600 duration-300 text-white py-3 px-5 rounded-full uppercase font-semibold">
+          <Link
+            className={`bg-${colorTheme} hover:bg-gray-600 duration-300 text-${textColor} hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
+            href={link}
+          >
             lihat semua promo
-          </button>
+          </Link>
           <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
         </section>
       </div>
