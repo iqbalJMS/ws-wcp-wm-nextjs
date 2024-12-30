@@ -19,13 +19,20 @@ const getSlideToShow = (screenWidth: number) => {
   }
 };
 export default function CE_CardMegazinePrivate({
-  title,
-  label,
-  linkMagezine,
+  heading,
+  subHeading,
+  // cardData,
 }: {
-  title: string;
-  label: string;
-  linkMagezine: string;
+  // cardData: Array<{
+  //   title: string;
+  //   subtitle: string;
+  //   image: string;
+  //   date: string;
+  //   category: string;
+  //   link: string;
+  // }>;
+  heading: string;
+  subHeading: string;
 }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const screenWidth = useScreenWidth();
@@ -58,7 +65,7 @@ export default function CE_CardMegazinePrivate({
     {
       image:
         'https://bri.co.id/documents/1045040/1397929/Terrasse%2033.jpg/7fb508ee-0f3b-f1e9-7137-aa96b8af5957/',
-      label: 'E-Terrase - Edisi 33',
+      subHeading: 'E-Terrase - Edisi 33',
       text: 'E-Terrase',
       date: 'Edisi 32 - 2020',
       link: '/magazine',
@@ -66,7 +73,7 @@ export default function CE_CardMegazinePrivate({
     {
       image:
         'https://bri.co.id/documents/1045040/1048102/Edisi%2032.jpg/4973614e-f711-e4bb-e113-aa7641c371b4/',
-      label: 'Rossa, Indonesia`s Pride',
+      subHeading: 'Rossa, Indonesia`s Pride',
       text: 'E-Terrase',
       date: 'Edisi 32 - 2020',
       link: '/magazine',
@@ -74,7 +81,7 @@ export default function CE_CardMegazinePrivate({
     {
       image:
         'https://bri.co.id/documents/1045040/1048095/Edisi%2031.jpg/0af346f9-9f69-f63a-c724-2bae4af50c12/',
-      label: 'Happy Salma, The Happiest Happy',
+      subHeading: 'Happy Salma, The Happiest Happy',
       text: 'E-Terrase',
       date: 'Edisi 32 - 2020',
       link: '/magazine',
@@ -82,7 +89,7 @@ export default function CE_CardMegazinePrivate({
     {
       image:
         'https://bri.co.id/documents/1045040/1048109/Edisi%2030%20.jpg.png/7aae6732-1cfc-1348-1648-bfd9e842f223/',
-      label: 'Irwan Danny Mussry, A Time Traveler',
+      subHeading: 'Irwan Danny Mussry, A Time Traveler',
       text: 'E-Terrase',
       date: 'Edisi 32 - 2020',
       link: '/magazine',
@@ -105,14 +112,12 @@ export default function CE_CardMegazinePrivate({
           className="w-full flex flex-col items-center pb-16"
         >
           <h1 className="text-privatecolor font-semibold text-3xl uppercase">
-            {title}
+            {heading}
           </h1>
           <h2 className="text-sm font-light text-center w-11/12 md:w-9/12 xl:w-3/12 pt-3 text-[#4C4C4C]">
-            {parseHTMLToReact(label)}
+            {parseHTMLToReact(subHeading)}
           </h2>
-          <Link
-            href={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${linkMagezine}`}
-          />
+          <Link href={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${''}`} />
         </motion.div>
 
         {/* mobile section */}
@@ -159,7 +164,7 @@ export default function CE_CardMegazinePrivate({
                     </div>
                     <div className="pt-2">
                       <h1 className="group-hover:underline text-privatecolor text-lg font-extrabold">
-                        {item?.label}
+                        {item?.subHeading}
                       </h1>
                     </div>
                   </div>
@@ -275,7 +280,7 @@ export default function CE_CardMegazinePrivate({
                         </div>
                         <div className="pt-2">
                           <h1 className="group-hover:underline text-privatecolor text-lg font-extrabold">
-                            {item?.label}
+                            {item?.subHeading}
                           </h1>
                         </div>
                       </div>
@@ -349,7 +354,7 @@ export default function CE_CardMegazinePrivate({
                       </div>
                       <div className="pt-2">
                         <h1 className="group-hover:underline text-privatecolor text-sm xl:text-base font-extrabold">
-                          {item?.label}
+                          {item?.subHeading}
                         </h1>
                       </div>
                     </div>

@@ -19,13 +19,20 @@ const getSlideToShow = (screenWidth: number) => {
   }
 };
 export default function CE_CardMegazinePriority({
-  title,
-  label,
-  linkMagezine,
+  heading,
+  subHeading,
+  // cardData,
 }: {
-  title: string;
-  label: string;
-  linkMagezine: string;
+  // cardData: Array<{
+  //   title: string;
+  //   subtitle: string;
+  //   image: string;
+  //   date: string;
+  //   category: string;
+  //   link: string;
+  // }>;
+  heading: string;
+  subHeading: string;
 }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const screenWidth = useScreenWidth();
@@ -104,14 +111,12 @@ export default function CE_CardMegazinePriority({
           className="w-full flex flex-col items-center pb-16"
         >
           <h1 className="text-prioritycolor font-semibold text-3xl uppercase">
-            {title}
+            {heading}
           </h1>
           <h2 className="text-sm font-light text-center w-11/12 md:w-9/12 xl:w-3/12 pt-3 text-[#4C4C4C]">
-            {parseHTMLToReact(label)}
+            {parseHTMLToReact(subHeading)}
           </h2>
-          <Link
-            href={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${linkMagezine}`}
-          />
+          <Link href={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${''}`} />
         </motion.div>
 
         {/* mobile section */}

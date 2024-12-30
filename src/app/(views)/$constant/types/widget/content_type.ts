@@ -113,6 +113,8 @@ type T_content_type = {
   field_site_id: any[];
   field_summary: Array<{ value: string }>;
   field_items: Array<{ field_title: Array<{ value: string }> }>;
+  field_phone: Array<{ value: string }>;
+  field_coordinate: Array<{ value: string }>;
 };
 
 export type T_Insight = {

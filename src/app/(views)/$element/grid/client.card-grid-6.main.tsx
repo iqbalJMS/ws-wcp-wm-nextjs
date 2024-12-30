@@ -8,6 +8,7 @@ import { motion, useInView, useAnimation } from 'motion/react';
 
 const CE_CardGrid6Main = ({
   dataCard,
+  variant,
 }: {
   dataCard: Array<{
     title: string;
@@ -15,7 +16,16 @@ const CE_CardGrid6Main = ({
     description: string;
     nid: string;
   }>;
+  variant: string;
 }) => {
+  let theme = '';
+
+  if (variant == 'wm-private-main-navigation') {
+    theme = 'privatecolor';
+  } else if (variant == 'wm-prioritas-main-navigation') {
+    theme = 'prioritycolor';
+  }
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
@@ -32,7 +42,7 @@ const CE_CardGrid6Main = ({
         <div ref={ref} className="flex flex-wrap -mx-10">
           {dataCard.map((item, index) => (
             <Link
-              href={`/program-detail/${item?.nid}`}
+              href={`/program-detail/${item?.nid}/${variant}`}
               key={index}
               className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
             >
@@ -67,14 +77,16 @@ const CE_CardGrid6Main = ({
                   transition={{ duration: 0.5, delay: 0.55 }}
                   className="p-5"
                 >
-                  <div className="text-privatecolor text-xl font-bold mb-2">
+                  <div className={`text-${theme} text-xl font-bold mb-2`}>
                     {item?.title}
                   </div>
                   <div className="mb-5 text-slate-600">
                     {parseHTMLToReact(item?.description)}
                   </div>
                   <div>
-                    <div className="text-privatecolor uppercase text-sm inline-flex items-center justify-center gap-2">
+                    <div
+                      className={`text-${theme} uppercase text-sm inline-flex items-center justify-center gap-2`}
+                    >
                       read more
                       <svg
                         className="w-5 h-5"

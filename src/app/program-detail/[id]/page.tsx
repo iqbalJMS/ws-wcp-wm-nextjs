@@ -18,7 +18,11 @@ import CE_BreadCrumbProgram from '@/app/program-detail/$element/client.breadcrum
 import Accordion from '@/lib/element/global/accordion';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
-export default async function page({ params }: { params: { id: string } }) {
+export default async function page({
+  params,
+}: {
+  params: { id: string; variant?: string };
+}) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listPrivateNavbar = await ACT_GetPrivateMenuNavbar({ lang: 'id' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
@@ -34,7 +38,6 @@ export default async function page({ params }: { params: { id: string } }) {
     alias: 'node',
     nid: +params.id,
   });
-
   return (
     <>
       <div>

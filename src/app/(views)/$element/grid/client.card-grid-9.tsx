@@ -13,7 +13,7 @@ const CE_CardGrid9 = ({
     title: string;
     image: string;
     description: string;
-    uuid: string;
+    nid: string;
   }>;
 }) => {
   const ref = useRef(null);
@@ -32,7 +32,7 @@ const CE_CardGrid9 = ({
         <div ref={ref} className="flex flex-wrap -mx-10">
           {dataCard.map((item, index) => (
             <Link
-              href={`/program-detail/${item?.uuid}`}
+              href={`/product-detail/${item?.nid}`}
               key={index}
               className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
             >
