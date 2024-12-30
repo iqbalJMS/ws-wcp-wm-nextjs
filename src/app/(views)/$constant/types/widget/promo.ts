@@ -36,7 +36,7 @@ type T_FieldImage = {
   field_media_image: any[];
 };
 
-export type T_Promo = {
+export type T_PromoWidget = {
   entity_type: Array<{ value: string }>;
   entity_bundle: Array<{ value: string }>;
   id: Array<{ value: number }>;
@@ -50,12 +50,10 @@ export type T_Promo = {
   field_title: Array<{ value: string }>;
   field_web_variant_styles: Array<{ field_key: Array<{ value: string }> }>;
   promo_data: {
-    items: {
-      data: {
-        title: Array<{ value: string }>;
-        nid: number;
-        field_promo_image: Array<T_FieldImage>;
-      };
-    };
+    items: Array<{
+      title: Array<{ value: string }>;
+      nid: Array<{ value: number }>;
+      field_promo_image: Array<T_FieldImage>;
+    }>;
   };
 };
