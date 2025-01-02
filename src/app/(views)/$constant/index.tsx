@@ -1052,6 +1052,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: (...props) => {
         const findEntityBundle = props?.[0]?.entity;
         const data = props?.[0]?.data;
+        const dataOutlet = props?.[0]?.dataOutlet;
 
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
@@ -1060,8 +1061,8 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return <CE_CardGrid6Main dataCard={data} variant={theme} />;
           case WIDGET_VARIANT.variant11:
             return <CE_GridCard7Main dataCard={data} variant={theme} />;
-          case 'outlet':
-            return <CE_CardOutlet dataCard={data} />;
+          case 'location':
+            return <CE_CardOutlet dataOutlet={dataOutlet} />;
           case 'bancassurance':
             return <CE_CardGrid10 dataCard={data} />;
 
@@ -1143,10 +1144,10 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               entity: findEntityBundle,
               data: dataGridV7,
             };
-          case 'outlet':
+          case 'location':
             return {
               entity: findEntityBundle,
-              data: dataOutlet,
+              dataOutlet: dataOutlet,
             };
           case 'bancassurance':
             return {
