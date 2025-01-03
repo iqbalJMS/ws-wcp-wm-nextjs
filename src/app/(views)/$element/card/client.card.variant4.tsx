@@ -63,10 +63,10 @@ export default function CE_CardVariant4({
                 data-aos-duration="1000"
                 href={`/${item?.link}`}
                 key={index}
-                className="cursor-pointer group relative w-full md:w-10/12 lg:w-full h-44 lg:h-72 overflow-hidden bg-center"
+                className="cursor-pointer group relative w-full md:w-10/12 lg:w-full h-44 lg:h-64 xl:h-72 overflow-hidden bg-center"
               >
                 <div
-                  className="flex flex-col justify-between h-72 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-bottom transition-all ease-in-out transform-gpu delay-75"
+                  className="flex flex-col justify-between h-64 xl:h-72 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-bottom transition-all ease-in-out transform-gpu delay-75"
                   style={{
                     backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
                   }}

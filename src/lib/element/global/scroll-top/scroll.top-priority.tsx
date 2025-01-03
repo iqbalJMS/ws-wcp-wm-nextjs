@@ -36,7 +36,7 @@ function ScrollToTopPriority() {
       <button
         type="button"
         onClick={scrollToTop}
-        className={`w-[40px] h-[40px] bg-prioritycolor text-white p-2 rounded-full shadow-lg hover:bg-prioritycolor/100 focus:outline-none`}
+        className={`w-[40px] h-[40px] bg-prioritycolor text-white p-2 rounded-full shadow-lg hover:bg-prioritycolor/100 focus:outline-none duration-200`}
       >
         <svg
           className="pb-1"

@@ -1,0 +1,429 @@
+{
+  "navbar": {
+    "back": "Kembali ke situs utama",
+    "list_top": [
+      {
+        "title": "promosi",
+        "url": "https://bri.co.id/web/promo"
+      },
+      {
+        "title": "simulasi keuangan",
+        "url": "https://bri.co.id/simulasi-keuangan"
+      },
+      {
+        "title": "lokasi",
+        "url": "https://bri.co.id/lokasi"
+      },
+      {
+        "title": "bantuan",
+        "url": "https://bri.co.id/bantuan"
+      },
+      {
+        "title": "cari",
+        "url": "/"
+      }
+    ],
+    "list_bottom": [
+      {
+        "title": "Beranda",
+        "url": "/"
+      },
+      {
+        "title": "Jenis Kartu Kredit",
+        "url": "/credit-card"
+      },
+      {
+        "title": "Layanan",
+        "url": "/services"
+      },
+      {
+        "title": "FAQ",
+        "url": "/faq"
+      },
+      {
+        "title": "Apply Kartu Kredit",
+        "url": "/apply-credit-card"
+      }
+    ]
+  },
+
+  "footer": {
+    "column_1": {
+      "title": "Head Office BRI",
+      "list": [
+        {
+          "name": "PT. Bank Rakyat Indonesia (Persero) Tbk",
+          "className": "lg:max-w-[11.563rem] px-24 lg:px-0 cursor-default"
+        },
+        {
+          "name": "Gedung BRI Jl. Jenderal Sudirman Kav.44-46. Jakarta 10210 Indonesia",
+          "className": "lg:max-w-[11.563rem] px-24 lg:px-0 cursor-default"
+        }
+      ]
+    },
+    "column_2": {
+      "title": "Hubungi Kami",
+      "list": [
+        {
+          "name": "1500017",
+          "icon": "call",
+          "extern": true,
+          "url": "tel:1500017"
+        },
+        {
+          "name": "callbri@bri.co.id",
+          "icon": "email",
+          "extern": true,
+          "url": "mailto:callbri@bri.co.id"
+        }
+      ],
+      "social_media": [
+        {
+          "name": "",
+          "icon": "facebook",
+          "url": "https://www.facebook.com/BRIofficialpage"
+        },
+        {
+          "name": "",
+          "icon": "instagram",
+          "url": "https://www.instagram.com/bankbri_id"
+        },
+        {
+          "name": "",
+          "icon": "twitter",
+          "url": "https://x.com/kontakbri"
+        },
+        {
+          "name": "",
+          "icon": "youTube",
+          "url": "https://www.youtube.com/channel/UCRHFE_ooDrkEiRRJbog3EjA"
+        }
+      ]
+    },
+    "column_3": {
+      "title": "Tautan",
+      "list": [
+        {
+          "name": "Produk BRI",
+          "url": "https://bri.co.id/bri-products",
+          "extern": true
+        },
+        {
+          "name": "Deposit Interest",
+          "extern": true,
+          "url": "https://bri.co.id/deposit-interest"
+        },
+        {
+          "name": "Rates",
+          "url": "https://bri.co.id/kurs-detail",
+          "extern": true
+        },
+        {
+          "name": "Loan Interest Rates",
+          "url": "https://bri.co.id/loan-interest-rates",
+          "extern": true
+        },
+        {
+          "name": "Whistleblowing System",
+          "url": "https://whistleblowing-system.bri.co.id/",
+          "extern": true
+        },
+        {
+          "extern": true,
+          "url": "https://bri.co.id/web/erecruitment",
+          "name": "Karier"
+        }
+      ]
+    },
+    "column_4": {
+      "title": "Terdaftar & diawasi oleh:",
+      "list": [
+        {
+          "className": "lg:px-0 px-16 cursor-default",
+          "name": "BRI terdaftar dan diawasi oleh Otoritas Jasa Keuangan"
+        },
+        {
+          "className": "cursor-default",
+          "name": "BRI merupakan peserta penjamin LPS"
+        }
+      ]
+    },
+    "bottom_footer": [
+      {
+        "value": "Privasi",
+        "url": "https://bri.co.id/privacy",
+        "extern": true
+      },
+      {
+        "value": "Syarat & Ketentuan",
+        "url": "https://bri.co.id/term-of-use",
+        "extern": true
+      },
+      {
+        "value": "Sitemap",
+        "url": "https://bri.co.id/sitemap",
+        "extern": true
+      },
+      {
+        "value": "Karir",
+        "url": "https://bri.co.id/web/erecruitment",
+        "extern": true
+      },
+      {
+        "value": "CMS BRI",
+        "url": "https://ibank.bri.co.id/cms/",
+        "extern": true
+      },
+      {
+        "value": "E-form BRI",
+        "url": "https://eform.bri.co.id/",
+        "extern": true
+      }
+    ]
+  },
+
+  "validation": {
+    "empty01": "Wajib Diisi",
+    "empty02": "tidak boleh kosong",
+    "text01": "tidak valid",
+    "min01": "Field tidak boleh kurang dari",
+    "min02": "tidak boleh kurang dari",
+    "array01": "tidak boleh kosong",
+    "file01": "tidak boleh kosong",
+    "boolean01": "harap centang bagian ini",
+    "name01": "tidak valid",
+    "primaryName01": "Field tidak valid",
+    "primaryName02": "tidak valid",
+    "email01": "Email tidak valid",
+    "nik01": "harus terdiri dari 10 - 30 Karakter, dan hanya angka",
+    "numeric01": "harus diisi dengan angka",
+    "zipCode01": "tidak boleh lebih dari 5 Karakter dan hanya angka",
+    "address01": "harus lebih dari 3 Huruf",
+    "address02": "tidak boleh lebih dari 30 Huruf",
+    "address03": "tidak valid",
+    "address04": "tidak boleh lebih dari 16 Huruf",
+    "rtrw": "tidak boleh lebih dari 4 Karakter dan hanya angka",
+    "max2001": "Field tidak boleh lebih dari 14 Karakter dan harus huruf",
+    "max2002": "tidak boleh lebih dari 14 Karakter dan harus huruf",
+    "sallary01": "harus diisi dengan angka dan harus lebih dari 36.000.000",
+    "phone01": "harus terdiri dari 9 - 12 Karakter, diawali 08 dan hanya angka",
+    "homePhone01": "harus terdiri dari 9 - 12 Karakter, diawali 0 dan hanya angka",
+    "homePhone01Area": "harus terdiri dari 3 - 4 Karakter, diawali 0 dan hanya angka",
+    "homePhone01Digit": "harus terdiri dari 6 - 8 Karakter dan hanya angka",
+    "motherName": "harus terdiri dari 3 - 30 Huruf",
+    "letterMinMax": "harus terdiri dari ? - ? Huruf",
+    "npwp01": "harus berisi 15 karakter dan hanya angka",
+    "appRegNo01": "Field tidak valid",
+    "appRegNo02": "tidak valid"
+  },
+
+  "field": {
+    "form": [
+      {
+        "value": 1,
+        "title": "Document",
+        "subTitle": "Upload Kelengkapan Dokumen",
+        "description": "Pastikan anda mempersiapkan persyaratan pinjaman di bawah ini, sesuai dengan informasi KTP yang telah diinputkan sebelumnya"
+      },
+      {
+        "value": 2,
+        "title": "Data Diri",
+        "subTitle": "Isi Formulir Data Diri",
+        "description": "Pastikan anda mengisi formulir dengan lengkap dan tidak ada yang tertinggal."
+      },
+      {
+        "value": 3,
+        "title": "Kontak Darurat",
+        "subTitle": "Isi Kontak Darurat",
+        "description": "Pastikan anda mengisi formulir dengan lengkap dan tidak ada yang tertinggal."
+      },
+      {
+        "value": 4,
+        "title": "Data Pekerjaan",
+        "subTitle": "Isi Data Pekerjaan",
+        "description": "Pastikan anda mengisi formulir dengan lengkap dan tidak ada yang tertinggal."
+      },
+      {
+        "value": 5,
+        "title": "Pengiriman",
+        "subTitle": "Isi Data Pengiriman Kartu",
+        "description": "Pastikan anda mengisi formulir dengan lengkap dan tidak ada yang tertinggal."
+      },
+      {
+        "value": 6,
+        "title": "Kirim",
+        "subTitle": "Review Kelengkapan Data",
+        "description": "Sebelum Submit! Cek data yang sudah di isi dengan benar."
+      }
+    ],
+    "general": {
+      "enter": "Masukkan",
+      "select": "Pilih",
+      "next": "Selanjutnya",
+      "close": "Tutup",
+      "file": "Format file JPG, atau PNG. kapasitas maksimal 2 Mb",
+      "takePhoto": "Ambil Foto",
+      "upload": "Unggah",
+      "messageFail": "Silahkan ke halaman apply kartu kredit terlebih dahulu",
+      "titleBanner": "Kartu Kredit BRI",
+      "subTitleBanner": "Satu Kartu Jutaan Manfaat Baru",
+      "titleCardTrack": "Lihat Status Pengajuan Anda",
+      "textButtonCardTrack": "Cek"
+    },
+    "dedup": {
+      "titleForm": "Pengajuan Kartu Kredit",
+      "name": "Nama",
+      "nik": "NIK",
+      "motherName": "Nama Ibu Kandung",
+      "dateOfBirth": "Tanggal Lahir",
+      "placeOfBirth": "Tempat Lahir",
+      "creditCardProduct": "Pilih Produk Kartu Kredit",
+      "textButtonSubmit": "Apply Sekarang",
+      "modalTextSubtitleProblem": "Sedang terjadi kendala sistem, coba muat ulang halaman beberapa saat lagi",
+      "modalTextTitleInvalid": "Data Tidak Valid",
+      "modalTextSubtitleInvalid": "Pengajuan anda belum bisa di lanjutkan, untuk informasi lebih lanjut silahkan kontak nomor dibawah ini",
+      "modalTextTitleSuccess": "Data Valid",
+      "modalTextSubtitleSuccess": "Anda dapat melanjutkan pengisian form pengajuan ke tahap selanjutnya",
+      "textNavigateTrack": "Lihat Status Pengajuan Anda",
+      "textButtonTrack": "Cek"
+    },
+    "track": {
+      "applicationID": "No Application ID",
+      "captcha": "Captcha",
+      "email": "Email",
+      "submitInfoStatus": "Kirim Info Status",
+      "validateCaptcha": "Captcha Tidak Sesuai",
+      "modalTextSubtitleSuccess": "Status pengajuan anda berhasil dikirim ke email",
+      "modalTextSubtitleInvalid": "No. Ticket/Email Salah"
+    },
+    "document": {
+      "idCard": "Foto KTP",
+      "salarySlip": "Slip Gaji",
+      "selfieIdCard": "Foto Swafoto dengan KTP",
+      "taxId": "Foto NPWP",
+      "information": {
+        "idCard": {
+          "title": "Panduan Upload Foto KTP",
+          "description": "<li>Gunakan kartu KTP asli</li><li>Pastikan foto wajah pada KTP terlihat jelas</li><li>Pastikan Nomor NIK pada KTP terlihat jelas</li><li>Posisikan kartu KTP sesuai dengan panduan yang disediakan</li>"
+        },
+        "salarySlip": {
+          "title": "Panduan Upload Foto KTP",
+          "description": "<li>Gunakan kartu KTP asli</li><li>Pastikan foto wajah pada KTP terlihat jelas</li><li>Pastikan Nomor NIK pada KTP terlihat jelas</li><li>Posisikan kartu KTP sesuai dengan panduan yang disediakan</li>"
+        },
+        "selfieIdCard": {
+          "title": "Panduan Upload Swafoto dengan KTP",
+          "description": "<li>Pastikan Anda berada di tempat yang terang dengan pencahayaan yang baik untuk menghindari bayangan yang mengganggu.</li><li> Posisikan wajah Anda agar terlihat jelas dan proporsional di dalam frame aplikasi.</li><li> Pastikan KTP tertutupi sepenuhnya dan informasi yang relevan terbaca dengan jelas.</li><li> Periksa kualitas foto untuk memastikan bahwa wajah Anda dan informasi pada KTP terlihat tajam dan tidak kabur.</li>"
+        },
+        "taxId": {
+          "title": "Panduan Upload Foto NPWP",
+          "description": "<li>Gunakan kartu NPWP asli</li><li> Siapkan NPWP fisik yang akan difoto. Pastikan NPWP dalam kondisi baik, tidak terlipat atau rusak, dan informasi yang tertera terbaca dengan jelas.</li><li> Tempatkan NPWP di permukaan datar dan pastikan cahaya cukup untuk menghindari bayangan yang mengganggu.</li><li> Posisikan kamera atau ponsel dengan sudut yang baik agar NPWP terlihat jelas di dalam frame aplikasi.</li><li> Posisikan kartu NPWP sesuai dengan panduan yang disediakan</li>"
+        }
+      }
+    },
+    "personal": {
+      "address1": "Alamat Tempat Tinggal (Jika alamat tidak cukup, penulisan alamat lanjut di kotak berikutnya)",
+      "address2": "Alamat Selanjutnya",
+      "neighborhoodUnit": "RT",
+      "communityUnit": "RW",
+      "subDistrict": "Kelurahan",
+      "district": "Kecamatan",
+      "address1placeholder": "Masukkan nama jalan.",
+      "address2placeholder": "Masukkan nomor rumah, blok, atau nama perumahan.",
+
+      "cityOfOrigin": "Asal Kota",
+      "education": "Edukasi",
+      "creditCardType": "Jenis Kartu Kredit",
+      "nationality": "Kewarganegaraan",
+      "postalCode": "Kode Pos",
+      "lastName": "Nama Belakang",
+      "firstName": "Nama Depan",
+      "nameOnCard": "Nama Di Kartu",
+      "motherName": "Nama Ibu Kandung",
+      "mobilePhone": "No HP",
+      "phone": "No Telepon",
+      "phoneArea": "No Telepon Area",
+      "phoneDigit": "No Telepon Digit",
+      "nik": "NIK",
+      "taxId": "No. NPWP",
+      "gender": "Jenis Kelamin",
+      "maritalStatus": "Status Nikah",
+      "numberOfChildren": "Jumlah Anak",
+      "houseStatus": "Status Rumah",
+      "dateOfBirth": "Tanggal Lahir",
+      "placeOfBirth": "Tempat Lahir",
+      "livingSince": "Tinggal Sejak"
+    },
+    "emergency": {
+      "address1": "Alamat Tempat Tinggal (Jika alamat tidak cukup, penulisan alamat lanjut di kotak berikutnya)",
+      "address2": "Alamat Selanjutnya",
+      "neighborhoodUnit": "RT",
+      "communityUnit": "RW",
+      "subDistrict": "Kelurahan",
+      "district": "Kecamatan",
+      "address1placeholder": "Masukkan nama jalan",
+      "address2placeholder": "Masukkan nomor rumah, blok, atau nama perumahan",
+
+      "relationship": "Hubungan",
+      "emergencyContactName": "Nama Kontak Darurat",
+      "phoneNumber": "No. Handphone",
+      "city": "Kota",
+      "information": "Alamat tidak boleh sama dengan alamat calon nasabah"
+    },
+    "company": {
+      "address1": "Alamat Kantor (Jika alamat tidak cukup, penulisan alamat lanjut di kotak berikutnya)",
+      "address2": "Alamat Selanjutnya",
+      "neighborhoodUnit": "RT",
+      "communityUnit": "RW",
+      "subDistrict": "Kelurahan",
+      "district": "Kecamatan",
+      "address1placeholder": "Masukkan nama jalan",
+      "address2placeholder": "Masukkan nomor kantor, blok, atau nama perkantoran",
+
+      "employmentSince": "Bekerja Sejak",
+      "fieldOfWork": "Bidang Pekerjaan",
+      "jobCategory": "Kategori Pekerjaan",
+      "postalCode": "Kode Pos",
+      "companyCity": "Kota Perusahaan",
+      "companyName": "Nama Perusahaan",
+      "annualIncome": "Penghasilan Per Tahun",
+      "employmentStatus": "Status Pekerjaan",
+      "subFieldOfWork": "Sub Bidang Pekerjaan",
+      "companyPhone": "Telepon Perusahaan",
+      "companyPhoneArea": "Area",
+      "jobTitle": "Titel Pekerjaan",
+      "totalEmployees": "Total Pegawai"
+    },
+    "delivery": {
+      "isBRICustomer": "Apakah Anda Nasabah BRI",
+      "cardDeliveryAddress": "Alamat Pengiriman Kartu",
+      "cardDelivery": "Pengiriman Kartu",
+      "creditCardBillingDelivery": "Pengiriman Billing Kartu Kredit",
+      "briProtectionPlus": "Penawaran Asuransi",
+      "consentForInsurance": "Saya bersedia dihubungi untuk penawaran produk-produk asuransi yang bekerjasama dengan Bank BRI",
+      "ya": "Ya",
+      "tidak": "Tidak",
+      "rumah": "Rumah",
+      "kantor": "Kantor"
+    },
+    "review": {
+      "personalDocuments": "Dokumen Pribadi",
+      "personalData": "Data Diri",
+      "emergencyContact": "Kontak Darurat",
+      "employmentData": "Data Pekerjaan",
+      "deliveryAddress": "Alamat Pengiriman",
+      "statementAuthorizationApproval": "Pernyataan, Kuasa & Persetujuan",
+      "view": "Lihat",
+      "agree": "Setuju",
+      "disagree": "Tidak Setuju",
+      "productOfferApproval": "Persetujuan Penawaran Produk",
+      "privacyPolicy": "Kebijakan Privasi",
+      "submitApplication": "Kirim Pengajuan",
+      "modalStatement": "<h2 classname='font-semibold text-base mb-3'>PERNYATAAN, KUASA, DAN PERSETUJUAN</h2><ol classname=pl-5 style=list-style-type:decimal><li classname='mb-1 mt-0'>Dengan menandatangani formulir permohonan/menerima kartu/menandatangani kartu/menggunakan kartu, dengan ini Saya menyatakan bahwa data yang diisi adalah benar.<li classname='mb-1 mt-0'>BRI telah memberikan penjelasan tentang manfaat, biaya, dan risiko terkait dengan pemberian Kartu Kredit BRI. Saya mengetahui dan menyetujui atas penjelasan tersebut.<li classname='mb-1 mt-0'>Saya telah membaca, mengerti, dan setuju untuk tunduk dan terikat pada 'Pernyataan, Kuasa dan Persetujuan' pada formulir pengajuan ini, kebijakan privacy policy (https://bri.co.id/privacy), pedoman layanan kartu kredit (syarat dan ketentuan Kartu kredit), maupun ketentuan yang tertulis pada website https://bri.co.id/web/kartukredit/layanan, yang menjadi satu kesatuan yang tidak terpisahkan dengan formulir permohonan ini, apabila permohonan ini disetujui.<li classname='mb-1 mt-0'>Saya tidak akan menggunakan kartu kredit BRI untuk tindak kejahatan seperti pencucian uang, pendanaan terorisme, atau perbuatan melawan hukum lainnya.<li classname='mb-1 mt-0'>Untuk kepentingan penerbitan Kartu Kredit BRI ini, Saya memberikan kuasa dan/atau persetujuan kepada BRI, sebagai berikut:<ol classname=pl-3 style=list-style-type:lower-alpha><li classname='mb-1 mt-0'>Memproses data/informasi dan dokumen pada formulir permohonan yang telah Saya kirimkan ke BRI. Selanjutnya formulir permohonan akan menjadi menjadi hak milik BRI dan tidak dapat diminta kembali. BRI mempunyai hak untuk tidak memproses formulir permohonan Saya yang data/informasi dan dokumennya tidak lengkap.<li classname='mb-1 mt-0'>Memperoleh dan memeriksa kebenaran data/informasi dan dokumen Saya dari pihak manapun.<li classname='mb-1 mt-0'>Dengan pertimbangan tertentu berhak untuk membatalkan penerbitan kartu, tidak memproses transaksi, menutup/mengakhiri penggunaan kartu, mencabut semua hak yang melekat pada kartu, tidak memperpanjang masa berlaku kartu antara lain apabila Saya menggunakan kartu untuk melakukan transaksi yang melanggar ketentuan hukum yang berlaku, termasuk namun tidak terbatas pada:<ol classname=' pl-3'style=list-style-type:lower-roman><li classname='mb-1 mt-0'>menggunakan kartu tidak sesuai peruntukan atau terlibat dalam tindak kejahatan atau perbuatan melawan hukum<li classname='mb-1 mt-0'>terdapat transaksi yang terindikasi Tindak Pidana Pencucian Uang dan Tindak Pidana Pendanaan Terorisme (TPPU & TPPT)<li classname='mb-1 mt-0'>menggunakan kartu di luar peruntukan sebagai alat pembayaran<li classname='mb-1 mt-0'>terdapat indikasi transaksi penarikan/gesek tunai pada merchant dan hal-hal sejenis lainnya</ol>Namun, atas pengakhiran/penghentian layanan kartu kredit tersebut, tidak menghapuskan tunggakan kewajiban (apabila ada) Saya untuk melakukan pelunasan kepada BRI.<li classname='mb-1 mt-0'>Menyerahkan kartu kredit (baru/perpanjangan) secara langsung kepada Saya yang namanya tercetak di atas kartu dan pada alamat Saya yang tercatat di sistem BRI. Apabila pada saat penyerahan kartu, Saya berhalangan untuk menerima secara langsung dari BRI maka Saya dengan ini memberikan persetujuan kepada BRI untuk menyerahkan kartu kepada pihak lain yang berada pada alamat saya, dengan ketentuan, BRI mencatat tanggal penyerahan kartu dan identitas pihak penerima kartu.<li classname='mb-1 mt-0'>Tidak bertanggung jawab atas setiap cacat dan kekurangan dalam bentuk apa pun atas barang atau jasa dari merchant yang saya bayar dengan menggunakan kartu kredit BRI. Apabila terjadi sengketa atas transaksi barang atau jasa tersebut, Saya tetap wajib membayar tagihan yang timbul sebagaimana tertera pada lembar tagihan.<li classname='mb-1 mt-0'>Melakukan pemblokiran sementara dan/atau permanen terhadap kartu kredit BRI dalam kaitannya terdapat tunggakan kewajiban Saya sebagai Pemegang Kartu dan/atau kepentingan investigasi sehubungan dengan terjadinya penyalahgunaan terhadap kartu ini.<li classname='mb-1 mt-0'>Memblokir/mendebet/mencairkan rekening simpanan, baik berupa giro, deposito dan/atau tabungan Saya yang telah dan/atau akan ada pada BRI, guna menyelesaikan seluruh kewajiban Saya yang timbul dari penggunaan kartu (baik kartu utama maupun kartu tambahan), termasuk namun tidak terbatas pada pokok, bunga, denda, dan/atau biaya lainnya<li classname='mb-1 mt-0'>Apabila Saya dinyatakan lalai dalam melaksanakan kewajiban yang timbul dari penggunaan kartu, Saya bersedia secara sukarela untuk menyerahkan harta kekayaan milik Saya kepada BRI untuk mengkompensasikan, menjual atau mencairkan harta kekayaan tersebut guna menyelesaikan seluruh kewajiban Saya.<li classname='mb-1 mt-0'>Menggunakan, memanfaatkan dan menginformasikan (melalui media elektronik dan non elektronik) data pribadi/informasi Saya terkait penggunaan data pribadi Saya kepada regulator/partner/pihak ketiga/pihak terafiliasi lainnya yang bekerja sama dengan BRI untuk tujuan non komersial (meningkatkan fitur, fasilitas, layanan dan/atau penagihan).<li classname='mb-1 mt-0'>Menginformasikan pada setiap waktu dan tempat kepada Saya mengenai produk, program, informasi kartu, layanan kartu dan kegiatan lainnya sehubungan dengan peningkatan fitur, fasilitas dan/atau layanan BRI kepada Pemegang Kartu melalui media tulisan (elektronik maupun non elektronik).<li classname='mb-1 mt-0'>Memindahbukukan saldo kredit pada kartu akibat adanya kelebihan pembayaran saya di rekening kartu kredit, ke rekening simpanan saya yang terdaftar autodebet di BRI.<li classname='mb-1 mt-0'>Melakukan penagihan pada setiap waktu dan tempat kepada Saya, baik dilakukan sendiri oleh BRI maupun oleh pihak ketiga yang ditunjuk oleh BRI, guna pemenuhan kewajiban saya yang timbul dari penggunaan kartu kredit<li classname='mb-1 mt-0'>Mendebet rekening kartu kredit Saya sejumlah tagihan transaksi yang Saya sanggah, apabila transaksi dinyatakan terbukti sah oleh BRI.<li classname='mb-1 mt-0'>BRI berhak untuk mengalihkan hak tagih maupun fasilitas kartu kredit kepada pihak ketiga lainnya dengan tata cara sesuai ketentuan peraturan perundang-undangan yang berlaku. Untuk kepentingan tersebut,saya memberikan persetujuan kepada BRI untuk dapat mengungkapkan informasi terkait Saya maupun fasilitas saya kepada calon penerima pengalihan hak tagih dimaksud</ol><li classname='mb-1 mt-0'>Saya bertanggungjawab atas keamanan kartu kredit dan transaksi yang terjadi termasuk penyalahgunaan, pemalsuan dan penggandaan yang menyebabkan tindak kejahatan dan kerugian (financial dan non financial) akibat kelalaian Saya, termasuk namun tidak terbatas pada:<ol classname=pl-3 style=list-style-type:lower-alpha><li classname='mb-1 mt-0'>Terlambat/tidak menginformasikan perubahan data pribadi (data alamat, no.handphone, email, dll) ke BRI<li classname='mb-1 mt-0'>Terlambat/tidak menginformasikan kehilangan kartu kredit ke BRI<li classname='mb-1 mt-0'>Menginformasikan data kartu kredit, kode OTP, CVV, PIN serta data pribadi lainnya kepada pihak lain<li classname='mb-1 mt-0'>Terlambat/tidak menghentikan transaksi berlangganan (recuring) seperti program TV berbayar, kepesertaan pendidikan, kepesertaan asuransi, dan lain sebagainya (apabila ada) sehingga terjadi pembayaran secara terus-menerus. Penghentian pembayaran transaksi berlangganan dengan kartu kredit BRI hanya dapat dilakukan apabila Saya telah mendapatkan surat resmi atas penutupan transaksi tersebut dari perusahaan terkait.</ol><li classname='mb-1 mt-0'>Saya berhak mengajukan sanggahan terhadap transaksi yang ditagihkan kepada Saya, paling lambat 30 hari kalender setelah tanggal transaksi. Apabila BRI tidak menerima sanggahan dalam jangka waktu yang telah ditentukan, maka Saya telah menyetujui transaksi tersebut.<li classname='mb-1 mt-0'>Khusus kartu hilang, saya bersedia untuk segera menghubungi Contact BRI 1500017 untuk mencegah penyalahgunaan kartu kredit BRI oleh orang yang tidak berhak. Semua transaksi yang terjadi sebelum pelaporan tersebut menjadi tanggung jawab Saya sepenuhnya.<li classname='mb-1 mt-0'>Saya bersedia melakukan pembayaran segala kewajiban yang timbul dari penggunaan kartu (iuran tahunan, transaksi kartu, biaya bunga, denda (bila ada) dan biaya lainnya) sesuai dengan jumlah tagihan yang tercetak pada lembar tagihan paling lambat pada tanggal jatuh tempo atau dokumen penagihan lainnya yang dikeluarkan oleh BRI.<li classname='mb-1 mt-0'>Saya tidak tidak akan mengalihkan kewajiban membayar atas tagihan kartu kredit BRI kepada pihak lainnya<li classname='mb-1 mt-0'>Semua catatan, hasil print out, rekaman, sarana komunikasi atau bukti lainnya dalam bentuk apa pun yang ada pada BRI atas transaksi yang dilakukan oleh Saya merupakan alat bukti yang sah dan mengikat Saya sebagai Pemegang Kartu, kecuali dapat dibuktikan sebaliknya<li classname='mb-1 mt-0'>Perjanjian ini telah disesuaikan dengan ketentuan peraturan perundang-undangan termasuk ketentuan peraturan Otoritas Jasa Keuangan<li classname='mb-1 mt-0'>'Kuasa-kuasa sebagaimana disebutkan dalam formulir ini tidak dapat ditarik kembali dan/atau berakhir dengan cara apapun juga termasuk namun tidak terbatas karena sebab-sebab yang dapat mengakhiri kuasa sebagaimana dimaksud dalam pasal 1813, 1814 dan 1816 Kitab Undang-Undang Hukum Perdata hingga seluruh kewajiban Saya dinyatakan lunas oleh BRI. Kuasa dimaksud telah diberikan dengan ditandatanganinya Formulir ini sehingga tidak diperlukan surat kuasa tersendiri”<li classname='mb-1 mt-0'>BRI dapat melakukan perubahan ketentuan kartu kredit sewaktu-waktu dengan pemberitahuan sebelumnya atas dasar peraturan yang berlaku.</ol>",
+      "modalAccept": "<h2 >Persetujuan Penawaran Produk</h2><div> Saya memberikan persetujuan kepada BRI, untuk menggunakan, memanfaatkan dan menginformasikan (melalui media elektronik dan non elektronik) terkait penggunaan data pribadi Saya kepada BRI group/partner/pihak ketiga/pihak terafiliasi lainnya yang bekerja sama dengan BRI untuk tujuan komersial termasuk namun tidak terbatas pada kegiatan cross selling, sehingga informasi penawaran produk, jasa, dan program BRI dapat Saya manfaatkan.</div>"
+    },
+    "success": {
+      "title": "Berhasil",
+      "message": "Pengajuan anda akan diproses, untuk informasi lebih lanjut bisa hubungi call centre dibawah ini"
+    }
+  }
+}

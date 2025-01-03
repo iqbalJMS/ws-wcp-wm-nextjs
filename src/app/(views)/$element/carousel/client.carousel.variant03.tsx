@@ -168,7 +168,7 @@ export default function CE_CarouselVariant3({
   return (
     <>
       <div className="w-full h-[80vh] flex flex-col items-center justify-center relative overflow-hidden">
-        <section className="flex justify-between w-11/12 xl:w-8/12  pb-5 md:pb-0">
+        <section className="flex justify-between w-11/12 xl:w-8/12 pb-5 md:pb-0">
           <div ref={ref}>
             <motion.div
               className="space-y-1"
@@ -301,6 +301,7 @@ export default function CE_CarouselVariant3({
             </motion.div>
           </div>
         </section>
+
         {/* Modal */}
         {modalOpen && (
           <ModalTester>
@@ -346,6 +347,7 @@ export default function CE_CarouselVariant3({
             </div>
           </ModalTester>
         )}
+
         <section className="relative w-10/12 lg:w-11/12 xl:w-9/12 overflow-hidden">
           <motion.div
             onMouseDown={handleMouseDown}
@@ -388,10 +390,10 @@ export default function CE_CarouselVariant3({
                       className="absolute top-40 left-52 duration-500 p-2 rounded-full border"
                       fill="white"
                     />
-                    <h1 className="absolute text-white text-base bottom-24 font-semibold px-7">
+                    <h1 className="absolute text-white text-base bottom-24 font-semibold pl-5 pr-20 xl:px-7">
                       {slide.label}
                     </h1>
-                    <h2 className="absolute text-white text-xs bottom-14 line-clamp-2  px-7">
+                    <h2 className="absolute text-white text-[10px] md:text-xs font-light bottom-14 line-clamp-2 pl-5 pr-20 xl:px-7">
                       {slide.desc}
                     </h2>
                   </picture>
@@ -414,10 +416,10 @@ export default function CE_CarouselVariant3({
                       />
                     </div>
                     <div className="absolute bottom-7 md:-bottom-10 cursor-pointer w-full overflow-hidden pointer-events-none noselect">
-                      <h1 className="text-white md:text-slate-600 text-base md:text-xl line-clamp-1 font-semibold md:font-light px-7">
+                      <h1 className="text-white md:text-slate-600 text-lg md:text-xl line-clamp-1 font-semibold md:font-light px-7">
                         {slide.label}
                       </h1>
-                      <h2 className="flex md:hidden text-white text-xs line-clamp-2  px-7">
+                      <h2 className="flex md:hidden text-white/70 text-xs line-clamp-2 px-7 pt-3">
                         {slide.desc}
                       </h2>
                     </div>

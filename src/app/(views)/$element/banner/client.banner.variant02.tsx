@@ -139,7 +139,7 @@ export function CE_BannerVariant02({
               ))}
             </div>
             <svg
-              className=" absolute z-10 top-[55vh] md:top-[80vh]"
+              className="w-full absolute z-10 top-[55vh] md:top-[80vh]"
               xmlns="http://www.w3.org/2000/svg"
               width="1920.001"
               height="300.001"

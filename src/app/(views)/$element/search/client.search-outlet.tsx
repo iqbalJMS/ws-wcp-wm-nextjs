@@ -1,12 +1,15 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import imageLocation from '@/../../public/images/dummy/location.png';
 
-export default function CE_Search() {
+export default function CE_SearchOutlet() {
+  const [searchValue, setSearchValue] = useState('');
+
   return (
     <>
-      <div className="w-full h-60 flex flex-col items-center justify-center">
+      <div className="w-full h-60 flex flex-col items-center justify-center ">
         <section className="uppercase text-2xl lg:text-3xl xl:text-4xl pb-5 text-prioritycolor font-extrabold">
           find us
         </section>
@@ -21,12 +24,15 @@ export default function CE_Search() {
                 className="w-10/12"
               />
             </div>
-            <form className="w-10/12">
+            <form className="w-10/12 relative ">
               <input
+                onChange={(e) => setSearchValue(e.target.value)}
+                style={{ outline: 'none' }}
                 type="text"
-                className="w-full px-3 py-2"
+                className="w-full py-2"
                 placeholder="Search For Location"
               />
+              <div className="w-full h-96 absolute z-10">{searchValue}</div>
             </form>
             <div className="hidden md:flex text-center w-3/12">
               <Link
