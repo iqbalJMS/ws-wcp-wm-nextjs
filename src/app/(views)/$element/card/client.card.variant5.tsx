@@ -105,11 +105,17 @@ export default function CE_CardVariant5({
                   >
                     <div className="w-full h-full bg-black opacity-40">.</div>
                   </div>
-                  <button className="text-white text-lg font-medium absolute left-5 md:left-2 lg:left-10 bottom-5">
+                  <button className="text-white text-lg font-medium absolute left-5 md:left-2 bottom-5 md:bottom-10 xl:bottom-5">
                     {item?.title}
                   </button>
                   <ArrowRightIcon
-                    className="absolute right-5 md:right-2 lg:right-10 bottom-5"
+                    className="flex md:hidden xl:flex absolute right-5 md:right-2 lg:right-10 bottom-5"
+                    width={25}
+                    fill="white"
+                    stroke="white"
+                  />
+                  <ArrowRightIcon
+                    className="hidden md:flex xl:hidden absolute right-5 md:left-3 bottom-3"
                     width={25}
                     fill="white"
                     stroke="white"

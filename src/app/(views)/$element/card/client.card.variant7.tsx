@@ -1,7 +1,11 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import LocationIcon from '@/lib/element/global/location-icon';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-
+import CE_SearchOutlet from '@/app/(views)/$element/search/client.search-outlet';
+import { TabsOutlet } from '@/app/(views)/$element/search/client.tab-outlet';
+import testImage from '@/../../public/images/dummy/icon-menu.png';
+import CE_FormGetInvited from '@/app/(views)/$element/form/client.form';
 export default function CE_CardOutlet({
   dataOutlet,
 }: {
@@ -12,8 +16,23 @@ export default function CE_CardOutlet({
     gmaps: string;
   }>;
 }) {
+  let [tab, setTab] = useState('pro');
   return (
     <>
+      <CE_FormGetInvited />
+      <CE_SearchOutlet />
+      <TabsOutlet
+        list={[
+          {
+            title: 'SENTRA LAYANAN BRI PRIORITAS',
+            slug: 'pro',
+            image: `${testImage}`,
+          },
+          { title: 'BRI PRIORITY LOUNGE', slug: 'ber', image: `${testImage}` },
+        ]}
+        value={tab}
+        onChange={(e) => setTab(e)}
+      />
       <div className="w-full flex justify-center py-10">
         <section className="w-full 2xl:w-8/12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-2 place-items-center">
           {dataOutlet.map((item, index) => (

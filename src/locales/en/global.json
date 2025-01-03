@@ -1,0 +1,433 @@
+{
+  "navbar": {
+    "back": "back to main site",
+    "list_top": [
+      {
+        "title": "promotion",
+        "url": "https://bri.co.id/web/promo"
+      },
+      {
+        "title": "financial simulation",
+        "url": "https://bri.co.id/simulasi-keuangan"
+      },
+      {
+        "title": "location",
+        "url": "https://bri.co.id/lokasi"
+      },
+      {
+        "title": "help",
+        "url": "https://bri.co.id/bantuan"
+      },
+      {
+        "title": "search",
+        "url": "/"
+      }
+    ],
+    "list_bottom": [
+      {
+        "title": "Home",
+        "url": "/"
+      },
+      {
+        "title": "Types of Credit Cards",
+        "url": "/credit-card"
+      },
+      {
+        "title": "Service",
+        "url": "/services"
+      },
+      {
+        "title": "FAQ",
+        "url": "/faq"
+      },
+      {
+        "title": "Apply for a Credit Card",
+        "url": "/apply-credit-card"
+      }
+    ]
+  },
+
+  "footer": {
+    "column_1": {
+      "title": "Head Office BRI",
+      "list": [
+        {
+          "name": "PT. Bank Rakyat Indonesia (Persero) Tbk",
+          "className": "lg:max-w-[11.563rem] px-24 lg:px-0 cursor-default"
+        },
+        {
+          "name": "Gedung BRI Jl. Jenderal Sudirman Kav.44-46. Jakarta 10210 Indonesia",
+          "className": "lg:max-w-[11.563rem] px-24 lg:px-0 cursor-default"
+        }
+      ]
+    },
+    "column_2": {
+      "title": "Contact Us",
+      "list": [
+        {
+          "name": "1500017",
+          "icon": "call",
+          "extern": true,
+          "url": "tel:1500017"
+        },
+        {
+          "name": "callbri@bri.co.id",
+          "icon": "email",
+          "extern": true,
+          "url": "mailto:callbri@bri.co.id"
+        }
+      ],
+      "social_media": [
+        {
+          "name": "",
+          "icon": "facebook",
+          "url": "https://www.facebook.com/BRIofficialpage"
+        },
+        {
+          "name": "",
+          "icon": "instagram",
+          "url": "https://www.instagram.com/bankbri_id"
+        },
+        {
+          "name": "",
+          "icon": "twitter",
+          "url": "https://x.com/kontakbri"
+        },
+        {
+          "name": "",
+          "icon": "youTube",
+          "url": "https://www.youtube.com/channel/UCRHFE_ooDrkEiRRJbog3EjA"
+        }
+      ]
+    },
+    "column_3": {
+      "title": "Links",
+      "list": [
+        {
+          "name": "BRI products",
+          "url": "https://bri.co.id/bri-products",
+          "extern": true
+        },
+        {
+          "name": "Deposit Interest",
+          "extern": true,
+          "url": "https://bri.co.id/deposit-interest"
+        },
+        {
+          "name": "Rates",
+          "url": "https://bri.co.id/kurs-detail",
+          "extern": true
+        },
+        {
+          "name": "Loan Interest Rates",
+          "url": "https://bri.co.id/loan-interest-rates",
+          "extern": true
+        },
+        {
+          "name": "Whistleblowing System",
+          "url": "https://whistleblowing-system.bri.co.id/",
+          "extern": true
+        },
+        {
+          "extern": true,
+          "url": "https://bri.co.id/web/erecruitment",
+          "name": "Career"
+        }
+      ]
+    },
+    "column_4": {
+      "title": "Registered & Supervised by:",
+      "list": [
+        {
+          "className": "lg:px-0 px-16 cursor-default",
+          "name": "BRI terdaftar dan diawasi oleh Otoritas Jasa Keuangan"
+        },
+        {
+          "className": "cursor-default",
+          "name": "BRI merupakan peserta penjamin LPS"
+        }
+      ]
+    },
+    "bottom_footer": [
+      {
+        "value": "Privacy",
+        "url": "https://bri.co.id/privacy",
+        "extern": true
+      },
+      {
+        "value": "Terms of Us",
+        "url": "https://bri.co.id/term-of-use",
+        "extern": true
+      },
+      {
+        "value": "Sitemap",
+        "url": "https://bri.co.id/sitemap",
+        "extern": true
+      },
+      {
+        "value": "Career",
+        "url": "https://bri.co.id/web/erecruitment",
+        "extern": true
+      },
+      {
+        "value": "CMS BRI",
+        "url": "https://ibank.bri.co.id/cms/",
+        "extern": true
+      },
+      {
+        "value": "E-form BRI",
+        "url": "https://eform.bri.co.id/",
+        "extern": true
+      }
+    ]
+  },
+
+  "validation": {
+    "empty01": "Required",
+    "empty02": "cannot be empty",
+    "text01": "not valid",
+    "min01": "Field cannot be less than",
+    "min02": "cannot be less than",
+    "array01": "cannot be empty",
+    "file01": "cannot be empty",
+    "boolean01": "please check this box",
+    "name01": "not valid",
+    "primaryName01": "Field not valid",
+    "primaryName02": "not valid",
+    "email01": "Email not valid",
+    "nik01": "must consist of 10 - 30 characters and only numbers",
+    "numeric01": "must be filled with numbers",
+    "zipCode01": "cannot be more than 5 characters and only numbers",
+    "address01": "must be more than 3 letters",
+    "address02": "cannot be more than 30 letters",
+    "address03": "not valid",
+    "address04": "cannot be more than 16 letters",
+    "rtrw": "cannot be more than 4 characters and only numbers",
+    "max2001": "Field cannot be more than 14 characters and must be filled with letters",
+    "max2002": "cannot be more than 14 characters and must be filled with letters",
+    "sallary01": "must be filled with numbers and must be more than 36,000,000",
+    "phone01": "must consist of 9 - 12 characters, starting with 08 and only numbers",
+    "homePhone01": "must consist of 9 - 12 characters, starting with 0 and only numbers",
+    "homePhone01Area": "must consist of 3 - 4 characters, starting with 0 and only numbers",
+    "homePhone01Digit": "must consist of 6 - 8 characters, and only numbers",
+    "homePhone02": "must consist of 3 - 4 characters, and only numbers",
+    "homePhone03": "must consist of 6 - 8 characters, and only numbers",
+    "motherName": "must consist of 3 - 30 letters",
+    "birthPlace": "must consist of 3 - 20 letters",
+    "letterMinMax": "must consist of ? - ? letters",
+    "npwp01": "must be 15 characters and only numbers",
+    "appRegNo01": "Field not valid",
+    "appRegNo02": "not valid"
+  },
+
+  "field": {
+    "form": [
+      {
+        "value": 1,
+        "title": "Document",
+        "subTitle": "Upload Required Documents",
+        "description": "Make sure you prepare the loan requirements below, according to the information on the ID card that has been previously entered."
+      },
+      {
+        "value": 2,
+        "title": "Personal Information",
+        "subTitle": "Fill in the Personal Information Form",
+        "description": "Make sure you complete the form thoroughly with no missing fields."
+      },
+      {
+        "value": 3,
+        "title": "Emergency Contact",
+        "subTitle": "Fill in Emergency Contact",
+        "description": "Make sure you complete the form thoroughly with no missing fields."
+      },
+      {
+        "value": 4,
+        "title": "Work Information",
+        "subTitle": "Fill in Work Information",
+        "description": "Make sure you complete the form thoroughly with no missing fields."
+      },
+      {
+        "value": 5,
+        "title": "Shipping",
+        "subTitle": "Fill in Card Shipping Information",
+        "description": "Make sure you complete the form thoroughly with no missing fields."
+      },
+      {
+        "value": 6,
+        "title": "Submit",
+        "subTitle": "Review Data Completeness",
+        "description": "Before submitting! Check that the data has been filled in correctly."
+      }
+    ],
+    "general": {
+      "enter": "Input",
+      "select": "Select",
+      "next": "Next",
+      "close": "Close",
+      "file": "File format JPG or PNG. Maximum capacity of 2 MB.",
+      "takePhoto": "Take Photo",
+      "upload": "Upload",
+      "messageFail": "Please go to the credit card application page first.",
+      "titleBanner": "BRI Credit Card",
+      "subTitleBanner": "One Card Million of New Benefits",
+      "titleCardTrack": "View Your Application Status",
+      "textButtonCardTrack": "Check"
+    },
+    "dedup": {
+      "titleForm": "Apply Credit Card",
+      "name": "Name",
+      "nik": "Identity Number",
+      "motherName": "Mother Name",
+      "dateOfBirth": "Date of Birth",
+      "placeOfBirth": "Place of Birth",
+      "creditCardProduct": "Select a Credit Card Product",
+      "textButtonSubmit": "Apply Now",
+      "modalTextSubtitleProblem": "There is a problem with the system, please reload the page in a few minutes",
+      "modalTextTitleInvalid": "Data Not Valid",
+      "modalTextSubtitleInvalid": "Your application cannot be processed, please contact the call center below",
+      "modalTextTitleSuccess": "Data Valid",
+      "modalTextSubtitleSuccess": "You can proceed to the next step of the application",
+      "textNavigateTrack": "View Your Application Status",
+      "textButtonTrack": "Check"
+    },
+    "track": {
+      "applicationID": "No Application ID",
+      "captcha": "Captcha",
+      "email": "Email",
+      "submitInfoStatus": "Submit Status Info",
+      "validateCaptcha": "Captcha Not Matched",
+      "modalTextSubtitleSuccess": "Status of your application has been successfully sent to your email",
+      "modalTextSubtitleInvalid": "No. Ticket/Email Wrong"
+    },
+    "document": {
+      "idCard": "ID Card Photo",
+      "salarySlip": "Salary Slip",
+      "selfieIdCard": "Selfie Photo with ID Card",
+      "taxId": "Tax ID Photo",
+      "information": {
+        "idCard": {
+          "title": "Guide to Upload ID Card Photo",
+          "description": "<li>Use the original ID card</li><li>Make sure the photo of your face on the ID card is clearly visible</li><li>Ensure the NIK number on the ID card is clearly visible</li><li>Position the ID card according to the provided guidelines</li>"
+        },
+        "salarySlip": {
+          "title": "Guide to Upload Salary Slip Photo",
+          "description": "<li>Use the original salary slip</li><li>Make sure the photo is clear and legible</li><li>Ensure all relevant information is visible</li><li>Position the salary slip according to the provided guidelines</li>"
+        },
+        "selfieIdCard": {
+          "title": "Guide to Upload Selfie with ID Card",
+          "description": "<li>Ensure you are in a well-lit area to avoid distracting shadows.</li><li>Position your face so it is clearly visible and proportionate within the application frame.</li><li>Ensure the ID card is fully covered and that relevant information is clearly readable.</li><li>Check the photo quality to ensure that your face and the information on the ID card are sharp and not blurry.</li>"
+        },
+        "taxId": {
+          "title": "Guide to Upload Tax ID Photo",
+          "description": "<li>Use the original Tax ID card</li><li>Prepare the physical Tax ID to be photographed. Ensure the Tax ID is in good condition, not folded or damaged, and that the information displayed is clearly readable.</li><li>Place the Tax ID on a flat surface and ensure there is enough light to avoid distracting shadows.</li><li>Position the camera or phone at a good angle so that the Tax ID is clearly visible within the application frame.</li><li>Position the Tax ID card according to the provided guidelines.</li>"
+        }
+      }
+    },
+    "personal": {
+      "address1": "Address (If the address is not enough, continue writing it in the next box.)",
+      "address2": "Address 2nd Line",
+      "subDistrict": "Sub-district",
+      "district": "District",
+      "neighborhoodUnit": "Neighborhood Unit (RT)",
+      "communityUnit": "Community Unit (RW)",
+      "address1placeholder": "Enter street name.",
+      "address2placeholder": "Enter house number, block, or housing complex name.",
+
+      "cityOfOrigin": "City of Origin",
+      "education": "Education",
+      "creditCardType": "Credit Card Type",
+      "nationality": "Nationality",
+      "postalCode": "Postal Code",
+      "lastName": "Last Name",
+      "firstName": "First Name",
+      "nameOnCard": "Name on Card",
+      "motherName": "Mother's Name",
+      "mobilePhone": "Mobile Phone",
+      "phone": "Phone",
+      "phoneArea": "Phone Area",
+      "phoneDigit": "Phone Digit",
+      "taxId": "Tax ID",
+      "nik": "NIK",
+      "numberOfChildren": "Number of Children",
+
+      "gender": "Gender",
+      "maritalStatus": "Marital Status",
+      "houseStatus": "House Status",
+      "dateOfBirth": "Date of Birth",
+      "placeOfBirth": "Place of Birth",
+      "livingSince": "Living Since"
+    },
+    "emergency": {
+      "address1": "Address (If the address is not enough, continue writing it in the next box.)",
+      "address2": "Address 2nd Line",
+      "subDistrict": "Sub-district",
+      "district": "District",
+      "neighborhoodUnit": "Neighborhood Unit (RT)",
+      "communityUnit": "Community Unit (RW)",
+      "address1placeholder": "Enter street name.",
+      "address2placeholder": "Enter house number, block, or housing complex name.",
+
+      "relationship": "Relationship",
+      "emergencyContactName": "Emergency Contact Name",
+      "phoneNumber": "Phone Number",
+      "city": "City",
+      "information": "The address must not be the same as the applicant's address"
+    },
+    "company": {
+      "address1": "Address (If the address is not enough, continue writing it in the next box.)",
+      "address2": "Address 2nd Line",
+      "subDistrict": "Sub-district",
+      "district": "District",
+      "neighborhoodUnit": "Neighborhood Unit (RT)",
+      "communityUnit": "Community Unit (RW)",
+      "address1placeholder": "Enter street name.",
+      "address2placeholder": "Enter office number, block, or office complex name.",
+
+      "employmentSince": "Employment Since",
+      "fieldOfWork": "Field of Work",
+      "jobCategory": "Job Category",
+      "postalCode": "Postal Code",
+      "companyCity": "Company City",
+      "companyName": "Company Name",
+      "annualIncome": "Annual Income",
+      "employmentStatus": "Employment Status",
+      "subFieldOfWork": "Sub Field of Work",
+      "companyPhone": "Company Phone",
+      "companyPhoneArea": "Company Phone Area",
+      "jobTitle": "Job Title",
+      "totalEmployees": "Total Employees"
+    },
+    "delivery": {
+      "isBRICustomer": "Are you a BRI customer?",
+      "cardDeliveryAddress": "Card Delivery Address",
+      "cardDelivery": "Card Delivery",
+      "creditCardBillingDelivery": "Credit Card Billing Delivery",
+      "briProtectionPlus": "Insurance Offer",
+      "consentForInsurance": "I agree to be contacted for insurance product offers in collaboration with Bank BRI",
+      "ya": "Yes",
+      "tidak": "No",
+      "rumah": "Home",
+      "kantor": "Office"
+    },
+    "review": {
+      "personalDocuments": "Personal Documents",
+      "personalData": "Personal Data",
+      "emergencyContact": "Emergency Contact",
+      "employmentData": "Employment Data",
+      "deliveryAddress": "Delivery Address",
+      "statementAuthorizationApproval": "Statement, Authorization & Approval",
+      "view": "View",
+      "agree": "Agree",
+      "disagree": "Disagree",
+      "productOfferApproval": "Product Offer Approval",
+      "privacyPolicy": "Privacy Policy",
+      "submitApplication": "Submit Application",
+      "modalStatement": "<h2 class='font-semibold mb-3 text-base'>STATEMENT, AUTHORIZATION, AND CONSENT</h2><ol class=pl-5 style=list-style-type:decimal><li class='mb-1 mt-0'>By signing the application form/accepting the card/signing the card/using the card, I hereby declare that the information provided is true.<li class='mb-1 mt-0'>BRI has explained the benefits, costs, and risks associated with issuing the BRI Credit Card. I acknowledge and agree to this explanation.<li class='mb-1 mt-0'>I have read, understood, and agreed to comply with and be bound by the 'Statement, Authorization, and Consent' in this application form, the privacy policy (<a href=https://bri.co.id/privacy>https://bri.co.id/privacy</a>), the credit card service guidelines (terms and conditions of the Credit Card), and the terms listed on the website <a href=https://bri.co.id/web/kartukredit/layanan>https://bri.co.id/web/kartukredit/layanan</a>, which together form an integral part of this application form, if this application is approved.<li class='mb-1 mt-0'>I will not use the BRI Credit Card for illegal activities such as money laundering, terrorism financing, or other unlawful acts.<li class='mb-1 mt-0'>For the purpose of issuing the BRI Credit Card, I grant authorization and/or consent to BRI as follows:<ol class=pl-3 style=list-style-type:lower-alpha><li class='mb-1 mt-0'>To process the data/information and documents in the application form I submitted to BRI. The application form will become the property of BRI and cannot be reclaimed. BRI has the right not to process my application form if the data/information and documents are incomplete.<li class='mb-1 mt-0'>To obtain and verify the accuracy of my data/information and documents from any party.<li class='mb-1 mt-0'>To cancel card issuance, decline transactions, terminate card usage, revoke all card-related rights, or not renew the card if I use the card for transactions that violate applicable laws, including but not limited to:<ol class=pl-3 style=list-style-type:lower-roman><li class='mb-1 mt-0'>Using the card for improper purposes or engaging in illegal acts.<li class='mb-1 mt-0'>Transactions suspected of Money Laundering and Terrorism Financing (AML & CFT).<li class='mb-1 mt-0'>Using the card for purposes other than payment.<li class='mb-1 mt-0'>Transactions indicating cash withdrawals/swipes at merchants or similar activities.</ol>Termination of credit card services does not eliminate any outstanding obligations (if any) that I must pay to BRI.<li class='mb-1 mt-0'>To deliver the credit card (new/renewal) directly to me, whose name is printed on the card and at my registered address. If I am unavailable at the time of delivery, I authorize BRI to deliver the card to someone else at my address, provided that BRI records the delivery date and the recipient's identity.<li class='mb-1 mt-0'>Not to be held responsible for any defects or deficiencies in the goods or services purchased with the BRI Credit Card. If disputes arise over such transactions, I am still obligated to pay the charges as listed on the billing statement.<li class='mb-1 mt-0'>To temporarily or permanently block the BRI Credit Card in connection with my overdue obligations as a Cardholder and/or for investigation purposes related to card misuse.<li class='mb-1 mt-0'>To block/debit/liquidate my savings accounts, including checking, deposits, and/or savings at BRI, to settle all obligations arising from the card usage.<li class='mb-1 mt-0'>If I default on obligations arising from the card's use, I voluntarily agree to hand over my assets to BRI to settle my obligations.<li class='mb-1 mt-0'>To use, share, and disclose my personal data/information with regulators, partners, third parties, or affiliates cooperating with BRI for non-commercial purposes.<li class='mb-1 mt-0'>To inform me about products, programs, and services related to BRI via written media (electronic or non-electronic).<li class='mb-1 mt-0'>To transfer any credit balance on the card due to overpayments to my registered BRI savings account.<li class='mb-1 mt-0'>To collect payments for my obligations arising from card usage, directly or through third parties appointed by BRI.<li class='mb-1 mt-0'>To debit my credit card account for disputed transactions if BRI confirms them as valid.<li class='mb-1 mt-0'>To transfer collection rights or credit card facilities to third parties in accordance with applicable laws.</ol><li class='mb-1 mt-0'>I am responsible for the security of the credit card and transactions, including misuse, forgery, and duplication due to my negligence, including but not limited to:<ol class=pl-3 style=list-style-type:lower-alpha><li class='mb-1 mt-0'>Delayed/failure to inform BRI of changes to personal data (address, phone number, email, etc.).<li class='mb-1 mt-0'>Delayed/failure to report a lost credit card to BRI.<li class='mb-1 mt-0'>Disclosing credit card data, OTP codes, CVV, PIN, and other personal data to third parties.<li class='mb-1 mt-0'>Delayed/failure to cancel recurring transactions, causing continuous payments.</ol><li class='mb-1 mt-0'>I have the right to dispute transactions billed to me within 30 calendar days from the transaction date.<li class='mb-1 mt-0'>For lost cards, I will immediately contact BRI Contact Center 1500017.<li class='mb-1 mt-0'>I agree to pay all obligations arising from card use by the due date.<li class='mb-1 mt-0'>I will not transfer my BRI Credit Card payment obligations to others.<li class='mb-1 mt-0'>All records held by BRI serve as valid and binding evidence unless proven otherwise.<li class='mb-1 mt-0'>This agreement complies with applicable laws, including OJK regulations.<li class='mb-1 mt-0'>The authorizations in this form are irrevocable until BRI declares all obligations settled.<li class='mb-1 mt-0'>BRI may change credit card terms at any time with prior notification based on applicable regulations.</ol>",
+      "modalAccept": "<h2>Product Offer Consent</h2><div>I hereby give my consent to BRI to use, utilize, and disclose (through electronic and non-electronic media) my personal data to the BRI group/partners/third parties/affiliated parties cooperating with BRI for commercial purposes, including but not limited to cross-selling activities, so that I may benefit from BRI's product, service, and program offers.</div>"
+    },
+    "success": {
+      "title": "Success",
+      "message": "Your application will be processed. For more information, please contact the call center below."
+    }
+  }
+}

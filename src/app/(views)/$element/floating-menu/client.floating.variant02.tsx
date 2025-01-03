@@ -18,7 +18,7 @@ export default function CE_FloatingVariant02({
             return (
               <div key={index} className="">
                 <Link href={`/${item?.alias}`}>
-                  <div className="flex items-center bg-privatecolor hover:bg-[#84733e] p-3 px-4 border-b-2 border-white ">
+                  <div className="flex items-center bg-privatecolor hover:bg-[#84733e] p-2 px-3 lg:p-3 lg:px-4 border-b-2 border-white ">
                     <Image
                       className="text-white w-5 h-5 mr-5"
                       src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.icon}`}

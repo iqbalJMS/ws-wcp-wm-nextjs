@@ -38,7 +38,7 @@ function RowElement({
   return (
     <>
       <div className="w-full py-2 flex justify-center lg:flex-none">
-        <div className="w-full md:w-10/12 lg:w-full h-full grid grid-cols-1 lg:grid-cols-3 px-5 xl:px-52 place-items-center ">
+        <div className="w-full md:w-10/12 lg:w-full h-full grid grid-cols-1 lg:grid-cols-3 px-10 xl:px-20 2xl:px-48 place-items-center  ">
           <div className="w-full xl:w-80 h-44 flex flex-col items-start border-b lg:border-none border-white py-5 lg:py-0">
             <h1 className={`text-${theme} text-xl font-bold pb-3`}>
               Kantor Pusat BRI
@@ -88,11 +88,11 @@ function RowElement({
               </Link>
             ))}
           </div>
-          <div className="w-full xl:w-80 h-44 flex flex-col items-start py-5 lg:py-0">
+          <div className="w-full xl:w-80 h-44 flex flex-col items-start py-5 lg:py-0 pl-0 lg:pl-4">
             <h1 className={`text-${theme} text-xl font-bold pb-3`}>
               Terdaftar Dan Diawasi Oleh:
             </h1>
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-1">
               {data?.field_multiple_logo.map((item, index) => (
                 <div key={index} className="w-40">
                   <Image
@@ -100,7 +100,7 @@ function RowElement({
                     width={100}
                     height={100}
                     alt=""
-                    className="w-36 h-16"
+                    className="w-28 h-14 xl:w-36 xl:h-16"
                   />
                 </div>
               ))}
@@ -200,7 +200,7 @@ export default async function GlobalFooter({
     <footer
       className={`shadow-[0_-4px_4px_-2px_rgba(0,0,0,0.1)] bg-${bgColor}`}
     >
-      <div className="w-full h-auto py-10">
+      <div className="w-full h-auto py-5">
         <div className="w-full">
           <RowElement
             data={main_footer}
