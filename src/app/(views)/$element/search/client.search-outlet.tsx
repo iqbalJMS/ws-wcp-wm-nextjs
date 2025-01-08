@@ -1,12 +1,13 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import imageLocation from '@/../../public/images/dummy/location.png';
 
-export default function CE_SearchOutlet() {
-  const [searchValue, setSearchValue] = useState('');
-
+type T_SearchProps = {
+  onChange: (_value: string) => void;
+};
+export default function CE_SearchOutlet({ onChange }: T_SearchProps) {
   return (
     <>
       <div className="w-full h-60 flex flex-col items-center justify-center ">
@@ -24,15 +25,14 @@ export default function CE_SearchOutlet() {
                 className="w-10/12"
               />
             </div>
-            <form className="w-10/12 relative ">
+            <form className="w-10/12 relative">
               <input
-                onChange={(e) => setSearchValue(e.target.value)}
+                onChange={(e) => onChange(e.target.value)}
                 style={{ outline: 'none' }}
                 type="text"
                 className="w-full py-2"
                 placeholder="Search For Location"
               />
-              <div className="w-full h-96 absolute z-10">{searchValue}</div>
             </form>
             <div className="hidden md:flex text-center w-3/12">
               <Link

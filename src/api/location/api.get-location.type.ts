@@ -29,3 +29,8 @@ export type T_LocationRequest = {
   name: string;
   tipe: string;
 };
+
+export type T_LocationRequestPromo = {
+  limit: string;
+  page: string;
+};

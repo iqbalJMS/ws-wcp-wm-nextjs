@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState, useTransition, useEffect } from 'react';
 import LocationIcon from '@/lib/element/global/location-icon';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
@@ -19,7 +20,8 @@ import { CE_TabsOutlet } from '@/app/(views)/$element/search/client.tab-outlet';
 export default function CE_Location() {
   const [pending, transiting] = useTransition();
   const [location, setLocation] = useState<T_ResponGetLocation>();
-  const { form, setForm, validateForm } = useForm<
+
+  const { form, validateForm, onFieldChange } = useForm<
     T_LocationRequest,
     T_LocationRequest
   >(
@@ -27,20 +29,24 @@ export default function CE_Location() {
       skip: '0',
       limit: '9',
       name: '',
-      tipe: '',
+      tipe: '6762525d2b83df62275f6f62',
     }),
     CFN_ValidateGetLocationFields
   );
 
   let handlePageChange = (page: number) => {
     const skip = parseInt(form.limit) * page - parseInt(form.limit);
-    // onFieldChange('skip', skip.toString())
-    setForm({
-      ...form,
-      skip: skip.toString(),
-    });
-    // console.log(form)
+    onFieldChange('skip', skip.toString());
   };
+
+  const handleTabChange = (tab: string) => {
+    onFieldChange('tipe', tab.toString());
+  };
+
+  const handleSearchChange = (keyword: string) => {
+    onFieldChange('name', keyword.toString());
+  };
+
   const handleLocationList = () => {
     if (pending) {
       return;
@@ -52,22 +58,26 @@ export default function CE_Location() {
       });
     }
   };
+
   useEffect(() => {
     handleLocationList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [form.skip]);
-  let [tab, setTab] = useState('pro');
+  }, [form.skip, form.tipe, form.name]);
+
   return (
     <>
       {/* <CE_FormGetInvited /> */}
-      <CE_SearchOutlet />
+      <CE_SearchOutlet onChange={(e) => handleSearchChange(e)} />
       <CE_TabsOutlet
         list={[
-          { title: 'SENTRA LAYANAN BRI PRIORITAS', slug: 'pro' },
-          { title: 'BRI PRIORITY LOUNGE', slug: 'ber' },
+          {
+            title: 'SENTRA LAYANAN BRI PRIORITAS',
+            slug: '6762525d2b83df62275f6f62',
+          },
+          { title: 'BRI PRIORITY LOUNGE', slug: '676251ed2b83df62275f6f5d' },
         ]}
-        value={tab}
-        onChange={(e) => setTab(e)}
+        value={form.tipe}
+        onChange={(e) => handleTabChange(e)}
       />
       <div className="w-full flex flex-col items-center justify-center py-10">
         <section className="w-full 2xl:w-8/12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-2 place-items-center">
