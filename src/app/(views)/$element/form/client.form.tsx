@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { RefreshIcon } from '@/lib/element/global/refresh-icon';
 import { useDictionary } from '@/get-dictionary';
@@ -7,7 +7,7 @@ import { useDictionary } from '@/get-dictionary';
 import {
   LoadCanvasTemplateNoReload,
   loadCaptchaEnginge,
-  // validateCaptcha,
+  validateCaptcha,
 } from 'react-simple-captcha';
 import InputText from '@/lib/element/global/input.text';
 
@@ -28,36 +28,36 @@ export default function CE_FormGetInvited() {
   ];
 
   const dictionary = useDictionary('id');
-  // const [captcha, setCaptcha] = useState({
-  //   form: '',
-  //   error: '',
-  // });
+  const [captcha, setCaptcha] = useState({
+    form: '',
+    error: '',
+  });
 
-  // const onSubmit = async () => {
-  //   setLoading(true);
-  //   if (pending) {
-  //     setLoading(false);
-  //     return;
-  //   }
-  //   if (validateCaptcha(captcha.form) == false) {
-  //     setCaptcha({
-  //       ...captcha,
-  //       error:
-  //         dictionary?.field.track.validateCaptcha || 'Captcha Tidak Sesuai',
-  //     });
-  //     setLoading(false);
-  //     return;
-  //   }
-  //   window.scrollTo(0, 0);
-  //   try {
-  //     // eslint-disable-next-line no-console
-  //     console.log('upload success');
-  //   } catch (error) {
-  //     // eslint-disable-next-line no-console
-  //     console.error('Upload or registration failed', error);
-  //   }
-  //   setLoading(false);
-  // };
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (e: Event) => {
+    setLoading(true);
+
+    if (validateCaptcha(captcha.form) == false) {
+      e.preventDefault();
+      setCaptcha({
+        ...captcha,
+        error:
+          dictionary?.field.track.validateCaptcha || 'Captcha Tidak Sesuai',
+      });
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // eslint-disable-next-line no-console
+      console.log('upload success');
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Upload or registration failed', error);
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -76,10 +76,11 @@ export default function CE_FormGetInvited() {
           />
         </div>
         <div className="w-full h-full bg-[#605E68] p-5 py-10 xl:p-10 flex justify-center items-center">
-          <form className="w-9/12">
+          <form className="w-9/12" onSubmit={onSubmit as any}>
             <section className="text-white space-y-3 pb-5">
               <h1 className="text-2xl font-bold">HUBUNGI SAYA</h1>
               <h2>
+                {loading}
                 Beri tahu kami tentang permintaan Anda agar kami bisa
                 mendapatkan penasihat yang tepat untuk Anda.
               </h2>
@@ -195,20 +196,23 @@ export default function CE_FormGetInvited() {
                       `${dictionary?.field.general.enter} ${dictionary?.field.track.captcha}` ||
                       'Masukkan Captcha'
                     }
-                    // type="text"
-                    // value={captcha.form}
-                    // onChange={(value) =>
-                    //   setCaptcha({
-                    //     ...capLoadCanvasTemplateNoReloadtcha,
-                    //     form: value.toString() || '',
-                    //   })
-                    // }
-                    // state={captcha.error ? 'error' : 'init'}
+                    type="text"
+                    value={captcha.form}
+                    onChange={(value) =>
+                      setCaptcha({
+                        form: value.toString() || '',
+                        error: '',
+                      })
+                    }
+                    state={captcha.error ? 'error' : 'init'}
                   />
-                  {/* <InputError message={captcha.error} /> */}
+                  <p>{captcha.error}</p>
                 </div>
               </div>
-              <button className="bg-privatecolor rounded-full px-5 py-2 uppercase text-white font-bold ">
+              <button
+                type="submit"
+                className="bg-privatecolor rounded-full px-5 py-2 uppercase text-white font-bold "
+              >
                 hubungi saya
               </button>
             </section>

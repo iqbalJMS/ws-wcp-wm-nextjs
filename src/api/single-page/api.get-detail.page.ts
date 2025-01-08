@@ -6,12 +6,10 @@ import { redirect } from 'next/navigation';
 export async function API_GetDetailPage({
   lang,
   alias = 'node',
-  // title,
   nid,
 }: {
   lang: string;
   alias: string;
-  // title: string;
   nid: number;
 }): Promise<any> {
   try {
