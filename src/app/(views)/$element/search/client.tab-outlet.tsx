@@ -1,20 +1,20 @@
 'use client';
 
-import { Tooltip } from '@/lib/element/global/tooltip';
 import Image from 'next/image';
+import iconImage from '@/../../public/images/dummy/sentra-layanan-bri-prioritas.png';
+import { Tooltip } from '@/lib/element/global/tooltip';
 
 type T_TabsProps = {
   list: {
     title: string;
     information?: string;
     slug: string;
-    image: string;
   }[];
   value: string;
   onChange: (_value: string) => void;
   variant?: 'full' | 'border-arrow' | 'border';
 };
-export function TabsOutlet({
+export function CE_TabsOutlet({
   list,
   value,
   onChange,
@@ -52,10 +52,10 @@ export function TabsOutlet({
                   ].join(' ')}
                 >
                   <Image
-                    src={`/${item?.image}`}
+                    src={iconImage}
                     alt={''}
-                    width={100}
-                    height={100}
+                    width={50}
+                    height={50}
                     className="object-center"
                   />
                   <div className="mr-2 text-sm pt-2">{item.title}</div>

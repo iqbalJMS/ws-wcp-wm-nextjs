@@ -3,3 +3,7 @@ export type T_FetchOptions = {
   headers?: Record<string, string>;
   body?: any;
 };
+
+export type T_PostResponse<T> = {
+  data: T;
+};

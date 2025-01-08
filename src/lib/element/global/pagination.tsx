@@ -18,7 +18,7 @@ const PaginationButton: React.FC<{
   <button
     onClick={onClick}
     disabled={isDisabled}
-    className={`px-4 py-2 border border-red-600 rounded ${isDisabled ? 'cursor-not-allowed opacity-50 bg-red-600 text-gray-300' : isActive ? 'bg-white border-red-600 text-red-600' : 'bg-red-600 text-white'}`}
+    className={`px-4 py-2 border border-prioritycolor rounded ${isDisabled ? 'cursor-not-allowed opacity-50 bg-prioritycolor text-gray-300' : isActive ? 'bg-white border-prioritycolor text-slate-600' : 'bg-prioritycolor text-white'}`}
   >
     {label}
   </button>
