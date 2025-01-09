@@ -1,13 +1,19 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useDictionary } from '@/get-dictionary';
+import { Locale } from '@/i18n-config';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export type T_FormErrors<T> = {
   [K in keyof T]?: string;
 };
 
+type T_Dictionary = ReturnType<typeof useDictionary>;
+
 type T_Validator<T> = (
   name: keyof T,
   value: string | boolean | number,
+  locales?: T_Dictionary
 ) => string;
 
 const updateNestedField = <T>(obj: T, path: (keyof T)[], value: any): T => {
@@ -25,11 +31,11 @@ const updateNestedField = <T>(obj: T, path: (keyof T)[], value: any): T => {
 type T_NestedObject = { [key: string]: any };
 
 function getObjectValue<T>(obj: T_NestedObject, path: string): T | undefined {
-  const keys = path.split(".");
+  const keys = path.split('.');
   let result: any = obj;
 
   for (const key of keys) {
-    if (result && typeof result === "object" && key in result) {
+    if (result && typeof result === 'object' && key in result) {
       result = result[key];
     } else {
       return undefined;
@@ -46,20 +52,24 @@ const useForm = <T extends Record<string, any>, B extends Record<string, any>>(
   const [form, setForm] = useState<B>(initialState);
   const [formError, setFormError] = useState<T_FormErrors<T>>({});
 
+  const params = useSearchParams();
+  const locales = params.get('lang') as Locale;
+  const dictionary = useDictionary(locales ?? 'id');
+
   const onFieldChange = (
     name: keyof T,
     value: string | boolean | number,
     withValidation = true
   ) => {
     if (withValidation) {
-      const error = validateField(name as keyof T, value);
+      const error = validateField(name as keyof T, value, dictionary);
       setFormError({
         ...formError,
         [name]: error,
       });
     }
 
-    const pathArray = name.toString().split(".");
+    const pathArray = name.toString().split('.');
 
     const newForm = updateNestedField<B>(form, pathArray as (keyof B)[], value);
 
@@ -70,7 +80,11 @@ const useForm = <T extends Record<string, any>, B extends Record<string, any>>(
     const errors: T_FormErrors<T> = {};
 
     for (const key in form) {
-      const error = validateField(key as keyof T, form[key] as string);
+      const error = validateField(
+        key as keyof T,
+        form[key] as string,
+        dictionary
+      );
       if (error) {
         errors[key as keyof T] = error;
       }
@@ -87,6 +101,7 @@ const useForm = <T extends Record<string, any>, B extends Record<string, any>>(
       const error = validateField(
         key as keyof T,
         getObjectValue(form, key as string) as string,
+        dictionary
       );
       if (error) {
         errors[key as keyof T] = error;

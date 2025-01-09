@@ -1,10 +1,20 @@
 'use client';
-import React from 'react';
-import { useState } from 'react';
+import React, { useEffect, useTransition, useState } from 'react';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
-import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
-import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
+// import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
+// import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import Link from 'next/link';
+// import { T_LocationRequestPromo } from '@/api/location/api.get-location.type';
+import useForm from '@/lib/hook/useForm';
+import {
+  CFN_GetPromo,
+  CFN_MapToPromoPayload,
+  CFN_ValidateGetPromoFields,
+} from '@/app/(views)/$function/cfn.get-promo';
+import {
+  T_PromoRequest,
+  T_ResponGetPromo,
+} from '@/api/promo/api.get-promo.type';
 
 export default function CE_CardPromo({
   data,
@@ -13,58 +23,83 @@ export default function CE_CardPromo({
   link,
   variant,
 }: {
-  data: Array<{
-    nid: number;
-    image: string;
-    label: string;
-  }>;
+  data: any;
   title: string;
   subtitle: string;
   link: string;
   variant: string;
 }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [promo, setPromo] = useState<T_ResponGetPromo>();
+  const { form, validateForm } = useForm<T_PromoRequest, T_PromoRequest>(
+    CFN_MapToPromoPayload({
+      limit: '',
+      page: '',
+    }),
+    CFN_ValidateGetPromoFields
+  );
+
+  const [currentSlide] = useState(0);
   const screenWidth = useScreenWidth();
   const slidesToShow = screenWidth > 768 ? 4 : 2;
-  const slidesToScroll = 1;
+  // const slidesToScroll = 1;
 
-  const nextSlide = () => {
-    if (currentSlide <= data.length - slidesToShow) {
-      setCurrentSlide(currentSlide + slidesToScroll);
+  // const nextSlide = () => {
+  //   if (currentSlide <= data.length - slidesToShow) {
+  //     setCurrentSlide(currentSlide + slidesToScroll);
+  //   }
+  // };
+
+  // const prevSlide = () => {
+  //   if (currentSlide > 0) {
+  //     setCurrentSlide(currentSlide - slidesToScroll);
+  //   }
+  // };
+
+  // let colorTheme = '';
+  // if (variant === 'wm-private-main-navigation') {
+  //   colorTheme = 'white';
+  // } else if (variant === 'wm-prioritas-main-navigation') {
+  //   colorTheme = 'prioritycolor';
+  // } else {
+  //   colorTheme = 'wmcolor';
+  // }
+  // let textColor = '';
+  // if (variant === 'wm-private-main-navigation') {
+  //   textColor = 'black';
+  // } else {
+  //   textColor = 'white';
+  // }
+
+  const [pending, transiting] = useTransition();
+
+  const handleLocationList = () => {
+    if (pending) {
+      return;
+    }
+    const isValid = validateForm();
+    if (isValid) {
+      CFN_GetPromo(transiting, form, (data) => {
+        setPromo(data?.data);
+      });
     }
   };
 
-  const prevSlide = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - slidesToScroll);
-    }
-  };
-
-  let colorTheme = '';
-  if (variant === 'wm-private-main-navigation') {
-    colorTheme = 'white';
-  } else if (variant === 'wm-prioritas-main-navigation') {
-    colorTheme = 'prioritycolor';
-  } else {
-    colorTheme = 'wmcolor';
-  }
-  let textColor = '';
-  if (variant === 'wm-private-main-navigation') {
-    textColor = 'black';
-  } else {
-    textColor = 'white';
-  }
+  useEffect(() => {
+    handleLocationList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
       <div className="w-full h-auto flex flex-col items-center justify-center pb-20 pt-14">
+        {data}
+        {title},{subtitle},{link},{variant}
         <section className="w-full flex flex-col items-center pb-16">
           <h1 className="text-[#3D3D3D] font-semibold text-3xl uppercase">
-            {title}
+            {/* {title} */} title
           </h1>
-          <h2 className="text-sm font-light text-center">{subtitle}</h2>
+          <h2 className="text-sm font-light text-center">subtitle</h2>
         </section>
-
         {/* mobile section */}
         <section className="md:hidden lg:hidden relative overflow-hidden mdmax:w-full mdmax:flex-none p-10 mdmax:p-1 justify-center">
           <div
@@ -73,12 +108,12 @@ export default function CE_CardPromo({
               transform: `translateX(-${currentSlide * (180 / slidesToShow)}%)`,
             }}
           >
-            {data?.map((item, index) => (
+            {promo?.data?.map((item, index) => (
               <div
                 key={index}
                 className="relative w-1/4 mdmax:w-11/12 h-80 lg:h-64 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                 style={{
-                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                 }}
@@ -87,9 +122,9 @@ export default function CE_CardPromo({
                   .
                 </div>
                 <h1 className="pb-4 px-5 z-50 text-white text-base font-medium">
-                  {item?.label}
+                  {item?.title?.[0]?.value}
                 </h1>
-                <Link
+                {/* <Link
                   href={'#'}
                   className="pb-4 px-5 z-50 hover:underline text-white flex items-center"
                 >
@@ -102,11 +137,11 @@ export default function CE_CardPromo({
                       fill="white"
                     />
                   </span>
-                </Link>
+                </Link> */}
               </div>
             ))}
           </div>
-          <div className="md:hidden w-full flex justify-end px-10 py-3 space-x-3 ">
+          {/* <div className="md:hidden w-full flex justify-end px-10 py-3 space-x-3 ">
             <button
               className={[
                 'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white mdmax:',
@@ -128,7 +163,7 @@ export default function CE_CardPromo({
             <button
               className={[
                 'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white',
-                currentSlide < data?.length - 1 - slidesToShow
+                currentSlide < promo?.length - 1 - slidesToShow
                   ? 'cursor-pointer '
                   : 'bg-opacity-10 cursor-default',
               ].join(' ')}
@@ -139,17 +174,16 @@ export default function CE_CardPromo({
                 height={40}
                 stroke="#4640A5"
                 className={
-                  currentSlide === data?.length - 1
+                  currentSlide === promo?.length - 1
                     ? 'opacity-50'
                     : 'text-white text-red'
                 }
               />
             </button>
-          </div>
+          </div> */}
         </section>
-
         {/* Tab Section */}
-        <section className="w-full hidden md:flex lg:hidden justify-center">
+        {/* <section className="w-full hidden md:flex lg:hidden justify-center">
           <div className="w-11/12 flex flex-row justify-center">
             <div className="basis-20 flex justify-center items-center">
               <button
@@ -178,7 +212,7 @@ export default function CE_CardPromo({
                   transform: `translateX(-${currentSlide * (150 / slidesToShow)}%)`,
                 }}
               >
-                {data?.map((item, index) => (
+                {promo?.data?.map((item, index) => (
                   <div
                     key={index}
                     className="relative w-[32%] h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
@@ -216,7 +250,7 @@ export default function CE_CardPromo({
               <button
                 className={[
                   'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white',
-                  currentSlide >= data?.length - 1 - slidesToShow
+                  currentSlide >= promo?.length - 1 - slidesToShow
                     ? 'cursor-default '
                     : 'bg-opacity-10 cursor-pointer',
                 ].join(' ')}
@@ -227,7 +261,7 @@ export default function CE_CardPromo({
                   height={40}
                   stroke="#4640A5"
                   className={
-                    currentSlide === data?.length
+                    currentSlide === promo?.length
                       ? 'opacity-50'
                       : 'text-white text-red'
                   }
@@ -235,14 +269,13 @@ export default function CE_CardPromo({
               </button>
             </div>
           </div>
-        </section>
-
+        </section> */}
         {/* Web Section */}
-        <section className="w-full hidden lg:flex justify-center">
+        {/* <section className="w-full hidden lg:flex justify-center">
           <div className="w-full flex justify-center ">
             <div className="w-fit h-full flex justify-center p-5">
               <div className="w-full h-full grid grid-cols-4 gap-5">
-                {data?.map((item, index) => (
+                {promo?.map((item, index) => (
                   <div
                     key={index}
                     className="relative overflow-hidden lg:w-60 lg:h-72 xl:w-80 xl:h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
@@ -277,12 +310,12 @@ export default function CE_CardPromo({
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         <section className="inline-flex items-center justify-center w-full pt-5">
           <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
           <Link
-            className={`bg-${colorTheme} hover:bg-gray-600 duration-300 text-${textColor} hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
-            href={link}
+            className={`bg-blue-500 hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
+            href={'link'}
           >
             lihat semua promo
           </Link>
@@ -291,4 +324,13 @@ export default function CE_CardPromo({
       </div>
     </>
   );
+}
+
+{
+  /* <Link
+            className={`bg-${colorTheme} hover:bg-gray-600 duration-300 text-${textColor} hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
+            href={'link'}
+          >
+            lihat semua promo
+          </Link> */
 }

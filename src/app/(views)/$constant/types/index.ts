@@ -28,4 +28,6 @@ export type T_Widget =
   | 'rich_text'
   | 'promo_widget'
   | 'external_magazine'
+  | 'form'
+  | 'location'
   | 'map';

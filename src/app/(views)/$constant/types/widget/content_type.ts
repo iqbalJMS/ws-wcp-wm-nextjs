@@ -130,4 +130,5 @@ export type T_Insight = {
   content_translation_changed: Array<{ value: string; format: string }>;
   field_content_type: Array<T_content_type>;
   field_reference_content: Array<T_field_reference_content>;
+  field_bri_location_type: Array<{ type_id: string; type_name: string }>;
 };

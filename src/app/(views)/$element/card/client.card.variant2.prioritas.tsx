@@ -7,6 +7,7 @@ import { useState } from 'react';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import { motion, useInView, useAnimation } from 'motion/react';
+import CE_FormGetInvited from '@/app/(views)/$element/form/client.form';
 
 export default function CE_CardVariant2Prioritas({
   data,
@@ -48,6 +49,7 @@ export default function CE_CardVariant2Prioritas({
   }, [isInView, mainControls]);
   return (
     <>
+      <CE_FormGetInvited />
       <div
         className="w-full h-auto flex flex-col items-center justify-center p-5 pb-10"
         style={{

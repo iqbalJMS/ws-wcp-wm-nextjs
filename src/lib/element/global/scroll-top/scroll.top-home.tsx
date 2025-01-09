@@ -36,7 +36,7 @@ function ScrollToTopHome() {
       <button
         type="button"
         onClick={scrollToTop}
-        className={`w-[40px] h-[40px] bg-blue-01 text-white p-2 rounded-full shadow-lg hover:bg-blue-01 focus:outline-none`}
+        className={`w-[40px] h-[40px] bg-wmcolor text-white p-2 rounded-full shadow-lg hover:bg-slate-600 duration-200 focus:outline-none`}
       >
         <svg
           className="pb-1"

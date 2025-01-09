@@ -121,10 +121,6 @@ const CE_GridCard7Main = dynamic(
   () => import('@/app/(views)/$element/grid/client.card-grid-7.main')
 );
 
-const CE_CardOutlet = dynamic(
-  () => import('@/app/(views)/$element/card/client.card.variant7')
-);
-
 const CE_CardVariant2Prioritas = dynamic(
   () => import('@/app/(views)/$element/card/client.card.variant2.prioritas')
 );
@@ -176,8 +172,18 @@ const CE_CardGrid10 = dynamic(
   () => import('@/app/(views)/$element/grid/client.card-grid-10')
 );
 
+const CE_Location = dynamic(
+  () => import('@/app/(views)/$element/card/client.card.variant7')
+);
+
 export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
   const components: Record<T_Widget, T_ComponentMapWidget> = {
+    location: {
+      component: CE_Location,
+      props: (_component: any) => {
+        return {};
+      },
+    },
     slider: {
       component: (...props) => {
         const findVariantStyle = props?.[0]?.variant;
@@ -1060,11 +1066,9 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return <CE_CardGrid6Main dataCard={data} variant={theme} />;
           case WIDGET_VARIANT.variant11:
             return <CE_GridCard7Main dataCard={data} variant={theme} />;
-          case 'outlet':
-            return <CE_CardOutlet dataCard={data} />;
+
           case 'bancassurance':
             return <CE_CardGrid10 dataCard={data} />;
-
           default:
             return <CE_CardGrid9 dataCard={data} />;
         }
@@ -1072,6 +1076,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       props: (_component: T_Insight) => {
         const findEntityBundle =
           _component?.field_content_type?.[0]?.type?.[0]?.type;
+
         const dataGridV5 = _component?.field_content_type?.map((item) => {
           return {
             title: item?.title?.[0]?.value,
@@ -1102,7 +1107,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           };
         });
 
-        const dataOutlet = _component?.field_content_type?.map((item) => {
+        const cardDataOutlet = _component?.field_content_type?.map((item) => {
           return {
             OfficeName: item?.title?.[0]?.value,
             Address: item?.body?.[0]?.value,
@@ -1110,6 +1115,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             gmaps: item?.field_coordinate?.[0]?.value,
           };
         });
+
+        const cardDataTabs = _component?.field_bri_location_type?.map(
+          (item) => {
+            return {
+              type_id: item?.type_id,
+              type_name: item?.type_name,
+            };
+          }
+        );
 
         const cardGrid9data = _component?.field_content_type?.map((item) => {
           return {
@@ -1143,10 +1157,11 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               entity: findEntityBundle,
               data: dataGridV7,
             };
-          case 'outlet':
+          case 'location':
             return {
               entity: findEntityBundle,
-              data: dataOutlet,
+              dataOutletProps: cardDataOutlet,
+              dataTabsProps: cardDataTabs,
             };
           case 'bancassurance':
             return {
@@ -1246,6 +1261,12 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               linkProps: linkCta,
             };
         }
+      },
+    },
+    form: {
+      component: CE_BannerMain,
+      props: function (_component: any): Record<string, any> {
+        throw new Error('Function not implemented.');
       },
     },
   };
