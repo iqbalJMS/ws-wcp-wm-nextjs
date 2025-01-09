@@ -8,12 +8,16 @@ export default function CE_CardPromo({
   data,
   link,
   variant,
+  title,
+  subtitle,
 }: {
   data: Array<{
     nid: number;
     image: string;
     label: string;
   }>;
+  title: string;
+  subtitle: string;
   link: string;
   variant: string;
 }) {
@@ -54,9 +58,9 @@ export default function CE_CardPromo({
       <div className="w-full h-auto flex flex-col items-center justify-center pb-20 pt-14">
         <section className="w-full flex flex-col items-center pb-16">
           <h1 className="text-[#3D3D3D] font-semibold text-3xl uppercase">
-            {/* {title} */} title
+            {title}
           </h1>
-          <h2 className="text-sm font-light text-center">subtitle</h2>
+          <h2 className="text-sm font-light text-center">{subtitle}</h2>
         </section>
         {/* mobile section */}
         <section className="md:hidden lg:hidden relative overflow-hidden mdmax:w-full mdmax:flex-none p-10 mdmax:p-1 justify-center">
