@@ -29,7 +29,7 @@ export function CE_TabsOutlet({
               key={index}
               onClick={() => onChange(item.slug)}
               className={[
-                `w-40 flex-1 justify-center items-start p-2 border-b cursor-pointer relative  text-center`,
+                `w-40 flex justify-center items-start p-2 border-b cursor-pointer relative  text-center`,
                 variant === 'full' ? 'py-3 ' : 'pb-3 ',
                 item.slug === value
                   ? variant === 'full'
