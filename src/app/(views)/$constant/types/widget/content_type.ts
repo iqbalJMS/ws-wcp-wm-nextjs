@@ -115,6 +115,8 @@ type T_content_type = {
   field_items: Array<{ field_title: Array<{ value: string }> }>;
   field_phone: Array<{ value: string }>;
   field_coordinate: Array<{ value: string }>;
+  field_text: Array<{ value: string }>;
+  field_link: Array<{ uri: string }>;
 };
 
 export type T_Insight = {

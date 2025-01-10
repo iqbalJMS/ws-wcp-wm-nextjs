@@ -5,7 +5,7 @@ import useScreenWidth from '@/lib/hook/useScreenWidth';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import Link from 'next/link';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+// import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { motion, useInView, useAnimation } from 'motion/react';
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
@@ -19,18 +19,16 @@ const getSlideToShow = (screenWidth: number) => {
   }
 };
 export default function CE_CardMegazinePrivate({
-  heading,
-  subHeading,
-  // cardData,
+  cardData,
 }: {
-  // cardData: Array<{
-  //   title: string;
-  //   subtitle: string;
-  //   image: string;
-  //   date: string;
-  //   category: string;
-  //   link: string;
-  // }>;
+  cardData: Array<{
+    title: string;
+    subtitle: string;
+    image: string;
+    date: string;
+    category: string;
+    link: string;
+  }>;
   heading: string;
   subHeading: string;
 }) {
@@ -40,7 +38,7 @@ export default function CE_CardMegazinePrivate({
   const slidesToScroll = 1;
 
   const nextSlide = () => {
-    if (currentSlide <= data.length - slidesToShow) {
+    if (currentSlide <= cardData.length - slidesToShow) {
       setCurrentSlide(currentSlide + slidesToScroll);
     }
   };
@@ -61,40 +59,40 @@ export default function CE_CardMegazinePrivate({
     }
   }, [isInView, mainControls]);
 
-  const data = [
-    {
-      image:
-        'https://bri.co.id/documents/1045040/1397929/Terrasse%2033.jpg/7fb508ee-0f3b-f1e9-7137-aa96b8af5957/',
-      subHeading: 'E-Terrase - Edisi 33',
-      text: 'E-Terrase',
-      date: 'Edisi 32 - 2020',
-      link: '/magazine',
-    },
-    {
-      image:
-        'https://bri.co.id/documents/1045040/1048102/Edisi%2032.jpg/4973614e-f711-e4bb-e113-aa7641c371b4/',
-      subHeading: 'Rossa, Indonesia`s Pride',
-      text: 'E-Terrase',
-      date: 'Edisi 32 - 2020',
-      link: '/magazine',
-    },
-    {
-      image:
-        'https://bri.co.id/documents/1045040/1048095/Edisi%2031.jpg/0af346f9-9f69-f63a-c724-2bae4af50c12/',
-      subHeading: 'Happy Salma, The Happiest Happy',
-      text: 'E-Terrase',
-      date: 'Edisi 32 - 2020',
-      link: '/magazine',
-    },
-    {
-      image:
-        'https://bri.co.id/documents/1045040/1048109/Edisi%2030%20.jpg.png/7aae6732-1cfc-1348-1648-bfd9e842f223/',
-      subHeading: 'Irwan Danny Mussry, A Time Traveler',
-      text: 'E-Terrase',
-      date: 'Edisi 32 - 2020',
-      link: '/magazine',
-    },
-  ];
+  // const cardData = [
+  //   {
+  //     image:
+  //       'https://bri.co.id/documents/1045040/1397929/Terrasse%2033.jpg/7fb508ee-0f3b-f1e9-7137-aa96b8af5957/',
+  //     subHeading: 'E-Terrase - Edisi 33',
+  //     text: 'E-Terrase',
+  //     date: 'Edisi 32 - 2020',
+  //     link: '/magazine',
+  //   },
+  //   {
+  //     image:
+  //       'https://bri.co.id/documents/1045040/1048102/Edisi%2032.jpg/4973614e-f711-e4bb-e113-aa7641c371b4/',
+  //     subHeading: 'Rossa, Indonesia`s Pride',
+  //     text: 'E-Terrase',
+  //     date: 'Edisi 32 - 2020',
+  //     link: '/magazine',
+  //   },
+  //   {
+  //     image:
+  //       'https://bri.co.id/documents/1045040/1048095/Edisi%2031.jpg/0af346f9-9f69-f63a-c724-2bae4af50c12/',
+  //     subHeading: 'Happy Salma, The Happiest Happy',
+  //     text: 'E-Terrase',
+  //     date: 'Edisi 32 - 2020',
+  //     link: '/magazine',
+  //   },
+  //   {
+  //     image:
+  //       'https://bri.co.id/documents/1045040/1048109/Edisi%2030%20.jpg.png/7aae6732-1cfc-1348-1648-bfd9e842f223/',
+  //     subHeading: 'Irwan Danny Mussry, A Time Traveler',
+  //     text: 'E-Terrase',
+  //     date: 'Edisi 32 - 2020',
+  //     link: '/magazine',
+  //   },
+  // ];
   return (
     <>
       <div
@@ -112,10 +110,10 @@ export default function CE_CardMegazinePrivate({
           className="w-full flex flex-col items-center pb-16"
         >
           <h1 className="text-privatecolor font-semibold text-3xl uppercase">
-            {heading}
+            {/* {heading} */} heading
           </h1>
           <h2 className="text-sm font-light text-center w-11/12 md:w-9/12 xl:w-3/12 pt-3 text-[#4C4C4C]">
-            {parseHTMLToReact(subHeading)}
+            {/* {parseHTMLToReact(subHeading)} */} sub heading
           </h2>
           <Link href={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${''}`} />
         </motion.div>
@@ -137,7 +135,7 @@ export default function CE_CardMegazinePrivate({
               transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
             }}
           >
-            {data?.map((item, index) => (
+            {cardData?.map((item, index) => (
               <Link
                 href={item?.link}
                 target="_blank"
@@ -148,7 +146,7 @@ export default function CE_CardMegazinePrivate({
                   <div
                     className="w-72 h-96 flex-none flex flex-col justify-end items-start hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                     style={{
-                      backgroundImage: `url(${item?.image})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -156,7 +154,7 @@ export default function CE_CardMegazinePrivate({
                   <div className="w-full bg-white h-20 mt-3 relative overflow-hidden">
                     <div className="">
                       <span className="text-xs pr-2 border-r border-black font-light">
-                        {item?.text}
+                        {item?.title}
                       </span>
                       <span className="pl-2 text-xs font-light">
                         {item?.date}
@@ -164,7 +162,7 @@ export default function CE_CardMegazinePrivate({
                     </div>
                     <div className="pt-2">
                       <h1 className="group-hover:underline text-privatecolor text-lg font-extrabold">
-                        {item?.subHeading}
+                        {item?.subtitle}
                       </h1>
                     </div>
                   </div>
@@ -194,7 +192,7 @@ export default function CE_CardMegazinePrivate({
             <button
               className={[
                 'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white',
-                currentSlide <= data?.length - 1 - slidesToShow
+                currentSlide <= cardData?.length - 1 - slidesToShow
                   ? 'cursor-pointer'
                   : 'bg-opacity-10 cursor-default',
               ].join(' ')}
@@ -205,7 +203,7 @@ export default function CE_CardMegazinePrivate({
                 height={40}
                 stroke="#B9AB7D"
                 className={
-                  currentSlide === data?.length - 1
+                  currentSlide === cardData?.length - 1
                     ? 'opacity-50'
                     : 'text-white text-red'
                 }
@@ -253,7 +251,7 @@ export default function CE_CardMegazinePrivate({
                   transform: `translateX(-${currentSlide * (100 / slidesToShow)}%)`,
                 }}
               >
-                {data?.map((item, index) => (
+                {cardData?.map((item, index) => (
                   <Link
                     href={item?.link}
                     target="_blank"
@@ -264,7 +262,7 @@ export default function CE_CardMegazinePrivate({
                       <div
                         className="w-full h-full hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                         style={{
-                          backgroundImage: `url(${item?.image})`,
+                          backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
                           backgroundSize: 'contain',
                           backgroundRepeat: 'no-repeat',
                         }}
@@ -272,7 +270,7 @@ export default function CE_CardMegazinePrivate({
                       <div className="w-full bg-white h-20 mt-3 relative overflow-hidden">
                         <div className="">
                           <span className="text-xs pr-2 border-r border-black font-light">
-                            {item?.text}
+                            {item?.title}
                           </span>
                           <span className="pl-2 text-xs font-light">
                             {item?.date}
@@ -280,7 +278,7 @@ export default function CE_CardMegazinePrivate({
                         </div>
                         <div className="pt-2">
                           <h1 className="group-hover:underline text-privatecolor text-lg font-extrabold">
-                            {item?.subHeading}
+                            {item?.subtitle}
                           </h1>
                         </div>
                       </div>
@@ -293,7 +291,7 @@ export default function CE_CardMegazinePrivate({
               <button
                 className={[
                   'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white',
-                  currentSlide >= data?.length - 1 - slidesToShow
+                  currentSlide >= cardData?.length - 1 - slidesToShow
                     ? 'cursor-default '
                     : 'bg-opacity-10 cursor-pointer',
                 ].join(' ')}
@@ -304,7 +302,7 @@ export default function CE_CardMegazinePrivate({
                   height={40}
                   stroke="#B9AB7D"
                   className={
-                    currentSlide === data?.length
+                    currentSlide === cardData?.length
                       ? 'opacity-50'
                       : 'text-white text-red'
                   }
@@ -328,7 +326,7 @@ export default function CE_CardMegazinePrivate({
           <div className="w-11/12 h-full flex justify-center ">
             <div className="w-full h-full flex flex-col ">
               <div className="w-full h-full flex justify-center space-x-4 ">
-                {data?.map((item, index) => (
+                {cardData?.map((item, index) => (
                   <Link
                     href={item?.link}
                     target="_blank"
@@ -338,7 +336,7 @@ export default function CE_CardMegazinePrivate({
                     <div
                       className="w-72 h-[70%] xl:w-80 xl:h-[85%] flex-none flex flex-col justify-end items-start group-hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                       style={{
-                        backgroundImage: `url(${item?.image})`,
+                        backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
                       }}
@@ -346,7 +344,7 @@ export default function CE_CardMegazinePrivate({
                     <div className="w-full bg-white h-20 pt-3 relative overflow-hidden">
                       <div className="">
                         <span className="text-xs pr-2 border-r border-black font-light">
-                          {item?.text}
+                          {item?.title}
                         </span>
                         <span className="pl-2 text-xs font-light">
                           {item?.date}
@@ -354,7 +352,7 @@ export default function CE_CardMegazinePrivate({
                       </div>
                       <div className="pt-2">
                         <h1 className="group-hover:underline text-privatecolor text-sm xl:text-base font-extrabold">
-                          {item?.subHeading}
+                          {item?.subtitle}
                         </h1>
                       </div>
                     </div>
