@@ -19,7 +19,7 @@ export function CFN_GetPromo(
     const payload = CFN_MapToPromoPayload(data);
     const actionResult = await ACT_GetPromo(payload);
     if (onSuccess) {
-      onSuccess(actionResult);
+      onSuccess(actionResult as any);
     }
   });
 }
@@ -32,10 +32,10 @@ export function CFN_MapToPromoPayload(form: T_PromoRequest): T_PromoRequest {
 }
 
 export function CFN_ValidateGetPromoFields(
-  name: keyof T_PromoRequest,
+  limit: keyof T_PromoRequest,
   value: any
 ): string {
-  switch (name) {
+  switch (limit) {
     default:
       return '';
   }

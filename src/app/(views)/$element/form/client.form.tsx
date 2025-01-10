@@ -69,7 +69,7 @@ export default function CE_FormGetInvited() {
         <div className="w-full h-full">
           <Image
             className="w-full h-full"
-            src="/images/bgOurStory.jpeg"
+            src=""
             alt={''}
             width={900}
             height={900}
