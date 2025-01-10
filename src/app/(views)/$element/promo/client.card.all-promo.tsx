@@ -1,13 +1,19 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState, useTransition } from 'react';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import Link from 'next/link';
+import useForm from '@/lib/hook/useForm';
+import {
+  CFN_GetPromo,
+  CFN_MapToPromoPayload,
+  CFN_ValidateGetPromoFields,
+} from '@/app/(views)/$function/cfn.get-promo';
+import { T_PromoRequest } from '@/api/promo/api.get-promo.type';
+
 export default function CE_CardPromo({
   data,
-  link,
-  variant,
   title,
   subtitle,
 }: {
@@ -18,13 +24,49 @@ export default function CE_CardPromo({
   }>;
   title: string;
   subtitle: string;
-  link: string;
-  variant: string;
 }) {
+  const [pending, transiting] = useTransition();
+  const [, setPromo] = useState<any[]>();
+  const [promoList, setPromoList] = useState<any[]>();
   const screenWidth = useScreenWidth();
   const slidesToShow = screenWidth > 768 ? 4 : 2;
   const slidesToScroll = 1;
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const { form, validateForm, onFieldChange } = useForm<
+    T_PromoRequest,
+    T_PromoRequest
+  >(
+    CFN_MapToPromoPayload({ limit: '4', page: '1' }),
+    CFN_ValidateGetPromoFields
+  );
+
+  const handlePromoList = () => {
+    if (pending) {
+      return;
+    }
+    const isValid = validateForm();
+    if (isValid) {
+      CFN_GetPromo(transiting, form, (resp: any) => {
+        if (form.page === '1') {
+          setPromo(resp?.field_components?.[1]);
+          setPromoList(resp?.field_components?.[1]?.promo_data?.items);
+        } else {
+          setPromoList((prev: any) => [
+            ...prev,
+            ...resp?.field_components?.[1]?.promo_data?.items,
+          ]);
+        }
+      });
+    }
+  };
+
+  const handleLoadMore = () => {
+    if (pending) {
+      return;
+    }
+    onFieldChange('limit', String(Number(form.limit) + 4));
+  };
 
   const nextSlide = () => {
     if (currentSlide <= data.length - slidesToShow) {
@@ -38,20 +80,25 @@ export default function CE_CardPromo({
     }
   };
 
-  let colorTheme = '';
-  if (variant === 'wm-private-main-navigation') {
-    colorTheme = 'white';
-  } else if (variant === 'wm-prioritas-main-navigation') {
-    colorTheme = 'prioritycolor';
-  } else {
-    colorTheme = 'wmcolor';
-  }
-  let textColor = '';
-  if (variant === 'wm-private-main-navigation') {
-    textColor = 'black';
-  } else {
-    textColor = 'white';
-  }
+  useEffect(() => {
+    handlePromoList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.limit, form.page]);
+
+  // let colorTheme = '';
+  // if (variant === 'wm-private-main-navigation') {
+  //   colorTheme = 'white';
+  // } else if (variant === 'wm-prioritas-main-navigation') {
+  //   colorTheme = 'prioritycolor';
+  // } else {
+  //   colorTheme = 'wmcolor';
+  // }
+  // let textColor = '';
+  // if (variant === 'wm-private-main-navigation') {
+  //   textColor = 'black';
+  // } else {
+  //   textColor = 'white';
+  // }
 
   return (
     <>
@@ -237,12 +284,12 @@ export default function CE_CardPromo({
           <div className="w-full flex justify-center ">
             <div className="w-fit h-full flex justify-center p-5">
               <div className="w-full h-full grid grid-cols-4 gap-5">
-                {data?.map((item, index) => (
+                {promoList?.map((item, index) => (
                   <div
                     key={index}
                     className="relative overflow-hidden lg:w-60 lg:h-72 xl:w-80 xl:h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -251,10 +298,10 @@ export default function CE_CardPromo({
                       .
                     </div>
                     <h1 className="lg:pb-2 xl:pb-4 px-5 z-50 text-white text-sm font-medium">
-                      {item?.label}
+                      {item?.title?.[0]?.value}
                     </h1>
                     <Link
-                      href={`/promo-detail/${item?.nid}`}
+                      href={`/promo-detail/${item?.nid?.[0]?.value}`}
                       className="lg:pb-3 xl:pb-8 px-5 z-50 hover:underline text-white flex items-center text-sm"
                     >
                       lihat promo
@@ -273,26 +320,17 @@ export default function CE_CardPromo({
             </div>
           </div>
         </section>
-        <section className="inline-flex items-center justify-center w-full pt-5">
+        <section className="hidden xl:inline-flex items-center justify-center w-full pt-5">
           <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
-          <Link
-            className={`bg-${colorTheme} hover:bg-gray-600 duration-300 text-${textColor} hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
-            href={link}
+          <button
+            onClick={() => handleLoadMore()}
+            className={`hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
           >
-            lihat semua promo
-          </Link>
+            Muat Lebih Banyak
+          </button>
           <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
         </section>
       </div>
     </>
   );
-}
-
-{
-  /* <Link
-            className={`bg-${colorTheme} hover:bg-gray-600 duration-300 text-${textColor} hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
-            href={'link'}
-          >
-            lihat semua promo
-          </Link> */
 }

@@ -22,6 +22,7 @@ import { T_Magazine } from './types/widget/external_magazine';
 import { T_RequirementBox } from './types/widget/requirement-box';
 import { T_RichText } from './types/widget/rich-text';
 import { T_Map } from './types/widget/map';
+// import { T_ResponGetPromo } from '@/api/promo/api.get-promo.type';
 import { T_PromoWidget } from './types/widget/promo';
 
 const SE_SubscriberContent = dynamic(
@@ -90,7 +91,7 @@ const CE_CardVariant6 = dynamic(
   () => import('@/app/(views)/$element/card/client.card.variant6')
 );
 const CE_CardVariant3 = dynamic(
-  () => import('@/app/(views)/$element/card/client.card.promo')
+  () => import('@/app/(views)/$element/promo/client.card.all-promo')
 );
 
 const CE_GridVariant02 = dynamic(
@@ -165,7 +166,11 @@ const CE_CardOutletMap = dynamic(
 );
 
 const CE_CardPromo = dynamic(
-  () => import('@/app/(views)/$element/card/client.card.promo')
+  () => import('@/app/(views)/$element/promo/client.card.all-promo')
+);
+
+const CE_LatestFourPromo = dynamic(
+  () => import('@/app/(views)/$element/promo/client.card.promo')
 );
 
 const CE_CardGrid10 = dynamic(
@@ -178,6 +183,74 @@ const CE_Location = dynamic(
 
 export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
   const components: Record<T_Widget, T_ComponentMapWidget> = {
+    promo_widget: {
+      component: (...props) => {
+        const findVariantStyle = props?.[0]?.variant;
+        const propsData = props?.[0]?.propsData;
+        const propsTitle = props?.[0]?.propsTitle;
+        const propsSubtitle = props?.[0]?.propsSubtitle;
+        const propsLink = props?.[0]?.propsLink;
+
+        switch (findVariantStyle) {
+          case WIDGET_VARIANT.variant23:
+            return (
+              <CE_LatestFourPromo
+                data={propsData}
+                title={propsTitle}
+                subtitle={propsSubtitle}
+                link={propsLink}
+                variant={theme}
+              />
+            );
+          default:
+          case WIDGET_VARIANT.variant24:
+            return (
+              <CE_CardPromo
+                data={propsData}
+                title={propsTitle}
+                subtitle={propsSubtitle}
+              />
+            );
+        }
+      },
+      props: (_component: T_PromoWidget) => {
+        const findVariantStyle =
+          _component?.field_web_variant_styles?.[0]?.field_key?.[0]?.value;
+        const titlePromo = _component?.field_title?.[0]?.value;
+        const subtitlePromo = _component?.field_subtitle?.[0]?.value;
+        const linkPromo = _component?.field_primary_cta?.[0]?.full_url;
+        const dataPromo = _component?.promo_data?.items?.map((item) => {
+          return {
+            nid: item?.nid?.[0]?.value,
+            label: item?.title?.[0]?.value,
+            image: item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+          };
+        });
+
+        switch (findVariantStyle) {
+          case WIDGET_VARIANT.variant24:
+            return {
+              propsData: dataPromo,
+              propsTitle: titlePromo,
+              propsSubtitle: subtitlePromo,
+            };
+          case WIDGET_VARIANT.variant23:
+            return {
+              propsData: dataPromo,
+              propsTitle: titlePromo,
+              propsSubtitle: subtitlePromo,
+              propsLink: linkPromo,
+            };
+          default:
+            return {
+              title: null,
+              subtitle: null,
+              desctitle: null,
+              data: null,
+            };
+        }
+      },
+    },
     location: {
       component: CE_Location,
       props: (_component: any) => {
@@ -1066,9 +1139,17 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return <CE_CardGrid6Main dataCard={data} variant={theme} />;
           case WIDGET_VARIANT.variant11:
             return <CE_GridCard7Main dataCard={data} variant={theme} />;
-
           case 'bancassurance':
             return <CE_CardGrid10 dataCard={data} />;
+          case 'external_magazine':
+            return (
+              <CE_CardMagazineMain
+                data={data}
+                heading={''}
+                subHeading={''}
+                variant={theme}
+              />
+            );
           default:
             return <CE_CardGrid9 dataCard={data} />;
         }
@@ -1141,6 +1222,16 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             nid: item?.nid?.[0]?.value,
           };
         });
+
+        const cardMagazineData = _component?.field_content_type?.map((item) => {
+          return {
+            title: item?.title?.[0]?.value,
+            subtitle: item?.field_text?.[0]?.value,
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+            date: item?.created?.[0]?.value,
+            link: item?.field_link?.[0]?.uri,
+          };
+        });
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
             return {
@@ -1167,6 +1258,11 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return {
               entity: findEntityBundle,
               data: cardGrid10data,
+            };
+          case 'external_magazine':
+            return {
+              entity: findEntityBundle,
+              data: cardMagazineData,
             };
 
           default:
@@ -1211,58 +1307,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         };
       },
     },
-    promo_widget: {
-      component: (...props) => {
-        const dataProps = props?.[0]?.dataProps;
-        const findVariantStyle = props?.[0]?.variant;
-        const titleProps = props?.[0]?.titleProps;
-        const subtitleProps = props?.[0]?.subtitleProps;
-        const linkProps = props?.[0]?.linkProps;
 
-        switch (findVariantStyle) {
-          case WIDGET_VARIANT.variant23:
-          default:
-            return (
-              <CE_CardPromo
-                data={dataProps}
-                title={titleProps}
-                subtitle={subtitleProps}
-                link={linkProps}
-                variant={theme}
-              />
-            );
-        }
-      },
-      props: (_component: T_PromoWidget) => {
-        const findVariantStyle =
-          _component?.field_web_variant_styles?.[0]?.field_key?.[0]?.value;
-        const labelCard = _component?.field_title?.[0]?.value;
-        const subtitleCard = _component?.field_subtitle?.[0]?.value;
-        const linkCta = _component?.field_primary_cta?.[0]?.full_url.replace(
-          '/id',
-          ''
-        );
-        const cardDataPromo = _component?.promo_data?.items?.map((item) => {
-          return {
-            label: item?.title?.[0]?.value,
-            image: item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
-            nid: item?.nid?.[0]?.value,
-          };
-        });
-
-        switch (findVariantStyle) {
-          case WIDGET_VARIANT.variant23:
-          default:
-            return {
-              dataProps: cardDataPromo,
-              variant: findVariantStyle,
-              titleProps: labelCard,
-              subtitleProps: subtitleCard,
-              linkProps: linkCta,
-            };
-        }
-      },
-    },
     form: {
       component: CE_BannerMain,
       props: function (_component: any): Record<string, any> {
@@ -1272,3 +1317,56 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
   };
   return components[key];
 };
+
+// promo_widget: {
+//   component: (...props) => {
+//     const dataProps = props?.[0]?.dataProps;
+//     const findVariantStyle = props?.[0]?.variant;
+//     const titleProps = props?.[0]?.titleProps;
+//     const subtitleProps = props?.[0]?.subtitleProps;
+//     const linkProps = props?.[0]?.linkProps;
+
+//     switch (findVariantStyle) {
+//       case WIDGET_VARIANT.variant23:
+//       default:
+//         return (
+//           <CE_CardPromo
+//             data={dataProps}
+//             title={titleProps}
+//             subtitle={subtitleProps}
+//             link={linkProps}
+//             variant={theme}
+//           />
+//         );
+//     }
+//   },
+//   props: (_component: T_PromoWidget) => {
+//     const findVariantStyle =
+//       _component?.field_web_variant_styles?.[0]?.field_key?.[0]?.value;
+//     const labelCard = _component?.field_title?.[0]?.value;
+//     const subtitleCard = _component?.field_subtitle?.[0]?.value;
+//     const linkCta = _component?.field_primary_cta?.[0]?.full_url.replace(
+//       '/id',
+//       ''
+//     );
+//     const cardDataPromo = _component?.promo_data?.items?.map((item) => {
+//       return {
+//         label: item?.title?.[0]?.value,
+//         image: item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+//         nid: item?.nid?.[0]?.value,
+//       };
+//     });
+
+//     switch (findVariantStyle) {
+//       case WIDGET_VARIANT.variant23:
+//       default:
+//         return {
+//           dataProps: cardDataPromo,
+//           variant: findVariantStyle,
+//           titleProps: labelCard,
+//           subtitleProps: subtitleCard,
+//           linkProps: linkCta,
+//         };
+//     }
+//   },
+// },

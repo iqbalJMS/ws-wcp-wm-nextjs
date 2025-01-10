@@ -4,7 +4,7 @@ import CE_CardMegazinePriority from './client.card.megazine.priority';
 import CE_CardMegazinePrivate from './client.card.megazine.private';
 
 const CE_CardMagazineMain = ({
-  // data,
+  data,
   heading,
   subHeading,
   variant,
@@ -24,15 +24,11 @@ const CE_CardMagazineMain = ({
   return (
     <>
       {variant === 'wm-prioritas-main-navigation' && (
-        <CE_CardMegazinePriority
-          // cardData={data}
-          heading={heading}
-          subHeading={subHeading}
-        />
+        <CE_CardMegazinePriority cardData={data} />
       )}
       {variant === 'wm-private-main-navigation' && (
         <CE_CardMegazinePrivate
-          // cardData={data}
+          cardData={data}
           heading={heading}
           subHeading={subHeading}
         />

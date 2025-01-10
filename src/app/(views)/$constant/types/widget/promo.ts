@@ -56,4 +56,5 @@ export type T_PromoWidget = {
       field_promo_image: Array<T_FieldImage>;
     }>;
   };
+  field_promo_configuration: Array<{ value: string }>;
 };

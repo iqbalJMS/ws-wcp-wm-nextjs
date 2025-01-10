@@ -1,27 +1,71 @@
+type T_FieldMediaImage = {
+  entity_type: any[];
+  entity_bundle: any[];
+  fid: any[];
+  uuid: any[];
+  langcode: any[];
+  uid: any[];
+  filename: any[];
+  uri: Array<{ value: string; url: string }>;
+  filemime: any[];
+  filesize: any[];
+  status: any[];
+  created: any[];
+  changed: any[];
+};
+
+type T_FieldImage = {
+  entity_type: any[];
+  entity_bundle: any[];
+  mid: any[];
+  uuid: any[];
+  vid: any[];
+  langcode: any[];
+  bundle: any[];
+  revision_created: any[];
+  revision_user: any[];
+  status: any[];
+  uid: any[];
+  name: any[];
+  thumbnail: Array<T_FieldMediaImage>;
+  created: any[];
+  changed: any[];
+  default_langcode: any[];
+  revision_translation_affected: any[];
+  path: Array<{ alias: any }>;
+  field_media_image: any[];
+};
+
 export type T_ResponGetPromo = {
-  data: Array<{
-    nid: Array<{
-      value: number;
-    }>;
-    title: {
-      value: string;
-    }[];
-    path: {
-      alias: null;
-      pid: null;
-    }[];
-    field_promo_category: Array<{ title: Array<{ value: string }> }>;
-    field_promo_image: Array<{
-      thumbnail: Array<{ uri: Array<{ url: string }> }>;
-    }>;
-    configurations: {
-      total: number;
-      totalPages: number;
-      currentPage: number;
-      isPrev: boolean;
-      isNext: boolean;
-    };
+  entity_type: Array<{ value: string }>;
+  entity_bundle: Array<{ value: string }>;
+  id: Array<{ value: number }>;
+  uuid: Array<{ value: string }>;
+  field_primary_cta: Array<{
+    uri: string;
+    full_url: string;
+    title: string;
   }>;
+  field_subtitle: Array<{ value: string }>;
+  field_title: Array<{ value: string }>;
+  field_web_variant_styles: Array<{ field_key: Array<{ value: string }> }>;
+  promo_data: {
+    items: Array<{
+      title: Array<{ value: string }>;
+      nid: Array<{ value: number }>;
+      field_promo_image: Array<T_FieldImage>;
+    }>;
+    configurations: Array<{
+      offset: number;
+      limit: string;
+      catID: string;
+      locID: string;
+      prodID: string;
+      micrositeID: string;
+      latest_seven: number;
+      title: string;
+    }>;
+  };
 };
 
 export type T_PromoRequest = {

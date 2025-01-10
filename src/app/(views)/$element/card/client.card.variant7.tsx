@@ -99,7 +99,7 @@ export default function CE_Location() {
                 <LocationIcon className="" width={20} stroke="#070059" />
                 <a
                   target="_blank"
-                  href={`https://www.google.com/maps/place/${item?.urlMaps}`}
+                  href={`${item?.urlMaps}`}
                   className="text-[#3E4182] text-base hover:underline"
                 >
                   Lihat di Peta
