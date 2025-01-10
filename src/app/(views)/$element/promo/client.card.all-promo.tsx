@@ -16,6 +16,9 @@ export default function CE_CardPromo({
   data,
   title,
   subtitle,
+  promoConfig,
+  variant,
+  link,
 }: {
   data: Array<{
     nid: number;
@@ -24,6 +27,9 @@ export default function CE_CardPromo({
   }>;
   title: string;
   subtitle: string;
+  promoConfig: string;
+  variant: string;
+  link: string;
 }) {
   const [pending, transiting] = useTransition();
   const [, setPromo] = useState<any[]>();
@@ -85,20 +91,20 @@ export default function CE_CardPromo({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form.limit, form.page]);
 
-  // let colorTheme = '';
-  // if (variant === 'wm-private-main-navigation') {
-  //   colorTheme = 'white';
-  // } else if (variant === 'wm-prioritas-main-navigation') {
-  //   colorTheme = 'prioritycolor';
-  // } else {
-  //   colorTheme = 'wmcolor';
-  // }
-  // let textColor = '';
-  // if (variant === 'wm-private-main-navigation') {
-  //   textColor = 'black';
-  // } else {
-  //   textColor = 'white';
-  // }
+  let colorTheme = '';
+  if (variant === 'wm-private-main-navigation') {
+    colorTheme = 'white';
+  } else if (variant === 'wm-prioritas-main-navigation') {
+    colorTheme = 'prioritycolor';
+  } else {
+    colorTheme = 'wmcolor';
+  }
+  let textColor = '';
+  if (variant === 'wm-private-main-navigation') {
+    textColor = 'black';
+  } else {
+    textColor = 'white';
+  }
 
   return (
     <>
@@ -320,14 +326,24 @@ export default function CE_CardPromo({
             </div>
           </div>
         </section>
+
         <section className="hidden xl:inline-flex items-center justify-center w-full pt-5">
           <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
-          <button
-            onClick={() => handleLoadMore()}
-            className={`hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
-          >
-            Muat Lebih Banyak
-          </button>
+          {promoConfig == 'latest_seven' ? (
+            <button
+              onClick={() => handleLoadMore()}
+              className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
+            >
+              Muat Lebih Banyak
+            </button>
+          ) : promoConfig == null ? (
+            <Link
+              href={link}
+              className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
+            >
+              lihat semua promo
+            </Link>
+          ) : null}
           <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
         </section>
       </div>
