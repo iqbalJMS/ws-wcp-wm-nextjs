@@ -5,8 +5,6 @@ import CE_CardMegazinePrivate from './client.card.megazine.private';
 
 const CE_CardMagazineMain = ({
   data,
-  heading,
-  subHeading,
   variant,
 }: {
   data: Array<{
@@ -17,8 +15,6 @@ const CE_CardMagazineMain = ({
     category: string;
     link: string;
   }>;
-  heading: string;
-  subHeading: string;
   variant: string;
 }) => {
   return (
@@ -27,11 +23,7 @@ const CE_CardMagazineMain = ({
         <CE_CardMegazinePriority cardData={data} />
       )}
       {variant === 'wm-private-main-navigation' && (
-        <CE_CardMegazinePrivate
-          cardData={data}
-          heading={heading}
-          subHeading={subHeading}
-        />
+        <CE_CardMegazinePrivate cardData={data} variant={''} />
       )}
     </>
   );
