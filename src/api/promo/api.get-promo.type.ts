@@ -68,6 +68,12 @@ export type T_ResponGetPromo = {
   };
 };
 
+export type T_Promo = Array<{
+  title: Array<{ value: string }>;
+  nid: Array<{ value: number }>;
+  field_promo_image: Array<T_FieldImage>;
+}>;
+
 export type T_PromoRequest = {
   limit: string;
   page: string;
