@@ -26,9 +26,10 @@ const getSlideToShow = (screenWidth: number) => {
     return 2;
   }
 };
-export default function CE_CardMegazinePriority({
+export default function CE_CardMegazinePrivate({
   cardData,
   variant,
+  display,
 }: {
   cardData: Array<{
     title: string;
@@ -38,6 +39,7 @@ export default function CE_CardMegazinePriority({
     category: string;
     link: string;
   }>;
+  display: string;
   variant: string;
 }) {
   const [pending, transiting] = useTransition();
@@ -65,7 +67,7 @@ export default function CE_CardMegazinePriority({
     }
     const isValid = validateForm();
     if (isValid) {
-      CFN_GetMagazine(transiting, form, (resp: any) => {
+      CFN_GetMagazine(transiting, form, display, (resp: any) => {
         const items = resp?.rows;
         if (!items?.length) {
           setIsLastPage(true);
@@ -87,7 +89,7 @@ export default function CE_CardMegazinePriority({
   const handleLoadMore = () => {
     if (isFirst) {
       setForm({
-        page: String(Number(form.page) + 3),
+        page: String(Number(form.page) + 1),
       });
       setIsFirst(false);
     } else {
@@ -137,6 +139,12 @@ export default function CE_CardMegazinePriority({
   } else {
     textColor = 'white';
   }
+  let labelColor = '';
+  if (variant === 'wm-private-main-navigation') {
+    labelColor = 'privatecolor';
+  } else {
+    labelColor = 'white';
+  }
 
   return (
     <>
@@ -144,25 +152,6 @@ export default function CE_CardMegazinePriority({
         ref={ref}
         className="w-full h-auto flex flex-col items-center justify-center"
       >
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 75 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          initial="hidden"
-          animate={mainControls}
-          transition={{ duration: 0.5, delay: 0.25 }}
-          className="w-full flex flex-col items-center pb-16"
-        >
-          <h1 className="text-prioritycolor font-semibold text-3xl uppercase">
-            heading
-          </h1>
-          <h2 className="text-sm font-light text-center w-11/12 md:w-9/12 xl:w-3/12 pt-3 text-[#4C4C4C]">
-            sub heading
-          </h2>
-          <Link href={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${''}`} />
-        </motion.div>
-
         {/* mobile section */}
         <motion.div
           variants={{
@@ -182,7 +171,7 @@ export default function CE_CardMegazinePriority({
           >
             {magazineList?.map((item, index) => (
               <Link
-                href={`/magazine/${item?.nid?.[0]?.value}`}
+                href={`/magazine-detail/${item?.nid?.[0]?.value}`}
                 target="_blank"
                 key={index}
                 className="relative w-full h-[500px]  flex-none rounded-lg flex flex-col justify-center items-center bg-center overflow-hidden p-3"
@@ -196,20 +185,37 @@ export default function CE_CardMegazinePriority({
                       backgroundRepeat: 'no-repeat',
                     }}
                   ></div>
-                  <div className="w-full bg-white h-20 mt-3 relative overflow-hidden">
+                  <div
+                    className={`w-full bg-black h-32 p-3 pb-5 px-5 relative overflow-hidden rounded-b-lg`}
+                  >
                     <div className="">
-                      <span className="text-xs pr-2 border-r border-black font-light">
+                      <span
+                        className={`group-hover:underline text-${labelColor} text-sm xl:text-base font-extrabold`}
+                      >
                         {item?.title?.[0]?.value}
                       </span>
-                      <span className="pl-2 text-xs font-light">
-                        {item?.created?.[0]?.value}
-                      </span>
                     </div>
-                    <div className="pt-2">
-                      <h1 className="group-hover:underline text-prioritycolor text-lg font-extrabold">
+                    <div className="pt-2 ">
+                      <h1
+                        className={`text-${labelColor} text-sm pr-2 font-light`}
+                      >
                         {item?.field_text?.[0]?.value}
                       </h1>
                     </div>
+                    <Link
+                      href={`/magazine-detail/${item?.nid?.[0]?.value}`}
+                      className="group text-white uppercase text-sm font-bold flex items-center hover:underline duration-200"
+                    >
+                      selengkapnya{' '}
+                      <span>
+                        <ArrowRightIcon
+                          className="pl-2 group-hover:translate-x-2 duration-200"
+                          width={30}
+                          height={30}
+                          stroke="#ffffff"
+                        />
+                      </span>
+                    </Link>
                   </div>
                 </div>
               </Link>
@@ -298,7 +304,7 @@ export default function CE_CardMegazinePriority({
               >
                 {magazineList?.map((item, index) => (
                   <Link
-                    href={`/magazine/${item?.nid?.[0]?.value}`}
+                    href={`/magazine-detail/${item?.nid?.[0]?.value}`}
                     target="_blank"
                     key={index}
                     className="group relative overflow-hidden w-[48%] h-[450px] flex-none flex flex-col justify-center items-center bg-center cursor-pointer"
@@ -312,20 +318,37 @@ export default function CE_CardMegazinePriority({
                           backgroundRepeat: 'no-repeat',
                         }}
                       ></div>
-                      <div className="w-full bg-white h-20 mt-3 relative overflow-hidden">
+                      <div
+                        className={`w-full bg-black h-32 p-3 pb-5 px-5 relative overflow-hidden rounded-b-lg`}
+                      >
                         <div className="">
-                          <span className="text-xs pr-2 border-r border-black font-light">
+                          <span
+                            className={`group-hover:underline text-${labelColor} text-sm xl:text-base font-extrabold`}
+                          >
                             {item?.title?.[0]?.value}
                           </span>
-                          <span className="pl-2 text-xs font-light">
-                            {item?.created?.[0]?.value}
-                          </span>
                         </div>
-                        <div className="pt-2">
-                          <h1 className="group-hover:underline text-prioritycolor text-lg font-extrabold">
+                        <div className="pt-2 pb-2">
+                          <h1
+                            className={`text-${labelColor} text-sm pr-2 font-light`}
+                          >
                             {item?.field_text?.[0]?.value}
                           </h1>
                         </div>
+                        <Link
+                          href={`/magazine-detail/${item?.nid?.[0]?.value}`}
+                          className="group text-white uppercase text-sm font-bold flex items-center hover:underline duration-200"
+                        >
+                          selengkapnya{' '}
+                          <span>
+                            <ArrowRightIcon
+                              className="pl-2 group-hover:translate-x-2 duration-200"
+                              width={30}
+                              height={30}
+                              stroke="#ffffff"
+                            />
+                          </span>
+                        </Link>
                       </div>
                     </div>
                   </Link>
@@ -373,33 +396,50 @@ export default function CE_CardMegazinePriority({
               <div className="w-full h-full flex justify-center space-x-4 ">
                 {magazineList?.map((item, index) => (
                   <Link
-                    href={item?.field_link?.[0]?.full_url}
+                    href={`/magazine-detail/${item?.nid?.[0]?.value}`}
                     target="_blank"
                     key={index}
                     className="group overflow-hidden w-96 xl:w-80 h-[92%]"
                   >
                     <div
-                      className="w-72 h-[70%] xl:w-80 xl:h-[85%] flex-none flex flex-col justify-end items-start group-hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
+                      className="w-72 h-[70%] xl:w-80 xl:h-[75%] flex-none flex flex-col justify-end items-start group-hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                       style={{
                         backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
                       }}
                     ></div>
-                    <div className="w-full bg-white h-20 pt-3 relative overflow-hidden">
+                    <div
+                      className={`w-full bg-black h-32 p-3 pb-5 px-5 relative overflow-hidden rounded-b-lg`}
+                    >
                       <div className="">
-                        <span className="text-xs pr-2 border-r border-black font-light">
+                        <span
+                          className={`group-hover:underline text-${labelColor} text-sm xl:text-base font-extrabold`}
+                        >
                           {item?.title?.[0]?.value}
                         </span>
-                        <span className="pl-2 text-xs font-light">
-                          {item?.created?.[0]?.value}
-                        </span>
                       </div>
-                      <div className="pt-2">
-                        <h1 className="group-hover:underline text-prioritycolor text-sm xl:text-base font-extrabold">
+                      <div className="pt-2 pb-2">
+                        <h1
+                          className={`text-${labelColor} text-sm pr-2 font-light`}
+                        >
                           {item?.field_text?.[0]?.value}
                         </h1>
                       </div>
+                      <Link
+                        href={`/magazine-detail/${item?.nid?.[0]?.value}`}
+                        className="group text-white uppercase text-sm font-bold flex items-center hover:underline duration-200"
+                      >
+                        selengkapnya{' '}
+                        <span>
+                          <ArrowRightIcon
+                            className="pl-2 group-hover:translate-x-2 duration-200"
+                            width={30}
+                            height={30}
+                            stroke="#ffffff"
+                          />
+                        </span>
+                      </Link>
                     </div>
                   </Link>
                 ))}
@@ -425,12 +465,6 @@ export default function CE_CardMegazinePriority({
             >
               Muat Lebih Banyak
             </button>
-            <Link
-              href={'/private-magazine'}
-              className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-[#404041] py-3 px-5 rounded-full uppercase font-semibold border border-gray-500 hover:text-white`}
-            >
-              lihat semua e-magazine
-            </Link>
             <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
           </motion.div>
         ) : null}

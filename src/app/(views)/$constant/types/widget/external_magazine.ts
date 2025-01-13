@@ -35,7 +35,7 @@ type T_FieldImage = {
   path: Array<{ alias: any }>;
   field_media_image: any[];
 };
-export type T_Magazine = Array<{
+export type T_Magazine = {
   entity_type: Array<{ value: string }>;
   entity_bundle: Array<{ value: string }>;
   nid: Array<{ value: number }>;
@@ -43,9 +43,11 @@ export type T_Magazine = Array<{
   vid: Array<{ value: number }>;
   langcode: Array<{ value: string }>;
   created: Array<{ value: string; format: string }>;
-  title: Array<{ value: string }>;
+  field_title: Array<{ value: string }>;
   changed: Array<{ value: string }>;
   field_image: Array<T_FieldImage>;
   field_link: Array<{ full_url: string }>;
   field_text: Array<{ value: string }>;
-}>;
+  field_display: Array<{ value: string }>;
+  field_content: Array<{ value: string }>;
+};

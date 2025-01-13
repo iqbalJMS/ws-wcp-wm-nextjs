@@ -1,12 +1,21 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useRef, useTransition, useState } from 'react';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Link from 'next/link';
-// import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { motion, useInView, useAnimation } from 'motion/react';
+import {
+  T_Magazine,
+  T_RequestMagazine,
+} from '@/api/e-magazine/api.get-e-magazine.type';
+import useForm from '@/lib/hook/useForm';
+import {
+  CFN_GetMagazine,
+  CFN_MapToMagazinePayload,
+  CFN_ValidateGetMagazineFields,
+} from '@/app/(views)/$function/cfn.get-magazine';
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
 
@@ -20,6 +29,10 @@ const getSlideToShow = (screenWidth: number) => {
 };
 export default function CE_CardMegazinePriority({
   cardData,
+  variant,
+  display,
+  heading,
+  subHeading,
 }: {
   cardData: Array<{
     title: string;
@@ -29,14 +42,59 @@ export default function CE_CardMegazinePriority({
     category: string;
     link: string;
   }>;
+  display: string;
+  variant: string;
+  heading: string;
+  subHeading: string;
 }) {
+  const [pending, transiting] = useTransition();
+  const [isLastPage, setIsLastPage] = useState<boolean>(false);
+  const [magazineList, setmagazineList] = useState<T_Magazine>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const screenWidth = useScreenWidth();
   const slidesToShow = getSlideToShow(screenWidth);
   const slidesToScroll = 1;
 
+  const { form, validateForm } = useForm<T_RequestMagazine, T_RequestMagazine>(
+    CFN_MapToMagazinePayload({
+      page: '0',
+    }),
+    CFN_ValidateGetMagazineFields
+  );
+
+  const handleMagazineList = () => {
+    if (pending) {
+      return;
+    }
+    const isValid = validateForm();
+    if (isValid) {
+      CFN_GetMagazine(transiting, form, display, (resp: any) => {
+        const items = resp;
+        if (!items?.length) {
+          setIsLastPage(true);
+          return;
+        }
+
+        if (form.page === '0') {
+          setmagazineList(items);
+        } else {
+          setmagazineList((prev) => [...prev, ...items]);
+
+          if (items.length < form.page) {
+            setIsLastPage(true);
+          }
+        }
+      });
+    }
+  };
+
+  useEffect(() => {
+    handleMagazineList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.page]);
+
   const nextSlide = () => {
-    if (currentSlide <= cardData.length - slidesToShow) {
+    if (currentSlide <= magazineList.length - slidesToShow) {
       setCurrentSlide(currentSlide + slidesToScroll);
     }
   };
@@ -56,6 +114,28 @@ export default function CE_CardMegazinePriority({
     }
   }, [isInView, mainControls]);
 
+  let colorTheme = '';
+  if (variant === 'wm-private-main-navigation') {
+    colorTheme = 'white';
+  } else if (variant === 'wm-prioritas-main-navigation') {
+    colorTheme = 'prioritycolor';
+  } else {
+    colorTheme = 'wmcolor';
+  }
+  let textColor = '';
+  if (variant === 'wm-private-main-navigation') {
+    textColor = 'black';
+  } else {
+    textColor = 'white';
+  }
+
+  let labelColor = '';
+  if (variant === 'wm-private-main-navigation') {
+    labelColor = 'privatecolor';
+  } else {
+    labelColor = 'white';
+  }
+
   return (
     <>
       <div
@@ -72,11 +152,11 @@ export default function CE_CardMegazinePriority({
           transition={{ duration: 0.5, delay: 0.25 }}
           className="w-full flex flex-col items-center pb-16"
         >
-          <h1 className="text-prioritycolor font-semibold text-3xl uppercase">
-            heading
+          <h1 className={`text-${labelColor} font-semibold text-3xl uppercase`}>
+            {heading}
           </h1>
           <h2 className="text-sm font-light text-center w-11/12 md:w-9/12 xl:w-3/12 pt-3 text-[#4C4C4C]">
-            sub heading
+            {parseHTMLToReact(subHeading)}
           </h2>
           <Link href={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${''}`} />
         </motion.div>
@@ -98,9 +178,9 @@ export default function CE_CardMegazinePriority({
               transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
             }}
           >
-            {cardData?.map((item, index) => (
+            {magazineList?.map((item, index) => (
               <Link
-                href={item?.link}
+                href={`/magazine-detail/${item?.nid?.[0]?.value}`}
                 target="_blank"
                 key={index}
                 className="relative w-full h-[500px]  flex-none rounded-lg flex flex-col justify-center items-center bg-center overflow-hidden p-3"
@@ -109,7 +189,7 @@ export default function CE_CardMegazinePriority({
                   <div
                     className="w-72 h-96 flex-none flex flex-col justify-end items-start hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -117,15 +197,17 @@ export default function CE_CardMegazinePriority({
                   <div className="w-full bg-white h-20 mt-3 relative overflow-hidden">
                     <div className="">
                       <span className="text-xs pr-2 border-r border-black font-light">
-                        {item?.title}
+                        {item?.title?.[0]?.value}
                       </span>
                       <span className="pl-2 text-xs font-light">
-                        {item?.date}
+                        {item?.title?.[0]?.value}
                       </span>
                     </div>
                     <div className="pt-2">
-                      <h1 className="group-hover:underline text-prioritycolor text-lg font-extrabold">
-                        {item?.subtitle}
+                      <h1
+                        className={`group-hover:underline text-${labelColor} text-lg font-extrabold`}
+                      >
+                        {item?.field_text?.[0]?.value}
                       </h1>
                     </div>
                   </div>
@@ -214,9 +296,9 @@ export default function CE_CardMegazinePriority({
                   transform: `translateX(-${currentSlide * (100 / slidesToShow)}%)`,
                 }}
               >
-                {cardData?.map((item, index) => (
+                {magazineList?.map((item, index) => (
                   <Link
-                    href={item?.link}
+                    href={`/magazine-detail/${item?.nid?.[0]?.value}`}
                     target="_blank"
                     key={index}
                     className="group relative overflow-hidden w-[48%] h-[450px] flex-none flex flex-col justify-center items-center bg-center cursor-pointer"
@@ -225,7 +307,7 @@ export default function CE_CardMegazinePriority({
                       <div
                         className="w-full h-full hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                         style={{
-                          backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
+                          backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
                           backgroundSize: 'contain',
                           backgroundRepeat: 'no-repeat',
                         }}
@@ -233,15 +315,17 @@ export default function CE_CardMegazinePriority({
                       <div className="w-full bg-white h-20 mt-3 relative overflow-hidden">
                         <div className="">
                           <span className="text-xs pr-2 border-r border-black font-light">
-                            {item?.title}
+                            {item?.title?.[0]?.value}
                           </span>
                           <span className="pl-2 text-xs font-light">
-                            {item?.date}
+                            {item?.created?.[0]?.value}
                           </span>
                         </div>
                         <div className="pt-2">
-                          <h1 className="group-hover:underline text-prioritycolor text-lg font-extrabold">
-                            {item?.subtitle}
+                          <h1
+                            className={`group-hover:underline text-${labelColor} text-lg font-extrabold`}
+                          >
+                            {item?.field_text?.[0]?.value}
                           </h1>
                         </div>
                       </div>
@@ -254,7 +338,7 @@ export default function CE_CardMegazinePriority({
               <button
                 className={[
                   'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white',
-                  currentSlide >= cardData?.length - 1 - slidesToShow
+                  currentSlide >= magazineList?.length - 1 - slidesToShow
                     ? 'cursor-default '
                     : 'bg-opacity-10 cursor-pointer',
                 ].join(' ')}
@@ -265,7 +349,7 @@ export default function CE_CardMegazinePriority({
                   height={40}
                   stroke="#B9AB7D"
                   className={
-                    currentSlide === cardData?.length
+                    currentSlide === magazineList?.length
                       ? 'opacity-50'
                       : 'text-white text-red'
                   }
@@ -289,9 +373,9 @@ export default function CE_CardMegazinePriority({
           <div className="w-11/12 h-full flex justify-center ">
             <div className="w-full h-full flex flex-col ">
               <div className="w-full h-full flex justify-center space-x-4 ">
-                {cardData?.map((item, index) => (
+                {magazineList?.map((item, index) => (
                   <Link
-                    href={item?.link}
+                    href={`/magazine-detail/${item?.nid?.[0]?.value}`}
                     target="_blank"
                     key={index}
                     className="group overflow-hidden w-96 xl:w-80 h-[92%]"
@@ -299,7 +383,7 @@ export default function CE_CardMegazinePriority({
                     <div
                       className="w-72 h-[70%] xl:w-80 xl:h-[85%] flex-none flex flex-col justify-end items-start group-hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                       style={{
-                        backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
+                        backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
                       }}
@@ -307,15 +391,17 @@ export default function CE_CardMegazinePriority({
                     <div className="w-full bg-white h-20 pt-3 relative overflow-hidden">
                       <div className="">
                         <span className="text-xs pr-2 border-r border-black font-light">
-                          {item?.title}
+                          {item?.title?.[0]?.value}
                         </span>
                         <span className="pl-2 text-xs font-light">
-                          {item?.date}
+                          {item?.title?.[0]?.value}
                         </span>
                       </div>
                       <div className="pt-2">
-                        <h1 className="group-hover:underline text-prioritycolor text-sm xl:text-base font-extrabold">
-                          {item?.subtitle}
+                        <h1
+                          className={`group-hover:underline text-${labelColor} text-sm xl:text-base font-extrabold`}
+                        >
+                          {item?.field_text?.[0]?.value}
                         </h1>
                       </div>
                     </div>
@@ -325,23 +411,31 @@ export default function CE_CardMegazinePriority({
             </div>
           </div>
         </motion.div>
-
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 75 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          initial="hidden"
-          animate={mainControls}
-          transition={{ duration: 0.5, delay: 0.45 }}
-          className="inline-flex items-center justify-center w-full pt-5"
-        >
-          <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
-          <button className=" hover:bg-gray-600 duration-300 text-[#404041] py-3 px-5 rounded-full uppercase font-semibold border border-gray-500 hover:text-white">
-            lihat semua e-magazine
-          </button>
-          <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
-        </motion.div>
+        {!isLastPage ? (
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className="inline-flex items-center justify-center w-full pt-5"
+          >
+            <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
+            <Link
+              href={
+                variant == 'wm-private-main-navigation'
+                  ? '/private-magazine'
+                  : '/prioritas-magazine'
+              }
+              className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-[#404041] py-3 px-5 rounded-full uppercase font-semibold border border-gray-500 hover:text-white`}
+            >
+              lihat semua e-magazine
+            </Link>
+            <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
+          </motion.div>
+        ) : null}
       </div>
     </>
   );
