@@ -88,22 +88,25 @@ function RowElement({
               </Link>
             ))}
           </div>
-          <div className="w-full xl:w-80 h-44 flex flex-col items-start py-5 lg:py-0 pl-0 lg:pl-4">
+          <div className="w-full xl:w-full h-44 flex flex-col items-start py-5 lg:py-0 pl-0 lg:pl-4">
             <h1 className={`text-${theme} text-xl font-bold pb-3`}>
               Terdaftar Dan Diawasi Oleh:
             </h1>
-            <div className="flex items-center space-x-1">
-              {data?.field_multiple_logo.map((item, index) => (
-                <div key={index} className="w-40">
-                  <Image
+            <div className="flex flex-col justify-center text-white font-extralight">
+              {/* {data?.field_multiple_logo.map((item, index) => ( */}
+              {/* <Image
                     src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.thumbnail?.[0]?.uri?.[0]?.url}`}
                     width={100}
                     height={100}
                     alt=""
                     className="w-28 h-14 xl:w-36 xl:h-16"
-                  />
-                </div>
-              ))}
+                  /> */}
+              <h1>
+                BRI berizin dan diawasi oleh Otoritas Jasa Keuangan & Bank
+                Indonesia
+              </h1>
+              <h1 className="pt-5">BRI merupakan peserta penjaminan LPS</h1>
+              {/* ))} */}
             </div>
           </div>
         </div>

@@ -6,6 +6,9 @@ import CE_CardMegazinePrivate from './client.card.megazine.private';
 const CE_CardMagazineMain = ({
   data,
   variant,
+  display,
+  heading,
+  subHeading,
 }: {
   data: Array<{
     title: string;
@@ -16,14 +19,27 @@ const CE_CardMagazineMain = ({
     link: string;
   }>;
   variant: string;
+  display: string;
+  heading: string;
+  subHeading: string;
 }) => {
   return (
     <>
-      {variant === 'wm-prioritas-main-navigation' && (
-        <CE_CardMegazinePriority cardData={data} />
+      {display === 'last_4_magazines' && (
+        <CE_CardMegazinePriority
+          cardData={data}
+          display={display}
+          variant={variant}
+          heading={heading}
+          subHeading={subHeading}
+        />
       )}
-      {variant === 'wm-private-main-navigation' && (
-        <CE_CardMegazinePrivate cardData={data} variant={''} />
+      {display === 'all' && (
+        <CE_CardMegazinePrivate
+          cardData={data}
+          variant={variant}
+          display={display}
+        />
       )}
     </>
   );

@@ -32,7 +32,7 @@ export default function CE_PortletHeader({
                   </div>
                 )}
                 {subTitle && (
-                  <div className="text-white font-normal md:text-base text-lg md:max-w-4xl leading-8 mdmax:text-center">
+                  <div className="text-white text-center font-normal md:text-base text-lg md:max-w-4xl leading-8 mdmax:text-center">
                     {parseHTMLToReact(subTitle)}
                   </div>
                 )}

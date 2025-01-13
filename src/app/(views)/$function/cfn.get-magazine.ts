@@ -13,11 +13,12 @@ import { ACT_GetMagazine } from '@/app/(views)/$action/magazine/action.get-magaz
 export function CFN_GetMagazine(
   transit: Call,
   data: T_RequestMagazine,
+  path: string = 'all',
   onSuccess?: (data: T_PostResponse<T_ResponGetEmagazine> | undefined) => void
 ) {
   transit(async () => {
     const payload = CFN_MapToMagazinePayload(data);
-    const actionResult = await ACT_GetMagazine(payload);
+    const actionResult = await ACT_GetMagazine(payload, path);
     if (onSuccess) {
       onSuccess(actionResult);
     }

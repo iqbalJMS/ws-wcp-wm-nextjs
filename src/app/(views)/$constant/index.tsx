@@ -55,7 +55,9 @@ const CE_SectionPromo = dynamic(
 const CE_BannerMain = dynamic(
   () => import('@/app/(views)/$element/banner/client.banner.main')
 );
-
+const CE_FormGetInvited = dynamic(
+  () => import('@/app/(views)/$element/form/client.form')
+);
 const CE_CarouselMain = dynamic(
   () => import('@/app/(views)/$element/carousel/client.carousel.main')
 );
@@ -130,11 +132,6 @@ const CE_CardFlipMain = dynamic(
   () => import('@/app/(views)/$element/card-flip/card-flip-main')
 );
 
-const CE_CardMegazinePrivate = dynamic(
-  () =>
-    import('@/app/(views)/$element/card-magazine/client.card.megazine.private')
-);
-
 const CE_CardVariant8Upper = dynamic(
   () => import('@/app/(views)/$element/grid/client.card-grid-8-upper')
 );
@@ -154,9 +151,9 @@ const CE_CardGrid9 = dynamic(
   () => import('@/app/(views)/$element/grid/client.card-grid-9')
 );
 
-// const CE_CardMagazineMain = dynamic(
-//   () => import('@/app/(views)/$element/card-magazine/card.magazine.main')
-// );
+const CE_CardMagazineMain = dynamic(
+  () => import('@/app/(views)/$element/card-magazine/card.magazine.main')
+);
 const CE_RequirementBox = dynamic(
   () => import('@/app/(views)/$element/requirement-box/client.requirement.box')
 );
@@ -966,17 +963,18 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       },
     },
     external_magazine: {
-      component: CE_CardMegazinePrivate,
+      component: CE_CardMagazineMain,
       props: (_component: T_Magazine) => {
         return {
           variant: theme,
-          title: _component?.[0]?.title?.[0]?.value,
-          subtitle: _component?.[0]?.field_text?.[0]?.value,
-          label: _component?.[0]?.field_text?.[0]?.value,
-          image:
-            _component?.[0]?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
-          date: _component?.[0]?.created?.[0]?.value,
-          link: _component?.[0]?.field_link?.[0]?.full_url,
+          subtitle: _component?.field_text?.[0]?.value,
+          label: _component?.field_text?.[0]?.value,
+          image: _component?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+          date: _component?.created?.[0]?.value,
+          link: _component?.field_link?.[0]?.full_url,
+          display: _component?.field_display?.[0]?.value,
+          heading: _component?.field_title?.[0]?.value,
+          subHeading: _component?.field_content?.[0]?.value,
         };
       },
     },
@@ -1314,64 +1312,11 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
     },
 
     form: {
-      component: CE_BannerMain,
-      props: function (_component: any): Record<string, any> {
-        throw new Error('Function not implemented.');
+      component: CE_FormGetInvited,
+      props: (_component: any) => {
+        return { variant: theme };
       },
     },
   };
   return components[key];
 };
-
-// promo_widget: {
-//   component: (...props) => {
-//     const dataProps = props?.[0]?.dataProps;
-//     const findVariantStyle = props?.[0]?.variant;
-//     const titleProps = props?.[0]?.titleProps;
-//     const subtitleProps = props?.[0]?.subtitleProps;
-//     const linkProps = props?.[0]?.linkProps;
-
-//     switch (findVariantStyle) {
-//       case WIDGET_VARIANT.variant23:
-//       default:
-//         return (
-//           <CE_CardPromo
-//             data={dataProps}
-//             title={titleProps}
-//             subtitle={subtitleProps}
-//             link={linkProps}
-//             variant={theme}
-//           />
-//         );
-//     }
-//   },
-//   props: (_component: T_PromoWidget) => {
-//     const findVariantStyle =
-//       _component?.field_web_variant_styles?.[0]?.field_key?.[0]?.value;
-//     const labelCard = _component?.field_title?.[0]?.value;
-//     const subtitleCard = _component?.field_subtitle?.[0]?.value;
-//     const linkCta = _component?.field_primary_cta?.[0]?.full_url.replace(
-//       '/id',
-//       ''
-//     );
-//     const cardDataPromo = _component?.promo_data?.items?.map((item) => {
-//       return {
-//         label: item?.title?.[0]?.value,
-//         image: item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
-//         nid: item?.nid?.[0]?.value,
-//       };
-//     });
-
-//     switch (findVariantStyle) {
-//       case WIDGET_VARIANT.variant23:
-//       default:
-//         return {
-//           dataProps: cardDataPromo,
-//           variant: findVariantStyle,
-//           titleProps: labelCard,
-//           subtitleProps: subtitleCard,
-//           linkProps: linkCta,
-//         };
-//     }
-//   },
-// },
