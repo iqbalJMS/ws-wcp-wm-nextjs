@@ -2,6 +2,7 @@
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import React, { useEffect, useState, MouseEvent, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import Link from 'next/link';
 
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
@@ -23,6 +24,7 @@ export function CE_BannerVariant02({
     title: string;
     desc: string;
     button: string;
+    link: string;
   }>;
 }) {
   const [slider, setSlider] = useState(data);
@@ -40,7 +42,7 @@ export function CE_BannerVariant02({
     }
     const interval = setInterval(() => {
       setCurrentSlide((prevIndex) => prevIndex + 1);
-    }, 7000);
+    }, 20000);
 
     return () => clearInterval(interval);
   }, [currentSlide, data, data.length, slider?.length]);
@@ -117,22 +119,25 @@ export function CE_BannerVariant02({
                   }}
                 >
                   <div className="bg-black opacity-40 w-full h-full absolute z-10"></div>
-                  <div className="text-start w-9/12 lg:w-8/12 2xl:w-6/12 space-y-4 ml-16 lg:-ml-32 2xl:-ml-72 z-20 px-0 xl:px-5 mb-20">
+                  <div className="text-start w-9/12 lg:w-8/12 2xl:w-6/12 space-y-4 ml-16 lg:-ml-32 2xl:-ml-72 z-20 px-0 xl:px-5 mb-20 ">
                     {item?.title && (
                       <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-white font-poppins">
                         {parseHTMLToReact(item?.title)}
                       </h1>
                     )}
                     {item?.desc && (
-                      <h2 className="text-sm xl:text-base w-full xl:w-8/12 font-light text-white mb-10 font-poppins">
+                      <h2 className="text-sm xl:text-base w-full xl:w-9/12 font-light text-white mb-10 font-poppin pb-10">
                         {parseHTMLToReact(item?.desc)}
                       </h2>
                     )}
                     {item?.button && (
-                      <button className="group relative overflow-hidden bg-privatecolor text-white uppercase font-semibold py-2 px-5 rounded-full">
+                      <Link
+                        href={item?.link}
+                        className="group relative overflow-hidden bg-privatecolor text-white uppercase font-semibold py-2 px-5 rounded-full"
+                      >
                         {item?.button}
                         <span className="group-hover:bg-white absolute w-full opacity-20 duration-200 z-10 rounded-full py-5 px-5 top-0 left-0"></span>
-                      </button>
+                      </Link>
                     )}
                   </div>
                 </div>

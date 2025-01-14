@@ -9,7 +9,7 @@ import {
 } from 'react-simple-captcha';
 import InputText from '@/lib/element/global/input.text';
 
-export default function CE_FormGetInvited({ variant }: { variant: string }) {
+export default function CE_FormVariant1({ variant }: { variant: string }) {
   const DATA = [
     {
       placeholder: 'Nama Lengkap Anda',

@@ -33,6 +33,7 @@ const CE_CardFlipMain = ({
           subTitle={subTitle}
           buttonText={buttonText}
           buttonUri={buttonUri}
+          variant={variant}
         />
       )}
       {variant === 'wm-private-main-navigation' && (
@@ -42,6 +43,7 @@ const CE_CardFlipMain = ({
           subTitle={subTitle}
           buttonText={buttonText}
           buttonUri={buttonUri}
+          variant={variant}
         />
       )}
     </>

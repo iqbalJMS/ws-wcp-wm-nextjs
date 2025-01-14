@@ -5,6 +5,7 @@ type FieldContent = { value: string };
 type FieldPrimaryCTA = {
   uri: string;
   title: string;
+  full_url: string;
 };
 
 type FieldImage = {

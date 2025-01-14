@@ -26,7 +26,7 @@ const getSlideToShow = (screenWidth: number) => {
     return 2;
   }
 };
-export default function CE_CardMegazinePrivate({
+export default function CE_AllMagazine({
   cardData,
   variant,
   display,
