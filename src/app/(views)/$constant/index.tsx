@@ -55,8 +55,8 @@ const CE_SectionPromo = dynamic(
 const CE_BannerMain = dynamic(
   () => import('@/app/(views)/$element/banner/client.banner.main')
 );
-const CE_FormGetInvited = dynamic(
-  () => import('@/app/(views)/$element/form/client.form')
+const CE_FormMain = dynamic(
+  () => import('@/app/(views)/$element/form/client.form-main')
 );
 const CE_CarouselMain = dynamic(
   () => import('@/app/(views)/$element/carousel/client.carousel.main')
@@ -263,7 +263,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
     location: {
       component: CE_Location,
       props: (_component: any) => {
-        return {};
+        return { variant: theme };
       },
     },
     slider: {
@@ -284,12 +284,14 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           const title = item?.field_title?.[0]?.value;
           const description = item?.field_content?.[0]?.value;
           const button = item?.field_primary_cta[0]?.title;
+          const link = item?.field_primary_cta?.[0]?.full_url;
 
           return {
             image: image,
             title: title,
             desc: description,
             button: button,
+            link: link,
           };
         });
 
@@ -898,7 +900,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           _component?.field_web_variant_styles?.[0]?.field_key?.[0]?.value;
         const title = _component?.field_title[0]?.value;
         const subtitle = _component?.field_content[0]?.value;
-        const buttonLink = _component?.field_primary_cta?.[0]?.uri;
+        const buttonLink = _component?.field_primary_cta?.[0]?.full_url;
         const buttonText = _component?.field_primary_cta?.[0]?.title;
         const bgImage =
           _component?.field_image[0]?.field_media_image[0]?.uri[0]?.url;
@@ -1312,7 +1314,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
     },
 
     form: {
-      component: CE_FormGetInvited,
+      component: CE_FormMain,
       props: (_component: any) => {
         return { variant: theme };
       },

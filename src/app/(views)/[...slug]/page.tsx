@@ -131,7 +131,7 @@ export default async function PageWealthDetail({
       {theme === 'wm-prioritas-main-navigation' && (
         <CE_FloatingVariant03 data={itemMenuFloatNavPriority} />
       )}
-      {/* <CE_FloatingMain data={itemMenuFloatNavigation} variant={theme} /> */}
+
       {components?.map(({ Component, props }, key) => (
         <React.Fragment key={key}>
           <Component {...props} />

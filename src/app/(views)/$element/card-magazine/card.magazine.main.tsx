@@ -1,7 +1,7 @@
 'use client';
 
-import CE_CardMegazinePriority from './client.card.megazine.priority';
-import CE_CardMegazinePrivate from './client.card.megazine.private';
+import CE_LastFourMagazine from './client.card.megazine.priority';
+import CE_AllMagazine from './client.card.megazine.private';
 
 const CE_CardMagazineMain = ({
   data,
@@ -26,7 +26,7 @@ const CE_CardMagazineMain = ({
   return (
     <>
       {display === 'last_4_magazines' && (
-        <CE_CardMegazinePriority
+        <CE_LastFourMagazine
           cardData={data}
           display={display}
           variant={variant}
@@ -35,11 +35,7 @@ const CE_CardMagazineMain = ({
         />
       )}
       {display === 'all' && (
-        <CE_CardMegazinePrivate
-          cardData={data}
-          variant={variant}
-          display={display}
-        />
+        <CE_AllMagazine cardData={data} variant={variant} display={display} />
       )}
     </>
   );

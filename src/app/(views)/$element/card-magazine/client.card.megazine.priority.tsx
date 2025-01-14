@@ -27,7 +27,7 @@ const getSlideToShow = (screenWidth: number) => {
     return 2;
   }
 };
-export default function CE_CardMegazinePriority({
+export default function CE_LastFourMagazine({
   cardData,
   variant,
   display,
@@ -133,7 +133,7 @@ export default function CE_CardMegazinePriority({
   if (variant === 'wm-private-main-navigation') {
     labelColor = 'privatecolor';
   } else {
-    labelColor = 'white';
+    labelColor = 'prioritycolor';
   }
 
   return (

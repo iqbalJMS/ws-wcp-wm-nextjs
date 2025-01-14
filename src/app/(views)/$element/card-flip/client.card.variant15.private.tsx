@@ -22,7 +22,8 @@ export default function CE_CardVariant15({
   topTitle: string;
   subTitle: string;
   buttonText: string;
-  buttonUri: null | string;
+  buttonUri: string;
+  variant: string;
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -113,9 +114,14 @@ export default function CE_CardVariant15({
                 >
                   {buttonText}
                 </Link>
-                <button className="uppercase text-base font-semibold rounded-full py-2 px-4 border-privatecolor border bg-white text-privatecolor hover:bg-privatecolor duration-300 hover:text-white-01">
-                  get invited
-                </button>
+                {topTitle === undefined ? null : (
+                  <Link
+                    href={'/get-invited-private'}
+                    className="uppercase text-base font-semibold rounded-full py-2 px-4 border-privatecolor border bg-white text-privatecolor hover:bg-privatecolor duration-300 hover:text-white-01"
+                  >
+                    get invited
+                  </Link>
+                )}
               </div>
             </motion.div>
           </section>
