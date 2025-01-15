@@ -58,6 +58,10 @@ const CE_BannerMain = dynamic(
 const CE_FormMain = dynamic(
   () => import('@/app/(views)/$element/form/client.form-main')
 );
+
+const CE_GetInvited = dynamic(
+  () => import('@/app/(views)/$element/card/client.card.getInvited')
+);
 const CE_CarouselMain = dynamic(
   () => import('@/app/(views)/$element/carousel/client.carousel.main')
 );
@@ -114,6 +118,10 @@ const CE_GridCard5Main = dynamic(
 
 const CE_Travel = dynamic(
   () => import('@/app/(views)/$element/card/client.card.travel')
+);
+
+const CE_Privileges = dynamic(
+  () => import('@/app/(views)/$element/card/client.card.privileges')
 );
 
 const CE_CardGrid6Main = dynamic(
@@ -991,6 +999,8 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         const imgContent2 = props?.[0]?.imgContent2;
         const firstColumn = props?.[0]?.firstColumn;
         const secondColumn = props?.[0]?.secondColumn;
+        const propsSecondColumn = props?.[0]?.propsSecondColumn;
+        const propsFirstColumn = props?.[0]?.propsFirstColumn;
 
         switch (findVariantStyle) {
           case WIDGET_VARIANT.variant14:
@@ -1016,6 +1026,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               <CE_Travel
                 firstColumnProps={firstColumn}
                 secondColumnProps={secondColumn}
+                variant={theme}
+              />
+            );
+          case WIDGET_VARIANT.variant25:
+            return (
+              <CE_Privileges
+                variant={theme}
+                secondColumn={propsSecondColumn}
+                firstColumn={propsFirstColumn}
               />
             );
           default:
@@ -1090,14 +1109,33 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
 
         const firstColumnData = _component?.field_first_column?.map((item) => {
           return {
-            title: item?.field_content?.[0]?.value,
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+          };
+        });
+
+        const propsFirstData = _component?.field_first_column?.map((item) => {
+          return {
+            content: item?.field_content?.[0]?.value,
+            label: item?.field_title?.[0]?.value,
+            link: item?.field_paragraphs?.[0]?.field_primary_cta?.[0]?.full_url,
+            linkTitle: item?.field_title?.[0]?.value,
+          };
+        });
+
+        const propsSecondData = _component?.field_second_column?.map((item) => {
+          return {
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
           };
         });
 
         const secondColumnData = _component?.field_second_column?.map(
           (item) => {
             return {
-              image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+              content: item?.field_content?.[0]?.value,
+              label: item?.field_title?.[0]?.value,
+              link: item?.field_paragraphs?.[0]?.field_primary_cta?.[0]
+                ?.full_url,
+              linkTitle: item?.field_title?.[0]?.value,
             };
           }
         );
@@ -1128,6 +1166,12 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               variant: findVariantStyle,
               firstColumn: firstColumnData,
               secondColumn: secondColumnData,
+            };
+          case WIDGET_VARIANT.variant25:
+            return {
+              variant: findVariantStyle,
+              propsFirstColumn: propsFirstData,
+              propsSecondColumn: propsSecondData,
             };
           default:
             return {
@@ -1269,7 +1313,6 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           //     entity: findEntityBundle,
           //     data: cardMagazineData,
           //   };
-
           default:
             return {
               variant: findEntityBundle,
@@ -1317,6 +1360,12 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: CE_FormMain,
       props: (_component: any) => {
         return { variant: theme };
+      },
+    },
+    card_cta: {
+      component: CE_GetInvited,
+      props: (_component: any) => {
+        return {};
       },
     },
   };
