@@ -78,13 +78,13 @@ export default function InputText({
   return (
     <>
       <div
-        className={`flex py-1  w-full h-12 items-center border border-solid overflow-hidden rounded-2xl bg-transparent ${
+        className={`flex w-full h-12 py-1 items-center border overflow-hidden px-4 rounded-full bg-transparent ${
           disabled ? 'bg-gray-500 bg-opacity-5' : 'bg-transparent'
         } ${
           state === 'error'
             ? 'border-red-500'
             : 'border-black focus-within:border-blue-01 focus-within:border-opacity-50 focus-within:ring-4 focus-within:ring-light-02 focus-within:ring-opacity-30'
-        } ${forInputPhone ? 'pl-28' : 'px-4'}`}
+        }`}
       >
         {leftSlot || leftText ? (
           <div

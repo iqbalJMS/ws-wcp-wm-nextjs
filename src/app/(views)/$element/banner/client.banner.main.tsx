@@ -13,6 +13,7 @@ const CE_BannerMain = ({
     title: string;
     desc: string;
     button: string;
+    link: string;
   }>;
   variant: any;
 }) => {

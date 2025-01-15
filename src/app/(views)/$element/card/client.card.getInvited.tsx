@@ -14,26 +14,6 @@ export default function CE_GetInvited() {
       address:
         'Gedung BRI2 Jl. Jendral Sudirman Kav.44 jakarta 10210 indonesia',
     },
-    {
-      linkCta: 'kantor pusat',
-      address:
-        'Gedung BRI2 Jl. Jendral Sudirman Kav.44 jakarta 10210 indonesia',
-    },
-    {
-      linkCta: 'kantor pusat',
-      address:
-        'Gedung BRI2 Jl. Jendral Sudirman Kav.44 jakarta 10210 indonesia',
-    },
-    {
-      linkCta: 'kantor pusat',
-      address:
-        'Gedung BRI2 Jl. Jendral Sudirman Kav.44 jakarta 10210 indonesia',
-    },
-    {
-      linkCta: 'kantor pusat',
-      address:
-        'Gedung BRI2 Jl. Jendral Sudirman Kav.44 jakarta 10210 indonesia',
-    },
   ];
   return (
     <>

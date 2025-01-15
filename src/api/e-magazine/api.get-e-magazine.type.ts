@@ -60,6 +60,21 @@ export type T_ResponGetEmagazine = {
   };
 };
 
+export type T_Magazine = Array<{
+  entity_type: Array<{ value: string }>;
+  entity_bundle: Array<{ value: string }>;
+  nid: Array<{ value: number }>;
+  uuid: Array<{ value: string }>;
+  vid: Array<{ value: number }>;
+  langcode: Array<{ value: string }>;
+  created: Array<{ value: string; format: string }>;
+  title: Array<{ value: string }>;
+  changed: Array<{ value: string }>;
+  field_image: Array<T_FieldImage>;
+  field_link: Array<{ full_url: string }>;
+  field_text: Array<{ value: string }>;
+}>;
+
 export type T_RequestMagazine = {
   page: string;
 };

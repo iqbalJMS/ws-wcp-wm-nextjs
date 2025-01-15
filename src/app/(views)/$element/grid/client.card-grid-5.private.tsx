@@ -49,7 +49,7 @@ const CE_CardGrid5Private = ({
 
   return (
     <>
-      <div ref={ref} className="container py-10 bg-emerald-500 ">
+      <div ref={ref} className="container py-10 ">
         <div className="flex flex-wrap -mx-10">
           <>
             {dataCard?.map((item, index) => (

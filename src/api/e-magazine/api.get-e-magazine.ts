@@ -13,10 +13,13 @@ function objectToQueryString(obj: Record<string, string>): string {
   return params.toString();
 }
 
-export async function API_GetMagazine(request: T_RequestMagazine) {
+export async function API_GetMagazine(
+  request: T_RequestMagazine,
+  path: string = 'all'
+) {
   try {
     let queryString = objectToQueryString(request);
-    const url = `/api/bri/external-magazine/all?_format=json_recursive&${queryString}`;
+    const url = `/api/bri/external-magazine/${path}?_format=json_recursive&${queryString}`;
 
     if (!url) return undefined;
     const response = await get<T_PostResponse<T_ResponGetEmagazine>>(url);

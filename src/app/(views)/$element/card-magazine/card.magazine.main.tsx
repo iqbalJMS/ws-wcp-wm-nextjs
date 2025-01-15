@@ -1,13 +1,14 @@
 'use client';
 
-import CE_CardMegazinePriority from './client.card.megazine.priority';
-import CE_CardMegazinePrivate from './client.card.megazine.private';
+import CE_LastFourMagazine from './client.card.megazine.priority';
+import CE_AllMagazine from './client.card.megazine.private';
 
 const CE_CardMagazineMain = ({
   data,
+  variant,
+  display,
   heading,
   subHeading,
-  variant,
 }: {
   data: Array<{
     title: string;
@@ -17,21 +18,24 @@ const CE_CardMagazineMain = ({
     category: string;
     link: string;
   }>;
+  variant: string;
+  display: string;
   heading: string;
   subHeading: string;
-  variant: string;
 }) => {
   return (
     <>
-      {variant === 'wm-prioritas-main-navigation' && (
-        <CE_CardMegazinePriority cardData={data} />
-      )}
-      {variant === 'wm-private-main-navigation' && (
-        <CE_CardMegazinePrivate
+      {display === 'last_4_magazines' && (
+        <CE_LastFourMagazine
           cardData={data}
+          display={display}
+          variant={variant}
           heading={heading}
           subHeading={subHeading}
         />
+      )}
+      {display === 'all' && (
+        <CE_AllMagazine cardData={data} variant={variant} display={display} />
       )}
     </>
   );

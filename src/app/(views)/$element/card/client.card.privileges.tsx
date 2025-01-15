@@ -2,13 +2,21 @@ import Image from 'next/image';
 import React from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
-export default function CE_Travel({
-  firstColumnProps,
-  secondColumnProps,
+export default function CE_Privileges({
+  firstColumn,
+  secondColumn,
   variant,
 }: {
-  firstColumnProps: Array<{ image: string }>;
-  secondColumnProps: Array<{ content: string; desc: string; label: string }>;
+  secondColumn: Array<{
+    image: string;
+  }>;
+  firstColumn: Array<{
+    content: string;
+    desc: string;
+    label: string;
+    link: string;
+    linkTitle: string;
+  }>;
   variant: string;
 }) {
   let theme = '';
@@ -17,14 +25,13 @@ export default function CE_Travel({
   } else {
     theme = 'prioritycolor';
   }
-
   return (
     <>
-      <div className="w-full h-fit flex justify-center py-10">
-        <div className="w-11/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12 flex flex-col md:flex-row ">
+      <div className="w-full h-fit flex justify-center ">
+        <div className="w-11/12 lg:w-9/12 xl:w-8/12 2xl:w-6/12 flex flex-col md:flex-row-reverse ">
           <section className="w-full h-full flex items-center justify-center">
             <Image
-              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${firstColumnProps?.[0]?.image ?? '/images/no-images.png'}`}
+              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${secondColumn?.[0]?.image ?? '/images/no-images.png'}`}
               alt={''}
               width={500}
               height={500}
@@ -32,7 +39,7 @@ export default function CE_Travel({
             />
           </section>
           <section className="w-full h-full p-3 flex flex-col justify-center">
-            {secondColumnProps?.map((item, index) => (
+            {firstColumn?.map((item, index) => (
               <div key={index} className="space-y-5 pt-5">
                 <h1 className={`capitalize text-${theme} text-lg font-bold`}>
                   {parseHTMLToReact(item?.label)}

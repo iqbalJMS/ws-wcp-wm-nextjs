@@ -10,40 +10,38 @@ import {
   CFN_MapToPromoPayload,
   CFN_ValidateGetPromoFields,
 } from '@/app/(views)/$function/cfn.get-promo';
-import { T_PromoRequest } from '@/api/promo/api.get-promo.type';
+import { T_Promo, T_PromoRequest } from '@/api/promo/api.get-promo.type';
 
 export default function CE_CardPromo({
-  data,
   title,
   subtitle,
   promoConfig,
   variant,
   link,
 }: {
-  data: Array<{
-    nid: number;
-    image: string;
-    label: string;
-  }>;
   title: string;
   subtitle: string;
   promoConfig: string;
   variant: string;
   link: string;
 }) {
+  const [isLastPage, setIsLastPage] = useState<boolean>(false);
   const [pending, transiting] = useTransition();
-  const [, setPromo] = useState<any[]>();
-  const [promoList, setPromoList] = useState<any[]>();
+  const [promoList, setPromoList] = useState<T_Promo>([]);
+  const [isFirst, setIsFirst] = useState<boolean>(true);
   const screenWidth = useScreenWidth();
   const slidesToShow = screenWidth > 768 ? 4 : 2;
   const slidesToScroll = 1;
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const { form, validateForm, onFieldChange } = useForm<
+  const { form, validateForm, setForm } = useForm<
     T_PromoRequest,
     T_PromoRequest
   >(
-    CFN_MapToPromoPayload({ limit: '4', page: '1' }),
+    CFN_MapToPromoPayload({
+      limit: promoConfig === 'latest_seven' ? '8' : '4',
+      page: '0',
+    }),
     CFN_ValidateGetPromoFields
   );
 
@@ -54,28 +52,42 @@ export default function CE_CardPromo({
     const isValid = validateForm();
     if (isValid) {
       CFN_GetPromo(transiting, form, (resp: any) => {
-        if (form.page === '1') {
-          setPromo(resp?.field_components?.[1]);
-          setPromoList(resp?.field_components?.[1]?.promo_data?.items);
+        const items = resp?.field_components?.[1]?.promo_data?.items;
+        if (!items?.length) {
+          setIsLastPage(true);
+          return;
+        }
+
+        if (form.page === '0') {
+          setPromoList(items);
         } else {
-          setPromoList((prev: any) => [
-            ...prev,
-            ...resp?.field_components?.[1]?.promo_data?.items,
-          ]);
+          setPromoList((prev) => [...prev, ...items]);
+
+          if (items.length < form.limit) {
+            setIsLastPage(true);
+          }
         }
       });
     }
   };
 
   const handleLoadMore = () => {
-    if (pending) {
-      return;
+    if (isFirst) {
+      setForm({
+        page: String(Number(form.page) + 3),
+        limit: '4',
+      });
+      setIsFirst(false);
+    } else {
+      setForm({
+        page: String(Number(form.page) + 1),
+        limit: '4',
+      });
     }
-    onFieldChange('limit', String(Number(form.limit) + 4));
   };
 
   const nextSlide = () => {
-    if (currentSlide <= data.length - slidesToShow) {
+    if (currentSlide <= promoList.length - slidesToShow) {
       setCurrentSlide(currentSlide + slidesToScroll);
     }
   };
@@ -123,12 +135,12 @@ export default function CE_CardPromo({
               transform: `translateX(-${currentSlide * (180 / slidesToShow)}%)`,
             }}
           >
-            {data?.map((item, index) => (
+            {promoList?.map((item, index) => (
               <div
                 key={index}
                 className="relative w-1/4 mdmax:w-11/12 h-80 lg:h-64 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                 style={{
-                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                 }}
@@ -137,7 +149,7 @@ export default function CE_CardPromo({
                   .
                 </div>
                 <h1 className="pb-4 px-5 z-50 text-white text-base font-medium">
-                  {item?.label}
+                  {item?.title?.[0]?.value}
                 </h1>
                 <Link
                   href={'#'}
@@ -178,7 +190,7 @@ export default function CE_CardPromo({
             <button
               className={[
                 'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white',
-                currentSlide < data?.length - 1 - slidesToShow
+                currentSlide < promoList?.length - 1 - slidesToShow
                   ? 'cursor-pointer '
                   : 'bg-opacity-10 cursor-default',
               ].join(' ')}
@@ -189,7 +201,7 @@ export default function CE_CardPromo({
                 height={40}
                 stroke="#4640A5"
                 className={
-                  currentSlide === data?.length - 1
+                  currentSlide === promoList?.length - 1
                     ? 'opacity-50'
                     : 'text-white text-red'
                 }
@@ -227,12 +239,12 @@ export default function CE_CardPromo({
                   transform: `translateX(-${currentSlide * (150 / slidesToShow)}%)`,
                 }}
               >
-                {data?.map((item, index) => (
+                {promoList?.map((item, index) => (
                   <div
                     key={index}
                     className="relative w-[32%] h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -241,7 +253,7 @@ export default function CE_CardPromo({
                       .
                     </div>
                     <h1 className="pb-4 px-2 z-50 text-white text-sm font-medium">
-                      {item?.label}
+                      {item?.title?.[0]?.value}
                     </h1>
                     <Link
                       href={'#'}
@@ -265,7 +277,7 @@ export default function CE_CardPromo({
               <button
                 className={[
                   'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white',
-                  currentSlide >= data?.length - 1 - slidesToShow
+                  currentSlide >= promoList?.length - 1 - slidesToShow
                     ? 'cursor-default '
                     : 'bg-opacity-10 cursor-pointer',
                 ].join(' ')}
@@ -276,7 +288,7 @@ export default function CE_CardPromo({
                   height={40}
                   stroke="#4640A5"
                   className={
-                    currentSlide === data?.length
+                    currentSlide === promoList?.length
                       ? 'opacity-50'
                       : 'text-white text-red'
                   }
@@ -327,25 +339,27 @@ export default function CE_CardPromo({
           </div>
         </section>
 
-        <section className="hidden xl:inline-flex items-center justify-center w-full pt-5">
-          <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
-          {promoConfig == 'latest_seven' ? (
-            <button
-              onClick={() => handleLoadMore()}
-              className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
-            >
-              Muat Lebih Banyak
-            </button>
-          ) : promoConfig == null ? (
-            <Link
-              href={link}
-              className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
-            >
-              lihat semua promo
-            </Link>
-          ) : null}
-          <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
-        </section>
+        {!isLastPage ? (
+          <section className="hidden xl:inline-flex items-center justify-center w-full pt-5">
+            <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
+            {promoConfig == 'latest_seven' ? (
+              <button
+                onClick={() => handleLoadMore()}
+                className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
+              >
+                Muat Lebih Banyak
+              </button>
+            ) : promoConfig == null ? (
+              <Link
+                href={link}
+                className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
+              >
+                lihat semua promo
+              </Link>
+            ) : null}
+            <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
+          </section>
+        ) : null}
       </div>
     </>
   );

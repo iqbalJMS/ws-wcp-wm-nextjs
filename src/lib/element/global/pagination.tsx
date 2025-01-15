@@ -7,6 +7,7 @@ type T_PaginationProps = {
   totalPages: number;
   variant: 'simple' | 'complex';
   onPageChange: (_page: number) => void;
+  color: string;
 };
 
 const PaginationButton: React.FC<{
@@ -14,11 +15,12 @@ const PaginationButton: React.FC<{
   isDisabled: boolean;
   isActive?: boolean;
   onClick: () => void;
-}> = ({ label, isDisabled, isActive, onClick }) => (
+  bgColor: string;
+}> = ({ label, isDisabled, isActive, onClick, bgColor }) => (
   <button
     onClick={onClick}
     disabled={isDisabled}
-    className={`px-4 py-2 border border-prioritycolor rounded ${isDisabled ? 'cursor-not-allowed opacity-50 bg-prioritycolor text-gray-300' : isActive ? 'bg-white border-prioritycolor text-slate-600' : 'bg-prioritycolor text-white'}`}
+    className={`px-4 py-2 border border-${bgColor} rounded ${isDisabled ? `cursor-not-allowed opacity-50 bg-${bgColor} text-gray-300` : isActive ? `bg-white border-black border-2 text-slate-600` : `bg-${bgColor} text-white`}`}
   >
     {label}
   </button>
@@ -29,6 +31,7 @@ const Pagination: React.FC<T_PaginationProps> = ({
   totalPages,
   onPageChange,
   variant,
+  color,
 }) => {
   const getPageNumbers = () => {
     const pages: (number | string)[] = [];
@@ -53,6 +56,12 @@ const Pagination: React.FC<T_PaginationProps> = ({
       onPageChange(page);
     }
   };
+  let colorTheme = '';
+  if (color === 'wm-prioritas-main-navigation') {
+    colorTheme = 'prioritycolor';
+  } else {
+    colorTheme = 'wmcolor';
+  }
 
   return (
     <div className="flex space-x-2">
@@ -61,10 +70,12 @@ const Pagination: React.FC<T_PaginationProps> = ({
           label="first"
           isDisabled={currentPage === 1}
           onClick={() => handlePageChange(1)}
+          bgColor={colorTheme}
         />
       )}
 
       <PaginationButton
+        bgColor={colorTheme}
         label={variant === 'complex' ? 'previous' : '<'}
         isDisabled={currentPage === 1}
         onClick={() => handlePageChange(currentPage - 1)}
@@ -73,6 +84,7 @@ const Pagination: React.FC<T_PaginationProps> = ({
       {getPageNumbers().map((page, index) =>
         typeof page === 'number' ? (
           <PaginationButton
+            bgColor={colorTheme}
             key={index}
             label={page}
             isDisabled={false}
@@ -87,6 +99,7 @@ const Pagination: React.FC<T_PaginationProps> = ({
       )}
 
       <PaginationButton
+        bgColor={colorTheme}
         label={variant === 'complex' ? 'next' : '>'}
         isDisabled={currentPage === totalPages}
         onClick={() => handlePageChange(currentPage + 1)}
@@ -94,6 +107,7 @@ const Pagination: React.FC<T_PaginationProps> = ({
 
       {variant === 'complex' && (
         <PaginationButton
+          bgColor={colorTheme}
           label="last"
           isDisabled={currentPage === totalPages}
           onClick={() => handlePageChange(totalPages)}
