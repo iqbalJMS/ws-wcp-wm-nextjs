@@ -389,17 +389,17 @@ export default function CE_AllMagazine({
           initial="hidden"
           animate={mainControls}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="hidden lg:flex w-full h-[60vh] justify-center items-center "
+          className="hidden lg:flex w-full h-full justify-center items-center "
         >
-          <div className="w-11/12 h-full flex justify-center ">
-            <div className="w-full h-full flex flex-col ">
-              <div className="w-full h-full flex justify-center space-x-4 ">
+          <div className="w-full h-full flex justify-center ">
+            <div className="w-fit h-full flex justify-center ">
+              <div className="w-full h-full grid grid-cols-4 place-items-center gap-5 ">
                 {magazineList?.map((item, index) => (
                   <Link
                     href={`/magazine-detail/${item?.nid?.[0]?.value}`}
                     target="_blank"
                     key={index}
-                    className="group overflow-hidden w-96 xl:w-80 h-[92%]"
+                    className="group overflow-hidden w-96 xl:w-80 h-[60vh]"
                   >
                     <div
                       className="w-72 h-[70%] xl:w-80 xl:h-[75%] flex-none flex flex-col justify-end items-start group-hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"

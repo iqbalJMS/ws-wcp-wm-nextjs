@@ -1,7 +1,7 @@
 'use client';
 
-import CE_LastFourMagazine from './client.card.megazine.priority';
-import CE_AllMagazine from './client.card.megazine.private';
+import CE_LastFourMagazine from './client.card.last-four-megazine';
+import CE_AllMagazine from './client.card.all-megazine';
 
 const CE_CardMagazineMain = ({
   data,
