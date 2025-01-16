@@ -22,21 +22,35 @@ export default function CE_PortletVariant02({
   let theme = '';
   let bgHover = '';
   let textColor = '';
+  let textHover = '';
 
   if (variant == 'wm-private-main-navigation') {
     theme = 'privatecolor';
   } else if (variant == 'wm-main-navigation') {
     theme = 'wmcolor';
+  } else {
+    theme = 'white';
   }
   if (variant == 'wm-private-main-navigation') {
     bgHover = 'white';
   } else if (variant == 'wm-main-navigation') {
     bgHover = 'black';
+  } else {
+    bgHover = 'black';
   }
   if (variant == 'wm-private-main-navigation') {
-    textColor = 'privatecolor';
+    textColor = 'white';
   } else if (variant == 'wm-main-navigation') {
     textColor = 'white';
+  } else {
+    textColor = 'prioritycolor';
+  }
+  if (variant == 'wm-private-main-navigation') {
+    textHover = 'privatecolor';
+  } else if (variant == 'wm-main-navigation') {
+    textHover = 'white';
+  } else {
+    textHover = 'white';
   }
 
   return (
@@ -65,23 +79,13 @@ export default function CE_PortletVariant02({
                 )}
               </div>
               <div className="flex gap-4">
-                {variant == 'wm-private-main-navigation' ? (
-                  <Link href={buttonLink ?? ''}>
-                    <button
-                      className={`font-semibold px-12 capitalize text-base bg-privatecolor hover:bg-white rounded-full py-3 text-white hover:text-privatecolor duration-200`}
-                    >
-                      {buttonText}
-                    </button>
-                  </Link>
-                ) : (
-                  <Link href={buttonLink ?? ''}>
-                    <button
-                      className={`font-semibold px-12 capitalize text-base bg-${theme} hover:bg-${bgHover} rounded-full py-3 text-${textColor} hover:text-white duration-200`}
-                    >
-                      {buttonText}
-                    </button>
-                  </Link>
-                )}
+                <Link href={buttonLink ?? ''}>
+                  <button
+                    className={`font-semibold px-12 capitalize text-base bg-${theme} hover:bg-${bgHover} rounded-full py-3 text-${textColor} hover:text-${textHover} duration-200`}
+                  >
+                    {buttonText}
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
