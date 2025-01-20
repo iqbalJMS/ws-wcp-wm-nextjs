@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'motion/react';
 
-const CE_CardGrid10 = ({
+const CE_BancasurranceWm = ({
   dataCard,
 }: {
   dataCard: Array<{
@@ -28,9 +28,9 @@ const CE_CardGrid10 = ({
 
   return (
     <>
-      <div className="container py-10 px-20 mdmax:px-10">
+      <div className="container py-10 px-20 mdmax:px-10 ">
         <div ref={ref} className="flex flex-wrap -mx-10">
-          {dataCard.map((item, index) => (
+          {dataCard?.map((item, index) => (
             <Link
               href={`/bancassurance-detail/${item?.nid}`}
               key={index}
@@ -70,10 +70,10 @@ const CE_CardGrid10 = ({
                   <div className="text-black text-xl font-extrabold uppercase">
                     {item?.title}
                   </div>
-                  <div className="py-5 text-slate-600">
+                  <div className="py-5 text-slate-600 line-clamp-3">
                     {parseHTMLToReact(item?.description)}
                   </div>
-                  <div>
+                  <div className="pt-5">
                     <div className="text-wmcolor font-bold uppercase text-sm inline-flex items-center justify-center gap-2">
                       lihat detail
                       <svg
@@ -100,4 +100,4 @@ const CE_CardGrid10 = ({
   );
 };
 
-export default CE_CardGrid10;
+export default CE_BancasurranceWm;
