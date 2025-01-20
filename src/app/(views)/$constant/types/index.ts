@@ -31,4 +31,5 @@ export type T_Widget =
   | 'form'
   | 'location'
   | 'card_cta'
-  | 'map';
+  | 'map'
+  | 'content_type_items';

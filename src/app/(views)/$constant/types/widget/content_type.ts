@@ -117,6 +117,8 @@ type T_content_type = {
   field_coordinate: Array<{ value: string }>;
   field_text: Array<{ value: string }>;
   field_link: Array<{ uri: string }>;
+  field_category: Array<{ value: string }>;
+  field_site: Array<{ value: string }>;
 };
 
 export type T_Insight = {

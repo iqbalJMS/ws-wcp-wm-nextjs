@@ -24,6 +24,7 @@ import { T_RichText } from './types/widget/rich-text';
 import { T_Map } from './types/widget/map';
 // import { T_ResponGetPromo } from '@/api/promo/api.get-promo.type';
 import { T_PromoWidget } from './types/widget/promo';
+import { T_ContentItems } from './types/widget/content-items';
 
 const SE_SubscriberContent = dynamic(
   () => import('@/app/$element/server.subscriber.content')
@@ -62,6 +63,11 @@ const CE_FormMain = dynamic(
 const CE_GetInvited = dynamic(
   () => import('@/app/(views)/$element/card/client.card.getInvited')
 );
+
+const CE_AcordionReksaDana = dynamic(
+  () => import('@/app/(views)/$element/client.accordion.reksa-dana')
+);
+
 const CE_CarouselMain = dynamic(
   () => import('@/app/(views)/$element/carousel/client.carousel.main')
 );
@@ -155,9 +161,9 @@ const CE_CardVariant2Detail = dynamic(
 const CE_VideosCard = dynamic(
   () => import('@/app/(views)/$element/card/client.video.card')
 );
-const CE_CardGrid9 = dynamic(
-  () => import('@/app/(views)/$element/grid/client.card-grid-9')
-);
+// const CE_CardGrid9 = dynamic(
+//   () => import('@/app/(views)/$element/grid/client.card-grid-9')
+// );
 
 const CE_CardMagazineMain = dynamic(
   () => import('@/app/(views)/$element/card-magazine/card.magazine.main')
@@ -182,10 +188,15 @@ const CE_LatestFourPromo = dynamic(
   () => import('@/app/(views)/$element/promo/client.card.promo')
 );
 
-const CE_CardGrid10 = dynamic(
-  () => import('@/app/(views)/$element/grid/client.card-grid-10')
+// const CE_CardGrid10 = dynamic(
+//   () =>
+//     import(
+//       '@/app/(views)/$element/grid/client.card-grid-bancasurrance-Prioritas'
+//     )
+// );
+const CE_GridMain = dynamic(
+  () => import('@/app/(views)/$element/grid/client.card-grid-main')
 );
-
 const CE_Location = dynamic(
   () => import('@/app/(views)/$element/card/client.card.variant7')
 );
@@ -1187,6 +1198,8 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: (...props) => {
         const findEntityBundle = props?.[0]?.entity;
         const data = props?.[0]?.data;
+        const categoryProps = props?.[0]?.categoryProps;
+        const siteProps = props?.[0]?.siteProps;
 
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
@@ -1195,18 +1208,31 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return <CE_CardGrid6Main dataCard={data} variant={theme} />;
           case WIDGET_VARIANT.variant11:
             return <CE_GridCard7Main dataCard={data} variant={theme} />;
-          case 'bancassurance':
-            return <CE_CardGrid10 dataCard={data} />;
-          // case 'external_magazine':
-          //   return <CE_CardMagazineMain data={data} variant={theme} />;
+          case 'product':
+            return (
+              <CE_GridMain
+                data={data}
+                variant={theme}
+                category={categoryProps}
+                site={siteProps}
+              />
+            );
           default:
-            return <CE_CardGrid9 dataCard={data} />;
+            return <></>;
         }
       },
       props: (_component: T_Insight) => {
         const findEntityBundle =
           _component?.field_content_type?.[0]?.type?.[0]?.type;
-
+        const findCategory =
+          _component?.field_content_type?.[0]?.field_category?.[0]?.value;
+        const findSite =
+          _component?.field_content_type?.[0]?.field_site?.[0]?.value;
+        // const findCategory = _component?.field_content_type?.map((item) => {
+        //   return {
+        //     value: item?.field_category?.[0]?.value,
+        //   };
+        // });
         const dataGridV5 = _component?.field_content_type?.map((item) => {
           return {
             title: item?.title?.[0]?.value,
@@ -1255,32 +1281,17 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           }
         );
 
-        const cardGrid9data = _component?.field_content_type?.map((item) => {
-          return {
-            title: item?.title?.[0]?.value,
-            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
-            description: item?.field_summary?.[0]?.value,
-            nid: item?.nid?.[0]?.value,
-          };
-        });
         const cardGrid10data = _component?.field_content_type?.map((item) => {
           return {
             title: item?.title?.[0]?.value,
             image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
             description: item?.field_summary?.[0]?.value,
             nid: item?.nid?.[0]?.value,
+            site: item?.field_site?.[0]?.value,
+            category: item?.field_category?.[0]?.value,
           };
         });
 
-        // const cardMagazineData = _component?.field_content_type?.map((item) => {
-        //   return {
-        //     title: item?.title?.[0]?.value,
-        //     subtitle: item?.field_text?.[0]?.value,
-        //     image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
-        //     date: item?.created?.[0]?.value,
-        //     link: item?.field_link?.[0]?.uri,
-        //   };
-        // });
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
             return {
@@ -1303,20 +1314,17 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               dataOutletProps: cardDataOutlet,
               dataTabsProps: cardDataTabs,
             };
-          case 'bancassurance':
+          case 'product':
             return {
               entity: findEntityBundle,
               data: cardGrid10data,
+              categoryProps: findCategory,
+              siteProps: findSite,
             };
-          // case 'external_magazine':
-          //   return {
-          //     entity: findEntityBundle,
-          //     data: cardMagazineData,
-          //   };
           default:
             return {
-              variant: findEntityBundle,
-              data: cardGrid9data,
+              data: null,
+              entity: null,
             };
         }
       },
@@ -1366,6 +1374,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: CE_GetInvited,
       props: (_component: any) => {
         return {};
+      },
+    },
+    content_type_items: {
+      component: CE_AcordionReksaDana,
+      props: (_component: T_ContentItems) => {
+        return {
+          renderContent: _component?.field_content?.[0]?.value,
+          renderTitle: _component?.field_title?.[0]?.value,
+        };
       },
     },
   };
