@@ -13,6 +13,7 @@ import Image from './image';
 import { T_ApiGetSearchMenu } from '@/api/search/api.get-search-menu.type';
 import { CFN_GetSearch, CFN_MapToSearchPayload, CFN_ValidateGetSearchFields, T_GetSearch } from '@/lib/functions/global/cfn.get.search';
 import { CFN_GetSearchMenu } from '@/lib/functions/global/cfn.get.search-menu';
+import CE_CardVariant09 from './client.card.variant09';
 type T_SearchProps = {
   active: boolean;
   setActive: (_active: boolean) => void;
@@ -164,17 +165,17 @@ export function Search({ active, setActive }: T_SearchProps) {
               {
                 title: 'BERITA',
                 slug: 'berita',
-                // subTitle: `Total ${total.berita.toString()}`,
+                subTitle: `Total ${total.berita.toString()}`,
               },
               {
                 title: 'LAPORAN',
                 slug: 'laporan',
-                // subTitle: `Total ${total.laporan.toString()}`,
+                subTitle: `Total ${total.laporan.toString()}`,
               },
               {
                 title: 'PROMO',
                 slug: 'promo',
-                // subTitle: `Total ${total.promo.toString()}`,
+                subTitle: `Total ${total.promo.toString()}`,
               },
             ]}
             value={tab}
@@ -372,7 +373,7 @@ export function Search({ active, setActive }: T_SearchProps) {
             )}
             {tab === 'laporan' && (
               <div>
-                {/* <CE_CardVariant09
+                <CE_CardVariant09
                   type="search"
                   data={result.map((item) => {
                     return {
@@ -386,7 +387,7 @@ export function Search({ active, setActive }: T_SearchProps) {
                       },
                     };
                   })}
-                /> */}
+                />
               </div>
             )}
           </div>
