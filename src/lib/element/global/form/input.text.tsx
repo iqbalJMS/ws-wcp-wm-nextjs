@@ -40,6 +40,7 @@ export default function InputText({
   onChange,
   rightSlot,
   leftSlot,
+  //eslint-disable-next-line no-unused-vars
   forInputPhone,
 }: T_InputTextProps) {
   const inputRef = useRef<HTMLInputElement>(null);
