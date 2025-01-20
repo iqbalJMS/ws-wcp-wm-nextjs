@@ -20,8 +20,8 @@ type T_InputTextProps = {
 
 function useFormat() {
   const number = {
-    decimal: (value: number) => value,
-    value: (value: string) => parseFloat(value),
+    decimal: (value: number) => new Intl.NumberFormat('en-US').format(value),
+    value: (value: string) => value.toString().replace(/,/g, ''),
   };
 
   return { number };
@@ -77,20 +77,18 @@ export default function InputText({
   };
 
   return (
-    <>
+    <div>
       <div
-        className={`flex w-full h-12 py-1 items-center border overflow-hidden px-4 rounded-full bg-transparent ${
+        className={`flex w-full h-12 py-1 items-center border overflow-hidden px-4 rounded-md bg-transparent ${
           disabled ? 'bg-gray-500 bg-opacity-5' : 'bg-transparent'
         } ${
           state === 'error'
             ? 'border-red-500'
-            : 'border-black focus-within:border-blue-01 focus-within:border-opacity-50 focus-within:ring-4 focus-within:ring-light-02 focus-within:ring-opacity-30'
+            : 'border-black border-opacity-10 focus-within:border-blue-01 focus-within:border-opacity-50 focus-within:ring-4 focus-within:ring-light-02 focus-within:ring-opacity-30'
         }`}
       >
         {leftSlot || leftText ? (
-          <div
-            className={`flex  items-center justify-center h-full text-black02 text-15 leading-15 whitespace-nowrap mr-10`}
-          >
+          <div className="flex items-center justify-center mr-2 h-full text-black02 text-15 leading-15 whitespace-nowrap">
             {leftSlot}
             {leftText}
           </div>
@@ -108,14 +106,12 @@ export default function InputText({
           onInput={handleInput}
         />
         {rightSlot || rightText ? (
-          <div
-            className={`flex items-center justify-center h-full text-black02 text-opacity-90 text-15 whitespace-nowrap ml-10`}
-          >
+          <div className="flex items-center justify-center ml-2 h-full text-black02 text-opacity-90 text-15 whitespace-nowrap">
             {rightSlot}
             {rightText}
           </div>
         ) : null}
       </div>
-    </>
+    </div>
   );
 }

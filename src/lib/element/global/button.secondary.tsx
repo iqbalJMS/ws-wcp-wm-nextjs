@@ -44,6 +44,8 @@ const ButtonSecondary: FC<T_ButtonProps> = ({
     switch (color) {
       case 'white':
         return 'green02';
+      case 'gray-100':
+        return 'bluedark01';
       default:
         return 'white';
     }

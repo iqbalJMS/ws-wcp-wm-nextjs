@@ -7,152 +7,16 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from 'next/link';
-import { Tabs } from '@/lib/element/global/tabs';
 import { CloseIcon } from '@/lib/element/global/icons/close-icon';
 import Image from 'next/image';
 import ChevronDown from '@/lib/element/global/icons/chevron-button-navbar';
 import { T_ResponseGetPriorityMenuNavbar } from '@/api/navbar-menu/main-navbar/priority-navbar/api.get-priority-menu-navbar.type';
 import { T_ResponGetHeaderLogo } from '@/api/header-logo/api.get-header-logo.type';
 import { T_ResponGetHeaderLogoPriority } from '@/api/header-logo/header-priority-logo/api.get-header-logo.priority.type';
+import { Search } from '@/lib/element/global/global.search';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
-type T_SearchProps = {
-  active: boolean;
-  setActive: (_active: boolean) => void;
-};
-
-export function Search({ active, setActive }: T_SearchProps) {
-  const elementRef = useRef(null);
-  useOnClickOutside(elementRef, () => setActive(false));
-  let [tab, setTab] = useState('pro');
-  return (
-    <div
-      ref={elementRef}
-      className={[
-        'fixed left-0 w-full mdmax:h-screen bg-white z-50',
-        active ? 'top-0' : '-top-full',
-      ].join(' ')}
-    >
-      <div
-        className="absolute top-2 right-4 text-lg cursor-pointer"
-        onClick={() => setActive(false)}
-      >
-        <CloseIcon className="text-blue-02 cursor-pointer" stroke={''} />
-      </div>
-      <div className="py-20 container">
-        <div className="pb-10 border-b border-black">
-          <div className="text-center text-2xl mdmax:text-base font-semibold mb-5">
-            Temukan yang Anda Butuhkan
-          </div>
-          <div className="text-center">
-            <div className="border border-black rounded-full inline-flex items-center overflow-hidden px-5 py-2 w-[60%] mdmax:w-full">
-              <input type="text" className="focus:outline-none flex-1" />
-              <div>
-                <svg
-                  className="w-7 h-7"
-                  width="32"
-                  height="32"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="currentColor"
-                    d="m19.485 20.154l-6.262-6.262q-.75.639-1.725.989t-1.96.35q-2.402 0-4.066-1.663T3.808 9.503T5.47 5.436t4.064-1.667t4.068 1.664T15.268 9.5q0 1.042-.369 2.017t-.97 1.668l6.262 6.261zM9.539 14.23q1.99 0 3.36-1.37t1.37-3.361t-1.37-3.36t-3.36-1.37t-3.361 1.37t-1.37 3.36t1.37 3.36t3.36 1.37"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="pt-5">
-          <Tabs
-            list={[
-              { title: 'PRODUK', slug: 'pro' },
-              { title: 'BERITA', slug: 'ber' },
-            ]}
-            value={tab}
-            onChange={(e) => setTab(e)}
-          />
-        </div>
-        <div>
-          {/* RESULT */}
-          <div className="text-center py-20">
-            <div className="text-2xl mdmax:text-sm font-bold">
-              Tidak dapat menemukan{' '}
-              <span className="text-red-01">apa yang kalian cari?</span>
-            </div>
-            <div className="mdmax:text-xs">
-              Carilah jawaban pada{' '}
-              <Link
-                className="underline font-semibold"
-                href={'https://bri.co.id/web/bri/bantuan'}
-              >
-                halaman FAQ
-              </Link>{' '}
-              atau arahkan ke kategori konten berikut
-            </div>
-          </div>
-          <div></div>
-        </div>
-        {/* <div className="flex px-[15rem] mdmax:hidden">
-          {[
-            {
-              title: 'Simpanan',
-              below: [
-                {
-                  title: 'Tabungan',
-                },
-              ],
-            },
-            {
-              title: 'Simpanan',
-              below: [
-                {
-                  title: 'Tabungan',
-                },
-              ],
-            },
-            {
-              title: 'Simpanan',
-              below: [
-                {
-                  title: 'Tabungan',
-                },
-              ],
-            },
-            {
-              title: 'Simpanan',
-              below: [
-                {
-                  title: 'Tabungan',
-                },
-              ],
-            },
-          ].map((subItem, subIndex) => {
-            return (
-              <div key={subIndex} className="flex-1 mr-40">
-                <div className="text-blue-01 font-semibold mb-2">
-                  {subItem?.title}
-                </div>
-                <div>
-                  {subItem?.below?.map((item, itemIndex) => {
-                    return (
-                      <div key={itemIndex}>
-                        <div className="flex items-center justify-between">
-                          {item.title}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-        </div> */}
-      </div>
-    </div>
-  );
-}
 
 export function LoginButton({
   menuItems,

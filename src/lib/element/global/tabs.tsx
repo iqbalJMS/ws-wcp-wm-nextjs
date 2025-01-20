@@ -6,9 +6,11 @@ type T_TabsProps = {
   list: {
     title: string;
     information?: string;
+    subTitle?: string;
     slug: string;
   }[];
   value: string;
+  margin?: string;
   onChange: (_value: string) => void;
   variant?: 'full' | 'border-arrow' | 'border';
 };
@@ -16,10 +18,11 @@ export function Tabs({
   list,
   value,
   onChange,
+  margin,
   variant = 'border',
 }: T_TabsProps) {
   return (
-    <div className="flex">
+    <div className={`flex ${margin}`}>
       {list.map((item, index) => {
         return (
           <div
@@ -50,6 +53,22 @@ export function Tabs({
               <div className="mr-2">{item.title}</div>
               {item.information && <Tooltip description={item.information} />}
             </div>
+            {item.subTitle && (
+                <div
+                  className={[
+                    'text-sm font-medium mdmax:text-xs',
+                    `${
+                      item?.slug === value
+                        ? variant === 'full'
+                          ? 'text-white'
+                          : 'text-bluedark01'
+                        : 'text-gray-500 group-hover/tab:text-bluedark01'
+                    }`,
+                  ].join(' ')}
+                >
+                  {item.subTitle}
+                </div>
+              )}
             {variant === 'border-arrow' && (
               <div
                 className={[
