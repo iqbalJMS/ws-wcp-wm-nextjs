@@ -29,7 +29,7 @@ const InputLabel: React.FC<InputProps> = ({
         <div className={`${column ? 'mb-1' : 'mr-10'}`}>
           <div className="flex items-center justify-between">
             <div>
-              <div className=" text-black text-lg mdmax:text-sm  mb-4">
+              <div className=" text-black text-lg mdmax:text-sm mb-2">
                 {label} {required && <span className="text-red-500">*</span>}
               </div>
               {subLabel && (

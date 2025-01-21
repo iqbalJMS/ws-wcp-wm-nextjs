@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import { ACT_GetTopMenuNavbar } from '@/app/(views)/$action/action.get.top-menu-navbar';
 import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
 
@@ -25,8 +24,6 @@ export default async function page() {
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
   const itemHeaderLogo = await ACT_GetHeaderLogo({ lang: 'en' });
 
-    
-
   return (
     <>
       <div className="w-full">
@@ -37,8 +34,8 @@ export default async function page() {
           itemLogin={itemMenuLogin}
           headerLogo={itemHeaderLogo || undefined}
         />
-        <div className='h-screen pt-40' >
-          <CE_InputTester/>
+        <div className="h-screen pt-40">
+          <CE_InputTester />
         </div>
         <GlobalFooter
           bottom_right_footer={listBottomRightFooter}

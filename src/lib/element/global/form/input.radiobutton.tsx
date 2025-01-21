@@ -10,6 +10,7 @@ export type T_InputRadioButtonList = {
 type T_InputRadioButtonProps = {
   value: T_InputRadioButtonValue;
   list: T_InputRadioButtonList[] | undefined;
+  listType?: 'row' | 'column';
   multiple?: boolean;
   // eslint-disable-next-line no-unused-vars
   onChange: (value: T_InputRadioButtonValue) => void;
@@ -18,6 +19,7 @@ type T_InputRadioButtonProps = {
 const InputRadioButton: React.FC<T_InputRadioButtonProps> = ({
   value,
   list,
+  listType = 'row',
   multiple = false,
   onChange,
 }) => {
@@ -51,7 +53,9 @@ const InputRadioButton: React.FC<T_InputRadioButtonProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-2 justify-center mdmax:flex-wrap -mx-2">
+    <div
+      className={`flex ${listType === 'row' ? 'flex-row' : 'flex-col justify-center'} gap-2 mdmax:flex-wrap -mx-2`}
+    >
       {list?.map((listItem) => (
         <div key={listItem.value} className="px-2">
           <div
@@ -61,7 +65,7 @@ const InputRadioButton: React.FC<T_InputRadioButtonProps> = ({
             <div
               className={`w-4 h-4   flex items-center justify-center ${
                 multiple ? 'rounded-md' : 'rounded-full'
-              } ${isActive(listItem.value) ? ' border-4 border-black bg-white' : 'bg-black'}`}
+              } ${isActive(listItem.value) ? ' border-4 border-wmcolor bg-white' : 'bg-wmcolor'}`}
             ></div>
             <div className="ml-2">
               <div className="text-sm">{listItem.title}</div>
