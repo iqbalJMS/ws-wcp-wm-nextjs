@@ -41,3 +41,4 @@ jspm_packages
 .env.local
 
 package-lock.json
+src/app/test-component

@@ -7,7 +7,7 @@ import {
   loadCaptchaEnginge,
   validateCaptcha,
 } from 'react-simple-captcha';
-import InputText from '@/lib/element/global/input.text';
+import InputText from '@/lib/element/global/form/input.text';
 
 export default function CE_FormVariant1({ variant }: { variant: string }) {
   const DATA = [

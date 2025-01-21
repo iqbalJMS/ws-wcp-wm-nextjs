@@ -91,14 +91,14 @@ const InputSelect: React.FC<T_InputSelectProps> = ({
     <>
       <div ref={elementRef} className="relative">
         <div
-          className={`px-4 h-12  bg-white border flex items-center justify-between rounded-md ${
+          className={`px-4 h-12  bg-transparent border flex items-center justify-between rounded-2xl ${
             !disabled ? 'cursor-pointer' : ''
           } ${
             dropdownActive
               ? 'border-blue-01 border-opacity-50 ring-4 ring-light-02 ring-opacity-30'
               : state === 'error'
                 ? 'border-red-500'
-                : 'border-black border-opacity-10'
+                : 'border-black '
           }`}
           onClick={() => !disabled && setDropdownActive(!dropdownActive)}
         >

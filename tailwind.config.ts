@@ -7,7 +7,6 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/lib/element/global/**/*.{js,ts,jsx,tsx,mdx}',
     './src/lib/functions/global/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     fontFamily: {
