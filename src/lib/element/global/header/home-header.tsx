@@ -17,7 +17,6 @@ import { Search } from '@/lib/element/global/global.search';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
-
 export function LoginButton({
   menuItems,
 }: {
@@ -236,14 +235,15 @@ export default function HomeHeader({
                             className="w-5 h-5 mr-2 filter brightness-0 invert  bg-red"
                           />
                         )}
-                        <div
+                        <Link
                           className={[
                             `text-[15px] font-light`,
                             `${variant === 'transparent' ? 'text-white mdmax:text-black hover:underline' : ''}`,
                           ].join(' ')}
+                          href={`/${header?.alias}`}
                         >
                           {header.title}
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   );
@@ -318,7 +318,6 @@ export default function HomeHeader({
                         key={index}
                         className="pb-2 mdmax:pb-0 group border-b-4 border-transparent hover:border-blue-01 "
                       >
-                        {/* url ganti nanti kalo udah ada url dari drupal */}
                         <Link
                           href={`/${item?.alias}`}
                           className={[

@@ -17,8 +17,6 @@ import { Search } from '@/lib/element/global/global.search';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
-
-
 export function LoginButton({
   menuItems,
 }: {
@@ -236,15 +234,15 @@ export default function OurStoryHeader({
                             className="w-5 h-5 mr-2 filter brightness-0 invert  bg-red"
                           />
                         )}
-                        <div
-                          // href={header?.uri}
+                        <Link
+                          href={`/${header?.alias}`}
                           className={[
                             `text-[15px] font-light`,
                             `${variant === 'transparent' ? 'text-white mdmax:text-black hover:underline' : ''}`,
                           ].join(' ')}
                         >
                           {header.title}
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   );

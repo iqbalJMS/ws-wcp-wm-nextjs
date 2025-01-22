@@ -32,4 +32,5 @@ export type T_Widget =
   | 'location'
   | 'card_cta'
   | 'map'
-  | 'content_type_items';
+  | 'content_type_items'
+  | 'simulation';

@@ -25,6 +25,7 @@ import { T_Map } from './types/widget/map';
 // import { T_ResponGetPromo } from '@/api/promo/api.get-promo.type';
 import { T_PromoWidget } from './types/widget/promo';
 import { T_ContentItems } from './types/widget/content-items';
+import { T_Simulation } from './types/widget/simulation';
 
 const SE_SubscriberContent = dynamic(
   () => import('@/app/$element/server.subscriber.content')
@@ -66,6 +67,10 @@ const CE_GetInvited = dynamic(
 
 const CE_AcordionReksaDana = dynamic(
   () => import('@/app/(views)/$element/client.accordion.reksa-dana')
+);
+
+const TabsCalculator = dynamic(
+  () => import('@/app/(views)/$element/tabs-calculator')
 );
 
 const CE_CarouselMain = dynamic(
@@ -749,6 +754,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: CE_CarouselVariant2,
       props: (_component: T_CarouselV2) => {
         return {
+          variant: theme,
           title: _component?.field_title?.[0]?.value,
           bgImage: _component?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
           data: _component?.field_quote?.map((item) => {
@@ -1198,8 +1204,6 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: (...props) => {
         const findEntityBundle = props?.[0]?.entity;
         const data = props?.[0]?.data;
-        const categoryProps = props?.[0]?.categoryProps;
-        const siteProps = props?.[0]?.siteProps;
 
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
@@ -1209,14 +1213,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           case WIDGET_VARIANT.variant11:
             return <CE_GridCard7Main dataCard={data} variant={theme} />;
           case 'product':
-            return (
-              <CE_GridMain
-                data={data}
-                variant={theme}
-                category={categoryProps}
-                site={siteProps}
-              />
-            );
+            return <CE_GridMain data={data} variant={theme} />;
           default:
             return <></>;
         }
@@ -1224,15 +1221,6 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       props: (_component: T_Insight) => {
         const findEntityBundle =
           _component?.field_content_type?.[0]?.type?.[0]?.type;
-        const findCategory =
-          _component?.field_content_type?.[0]?.field_category?.[0]?.value;
-        const findSite =
-          _component?.field_content_type?.[0]?.field_site?.[0]?.value;
-        // const findCategory = _component?.field_content_type?.map((item) => {
-        //   return {
-        //     value: item?.field_category?.[0]?.value,
-        //   };
-        // });
         const dataGridV5 = _component?.field_content_type?.map((item) => {
           return {
             title: item?.title?.[0]?.value,
@@ -1287,8 +1275,8 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
             description: item?.field_summary?.[0]?.value,
             nid: item?.nid?.[0]?.value,
-            site: item?.field_site?.[0]?.value,
-            category: item?.field_category?.[0]?.value,
+            site: item?.field_site,
+            category: item?.field_category,
           };
         });
 
@@ -1318,8 +1306,6 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return {
               entity: findEntityBundle,
               data: cardGrid10data,
-              categoryProps: findCategory,
-              siteProps: findSite,
             };
           default:
             return {
@@ -1382,6 +1368,21 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         return {
           renderContent: _component?.field_content?.[0]?.value,
           renderTitle: _component?.field_title?.[0]?.value,
+        };
+      },
+    },
+    simulation: {
+      component: TabsCalculator,
+      props: (_component: T_Simulation) => {
+        return {
+          data: _component?.field_paragraphs?.map((item) => {
+            return {
+              content: item?.field_content?.[0]?.value,
+              simulation: item?.field_simulation?.[0]?.value,
+              title: item?.field_title?.[0]?.value,
+              config: item?.config,
+            };
+          }),
         };
       },
     },
