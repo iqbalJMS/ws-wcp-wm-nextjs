@@ -18,6 +18,7 @@ const CE_InvestasiWM = ({
     category: any[];
   }>;
 }) => {
+  // console.log(dataCard, '<<<<<<<<<');
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
