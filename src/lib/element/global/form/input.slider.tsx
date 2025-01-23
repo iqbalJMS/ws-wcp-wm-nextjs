@@ -16,10 +16,9 @@ const InputSlider: React.FC<GradientSliderProps> = ({
   value: defaultValue = min,
   onChange,
 }) => {
-  
   const value = useMemo(() => {
-    return defaultValue
-  }, [defaultValue])
+    return defaultValue;
+  }, [defaultValue]);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.target.value);
     if (onChange) onChange(newValue);
@@ -40,6 +39,7 @@ const InputSlider: React.FC<GradientSliderProps> = ({
         onChange={handleChange}
         style={{
           background: `linear-gradient(90deg, #141333 ${getBackgroundSize()}, #e0e0e0 0%)`,
+          cursor: 'pointer',
         }}
       />
       {/* <span className="mt-2 text-lg">{value}</span> */}
