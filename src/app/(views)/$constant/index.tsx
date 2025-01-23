@@ -1204,6 +1204,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: (...props) => {
         const findEntityBundle = props?.[0]?.entity;
         const data = props?.[0]?.data;
+        const categoryProps = props?.[0]?.categoryProps;
 
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
@@ -1213,7 +1214,13 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           case WIDGET_VARIANT.variant11:
             return <CE_GridCard7Main dataCard={data} variant={theme} />;
           case 'product':
-            return <CE_GridMain data={data} variant={theme} />;
+            return (
+              <CE_GridMain
+                data={data}
+                variant={theme}
+                categoryParams={categoryProps}
+              />
+            );
           default:
             return <></>;
         }
@@ -1280,6 +1287,12 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           };
         });
 
+        const categoryData = _component?.field_content_type?.map((item) => {
+          return {
+            value: item?.field_category?.[0]?.value,
+          };
+        });
+
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
             return {
@@ -1306,6 +1319,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return {
               entity: findEntityBundle,
               data: cardGrid10data,
+              categoryProps: categoryData,
             };
           default:
             return {

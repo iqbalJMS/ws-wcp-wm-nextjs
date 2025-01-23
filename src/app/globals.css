@@ -220,9 +220,6 @@ input[type='range']::-webkit-slider-thumb {
   border-right: 1px solid rgba(0, 0, 0, 0.274);
 } */
 
-.active-tabs {
-  background: blue;
-}
 .active-tabs::before {
   content: '';
   display: block;

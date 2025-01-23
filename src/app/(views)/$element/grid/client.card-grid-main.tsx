@@ -1,11 +1,13 @@
 'use client';
 
 import CE_InvestasiWM from './client.card-grid-investasi-WM';
-import CE_BancasurranceWm from './client.card-grid-bancasurrance-Wm';
-import { useEffect, useState } from 'react';
+// import CE_BancasurranceWm from './client.card-grid-bancasurrance-Wm';
+// import { useEffect, useState } from 'react';
 
 const CE_GridMain = ({
   data,
+  // variant,
+  // categoryParams,
 }: {
   data: Array<{
     title: string;
@@ -15,38 +17,54 @@ const CE_GridMain = ({
     site: any[];
     category: any[];
   }>;
+  categoryParams: string;
   variant: string;
 }) => {
-  const [investasiList, setInvestasiList] = useState<any[]>([]);
-  const [bancasurranceList, setBancasurranceList] = useState<any[]>([]);
+  // const [investasiList, setInvestasiList] = useState<any[]>([]);
+  // const [bancasurranceList, setBancasurranceList] = useState<any[]>([]);
 
-  useEffect(() => {
-    const tempInvestasiList: any[] = [];
-    const tempBancasurranceiList: any[] = [];
+  // const filterFunc = (variant: string, category: string) => {
+  //   const tempList: any[] = [];
 
-    data.filter((temp) => {
-      if (
-        temp.site.find(({ value }) => value === 'wealth_management') &&
-        temp.category.find(({ value }) => value === 'investasi')
-      ) {
-        tempInvestasiList.push(temp);
-      } else if (
-        temp.site.find(({ value }) => value === 'wealth_management') &&
-        temp.category.find(({ value }) => value === 'investasi')
-      ) {
-        tempBancasurranceiList.push(temp);
-      }
-    });
-    setBancasurranceList(tempBancasurranceiList);
-    setInvestasiList(tempInvestasiList);
-  }, []);
+  //   // const variantMap = {
+  //   //   'wm-main-navigation': 'wealth_management',
+  //   //   'wm-private-main-navigation': 'bri_private',
+  //   //   'wm-prioritas-main-navigation': 'bri_prioritas',
+  //   // };
+  //   // const categoryMap = {
+  //   //   // investasibri: 'investasi',
+  //   //   // bancassurancebri: 'bancasurrance',
+  //   //   'obligasi-private': 'obligasi',
+  //   //   'brifine-private': 'brifine',
+  //   //   'bancassurance-private': 'bancasurrance',
+  //   //   'investasi-prioritas': 'investasi',
+  //   //   'bancassurance-prioritas': 'bancasurrance',
+  //   // };
+
+  //   // data.forEach((temp) => {
+  //   //   if (
+  //   //     temp.site.find(({ value }) => value === variantMap?.[variant]) &&
+  //   //     temp.category.find(({ value }) => value === categoryMap?.[category])
+  //   //   ) {
+  //   //     tempList.push(temp);
+  //   //   }
+  //   // });
+
+  //   return tempList;
+  // };
+
+  // useEffect(() => {
+  //   setBancasurranceList(filterFunc(variant, categoryParams));
+  //   setInvestasiList(filterFunc(variant, categoryParams));
+  // }, []);
 
   return (
     <>
-      {!!investasiList?.length && <CE_InvestasiWM dataCard={investasiList} />}
+      {/* {!!investasiList?.length && <CE_InvestasiWM dataCard={investasiList} />}
       {!!bancasurranceList?.length && (
         <CE_BancasurranceWm dataCard={bancasurranceList} />
-      )}
+      )} */}
+      <CE_InvestasiWM dataCard={data} />
 
       {/* {site == 'wealth_management' && category == 'bancasurrance' ? (
         <CE_BancasurranceWm dataCard={data as any} />
@@ -74,3 +92,7 @@ const CE_GridMain = ({
 };
 
 export default CE_GridMain;
+
+// wm-main-navigation
+// wm-private-main-navigation
+// wm-prioritas-main-navigation
