@@ -70,7 +70,7 @@ const CE_AcordionReksaDana = dynamic(
 );
 
 const TabsCalculator = dynamic(
-  () => import('@/app/(views)/$element/tabs-calculator')
+  () => import('@/app/(views)/$element/simulation/tabs-calculator')
 );
 
 const CE_CarouselMain = dynamic(
@@ -1205,6 +1205,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         const findEntityBundle = props?.[0]?.entity;
         const data = props?.[0]?.data;
         const categoryProps = props?.[0]?.categoryProps;
+        const siteProps = props?.[0]?.siteProps;
 
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
@@ -1219,6 +1220,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
                 data={data}
                 variant={theme}
                 categoryParams={categoryProps}
+                siteParams={siteProps}
               />
             );
           default:
@@ -1287,11 +1289,8 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           };
         });
 
-        const categoryData = _component?.field_content_type?.map((item) => {
-          return {
-            value: item?.field_category?.[0]?.value,
-          };
-        });
+        const categoryData = _component?.field_category_product?.[0]?.value;
+        const siteData = _component?.field_site?.[0]?.value;
 
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
@@ -1320,6 +1319,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               entity: findEntityBundle,
               data: cardGrid10data,
               categoryProps: categoryData,
+              siteProps: siteData,
             };
           default:
             return {

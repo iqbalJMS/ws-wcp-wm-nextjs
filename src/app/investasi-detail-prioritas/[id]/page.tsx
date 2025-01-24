@@ -15,8 +15,8 @@ import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page'
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import PriorityHeader from '@/lib/element/global/header/priority-header';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
-import CE_AccordionBancarsurance from '@/app/bancassurance-detail/$element/client.accordion.bancassuranceWm';
-import CE_BCBancasurranceWM from '@/app/bancassurance-detail/$element/client.breadcrumb.bancasurranceWm';
+import CE_AccordionInvestasi from '@/app/investasi-detail-prioritas/$element/client.accordion.investasi';
+import CE_BCBInvestasiPrioritas from '@/app/investasi-detail-prioritas/$element/client.breadcrumb.investasi';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -63,7 +63,7 @@ export default async function page({ params }: { params: { id: string } }) {
             </h2>
           </div>
         </section>
-        <CE_BCBancasurranceWM
+        <CE_BCBInvestasiPrioritas
           currentPage={getOurstoryData?.title?.[0]?.value}
         />
         <div className="w-full flex justify-center pb-14 pt-4">
@@ -74,7 +74,7 @@ export default async function page({ params }: { params: { id: string } }) {
         <section className="w-full flex flex-col justify-center items-center pb-10">
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
-              <CE_AccordionBancarsurance
+              <CE_AccordionInvestasi
                 renderContent={parseHTMLToReact(
                   item?.field_content?.[0]?.value
                 )}
