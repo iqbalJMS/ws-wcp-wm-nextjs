@@ -38,7 +38,7 @@ const InputSlider: React.FC<GradientSliderProps> = ({
         value={value}
         onChange={handleChange}
         style={{
-          background: `linear-gradient(90deg, #141333 ${getBackgroundSize()}, #e0e0e0 0%)`,
+          background: `linear-gradient(90deg, #080087 ${getBackgroundSize()}, #E5E5E5 0%)`,
           cursor: 'pointer',
         }}
       />

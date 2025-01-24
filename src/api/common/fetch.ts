@@ -10,22 +10,28 @@ async function fetchData<T>(
   options: T_FetchOptions = {}
 ): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
-  const headers = new Headers();
-  headers.append('Content-Type', 'application/json');
-
-  if (options.headers) {
-    Object.keys(options.headers).forEach((key) => {
-      if (options.headers) {
-        headers.append(key, options.headers[key]);
-      }
-    });
-  }
+  const DEFAULT_HEADERS: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
 
   const response = await fetch(url, {
-    method: options.method,
-    next: { revalidate: 120 },
-    headers,
-    ...(options?.body && { body: JSON.stringify(options.body) }),
+    ...options,
+    cache: 'no-store',
+    next:
+      options.method !== 'POST'
+        ? {
+            revalidate: 0,
+          }
+        : {},
+    headers: {
+      ...(options.method !== 'POST' ? DEFAULT_HEADERS : {}),
+      ...options.headers,
+    },
+    body: options?.body
+      ? options.method !== 'POST'
+        ? JSON.stringify(options.body)
+        : options.body
+      : null,
   });
 
   const contentType = response.headers.get('content-type');

@@ -12,7 +12,7 @@ import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-foote
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
 import HomeHeader from '@/lib/element/global/header/home-header';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
-import CE_InputTester from './input';
+// import CE_InputTester from './input';
 
 export default async function page() {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -34,9 +34,7 @@ export default async function page() {
           itemLogin={itemMenuLogin}
           headerLogo={itemHeaderLogo || undefined}
         />
-        <div className="h-screen pt-40">
-          <CE_InputTester />
-        </div>
+        <div className="h-screen pt-40">{/* <CE_InputTester /> */}</div>
         <GlobalFooter
           bottom_right_footer={listBottomRightFooter}
           bottom_left_footer={listBottomLeftFooter}

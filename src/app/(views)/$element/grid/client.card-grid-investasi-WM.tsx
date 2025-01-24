@@ -18,7 +18,6 @@ const CE_InvestasiWM = ({
     category: any[];
   }>;
 }) => {
-  // console.log(dataCard, '<<<<<<<<<');
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
@@ -35,7 +34,7 @@ const CE_InvestasiWM = ({
         <div ref={ref} className="flex flex-wrap -mx-10">
           {dataCard?.map((item, index) => (
             <Link
-              href={`/bancassurance-detail/${item?.nid}`}
+              href={`/investasi-detail/${item?.nid}`}
               key={index}
               className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
             >
