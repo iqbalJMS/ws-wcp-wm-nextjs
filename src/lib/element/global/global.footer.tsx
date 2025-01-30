@@ -64,7 +64,7 @@ function RowElement({
               ))}
             </div>
           </div>
-          <div className="w-full xl:w-80 h-44 flex flex-col items-start border-b lg:border-none border-white py-5 lg:py-0">
+          <div className="w-full xl:w-80 h-52 flex flex-col items-start border-b lg:border-none border-white py-8 lg:py-0">
             <h1 className={`text-${theme} text-xl font-bold pb-3`}>
               Hubungi Kami
             </h1>
@@ -93,20 +93,11 @@ function RowElement({
               Terdaftar Dan Diawasi Oleh:
             </h1>
             <div className="flex flex-col justify-center text-white font-extralight">
-              {/* {data?.field_multiple_logo.map((item, index) => ( */}
-              {/* <Image
-                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.thumbnail?.[0]?.uri?.[0]?.url}`}
-                    width={100}
-                    height={100}
-                    alt=""
-                    className="w-28 h-14 xl:w-36 xl:h-16"
-                  /> */}
               <h1>
                 BRI berizin dan diawasi oleh Otoritas Jasa Keuangan & Bank
                 Indonesia
               </h1>
               <h1 className="pt-5">BRI merupakan peserta penjaminan LPS</h1>
-              {/* ))} */}
             </div>
           </div>
         </div>
@@ -139,7 +130,7 @@ function TermsAllReservedElement({
           </h2>
 
           <div className="items-center mt-6 lg:mt-0">
-            <div className="flex flex-wrap justify-center items-center divide-x-2">
+            <div className="flex flex-wrap justify-center items-center divide-x-0 md:divide-x-2 ">
               <div className="flex justify-start items-center px-4">
                 {termsData?.map(({ title, relative }, index) => (
                   <div key={index}>
@@ -162,7 +153,7 @@ function TermsAllReservedElement({
                       target="blank"
                       href={uri}
                       key={index}
-                      className="text-white flex items-center gap-2  lg:text-sm text-sm justify-center font-normal hover:bg-blue-600 rounded-full p-1"
+                      className="text-white flex items-center gap-2 lg:text-sm text-sm justify-center font-normal hover:bg-blue-600 rounded-full p-1"
                     >
                       {icon && (
                         <Image

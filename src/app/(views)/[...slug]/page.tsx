@@ -14,7 +14,6 @@ import { ACT_GetPrivateMenuNavbar } from '@/app/(views)/$action/private-header/a
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
 import PriorityHeader from '@/lib/element/global/header/priority-header';
 import PrivateHeader from '@/lib/element/global/header/private-header';
-import OurStoryHeader from '@/lib/element/global/header/our-story-header';
 import ScrollToTopHome from '@/lib/element/global/scroll-top/scroll.top-home';
 import ScrollToTopPrivate from '@/lib/element/global/scroll-top/scroll.top-private';
 import ScrollToTopPriority from '@/lib/element/global/scroll-top/scroll.top-priority';
@@ -31,6 +30,7 @@ import CE_FloatingVariant03 from '@/app/(views)/$element/floating-menu/client.fl
 import CE_FloatingVariant02 from '@/app/(views)/$element/floating-menu/client.floating.variant02';
 import { ACT_GetFloatNavPriority } from '@/app/(views)/$action/action.get-float-nav-priority';
 import { ACT_GetFloatNavPrivate } from '@/app/(views)/$action/action.get-float-nav-private';
+import HomeHeader from '@/lib/element/global/header/home-header';
 
 export default async function PageWealthDetail({
   params: { slug },
@@ -95,11 +95,12 @@ export default async function PageWealthDetail({
   return (
     <React.Fragment>
       {theme === 'wm-main-navigation' && (
-        <OurStoryHeader
+        <HomeHeader
           headerTop={listHeaderTop}
           headerBottom={listHomeNavbar}
           variant={'transparent'}
           itemLogin={itemMenuLogin}
+          headerLogo={itemHeaderLogo || undefined}
         />
       )}
       {theme === 'wm-prioritas-main-navigation' && (
