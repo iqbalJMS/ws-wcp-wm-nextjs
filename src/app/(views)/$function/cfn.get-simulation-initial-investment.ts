@@ -42,7 +42,7 @@ export function CFN_ValidateCreateSimulationInitialInvestmentFields(
     case 'targetInvestmentValue':
       return validateMin(value, 'Plafond Kredit ', 1);
     case 'duration':
-      return validateMaxMin(value, 'Jangka Waktu', 1, 15);
+      return validateMaxMin(value, 'Jangka Waktu', 1, 30);
     case 'interestRate':
       return validateMaxMin(value, 'Jangka Waktu', 1, 15);
     default:

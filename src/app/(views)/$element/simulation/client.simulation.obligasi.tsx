@@ -33,9 +33,9 @@ export default function CE_SimulationObligasi() {
     T_SimulationObligasiRequest
   >(
     CFN_MapToSimulationObligasiPayload({
-      amount: 1,
-      term: 1000000,
-      couponRate: 3,
+      amount: 1000000,
+      term: 1,
+      couponRate: 1,
     }),
     CFN_ValidateCreateSimulationObligasiFields
   );
@@ -89,8 +89,8 @@ export default function CE_SimulationObligasi() {
               <div>
                 <InputSlider
                   min={0}
-                  max={10000000000}
-                  step={100000}
+                  max={995000000000}
+                  step={5000000}
                   value={form?.amount}
                   onChange={(value) => onFieldChange('amount', value)}
                 />
@@ -110,7 +110,7 @@ export default function CE_SimulationObligasi() {
           }
         />
       </div>
-      <div>
+      <div className="w-96 pt-7">
         <InputLabel label="Kupon" required>
           <InputText
             rounded="full"
@@ -130,7 +130,7 @@ export default function CE_SimulationObligasi() {
           )}
         </InputLabel>
       </div>
-      <div>
+      <div className="pt-7">
         <CE_SimulationLabel
           label="Jangka Waktu"
           slot={

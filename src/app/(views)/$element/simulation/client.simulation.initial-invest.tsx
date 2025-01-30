@@ -72,6 +72,41 @@ export default function CE_SimultaionInitialInvest() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form]);
+
+  const [interestAmountRange, setInterestAmountRange] = useState<{
+    min: number;
+    max: number;
+  }>({ min: 3, max: 6 });
+
+  const handleChangeRisk = (value: string) => {
+    switch (value) {
+      case '1':
+        onFieldChange('interestRate', 3);
+        setInterestAmountRange({ min: 3, max: 6 });
+        break;
+      case '2':
+        onFieldChange('interestRate', 5);
+        setInterestAmountRange({ min: 5, max: 8 });
+        break;
+      case '3':
+        onFieldChange('interestRate', 7);
+        setInterestAmountRange({ min: 7, max: 10 });
+        break;
+      case '4':
+        onFieldChange('interestRate', 10);
+        setInterestAmountRange({ min: 10, max: 13 });
+        break;
+      //
+    }
+  };
+
+  // const labels = {
+  //   3: 'Label 1',
+  //   5: 'Label 2',
+  //   7: 'Label 3',
+  //   10: 'Label 4',
+  // };
+  // console.log(form, interestAmountRange, 'interest');
   return (
     <>
       <div>
@@ -100,7 +135,7 @@ export default function CE_SimultaionInitialInvest() {
             </InputLabel>
           </div>
           <div className="w-full flex-none mb-6 px-4">
-            <div className="pb-5">
+            <div className="pb-5 ">
               <CE_SimulationLabel
                 label="Nilai Dana Investasi Awal"
                 slot={
@@ -119,8 +154,8 @@ export default function CE_SimultaionInitialInvest() {
                     <div>
                       <InputSlider
                         min={0}
-                        max={10000000000}
-                        step={100000}
+                        max={995000000000}
+                        step={5000000}
                         value={form?.targetInvestmentValue}
                         onChange={(value) =>
                           onFieldChange('targetInvestmentValue', value)
@@ -200,7 +235,9 @@ export default function CE_SimultaionInitialInvest() {
                     },
                   ]}
                   value={`1`}
-                  onChange={() => {}}
+                  onChange={(value) => {
+                    handleChangeRisk(String(value));
+                  }}
                 />
 
                 <InputError message={''} />
@@ -225,7 +262,8 @@ export default function CE_SimultaionInitialInvest() {
               slot={
                 <div className="">
                   <h1 className="text-xs leading-5 text-slate-600">
-                    min 3% - max 6%
+                    min {interestAmountRange?.min}% - max{' '}
+                    {interestAmountRange?.max}%
                   </h1>
                   <div className="mb-5 w-[20%]">
                     <InputText
@@ -238,9 +276,9 @@ export default function CE_SimultaionInitialInvest() {
                   </div>
                   <div className="w-52 lg:w-72 ">
                     <InputSlider
-                      min={3}
-                      max={6}
-                      step={1}
+                      min={interestAmountRange.min}
+                      max={interestAmountRange.max}
+                      step={0.5}
                       value={form?.interestRate}
                       onChange={(value) => onFieldChange('interestRate', value)}
                     />

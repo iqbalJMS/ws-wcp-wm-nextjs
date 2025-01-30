@@ -16,7 +16,7 @@ export default function TabsCalculator({
     config: any;
   }>;
 }) {
-  const [toggle, setToggle] = useState(0);
+  const [toggle, setToggle] = useState(1);
 
   const toggleTab = (index: any) => {
     setToggle(index);

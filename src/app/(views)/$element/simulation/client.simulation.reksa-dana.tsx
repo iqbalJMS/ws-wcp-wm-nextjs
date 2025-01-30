@@ -33,7 +33,7 @@ export default function CE_SimulationReksaDana() {
     T_SimulationReksaDanaRequest
   >(
     CFN_MapToSimulationReksaDanaPayload({
-      amount: 1,
+      amount: 1000000,
       investmentType: 'MONEY_MARKET',
     }),
     CFN_ValidateCreateSimulationReksaDanaFields
@@ -69,6 +69,31 @@ export default function CE_SimulationReksaDana() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form]);
+  const [interestAmountRange, setInterestAmountRange] = useState<{
+    min: number;
+  }>({ min: 3.5 });
+
+  const handleChangeRisk = (value: string) => {
+    switch (value) {
+      case 'MONEY_MARKET':
+        onFieldChange('investmentType', 'MONEY_MARKET');
+        setInterestAmountRange({ min: 3.5 });
+        break;
+      case 'FIXED_INCOME':
+        onFieldChange('investmentType', 'FIXED_INCOME');
+        setInterestAmountRange({ min: 7.5 });
+        break;
+      case 'BALANCED':
+        onFieldChange('investmentType', 'BALANCED');
+        setInterestAmountRange({ min: 8.5 });
+        break;
+      case 'EQUITY':
+        onFieldChange('investmentType', 'EQUITY');
+        setInterestAmountRange({ min: 16.5 });
+        break;
+      //
+    }
+  };
 
   return (
     <>
@@ -89,8 +114,8 @@ export default function CE_SimulationReksaDana() {
               <div>
                 <InputSlider
                   min={0}
-                  max={10000000000}
-                  step={100000}
+                  max={995000000000}
+                  step={5000000}
                   value={form?.amount}
                   onChange={(value) => onFieldChange('amount', value)}
                 />
@@ -132,7 +157,9 @@ export default function CE_SimulationReksaDana() {
               },
             ]}
             value={`MONEY_MARKET`}
-            onChange={(value: any) => onFieldChange('investmentType', value)}
+            onChange={(value) => {
+              handleChangeRisk(String(value));
+            }}
           />
           {formError.investmentType && (
             <div className="mt-5">
@@ -144,14 +171,9 @@ export default function CE_SimulationReksaDana() {
       <h1 className="text-xl font-semibold text-black pt-5">
         Perkiraan Nilai Investasi
       </h1>
-      <div className="mb-5 w-[20%] pt-2">
-        <InputText
-          disabled={formDisabled?.investmentType}
-          rightText="%"
-          value={form?.investmentType}
-          onChange={(value) => onFieldChange('investmentType', value)}
-          type="text"
-        />
+      <div className="mb-5 w-[20%] pt-2 flex space-x-2 ">
+        <h1 className="text-wmcolor">{interestAmountRange?.min}</h1>
+        <h2 className="text-wmcolor">%</h2>
       </div>
       <h2 className="text-xs w-full">
         berdasarkan rata-rata kinerja 1 tahun sumber Infovesta, diolah Kantor
