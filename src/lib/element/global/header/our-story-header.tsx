@@ -38,7 +38,7 @@ export function LoginButton({
       className={[
         `${isScrolling ? 'bg-black' : 'bg-white'}`,
         `${isScrolling ? 'hover:border-blue-800 border-2' : 'hover:bg-[#080087]'}`,
-        `text-[#191056] px-6 pr-4 py-2 mdmax:py-1 mdmax:px-4 mdmax:pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
+        `text-[#191056] lg:px-6 lg:pr-4 lg:py-2 py-1 px-4 pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
       ].join(' ')}
       onClick={() => setActive(!active)}
     >
@@ -181,7 +181,7 @@ export default function OurStoryHeader({
         <div className="container py-4">
           <div
             className={[
-              `flex items-center gap-5 justify-end mb-5 mdmax:hidden`,
+              `lg:flex items-center gap-5 justify-end mb-5 hidden`,
               `${isScrolling ? 'hidden' : ''}`,
             ].join(' ')}
           >
@@ -252,7 +252,7 @@ export default function OurStoryHeader({
             </div>
           </div>
 
-          <div className="md:hidden items-center justify-between flex">
+          <div className="lg:hidden items-center justify-between flex">
             <Link href={'/'} className="w-[5rem]">
               <Image
                 alt="logo-bri"
@@ -264,7 +264,7 @@ export default function OurStoryHeader({
             </Link>
           </div>
 
-          <div className="md:flex items-center justify-between hidden">
+          <div className="lg:flex items-center justify-between hidden">
             <div className="flex-none">
               <Link className="!text-gray-500" href="/">
                 <Image

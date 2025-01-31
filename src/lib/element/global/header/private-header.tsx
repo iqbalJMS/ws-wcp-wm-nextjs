@@ -38,7 +38,7 @@ export function LoginButton({
       className={[
         `${isScrolling ? 'bg-black' : 'bg-white'}`,
         `${isScrolling ? 'hover:border-privatecolor border-2' : 'hover:bg-privatecolor'}`,
-        `text-[#191056] px-6 pr-4 py-2 mdmax:py-1 mdmax:px-4 mdmax:pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
+        `text-[#191056] lg:px-6 lg:pr-4 lg:py-2 py-1 px-4 pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
       ].join(' ')}
       onClick={() => setActive(!active)}
     >
@@ -187,7 +187,7 @@ export default function PrivateHeader({
         <div className="container py-4">
           <div
             className={[
-              `flex items-center gap-5 justify-end mb-5 mdmax:hidden`,
+              `lg:flex items-center gap-5 justify-end mb-5 hidden`,
               `${isScrolling ? 'hidden' : ''}`,
             ].join(' ')}
           >
@@ -258,7 +258,7 @@ export default function PrivateHeader({
             </div>
           </div>
 
-          <div className="md:hidden items-center justify-between flex">
+          <div className="lg:hidden items-center justify-between flex">
             <div className="w-[5rem]">
               <Link href="/">
                 <Image
@@ -290,7 +290,7 @@ export default function PrivateHeader({
                     className="cursor-pointer"
                   >
                     <svg
-                      className={`w-7 h-7  ${isScrolling || variant === 'no-transparent' ? 'fill-black' : 'mdmax:fill-white'} `}
+                      className={`w-7 h-7  ${isScrolling || variant === 'no-transparent' ? 'fill-black' : 'lg:fill-current fill-white'} `}
                       width="32"
                       height="32"
                       viewBox="0 0 256 256"
@@ -303,7 +303,7 @@ export default function PrivateHeader({
             </div>
           </div>
 
-          <div className="md:flex items-center justify-between hidden">
+          <div className="lg:flex items-center justify-between hidden">
             <div className="flex items-center space-x-3 flex-none">
               <Link href={'/'}>
                 <Image
@@ -416,7 +416,7 @@ export default function PrivateHeader({
                 })}
               </div>
             </div>
-            <div className="pb-2 border-b-4 border-transparent mdmax:hidden ml-4">
+            <div className="pb-2 border-b-4 border-transparent lg:block hidden ml-4">
               <LoginButton menuItems={itemLogin} />
             </div>
           </div>
