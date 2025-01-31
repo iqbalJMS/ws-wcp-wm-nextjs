@@ -9,17 +9,17 @@ import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/act
 import { ACT_GetMainMenuFooter } from '@/app/(views)/$action/main-footer/action.get.main-footer';
 import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-footer/action.get.main-middle-footer';
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
-import { ACT_GetPrivateMenuNavbar } from '@/app/(views)/$action/private-header/action.get.private-menu-navbar';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
 import CE_WYSIWSGVariant01 from '@/app/$element/client.wysiwsg.variant01';
 import CE_BreadCrumbArticle from '@/app/article-detail/$element/client.breadcrumb.article';
 import PriorityHeader from '@/lib/element/global/header/priority-header';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
+import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
-  const listPrivateNavbar = await ACT_GetPrivateMenuNavbar({ lang: 'id' });
+  const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
   const itemHeaderLogo = await ACT_GetHeaderLogo({ lang: 'en' });
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
@@ -42,7 +42,7 @@ export default async function page({ params }: { params: { id: string } }) {
       <div>
         <PriorityHeader
           headerTop={listHeaderTop}
-          headerBottom={listPrivateNavbar}
+          headerBottom={listPriorityNavbar}
           variant={'transparent'}
           itemLogin={itemMenuLogin}
           priorityLogo={itemPriorityLogo || undefined}

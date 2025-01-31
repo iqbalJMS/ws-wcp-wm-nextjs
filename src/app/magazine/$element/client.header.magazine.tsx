@@ -17,7 +17,6 @@ import { Search } from '@/lib/element/global/global.search';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
-
 export function LoginButton({
   menuItems,
 }: {
@@ -331,7 +330,7 @@ export default function CE_HeaderMagazine({
                           ].join(' ')}
                         >
                           {item?.title}
-                          {item?.below?.length > 0 && (
+                          {item.below && item?.below?.length > 0 && (
                             <div
                               className={[
                                 `invisible group-hover:visible group-hover:opacity-100 opacity-0 transition-all ease-in-out duration-100`,
@@ -343,7 +342,7 @@ export default function CE_HeaderMagazine({
                             ></div>
                           )}
                         </Link>
-                        {item?.below?.length > 0 && (
+                        {item.below && item?.below?.length > 0 && (
                           <div className="absolute left-0 w-full invisible group-hover:visible group-hover:opacity-100 opacity-0 transition-all ease-in-out duration-300 pt-10">
                             <div className="bg-white">
                               <div className="container py-5">
