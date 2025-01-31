@@ -11,12 +11,12 @@ type T_MenuItemBase = {
   options: Array<unknown>;
 };
 
-type T_Items = T_MenuItemBase & {
-  below: Array<T_Items>;
+export type T_Items = T_MenuItemBase & {
+  below?: Array<T_Items>;
 };
 
 type T_Below = T_MenuItemBase & {
-  below: Array<T_Items>;
+  below?: Array<T_Items>;
 };
 
 export type T_ResponseGetMainMenuNavbar = Array<T_Below>;
