@@ -132,7 +132,6 @@ export default function HomeHeader({
   itemLogin: T_ResponseGetMenuItemNavbar;
   headerLogo?: T_ResponGetHeaderLogo;
 }) {
-  const elementRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const currentLanguage = useSearchParams().get('lang');
   const router = useRouter();
@@ -141,11 +140,6 @@ export default function HomeHeader({
   const [activeSearch, setActiveSearch] = useState(false);
   const [activeMenu, setActiveMenu] = useState(false);
   const [isSelectedMenu, setIsSelectedMenu] = useState<T_Items | null>(null);
-
-  useOnClickOutside(elementRef, () => {
-    setActiveMenu(false);
-    setIsSelectedMenu(null);
-  });
 
   const onSwitchLanguages = (language: string) => {
     if (currentLanguage !== language) {
@@ -405,7 +399,10 @@ export default function HomeHeader({
         {activeMenu && (
           <div className="fixed top-0 w-full h-screen z-50">
             <div
-              onClick={() => setActiveMenu(false)}
+              onClick={() => {
+                setActiveMenu(false);
+                setIsSelectedMenu(null);
+              }}
               className="bg-black bg-opacity-30 absolute top-0 left-0 w-full h-screen"
             ></div>
             <motion.div
@@ -416,7 +413,10 @@ export default function HomeHeader({
             >
               <div
                 className="absolute top-2 right-2"
-                onClick={() => setActiveMenu(false)}
+                onClick={() => {
+                  setActiveMenu(false);
+                  setIsSelectedMenu(null);
+                }}
               >
                 <CloseIcon className="text-blue-02 cursor-pointer" />
               </div>

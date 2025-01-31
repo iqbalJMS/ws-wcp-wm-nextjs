@@ -135,7 +135,6 @@ export default function PrivateHeader({
   headerLogo?: T_ResponGetHeaderLogo;
   privateLogo?: T_ResponGetHeaderLogoPrivate;
 }) {
-  const elementRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const currentLanguage = useSearchParams().get('lang');
   const router = useRouter();
@@ -146,11 +145,6 @@ export default function PrivateHeader({
   const [isSelectedMenu, setIsSelectedMenu] = useState<T_PrivateItems | null>(
     null
   );
-
-  useOnClickOutside(elementRef, () => {
-    setActiveMenu(false);
-    setIsSelectedMenu(null);
-  });
 
   const onSwitchLanguages = (language: string) => {
     if (currentLanguage !== language) {
@@ -431,7 +425,10 @@ export default function PrivateHeader({
         {activeMenu && (
           <div className="fixed top-0 w-full h-screen z-50">
             <div
-              onClick={() => setActiveMenu(false)}
+              onClick={() => {
+                setActiveMenu(false);
+                setIsSelectedMenu(null);
+              }}
               className="bg-black bg-opacity-30 absolute top-0 left-0 w-full h-screen"
             ></div>
             <motion.div

@@ -131,7 +131,6 @@ export default function OurStoryHeader({
   variant: 'transparent' | 'no-transparent';
   itemLogin: T_ResponseGetMenuItemNavbar;
 }) {
-  const elementRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const currentLanguage = useSearchParams().get('lang');
   const router = useRouter();
@@ -140,11 +139,6 @@ export default function OurStoryHeader({
   const [activeSearch, setActiveSearch] = useState(false);
   const [activeMenu, setActiveMenu] = useState(false);
   const [isSelectedMenu, setIsSelectedMenu] = useState<T_Items | null>(null);
-
-  useOnClickOutside(elementRef, () => {
-    setActiveMenu(false);
-    setIsSelectedMenu(null);
-  });
 
   const onSwitchLanguages = (language: string) => {
     if (currentLanguage !== language) {
@@ -380,7 +374,10 @@ export default function OurStoryHeader({
         {activeMenu && (
           <div className="fixed top-0 w-full h-screen z-50">
             <div
-              onClick={() => setActiveMenu(false)}
+              onClick={() => {
+                setActiveMenu(false);
+                setIsSelectedMenu(null);
+              }}
               className="bg-black bg-opacity-30 absolute top-0 left-0 w-full h-screen"
             ></div>
             <motion.div
