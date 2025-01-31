@@ -456,7 +456,7 @@ export default function CE_AllMagazine({
             initial="hidden"
             animate={mainControls}
             transition={{ duration: 0.5, delay: 0.45 }}
-            className="inline-flex items-center justify-center w-full pt-5"
+            className="hidden lg:inline-flex items-center justify-center w-full pt-5"
           >
             <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
             <button
