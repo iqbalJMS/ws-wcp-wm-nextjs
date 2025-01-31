@@ -32,7 +32,7 @@ const CE_InvestasiPrioritas = ({
         <div ref={ref} className="flex flex-wrap -mx-10">
           {dataCard?.map((item, index) => (
             <Link
-              href={`/bancassurance-detail/${item?.nid}`}
+              href={`/investasi-detail-prioritas/${item?.nid}`}
               key={index}
               className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
             >

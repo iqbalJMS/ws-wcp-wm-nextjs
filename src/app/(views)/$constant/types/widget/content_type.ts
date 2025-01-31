@@ -135,4 +135,6 @@ export type T_Insight = {
   field_content_type: Array<T_content_type>;
   field_reference_content: Array<T_field_reference_content>;
   field_bri_location_type: Array<{ type_id: string; type_name: string }>;
+  field_category_product: Array<{ value: string }>;
+  field_site: Array<{ value: string }>;
 };

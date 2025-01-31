@@ -15,8 +15,8 @@ import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page'
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import PriorityHeader from '@/lib/element/global/header/priority-header';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
-import CE_BCBancasurrance from '@/app/bancassurance-detail/$element/client.breadcrumb.program';
-import CE_AccordionBancarsurance from '@/app/bancassurance-detail/$element/client.accordion.bancassurance';
+import CE_AccordionBancarsurance from '@/app/bancassurance-detail/$element/client.accordion.bancassuranceWm';
+import CE_BCBancasurranceWM from '@/app/bancassurance-detail/$element/client.breadcrumb.bancasurranceWm';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -54,11 +54,18 @@ export default async function page({ params }: { params: { id: string } }) {
             height={100000}
             className="w-full h-full object-cover object-top"
           />
-          <h1 className="z-10 absolute text-4xl text-white font-bold uppercase">
-            {getOurstoryData?.title?.[0]?.value}
-          </h1>
+          <div className="z-10 absolute text-center ">
+            <h1 className="text-4xl text-white font-bold uppercase">
+              {getOurstoryData?.title?.[0]?.value}
+            </h1>
+            <h2 className="text-sm text-white w-full pt-10">
+              {parseHTMLToReact(getOurstoryData?.field_summary?.[0]?.value)}
+            </h2>
+          </div>
         </section>
-        <CE_BCBancasurrance currentPage={getOurstoryData?.title?.[0]?.value} />
+        <CE_BCBancasurranceWM
+          currentPage={getOurstoryData?.title?.[0]?.value}
+        />
         <div className="w-full flex justify-center pb-14 pt-4">
           <h1 className="text-xl xl:text-3xl text-prioritycolor font-bold uppercase text-center">
             rincian produk
