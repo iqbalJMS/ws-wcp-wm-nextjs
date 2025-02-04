@@ -11,7 +11,13 @@ import {
 } from 'react-simple-captcha';
 import InputText from '@/lib/element/global/form/input.text';
 
-export default function CE_FormVariant2({ variant }: { variant: string }) {
+export default function CE_FormVariant2({
+  variant,
+  bgImage,
+}: {
+  variant: string;
+  bgImage: string;
+}) {
   const DATA = [
     {
       placeholder: 'Nama Lengkap Anda',
@@ -78,18 +84,18 @@ export default function CE_FormVariant2({ variant }: { variant: string }) {
   }
   return (
     <>
-      <div className="w-full h-full flex flex-col lg:flex-row-reverse ">
+      <div className="w-full bg-[#605E68] h-full flex flex-col lg:flex-row-reverse ">
         <div className="w-full h-full">
           <Image
             className="w-full h-full"
-            src=""
+            src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage}`}
             alt={''}
-            width={900}
-            height={900}
+            width={10000}
+            height={10000}
           />
         </div>
-        <div className="w-full h-full bg-[#605E68] p-5 py-10 xl:p-10 flex justify-center items-center">
-          <form className="w-9/12" onSubmit={onSubmit as any}>
+        <div className="w-full h-full  p-5 py-10 xl:p-10 flex justify-center items-end">
+          <form className="w-9/12 h-full" onSubmit={onSubmit as any}>
             <section className="text-white space-y-3 pb-5">
               <h1 className="text-2xl font-bold">HUBUNGI SAYA</h1>
               <h2>
@@ -198,12 +204,14 @@ export default function CE_FormVariant2({ variant }: { variant: string }) {
                 />
                 <h1 className="text-xs text-white pt-1">Wajib diisi</h1>
               </div>
-              <div className="flex items-center space-x-2">
-                <LoadCanvasTemplateNoReload />
-                <button type="button" onClick={() => loadCaptchaEnginge(6)}>
-                  <RefreshIcon width={28} height={28} fill="#27AE60" />
-                </button>
-                <div className="px-4 flex-1">
+              <div className="flex flex-col items-start space-y-5 lg:flex lg:items-start space-x-0">
+                <div className="flex space-x-2">
+                  <LoadCanvasTemplateNoReload />
+                  <button type="button" onClick={() => loadCaptchaEnginge(6)}>
+                    <RefreshIcon width={28} height={28} fill="#27AE60" />
+                  </button>
+                </div>
+                <div className="px-0 flex-1">
                   <InputText
                     placeholder={
                       `${dictionary?.field.general.enter} ${dictionary?.field.track.captcha}` ||

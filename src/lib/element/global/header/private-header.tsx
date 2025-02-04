@@ -38,13 +38,13 @@ export function LoginButton({
       className={[
         `${isScrolling ? 'bg-black' : 'bg-white'}`,
         `${isScrolling ? 'hover:border-privatecolor border-2' : 'hover:bg-privatecolor'}`,
-        `text-[#191056] lg:px-6 lg:pr-4 lg:py-2 py-1 px-4 pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
+        `text-[#191056] lg:px-6 lg:pr-4 lg:py-2 py-1 px-3 pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
       ].join(' ')}
       onClick={() => setActive(!active)}
     >
       <div
         className={[
-          `${isScrolling ? 'text-white' : 'text-privatecolor'}`,
+          `${isScrolling ? 'text-white text-sm lg:text-base' : 'text-privatecolor text-sm lg:text-base'}`,
           'uppercase font-semibold group-hover:text-white',
         ].join(' ')}
       >
@@ -188,7 +188,7 @@ export default function PrivateHeader({
           <div
             className={[
               `lg:flex items-center gap-5 justify-end mb-5 hidden`,
-              `${isScrolling ? 'hidden' : ''}`,
+              `${isScrolling ? 'lg:hidden' : ''}`,
             ].join(' ')}
           >
             <div className="flex items-center gap-8">
@@ -200,9 +200,7 @@ export default function PrivateHeader({
                       onClick={() =>
                         header.title.toLowerCase() === 'cari'
                           ? setActiveSearch(true)
-                          : router.push(
-                              `/${String(header?.alias)}?lang=${currentLanguage ?? 'en'}`
-                            )
+                          : router.push(`${header?.relative}`)
                       }
                     >
                       {header.icon && (
@@ -259,7 +257,7 @@ export default function PrivateHeader({
           </div>
 
           <div className="lg:hidden items-center justify-between flex">
-            <div className="w-[5rem]">
+            <div className="w-[21vh] flex items-center space-x-1">
               <Link href="/">
                 <Image
                   alt="logo-bri"
@@ -275,7 +273,7 @@ export default function PrivateHeader({
                   src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${privateLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
                   width={150}
                   height={60}
-                  className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                  className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert pl-2 border-l border-white'} `}
                 />
               </Link>
             </div>

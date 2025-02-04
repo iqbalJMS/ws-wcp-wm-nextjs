@@ -22,7 +22,6 @@ import { T_Magazine } from './types/widget/external_magazine';
 import { T_RequirementBox } from './types/widget/requirement-box';
 import { T_RichText } from './types/widget/rich-text';
 import { T_Map } from './types/widget/map';
-// import { T_ResponGetPromo } from '@/api/promo/api.get-promo.type';
 import { T_PromoWidget } from './types/widget/promo';
 import { T_ContentItems } from './types/widget/content-items';
 import { T_Simulation } from './types/widget/simulation';
@@ -135,6 +134,10 @@ const CE_Privileges = dynamic(
   () => import('@/app/(views)/$element/card/client.card.privileges')
 );
 
+const CE_FormVariant2 = dynamic(
+  () => import('@/app/(views)/$element/form/client.form-variant2')
+);
+
 const CE_CardGrid6Main = dynamic(
   () => import('@/app/(views)/$element/grid/client.card-grid-6.main')
 );
@@ -193,12 +196,6 @@ const CE_LatestFourPromo = dynamic(
   () => import('@/app/(views)/$element/promo/client.card.promo')
 );
 
-// const CE_CardGrid10 = dynamic(
-//   () =>
-//     import(
-//       '@/app/(views)/$element/grid/client.card-grid-bancasurrance-Prioritas'
-//     )
-// );
 const CE_GridMain = dynamic(
   () => import('@/app/(views)/$element/grid/client.card-grid-main')
 );
@@ -1018,6 +1015,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         const secondColumn = props?.[0]?.secondColumn;
         const propsSecondColumn = props?.[0]?.propsSecondColumn;
         const propsFirstColumn = props?.[0]?.propsFirstColumn;
+        const propsBgImage = props?.[0]?.propsBgImage;
 
         switch (findVariantStyle) {
           case WIDGET_VARIANT.variant14:
@@ -1052,6 +1050,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
                 variant={theme}
                 secondColumn={propsSecondColumn}
                 firstColumn={propsFirstColumn}
+              />
+            );
+          case WIDGET_VARIANT.variant26:
+            return <CE_FormVariant2 variant={theme} bgImage={propsBgImage} />;
+          case WIDGET_VARIANT.variant27:
+            return (
+              <CE_GetInvited
+                firstColumn={propsFirstColumn}
+                secondColumn={propsSecondColumn}
               />
             );
           default:
@@ -1157,6 +1164,31 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           }
         );
 
+        const bgImageData =
+          _component?.field_second_column?.[0]?.field_image?.[0]?.thumbnail?.[0]
+            ?.uri?.[0]?.url;
+
+        const firstColumnPriority = _component?.field_first_column?.map(
+          (item) => {
+            return {
+              iconImage: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+              address: item?.field_content?.[0]?.value,
+              title: item?.field_title?.[0]?.value,
+              linkCta: item?.field_primary_cta?.[0]?.full_url,
+            };
+          }
+        );
+        const secondColumnPriority = _component?.field_second_column?.map(
+          (item) => {
+            return {
+              iconImage: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+              address: item?.field_content?.[0]?.value,
+              title: item?.field_title?.[0]?.value,
+              linkCta: item?.field_primary_cta?.[0]?.full_url,
+            };
+          }
+        );
+
         switch (findVariantStyle) {
           case WIDGET_VARIANT.variant14:
             return {
@@ -1189,6 +1221,17 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               variant: findVariantStyle,
               propsFirstColumn: propsFirstData,
               propsSecondColumn: propsSecondData,
+            };
+          case WIDGET_VARIANT.variant26:
+            return {
+              variant: findVariantStyle,
+              propsBgImage: bgImageData,
+            };
+          case WIDGET_VARIANT.variant27:
+            return {
+              variant: findVariantStyle,
+              propsFirstColumn: firstColumnPriority,
+              propsSecondColumn: secondColumnPriority,
             };
           default:
             return {
@@ -1368,12 +1411,6 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: CE_FormMain,
       props: (_component: any) => {
         return { variant: theme };
-      },
-    },
-    card_cta: {
-      component: CE_GetInvited,
-      props: (_component: any) => {
-        return {};
       },
     },
     content_type_items: {
