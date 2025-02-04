@@ -22,13 +22,14 @@ import CE_SimulationResultVariant01 from './client.simulation-result';
 export default function CE_SimulationObligasi() {
   const [pending, transiting] = useTransition();
   const [isResult, setIsResult] = useState(false);
+  const [resetCount, setResetCount] = useState(0);
 
   const [formDisabled, setFormDisabled] = useState({
     amount: true,
     term: true,
     couponRate: true,
   });
-  const { form, formError, onFieldChange, validateForm } = useForm<
+  const { form, formError, onFieldChange, validateForm, resetForm } = useForm<
     T_SimulationObligasiRequest,
     T_SimulationObligasiRequest
   >(
@@ -70,6 +71,16 @@ export default function CE_SimulationObligasi() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form]);
+
+  const handleResetForm = () => {
+    setIsResult(false);
+    resetForm();
+  };
+
+  useEffect(() => {
+    handleResetForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resetCount]);
 
   return (
     <>
@@ -173,7 +184,7 @@ export default function CE_SimulationObligasi() {
           HITUNG
         </ButtonSecondary>
         <ButtonSecondary
-          onClick={() => setIsResult(false)}
+          onClick={() => setResetCount((prev) => prev + 1)}
           rounded="full"
           color="gray-100"
           className="bg-gray-100 text-wmcolor border border-wmcolor"

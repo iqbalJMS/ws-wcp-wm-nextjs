@@ -23,12 +23,13 @@ import InputRadioButton from '@/lib/element/global/form/input.radiobutton';
 export default function CE_SimulationReksaDana() {
   const [pending, transiting] = useTransition();
   const [isResult, setIsResult] = useState(false);
+  const [resetCount, setResetCount] = useState(0);
 
   const [formDisabled, setFormDisabled] = useState({
     amount: true,
     investmentType: true,
   });
-  const { form, formError, onFieldChange, validateForm } = useForm<
+  const { form, formError, onFieldChange, validateForm, resetForm } = useForm<
     T_SimulationReksaDanaRequest,
     T_SimulationReksaDanaRequest
   >(
@@ -96,6 +97,16 @@ export default function CE_SimulationReksaDana() {
     }
   };
 
+  const handleResetForm = () => {
+    setIsResult(false);
+    resetForm();
+  };
+
+  useEffect(() => {
+    handleResetForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resetCount]);
+
   return (
     <>
       <div className="py-5">
@@ -139,6 +150,7 @@ export default function CE_SimulationReksaDana() {
       <div className="py-5">
         <InputLabel label="Jenis Reksa Dana" required>
           <InputRadioButton
+            key={resetCount}
             list={[
               {
                 value: 'MONEY_MARKET',
@@ -188,7 +200,7 @@ export default function CE_SimulationReksaDana() {
           HITUNG
         </ButtonSecondary>
         <ButtonSecondary
-          onClick={() => setIsResult(false)}
+          onClick={() => setResetCount((prev) => prev + 1)}
           rounded="full"
           color="gray-100"
           className="bg-gray-100 text-wmcolor border border-wmcolor"
