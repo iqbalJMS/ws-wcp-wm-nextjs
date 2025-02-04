@@ -155,7 +155,7 @@ export default function CE_SimultaionInitialInvest() {
                       <InputSlider
                         min={0}
                         max={995000000000}
-                        step={5000000}
+                        step={5000000000}
                         value={form?.targetInvestmentValue}
                         onChange={(value) =>
                           onFieldChange('targetInvestmentValue', value)

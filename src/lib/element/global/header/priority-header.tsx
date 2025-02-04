@@ -44,7 +44,7 @@ export function LoginButton({
     >
       <div
         className={[
-          `${isScrolling ? 'text-white' : 'text-prioritycolor'}`,
+          `${isScrolling ? 'text-white text-sm lg:text-base' : 'text-prioritycolor text-sm lg:text-base'}`,
           'uppercase font-semibold group-hover:text-white',
         ].join(' ')}
       >
@@ -190,7 +190,7 @@ export default function PriorityHeader({
           <div
             className={[
               `lg:flex items-center gap-5 justify-end mb-5 hidden`,
-              `${isScrolling ? 'hidden' : ''}`,
+              `${isScrolling ? 'lg:hidden' : ''}`,
             ].join(' ')}
           >
             <div className="flex items-center gap-8">
@@ -202,9 +202,7 @@ export default function PriorityHeader({
                       onClick={() =>
                         header.title.toLowerCase() === 'cari'
                           ? setActiveSearch(true)
-                          : router.push(
-                              `/${String(header?.alias)}?lang=${currentLanguage ?? 'en'}`
-                            )
+                          : router.push(`${header?.relative}`)
                       }
                     >
                       {header.icon && (
@@ -261,7 +259,7 @@ export default function PriorityHeader({
           </div>
 
           <div className="lg:hidden items-center justify-between flex">
-            <div className="w-[5rem]">
+            <div className="w-[21vh] flex items-center space-x-1">
               <Link href="/">
                 <Image
                   alt="logo-bri"
@@ -277,7 +275,7 @@ export default function PriorityHeader({
                   src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${priorityLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
                   width={150}
                   height={60}
-                  className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                  className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert pl-2 border-l border-white'} `}
                 />
               </Link>
             </div>

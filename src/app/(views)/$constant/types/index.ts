@@ -30,7 +30,6 @@ export type T_Widget =
   | 'external_magazine'
   | 'form'
   | 'location'
-  | 'card_cta'
   | 'map'
   | 'content_type_items'
   | 'simulation';

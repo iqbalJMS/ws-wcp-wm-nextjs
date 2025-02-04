@@ -7,7 +7,6 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from 'next/link';
-// import { Tabs } from '@/lib/element/global/tabs';
 import { CloseIcon } from '@/lib/element/global/icons/close-icon';
 import Image from 'next/image';
 import ChevronDown from '@/lib/element/global/icons/chevron-button-navbar';
@@ -44,7 +43,7 @@ export function LoginButton({
     >
       <div
         className={[
-          `${isScrolling ? 'text-white' : 'text-bluedark01'}`,
+          `${isScrolling ? 'text-white text-sm lg:text-base' : 'text-bluedark01 text-sm lg:text-base'}`,
           'uppercase font-semibold group-hover:text-white',
         ].join(' ')}
       >
@@ -183,7 +182,7 @@ export default function HomeHeader({
           <div
             className={[
               `lg:flex items-center gap-5 justify-end mb-5 hidden`,
-              `${isScrolling ? 'hidden' : ''}`,
+              `${isScrolling ? 'lg:hidden' : ''}`,
             ].join(' ')}
           >
             <div className="flex items-center gap-8">
@@ -195,9 +194,7 @@ export default function HomeHeader({
                       onClick={() =>
                         header.title.toLowerCase() === 'cari'
                           ? setActiveSearch(true)
-                          : router.push(
-                              `/${String(header?.alias)}?lang=${currentLanguage ?? 'en'}`
-                            )
+                          : router.push(`${header?.relative}`)
                       }
                     >
                       {header.icon && (
@@ -254,7 +251,7 @@ export default function HomeHeader({
           </div>
 
           <div className="lg:hidden items-center justify-between flex">
-            <Link href={'/'} className="w-[5rem]">
+            <Link href={'/'} className="w-[12vh]">
               <Image
                 alt="logo-bri"
                 src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}

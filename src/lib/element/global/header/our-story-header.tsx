@@ -182,7 +182,7 @@ export default function OurStoryHeader({
           <div
             className={[
               `lg:flex items-center gap-5 justify-end mb-5 hidden`,
-              `${isScrolling ? 'hidden' : ''}`,
+              `${isScrolling ? 'lg:hidden' : ''}`,
             ].join(' ')}
           >
             <div className="flex items-center gap-8">
@@ -194,9 +194,7 @@ export default function OurStoryHeader({
                       onClick={() =>
                         header.title.toLowerCase() === 'cari'
                           ? setActiveSearch(true)
-                          : router.push(
-                              `/${String(header?.alias)}?lang=${currentLanguage ?? 'en'}`
-                            )
+                          : router.push(`${header?.relative}`)
                       }
                     >
                       {header.icon && (

@@ -90,7 +90,7 @@ export default function CE_SimulationObligasi() {
                 <InputSlider
                   min={0}
                   max={995000000000}
-                  step={5000000}
+                  step={5000000000}
                   value={form?.amount}
                   onChange={(value) => onFieldChange('amount', value)}
                 />

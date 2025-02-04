@@ -24,6 +24,8 @@ export const WIDGET_VARIANT = {
   variant23: 'div_card_promo_last_four',
   variant24: 'div_card_promo_last_seven',
   variant25: 'div_card_05',
+  variant26: 'div_form',
+  variant27: 'div_form_prioritas',
 };
 
 export const API_BASE_URL = 'https://admin-bri-corpsite.dev-kjt.id';
