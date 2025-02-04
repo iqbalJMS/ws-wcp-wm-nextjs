@@ -29,7 +29,7 @@ function useFormat() {
 }
 
 export default function InputText({
-  type = 'text',
+  type = 'number',
   value = '',
   placeholder = '',
   label = '',

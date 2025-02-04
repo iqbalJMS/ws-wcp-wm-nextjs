@@ -54,6 +54,7 @@ export default function CE_SimultaionInitialInvest() {
         setResult(data?.data);
         if (button) {
           setIsResult(true);
+          window.scrollTo({ top: 5000, behavior: 'smooth' });
         }
       });
     } catch (error) {}
@@ -146,7 +147,7 @@ export default function CE_SimultaionInitialInvest() {
                         leftText="Rp."
                         value={form?.targetInvestmentValue}
                         onChange={(value) =>
-                          onFieldChange('targetInvestmentValue', value)
+                          onFieldChange('targetInvestmentValue', +value)
                         }
                         type="number"
                       />
@@ -188,7 +189,7 @@ export default function CE_SimultaionInitialInvest() {
                         disabled={formDisabled?.duration}
                         rightText="Tahun"
                         value={form?.duration}
-                        onChange={(value) => onFieldChange('duration', value)}
+                        onChange={(value) => onFieldChange('duration', +value)}
                         type="number"
                       />
                     </div>
@@ -270,7 +271,9 @@ export default function CE_SimultaionInitialInvest() {
                       rightText="%"
                       disabled={formDisabled?.interestRate}
                       value={form?.interestRate}
-                      onChange={(value) => onFieldChange('interestRate', value)}
+                      onChange={(value) =>
+                        onFieldChange('interestRate', +value)
+                      }
                       type="number"
                     />
                   </div>
