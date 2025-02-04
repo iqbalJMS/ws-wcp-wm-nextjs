@@ -52,6 +52,7 @@ export default function CE_SimulationObligasi() {
         setResult(data?.data);
         if (button) {
           setIsResult(true);
+          window.scrollTo({ top: 1000, behavior: 'smooth' });
         }
       });
     } catch (error) {}
@@ -82,7 +83,7 @@ export default function CE_SimulationObligasi() {
                   disabled={formDisabled?.amount}
                   leftText="Rp."
                   value={form?.amount}
-                  onChange={(value) => onFieldChange('amount', value)}
+                  onChange={(value) => onFieldChange('amount', +value)}
                   type="number"
                 />
               </div>
@@ -117,7 +118,7 @@ export default function CE_SimulationObligasi() {
             placeholder={'Kupon'}
             type="text"
             value={form?.couponRate}
-            onChange={(value) => onFieldChange('couponRate', value)}
+            onChange={(value) => onFieldChange('couponRate', +value)}
             state={'init'}
             rightSlot={
               <div className="bg-gray-200 text-gray-500 rounded-e-full flex justify-center items-center w-12">
@@ -140,7 +141,7 @@ export default function CE_SimulationObligasi() {
                   disabled={formDisabled?.term}
                   rightText="Tahun"
                   value={form?.term}
-                  onChange={(value) => onFieldChange('term', value)}
+                  onChange={(value) => onFieldChange('term', +value)}
                   type="number"
                 />
               </div>

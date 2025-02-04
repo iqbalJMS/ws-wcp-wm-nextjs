@@ -51,6 +51,7 @@ export default function CE_SimulationReksaDana() {
         setResult(data?.data);
         if (button) {
           setIsResult(true);
+          window.scrollTo({ top: 1000, behavior: 'smooth' });
         }
       });
     } catch (error) {}
@@ -107,7 +108,7 @@ export default function CE_SimulationReksaDana() {
                   disabled={formDisabled?.amount}
                   leftText="Rp."
                   value={form?.amount}
-                  onChange={(value) => onFieldChange('amount', value)}
+                  onChange={(value) => onFieldChange('amount', +value)}
                   type="number"
                 />
               </div>
@@ -171,9 +172,9 @@ export default function CE_SimulationReksaDana() {
       <h1 className="text-xl font-semibold text-black pt-5">
         Perkiraan Nilai Investasi
       </h1>
-      <div className="mb-5 w-[20%] pt-2 flex space-x-2 ">
-        <h1 className="text-wmcolor">{interestAmountRange?.min}</h1>
-        <h2 className="text-wmcolor">%</h2>
+      <div className="mb-5 w-[20%] pt-2 flex space-x-2 cursor-not-allowed">
+        <h1 className="text-wmcolor ">{interestAmountRange?.min}</h1>
+        <h2 className="text-wmcolor ">%</h2>
       </div>
       <h2 className="text-xs w-full">
         berdasarkan rata-rata kinerja 1 tahun sumber Infovesta, diolah Kantor

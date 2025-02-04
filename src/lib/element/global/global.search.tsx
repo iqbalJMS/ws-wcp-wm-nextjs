@@ -1,6 +1,5 @@
 import { Tabs } from './tabs';
 
-
 import useForm from '@/lib/hook/useForm';
 
 import { T_Search } from '@/api/search/api.get.search.type';
@@ -11,7 +10,12 @@ import Link from './link';
 import Image from './image';
 
 import { T_ApiGetSearchMenu } from '@/api/search/api.get-search-menu.type';
-import { CFN_GetSearch, CFN_MapToSearchPayload, CFN_ValidateGetSearchFields, T_GetSearch } from '@/lib/functions/global/cfn.get.search';
+import {
+  CFN_GetSearch,
+  CFN_MapToSearchPayload,
+  CFN_ValidateGetSearchFields,
+  T_GetSearch,
+} from '@/lib/functions/global/cfn.get.search';
 import { CFN_GetSearchMenu } from '@/lib/functions/global/cfn.get.search-menu';
 import CE_CardVariant09 from './client.card.variant09';
 type T_SearchProps = {
@@ -200,7 +204,7 @@ export function Search({ active, setActive }: T_SearchProps) {
                   cy="12"
                   r="10"
                   stroke="currentColor"
-                  stroke-width="4"
+                  strokeWidth="4"
                 ></circle>
                 <path
                   className="opacity-75"
@@ -447,7 +451,6 @@ export function Search({ active, setActive }: T_SearchProps) {
           {menus?.map((subItem, subIndex) => {
             return (
               <div key={subIndex} className="mr-16">
-                
                 <Link href={generateLink(subItem)}>
                   <div className="text-bluedark01 font-semibold mb-2">
                     {subItem?.title}

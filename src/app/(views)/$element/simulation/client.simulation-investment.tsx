@@ -51,6 +51,7 @@ export default function CE_SimulationInvestment() {
         setResult(data?.data);
         if (button) {
           setIsResult(true);
+          window.scrollTo({ top: 5000, behavior: 'smooth' });
         }
       });
     } catch (error) {}
@@ -136,13 +137,13 @@ export default function CE_SimulationInvestment() {
                 <div>
                   <div className="mb-5 w-[50%]">
                     <InputText
+                      type="number"
                       disabled={formDisabled?.investmentAmount}
                       leftText="Rp."
                       value={form?.investmentAmount}
                       onChange={(value) =>
-                        onFieldChange('investmentAmount', value)
+                        onFieldChange('investmentAmount', +value)
                       }
-                      type="number"
                     />
                   </div>
                   <div>
@@ -182,7 +183,7 @@ export default function CE_SimulationInvestment() {
                       disabled={formDisabled?.duration}
                       rightText="Tahun"
                       value={form?.duration}
-                      onChange={(value) => onFieldChange('duration', value)}
+                      onChange={(value) => onFieldChange('duration', +value)}
                       type="number"
                     />
                   </div>
@@ -265,7 +266,7 @@ export default function CE_SimulationInvestment() {
                     rightText="%"
                     disabled={formDisabled?.interestRate}
                     value={form?.interestRate}
-                    onChange={(value) => onFieldChange('interestRate', value)}
+                    onChange={(value) => onFieldChange('interestRate', +value)}
                     type="number"
                   />
                 </div>
