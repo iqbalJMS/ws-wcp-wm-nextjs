@@ -22,12 +22,14 @@ import CE_SimulationResultVariant01 from './client.simulation-result';
 export default function CE_SimulationInvestment() {
   const [pending, transiting] = useTransition();
   const [isResult, setIsResult] = useState(false);
+  const [resetCount, setResetCount] = useState(0);
+
   const [formDisabled, setFormDisabled] = useState({
     duration: true,
     investmentAmount: true,
     interestRate: true,
   });
-  const { form, formError, onFieldChange, validateForm } = useForm<
+  const { form, formError, onFieldChange, validateForm, resetForm } = useForm<
     T_SimulationInvestmentRequest,
     T_SimulationInvestmentRequest
   >(
@@ -98,13 +100,31 @@ export default function CE_SimulationInvestment() {
     }
   };
 
-  // const labels = {
-  //   3: 'Label 1',
-  //   5: 'Label 2',
-  //   7: 'Label 3',
-  //   10: 'Label 4',
-  // };
-  // console.log(form, interestAmountRange, 'interest');
+  const DESCRIPTION = {
+    '3': ' Sangat Konservatif Tujuan berinvestasi untuk mendapatkan pertumbuhan nilai investasi. Berinvestasi pada produk dengan risiko sangat rendah. Jangka waktu investasi yang dianjurkan 0-2 tahun Rekomendasi Portofolio Investasi Pendapatan Tetap 30% Deposito/Giro 40% Pasar Uang 30%',
+    '5': 'Konservatif Tujuan berinvestasi untuk mendapatkan pertumbuhan sedang. Berinvestasi pada produk dengan risiko sedang. Jangka waktu investasi yang dianjurkan 2-3 tahun Rekomendasi Portofolio Investasi Pendapatan Tetap 35% Tabungan/Deposito/Giro 20% Pasar Uang 30% Saham 15%',
+    '7': 'Moderat Tujuan berinvestasi untuk mendapatkan pertumbuhan tinggi. Berinvestasi pada produk dengan risiko sedang hingga tinggi. Jangka waktu investasi yang dianjutkan 3-5 tahun Rekomendasi Portofolio Investasi Pendapatan Tetap 35% Tabungan/Deposito/Giro 10% Pasar Uang 25% Saham 30%',
+    '10': 'Agresif Tujuan berinvestasi untuk mendapatkan pertumbuhan pesat. Berinvestasi pada produk dengan risiko yang tinggi. Jangka waktu investasi yang dianjurkan > 5 tahun Rekomendasi Portofolio Investasi Pendapatan Tetap 20% Tabungan/Deposito/Giro 10% Pasar Uang 10% Saham 60%',
+  };
+
+  type T_InvestType = '1' | '2';
+  const [investType, setInvestType] = useState<T_InvestType>('1');
+  const estimatedReturnOnInvestment =
+    investType == '1'
+      ? result?.oneTimeInvestmentResult.toString()
+      : result?.periodicInvestmentResult.toString();
+
+  const handleResetForm = () => {
+    setInvestType('1');
+    handleChangeRisk('1');
+    setIsResult(false);
+    resetForm();
+  };
+
+  useEffect(() => {
+    handleResetForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resetCount]);
 
   return (
     <>
@@ -112,6 +132,7 @@ export default function CE_SimulationInvestment() {
         <div className="w-full flex-none mb-6 px-4">
           <InputLabel label="Investasi" required>
             <InputRadioButton
+              key={resetCount}
               list={[
                 {
                   value: '1',
@@ -123,7 +144,7 @@ export default function CE_SimulationInvestment() {
                 },
               ]}
               value={`1`}
-              onChange={() => {}}
+              onChange={(value) => setInvestType(value as T_InvestType)}
             />
 
             <InputError message={''} />
@@ -211,6 +232,7 @@ export default function CE_SimulationInvestment() {
           <div className="w-full flex-none mb-6 px-4">
             <InputLabel label="Profile Resiko" required>
               <InputRadioButton
+                key={resetCount}
                 list={[
                   {
                     value: '1',
@@ -237,20 +259,14 @@ export default function CE_SimulationInvestment() {
 
               <InputError message={''} />
             </InputLabel>
-            <div className="w-96 text-xs leading-5 text-slate-600">
+            <div className="w-96 text-xs leading-5 text-slate-600 pt-3">
               <h1>
-                {/* {labels[interestAmountRange.min]} */}
-                Sangat Konservatif Tujuan berinvestasi untuk mendapatkan
-                pertumbuhan nilai investasi. Berinvestasi pada produk dengan
-                risiko sangat rendah. Jangka waktu investasi yang dianjurkan 0-2
-                tahun
+                {
+                  DESCRIPTION[
+                    String(interestAmountRange?.min) as '3' | '5' | '7' | '10'
+                  ]
+                }
               </h1>
-              <h2 className="pt-5">Rekomendasi Portofolio Investasi</h2>
-              <ul className="pl-8 list-disc">
-                <li>Pendapatan Tetap 30%</li>
-                <li>Deposito/Giro 40%</li>
-                <li>Pasar Uang 30%</li>
-              </ul>
             </div>
           </div>
           <CE_SimulationLabel
@@ -301,7 +317,7 @@ export default function CE_SimulationInvestment() {
             HITUNG
           </ButtonSecondary>
           <ButtonSecondary
-            onClick={() => setIsResult(false)}
+            onClick={() => setResetCount((prev) => prev + 1)}
             rounded="full"
             color="gray-100"
             className="bg-gray-100 text-wmcolor border border-wmcolor"
@@ -314,7 +330,7 @@ export default function CE_SimulationInvestment() {
             values={[
               {
                 label: 'Perkiraan Nilai Hasil Investasi',
-                value: result?.oneTimeInvestmentResult.toString() || '0',
+                value: estimatedReturnOnInvestment || '0',
               },
             ]}
             onClose={() => {}}
