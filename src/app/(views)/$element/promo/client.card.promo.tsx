@@ -4,6 +4,7 @@ import useScreenWidth from '@/lib/hook/useScreenWidth';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import Link from 'next/link';
+import noImage from '@/../../public/images/no-image.png';
 
 export default function CE_LatestFourPromo({
   data,
@@ -22,53 +23,10 @@ export default function CE_LatestFourPromo({
   link: string;
   variant: string;
 }) {
-  // const [pending, transiting] = useTransition();
-  // const [promo, setPromo] = useState<any[]>();
-  // const [promoList, setPromoList] = useState<any[]>();
   const screenWidth = useScreenWidth();
   const slidesToShow = screenWidth > 768 ? 4 : 2;
   const slidesToScroll = 1;
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  // const { form, validateForm, onFieldChange } = useForm<
-  //   T_PromoRequest,
-  //   T_PromoRequest
-  // >(
-  //   CFN_MapToPromoPayload({ limit: '4', page: '1' }),
-  //   CFN_ValidateGetPromoFields
-  // );
-
-  // let handlePageChange = (page: number) => {
-  //   const skip = parseInt(form.limit) * page - parseInt(form.limit);
-  //   onFieldChange('limit', skip.toString());
-  // };
-
-  // const handlePromoList = () => {
-  //   if (pending) {
-  //     return;
-  //   }
-  //   const isValid = validateForm();
-  //   if (isValid) {
-  //     CFN_GetPromo(transiting, form, (resp: any) => {
-  //       if (form.page === '1') {
-  //         setPromo(resp?.field_components?.[1]);
-  //         setPromoList(resp?.field_components?.[1]?.promo_data?.items);
-  //       } else {
-  //         setPromoList((prev: any) => [
-  //           ...prev,
-  //           ...resp?.field_components?.[1]?.promo_data?.items,
-  //         ]);
-  //       }
-  //     });
-  //   }
-  // };
-
-  // const handleLoadMore = () => {
-  //   if (pending) {
-  //     return;
-  //   }
-  //   onFieldChange('limit', String(Number(form.limit) + 4));
-  // };
 
   const nextSlide = () => {
     if (currentSlide <= data.length - slidesToShow) {
@@ -81,11 +39,6 @@ export default function CE_LatestFourPromo({
       setCurrentSlide(currentSlide - slidesToScroll);
     }
   };
-
-  // useEffect(() => {
-  //   handlePromoList();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [form.limit, form.page]);
 
   let colorTheme = '';
   if (variant === 'wm-private-main-navigation') {
@@ -291,7 +244,7 @@ export default function CE_LatestFourPromo({
                     key={index}
                     className="relative overflow-hidden lg:w-60 lg:h-72 xl:w-80 xl:h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? `${noImage}`})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}

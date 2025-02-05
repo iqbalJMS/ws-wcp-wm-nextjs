@@ -429,7 +429,7 @@ export default function CE_LastFourMagazine({
                   ? '/private-magazine'
                   : '/prioritas-magazine'
               }
-              className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-[#404041] py-3 px-5 rounded-full uppercase font-semibold border border-gray-500 hover:text-white`}
+              className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-[#404041] text-center text-xs lg:text-base py-2 px-2 lg:py-3 lg:px-5 rounded-full uppercase font-semibold border border-gray-500 hover:text-white`}
             >
               lihat semua e-magazine
             </Link>
