@@ -1,6 +1,5 @@
 'use client';
 
-import ButtonSecondary from '@/lib/element/global/button.secondary';
 import CE_SimulationResultMain from './client.simulation-result-main';
 
 type T_SimulationresultVariant01Props = {
@@ -80,16 +79,6 @@ const CE_SimulationResultVariant01 = ({
                 })}
             </div>
           )}
-        </div>
-        <div className="text-center">
-          <ButtonSecondary
-            onClick={onClose}
-            rounded="full"
-            size="lg"
-            color="orange-01"
-          >
-            HITUNG ULANG
-          </ButtonSecondary>
         </div>
       </div>
     </CE_SimulationResultMain>

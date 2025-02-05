@@ -23,6 +23,7 @@ type T_FieldMediaImage = {
   uid: any[];
   filename: any[];
   uri: Array<{ value: string; url: string }>;
+  url: string;
   filemime: any[];
   filesize: any[];
   status: any[];

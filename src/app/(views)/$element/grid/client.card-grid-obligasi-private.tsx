@@ -2,9 +2,9 @@
 
 import React, { useEffect, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'motion/react';
+import Image from 'next/image';
 
 const CE_ObligasiPrivate = ({
   dataCard,
@@ -47,15 +47,13 @@ const CE_ObligasiPrivate = ({
                   transition={{ duration: 0.5, delay: 0.25 }}
                   className="group w-full h-72 p-3 overflow-hidden flex justify-center items-center"
                 >
-                  {item?.image && (
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image}`}
-                      alt="image"
-                      width={400}
-                      height={400}
-                      className="w-full h-96 object-cover object-top group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
-                    />
-                  )}
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image}`}
+                    alt="image"
+                    width={400}
+                    height={400}
+                    className="w-full h-96 object-cover object-top group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
+                  />
                 </motion.div>
                 <motion.div
                   variants={{

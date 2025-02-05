@@ -1324,7 +1324,10 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         const cardGrid10data = _component?.field_content_type?.map((item) => {
           return {
             title: item?.title?.[0]?.value,
-            image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+            image: item?.field_image?.[0]?.thumbnail?.[0]?.url.replace(
+              'http://admin-bri-corpsite.dev-kjt.id',
+              ''
+            ),
             description: item?.field_summary?.[0]?.value,
             nid: item?.nid?.[0]?.value,
             site: item?.field_site,

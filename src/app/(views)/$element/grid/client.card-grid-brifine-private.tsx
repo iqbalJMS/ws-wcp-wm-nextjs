@@ -51,8 +51,8 @@ const CE_BrifinePrivate = ({
                     <Image
                       src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image}`}
                       alt="image"
-                      width={400}
-                      height={400}
+                      width={700}
+                      height={700}
                       className="w-full h-96 object-cover object-top group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
                     />
                   )}
