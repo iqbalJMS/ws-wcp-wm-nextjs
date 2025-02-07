@@ -9,14 +9,14 @@ import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from './link';
 import Image from './image';
 
-import { T_ApiGetSearchMenu } from '@/api/search/api.get-search-menu.type';
+// import { T_ApiGetSearchMenu } from '@/api/search/api.get-search-menu.type';
 import {
   CFN_GetSearch,
   CFN_MapToSearchPayload,
   CFN_ValidateGetSearchFields,
   T_GetSearch,
 } from '@/lib/functions/global/cfn.get.search';
-import { CFN_GetSearchMenu } from '@/lib/functions/global/cfn.get.search-menu';
+// import { CFN_GetSearchMenu } from '@/lib/functions/global/cfn.get.search-menu';
 import CE_CardVariant09 from './client.card.variant09';
 type T_SearchProps = {
   active: boolean;
@@ -29,7 +29,6 @@ export function Search({ active, setActive }: T_SearchProps) {
   const [loading, setLoading] = useState(false);
   useOnClickOutside(elementRef, () => setActive(false));
   const [tab, setTab] = useState('produk');
-  const [menus, setMenus] = useState<T_ApiGetSearchMenu[]>();
   let [total, setTotal] = useState({
     produk: 0,
     berita: 0,
@@ -78,24 +77,24 @@ export function Search({ active, setActive }: T_SearchProps) {
     }
   };
 
-  const generateLink = (item: T_ApiGetSearchMenu) => {
-    if (!item) {
-      return '';
-    }
-    if (item.alias) {
-      return `/${item.alias?.toLowerCase().replaceAll(' ', '-')}`;
-    }
-    if (item.uri) {
-      return item.uri;
-    }
+  // const generateLink = (item: T_ApiGetSearchMenu) => {
+  //   if (!item) {
+  //     return '';
+  //   }
+  //   if (item.alias) {
+  //     return `/${item.alias?.toLowerCase().replaceAll(' ', '-')}`;
+  //   }
+  //   if (item.uri) {
+  //     return item.uri;
+  //   }
 
-    return '/';
-  };
-  useEffect(() => {
-    CFN_GetSearchMenu(transiting, (data) => {
-      setMenus(data);
-    });
-  }, []);
+  //   return '/';
+  // };
+  // useEffect(() => {
+  //   CFN_GetSearchMenu(transiting, (data) => {
+  //     setMenus(data);
+  //   });
+  // }, []);
 
   useEffect(() => {
     onFieldChange('page', 1);
@@ -185,7 +184,6 @@ export function Search({ active, setActive }: T_SearchProps) {
             value={tab}
             margin="my-6"
             variant="border"
-            // variantColor="red"
             onChange={(value) => setTab(value)}
           />
         </div>
@@ -430,48 +428,20 @@ export function Search({ active, setActive }: T_SearchProps) {
             </div>
           )}
 
-          <div className="text-center py-10">
-            <div className="text-2xl mdmax:text-sm font-bold">
-              Tidak dapat menemukan{' '}
-              <span className="text-bluedark01">apa yang kalian cari?</span>
+          <div className="text-center pt-20">
+            <div className="text-black text-xl mdmax:text-sm font-bold">
+              Tidak dapat menemukan apa yang
+              <span className="text-wmcolor"> anda cari?</span>
             </div>
-            <div className="mdmax:text-xs">
-              Carilah jawaban pada{' '}
-              <Link
-                className="underline font-semibold"
-                href={'https://bri.co.id/web/bri/bantuan'}
-              >
-                halaman FAQ
-              </Link>{' '}
-              atau arahkan ke kategori konten berikut
+            <div className="mdmax:text-xs pt-4">
+              Dapatkan bantuan untuk menemukan informasi untuk Anda
+              <span className="pl-2">
+                <Link className="underline font-semibold" href={'/get-invited'}>
+                  Hubungi Kami
+                </Link>
+              </span>
             </div>
           </div>
-        </div>
-        <div className="flex justify-center px-[10rem] mdmax:hidden">
-          {menus?.map((subItem, subIndex) => {
-            return (
-              <div key={subIndex} className="mr-16">
-                <Link href={generateLink(subItem)}>
-                  <div className="text-bluedark01 font-semibold mb-2">
-                    {subItem?.title}
-                  </div>
-                </Link>
-                <div>
-                  {subItem?.below?.map((item, itemIndex) => {
-                    return (
-                      <div key={itemIndex}>
-                        <Link href={generateLink(item)}>
-                          <div className="flex items-center justify-between">
-                            {item.title}
-                          </div>
-                        </Link>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
         </div>
       </div>
     </div>

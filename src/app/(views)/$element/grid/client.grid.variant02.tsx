@@ -5,6 +5,7 @@ import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from '@/lib/element/global/image';
 import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'motion/react';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 export default function CE_GridVariant02({
   variant,
@@ -43,6 +44,17 @@ export default function CE_GridVariant02({
     colorTheme = 'prioritycolor';
   }
 
+  const generetBreadcrumb = (text: string, url: string) => {
+    const result = sessionStorage.getItem(BREADCRUMB_KEY);
+
+    if (!result) {
+      sessionStorage.setItem(BREADCRUMB_KEY, JSON.stringify([{ text, url }]));
+    } else {
+      // eslint-disable-next-line no-console
+      console.log(result, 'error');
+    }
+  };
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
@@ -55,7 +67,7 @@ export default function CE_GridVariant02({
 
   return (
     <>
-      <section ref={ref} className="container py-5 px-5 xl:px-20 ">
+      <section ref={ref} className="container py-5 px-5 xl:px-20">
         <div className="flex md:flex-row flex-col justify-center relative">
           {imageContent1 && (
             <div
@@ -88,6 +100,12 @@ export default function CE_GridVariant02({
                   {dataCard1?.[0]?.listMenu.map((item, index) =>
                     item.image ? (
                       <Link
+                        onClick={() =>
+                          generetBreadcrumb(
+                            item?.textLink ?? '',
+                            item?.urlLink ?? ''
+                          )
+                        }
                         key={index}
                         href={item.urlLink ?? ''}
                         className="flex flex-col items-center gap-3 group/menu"

@@ -29,3 +29,4 @@ export const WIDGET_VARIANT = {
 };
 
 export const API_BASE_URL = 'https://admin-bri-corpsite.dev-kjt.id';
+export const BREADCRUMB_KEY = 'breadcrumb_key';
