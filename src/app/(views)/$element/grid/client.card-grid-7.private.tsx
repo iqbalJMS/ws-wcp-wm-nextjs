@@ -57,7 +57,7 @@ const CE_CardGrid7Private = ({
                 href={`/article-detail/${item?.nid}`}
                 className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
               >
-                <div>
+                <div className="group">
                   <motion.div
                     variants={{
                       hidden: { opacity: 0, y: 75 },
@@ -74,7 +74,7 @@ const CE_CardGrid7Private = ({
                         alt="image"
                         width={400}
                         height={400}
-                        className="w-full h-full object-cover object-bottom"
+                        className="w-full h-full object-cover object-bottom group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
                       />
                     )}
                   </motion.div>
