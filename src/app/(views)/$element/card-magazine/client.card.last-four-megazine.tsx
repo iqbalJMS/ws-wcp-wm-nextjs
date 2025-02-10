@@ -16,6 +16,7 @@ import {
   CFN_MapToMagazinePayload,
   CFN_ValidateGetMagazineFields,
 } from '@/app/(views)/$function/cfn.get-magazine';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
 
@@ -54,6 +55,13 @@ export default function CE_LastFourMagazine({
   const screenWidth = useScreenWidth();
   const slidesToShow = getSlideToShow(screenWidth);
   const slidesToScroll = 1;
+
+  const generetBreadcrumb = (title: string) => {
+    sessionStorage.setItem(
+      BREADCRUMB_KEY,
+      JSON.stringify([{ title: title, url: '#' }])
+    );
+  };
 
   const { form, validateForm } = useForm<T_RequestMagazine, T_RequestMagazine>(
     CFN_MapToMagazinePayload({
@@ -424,6 +432,7 @@ export default function CE_LastFourMagazine({
           >
             <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
             <Link
+              onClick={() => generetBreadcrumb(heading ?? '')}
               href={
                 variant == 'wm-private-main-navigation'
                   ? '/private-magazine'

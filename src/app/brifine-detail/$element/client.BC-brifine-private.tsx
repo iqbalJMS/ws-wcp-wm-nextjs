@@ -1,15 +1,19 @@
 'use client';
 import React from 'react';
 
-const CE_BCBancasurrance = ({ currentPage }: { currentPage: string }) => {
+const CE_BCBrifinePrivate = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-prioritas',
+      url: '/web/wealth-management/bri-private',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/bancassurance-prioritas',
-      title: 'BANCASSURANCE',
+      url: '/web/wealth-management/product',
+      title: 'PRODUK',
+    },
+    {
+      url: '/web/wealth-management/brifine-private',
+      title: 'BRIFINE',
     },
   ];
   return (
@@ -25,7 +29,7 @@ const CE_BCBancasurrance = ({ currentPage }: { currentPage: string }) => {
                 <div className="flex items-center space-x-2">
                   <a
                     href={item.url}
-                    className="font-light text-base text-[#C0CCE2] hover:text-prioritycolor hover:underline uppercase"
+                    className="font-light text-base text-[#C0CCE2] hover:text-privatecolor hover:underline uppercase"
                   >
                     {item.title}
                   </a>
@@ -51,7 +55,7 @@ const CE_BCBancasurrance = ({ currentPage }: { currentPage: string }) => {
             ))}
             <div className="flex items-center space-x-3 ">
               <div className="flex items-center">
-                <span className="cursor-default text-prioritycolor font-normal hover:text-primary-blue uppercase">
+                <span className="cursor-default text-privatecolor font-normal hover:text-primary-blue uppercase">
                   {currentPage}
                 </span>
               </div>
@@ -63,4 +67,4 @@ const CE_BCBancasurrance = ({ currentPage }: { currentPage: string }) => {
   );
 };
 
-export default CE_BCBancasurrance;
+export default CE_BCBrifinePrivate;

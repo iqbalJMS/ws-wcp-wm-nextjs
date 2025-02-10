@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
 
-const CE_BCBInvestasiPrioritas = ({ currentPage }: { currentPage: string }) => {
+const CE_BCInsightPrioritas = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
       url: '/web/wealth-management/bri-prioritas',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/investasi-prioritas',
-      title: 'BANCASSURANCE',
+      url: '/web/wealth-management/insight-prioritas',
+      title: 'Wawasan',
     },
   ];
   return (
@@ -25,7 +25,7 @@ const CE_BCBInvestasiPrioritas = ({ currentPage }: { currentPage: string }) => {
                 <div className="flex items-center space-x-2">
                   <a
                     href={item.url}
-                    className="font-light text-base text-[#C0CCE2] hover:text-prioritycolor hover:underline uppercase"
+                    className="font-light text-base text-[#C0CCE2] hover:text-prioritycolor hover:underline"
                   >
                     {item.title}
                   </a>
@@ -63,4 +63,4 @@ const CE_BCBInvestasiPrioritas = ({ currentPage }: { currentPage: string }) => {
   );
 };
 
-export default CE_BCBInvestasiPrioritas;
+export default CE_BCInsightPrioritas;

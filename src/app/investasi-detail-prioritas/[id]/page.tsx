@@ -15,7 +15,7 @@ import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import PriorityHeader from '@/lib/element/global/header/priority-header';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 import CE_AccordionInvestasi from '@/app/investasi-detail-prioritas/$element/client.accordion.investasi';
-import CE_BCBInvestasiPrioritas from '@/app/investasi-detail-prioritas/$element/client.breadcrumb.investasi';
+import CE_BCBInvestasiPrioritas from '@/app/investasi-detail-prioritas/$element/client.BC-investasi-prioritas';
 import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
 
 export default async function page({ params }: { params: { id: string } }) {

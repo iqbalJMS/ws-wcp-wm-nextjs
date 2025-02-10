@@ -4,6 +4,7 @@ import CE_FlipCard from './client.flip.card';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'motion/react';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 export default function CE_CardVariant15({
   data,
@@ -28,6 +29,19 @@ export default function CE_CardVariant15({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
+
+  const generetBreadcrumb = (title: string) => {
+    sessionStorage.setItem(
+      BREADCRUMB_KEY,
+      JSON.stringify([{ title: title, url: '#' }])
+    );
+  };
+
+  const GET_INVITED_LIST = [
+    {
+      title: 'get invited',
+    },
+  ];
 
   useEffect(() => {
     if (isInView) {
@@ -109,6 +123,7 @@ export default function CE_CardVariant15({
               </div>
               <div className="pt-8 xl:pt-16 space-x-4">
                 <Link
+                  onClick={() => generetBreadcrumb(data?.[0]?.title ?? '')}
                   href={`/${buttonUri}`}
                   className="uppercase text-base font-semibold bg-privatecolor text-white rounded-full py-2 px-4 hover:bg-gray-500 duration-300"
                 >
@@ -116,6 +131,9 @@ export default function CE_CardVariant15({
                 </Link>
                 {topTitle === undefined ? null : (
                   <Link
+                    onClick={() =>
+                      generetBreadcrumb(GET_INVITED_LIST?.[0]?.title ?? '')
+                    }
                     href={'/get-invited-private'}
                     className="uppercase text-base font-semibold rounded-full py-2 px-4 border-privatecolor border bg-white text-privatecolor hover:bg-privatecolor duration-300 hover:text-white-01"
                   >
@@ -127,6 +145,7 @@ export default function CE_CardVariant15({
           </section>
         </div>
       </div>
+      s
     </>
   );
 }

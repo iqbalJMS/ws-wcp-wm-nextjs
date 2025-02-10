@@ -15,7 +15,7 @@ import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/acti
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
 import CE_WYSIWSGVariant01 from '@/app/$element/client.wysiwsg.variant01';
-import CE_BreadCrumbArticle from '@/app/article-detail/$element/client.breadcrumb.article';
+import CE_BreadCrumbArticlePrivate from '@/app/article-detail/$element/client.breadcrumb.article-private';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -60,7 +60,9 @@ export default async function page({ params }: { params: { id: string } }) {
             article
           </h1>
         </section>
-        <CE_BreadCrumbArticle currentPage={'Detail Article'} />
+        <CE_BreadCrumbArticlePrivate
+          currentPage={getOurstoryData?.title?.[0]?.value || ''}
+        />
         <CE_WYSIWSGVariant01
           category={
             getOurstoryData?.field_article_category?.[0]?.name?.[0]?.value

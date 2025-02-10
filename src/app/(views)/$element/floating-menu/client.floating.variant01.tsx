@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 export default function CE_FloatingVariant01({
   data,
 }: {
@@ -9,6 +12,13 @@ export default function CE_FloatingVariant01({
     icon: string;
   }>;
 }) {
+  const generetBreadcrumb = (title: string) => {
+    sessionStorage.setItem(
+      BREADCRUMB_KEY,
+      JSON.stringify([{ title: title, url: '#' }])
+    );
+  };
+
   return (
     <>
       <div className="fixed top-[20%] right-0 z-20">
@@ -16,7 +26,10 @@ export default function CE_FloatingVariant01({
           {data?.map((item, index) => {
             return (
               <div key={index} className="">
-                <Link href={`/${item?.alias}`}>
+                <Link
+                  onClick={() => generetBreadcrumb(item?.title ?? '')}
+                  href={`/${item?.alias}`}
+                >
                   <div className="flex items-center bg-[#444444] hover:bg-wmcolor p-2 px-3 lg:p-3 lg:px-4 border-b-2 border-white ">
                     <Image
                       className="text-white w-5 h-5 mr-5"

@@ -1,6 +1,8 @@
 'use client';
 import Link from 'next/link';
 import React from 'react';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
+import { usePathname } from 'next/navigation';
 
 const CE_BreadcrumbPriority = ({
   data,
@@ -10,18 +12,46 @@ const CE_BreadcrumbPriority = ({
     url: string;
   }>;
 }) => {
+  const pathname = usePathname();
+  const parentRoute = sessionStorage.getItem(BREADCRUMB_KEY) ?? '';
+
+  const REGISTERED_PAGE_WITH_CUSTOM_ROUTE = [
+    '/investasi-prioritas',
+    '/bancassurance-prioritas',
+    '/travel-privileges',
+    '/lifestyle-privileges',
+    '/information-privilege',
+    '/concierge-privilege',
+    '/videos-prioritas',
+    '/debit-detail-prioritas',
+    '/get-invited-prioritas',
+    '/promo-prioritas',
+    '/prioritas-magazine',
+    '/privacy-prioritas',
+    '/terms-of-use-prioritas',
+  ];
+
+  const isUsingCustomRoute =
+    REGISTERED_PAGE_WITH_CUSTOM_ROUTE.includes(pathname) && parentRoute;
+
+  const customPaths = isUsingCustomRoute
+    ? [...data, ...JSON?.parse(parentRoute ?? undefined)]
+    : data;
+
+  const customURLBreadcrumb =
+    parentRoute && REGISTERED_PAGE_WITH_CUSTOM_ROUTE.includes(pathname)
+      ? customPaths
+      : data;
+
   return (
     <>
-      <nav
-        className="flex flex-1 justify-center mb-10 "
-        aria-label="Breadcrumb"
-      >
+      <nav className="flex flex-1 justify-center mb-10" aria-label="Breadcrumb">
         <div className="py-5 w-8/12 flex justify-center items-center border-b-[1px] border-[#CECECE]">
           <ol className="inline-flex items-center space-x-1 text-h7 sm:mb-0 md:space-x-2 rtl:space-x-reverse ">
             <li>
               <div className="flex items-center space-x-3">
-                {data?.map((item, index) => {
-                  if (index + 1 === data?.length) {
+                {customURLBreadcrumb?.map((item, index) => {
+                  if (index + 1 === customURLBreadcrumb?.length) {
                     return (
                       <Link
                         key={index}

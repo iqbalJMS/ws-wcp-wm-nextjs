@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
 
-const CE_BreadCrumbArticle = ({ currentPage }: { currentPage: string }) => {
+const CE_BCPromoPrivate = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-private?lang=id',
-      title: 'Home',
+      url: '/web/wealth-management/bri-private',
+      title: 'HOME',
     },
     {
-      url: '/web/wealth-management/article?lang=id',
-      title: 'Article',
+      url: '/web/wealth-management/privilege',
+      title: 'KEISTIMEWAAN',
     },
   ];
   return (
@@ -25,7 +25,7 @@ const CE_BreadCrumbArticle = ({ currentPage }: { currentPage: string }) => {
                 <div className="flex items-center space-x-2">
                   <a
                     href={item.url}
-                    className="font-light text-base text-[#C0CCE2] hover:text-privatecolor hover:underline"
+                    className="font-light text-base text-[#C0CCE2] hover:text-privatecolor hover:underline uppercase"
                   >
                     {item.title}
                   </a>
@@ -63,4 +63,4 @@ const CE_BreadCrumbArticle = ({ currentPage }: { currentPage: string }) => {
   );
 };
 
-export default CE_BreadCrumbArticle;
+export default CE_BCPromoPrivate;

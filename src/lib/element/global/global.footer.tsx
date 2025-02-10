@@ -1,4 +1,4 @@
-'use server';
+'use client';
 
 import React from 'react';
 import { T_ResponseGetMainFooterMenu } from '@/api/footer/main-footer/api.get-middle-footer.type';
@@ -7,6 +7,7 @@ import { T_ResponseGetBottomRightFooter } from '@/api/footer/bottom-footer/api.g
 import Image from 'next/image';
 import { T_ResponseGetMainMiddleFooter } from '@/api/footer/middle-main-footer/api.get-main-middle-footer.type';
 import Link from 'next/link';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 type T_FooterProps = {
   main_footer?: T_ResponseGetMainFooterMenu;
@@ -15,6 +16,15 @@ type T_FooterProps = {
   bottom_left_footer: T_ResponseGetBottomLeftFooter;
   variant: string;
 };
+
+const generetBreadcrumb = (title: string) => {
+  sessionStorage.setItem(
+    BREADCRUMB_KEY,
+    JSON.stringify([{ title: title, url: '#' }])
+  );
+};
+
+const urlCustomTitle = [{ title: 'Privacy' }, { title: 'TERMS OF USE' }];
 
 function RowElement({
   data,
@@ -109,6 +119,7 @@ function RowElement({
 function TermsAllReservedElement({
   termsData,
   socialMediaData,
+  variant,
 }: {
   termsData: Array<{
     title: string;
@@ -119,6 +130,7 @@ function TermsAllReservedElement({
     title: string;
     uri: string;
   }>;
+  variant: string;
 }) {
   return (
     <>
@@ -132,19 +144,67 @@ function TermsAllReservedElement({
           <div className="items-center mt-6 lg:mt-0">
             <div className="flex flex-wrap justify-center items-center divide-x-0 md:divide-x-2 ">
               <div className="flex justify-start items-center px-4">
-                {termsData?.map(({ title, relative }, index) => (
-                  <div key={index}>
+                {variant == 'wm-main-navigation' ? (
+                  <div className="flex">
+                    {termsData?.map(({ title, relative }, index) => (
+                      <div key={index}>
+                        <Link
+                          href={relative}
+                          className="text-sm font-normal text-white hover:underline"
+                        >
+                          {title}
+                        </Link>
+                        {index + 1 !== termsData.length && (
+                          <span className="text-white mx-2">&#x2022;</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ) : variant == 'wm-private-main-navigation' ? (
+                  <div>
                     <Link
-                      href={relative}
+                      onClick={() =>
+                        generetBreadcrumb(urlCustomTitle?.[0]?.title ?? '')
+                      }
+                      href={'/privacy-private'}
                       className="text-sm font-normal text-white hover:underline"
                     >
-                      {title}
+                      Privasi
                     </Link>
-                    {index + 1 !== termsData.length && (
-                      <span className="text-white mx-2">&#x2022;</span>
-                    )}
+                    <span className="text-white mx-2">&#x2022;</span>
+                    <Link
+                      onClick={() =>
+                        generetBreadcrumb(urlCustomTitle?.[1]?.title ?? '')
+                      }
+                      href={'/terms-of-use-private'}
+                      className="text-sm font-normal text-white hover:underline"
+                    >
+                      Ketentuan Penggunaan
+                    </Link>
                   </div>
-                ))}
+                ) : variant == 'wm-prioritas-main-navigation' ? (
+                  <div>
+                    <Link
+                      onClick={() =>
+                        generetBreadcrumb(urlCustomTitle?.[0]?.title ?? '')
+                      }
+                      href={'/privacy-prioritas'}
+                      className="text-sm font-normal text-white hover:underline"
+                    >
+                      Privasi
+                    </Link>
+                    <span className="text-white mx-2">&#x2022;</span>
+                    <Link
+                      onClick={() =>
+                        generetBreadcrumb(urlCustomTitle?.[1]?.title ?? '')
+                      }
+                      href={'/terms-of-use-prioritas'}
+                      className="text-sm font-normal text-white hover:underline"
+                    >
+                      Ketentuan Penggunaan
+                    </Link>
+                  </div>
+                ) : null}
               </div>
               {socialMediaData?.length !== 0 && (
                 <div className="flex justify-center items-center gap-6 px-4">
@@ -207,6 +267,7 @@ export default async function GlobalFooter({
       <TermsAllReservedElement
         termsData={bottom_left_footer}
         socialMediaData={bottom_right_footer}
+        variant={variant}
       />
     </footer>
   );

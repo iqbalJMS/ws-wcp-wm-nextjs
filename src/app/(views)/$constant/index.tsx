@@ -11,7 +11,6 @@ import { T_VideoSlider } from './types/widget/video-slider';
 import { T_CardVariant04 } from './types/widget/card-variant4';
 import { T_CardVariant05 } from './types/widget/card-variant5';
 import { T_CardVariant06 } from './types/widget/card-variant6';
-import { T_CardVariant03 } from './types/widget/card-variant3';
 import { T_Section } from './types/widget/section';
 import { T_Breadcrumb } from './types/widget/breadcrumb';
 import { T_OurStory } from './types/widget/our-story';
@@ -106,13 +105,6 @@ const CE_CardVariant4 = dynamic(
 const CE_CardVariant6 = dynamic(
   () => import('@/app/(views)/$element/card/client.card.variant6')
 );
-const CE_CardVariant3 = dynamic(
-  () => import('@/app/(views)/$element/promo/client.card.all-promo')
-);
-
-const CE_GridVariant02 = dynamic(
-  () => import('@/app/(views)/$element/grid/client.grid.variant02')
-);
 
 const CE_CardVariant16 = dynamic(
   () => import('@/app/(views)/$element/card/client.card.variant16')
@@ -169,9 +161,6 @@ const CE_CardVariant2Detail = dynamic(
 const CE_VideosCard = dynamic(
   () => import('@/app/(views)/$element/card/client.video.card')
 );
-// const CE_CardGrid9 = dynamic(
-//   () => import('@/app/(views)/$element/grid/client.card-grid-9')
-// );
 
 const CE_CardMagazineMain = dynamic(
   () => import('@/app/(views)/$element/card-magazine/card.magazine.main')
@@ -188,12 +177,8 @@ const CE_CardOutletMap = dynamic(
   () => import('@/app/(views)/$element/card/client.card.outlet.map')
 );
 
-const CE_CardPromo = dynamic(
-  () => import('@/app/(views)/$element/promo/client.card.all-promo')
-);
-
-const CE_LatestFourPromo = dynamic(
-  () => import('@/app/(views)/$element/promo/client.card.promo')
+const CE_PromoMain = dynamic(
+  () => import('@/app/(views)/$element/promo/client.card.promo-main')
 );
 
 const CE_GridMain = dynamic(
@@ -203,32 +188,26 @@ const CE_Location = dynamic(
   () => import('@/app/(views)/$element/card/client.card.variant7')
 );
 
+const CE_GridMainTwoColumn = dynamic(
+  () => import('@/app/(views)/$element/grid/client.grid.two-column')
+);
+
 export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
   const components: Record<T_Widget, T_ComponentMapWidget> = {
     promo_widget: {
       component: (...props) => {
         const findPromoConfig = props?.[0]?.findPromoConfig;
-        const propsData = props?.[0]?.propsData;
+        // const propsData = props?.[0]?.propsData;
         const propsTitle = props?.[0]?.propsTitle;
         const propsSubtitle = props?.[0]?.propsSubtitle;
         const propsLink = props?.[0]?.propsLink;
         const propsConfig = props?.[0]?.propsConfig;
 
         switch (findPromoConfig) {
-          case 'latest_four':
-            return (
-              <CE_LatestFourPromo
-                data={propsData}
-                title={propsTitle}
-                subtitle={propsSubtitle}
-                link={propsLink}
-                variant={theme}
-              />
-            );
-          default:
           case 'latest_seven':
+          default:
             return (
-              <CE_CardPromo
+              <CE_PromoMain
                 title={propsTitle}
                 subtitle={propsSubtitle}
                 promoConfig={propsConfig}
@@ -358,7 +337,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         const title = _component?.field_title[0]?.value;
         const subtitle = _component?.field_subtitle[0]?.value;
         const titlelink = _component?.field_primary_cta?.[0]?.title;
-        const linkcta = _component?.field_primary_cta?.[0]?.uri;
+        const linkcta = _component?.field_primary_cta?.[0]?.full_url;
 
         const dataCarousel = _component?.field_video_items?.map((item) => {
           const id = item?.id?.[0]?.value;
@@ -816,22 +795,22 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         };
       },
     },
-    card3: {
-      component: CE_CardVariant3,
-      props: (_component: T_CardVariant03) => {
-        return {
-          data: _component?.field_card_items?.map((item) => {
-            return {
-              image:
-                item?.field_image?.[0]?.field_media_image?.[0]?.uri[0]?.url,
-              label: item?.field_title?.[0]?.value,
-              textbutton: item?.field_content?.[0]?.value,
-              link: item?.field_primary_cta[0]?.title,
-            };
-          }),
-        };
-      },
-    },
+    // card3: {
+    //   component: CE_CardVariant3,
+    //   props: (_component: T_CardVariant03) => {
+    //     return {
+    //       data: _component?.field_card_items?.map((item) => {
+    //         return {
+    //           image:
+    //             item?.field_image?.[0]?.field_media_image?.[0]?.uri[0]?.url,
+    //           label: item?.field_title?.[0]?.value,
+    //           textbutton: item?.field_content?.[0]?.value,
+    //           link: item?.field_primary_cta[0]?.title,
+    //         };
+    //       }),
+    //     };
+    //   },
+    // },
     dropdown_action: {
       component: CE_HelpContent,
       props: (_component: T_DropdownAction) => {
@@ -1028,7 +1007,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             );
           case WIDGET_VARIANT.variant16:
             return (
-              <CE_GridVariant02
+              <CE_GridMainTwoColumn
                 variant={theme}
                 dataCard1={dataCard1}
                 dataCard2={dataCard2}

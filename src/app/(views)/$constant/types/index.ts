@@ -15,7 +15,6 @@ export type T_Widget =
   | 'multi_tab'
   | 'section'
   | 'two_column'
-  | 'card3'
   | 'card4'
   | 'card5'
   | 'card6'

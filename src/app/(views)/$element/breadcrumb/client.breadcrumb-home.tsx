@@ -1,6 +1,8 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
+import { usePathname } from 'next/navigation';
 
 const CE_BreadcrumbHome = ({
   data,
@@ -10,6 +12,27 @@ const CE_BreadcrumbHome = ({
     url: string;
   }>;
 }) => {
+  const pathname = usePathname();
+  const parentRoute = sessionStorage.getItem(BREADCRUMB_KEY) ?? '';
+
+  const REGISTERED_PAGE_WITH_CUSTOM_ROUTE = [
+    '/investasibri',
+    '/bancassurancebri',
+    '/get-invited',
+    '/outlet-wm',
+  ];
+
+  const isUsingCustomRoute =
+    REGISTERED_PAGE_WITH_CUSTOM_ROUTE.includes(pathname) && parentRoute;
+
+  const customPaths = isUsingCustomRoute
+    ? [...data, ...JSON?.parse(parentRoute ?? undefined)]
+    : data;
+
+  const customURLBreadcrumb =
+    parentRoute && REGISTERED_PAGE_WITH_CUSTOM_ROUTE.includes(pathname)
+      ? customPaths
+      : data;
   return (
     <>
       <nav
@@ -20,8 +43,8 @@ const CE_BreadcrumbHome = ({
           <ol className="inline-flex items-center space-x-1 text-h7 sm:mb-0 md:space-x-2 rtl:space-x-reverse ">
             <li>
               <div className="flex items-center space-x-3">
-                {data?.map((item, index) => {
-                  if (index + 1 === data?.length) {
+                {customURLBreadcrumb?.map((item, index) => {
+                  if (index + 1 === customURLBreadcrumb?.length) {
                     return (
                       <Link
                         key={index}

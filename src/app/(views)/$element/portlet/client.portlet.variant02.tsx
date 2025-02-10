@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import React from 'react';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 export default function CE_PortletVariant02({
   title,
@@ -53,6 +54,13 @@ export default function CE_PortletVariant02({
     textHover = 'white';
   }
 
+  const generetBreadcrumb = (title: string) => {
+    sessionStorage.setItem(
+      BREADCRUMB_KEY,
+      JSON.stringify([{ title: title, url: '#' }])
+    );
+  };
+
   return (
     <>
       <div>
@@ -79,7 +87,10 @@ export default function CE_PortletVariant02({
                 )}
               </div>
               <div className="flex gap-4">
-                <Link href={buttonLink ?? ''}>
+                <Link
+                  href={buttonLink ?? ''}
+                  onClick={() => generetBreadcrumb(buttonText ?? '')}
+                >
                   <button
                     className={`font-semibold px-12 capitalize text-base bg-${theme} hover:bg-${bgHover} rounded-full py-3 text-${textColor} hover:text-${textHover} duration-200`}
                   >

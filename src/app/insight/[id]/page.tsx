@@ -8,14 +8,16 @@ import { ACT_GetBottomRightFooter } from '@/app/(views)/$action/bottom-footer/ac
 import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/action.get.bottom.left.footer';
 import { ACT_GetMainMenuFooter } from '@/app/(views)/$action/main-footer/action.get.main-footer';
 import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-footer/action.get.main-middle-footer';
+
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
-import CE_BreadCrumbInsight from '@/app/insight/$element/client.breadcrumb.insight';
+
 import PrivateHeader from '@/lib/element/global/header/private-header';
 import { ACT_GetPrivateMenuNavbar } from '@/app/(views)/$action/private-header/action.get.private-menu-navbar';
 import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
 import CE_WYSIWSGVariant02 from '@/app/$element/client.wysiwsg.variant02';
+import CE_BreadCrumbInsightPrivate from '@/app/insight/$element/client.breadcrumb.insight-private';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -58,7 +60,7 @@ export default async function page({ params }: { params: { id: string } }) {
           </h1>
         </div>
 
-        <CE_BreadCrumbInsight
+        <CE_BreadCrumbInsightPrivate
           currentPage={getOurstoryData?.title?.[0]?.value || ''}
         />
         <CE_WYSIWSGVariant02

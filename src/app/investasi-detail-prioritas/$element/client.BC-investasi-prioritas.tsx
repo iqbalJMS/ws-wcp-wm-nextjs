@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
 
-const CE_BreadCrumbArticle = ({ currentPage }: { currentPage: string }) => {
+const CE_BCBInvestasiPrioritas = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
       url: '/web/wealth-management/bri-prioritas',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/article-prioritas',
-      title: 'Article',
+      url: '/web/wealth-management/investasi-prioritas',
+      title: 'investasi',
     },
   ];
   return (
@@ -63,4 +63,4 @@ const CE_BreadCrumbArticle = ({ currentPage }: { currentPage: string }) => {
   );
 };
 
-export default CE_BreadCrumbArticle;
+export default CE_BCBInvestasiPrioritas;

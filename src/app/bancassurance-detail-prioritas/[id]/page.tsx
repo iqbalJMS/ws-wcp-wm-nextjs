@@ -12,7 +12,7 @@ import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-ite
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import CE_BCBancasurrance from '@/app/bancassurance-detail/$element/client.breadcrumb.bancasurranceWm';
+import CE_BCBancasurrancePrioritas from '@/app/bancassurance-detail-prioritas/$element/client.BC-bancasurrance-prioritas';
 import PriorityHeader from '@/lib/element/global/header/priority-header';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 import CE_AccordionBancarsurance from '@/app/bancassurance-detail-prioritas/$element/client.accordion.bancasurrance';
@@ -62,7 +62,9 @@ export default async function page({ params }: { params: { id: string } }) {
             </h2>
           </div>
         </section>
-        <CE_BCBancasurrance currentPage={getOurstoryData?.title?.[0]?.value} />
+        <CE_BCBancasurrancePrioritas
+          currentPage={getOurstoryData?.title?.[0]?.value}
+        />
         <div className="w-full flex justify-center pb-14 pt-4">
           <h1 className="text-xl xl:text-3xl text-prioritycolor font-bold uppercase text-center">
             rincian produk

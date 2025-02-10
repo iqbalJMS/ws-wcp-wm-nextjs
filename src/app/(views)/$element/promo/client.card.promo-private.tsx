@@ -11,8 +11,9 @@ import {
   CFN_ValidateGetPromoFields,
 } from '@/app/(views)/$function/cfn.get-promo';
 import { T_Promo, T_PromoRequest } from '@/api/promo/api.get-promo.type';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
-export default function CE_CardPromo({
+export default function CE_CardPromoPrivate({
   title,
   subtitle,
   promoConfig,
@@ -33,6 +34,16 @@ export default function CE_CardPromo({
   const slidesToShow = screenWidth > 768 ? 4 : 2;
   const slidesToScroll = 1;
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const generetBreadcrumb = (title: string) => {
+    sessionStorage.setItem(
+      BREADCRUMB_KEY,
+      JSON.stringify([
+        { title: 'KEISTIMEWAAN', url: '/privilege' },
+        { title: title, url: '#' },
+      ])
+    );
+  };
 
   const { form, validateForm, setForm } = useForm<
     T_PromoRequest,
@@ -70,6 +81,8 @@ export default function CE_CardPromo({
       });
     }
   };
+
+  const breadcrumbNameCustom = [{ title: 'PROMO' }];
 
   const handleLoadMore = () => {
     if (isFirst) {
@@ -152,7 +165,7 @@ export default function CE_CardPromo({
                   {item?.title?.[0]?.value}
                 </h1>
                 <Link
-                  href={'#'}
+                  href={`/promo-detail-private/${item?.nid?.[0]?.value}`}
                   className="pb-4 px-5 z-50 hover:underline text-white flex items-center"
                 >
                   lihat promo
@@ -256,7 +269,7 @@ export default function CE_CardPromo({
                       {item?.title?.[0]?.value}
                     </h1>
                     <Link
-                      href={'#'}
+                      href={`/promo-detail-private/${item?.nid?.[0]?.value}`}
                       className="pb-4 px-2 z-50 hover:underline text-white flex items-center text-sm"
                     >
                       lihat promo
@@ -319,7 +332,7 @@ export default function CE_CardPromo({
                       {item?.title?.[0]?.value}
                     </h1>
                     <Link
-                      href={`/promo-detail/${item?.nid?.[0]?.value}`}
+                      href={`/promo-detail-private/${item?.nid?.[0]?.value}`}
                       className="lg:pb-3 xl:pb-8 px-5 z-50 hover:underline text-white flex items-center text-sm"
                     >
                       lihat promo
@@ -351,6 +364,9 @@ export default function CE_CardPromo({
               </button>
             ) : promoConfig == null ? (
               <Link
+                onClick={() =>
+                  generetBreadcrumb(breadcrumbNameCustom?.[0]?.title ?? '')
+                }
                 href={link}
                 className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
               >

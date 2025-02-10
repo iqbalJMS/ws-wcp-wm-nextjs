@@ -6,7 +6,7 @@ import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from 'next/link';
 
-export default function CE_CardVariant10({
+export default function CE_PromoDetailPrioritas({
   title,
   image,
   terms,
@@ -55,7 +55,7 @@ export default function CE_CardVariant10({
               <h1 className="text-xl font-semibold">{title}</h1>
               <div
                 onClick={() => setActive(!active)}
-                className=" relative w-52 lg:w-60 flex items-center justify-center py-3 rounded-full uppercase font-bold text-base lg:text-xl text-white bg-[#080087] hover:bg-gray-600 duration-300 cursor-pointer"
+                className=" relative w-52 lg:w-60 flex items-center justify-center py-3 rounded-full uppercase font-bold text-base lg:text-xl text-white bg-prioritycolor hover:bg-gray-600 duration-300 cursor-pointer"
               >
                 <span className="pr-2">
                   <ShareIcon
@@ -83,40 +83,40 @@ export default function CE_CardVariant10({
                   <div className="w-fit bg-white rounded-3xl px-3">
                     <ul className="text-xs flex items-center justify-center text-black space-x-2">
                       <li>
-                        <a
-                          href={`https://x.com/intent/tweet?text=${title}`}
+                        <Link
+                          href={'https://x.com/i/flow/login'}
                           target="_blank"
-                          rel="noreferrer"
+                        />
+                        <svg
+                          fill="#141333"
+                          height="35px"
+                          width="35px"
+                          version="1.1"
+                          id="Layer_1"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlnsXlink="http://www.w3.org/1999/xlink"
+                          viewBox="-143 145 512 512"
+                          xmlSpace="preserve"
                         >
-                          <svg
-                            fill="#080087"
-                            height="35px"
-                            width="35px"
-                            version="1.1"
-                            id="Layer_1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                            viewBox="-143 145 512 512"
-                            xmlSpace="preserve"
-                          >
-                            <path
-                              d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M215.2,361.2
-                            c0.1,2.2,0.1,4.5,0.1,6.8c0,69.5-52.9,149.7-149.7,149.7c-29.7,0-57.4-8.7-80.6-23.6c4.1,0.5,8.3,0.7,12.6,0.7
-                            c24.6,0,47.3-8.4,65.3-22.5c-23-0.4-42.5-15.6-49.1-36.5c3.2,0.6,6.5,0.9,9.9,0.9c4.8,0,9.5-0.6,13.9-1.9
-                            C13.5,430-4.6,408.7-4.6,383.2v-0.6c7.1,3.9,15.2,6.3,23.8,6.6c-14.1-9.4-23.4-25.6-23.4-43.8c0-9.6,2.6-18.7,7.1-26.5
-                            c26,31.9,64.7,52.8,108.4,55c-0.9-3.8-1.4-7.8-1.4-12c0-29,23.6-52.6,52.6-52.6c15.1,0,28.8,6.4,38.4,16.6
-                            c12-2.4,23.2-6.7,33.4-12.8c-3.9,12.3-12.3,22.6-23.1,29.1c10.6-1.3,20.8-4.1,30.2-8.3C234.4,344.5,225.5,353.7,215.2,361.2z"
-                            />
-                          </svg>
-                        </a>
+                          <path
+                            d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M215.2,361.2
+	c0.1,2.2,0.1,4.5,0.1,6.8c0,69.5-52.9,149.7-149.7,149.7c-29.7,0-57.4-8.7-80.6-23.6c4.1,0.5,8.3,0.7,12.6,0.7
+	c24.6,0,47.3-8.4,65.3-22.5c-23-0.4-42.5-15.6-49.1-36.5c3.2,0.6,6.5,0.9,9.9,0.9c4.8,0,9.5-0.6,13.9-1.9
+	C13.5,430-4.6,408.7-4.6,383.2v-0.6c7.1,3.9,15.2,6.3,23.8,6.6c-14.1-9.4-23.4-25.6-23.4-43.8c0-9.6,2.6-18.7,7.1-26.5
+	c26,31.9,64.7,52.8,108.4,55c-0.9-3.8-1.4-7.8-1.4-12c0-29,23.6-52.6,52.6-52.6c15.1,0,28.8,6.4,38.4,16.6
+	c12-2.4,23.2-6.7,33.4-12.8c-3.9,12.3-12.3,22.6-23.1,29.1c10.6-1.3,20.8-4.1,30.2-8.3C234.4,344.5,225.5,353.7,215.2,361.2z"
+                          />
+                        </svg>
                       </li>
                       <li>
                         <Link
-                          href={`https://www.facebook.com/sharer/sharer.php?&quote=${title}`}
+                          href={
+                            'https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2F'
+                          }
                           target="_blank"
                         >
                           <svg
-                            fill="#080087"
+                            fill="#141333"
                             version="1.1"
                             id="Capa_1"
                             xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +142,7 @@ export default function CE_CardVariant10({
                           target="_blank"
                         >
                           <svg
-                            fill="#080087"
+                            fill="#141333"
                             height="35px"
                             width="35px"
                             version="1.1"
@@ -164,11 +164,11 @@ export default function CE_CardVariant10({
                       </li>
                       <li>
                         <Link
-                          href={`https://web.whatsapp.com/send?text=${title}`}
+                          href={'https://web.whatsapp.com/'}
                           target="_blank"
                         >
                           <svg
-                            className="bg-[#080087] rounded-full p-[3px]"
+                            className="bg-[#141333] rounded-full p-[3px]"
                             fill="#ffffff"
                             width="35px"
                             height="35px"
@@ -188,7 +188,7 @@ export default function CE_CardVariant10({
                         }}
                       >
                         <svg
-                          className="bg-[#080087] rounded-full p-[6px]"
+                          className="bg-[#141333] rounded-full p-[6px]"
                           fill="#ffffff"
                           version="1.1"
                           id="Capa_1"
@@ -234,7 +234,7 @@ export default function CE_CardVariant10({
               <h1 className="font-light">Terms & Condition</h1>
             </div>
             <div className="sm:basis-4/5 p-5">
-              <div className="text-[#1738C1] space-y-3 text-sm tracking-wide leading-6">
+              <div className="text-priobg-prioritycolor space-y-3 text-sm tracking-wide leading-6">
                 {parseHTMLToReact(terms)}
               </div>
             </div>
@@ -244,7 +244,7 @@ export default function CE_CardVariant10({
               <h1 className="py-3 border-y border-[#D6D6D6] px-5">
                 Periode Promo
               </h1>
-              <h2 className="text-[#1738C1] p-5 ">
+              <h2 className="text-priobg-prioritycolor p-5 ">
                 {formatDate(startDate)} - {formatDate(endDate)}
               </h2>
             </div>
@@ -253,7 +253,7 @@ export default function CE_CardVariant10({
                 <h1 className="py-3">Periode Promo</h1>
               </div>
               <div>
-                <h2 className="text-[#1738C1] py-3">
+                <h2 className="text-priobg-prioritycolor py-3">
                   {formatDate(startDate)} - {formatDate(endDate)}
                 </h2>
               </div>
@@ -261,23 +261,23 @@ export default function CE_CardVariant10({
           </div>
           <div className="sm:hidden font-light">
             <h1 className="p-5 border-y border-[#D6D6D6]">Info Merchant</h1>
-            <h2 className="p-5 text-[#1738C1]">{merchant}</h2>
+            <h2 className="p-5 text-priobg-prioritycolor">{merchant}</h2>
           </div>
           <div className="hidden sm:flex border-[#D6D6D6] font-light p-5">
             <div className="w-[260px]">
               <h1 className="py-3">Info Merchant</h1>
             </div>
-            <h2 className="pt-3 text-[#1738C1]">{merchant}</h2>
+            <h2 className="pt-3 text-priobg-prioritycolor">{merchant}</h2>
           </div>
           <div className="sm:hidden font-light">
             <h1 className="p-5 border-y border-[#D6D6D6]">Lokasi</h1>
-            <h2 className="p-5 text-[#1738C1]">{lokasi}</h2>
+            <h2 className="p-5 text-priobg-prioritycolor">{lokasi}</h2>
           </div>
           <div className="hidden sm:flex border-y border-[#D6D6D6] font-light p-5">
             <div className="w-[260px]">
               <h1 className="py-3">Lokasi</h1>
             </div>
-            <h2 className="pt-3 text-[#1738C1]">{lokasi}</h2>
+            <h2 className="pt-3 text-priobg-prioritycolor">{lokasi}</h2>
           </div>
         </section>
       </div>

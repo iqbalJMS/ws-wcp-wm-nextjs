@@ -16,7 +16,7 @@ import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import PrivateHeader from '@/lib/element/global/header/private-header';
 import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
 import CE_AccordionObligasi from '@/app/obligasi-detail/$element/client.accordion.obligasi';
-import CE_BCObligasi from '@/app/obligasi-detail/$element/client.breadcrumb.obligasi';
+import CE_BCObligasiPrivate from '@/app/obligasi-detail/$element/client.BC-oblogasi-private';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -63,7 +63,9 @@ export default async function page({ params }: { params: { id: string } }) {
             </h2>
           </div>
         </section>
-        <CE_BCObligasi currentPage={getOurstoryData?.title?.[0]?.value} />
+        <CE_BCObligasiPrivate
+          currentPage={getOurstoryData?.title?.[0]?.value}
+        />
         <div className="w-full flex justify-center pb-14 pt-4">
           <h1 className="text-xl xl:text-3xl text-prioritycolor font-bold uppercase text-center">
             rincian produk
