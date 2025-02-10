@@ -7,6 +7,7 @@ import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { motion, useInView, useAnimation } from 'motion/react';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 export default function CE_CardVariant5({
   dataCard,
@@ -25,6 +26,13 @@ export default function CE_CardVariant5({
   const screenWidth = useScreenWidth();
   const slidesToShow = screenWidth > 768 ? 4 : 2;
   const slidesToScroll = 1;
+
+  const generetBreadcrumb = (title: string) => {
+    sessionStorage.setItem(
+      BREADCRUMB_KEY,
+      JSON.stringify([{ title: title, url: '#' }])
+    );
+  };
 
   const nextSlide = () => {
     if (currentSlide <= dataCard?.length - slidesToShow) {
@@ -93,6 +101,7 @@ export default function CE_CardVariant5({
             >
               {dataCard?.map((item, index) => (
                 <Link
+                  onClick={() => generetBreadcrumb(item?.title ?? '')}
                   href={item?.linkCta}
                   key={index}
                   className="bg-blue-400 relative w-full h-60 md:h-80 overflow-hidden cursor-pointer flex-none md:flex-1 "

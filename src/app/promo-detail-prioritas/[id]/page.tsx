@@ -1,6 +1,6 @@
 import React from 'react';
 
-import background from '@/../public/images/dummy/banner-investment-detail.jpg';
+import background from '@/../public/images/dummy/banner-reksa-dana.jpg';
 import Image from 'next/image';
 import { ACT_GetTopMenuNavbar } from '@/app/(views)/$action/action.get.top-menu-navbar';
 import GlobalFooter from '@/lib/element/global/global.footer';
@@ -9,17 +9,18 @@ import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/act
 import { ACT_GetMainMenuFooter } from '@/app/(views)/$action/main-footer/action.get.main-footer';
 import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-footer/action.get.main-middle-footer';
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
-import { ACT_GetPrivateMenuNavbar } from '@/app/(views)/$action/private-header/action.get.private-menu-navbar';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+
 import PrivateHeader from '@/lib/element/global/header/private-header';
+import { ACT_GetPrivateMenuNavbar } from '@/app/(views)/$action/private-header/action.get.private-menu-navbar';
 import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
-import CE_AccordionObligasi from '@/app/obligasi-detail/$element/client.accordion.obligasi';
-import CE_BCBancasurrancePrivate from '@/app/bancassurance-detail-private/$element/client.BC-bancasurrance-private';
+import CE_PromoDetailPrioritas from '@/app/promo-detail-prioritas/$element/card.promo-detail-prioritas';
+import CE_BCPromoPrioritas from '@/app/promo-detail-prioritas/$element/client.BC-promo-prioritas';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
+
   const listPrivateNavbar = await ACT_GetPrivateMenuNavbar({ lang: 'id' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
   const itemHeaderLogo = await ACT_GetHeaderLogo({ lang: 'en' });
@@ -34,6 +35,15 @@ export default async function page({ params }: { params: { id: string } }) {
     alias: 'node',
     nid: +params.id,
   });
+  const termsPromo = getOurstoryData?.field_term_and_condition?.[0]?.value;
+  const merchantPromo = getOurstoryData?.field_promo_merchant?.[0]?.value;
+  const imagePromo =
+    getOurstoryData?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url;
+  const startPromo = getOurstoryData?.field_promo_start_date?.[0]?.value;
+  const endPromo = getOurstoryData?.field_promo_end_date?.[0]?.value;
+  const titlePromo = getOurstoryData?.title?.[0]?.value;
+  const locationPromo =
+    getOurstoryData?.field_promo_location?.[0]?.title?.[0]?.value;
 
   return (
     <>
@@ -54,34 +64,21 @@ export default async function page({ params }: { params: { id: string } }) {
             height={100000}
             className="w-full h-full object-cover object-top"
           />
-          <div className="z-10 absolute text-center ">
-            <h1 className="text-4xl text-white font-bold uppercase">
-              {getOurstoryData?.title?.[0]?.value}
-            </h1>
-            <h2 className="text-sm text-white w-11/12 pt-10 ">
-              {parseHTMLToReact(getOurstoryData?.field_summary?.[0]?.value)}
-            </h2>
-          </div>
-        </section>
-        <CE_BCBancasurrancePrivate
-          currentPage={getOurstoryData?.title?.[0]?.value}
-        />
-        <div className="w-full flex justify-center pb-14 pt-4">
-          <h1 className="text-xl xl:text-3xl text-prioritycolor font-bold uppercase text-center">
-            rincian produk
+          <h1 className="z-10 absolute text-4xl text-white font-bold uppercase">
+            {getOurstoryData?.title?.[0]?.value}
           </h1>
-        </div>
+        </section>
+        <CE_BCPromoPrioritas currentPage={getOurstoryData?.title?.[0]?.value} />
         <section className="w-full flex flex-col justify-center items-center pb-10">
-          {getOurstoryData?.field_items?.map((item: any, index: number) => (
-            <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
-              <CE_AccordionObligasi
-                renderContent={parseHTMLToReact(
-                  item?.field_content?.[0]?.value
-                )}
-                renderTitle={item?.field_title?.[0]?.value}
-              />
-            </div>
-          ))}
+          <CE_PromoDetailPrioritas
+            title={titlePromo}
+            image={imagePromo}
+            terms={termsPromo}
+            startDate={startPromo}
+            endDate={endPromo}
+            merchant={merchantPromo}
+            lokasi={locationPromo}
+          />
         </section>
         <GlobalFooter
           bottom_right_footer={listBottomRightFooter}

@@ -1,14 +1,18 @@
 'use client';
 import React from 'react';
 
-const CE_BCBancasurrance = ({ currentPage }: { currentPage: string }) => {
+const CE_BCBancasurrancePrivate = ({
+  currentPage,
+}: {
+  currentPage: string;
+}) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-prioritas',
+      url: '/web/wealth-management/bri-private',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/bancassurance-prioritas',
+      url: '/web/wealth-management/bancassurance-private',
       title: 'BANCASSURANCE',
     },
   ];
@@ -63,4 +67,4 @@ const CE_BCBancasurrance = ({ currentPage }: { currentPage: string }) => {
   );
 };
 
-export default CE_BCBancasurrance;
+export default CE_BCBancasurrancePrivate;

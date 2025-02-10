@@ -198,7 +198,7 @@ export default function PriorityHeader({
                 return (
                   <div key={index}>
                     <div
-                      className="flex items-center cursor-pointer"
+                      className="flex items-center cursor-pointer hover:border-b-[1px] py-[2px] border-white"
                       onClick={() =>
                         header.title.toLowerCase() === 'cari'
                           ? setActiveSearch(true)

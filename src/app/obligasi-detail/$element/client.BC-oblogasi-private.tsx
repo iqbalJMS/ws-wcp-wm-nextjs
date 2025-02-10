@@ -1,15 +1,19 @@
 'use client';
 import React from 'react';
 
-const CE_BreadCrumbProgram = ({ currentPage }: { currentPage: string }) => {
+const CE_BCObligasiPrivate = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-private',
+      url: '/web/wealth-management/bri-prioritas',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/program',
-      title: 'Program',
+      url: '/web/wealth-management/product',
+      title: 'PRODUK',
+    },
+    {
+      url: '/web/wealth-management/obligasi-private',
+      title: 'OBLIGASI',
     },
   ];
   return (
@@ -18,7 +22,7 @@ const CE_BreadCrumbProgram = ({ currentPage }: { currentPage: string }) => {
         className="flex flex-1 justify-center mb-10 px-5 "
         aria-label="Breadcrumb"
       >
-        <div className="py-5 w-full md:w-10/12 flex justify-center items-center border-b-[1px] border-[#CECECE] bg-red-300">
+        <div className="py-5 w-full md:w-10/12 flex justify-center items-center border-b-[1px] border-[#CECECE]">
           <ol className="inline-flex items-center space-x-1 text-h7 sm:mb-0 md:space-x-2 rtl:space-x-reverse ">
             {LIST_DATA_BREADCRUMB?.map((item, index) => (
               <li key={index}>
@@ -63,4 +67,4 @@ const CE_BreadCrumbProgram = ({ currentPage }: { currentPage: string }) => {
   );
 };
 
-export default CE_BreadCrumbProgram;
+export default CE_BCObligasiPrivate;

@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
-const CE_WYSIWSGVariant01 = ({
+const CE_WYSIWSGPrioritas = ({
   category,
   title,
   date,
@@ -77,7 +77,7 @@ const CE_WYSIWSGVariant01 = ({
                     width="17.24"
                     height="32"
                     viewBox="0 0 896 1664"
-                    className="w-5 h-5 text-privatecolor"
+                    className="w-5 h-5 text-prioritycolor"
                   >
                     <path
                       fill="currentColor"
@@ -92,7 +92,7 @@ const CE_WYSIWSGVariant01 = ({
                     width="40"
                     height="32"
                     viewBox="0 0 1600 1280"
-                    className="w-5 h-5 text-privatecolor"
+                    className="w-5 h-5 text-prioritycolor"
                   >
                     <path
                       fill="currentColor"
@@ -107,7 +107,7 @@ const CE_WYSIWSGVariant01 = ({
                     width="32.69"
                     height="32"
                     viewBox="0 0 1536 1504"
-                    className="w-5 h-5 text-privatecolor"
+                    className="w-5 h-5 text-prioritycolor"
                   >
                     <path
                       fill="currentColor"
@@ -127,4 +127,4 @@ const CE_WYSIWSGVariant01 = ({
   );
 };
 
-export default CE_WYSIWSGVariant01;
+export default CE_WYSIWSGPrioritas;

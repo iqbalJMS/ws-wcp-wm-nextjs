@@ -9,7 +9,7 @@ type T_AccordionProps = {
   isOpen?: boolean;
 };
 
-export default function CE_AccordionObligasi({
+export default function CE_AccordionBrifinePrivate({
   renderContent,
   isOpen,
   renderTitle,

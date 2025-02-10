@@ -274,45 +274,37 @@ export default function CE_SimultaionInitialInvest() {
                 </h1>
               </div>
             </div>
-            <CE_SimulationLabel
-              label="Perkiraan Imbal Hasil"
-              slot={
-                <div className="">
-                  <h1 className="text-xs leading-5 text-slate-600">
-                    min {interestAmountRange?.min}% - max{' '}
-                    {interestAmountRange?.max}%
-                  </h1>
-                  <div className="mb-5 w-[20%]">
-                    <InputText
-                      rightText="%"
-                      disabled={formDisabled?.interestRate}
-                      value={form?.interestRate}
-                      onChange={(value) =>
-                        onFieldChange('interestRate', +value)
-                      }
-                      type="number"
-                    />
-                  </div>
-                  <div className="w-52 lg:w-72 ">
-                    <InputSlider
-                      min={interestAmountRange.min}
-                      max={interestAmountRange.max}
-                      step={0.5}
-                      value={form?.interestRate}
-                      onChange={(value) => onFieldChange('interestRate', value)}
-                    />
-                  </div>
-                  {formError.interestRate && (
-                    <div className="mt-5">
-                      <InputError message={formError.interestRate} />
-                    </div>
-                  )}
+            <div>
+              <div className="">
+                <h1 className="text-xs leading-5 text-slate-600">
+                  min {interestAmountRange?.min}% - max{' '}
+                  {interestAmountRange?.max}%
+                </h1>
+                <div className="mb-5 w-[20%]">
+                  <InputText
+                    rightText="%"
+                    disabled={formDisabled?.interestRate}
+                    value={form?.interestRate}
+                    onChange={(value) => onFieldChange('interestRate', +value)}
+                    type="number"
+                  />
                 </div>
-              }
-              onChange={(edit) =>
-                setFormDisabled({ ...formDisabled, interestRate: edit })
-              }
-            />
+                <div className="w-52 lg:w-72 ">
+                  <InputSlider
+                    min={interestAmountRange.min}
+                    max={interestAmountRange.max}
+                    step={0.5}
+                    value={form?.interestRate}
+                    onChange={(value) => onFieldChange('interestRate', value)}
+                  />
+                </div>
+                {formError.interestRate && (
+                  <div className="mt-5">
+                    <InputError message={formError.interestRate} />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
           <div className="flex gap-5 mt-10">

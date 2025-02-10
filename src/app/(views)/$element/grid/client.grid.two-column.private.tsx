@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'motion/react';
 import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
-export default function CE_GridVariant02({
+export default function CE_TwoColumnPrivate({
   variant,
   dataCard1,
   dataCard2,
@@ -44,15 +44,14 @@ export default function CE_GridVariant02({
     colorTheme = 'prioritycolor';
   }
 
-  const generetBreadcrumb = (text: string, url: string) => {
-    const result = sessionStorage.getItem(BREADCRUMB_KEY);
-
-    if (!result) {
-      sessionStorage.setItem(BREADCRUMB_KEY, JSON.stringify([{ text, url }]));
-    } else {
-      // eslint-disable-next-line no-console
-      console.log(result, 'error');
-    }
+  const generetBreadcrumb = (title: string) => {
+    sessionStorage.setItem(
+      BREADCRUMB_KEY,
+      JSON.stringify([
+        { title: 'Produk', url: '/product' },
+        { title: title, url: '#' },
+      ])
+    );
   };
 
   const ref = useRef(null);
@@ -100,12 +99,7 @@ export default function CE_GridVariant02({
                   {dataCard1?.[0]?.listMenu.map((item, index) =>
                     item.image ? (
                       <Link
-                        onClick={() =>
-                          generetBreadcrumb(
-                            item?.textLink ?? '',
-                            item?.urlLink ?? ''
-                          )
-                        }
+                        onClick={() => generetBreadcrumb(item?.textLink ?? '')}
                         key={index}
                         href={item.urlLink ?? ''}
                         className="flex flex-col items-center gap-3 group/menu"
@@ -221,6 +215,7 @@ export default function CE_GridVariant02({
                   {dataCard2?.[0]?.listMenu.map((item, index) =>
                     item.image ? (
                       <Link
+                        onClick={() => generetBreadcrumb(item?.textLink ?? '')}
                         key={index}
                         href={item.urlLink ?? ''}
                         className="flex flex-col items-center gap-3 group/menu"

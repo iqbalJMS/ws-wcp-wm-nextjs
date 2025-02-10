@@ -182,15 +182,10 @@ export default function CE_CarouselVariant3({
             >
               <h1 className="text-3xl font-extrabold">{title}</h1>
               <h2 className="font-light text-sm pb-3">{subtitle}</h2>
-              <Link
-                href={'/videos'}
-                className="flex items-center text-wmcolor font-semibold uppercase hover:underline"
-              >
-                {titlelink}
-              </Link>
+
               <Link
                 href={linkcta}
-                className="hidden items-center text-wmcolor font-semibold uppercase hover:underline"
+                className="items-center text-wmcolor font-semibold uppercase hover:underline"
               >
                 {titlelink}
               </Link>

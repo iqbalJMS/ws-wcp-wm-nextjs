@@ -1,15 +1,11 @@
 'use client';
 import React from 'react';
 
-const CE_BCObligasi = ({ currentPage }: { currentPage: string }) => {
+const CE_BCPromoPrioritas = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
       url: '/web/wealth-management/bri-prioritas',
-      title: 'Home',
-    },
-    {
-      url: '/web/wealth-management/obligasi-private',
-      title: 'OBLIGASI',
+      title: 'HOME',
     },
   ];
   return (
@@ -63,4 +59,4 @@ const CE_BCObligasi = ({ currentPage }: { currentPage: string }) => {
   );
 };
 
-export default CE_BCObligasi;
+export default CE_BCPromoPrioritas;

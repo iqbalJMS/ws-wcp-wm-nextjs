@@ -1,7 +1,7 @@
 'use client';
 
 import { T_PostResponse } from '@/api/common/fetch.type';
-import { validateMaxMin, validateMin } from '@/lib/functions/global/validate';
+import { validateMaxMin } from '@/lib/functions/global/validate';
 import { Call } from '@strix/client';
 import {
   T_SimulationReksaDana,
@@ -37,7 +37,7 @@ export function CFN_ValidateCreateSimulationReksaDanaFields(
 ): string {
   switch (name) {
     case 'amount':
-      return validateMin(value, 'Plafond Kredit ', 1);
+      return validateMaxMin(value, 'Plafond Kredit ', 1, 1000000000000);
     case 'investmentType':
       return validateMaxMin(value, 'Jangka Waktu', 1, 20);
     default:

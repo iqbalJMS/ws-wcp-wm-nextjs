@@ -7,6 +7,7 @@ import PlayIcon from '@/lib/element/global/icons/play-icon';
 import LeftArrow from '@/lib/element/global/icons/left-arrow';
 import ModalTester from '@/lib/element/global/modal.tedter';
 import { motion, useInView, useAnimation } from 'motion/react';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
@@ -58,6 +59,13 @@ export default function CE_CarouselVariant2({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
+
+  const generetBreadcrumb = (title: string) => {
+    sessionStorage.setItem(
+      BREADCRUMB_KEY,
+      JSON.stringify([{ title: title, url: '#' }])
+    );
+  };
 
   useEffect(() => {
     if (isInView) {
@@ -184,14 +192,9 @@ export default function CE_CarouselVariant2({
               <h1 className="text-3xl font-bold text-privatecolor">{title}</h1>
               <h2 className="font-light text-sm pb-3">{subtitle}</h2>
               <Link
-                href={'/videos'}
-                className="flex items-center text-privatecolor font-semibold uppercase hover:underline"
-              >
-                {titlelink}
-              </Link>
-              <Link
+                onClick={() => generetBreadcrumb(title ?? '')}
                 href={linkcta}
-                className="hidden items-center text-privatecolor font-semibold uppercase hover:underline"
+                className="items-center text-privatecolor font-semibold uppercase hover:underline"
               >
                 {titlelink}
               </Link>

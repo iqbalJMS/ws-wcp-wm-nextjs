@@ -13,10 +13,10 @@ import { ACT_GetPrivateMenuNavbar } from '@/app/(views)/$action/private-header/a
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import CE_BCBancasurrance from '@/app/bancassurance-detail/$element/client.breadcrumb.bancasurranceWm';
 import PrivateHeader from '@/lib/element/global/header/private-header';
 import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
-import CE_AccordionObligasi from '@/app/obligasi-detail/$element/client.accordion.obligasi';
+import CE_BCBrifinePrivate from '@/app/brifine-detail/$element/client.BC-brifine-private';
+import CE_AccordionBrifinePrivate from '@/app/brifine-detail/$element/client.accordion.brifine-private';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -63,16 +63,16 @@ export default async function page({ params }: { params: { id: string } }) {
             </h2>
           </div>
         </section>
-        <CE_BCBancasurrance currentPage={getOurstoryData?.title?.[0]?.value} />
+        <CE_BCBrifinePrivate currentPage={getOurstoryData?.title?.[0]?.value} />
         <div className="w-full flex justify-center pb-14 pt-4">
-          <h1 className="text-xl xl:text-3xl text-prioritycolor font-bold uppercase text-center">
-            rincian produk
+          <h1 className="text-xl xl:text-3xl text-privatecolor font-bold uppercase text-center">
+            DETAIL PRODUK
           </h1>
         </div>
         <section className="w-full flex flex-col justify-center items-center pb-10">
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
-              <CE_AccordionObligasi
+              <CE_AccordionBrifinePrivate
                 renderContent={parseHTMLToReact(
                   item?.field_content?.[0]?.value
                 )}

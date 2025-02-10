@@ -9,13 +9,14 @@ import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/act
 import { ACT_GetMainMenuFooter } from '@/app/(views)/$action/main-footer/action.get.main-footer';
 import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-footer/action.get.main-middle-footer';
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
-import CE_BreadCrumbInsight from '@/app/insight/$element/client.breadcrumb.insight';
+
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
 import PriorityHeader from '@/lib/element/global/header/priority-header';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 import CE_WYSIWSGVariantPriority from '@/app/insight-priority/$element/client.wysiwsg.variant02';
 import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
+import CE_BCInsightPrioritas from '@/app/insight-priority/$element/client.BC-insight-prioritas';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -58,7 +59,7 @@ export default async function page({ params }: { params: { id: string } }) {
           </h1>
         </div>
 
-        <CE_BreadCrumbInsight
+        <CE_BCInsightPrioritas
           currentPage={getOurstoryData?.title?.[0]?.value || ''}
         />
         <CE_WYSIWSGVariantPriority

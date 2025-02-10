@@ -67,7 +67,7 @@ const CE_CardGrid5Priority = ({
                     initial="hidden"
                     animate={mainControls}
                     transition={{ duration: 0.5, delay: 0.25 }}
-                    className="w-full h-full object-cover object-bottom group-hover:scale-125 transform scale-100 transition ease-in-out duration-300 "
+                    className="w-full h-[20rem] rounded-xl overflow-hidden mb-5 "
                   >
                     {item?.image && (
                       <Image

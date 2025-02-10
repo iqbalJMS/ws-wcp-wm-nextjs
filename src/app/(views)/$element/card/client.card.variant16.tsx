@@ -4,6 +4,7 @@ import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { motion, useInView, useAnimation } from 'motion/react';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 export default function CE_CardVariant16({
   title,
@@ -20,6 +21,16 @@ export default function CE_CardVariant16({
     desc: string;
   }>;
 }) {
+  const generetBreadcrumb = (title: string) => {
+    sessionStorage.setItem(
+      BREADCRUMB_KEY,
+      JSON.stringify([
+        { title: 'KEISTIMEWAAN', url: '/privilege' },
+        { title: title, url: '#' },
+      ])
+    );
+  };
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
@@ -69,6 +80,7 @@ export default function CE_CardVariant16({
         >
           {data?.map((item, index) => (
             <Link
+              onClick={() => generetBreadcrumb(item?.label ?? '')}
               data-aos="fade-up"
               href={item?.linkCta ?? ''}
               key={index}

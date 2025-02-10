@@ -3,6 +3,7 @@ import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView, useAnimation } from 'motion/react';
+import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 export default function CE_CardVariant8Deeper({
   firstColumn,
@@ -26,6 +27,16 @@ export default function CE_CardVariant8Deeper({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
+
+  const generetBreadcrumb = (title: string) => {
+    sessionStorage.setItem(
+      BREADCRUMB_KEY,
+      JSON.stringify([
+        { title: 'KEISTIMEWAAN', url: '/privilege-prioritas' },
+        { title: title, url: '#' },
+      ])
+    );
+  };
 
   useEffect(() => {
     if (isInView) {
@@ -67,6 +78,7 @@ export default function CE_CardVariant8Deeper({
                 <div className="bg-[#161A39] opacity-40 w-full h-full absolute z-10"></div>
 
                 <Link
+                  onClick={() => generetBreadcrumb(item?.title ?? '')}
                   href={`/${item?.link}`}
                   className=" cursor-pointer opacity-0 flex flex-col group-hover:opacity-80 justify-center items-center space-y-3 bg-[#141838] w-full h-full z-20 absolute bottom-0 transition-all ease-in-out duration-500 text-white"
                 >
@@ -108,6 +120,7 @@ export default function CE_CardVariant8Deeper({
                 <div className="bg-[#161A39] opacity-40 w-full h-full absolute z-10"></div>
 
                 <Link
+                  onClick={() => generetBreadcrumb(item?.title ?? '')}
                   href={`/${item?.link}`}
                   className="opacity-0 flex flex-col group-hover:opacity-80 justify-center items-center space-y-3 bg-[#141838] w-full h-full z-20 absolute bottom-0 transition-all ease-in-out duration-500 text-white"
                 >

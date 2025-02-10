@@ -11,11 +11,11 @@ import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-foote
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
-import CE_WYSIWSGVariant01 from '@/app/$element/client.wysiwsg.variant01';
-import CE_BreadCrumbArticle from '@/app/article-detail/$element/client.breadcrumb.article';
 import PriorityHeader from '@/lib/element/global/header/priority-header';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
+import CE_BCArticlePrioritas from '@/app/article-detail-priority/$element/client.BC-article-prioritas';
+import CE_WYSIWSGPrioritas from '@/app/$element/client.wysiwsg.prioritas';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -60,8 +60,10 @@ export default async function page({ params }: { params: { id: string } }) {
             article
           </h1>
         </section>
-        <CE_BreadCrumbArticle currentPage={'Detail Article'} />
-        <CE_WYSIWSGVariant01
+        <CE_BCArticlePrioritas
+          currentPage={getOurstoryData?.title?.[0]?.value || ''}
+        />
+        <CE_WYSIWSGPrioritas
           category={
             getOurstoryData?.field_article_category?.[0]?.name?.[0]?.value
           }
