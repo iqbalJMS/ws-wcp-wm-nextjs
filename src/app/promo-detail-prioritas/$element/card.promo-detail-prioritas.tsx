@@ -5,6 +5,13 @@ import ShareIcon from '@/lib/element/global/icons/share-icon';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from 'next/link';
+import TwitterIcon from '@/lib/element/global/icons/twitter-icon';
+import FacebookIcon from '@/lib/element/global/icons/facebook-icon';
+import LinkedinIcon from '@/lib/element/global/icons/linkedin-icon';
+import WhatsappIcon from '@/lib/element/global/icons/whatsapp-icon';
+import ModalTester from '@/lib/element/global/modal.tedter';
+import successIcon from '@/../../public/images/icon-menu/success-filled-svgrepo-com.svg';
+import closeIcon from '@/../../public/images/icon-menu/close-bold-svgrepo-com.svg';
 
 export default function CE_PromoDetailPrioritas({
   title,
@@ -14,6 +21,7 @@ export default function CE_PromoDetailPrioritas({
   endDate,
   merchant,
   lokasi,
+  nid,
 }: {
   title: string;
   image: string;
@@ -22,9 +30,21 @@ export default function CE_PromoDetailPrioritas({
   endDate: string;
   merchant: string;
   lokasi: string;
+  nid: number;
 }) {
+  const linkUrl = `https://bri-corpsite.dev-kjt.id/web/wealth-management/promo-detail-prioritas/${nid}`;
+
   const elementRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  setTimeout(() => {
+    closeModal();
+  }, 10000);
 
   useOnClickOutside(elementRef, () => setActive(false));
 
@@ -84,107 +104,44 @@ export default function CE_PromoDetailPrioritas({
                     <ul className="text-xs flex items-center justify-center text-black space-x-2">
                       <li>
                         <Link
-                          href={'https://x.com/i/flow/login'}
+                          href={`https://x.com/intent/tweet?text=${linkUrl}`}
                           target="_blank"
                         />
-                        <svg
-                          fill="#141333"
-                          height="35px"
-                          width="35px"
-                          version="1.1"
-                          id="Layer_1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlnsXlink="http://www.w3.org/1999/xlink"
-                          viewBox="-143 145 512 512"
-                          xmlSpace="preserve"
-                        >
-                          <path
-                            d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M215.2,361.2
-	c0.1,2.2,0.1,4.5,0.1,6.8c0,69.5-52.9,149.7-149.7,149.7c-29.7,0-57.4-8.7-80.6-23.6c4.1,0.5,8.3,0.7,12.6,0.7
-	c24.6,0,47.3-8.4,65.3-22.5c-23-0.4-42.5-15.6-49.1-36.5c3.2,0.6,6.5,0.9,9.9,0.9c4.8,0,9.5-0.6,13.9-1.9
-	C13.5,430-4.6,408.7-4.6,383.2v-0.6c7.1,3.9,15.2,6.3,23.8,6.6c-14.1-9.4-23.4-25.6-23.4-43.8c0-9.6,2.6-18.7,7.1-26.5
-	c26,31.9,64.7,52.8,108.4,55c-0.9-3.8-1.4-7.8-1.4-12c0-29,23.6-52.6,52.6-52.6c15.1,0,28.8,6.4,38.4,16.6
-	c12-2.4,23.2-6.7,33.4-12.8c-3.9,12.3-12.3,22.6-23.1,29.1c10.6-1.3,20.8-4.1,30.2-8.3C234.4,344.5,225.5,353.7,215.2,361.2z"
-                          />
-                        </svg>
+                        <TwitterIcon fill="#141333" width={35} height={35} />
                       </li>
                       <li>
                         <Link
-                          href={
-                            'https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2F'
-                          }
+                          href={`https://www.facebook.com/sharer/sharer.php?&quote=${linkUrl}`}
                           target="_blank"
                         >
-                          <svg
-                            fill="#141333"
-                            version="1.1"
-                            id="Capa_1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                            width="35px"
-                            height="35px"
-                            viewBox="0 0 97.75 97.75"
-                            xmlSpace="preserve"
-                          >
-                            <g>
-                              <path
-                                d="M48.875,0C21.882,0,0,21.882,0,48.875S21.882,97.75,48.875,97.75S97.75,75.868,97.75,48.875S75.868,0,48.875,0z
-		 M67.521,24.89l-6.76,0.003c-5.301,0-6.326,2.519-6.326,6.215v8.15h12.641L67.07,52.023H54.436v32.758H41.251V52.023H30.229V39.258
-		h11.022v-9.414c0-10.925,6.675-16.875,16.42-16.875l9.851,0.015V24.89L67.521,24.89z"
-                              />
-                            </g>
-                          </svg>
+                          <FacebookIcon fill="#141333" width={35} height={35} />
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href={'https://www.linkedin.com/login'}
+                          href={`https://www.linkedin.com/sharing/share-offsite/?url=${linkUrl}`}
                           target="_blank"
                         >
-                          <svg
-                            fill="#141333"
-                            height="35px"
-                            width="35px"
-                            version="1.1"
-                            id="Layer_1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                            viewBox="-143 145 512 512"
-                            xmlSpace="preserve"
-                          >
-                            <path
-                              d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M41.4,508.1H-8.5V348.4h49.9
-	V508.1z M15.1,328.4h-0.4c-18.1,0-29.8-12.2-29.8-27.7c0-15.8,12.1-27.7,30.5-27.7c18.4,0,29.7,11.9,30.1,27.7
-	C45.6,316.1,33.9,328.4,15.1,328.4z M241,508.1h-56.6v-82.6c0-21.6-8.8-36.4-28.3-36.4c-14.9,0-23.2,10-27,19.6
-	c-1.4,3.4-1.2,8.2-1.2,13.1v86.3H71.8c0,0,0.7-146.4,0-159.7h56.1v25.1c3.3-11,21.2-26.6,49.8-26.6c35.5,0,63.3,23,63.3,72.4V508.1z
-	"
-                            />
-                          </svg>
+                          <LinkedinIcon fill="#141333" height={35} width={35} />
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href={'https://web.whatsapp.com/'}
+                          href={`https://web.whatsapp.com/send?text=${linkUrl}`}
                           target="_blank"
                         >
-                          <svg
-                            className="bg-[#141333] rounded-full p-[3px]"
+                          <WhatsappIcon
                             fill="#ffffff"
-                            width="35px"
-                            height="35px"
-                            viewBox="0 0 256 256"
-                            id="Flat"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M128.00049,28A100.02594,100.02594,0,0,0,41.11475,177.53908l-9.0044,31.51661a11.99971,11.99971,0,0,0,14.835,14.834l31.5166-9.00391A100.00677,100.00677,0,1,0,128.00049,28Zm0,192a91.87082,91.87082,0,0,1-46.95264-12.86719,3.99494,3.99494,0,0,0-3.14355-.4082l-33.15723,9.47363a3.99979,3.99979,0,0,1-4.94434-4.94531l9.47266-33.15625a4.00111,4.00111,0,0,0-.4082-3.14355A92.01077,92.01077,0,1,1,128.00049,220Zm50.51123-73.457-20.45947-11.69141a12.01054,12.01054,0,0,0-12.12745.12891l-13.80664,8.28418a44.04183,44.04183,0,0,1-19.38232-19.38281l8.28369-13.80664a12.0108,12.0108,0,0,0,.12891-12.127l-11.69092-20.46A10.91584,10.91584,0,0,0,100,72a32.00811,32.00811,0,0,0-32,31.88086A84.001,84.001,0,0,0,151.999,188h.12012A32.00842,32.00842,0,0,0,184,156,10.913,10.913,0,0,0,178.51172,146.543ZM152.10791,180h-.1084A75.99972,75.99972,0,0,1,76,103.8926,23.997,23.997,0,0,1,100,80a2.89975,2.89975,0,0,1,2.51172,1.457L114.20264,101.918a4.00418,4.00418,0,0,1-.043,4.042l-9.38916,15.64844a3.9987,3.9987,0,0,0-.21826,3.69824,52.04112,52.04112,0,0,0,26.1416,26.1416,3.99707,3.99707,0,0,0,3.69873-.21875L150.04,141.84084a4.006,4.006,0,0,1,4.043-.04394l20.46045,11.69238A2.89712,2.89712,0,0,1,176,156,23.99725,23.99725,0,0,1,152.10791,180Z" />
-                          </svg>
+                            className="bg-[#141333] rounded-full p-[3px]"
+                            width={35}
+                            height={35}
+                          />
                         </Link>
                       </li>
                       <li
                         onClick={async () => {
-                          await navigator.clipboard.writeText(
-                            'navigator.clipboard.hello'
-                          );
+                          await navigator.clipboard.writeText(`${linkUrl}`);
+                          setModalOpen(true);
                         }}
                       >
                         <svg
@@ -281,6 +238,42 @@ export default function CE_PromoDetailPrioritas({
           </div>
         </section>
       </div>
+      <ModalTester>
+        <div
+          className={
+            !modalOpen
+              ? 'hidden'
+              : 'overflow-y-auto overflow-x-hidden fixed bottom-0 right-0 left-0 z-50 justify-center items-center w-full h-screen md:inset-0 max-h-full'
+          }
+        >
+          <div
+            className="flex justify-start items-end p-5 lg:p-4 w-full h-screen"
+            onClick={() => closeModal()}
+          >
+            <div className="relative w-72 h-14 flex justify-center items-center bg-[#D4EDDA] border-[#155724] border-2 rounded shadow">
+              <div className="w-60 flex items-center">
+                <Image
+                  src={successIcon}
+                  alt={'success-icon'}
+                  height={18}
+                  width={18}
+                />
+                <h1 className="text-xs text-[#328042]">
+                  <span className="font-bold px-2">Success:</span>
+                  the url has been copied
+                </h1>
+              </div>
+              <Image
+                className="cursor-pointer"
+                src={closeIcon}
+                alt={'close-icon'}
+                height={18}
+                width={18}
+              />
+            </div>
+          </div>
+        </div>
+      </ModalTester>
     </>
   );
 }

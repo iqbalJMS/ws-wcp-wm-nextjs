@@ -1,5 +1,4 @@
 import React from 'react';
-
 import background from '@/../public/images/dummy/banner-reksa-dana.jpg';
 import Image from 'next/image';
 import { ACT_GetTopMenuNavbar } from '@/app/(views)/$action/action.get.top-menu-navbar';
@@ -12,9 +11,9 @@ import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-ite
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
 import CE_BreadCrumbInvestasi from '@/app/product-detail/$element/client.breadcrumb.investasi';
-import CE_CardVariant10 from '@/app/promo-detail/$element/card-variant10';
 import HomeHeader from '@/lib/element/global/header/home-header';
 import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
+import CE_PromoCardDetailWm from '@/app/promo-detail/$element/card-promo-detail-wm';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -31,6 +30,7 @@ export default async function page({ params }: { params: { id: string } }) {
     alias: 'node',
     nid: +params.id,
   });
+  const nidPromo = getOurstoryData?.nid?.[0]?.value;
   const termsPromo = getOurstoryData?.field_term_and_condition?.[0]?.value;
   const merchantPromo = getOurstoryData?.field_promo_merchant?.[0]?.value;
   const imagePromo =
@@ -67,7 +67,7 @@ export default async function page({ params }: { params: { id: string } }) {
           currentPage={getOurstoryData?.title?.[0]?.value}
         />
         <section className="w-full flex flex-col justify-center items-center pb-10">
-          <CE_CardVariant10
+          <CE_PromoCardDetailWm
             title={titlePromo}
             image={imagePromo}
             terms={termsPromo}
@@ -75,6 +75,7 @@ export default async function page({ params }: { params: { id: string } }) {
             endDate={endPromo}
             merchant={merchantPromo}
             lokasi={locationPromo}
+            nid={nidPromo}
           />
         </section>
         <GlobalFooter
@@ -82,7 +83,7 @@ export default async function page({ params }: { params: { id: string } }) {
           bottom_left_footer={listBottomLeftFooter}
           main_footer={itemMainFooter || undefined}
           middle_main_footer={itemMiddleMainFooter}
-          variant={'wm-prioritas-main-navigation'}
+          variant={'wm-main-navigation'}
         />
       </div>
     </>
