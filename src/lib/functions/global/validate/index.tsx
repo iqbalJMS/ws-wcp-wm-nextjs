@@ -50,7 +50,18 @@ export const validateMaxMin = (
   max: number = 10
 ): string => {
   return (value || 0) < min || (value || 0) > max
-    ? `${label} tidak boleh kurang dari ${min} atau tidak boleh lebih dari ${max}`
+    ? `${label} tidak boleh kurang dari 1.000.000 atau tidak boleh lebih dari 1.000.000.000.000`
+    : '';
+};
+
+export const validateMaxMinDuration = (
+  value?: number,
+  label: string = 'Field',
+  min: number = 1,
+  max: number = 10
+): string => {
+  return (value || 0) < min || (value || 0) > max
+    ? `${label} Nilai harus lebih besar dari sama dengan 1 dan atau tidak boleh lebih dari 25`
     : '';
 };
 
