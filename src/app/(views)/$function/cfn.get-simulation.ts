@@ -1,7 +1,11 @@
 'use client';
 
 import { T_PostResponse } from '@/api/common/fetch.type';
-import { validateMin, validateMaxMin } from '@/lib/functions/global/validate';
+import {
+  validateMin,
+  validateMaxMin,
+  validateMaxMinDuration,
+} from '@/lib/functions/global/validate';
 /* eslint-disable no-unused-vars */
 
 import { Arrival, Call, Departure } from '@strix/client';
@@ -43,7 +47,7 @@ export function CFN_ValidateCreateSimulationInvestmentFields(
     case 'investmentAmount':
       return validateMaxMin(value, 'Jumlah Investasi', 1000000, 1000000000000);
     case 'duration':
-      return validateMaxMin(value, 'Jangka Waktu', 0, 25);
+      return validateMaxMinDuration(value, 'Jangka Waktu', 1, 25);
     case 'interestRate':
       return validateMin(value, 'rate', 1);
     default:

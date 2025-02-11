@@ -37,7 +37,7 @@ export function CFN_ValidateCreateSimulationReksaDanaFields(
 ): string {
   switch (name) {
     case 'amount':
-      return validateMaxMin(value, 'Plafond Kredit ', 1, 1000000000000);
+      return validateMaxMin(value, 'Plafond Kredit ', 1000000, 1000000000000);
     case 'investmentType':
       return validateMaxMin(value, 'Jangka Waktu', 1, 20);
     default:

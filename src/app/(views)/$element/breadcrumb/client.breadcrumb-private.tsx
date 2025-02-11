@@ -13,7 +13,11 @@ const CE_BreadcrumbPrivate = ({
   }>;
 }) => {
   const pathname = usePathname();
-  const parentRoute = sessionStorage.getItem(BREADCRUMB_KEY) ?? '';
+
+  const parentRoute =
+    typeof window !== 'undefined'
+      ? (sessionStorage?.getItem(BREADCRUMB_KEY) ?? '')
+      : '';
 
   const REGISTERED_PAGE_WITH_CUSTOM_ROUTE = [
     '/brifine-private',

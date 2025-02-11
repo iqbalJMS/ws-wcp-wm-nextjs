@@ -13,7 +13,10 @@ const CE_BreadcrumbPriority = ({
   }>;
 }) => {
   const pathname = usePathname();
-  const parentRoute = sessionStorage.getItem(BREADCRUMB_KEY) ?? '';
+  const parentRoute =
+    typeof window !== 'undefined'
+      ? (sessionStorage?.getItem(BREADCRUMB_KEY) ?? '')
+      : '';
 
   const REGISTERED_PAGE_WITH_CUSTOM_ROUTE = [
     '/investasi-prioritas',
