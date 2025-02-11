@@ -35,6 +35,8 @@ export default async function page({ params }: { params: { id: string } }) {
     alias: 'node',
     nid: +params.id,
   });
+
+  const nidPromo = getOurstoryData?.nid?.[0]?.value;
   const termsPromo = getOurstoryData?.field_term_and_condition?.[0]?.value;
   const merchantPromo = getOurstoryData?.field_promo_merchant?.[0]?.value;
   const imagePromo =
@@ -78,6 +80,7 @@ export default async function page({ params }: { params: { id: string } }) {
             endDate={endPromo}
             merchant={merchantPromo}
             lokasi={locationPromo}
+            nid={nidPromo}
           />
         </section>
         <GlobalFooter
