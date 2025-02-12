@@ -62,7 +62,7 @@ export default function CE_CardVariant8Deeper({
                 animate={mainControls}
                 transition={{ duration: 0.5, delay: 0.25 }}
                 style={{
-                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image})`,
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''})`,
                   backgroundPosition: 'center',
                   backgroundSize: 'cover',
                 }}
@@ -79,7 +79,7 @@ export default function CE_CardVariant8Deeper({
 
                 <Link
                   onClick={() => generetBreadcrumb(item?.title ?? '')}
-                  href={`/${item?.link}`}
+                  href={`/${item?.link ?? '/404'}`}
                   className=" cursor-pointer opacity-0 flex flex-col group-hover:opacity-80 justify-center items-center space-y-3 bg-[#141838] w-full h-full z-20 absolute bottom-0 transition-all ease-in-out duration-500 text-white"
                 >
                   <h1 className="text-xl lg:text-2xl xl:text-3xl uppercase font-extrabold">
@@ -104,7 +104,7 @@ export default function CE_CardVariant8Deeper({
                 initial="hidden"
                 animate={mainControls}
                 style={{
-                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image})`,
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''})`,
                   backgroundPosition: 'center',
                   backgroundSize: 'cover',
                 }}
@@ -121,7 +121,7 @@ export default function CE_CardVariant8Deeper({
 
                 <Link
                   onClick={() => generetBreadcrumb(item?.title ?? '')}
-                  href={`/${item?.link}`}
+                  href={`/${item?.link ?? '/404'}`}
                   className="opacity-0 flex flex-col group-hover:opacity-80 justify-center items-center space-y-3 bg-[#141838] w-full h-full z-20 absolute bottom-0 transition-all ease-in-out duration-500 text-white"
                 >
                   <h1 className="text-xl lg:text-2xl xl:text-3xl uppercase font-extrabold">

@@ -42,7 +42,7 @@ const CE_CardGrid6Main = ({
         <div ref={ref} className="flex flex-wrap -mx-10">
           {dataCard.map((item, index) => (
             <Link
-              href={`/program-detail/${item?.nid}`}
+              href={`/program-detail/${item?.nid ?? '/404'}`}
               key={index}
               className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
             >
@@ -59,7 +59,7 @@ const CE_CardGrid6Main = ({
                 >
                   {item?.image && (
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image}`}
+                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
                       alt="image"
                       width={400}
                       height={400}

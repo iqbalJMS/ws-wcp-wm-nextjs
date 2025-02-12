@@ -54,7 +54,7 @@ const CE_CardGrid7Priority = ({
             {dataCard?.map((item, index) => (
               <Link
                 key={index}
-                href={`/article-detail-priority/${item?.nid}`}
+                href={`/article-detail-priority/${item?.nid ?? '/404'}`}
                 className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
               >
                 <div className="group">
@@ -70,7 +70,7 @@ const CE_CardGrid7Priority = ({
                   >
                     {item?.image && (
                       <Image
-                        src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image}`}
+                        src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
                         alt="image"
                         width={400}
                         height={400}

@@ -92,7 +92,7 @@ export default function CE_CardVariant6({
             )}
             <Link
               className="bg-wmcolor py-2 px-5 rounded-full hover:bg-gray-700 duration-200 cursor-pointer text-white font-semibold uppercase"
-              href={linkCta}
+              href={linkCta ?? '/404'}
             >
               lihat selengkapnya
             </Link>

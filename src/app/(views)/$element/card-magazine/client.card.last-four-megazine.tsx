@@ -188,7 +188,7 @@ export default function CE_LastFourMagazine({
           >
             {magazineList?.map((item, index) => (
               <Link
-                href={`/magazine-detail/${item?.nid?.[0]?.value}`}
+                href={`/magazine-detail/${item?.nid?.[0]?.value ?? '/404'}`}
                 target="_blank"
                 key={index}
                 className="relative w-full h-[500px]  flex-none rounded-lg flex flex-col justify-center items-center bg-center overflow-hidden p-3"
@@ -197,7 +197,7 @@ export default function CE_LastFourMagazine({
                   <div
                     className="w-72 h-96 flex-none flex flex-col justify-end items-start hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -306,7 +306,7 @@ export default function CE_LastFourMagazine({
               >
                 {magazineList?.map((item, index) => (
                   <Link
-                    href={`/magazine-detail/${item?.nid?.[0]?.value}`}
+                    href={`/magazine-detail/${item?.nid?.[0]?.value ?? '/404'}`}
                     target="_blank"
                     key={index}
                     className="group relative overflow-hidden w-[48%] h-[450px] flex-none flex flex-col justify-center items-center bg-center cursor-pointer"
@@ -315,7 +315,7 @@ export default function CE_LastFourMagazine({
                       <div
                         className="w-full h-full hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                         style={{
-                          backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
+                          backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                           backgroundSize: 'contain',
                           backgroundRepeat: 'no-repeat',
                         }}
@@ -383,7 +383,7 @@ export default function CE_LastFourMagazine({
               <div className="w-full h-full flex justify-center space-x-4 ">
                 {magazineList?.map((item, index) => (
                   <Link
-                    href={`/magazine-detail/${item?.nid?.[0]?.value}`}
+                    href={`/magazine-detail/${item?.nid?.[0]?.value ?? '/404'}`}
                     target="_blank"
                     key={index}
                     className="group overflow-hidden w-96 xl:w-80 h-[92%]"
@@ -391,7 +391,7 @@ export default function CE_LastFourMagazine({
                     <div
                       className="w-72 h-[70%] xl:w-80 xl:h-[85%] flex-none flex flex-col justify-end items-start group-hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                       style={{
-                        backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
+                        backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
                       }}

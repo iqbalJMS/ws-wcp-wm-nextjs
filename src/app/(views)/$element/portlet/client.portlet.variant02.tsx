@@ -68,7 +68,7 @@ export default function CE_PortletVariant02({
           <div
             className="relative h-[50vh] lg:mb-[3.125rem] w-full overflow-hidden bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black before:to-black before:opacity-40"
             style={{
-              backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage})`,
+              backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -88,7 +88,7 @@ export default function CE_PortletVariant02({
               </div>
               <div className="flex gap-4">
                 <Link
-                  href={buttonLink ?? ''}
+                  href={buttonLink ?? '/404'}
                   onClick={() => generetBreadcrumb(buttonText ?? '')}
                 >
                   <button

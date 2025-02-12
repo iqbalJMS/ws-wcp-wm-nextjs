@@ -60,7 +60,7 @@ function RowElement({
             </div>
             <div className="flex items-start pt-2">
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${data?.field_company_address_icon?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${data?.field_company_address_icon?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
                 width={30}
                 height={30}
                 alt=""
@@ -82,10 +82,10 @@ function RowElement({
               <Link
                 key={index}
                 className="group hover:cursor-pointer flex items-start py-2 "
-                href={`/${alias}`}
+                href={`/${alias ?? '/404'}`}
               >
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon}`}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon ?? ''}`}
                   width={20}
                   height={20}
                   alt=""
@@ -149,7 +149,7 @@ function TermsAllReservedElement({
                     {termsData?.map(({ title, relative }, index) => (
                       <div key={index}>
                         <Link
-                          href={relative}
+                          href={relative ?? '/404'}
                           className="text-sm font-normal text-white hover:underline"
                         >
                           {title}
@@ -211,13 +211,13 @@ function TermsAllReservedElement({
                   {socialMediaData?.map(({ uri, icon, title }, index) => (
                     <Link
                       target="blank"
-                      href={uri}
+                      href={uri ?? '/404'}
                       key={index}
                       className="text-white flex items-center gap-2 lg:text-sm text-sm justify-center font-normal hover:bg-blue-600 rounded-full p-1"
                     >
                       {icon && (
                         <Image
-                          src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon}`}
+                          src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon ?? ''}`}
                           width={16}
                           height={16}
                           alt={title}

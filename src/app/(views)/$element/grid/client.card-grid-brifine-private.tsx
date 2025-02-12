@@ -32,7 +32,7 @@ const CE_BrifinePrivate = ({
         <div ref={ref} className="flex flex-wrap -mx-10">
           {dataCard?.map((item, index) => (
             <Link
-              href={`/brifine-detail/${item?.nid}`}
+              href={`/brifine-detail/${item?.nid ?? '/404'}`}
               key={index}
               className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
             >
@@ -49,7 +49,7 @@ const CE_BrifinePrivate = ({
                 >
                   {item?.image && (
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image}`}
+                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
                       alt="image"
                       width={700}
                       height={700}

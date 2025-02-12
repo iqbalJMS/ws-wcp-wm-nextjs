@@ -1,8 +1,6 @@
 'use client';
 import Link from 'next/link';
 import React from 'react';
-import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
-import { usePathname } from 'next/navigation';
 
 const CE_BreadcrumbPriority = ({
   data,
@@ -12,39 +10,7 @@ const CE_BreadcrumbPriority = ({
     url: string;
   }>;
 }) => {
-  const pathname = usePathname();
-  const parentRoute =
-    typeof window !== 'undefined'
-      ? (sessionStorage?.getItem(BREADCRUMB_KEY) ?? '')
-      : '';
-
-  const REGISTERED_PAGE_WITH_CUSTOM_ROUTE = [
-    '/investasi-prioritas',
-    '/bancassurance-prioritas',
-    '/travel-privileges',
-    '/lifestyle-privileges',
-    '/information-privilege',
-    '/concierge-privilege',
-    '/videos-prioritas',
-    '/debit-detail-prioritas',
-    '/get-invited-prioritas',
-    '/promo-prioritas',
-    '/prioritas-magazine',
-    '/privacy-prioritas',
-    '/terms-of-use-prioritas',
-  ];
-
-  const isUsingCustomRoute =
-    REGISTERED_PAGE_WITH_CUSTOM_ROUTE.includes(pathname) && parentRoute;
-
-  const customPaths = isUsingCustomRoute
-    ? [...data, ...JSON?.parse(parentRoute ?? undefined)]
-    : data;
-
-  const customURLBreadcrumb =
-    parentRoute && REGISTERED_PAGE_WITH_CUSTOM_ROUTE.includes(pathname)
-      ? customPaths
-      : data;
+  const result = data.slice(1);
 
   return (
     <>
@@ -53,12 +19,12 @@ const CE_BreadcrumbPriority = ({
           <ol className="inline-flex items-center space-x-1 text-h7 sm:mb-0 md:space-x-2 rtl:space-x-reverse ">
             <li>
               <div className="flex items-center space-x-3">
-                {customURLBreadcrumb?.map((item, index) => {
-                  if (index + 1 === customURLBreadcrumb?.length) {
+                {result?.map((item, index) => {
+                  if (index + 1 === result?.length) {
                     return (
                       <Link
                         key={index}
-                        href={item?.url}
+                        href={item?.url ?? '/404'}
                         className="font-light text-prioritycolor hover:text-prioritycolor flex items-center uppercase cursor-default"
                       >
                         {item?.title}
@@ -68,7 +34,7 @@ const CE_BreadcrumbPriority = ({
                     return (
                       <Link
                         key={index}
-                        href={item?.url}
+                        href={item?.url ?? '/404'}
                         className="font-light text-[#C0CCE2] hover:text-prioritycolor hover:underline flex items-center uppercase"
                       >
                         {item?.title}

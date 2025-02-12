@@ -38,7 +38,7 @@ export default function CE_CardVariant12({
               <h2 className="text-[#52185A] text-sm">{item?.desc}</h2>
               <div className="pt-8">
                 <Link
-                  href={`/our-story/${item?.nid}`}
+                  href={`/our-story/${item?.nid} ?? '/404`}
                   className="py-2 px-8 hover:bg-gray-600 duration-300 rounded-full uppercase font-semibold text-white bg-[#080087]"
                 >
                   selengkapnya
@@ -52,7 +52,7 @@ export default function CE_CardVariant12({
             >
               {item?.image ? (
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image}`}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
                   width={10000}
                   height={10000}
                   alt="image"
@@ -83,7 +83,7 @@ export default function CE_CardVariant12({
               <h2 className="text-[#52185A] text-sm">{item?.desc}</h2>
               <div className="pt-8">
                 <Link
-                  href={`/our-story/${item?.nid}`}
+                  href={`/our-story/${item?.nid ?? '/404'}`}
                   className="py-2 px-8 hover:bg-gray-600 duration-300 rounded-full uppercase font-semibold text-white bg-[#080087]"
                 >
                   selengkapnya

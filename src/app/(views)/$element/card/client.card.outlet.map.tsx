@@ -38,7 +38,7 @@ export default function CE_CardOutletMap({
               />
               <Link
                 target="_blank"
-                href={linkCta}
+                href={linkCta ?? '/404'}
                 className="pl-1 capitalize hover:underline text-privatecolor text-sm"
               >
                 {linkTitle}
@@ -47,7 +47,7 @@ export default function CE_CardOutletMap({
           </section>
           <section className=" w-full h-80">
             <Image
-              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image}`}
+              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image ?? ''}`}
               alt={''}
               width={500}
               height={500}

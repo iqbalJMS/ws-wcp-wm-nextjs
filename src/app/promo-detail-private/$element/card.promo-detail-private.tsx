@@ -63,7 +63,7 @@ export default function CE_PromoDetailPrivate({
           <section className="w-full grid grid-cols-1 place-items-start space-y-5 pb-12">
             <div className="w-full flex justify-center md:flex-none lg:w-8/12">
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image}`}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image ?? ''}`}
                 width={1000}
                 height={1000}
                 alt="image bri prioritas"
@@ -103,14 +103,14 @@ export default function CE_PromoDetailPrivate({
                     <ul className="text-xs flex items-center justify-center text-black space-x-2">
                       <li>
                         <Link
-                          href={`https://x.com/intent/tweet?text=${urlLink}`}
+                          href={`https://x.com/intent/tweet?text=${urlLink ?? '/404'}`}
                           target="_blank"
                         />
                         <TwitterIcon fill="#A28F52" height={35} width={35} />
                       </li>
                       <li>
                         <Link
-                          href={`https://www.facebook.com/sharer/sharer.php?&quote=${urlLink}`}
+                          href={`https://www.facebook.com/sharer/sharer.php?&quote=${urlLink ?? '/404'}`}
                           target="_blank"
                         >
                           <FacebookIcon fill="#A28F52" width={35} height={35} />
@@ -118,7 +118,7 @@ export default function CE_PromoDetailPrivate({
                       </li>
                       <li>
                         <Link
-                          href={`https://www.linkedin.com/sharing/share-offsite/?url=${urlLink}`}
+                          href={`https://www.linkedin.com/sharing/share-offsite/?url=${urlLink ?? '/404'}`}
                           target="_blank"
                         >
                           <LinkedinIcon fill="#A28F52" width={35} height={35} />
@@ -126,7 +126,7 @@ export default function CE_PromoDetailPrivate({
                       </li>
                       <li>
                         <Link
-                          href={`https://web.whatsapp.com/send?text=${urlLink}`}
+                          href={`https://web.whatsapp.com/send?text=${urlLink ?? '/404'}`}
                           target="_blank"
                         >
                           <WhatsappIcon
@@ -139,7 +139,9 @@ export default function CE_PromoDetailPrivate({
                       </li>
                       <li
                         onClick={async () => {
-                          await navigator.clipboard.writeText(`${urlLink}`);
+                          await navigator.clipboard.writeText(
+                            `${urlLink ?? '/404'}`
+                          );
                           setModalOpen(true);
                         }}
                       >

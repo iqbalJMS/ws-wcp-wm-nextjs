@@ -91,13 +91,13 @@ export function LoginButton({
               key={index}
               className="w-full bg-white mb-2 px-5 py-4 rounded-3xl"
             >
-              <Link href={loginItem?.uri} target="_blank">
+              <Link href={loginItem?.uri ?? '/404'} target="_blank">
                 <div
                   className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
                 >
                   <div className="mr-2">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon}`}
+                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon ?? ''}`}
                       alt=""
                       width={30}
                       height={30}
@@ -226,7 +226,7 @@ export default function CE_HeaderMagazine({
                       >
                         {header.icon && (
                           <Image
-                            src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${header.icon}`}
+                            src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${header.icon ?? ''}`}
                             width={18}
                             height={18}
                             alt={`icon-${header.icon}`}
@@ -321,9 +321,10 @@ export default function CE_HeaderMagazine({
                         className="pb-2 mdmax:pb-0 group border-b-4 border-transparent hover:border-blue-01 "
                       >
                         <Link
-                          href={`/${item?.alias
-                            ?.toLowerCase()
-                            .replaceAll(' ', '-')}`}
+                          href={`/${
+                            item?.alias?.toLowerCase().replaceAll(' ', '-') ??
+                            '/404'
+                          }`}
                           className={[
                             `text-sm font-normal cursor-pointer uppercase relative `,
                             `${isScrolling ? 'text-black' : variant === 'no-transparent' ? 'text-white mdmax:text-black' : 'text-black'}`,

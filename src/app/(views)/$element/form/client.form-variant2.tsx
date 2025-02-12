@@ -88,7 +88,7 @@ export default function CE_FormVariant2({
         <div className="w-full h-full">
           <Image
             className="w-full h-full"
-            src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage}`}
+            src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''}`}
             alt={''}
             width={10000}
             height={10000}
@@ -227,7 +227,7 @@ export default function CE_FormVariant2({
                     }
                     state={captcha.error ? 'error' : 'init'}
                   />
-                  <p>{captcha.error}</p>
+                  <h1>{captcha.error}</h1>
                 </div>
               </div>
               <button

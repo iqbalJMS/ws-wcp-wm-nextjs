@@ -27,7 +27,7 @@ export default function CE_GridVariant03({
           {desc && <h2 className="text-sm min-h-[100px]">{desc}</h2>}
           {textLink && (
             <Link
-              href={urlLink ?? '#'}
+              href={urlLink ?? '/404'}
               className="text-md text-privatecolor hover:underline flex gap-2 items-center mt-auto"
             >
               {imageLink && (

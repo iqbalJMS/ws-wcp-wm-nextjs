@@ -114,7 +114,7 @@ export function CE_BannerVariant02({
                   key={index}
                   className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-center bg-cover"
                   style={{
-                    backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
+                    backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''})`,
                     backgroundAttachment: 'fixed',
                   }}
                 >
@@ -132,7 +132,7 @@ export function CE_BannerVariant02({
                     )}
                     {item?.button && (
                       <Link
-                        href={item?.link}
+                        href={item?.link ?? '/404'}
                         className="group relative overflow-hidden bg-privatecolor text-white uppercase font-semibold py-2 px-5 rounded-full"
                       >
                         {item?.button}

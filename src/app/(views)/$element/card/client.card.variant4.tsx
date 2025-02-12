@@ -61,21 +61,21 @@ export default function CE_CardVariant4({
               <Link
                 data-aos="fade-right"
                 data-aos-duration="1000"
-                href={`/${item?.link}`}
+                href={`/${item?.link ?? '/404'}`}
                 key={index}
                 className="cursor-pointer group relative w-full md:w-10/12 lg:w-full h-44 lg:h-64 xl:h-72 overflow-hidden bg-center"
               >
                 <div
                   className="flex flex-col justify-between h-64 xl:h-72 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-bottom transition-all ease-in-out transform-gpu delay-75"
                   style={{
-                    backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
+                    backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''})`,
                   }}
                 >
                   <div className="w-full h-full bg-black opacity-50"></div>
                 </div>
                 <div className="flex justify-between">
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.logo}`}
+                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.logo ?? ''}`}
                     width={1000}
                     height={1000}
                     alt="service us logo"

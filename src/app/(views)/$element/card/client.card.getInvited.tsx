@@ -37,14 +37,14 @@ export default function CE_GetInvited({
               className="w-60 h-72 flex flex-col items-center justify-center shadow-2xl bg-white rounded-3xl hover:-translate-y-3 duration-300 cursor-pointer m-5 p-5 space-y-4 border"
             >
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.iconImage}`}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.iconImage ?? ''}`}
                 alt=""
                 width={80}
                 height={80}
                 className=""
               />
               <Link
-                href={''}
+                href={'#'}
                 className="capitalize text-lg font-bold text-prioritycolor hover:underline"
               >
                 {item?.title}
@@ -60,14 +60,14 @@ export default function CE_GetInvited({
               className="w-60 h-72 flex flex-col items-center justify-center shadow-2xl bg-white rounded-3xl hover:-translate-y-3 duration-300 cursor-pointer m-5 p-5 space-y-4 border"
             >
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.iconImage}`}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.iconImage ?? ''}`}
                 alt=""
                 width={80}
                 height={80}
                 className=""
               />
               <Link
-                href={''}
+                href={'#'}
                 className="capitalize text-lg font-bold text-prioritycolor hover:underline"
               >
                 {item?.title}

@@ -27,7 +27,7 @@ export default function CE_Card(props: T_CardProps) {
       className={['p-5 shadow-md m-2 bg-white space-y-7', className].join(' ')}
     >
       <div draggable={false} className="space-y-7">
-        <Link href={content?.href ?? ''} draggable={false}>
+        <Link href={content?.href ?? '/404'} draggable={false}>
           <CE_Image
             src={modifiedSrc}
             alt={content?.title}

@@ -100,7 +100,7 @@ export default function CE_TwoColumnPriority({
                     item.image ? (
                       <Link
                         key={index}
-                        href={item.urlLink ?? ''}
+                        href={item.urlLink ?? '/404'}
                         className="flex flex-col items-center gap-3 group/menu"
                       >
                         {item.image && (
@@ -127,7 +127,7 @@ export default function CE_TwoColumnPriority({
                     ) : (
                       <Link
                         key={index}
-                        href={item.urlLink ?? ''}
+                        href={item.urlLink ?? '/404'}
                         onClick={() =>
                           generetBreadcrumb(dataCard1?.[0]?.textTitle ?? '')
                         }
@@ -249,7 +249,7 @@ export default function CE_TwoColumnPriority({
                     ) : (
                       <Link
                         key={index}
-                        href={item.urlLink ?? ''}
+                        href={item.urlLink ?? '/404'}
                         onClick={() =>
                           generetBreadcrumb(dataCard2?.[0]?.textTitle ?? '')
                         }

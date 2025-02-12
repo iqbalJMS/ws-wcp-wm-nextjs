@@ -209,7 +209,7 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                     }
                     state={captcha.error ? 'error' : 'init'}
                   />
-                  <p>{captcha.error}</p>
+                  <h1>{captcha.error}</h1>
                 </div>
               </div>
               <div className="w-full flex justify-center items-center">
