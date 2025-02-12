@@ -86,14 +86,6 @@ export function CarouselVariant1() {
                 &#10095;
               </button>
             </div>
-            {/* {button && (
-              <Link href={button?.link} target="_blank">
-                <div className="inline-flex gap-2 items-center text-blue-01 mt-4">
-                  {parseHTMLToReact(button?.name || '')}{' '}
-                  <span className="text-xs">&#10095;</span>
-                </div>
-              </Link>
-            )} */}
           </div>
           <div className="overflow-hidden mdmax:w-full mdmax:flex-none p-5 mdmax:p-1">
             <div
@@ -107,7 +99,7 @@ export function CarouselVariant1() {
                   key={index}
                   className="w-1/4 bg-blue-200 mdmax:w-1/2 flex-none px-2"
                 >
-                  <Link href={dataItem.text} target="_blank">
+                  <Link href={dataItem.text ?? '/404'} target="_blank">
                     <div className="p-4 mdmax:p-2 shadow-lg">
                       <div className="w-full h-[12rem] mb-2">
                         <Image

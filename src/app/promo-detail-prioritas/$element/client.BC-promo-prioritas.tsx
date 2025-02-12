@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import React from 'react';
 
 const CE_BCPromoPrioritas = ({ currentPage }: { currentPage: string }) => {
@@ -19,12 +20,12 @@ const CE_BCPromoPrioritas = ({ currentPage }: { currentPage: string }) => {
             {LIST_DATA_BREADCRUMB?.map((item, index) => (
               <li key={index}>
                 <div className="flex items-center space-x-2">
-                  <a
+                  <Link
                     href={item.url}
                     className="font-light text-base text-[#C0CCE2] hover:text-prioritycolor hover:underline uppercase"
                   >
                     {item.title}
-                  </a>
+                  </Link>
                   <div className="flex items-center space-x-3 ">
                     <svg
                       className=" size-3 text-gray-400 rtl:rotate-180"

@@ -52,7 +52,7 @@ export default function CE_CardVariant09({
                       <div className="inset-y-0 absolute right-0 flex items-center justify-center">
                         {item?.button?.link && (
                           <Link
-                            href={item?.button?.link}
+                            href={item?.button?.link ?? '/404'}
                             extern={item?.button?.extern}
                             target={item?.button?.extern ? '_blank' : ''}
                           >

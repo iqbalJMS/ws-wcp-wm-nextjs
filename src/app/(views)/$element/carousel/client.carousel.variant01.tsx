@@ -194,7 +194,7 @@ export default function CE_CarouselVariant1({
 
               <Link
                 onClick={() => generetBreadcrumb(title ?? '')}
-                href={linkcta}
+                href={linkcta ?? '/404'}
                 className=" items-center text-prioritycolor font-semibold uppercase hover:underline"
               >
                 {titlelink}

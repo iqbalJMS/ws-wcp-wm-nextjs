@@ -44,17 +44,6 @@ const CE_DetailCardMain = ({
                     height={400}
                     className="w-full h-full object-cover object-bottom"
                   />
-                  {/* <div className="h-[30rem] absolute w-full rotate-180">
-                    <Image
-                      extern={true}
-                      src={card.image}
-                      alt="image"
-                      width={400}
-                      height={400}
-                      className="w-full h-full object-cover object-bottom"
-                    />
-                    <div className='absolute bottom-0 left-0 w-full h-20 bg-gradient-to-b from-white to-transparent'></div>
-                  </div> */}
                 </div>
               </div>
             )}
@@ -71,7 +60,7 @@ const CE_DetailCardMain = ({
                 </div>
               </div>
               <div>
-                <Link href={card.button.link}>
+                <Link href={card.button.link ?? 'undefined'}>
                   <ButtonSecondary rounded="full" color="privatecolor">
                     {card.button.text}
                   </ButtonSecondary>

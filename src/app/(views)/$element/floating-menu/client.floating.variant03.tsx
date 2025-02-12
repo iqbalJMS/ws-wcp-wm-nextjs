@@ -17,11 +17,11 @@ export default function CE_FloatingVariant03({
           {data?.map((item, index) => {
             return (
               <div key={index} className="">
-                <Link href={`/${item?.alias}`}>
+                <Link href={`/${item?.alias ?? '/404'}`}>
                   <div className="flex items-center bg-[#1C286A] hover:bg-[#141333] p-2 px-3 lg:p-3 lg:px-4 border-b-2 border-white ">
                     <Image
                       className="text-white w-5 h-5 mr-5"
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.icon}`}
+                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.icon ?? ''}`}
                       alt={'icon float navigation'}
                       width={5}
                       height={5}

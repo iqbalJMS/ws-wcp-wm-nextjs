@@ -64,7 +64,7 @@ export default function CE_PromoDetailPrioritas({
           <section className="w-full grid grid-cols-1 place-items-start space-y-5 pb-12">
             <div className="w-full flex justify-center md:flex-none lg:w-8/12">
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image}`}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image ?? ''}`}
                 width={1000}
                 height={1000}
                 alt="image bri prioritas"
@@ -104,14 +104,14 @@ export default function CE_PromoDetailPrioritas({
                     <ul className="text-xs flex items-center justify-center text-black space-x-2">
                       <li>
                         <Link
-                          href={`https://x.com/intent/tweet?text=${linkUrl}`}
+                          href={`https://x.com/intent/tweet?text=${linkUrl ?? '/404'}`}
                           target="_blank"
                         />
                         <TwitterIcon fill="#141333" width={35} height={35} />
                       </li>
                       <li>
                         <Link
-                          href={`https://www.facebook.com/sharer/sharer.php?&quote=${linkUrl}`}
+                          href={`https://www.facebook.com/sharer/sharer.php?&quote=${linkUrl ?? '/404'}`}
                           target="_blank"
                         >
                           <FacebookIcon fill="#141333" width={35} height={35} />
@@ -119,7 +119,7 @@ export default function CE_PromoDetailPrioritas({
                       </li>
                       <li>
                         <Link
-                          href={`https://www.linkedin.com/sharing/share-offsite/?url=${linkUrl}`}
+                          href={`https://www.linkedin.com/sharing/share-offsite/?url=${linkUrl ?? '/404'}`}
                           target="_blank"
                         >
                           <LinkedinIcon fill="#141333" height={35} width={35} />
@@ -127,7 +127,7 @@ export default function CE_PromoDetailPrioritas({
                       </li>
                       <li>
                         <Link
-                          href={`https://web.whatsapp.com/send?text=${linkUrl}`}
+                          href={`https://web.whatsapp.com/send?text=${linkUrl ?? '/404'}`}
                           target="_blank"
                         >
                           <WhatsappIcon
@@ -140,7 +140,9 @@ export default function CE_PromoDetailPrioritas({
                       </li>
                       <li
                         onClick={async () => {
-                          await navigator.clipboard.writeText(`${linkUrl}`);
+                          await navigator.clipboard.writeText(
+                            `${linkUrl ?? '/404'}`
+                          );
                           setModalOpen(true);
                         }}
                       >

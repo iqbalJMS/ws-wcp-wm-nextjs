@@ -30,7 +30,7 @@ export default function CE_FlipCard({
           >
             <div className="flip-card-front w-full h-full bg-cover cursor-pointer">
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${frontImage}`}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${frontImage ?? ''}`}
                 alt="card credit image"
                 width={1000}
                 height={1000}
@@ -38,7 +38,7 @@ export default function CE_FlipCard({
             </div>
             <div className="flip-card-back w-full h-full bg-cover cursor-pointer">
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${backImage}`}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${backImage ?? ''} `}
                 alt="card credit image"
                 width={1000}
                 height={1000}

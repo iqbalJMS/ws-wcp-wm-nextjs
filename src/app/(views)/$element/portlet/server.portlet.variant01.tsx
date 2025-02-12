@@ -48,7 +48,7 @@ export default async function SE_PortletVariant01({
           <div className="w-full">
             <Link
               className="text-blue-02 mdmax:text-sm font-bold flex items-center"
-              href={navigationLink ?? '/'}
+              href={navigationLink ?? '/404'}
             >
               {textLink}
               <ArrowDownIcon className="-rotate-90 ml-2" stroke={''} />

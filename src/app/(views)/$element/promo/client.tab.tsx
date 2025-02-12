@@ -135,7 +135,7 @@ export default function CE_Tab(props: T_TabProps) {
         {options?.[current]?.informationText}
       </div>
       <Link
-        href={options?.[current]?.showMore?.url}
+        href={options?.[current]?.showMore?.url ?? '/404'}
         className={[
           'uppercase flex items-center mb-7 w-max text-blue-700 font-medium',
           'hoverable:hover:underline 1025-only:mx-auto',

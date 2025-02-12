@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 interface VideoPlayerVariant1Props {
@@ -98,9 +99,9 @@ const VideoPlayerVariant2: React.FC<CompanyProfileProps> = ({
         <div className="mt-8 md:mt-0 md:ml-12 w-full md:w-1/2">
           <h2 className="text-3xl font-bold mb-4">{title}</h2>
           <h2 className="text-gray-700 mb-6">{description}</h2>
-          <a href={linkUrl} className="text-blue-600 hover:underline">
+          <Link href={linkUrl} className="text-blue-600 hover:underline">
             Lihat &gt;
-          </a>
+          </Link>
         </div>
       </div>
     </>

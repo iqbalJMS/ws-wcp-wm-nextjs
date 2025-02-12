@@ -62,7 +62,7 @@ export default function CE_CardVariant8Upper({
                 animate={mainControls}
                 transition={{ duration: 0.5, delay: 0.25 }}
                 style={{
-                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image})`,
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''})`,
                   backgroundPosition: 'center',
                   backgroundSize: 'cover',
                 }}
@@ -79,7 +79,7 @@ export default function CE_CardVariant8Upper({
 
                 <Link
                   onClick={() => generetBreadcrumb(item?.title ?? '')}
-                  href={`/${item?.link}`}
+                  href={`/${item?.link ?? '/404'}`}
                   className="opacity-0 flex group-hover:opacity-80 flex-col justify-center items-center space-y-3 bg-[#141838]  w-full h-full z-20 absolute bottom-0 transition-all ease-in-out duration-500 text-white"
                 >
                   <h1 className="text-xl lg:text-2xl xl:text-3xl uppercase font-extrabold">
@@ -105,7 +105,7 @@ export default function CE_CardVariant8Upper({
                 animate={mainControls}
                 transition={{ duration: 0.5, delay: 0.25 }}
                 style={{
-                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image})`,
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''})`,
                   backgroundPosition: 'center',
                 }}
                 key={index}
@@ -120,7 +120,7 @@ export default function CE_CardVariant8Upper({
                 <div className="bg-[#161A39] opacity-40 w-full h-full absolute z-10"></div>
                 <Link
                   onClick={() => generetBreadcrumb(item?.title ?? '')}
-                  href={`/${item?.link}`}
+                  href={`/${item?.link ?? '/404'}`}
                   className="opacity-0 flex flex-col group-hover:opacity-90 justify-center items-center space-y-3 bg-[#141838] w-full h-full z-20 absolute bottom-0 transition-all ease-in-out duration-500 text-white"
                 >
                   <h1 className="text-xl lg:text-2xl xl:text-3xl uppercase font-extrabold">

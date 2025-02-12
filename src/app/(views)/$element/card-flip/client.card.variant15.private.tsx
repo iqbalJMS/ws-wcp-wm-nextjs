@@ -124,7 +124,7 @@ export default function CE_CardVariant15({
               <div className="pt-8 xl:pt-16 space-x-4">
                 <Link
                   onClick={() => generetBreadcrumb(data?.[0]?.title ?? '')}
-                  href={`/${buttonUri}`}
+                  href={`/${buttonUri ?? '/404'}`}
                   className="uppercase text-base font-semibold bg-privatecolor text-white rounded-full py-2 px-4 hover:bg-gray-500 duration-300"
                 >
                   {buttonText}

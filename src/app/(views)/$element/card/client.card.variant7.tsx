@@ -16,6 +16,7 @@ import {
 import Pagination from '@/lib/element/global/pagination';
 import CE_SearchOutlet from '@/app/(views)/$element/search/client.search-outlet';
 import { CE_TabsOutlet } from '@/app/(views)/$element/search/client.tab-outlet';
+import Link from 'next/link';
 
 export default function CE_Location({ variant }: { variant: string }) {
   const [pending, transiting] = useTransition();
@@ -113,13 +114,13 @@ export default function CE_Location({ variant }: { variant: string }) {
               </div>
               <div className="flex items-center space-x-3">
                 <LocationIcon className="" width={20} stroke="#070059" />
-                <a
+                <Link
                   target="_blank"
                   href={`${item?.urlMaps}`}
                   className="text-[#3E4182] text-base hover:underline"
                 >
                   Lihat di Peta
-                </a>
+                </Link>
               </div>
             </div>
           ))}

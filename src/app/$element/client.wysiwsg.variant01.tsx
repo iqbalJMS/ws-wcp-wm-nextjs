@@ -53,7 +53,7 @@ const CE_WYSIWSGVariant01 = ({
             {image && (
               <div className="h-full">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image}`}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image ?? ''}`}
                   alt="image"
                   width={400}
                   height={400}

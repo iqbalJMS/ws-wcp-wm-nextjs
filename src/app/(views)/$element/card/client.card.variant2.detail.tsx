@@ -52,7 +52,7 @@ export default function CE_CardVariant2Detail({
       <div
         className="w-full h-auto flex flex-col items-center justify-center p-5 pb-10"
         style={{
-          backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''})`,
           backgroundPosition: 'center',
         }}
       >
@@ -107,7 +107,7 @@ export default function CE_CardVariant2Detail({
                     alt={'icon-card'}
                     width={70}
                     height={70}
-                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon}`}
+                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon ?? ''}`}
                     color="black"
                     className="group-hover:invert group-hover:brightness-[.90]"
                   />
@@ -149,7 +149,7 @@ export default function CE_CardVariant2Detail({
                     alt={'icon-card'}
                     width={70}
                     height={70}
-                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon}`}
+                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon ?? ''}`}
                     color="black"
                     className="group-hover:invert group-hover:brightness-50"
                   />

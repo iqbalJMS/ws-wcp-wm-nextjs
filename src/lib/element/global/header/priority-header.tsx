@@ -96,13 +96,13 @@ export function LoginButton({
               key={index}
               className="w-full bg-white mb-2 px-5 py-4 rounded-3xl"
             >
-              <Link href={loginItem?.uri} target="_blank">
+              <Link href={loginItem?.uri ?? '/404'} target="_blank">
                 <div
                   className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
                 >
                   <div className="mr-2">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon}`}
+                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon ?? ''}`}
                       alt=""
                       width={30}
                       height={30}
@@ -207,7 +207,7 @@ export default function PriorityHeader({
                     >
                       {header.icon && (
                         <Image
-                          src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${header?.icon}`}
+                          src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${header?.icon ?? ''}`}
                           width={18}
                           height={18}
                           alt={`icon-${header.icon}`}
@@ -263,7 +263,7 @@ export default function PriorityHeader({
               <Link href="/">
                 <Image
                   alt="logo-bri"
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
                   width={128}
                   height={53}
                   className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
@@ -272,7 +272,7 @@ export default function PriorityHeader({
               <Link href="/bri-prioritas">
                 <Image
                   alt="logo-bri"
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${priorityLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${priorityLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
                   width={150}
                   height={60}
                   className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert pl-2 border-l border-white'} `}
@@ -308,7 +308,7 @@ export default function PriorityHeader({
               <Link href={'/'}>
                 <Image
                   alt="logo-bri"
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
                   width={128}
                   height={53}
                   className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
@@ -317,7 +317,7 @@ export default function PriorityHeader({
               <Link href={'/bri-prioritas'}>
                 <Image
                   alt="logo-bri"
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${priorityLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url}`}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${priorityLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
                   width={150}
                   height={60}
                   className={`${isScrolling ? 'pl-4 border-l border-black' : 'filter brightness-0 invert pl-4 border-l border-white'} `}
@@ -337,7 +337,7 @@ export default function PriorityHeader({
                       ].join(' ')}
                     >
                       <Link
-                        href={generateLinkBottom(item)}
+                        href={generateLinkBottom(item ?? '/404')}
                         className={[
                           `text-sm font-normal cursor-pointer uppercase relative`,
                           `${isScrolling ? 'text-black' : variant === 'transparent' ? 'text-white' : ''}`,
@@ -358,9 +358,11 @@ export default function PriorityHeader({
                         <div className="bg-white">
                           <div className="container py-5">
                             <Link
-                              href={`/${item.alias
-                                ?.toLowerCase()
-                                .replaceAll(' ', '-')}`}
+                              href={`/${
+                                item.alias
+                                  ?.toLowerCase()
+                                  .replaceAll(' ', '-') ?? '/404'
+                              }`}
                             >
                               <div className="text-[1.5rem] mb-4 font-medium">
                                 {item?.title}
@@ -370,7 +372,11 @@ export default function PriorityHeader({
                               {item?.below?.map((subItem, subIndex) => {
                                 return (
                                   <div key={subIndex} className="px-5">
-                                    <Link href={generateLinkBottom(subItem)}>
+                                    <Link
+                                      href={generateLinkBottom(
+                                        subItem ?? '/404'
+                                      )}
+                                    >
                                       <div className="text-red-01 font-semibold text-sm mb-3">
                                         {subItem?.title}
                                       </div>
@@ -384,7 +390,9 @@ export default function PriorityHeader({
                                               className="flex-1"
                                             >
                                               <Link
-                                                href={generateLinkBottom(item)}
+                                                href={generateLinkBottom(
+                                                  item ?? '/404'
+                                                )}
                                               >
                                                 <div className="flex items-center justify-between w-full mb-2">
                                                   <div className="text-sm flex-1">
@@ -482,7 +490,7 @@ export default function PriorityHeader({
                         style={{ rotate: '180deg' }}
                         className="filter brightness-0 invert"
                       />
-                      <p className="uppercase">{isSelectedMenu?.title}</p>
+                      <h1 className="uppercase">{isSelectedMenu?.title}</h1>
                     </button>
 
                     {isSelectedMenu.below &&
@@ -501,7 +509,7 @@ export default function PriorityHeader({
                         {item.below ? (
                           <div className="flex justify-between items-center w-full">
                             <Link
-                              href={item.relative}
+                              href={item.relative ?? '/404'}
                               className="relative text-sm font-light capitalize group"
                             >
                               <span className="uppercase">{item.title}</span>
@@ -537,7 +545,7 @@ export default function PriorityHeader({
                           </div>
                         ) : (
                           <Link
-                            href={item.relative}
+                            href={item.relative ?? '/404'}
                             className="relative text-sm font-light capitalize group"
                           >
                             <span className="uppercase">{item.title}</span>
@@ -566,9 +574,9 @@ export default function PriorityHeader({
                     ))}
                     <div className="mt-10 w-full">
                       <div className="flex justify-between w-full items-center mt-4">
-                        <p className="text-sm">
+                        <h1 className="text-sm">
                           {currentLanguage === 'en' ? 'Languages' : 'Bahasa'}
-                        </p>
+                        </h1>
                         <div className="flex items-center gap-4">
                           {LIST_LANGUAGES.map((label) => (
                             <button
@@ -638,7 +646,7 @@ const NavigationItem = ({
         <div className="flex justify-between items-center w-full">
           <Link
             className="py-1 font-normal flex items-center justify-between w-full"
-            href={menuItem.relative}
+            href={menuItem.relative ?? '/404'}
             style={{ fontSize: `${fontSize}px` }}
           >
             {menuItem.title}
@@ -653,7 +661,7 @@ const NavigationItem = ({
             )}
           </Link>
           {menuItem.below && (
-            <button onClick={() => toggleSubItem(menuItem.relative)}>
+            <button onClick={() => toggleSubItem(menuItem.relative ?? '/404')}>
               <Image
                 alt="icon-arrow-right"
                 src="/web/guest/images/headers/arrow-right.svg"

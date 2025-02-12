@@ -140,7 +140,7 @@ export default function CE_CardPromoWM({
                 key={index}
                 className="relative w-1/4 mdmax:w-11/12 h-80 lg:h-64 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                 style={{
-                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                 }}
@@ -152,7 +152,7 @@ export default function CE_CardPromoWM({
                   {item?.title?.[0]?.value}
                 </h1>
                 <Link
-                  href={`/promo-detail/${item?.nid?.[0]?.value}`}
+                  href={`/promo-detail/${item?.nid?.[0]?.value ?? '/404'}`}
                   className="pb-4 px-5 z-50 hover:underline text-white flex items-center"
                 >
                   lihat promo
@@ -244,7 +244,7 @@ export default function CE_CardPromoWM({
                     key={index}
                     className="relative w-[32%] h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -256,7 +256,7 @@ export default function CE_CardPromoWM({
                       {item?.title?.[0]?.value}
                     </h1>
                     <Link
-                      href={`/promo-detail/${item?.nid?.[0]?.value}`}
+                      href={`/promo-detail/${item?.nid?.[0]?.value ?? '/404'}`}
                       className="pb-4 px-2 z-50 hover:underline text-white flex items-center text-sm"
                     >
                       lihat promo
@@ -307,7 +307,7 @@ export default function CE_CardPromoWM({
                     key={index}
                     className="relative overflow-hidden lg:w-60 lg:h-72 xl:w-80 xl:h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -319,7 +319,7 @@ export default function CE_CardPromoWM({
                       {item?.title?.[0]?.value}
                     </h1>
                     <Link
-                      href={`/promo-detail/${item?.nid?.[0]?.value}`}
+                      href={`/promo-detail/${item?.nid?.[0]?.value ?? '/404'}`}
                       className="lg:pb-3 xl:pb-8 px-5 z-50 hover:underline text-white flex items-center text-sm"
                     >
                       lihat promo
@@ -351,7 +351,7 @@ export default function CE_CardPromoWM({
               </button>
             ) : promoConfig == null ? (
               <Link
-                href={link}
+                href={link ?? '/404'}
                 className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
               >
                 lihat semua promo

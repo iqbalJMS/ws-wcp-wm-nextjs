@@ -20,7 +20,7 @@ export default function CE_PortletVariant03({
           <div
             className=" h-[50vh] lg:mb-[3.125rem] w-full bg-cover "
             style={{
-              backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage})`,
+              backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''})`,
               backgroundSize: 'cover',
               backgroundPosition: 'top',
             }}
@@ -29,7 +29,7 @@ export default function CE_PortletVariant03({
               <div className="w-8/12 mt-20">
                 <Link
                   className="bg-white text-sm duration-150 hover:bg-prioritycolor font-medium rounded-full px-5 py-3 cursor-pointer text-blue hover:text-white uppercase"
-                  href={buttonLink}
+                  href={buttonLink ?? '/404'}
                 >
                   {buttonText}
                 </Link>

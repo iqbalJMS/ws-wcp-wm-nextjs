@@ -47,7 +47,7 @@ const CE_PortletMain = ({
               </div>
             </div>
             <div className="text-center">
-              <Link href={button.link}>
+              <Link href={button.link ?? '/404'}>
                 <ButtonSecondary rounded="full" color="privatecolor" size="lg">
                   {button.text}
                 </ButtonSecondary>

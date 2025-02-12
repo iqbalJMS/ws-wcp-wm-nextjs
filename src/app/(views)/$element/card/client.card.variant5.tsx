@@ -102,14 +102,14 @@ export default function CE_CardVariant5({
               {dataCard?.map((item, index) => (
                 <Link
                   onClick={() => generetBreadcrumb(item?.title ?? '')}
-                  href={item?.linkCta}
+                  href={item?.linkCta ?? '/404'}
                   key={index}
                   className="bg-blue-400 relative w-full h-60 md:h-80 overflow-hidden cursor-pointer flex-none md:flex-1 "
                 >
                   <div
                     className="w-full h-96 flex items-end justify-between bg-no-repeat bg-cover hover:scale-125 bg-center transition-all ease-in-out transform-gpu delay-75 duration-300"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''})`,
                     }}
                   >
                     <div className="w-full h-full bg-black opacity-40">.</div>

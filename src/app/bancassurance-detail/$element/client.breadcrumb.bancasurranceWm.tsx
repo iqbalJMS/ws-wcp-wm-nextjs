@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Link from 'next/link';
 
 const CE_BCBancasurranceWM = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
@@ -23,12 +24,12 @@ const CE_BCBancasurranceWM = ({ currentPage }: { currentPage: string }) => {
             {LIST_DATA_BREADCRUMB?.map((item, index) => (
               <li key={index}>
                 <div className="flex items-center space-x-2">
-                  <a
+                  <Link
                     href={item.url}
                     className="font-light text-base text-[#C0CCE2] hover:text-prioritycolor hover:underline uppercase"
                   >
                     {item.title}
-                  </a>
+                  </Link>
                   <div className="flex items-center space-x-3 ">
                     <svg
                       className=" size-3 text-gray-400 rtl:rotate-180"

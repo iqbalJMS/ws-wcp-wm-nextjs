@@ -62,7 +62,7 @@ export default async function page({ params }: { params: { id: string } }) {
             <div className="w-full p-5 flex flex-col md:flex-row ">
               <div className="w-full md:w-10/12 xl:w-9/12 2xl:w-7/12 md:pr-5">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${dataImage}`}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${dataImage ?? ''}`}
                   width={1000}
                   height={1000}
                   alt="image profile"

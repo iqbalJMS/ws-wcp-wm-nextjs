@@ -51,7 +51,7 @@ export default function CE_HelpContent({
             </div>
           </div>
           <div className="relative z-10">
-            <Link href={selectedItem.value}>
+            <Link href={selectedItem.value ?? 'undefined'}>
               <button
                 disabled={isOpen}
                 className={`font-normal text-sm text-white rounded-full md:py-4 py-2 px-6 w-full ${

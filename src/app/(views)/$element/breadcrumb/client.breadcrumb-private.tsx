@@ -1,8 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import React from 'react';
-import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 const CE_BreadcrumbPrivate = ({
   data,
@@ -12,44 +10,7 @@ const CE_BreadcrumbPrivate = ({
     url: string;
   }>;
 }) => {
-  const pathname = usePathname();
-
-  const parentRoute =
-    typeof window !== 'undefined'
-      ? (sessionStorage?.getItem(BREADCRUMB_KEY) ?? '')
-      : '';
-
-  const REGISTERED_PAGE_WITH_CUSTOM_ROUTE = [
-    '/brifine-private',
-    '/obligasi-private',
-    '/reksa-dana-private',
-    '/bancassurance-private',
-    '/travel-privileges-private',
-    '/lifestyle-privileges-private',
-    '/concierge-privilege-private',
-    '/education-privileges-private',
-    '/tax-advisory-private',
-    '/debit-detail-private',
-    '/get-invited-private',
-    '/videos-private',
-    '/private-magazine',
-    '/promo-private',
-    '/privacy-private',
-    '/terms-of-use-private',
-  ];
-
-  const isUsingCustomRoute =
-    REGISTERED_PAGE_WITH_CUSTOM_ROUTE.includes(pathname) && parentRoute;
-
-  const customPaths = isUsingCustomRoute
-    ? [...data, ...JSON?.parse(parentRoute ?? undefined)]
-    : data;
-
-  const customURLBreadcrumb =
-    parentRoute && REGISTERED_PAGE_WITH_CUSTOM_ROUTE.includes(pathname)
-      ? customPaths
-      : data;
-
+  const result = data.slice(1);
   return (
     <>
       <nav
@@ -60,12 +21,12 @@ const CE_BreadcrumbPrivate = ({
           <ol className="inline-flex items-center space-x-1 text-h7 sm:mb-0 md:space-x-2 rtl:space-x-reverse ">
             <li>
               <div className="flex items-center space-x-3">
-                {customURLBreadcrumb?.map((item, index) => {
-                  if (index + 1 === customURLBreadcrumb?.length) {
+                {result?.map((item, index) => {
+                  if (index + 1 === result?.length) {
                     return (
                       <Link
                         key={index}
-                        href={item?.url}
+                        href={item?.url ?? '/404'}
                         className="font-light text-privatecolor hover:text-privatecolor flex items-center uppercase cursor-default"
                       >
                         {item?.title}
@@ -75,7 +36,7 @@ const CE_BreadcrumbPrivate = ({
                     return (
                       <Link
                         key={index}
-                        href={item?.url}
+                        href={item?.url ?? '/404'}
                         className="font-light text-[#C0CCE2] hover:text-privatecolor hover:underline flex items-center uppercase"
                       >
                         {item?.title}
