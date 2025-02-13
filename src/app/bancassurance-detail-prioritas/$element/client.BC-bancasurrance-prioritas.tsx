@@ -9,11 +9,11 @@ const CE_BCBancasurrancePrioritas = ({
 }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-prioritas',
+      url: '/bri-prioritas',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/bancassurance-prioritas',
+      url: '/bancassurance-prioritas',
       title: 'BANCASSURANCE',
     },
   ];

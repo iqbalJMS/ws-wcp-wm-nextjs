@@ -2,16 +2,19 @@ import React from 'react';
 
 import { ACT_GetTopMenuNavbar } from '@/app/(views)/$action/action.get.top-menu-navbar';
 
-import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
-import CE_HeaderMagazine from '@/app/magazine/$element/client.header.magazine';
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
+import PriorityHeader from '@/lib/element/global/header/priority-header';
+import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
+import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
+import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
-  const listHeaderBottom = await ACT_GetMainMenuNavbar({ lang: 'en' });
+  const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
-
+  const itemHeaderLogo = await ACT_GetHeaderLogo({ lang: 'en' });
+  const itemPriorityLogo = await ACT_GetHeaderLogoPriority({ lang: 'en' });
   const getOurstoryData = await ACT_GetDetailPage({
     lang: 'en',
     alias: 'node',
@@ -21,11 +24,13 @@ export default async function page({ params }: { params: { id: string } }) {
   return (
     <>
       <div className="w-full h-screen">
-        <CE_HeaderMagazine
+        <PriorityHeader
           headerTop={listHeaderTop}
-          headerBottom={listHeaderBottom}
+          headerBottom={listPriorityNavbar}
           variant={'transparent'}
           itemLogin={itemMenuLogin}
+          headerLogo={itemHeaderLogo || undefined}
+          priorityLogo={itemPriorityLogo || undefined}
         />
         <section className="w-full h-screen">
           <div

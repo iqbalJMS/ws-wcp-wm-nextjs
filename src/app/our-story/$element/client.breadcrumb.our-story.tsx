@@ -5,11 +5,11 @@ import React from 'react';
 const CE_BreadcrumbStory = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management',
+      url: '',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/our-stories?lang=id',
+      url: '/our-stories',
       title: 'Cerita Kami',
     },
   ];

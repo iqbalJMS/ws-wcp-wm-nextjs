@@ -5,15 +5,15 @@ import React from 'react';
 const CE_BCObligasiPrivate = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-prioritas',
+      url: '/bri-prioritas',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/product',
+      url: '/product',
       title: 'PRODUK',
     },
     {
-      url: '/web/wealth-management/obligasi-private',
+      url: '/obligasi-private',
       title: 'OBLIGASI',
     },
   ];

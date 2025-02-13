@@ -45,9 +45,19 @@ export function CFN_ValidateCreateSimulationInvestmentFields(
 ): string {
   switch (name) {
     case 'investmentAmount':
-      return validateMaxMin(value, 'Jumlah Investasi', 1000000, 1000000000000);
+      return validateMaxMin(
+        value,
+        'Nilai tidak boleh kurang dari 1.000.000 atau tidak boleh lebih besar dari 1.000.000.000.000',
+        1000000,
+        1000000000000
+      );
     case 'duration':
-      return validateMaxMinDuration(value, 'Jangka Waktu', 1, 25);
+      return validateMaxMinDuration(
+        value,
+        'Nilai tidak boleh kurang dari 1 atau tidak boleh lebih besar dari 25',
+        1,
+        25
+      );
     case 'interestRate':
       return validateMin(value, 'rate', 1);
     default:

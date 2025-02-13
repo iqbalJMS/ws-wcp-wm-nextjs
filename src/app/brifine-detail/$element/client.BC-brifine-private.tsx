@@ -5,15 +5,15 @@ import React from 'react';
 const CE_BCBrifinePrivate = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-private',
+      url: '/bri-private',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/product',
+      url: '/product',
       title: 'PRODUK',
     },
     {
-      url: '/web/wealth-management/brifine-private',
+      url: '/brifine-private',
       title: 'BRIFINE',
     },
   ];

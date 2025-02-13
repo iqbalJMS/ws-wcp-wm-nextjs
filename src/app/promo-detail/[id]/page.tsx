@@ -10,10 +10,10 @@ import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-foote
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
-import CE_BreadCrumbInvestasi from '@/app/product-detail/$element/client.breadcrumb.investasi';
 import HomeHeader from '@/lib/element/global/header/home-header';
 import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
 import CE_PromoCardDetailWm from '@/app/promo-detail/$element/card-promo-detail-wm';
+import CE_BreadCrumbPromoWM from '@/app/promo-detail/$element/client.BC-promo-wm';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -63,7 +63,7 @@ export default async function page({ params }: { params: { id: string } }) {
             {getOurstoryData?.title?.[0]?.value}
           </h1>
         </section>
-        <CE_BreadCrumbInvestasi
+        <CE_BreadCrumbPromoWM
           currentPage={getOurstoryData?.title?.[0]?.value}
         />
         <section className="w-full flex flex-col justify-center items-center pb-10">

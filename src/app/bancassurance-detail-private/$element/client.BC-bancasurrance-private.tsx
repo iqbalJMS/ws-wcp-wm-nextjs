@@ -9,11 +9,15 @@ const CE_BCBancasurrancePrivate = ({
 }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-private',
+      url: '/bri-private',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/bancassurance-private',
+      url: '/product',
+      title: 'PRODUK',
+    },
+    {
+      url: '/bancassurance-private',
       title: 'BANCASSURANCE',
     },
   ];

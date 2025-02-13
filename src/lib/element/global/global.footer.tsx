@@ -7,7 +7,6 @@ import { T_ResponseGetBottomRightFooter } from '@/api/footer/bottom-footer/api.g
 import Image from 'next/image';
 import { T_ResponseGetMainMiddleFooter } from '@/api/footer/middle-main-footer/api.get-main-middle-footer.type';
 import Link from 'next/link';
-import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 type T_FooterProps = {
   main_footer?: T_ResponseGetMainFooterMenu;
@@ -17,14 +16,7 @@ type T_FooterProps = {
   variant: string;
 };
 
-const generetBreadcrumb = (title: string) => {
-  sessionStorage.setItem(
-    BREADCRUMB_KEY,
-    JSON.stringify([{ title: title, url: '#' }])
-  );
-};
-
-const urlCustomTitle = [{ title: 'Privacy' }, { title: 'TERMS OF USE' }];
+// const urlCustomTitle = [{ title: 'Privacy' }, { title: 'TERMS OF USE' }];
 
 function RowElement({
   data,
@@ -163,9 +155,6 @@ function TermsAllReservedElement({
                 ) : variant == 'wm-private-main-navigation' ? (
                   <div>
                     <Link
-                      onClick={() =>
-                        generetBreadcrumb(urlCustomTitle?.[0]?.title ?? '')
-                      }
                       href={'/privacy-private'}
                       className="text-sm font-normal text-white hover:underline"
                     >
@@ -173,9 +162,6 @@ function TermsAllReservedElement({
                     </Link>
                     <span className="text-white mx-2">&#x2022;</span>
                     <Link
-                      onClick={() =>
-                        generetBreadcrumb(urlCustomTitle?.[1]?.title ?? '')
-                      }
                       href={'/terms-of-use-private'}
                       className="text-sm font-normal text-white hover:underline"
                     >
@@ -185,9 +171,6 @@ function TermsAllReservedElement({
                 ) : variant == 'wm-prioritas-main-navigation' ? (
                   <div>
                     <Link
-                      onClick={() =>
-                        generetBreadcrumb(urlCustomTitle?.[0]?.title ?? '')
-                      }
                       href={'/privacy-prioritas'}
                       className="text-sm font-normal text-white hover:underline"
                     >
@@ -195,9 +178,6 @@ function TermsAllReservedElement({
                     </Link>
                     <span className="text-white mx-2">&#x2022;</span>
                     <Link
-                      onClick={() =>
-                        generetBreadcrumb(urlCustomTitle?.[1]?.title ?? '')
-                      }
                       href={'/terms-of-use-prioritas'}
                       className="text-sm font-normal text-white hover:underline"
                     >

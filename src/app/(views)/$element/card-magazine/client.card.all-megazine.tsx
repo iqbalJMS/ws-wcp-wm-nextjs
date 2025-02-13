@@ -171,7 +171,11 @@ export default function CE_AllMagazine({
           >
             {magazineList?.map((item, index) => (
               <Link
-                href={`/magazine-detail/${item?.nid?.[0]?.value ?? '/404'}`}
+                href={
+                  variant == 'wm-private-main-navigation'
+                    ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
+                    : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
+                }
                 target="_blank"
                 key={index}
                 className="relative w-full h-[500px]  flex-none rounded-lg flex flex-col justify-center items-center bg-center overflow-hidden p-3"
@@ -203,7 +207,11 @@ export default function CE_AllMagazine({
                       </h1>
                     </div>
                     <Link
-                      href={`/magazine-detail/${item?.nid?.[0]?.value ?? '/404'}`}
+                      href={
+                        variant == 'wm-private-main-navigation'
+                          ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
+                          : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
+                      }
                       className="group text-white uppercase text-sm font-bold flex items-center hover:underline duration-200"
                     >
                       selengkapnya{' '}
@@ -304,7 +312,11 @@ export default function CE_AllMagazine({
               >
                 {magazineList?.map((item, index) => (
                   <Link
-                    href={`/magazine-detail/${item?.nid?.[0]?.value ?? '/404'}`}
+                    href={
+                      variant == 'wm-private-main-navigation'
+                        ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
+                        : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
+                    }
                     target="_blank"
                     key={index}
                     className="group relative overflow-hidden w-[48%] h-[450px] flex-none flex flex-col justify-center items-center bg-center cursor-pointer"
@@ -396,7 +408,11 @@ export default function CE_AllMagazine({
               <div className="w-full h-full grid grid-cols-4 place-items-center gap-5 ">
                 {magazineList?.map((item, index) => (
                   <Link
-                    href={`/magazine-detail/${item?.nid?.[0]?.value ?? '/404'}`}
+                    href={
+                      variant === 'wm-private-main-navigation'
+                        ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
+                        : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
+                    }
                     target="_blank"
                     key={index}
                     className="group overflow-hidden w-96 xl:w-80 h-[60vh]"

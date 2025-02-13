@@ -204,7 +204,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         const propsConfig = props?.[0]?.propsConfig;
 
         switch (findPromoConfig) {
-          case 'latest_seven':
+          case 'latest_four':
           default:
             return (
               <CE_PromoMain
@@ -337,7 +337,10 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         const title = _component?.field_title[0]?.value;
         const subtitle = _component?.field_subtitle[0]?.value;
         const titlelink = _component?.field_primary_cta?.[0]?.title;
-        const linkcta = _component?.field_primary_cta?.[0]?.full_url;
+        const linkcta = _component?.field_primary_cta?.[0]?.full_url.replace(
+          '/id',
+          ''
+        );
 
         const dataCarousel = _component?.field_video_items?.map((item) => {
           const id = item?.id?.[0]?.value;

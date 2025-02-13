@@ -11,7 +11,6 @@ import {
   CFN_ValidateGetPromoFields,
 } from '@/app/(views)/$function/cfn.get-promo';
 import { T_Promo, T_PromoRequest } from '@/api/promo/api.get-promo.type';
-import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 export default function CE_CardPromoPrivate({
   title,
@@ -34,16 +33,6 @@ export default function CE_CardPromoPrivate({
   const slidesToShow = screenWidth > 768 ? 4 : 2;
   const slidesToScroll = 1;
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const generetBreadcrumb = (title: string) => {
-    sessionStorage.setItem(
-      BREADCRUMB_KEY,
-      JSON.stringify([
-        { title: 'KEISTIMEWAAN', url: '/privilege' },
-        { title: title, url: '#' },
-      ])
-    );
-  };
 
   const { form, validateForm, setForm } = useForm<
     T_PromoRequest,
@@ -81,8 +70,6 @@ export default function CE_CardPromoPrivate({
       });
     }
   };
-
-  const breadcrumbNameCustom = [{ title: 'PROMO' }];
 
   const handleLoadMore = () => {
     if (isFirst) {
@@ -364,9 +351,6 @@ export default function CE_CardPromoPrivate({
               </button>
             ) : promoConfig == null ? (
               <Link
-                onClick={() =>
-                  generetBreadcrumb(breadcrumbNameCustom?.[0]?.title ?? '')
-                }
                 href={link ?? '/404'}
                 className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
               >

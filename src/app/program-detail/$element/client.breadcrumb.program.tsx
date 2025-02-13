@@ -5,11 +5,11 @@ import React from 'react';
 const CE_BreadCrumbProgram = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-private',
+      url: '/bri-private',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/program',
+      url: '/program',
       title: 'Program',
     },
   ];

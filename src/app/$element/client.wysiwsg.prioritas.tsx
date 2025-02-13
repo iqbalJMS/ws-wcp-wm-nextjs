@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import Link from 'next/link';
+import WhatsappIcon from '@/lib/element/global/icons/whatsapp-icon';
 
 const CE_WYSIWSGPrioritas = ({
   category,
@@ -9,13 +11,16 @@ const CE_WYSIWSGPrioritas = ({
   date,
   image,
   body,
+  nid,
 }: {
   category: string;
   title: string;
   date: string;
   image: string;
   body: string;
+  nid: number;
 }) => {
+  const urlLink = `https://bri-corpsite.dev-kjt.id/web/wealth-management/article-detail-priority/${nid}`;
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-GB', {
@@ -70,7 +75,11 @@ const CE_WYSIWSGPrioritas = ({
                 </div>
               </div>
               <div>
-                <div className="mb-4 flex items-center justify-center ">
+                <Link
+                  className="mb-4 flex items-center justify-center cursor-pointer"
+                  href={`https://www.facebook.com/sharer/sharer.php?&quote=${urlLink ?? '/404'}`}
+                  target="_blank"
+                >
                   {/* facebook */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -84,8 +93,12 @@ const CE_WYSIWSGPrioritas = ({
                       d="M895 12v264H738q-86 0-116 36t-30 108v189h293l-39 296H592v759H286V905H31V609h255V391q0-186 104-288.5T667 0q147 0 228 12"
                     />
                   </svg>
-                </div>
-                <div className="mb-4 flex items-center justify-center ">
+                </Link>
+                <Link
+                  href={`https://x.com/intent/tweet?text=${urlLink ?? '/404'}`}
+                  className="mb-4 flex items-center justify-center cursor-pointer"
+                  target="_blank"
+                >
                   {/* twitter */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -99,8 +112,12 @@ const CE_WYSIWSGPrioritas = ({
                       d="M1588 152q-67 98-162 167q1 14 1 42q0 130-38 259.5T1273.5 869T1089 1079.5t-258 146t-323 54.5q-271 0-496-145q35 4 78 4q225 0 401-138q-105-2-188-64.5T189 777q33 5 61 5q43 0 85-11q-112-23-185.5-111.5T76 454v-4q68 38 146 41q-66-44-105-115T78 222q0-88 44-163q121 149 294.5 238.5T788 397q-8-38-8-74q0-134 94.5-228.5T1103 0q140 0 236 102q109-21 205-78q-37 115-142 178q93-10 186-50"
                     />
                   </svg>
-                </div>
-                <div className="mb-4 flex items-center justify-center ">
+                </Link>
+                <Link
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${urlLink ?? '/404'}`}
+                  className="mb-4 flex items-center justify-center cursor-pointer"
+                  target="_blank"
+                >
                   {/* linkedin */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +131,18 @@ const CE_WYSIWSGPrioritas = ({
                       d="M349 497v991H19V497zm21-306q1 73-50.5 122T184 362h-2q-82 0-132-49T0 191q0-74 51.5-122.5T186 20t133 48.5T370 191m1166 729v568h-329V958q0-105-40.5-164.5T1040 734q-63 0-105.5 34.5T871 854q-11 30-11 81v553H531q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52t87-43.5T1157 474q171 0 275 113.5T1536 920"
                     />
                   </svg>
-                </div>
+                </Link>
+                <Link
+                  href={`https://web.whatsapp.com/send?text=${urlLink ?? '/404'}`}
+                  className="mb-4 flex items-center justify-center cursor-pointer"
+                  target="_blank"
+                >
+                  <WhatsappIcon
+                    width={30}
+                    height={30}
+                    className="text-prioritycolor"
+                  />
+                </Link>
               </div>
             </div>
             <div className="text-black text-opacity-90 wysiwsg-body text-base">

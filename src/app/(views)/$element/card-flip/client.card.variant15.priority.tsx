@@ -4,7 +4,6 @@ import CE_FlipCard from './client.flip.card';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'motion/react';
-import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 import { usePathname } from 'next/navigation';
 
 export default function CE_CardVariant15Priority({
@@ -31,17 +30,6 @@ export default function CE_CardVariant15Priority({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
-
-  const generetBreadcrumb = (title: string) => {
-    sessionStorage.setItem(
-      BREADCRUMB_KEY,
-      JSON.stringify([{ title: title, url: '#' }])
-    );
-  };
-  const urlNameCustom = [
-    { title: 'BRI PRIORITAS CARD' },
-    { title: 'GET INVITED' },
-  ];
 
   useEffect(() => {
     if (isInView) {
@@ -125,9 +113,6 @@ export default function CE_CardVariant15Priority({
               <div className="pt-8 xl:pt-16 space-x-4">
                 {pathName === '/debit-detail-prioritas' ? (
                   <Link
-                    onClick={() =>
-                      generetBreadcrumb(urlNameCustom?.[1]?.title ?? '')
-                    }
                     href={`${buttonUri ?? '/404'}`}
                     className="uppercase bg-prioritycolor text-base font-semibold bg-prtext-prioritycolor text-white rounded-full py-2 px-4 hover:bg-gray-500 duration-300"
                   >
@@ -135,9 +120,6 @@ export default function CE_CardVariant15Priority({
                   </Link>
                 ) : (
                   <Link
-                    onClick={() =>
-                      generetBreadcrumb(urlNameCustom?.[0]?.title ?? '')
-                    }
                     href={`${buttonUri ?? '/404'}`}
                     className="uppercase bg-prioritycolor text-base font-semibold bg-prtext-prioritycolor text-white rounded-full py-2 px-4 hover:bg-gray-500 duration-300"
                   >

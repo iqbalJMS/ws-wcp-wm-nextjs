@@ -5,12 +5,12 @@ import React from 'react';
 const CE_BreadCrumbInvestasi = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-prioritas',
+      url: '/bri-prioritas',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/investasi-prioritas',
-      title: 'Investasi',
+      url: '/promo',
+      title: 'Promo',
     },
   ];
   return (

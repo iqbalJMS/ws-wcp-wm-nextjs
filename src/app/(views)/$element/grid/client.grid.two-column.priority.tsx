@@ -5,7 +5,6 @@ import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from '@/lib/element/global/image';
 import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'motion/react';
-import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 export default function CE_TwoColumnPriority({
   variant,
@@ -43,16 +42,6 @@ export default function CE_TwoColumnPriority({
   } else {
     colorTheme = 'prioritycolor';
   }
-
-  const generetBreadcrumb = (title: string) => {
-    sessionStorage.setItem(
-      BREADCRUMB_KEY,
-      JSON.stringify([
-        { title: 'PRODUK', url: '/product-prioritas' },
-        { title: title, url: '#' },
-      ])
-    );
-  };
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -125,13 +114,7 @@ export default function CE_TwoColumnPriority({
                         )}
                       </Link>
                     ) : (
-                      <Link
-                        key={index}
-                        href={item.urlLink ?? '/404'}
-                        onClick={() =>
-                          generetBreadcrumb(dataCard1?.[0]?.textTitle ?? '')
-                        }
-                      >
+                      <Link key={index} href={item.urlLink ?? '/404'}>
                         <div
                           className={`px-5 py-3 bg-${colorTheme} rounded-3xl hover:opacity-45`}
                         >
@@ -220,7 +203,6 @@ export default function CE_TwoColumnPriority({
                   {dataCard2?.[0]?.listMenu.map((item, index) =>
                     item.image ? (
                       <Link
-                        onClick={() => generetBreadcrumb(item?.textLink ?? '')}
                         key={index}
                         href={item.urlLink ?? ''}
                         className="flex flex-col items-center gap-3 group/menu"
@@ -247,13 +229,7 @@ export default function CE_TwoColumnPriority({
                         )}
                       </Link>
                     ) : (
-                      <Link
-                        key={index}
-                        href={item.urlLink ?? '/404'}
-                        onClick={() =>
-                          generetBreadcrumb(dataCard2?.[0]?.textTitle ?? '')
-                        }
-                      >
+                      <Link key={index} href={item.urlLink ?? '/404'}>
                         <div
                           className={`px-5 py-3 bg-${colorTheme} rounded-3xl hover:opacity-45`}
                         >

@@ -16,7 +16,7 @@ import {
   CFN_MapToMagazinePayload,
   CFN_ValidateGetMagazineFields,
 } from '@/app/(views)/$function/cfn.get-magazine';
-import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
+
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
 
@@ -55,13 +55,6 @@ export default function CE_LastFourMagazine({
   const screenWidth = useScreenWidth();
   const slidesToShow = getSlideToShow(screenWidth);
   const slidesToScroll = 1;
-
-  const generetBreadcrumb = (title: string) => {
-    sessionStorage.setItem(
-      BREADCRUMB_KEY,
-      JSON.stringify([{ title: title, url: '#' }])
-    );
-  };
 
   const { form, validateForm } = useForm<T_RequestMagazine, T_RequestMagazine>(
     CFN_MapToMagazinePayload({
@@ -188,7 +181,11 @@ export default function CE_LastFourMagazine({
           >
             {magazineList?.map((item, index) => (
               <Link
-                href={`/magazine-detail/${item?.nid?.[0]?.value ?? '/404'}`}
+                href={
+                  variant == 'wm-private-main-navigation'
+                    ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
+                    : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
+                }
                 target="_blank"
                 key={index}
                 className="relative w-full h-[500px]  flex-none rounded-lg flex flex-col justify-center items-center bg-center overflow-hidden p-3"
@@ -306,7 +303,11 @@ export default function CE_LastFourMagazine({
               >
                 {magazineList?.map((item, index) => (
                   <Link
-                    href={`/magazine-detail/${item?.nid?.[0]?.value ?? '/404'}`}
+                    href={
+                      variant == 'wm-private-main-navigation'
+                        ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
+                        : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
+                    }
                     target="_blank"
                     key={index}
                     className="group relative overflow-hidden w-[48%] h-[450px] flex-none flex flex-col justify-center items-center bg-center cursor-pointer"
@@ -383,7 +384,11 @@ export default function CE_LastFourMagazine({
               <div className="w-full h-full flex justify-center space-x-4 ">
                 {magazineList?.map((item, index) => (
                   <Link
-                    href={`/magazine-detail/${item?.nid?.[0]?.value ?? '/404'}`}
+                    href={
+                      variant === 'wm-private-main-navigation'
+                        ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
+                        : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
+                    }
                     target="_blank"
                     key={index}
                     className="group overflow-hidden w-96 xl:w-80 h-[92%]"
@@ -432,7 +437,6 @@ export default function CE_LastFourMagazine({
           >
             <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
             <Link
-              onClick={() => generetBreadcrumb(heading ?? '')}
               href={
                 variant == 'wm-private-main-navigation'
                   ? '/private-magazine'
