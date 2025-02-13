@@ -5,11 +5,11 @@ import React from 'react';
 const CE_BCPromoPrivate = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-private',
+      url: '/bri-private',
       title: 'HOME',
     },
     {
-      url: '/web/wealth-management/privilege',
+      url: '/privilege',
       title: 'KEISTIMEWAAN',
     },
   ];

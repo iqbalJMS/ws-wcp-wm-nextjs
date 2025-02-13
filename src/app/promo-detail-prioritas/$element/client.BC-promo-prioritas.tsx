@@ -5,7 +5,7 @@ import React from 'react';
 const CE_BCPromoPrioritas = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-prioritas',
+      url: '/bri-prioritas',
       title: 'HOME',
     },
   ];

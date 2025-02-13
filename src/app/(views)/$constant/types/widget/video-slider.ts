@@ -64,7 +64,7 @@ type T_EntityData = {
 
 type T_EntityCta = {
   uri: any[];
-  full_url: any[];
+  full_url: string;
   title: any[];
   options: any[];
 };

@@ -7,7 +7,6 @@ import PlayIcon from '@/lib/element/global/icons/play-icon';
 import LeftArrow from '@/lib/element/global/icons/left-arrow';
 import ModalTester from '@/lib/element/global/modal.tedter';
 import { motion, useInView, useAnimation } from 'motion/react';
-import { BREADCRUMB_KEY } from '@/app/(views)/$constant/variables';
 
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
@@ -59,13 +58,6 @@ export default function CE_CarouselVariant1({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
-
-  const generetBreadcrumb = (title: string) => {
-    sessionStorage.setItem(
-      BREADCRUMB_KEY,
-      JSON.stringify([{ title: title, url: '#' }])
-    );
-  };
 
   useEffect(() => {
     if (isInView) {
@@ -193,7 +185,6 @@ export default function CE_CarouselVariant1({
               <h2 className="font-light text-sm pb-3">{subtitle}</h2>
 
               <Link
-                onClick={() => generetBreadcrumb(title ?? '')}
                 href={linkcta ?? '/404'}
                 className=" items-center text-prioritycolor font-semibold uppercase hover:underline"
               >

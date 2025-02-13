@@ -5,11 +5,11 @@ import React from 'react';
 const CE_BCArticlePrioritas = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-prioritas',
+      url: '/bri-prioritas',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/article-prioritas',
+      url: '/article-prioritas',
       title: 'Article',
     },
   ];

@@ -5,11 +5,11 @@ import Link from 'next/link';
 const CE_BCBancasurranceWM = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-prioritas',
+      url: '/bri-prioritas',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/bancassurancebri',
+      url: '/bancassurancebri',
       title: 'BANCASSURANCE',
     },
   ];

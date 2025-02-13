@@ -123,9 +123,12 @@ export default function CE_CardPromoWM({
       <div className="w-full h-auto flex flex-col items-center justify-center pb-20 pt-14">
         <section className="w-full flex flex-col items-center pb-16">
           <h1 className="text-[#3D3D3D] font-semibold text-3xl uppercase">
-            {title}
+            {title ?? 'Promo Terbaru'}
           </h1>
-          <h2 className="text-sm font-light text-center">{subtitle}</h2>
+          <h2 className="text-sm font-light text-center">
+            {subtitle ??
+              'Nikmati berbagai promo kami dan dapatkan keuntungannya'}
+          </h2>
         </section>
         {/* mobile section */}
         <section className="md:hidden lg:hidden relative overflow-hidden mdmax:w-full mdmax:flex-none p-10 mdmax:p-1 justify-center">
@@ -351,7 +354,7 @@ export default function CE_CardPromoWM({
               </button>
             ) : promoConfig == null ? (
               <Link
-                href={link ?? '/404'}
+                href={link ?? '/promo'}
                 className={`bg-${colorTheme} text-${textColor} hover:bg-gray-600 duration-300 text-$ hover:text-white py-3 px-5 rounded-full uppercase font-semibold border border-black hover:border-none`}
               >
                 lihat semua promo

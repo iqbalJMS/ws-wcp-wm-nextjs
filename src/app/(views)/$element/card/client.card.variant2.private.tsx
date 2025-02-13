@@ -93,13 +93,6 @@ export default function CE_CardVariant2Private({
           className="md:hidden w-full overflow-hidden mdmax:w-full mdmax:flex-none"
         >
           <motion.div
-            // variants={{
-            //   hidden: { opacity: 0, y: 75 },
-            //   visible: { opacity: 1, y: 0 },
-            // }}
-            // initial="hidden"
-            // animate={mainControls}
-            // transition={{ duration: 0.5, delay: 0.25 }}
             className="w-full flex md:grid grid-cols-3 transition-all ease-in-out duration-300 md:space-x-3"
             style={{
               transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,

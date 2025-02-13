@@ -9,11 +9,11 @@ const CE_BreadCrumbInsightPrivate = ({
 }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-private',
+      url: '/bri-private',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/insight',
+      url: '/insight',
       title: 'Wawasan',
     },
   ];

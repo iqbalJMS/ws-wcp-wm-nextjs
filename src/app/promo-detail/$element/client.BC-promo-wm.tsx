@@ -2,15 +2,15 @@
 import Link from 'next/link';
 import React from 'react';
 
-const CE_BreadCrumbInvestasi = ({ currentPage }: { currentPage: string }) => {
+const CE_BreadCrumbPromoWM = ({ currentPage }: { currentPage: string }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/web/wealth-management/bri-prioritas',
+      url: '/',
       title: 'Home',
     },
     {
-      url: '/web/wealth-management/promo',
-      title: 'Promo',
+      url: '/promo',
+      title: 'promo',
     },
   ];
   return (
@@ -64,4 +64,4 @@ const CE_BreadCrumbInvestasi = ({ currentPage }: { currentPage: string }) => {
   );
 };
 
-export default CE_BreadCrumbInvestasi;
+export default CE_BreadCrumbPromoWM;

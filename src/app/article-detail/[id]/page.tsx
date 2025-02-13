@@ -33,7 +33,7 @@ export default async function page({ params }: { params: { id: string } }) {
     alias: 'node',
     nid: +params.id,
   });
-
+  const articleNid = getOurstoryData?.nid?.[0]?.value;
   const imageArticle =
     getOurstoryData?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url;
 
@@ -71,6 +71,7 @@ export default async function page({ params }: { params: { id: string } }) {
           date={getOurstoryData?.created?.[0]?.value}
           image={imageArticle}
           body={getOurstoryData?.body?.[0]?.value}
+          nid={articleNid}
         />
         <GlobalFooter
           bottom_right_footer={listBottomRightFooter}

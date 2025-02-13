@@ -30,6 +30,7 @@ export default function CE_PortletVariant03({
                 <Link
                   className="bg-white text-sm duration-150 hover:bg-prioritycolor font-medium rounded-full px-5 py-3 cursor-pointer text-blue hover:text-white uppercase"
                   href={buttonLink ?? '/404'}
+                  target="_blank"
                 >
                   {buttonText}
                 </Link>

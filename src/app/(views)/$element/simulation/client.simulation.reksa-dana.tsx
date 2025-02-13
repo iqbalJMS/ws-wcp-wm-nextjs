@@ -98,6 +98,7 @@ export default function CE_SimulationReksaDana() {
   };
 
   const handleResetForm = () => {
+    handleChangeRisk('MONEY_MARKET');
     setIsResult(false);
     resetForm();
   };
@@ -116,11 +117,11 @@ export default function CE_SimulationReksaDana() {
             <div>
               <div className="mb-5 w-[50%]">
                 <InputText
+                  type="number"
                   disabled={formDisabled?.amount}
                   leftText="Rp."
                   value={form?.amount}
                   onChange={(value) => onFieldChange('amount', +value)}
-                  type="number"
                 />
               </div>
               <div>

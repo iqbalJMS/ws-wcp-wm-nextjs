@@ -41,14 +41,24 @@ export function CFN_ValidateCreateSimulationObligasiFields(
 ): string {
   switch (name) {
     case 'amount':
-      return validateMaxMin(value, 'Plafond Kredit ', 1000000, 1000000000000);
+      return validateMaxMin(
+        value,
+        'Nilai tidak boleh kurang dari 1.000.000 atau tidak boleh lebih besar dari 1.000.000.000.000',
+        1000000,
+        1000000000000
+      );
     case 'term':
-      return validateMaxMinDuration(value, 'Jangka Waktu', 1, 25);
+      return validateMaxMinDuration(
+        value,
+        'Nilai tidak boleh kurang dari 1 atau tidak boleh lebih besar dari 25',
+        1,
+        25
+      );
     case 'couponRate':
       return validateMaxMin(
         value,
-        'Nilai tidak boleh lebih besar dari',
-        0,
+        'Nilai tidak boleh kurang dari 1 atau lebih besar dari 100',
+        1,
         100
       );
 
