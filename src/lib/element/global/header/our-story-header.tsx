@@ -7,7 +7,6 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from 'next/link';
-
 import { CloseIcon } from '@/lib/element/global/icons/close-icon';
 import Image from 'next/image';
 import ChevronDown from '@/lib/element/global/icons/chevron-button-navbar';

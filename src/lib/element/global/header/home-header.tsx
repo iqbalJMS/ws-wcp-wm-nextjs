@@ -17,6 +17,7 @@ import {
 import { T_ResponGetHeaderLogo } from '@/api/header-logo/api.get-header-logo.type';
 import { Search } from '@/lib/element/global/global.search';
 import { motion } from 'framer-motion';
+import defaultLogo from '@/../../public/images/wefo-blue-logo.png';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -251,14 +252,25 @@ export default function HomeHeader({
           </div>
 
           <div className="lg:hidden items-center justify-between flex">
-            <Link href={'/'} className="w-[12vh]">
-              <Image
-                alt="logo-bri"
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
-                width={128}
-                height={53}
-                className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
-              />
+            <Link href={'/'} className="w-[12vh] ">
+              {headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]
+                ?.url ? (
+                <Image
+                  alt="logo-bri"
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ``}`}
+                  width={128}
+                  height={53}
+                  className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                />
+              ) : (
+                <Image
+                  alt="logo-bri"
+                  src={defaultLogo}
+                  width={128}
+                  height={53}
+                  className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                />
+              )}
             </Link>
             <div>
               <div className="flex items-center gap-2">
@@ -284,16 +296,27 @@ export default function HomeHeader({
             </div>
           </div>
 
-          <div className="lg:flex items-center justify-between hidden">
+          <div className="lg:flex items-center justify-between hidden ">
             <div className="flex-none">
-              <Link className="!text-gray-500" href="/">
-                <Image
-                  alt="logo-bri"
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
-                  width={150}
-                  height={60}
-                  className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
-                />
+              <Link className="!text-gray-500 " href="/">
+                {headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]
+                  ?.uri?.[0]?.url ? (
+                  <Image
+                    alt="logo-bri"
+                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ``}`}
+                    width={150}
+                    height={60}
+                    className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                  />
+                ) : (
+                  <Image
+                    alt="logo-bri"
+                    src={defaultLogo}
+                    width={150}
+                    height={60}
+                    className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                  />
+                )}
               </Link>
             </div>
             <div className="flex-auto">

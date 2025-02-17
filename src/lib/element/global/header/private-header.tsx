@@ -18,7 +18,8 @@ import { T_ResponGetHeaderLogoPrivate } from '@/api/header-logo/header-private-l
 import Image from 'next/image';
 import { Search } from '@/lib/element/global/global.search';
 import { motion } from 'framer-motion';
-import noImage from '@/../../public/images/no-image.png';
+import defaultLogo from '@/../../public/images/wefo-blue-logo.png';
+import privateDefaultLogo from '@/../../public/images/bri-private-color-logo.png';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -259,11 +260,11 @@ export default function PrivateHeader({
 
           <div className="lg:hidden items-center justify-between flex">
             <div className="w-[21vh] flex items-center space-x-1">
-              <Link href="/">
+              <Link href={'/'}>
                 {headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]
                   ?.uri?.[0]?.url ? (
                   <Image
-                    alt="logo-home-wm"
+                    alt="wefo-logo"
                     src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
                     width={128}
                     height={53}
@@ -271,8 +272,8 @@ export default function PrivateHeader({
                   />
                 ) : (
                   <Image
-                    alt="image undefined"
-                    src={noImage}
+                    alt="wefo-logo"
+                    src={defaultLogo}
                     width={128}
                     height={53}
                     className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
@@ -291,11 +292,11 @@ export default function PrivateHeader({
                   />
                 ) : (
                   <Image
-                    alt="image undefined"
-                    src={noImage}
-                    width={128}
-                    height={53}
-                    className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                    alt="logo-bri-private"
+                    src={privateDefaultLogo}
+                    width={150}
+                    height={60}
+                    className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert pl-2 border-l border-white'} `}
                   />
                 )}
               </Link>
@@ -327,22 +328,44 @@ export default function PrivateHeader({
           <div className="lg:flex items-center justify-between hidden">
             <div className="flex items-center space-x-3 flex-none">
               <Link href={'/'}>
-                <Image
-                  alt="logo-bri"
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
-                  width={128}
-                  height={53}
-                  className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
-                />
+                {headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]
+                  ?.uri?.[0]?.url ? (
+                  <Image
+                    alt="wefo-logo"
+                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
+                    width={128}
+                    height={53}
+                    className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                  />
+                ) : (
+                  <Image
+                    alt="wefo-logo"
+                    src={defaultLogo}
+                    width={128}
+                    height={53}
+                    className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                  />
+                )}
               </Link>
               <Link href={'/bri-private'}>
-                <Image
-                  alt="logo-bri"
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${privateLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
-                  width={150}
-                  height={60}
-                  className={`${isScrolling ? 'pl-4 border-l border-black' : 'filter brightness-0 invert pl-4 border-l border-white'} `}
-                />
+                {privateLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]
+                  ?.uri?.[0]?.url ? (
+                  <Image
+                    alt="logo-bri-private"
+                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${privateLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
+                    width={150}
+                    height={60}
+                    className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert pl-2 border-l border-white'} `}
+                  />
+                ) : (
+                  <Image
+                    alt="logo-bri-private"
+                    src={privateDefaultLogo}
+                    width={150}
+                    height={60}
+                    className={`${isScrolling || variant === 'no-transparent' ? '' : 'filter brightness-0 invert pl-2 border-l border-white'} `}
+                  />
+                )}
               </Link>
             </div>
 
