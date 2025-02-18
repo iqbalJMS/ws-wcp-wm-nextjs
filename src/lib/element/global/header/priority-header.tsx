@@ -330,22 +330,44 @@ export default function PriorityHeader({
           <div className="lg:flex items-center justify-between hidden">
             <div className="flex items-center space-x-3 flex-none">
               <Link href={'/'}>
-                <Image
-                  alt="logo-bri"
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
-                  width={128}
-                  height={53}
-                  className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
-                />
+                {headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]
+                  ?.uri?.[0]?.url ? (
+                  <Image
+                    alt="logo-bri"
+                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
+                    width={128}
+                    height={53}
+                    className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                  />
+                ) : (
+                  <Image
+                    alt="logo-bri"
+                    src={defaultLogo}
+                    width={128}
+                    height={53}
+                    className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                  />
+                )}
               </Link>
               <Link href={'/bri-prioritas'}>
-                <Image
-                  alt="logo-bri"
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${priorityLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
-                  width={150}
-                  height={60}
-                  className={`${isScrolling ? 'pl-4 border-l border-black' : 'filter brightness-0 invert pl-4 border-l border-white'} `}
-                />
+                {priorityLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]
+                  ?.uri?.[0]?.url ? (
+                  <Image
+                    alt="logo-bri"
+                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${priorityLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
+                    width={150}
+                    height={60}
+                    className={`${isScrolling ? 'pl-4 border-l border-black' : 'filter brightness-0 invert pl-4 border-l border-white'} `}
+                  />
+                ) : (
+                  <Image
+                    alt="logo-bri"
+                    src={prioritasDefaultLogo}
+                    width={150}
+                    height={60}
+                    className={`${isScrolling ? 'pl-4 border-l border-black' : 'filter brightness-0 invert pl-4 border-l border-white'} `}
+                  />
+                )}
               </Link>
             </div>
 
