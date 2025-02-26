@@ -12,23 +12,20 @@ import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-ite
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import PriorityHeader from '@/lib/element/global/header/priority-header';
-import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 import CE_AccordionBancarsurance from '@/app/bancassurance-detail/$element/client.accordion.bancassuranceWm';
 import CE_BCBancasurranceWM from '@/app/bancassurance-detail/$element/client.breadcrumb.bancasurranceWm';
-import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
+import HomeHeader from '@/lib/element/global/header/home-header';
+import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
-  const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
   const itemHeaderLogo = await ACT_GetHeaderLogo({ lang: 'en' });
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
   const itemMainFooter = await ACT_GetMainMenuFooter({ lang: 'en' });
   const itemMiddleMainFooter = await ACT_GetMainMiddleFooter({ lang: 'en' });
-  const itemPriorityLogo = await ACT_GetHeaderLogoPriority({ lang: 'en' });
-
+  const listHomeNavbar = await ACT_GetMainMenuNavbar({ lang: 'id' });
   const getOurstoryData = await ACT_GetDetailPage({
     lang: 'en',
     alias: 'node',
@@ -38,13 +35,12 @@ export default async function page({ params }: { params: { id: string } }) {
   return (
     <>
       <div>
-        <PriorityHeader
+        <HomeHeader
           headerTop={listHeaderTop}
-          headerBottom={listPriorityNavbar}
+          headerBottom={listHomeNavbar}
           variant={'transparent'}
           itemLogin={itemMenuLogin}
           headerLogo={itemHeaderLogo || undefined}
-          priorityLogo={itemPriorityLogo || undefined}
         />
         <section className="relative overflow-hidden h-[65vh] lg:mb-[3.125rem] w-full bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full flex justify-center items-center before:bg-gradient-to-b before:from-black before:to-black before:opacity-40 z-0 border-b-[15px] border-[#D2D2D2]">
           <Image
@@ -88,7 +84,7 @@ export default async function page({ params }: { params: { id: string } }) {
           bottom_left_footer={listBottomLeftFooter}
           main_footer={itemMainFooter || undefined}
           middle_main_footer={itemMiddleMainFooter}
-          variant={'wm-prioritas-main-navigation'}
+          variant={'wm-main-navigation'}
         />
       </div>
     </>
