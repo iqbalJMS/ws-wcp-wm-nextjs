@@ -59,7 +59,7 @@ export function CFN_ValidateCreateSimulationInvestmentFields(
         25
       );
     case 'interestRate':
-      return validateMin(value, 'rate', 1);
+      return validateMin(value, 'rate', 0);
     default:
       return '';
   }

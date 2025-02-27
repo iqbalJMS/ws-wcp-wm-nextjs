@@ -51,13 +51,17 @@ export default function CE_SimultaionInitialInvest() {
       return;
     }
     try {
-      CFN_GetSimulationInitialInvestment(transiting, form, (data) => {
-        setResult(data?.data);
-        if (button) {
-          setIsResult(true);
-          window.scrollTo({ top: 5000, behavior: 'smooth' });
+      CFN_GetSimulationInitialInvestment(
+        transiting,
+        { ...form, interestRate: Number(form.interestRate) * 0.01 },
+        (data) => {
+          setResult(data?.data);
+          if (button) {
+            setIsResult(true);
+            window.scrollTo({ top: 5000, behavior: 'smooth' });
+          }
         }
-      });
+      );
     } catch (error) {}
   };
 
