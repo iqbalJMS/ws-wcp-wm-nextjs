@@ -275,6 +275,7 @@ export default function CE_SimulationInvestment() {
           </div>
           <div>
             <div className="">
+              <h1 className="text-lg font-semibold">Perkiraan Imbal Hasil</h1>
               <h1 className="text-xs leading-5 text-slate-600">
                 min {interestAmountRange?.min}% - max {interestAmountRange?.max}
                 %
