@@ -162,7 +162,7 @@ export default function CE_SimultaionInitialInvest() {
           <div className="w-full flex-none mb-6 px-4">
             <div className="pb-5 ">
               <CE_SimulationLabel
-                label="Nilai Dana Investasi Awal"
+                label="Perkiraan Nilai Hasil Investasi"
                 slot={
                   <div>
                     <div className="mb-5 w-[50%]">
@@ -280,6 +280,7 @@ export default function CE_SimultaionInitialInvest() {
             </div>
             <div>
               <div className="">
+                <h1 className="text-lg font-semibold">Perkiraan Imbal Hasil</h1>
                 <h1 className="text-xs leading-5 text-slate-600">
                   min {interestAmountRange?.min}% - max{' '}
                   {interestAmountRange?.max}%
