@@ -36,7 +36,9 @@ const CE_SimulationResultVariant01 = ({
                     {new Intl.NumberFormat('en-US', {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
-                    }).format(parseFloat(valueItem.value))}
+                    })
+                      .format(parseFloat(valueItem.value))
+                      .replace('.00', '')}
                   </div>
                 </div>
               );
@@ -70,7 +72,9 @@ const CE_SimulationResultVariant01 = ({
                           {new Intl.NumberFormat('en-US', {
                             minimumFractionDigits: 0,
                             maximumFractionDigits: 2,
-                          }).format(parseFloat(valueItem.value))}
+                          })
+                            .format(parseFloat(valueItem.value))
+                            .replace('.00', '')}
                           {valueItem.percentage && '%'}
                         </div>
                       </div>
