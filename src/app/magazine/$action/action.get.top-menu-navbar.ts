@@ -1,7 +1,7 @@
-"use server";
+'use server';
 
-import { API_GetTopMenuNavbar } from "@/api/navbar-menu/top-navbar/api.get-top-menu-navbar";
-import { T_ResponseGetTopMenuNavbar } from "@/api/navbar-menu/top-navbar/api.get-top-menu-navbar.type";
+import { API_GetTopMenuNavbar } from '@/api/navbar-menu/top-navbar/api.get-top-menu-navbar';
+import { T_ResponseGetTopMenuNavbar } from '@/api/navbar-menu/top-navbar/api.get-top-menu-navbar.type';
 
 export async function ACT_GetTopMenuNavbar({
   lang,

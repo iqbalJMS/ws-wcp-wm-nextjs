@@ -1,4 +1,4 @@
-import { T_ClampParams } from "./type";
+import { T_ClampParams } from './type';
 
 /**
  * Calculate the clamped value based on the min and max values and the min and max viewports.

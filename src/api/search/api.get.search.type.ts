@@ -10,7 +10,6 @@ export type T_Search = {
       fileId: string;
       url: string;
       base64: string;
-
     };
     parent: string;
     category: string;
@@ -19,7 +18,7 @@ export type T_Search = {
       updated_at: string;
       deleted_at: string;
     };
-  }[]
+  }[];
   pagination: {
     totalData: number;
     totalPages: number;
@@ -33,5 +32,5 @@ export type T_SearchRequest = {
   filter: string;
   category: string;
   parent: string;
-  page: number
+  page: number;
 };

@@ -1,7 +1,7 @@
-import { Crypt } from "@strix/server";
-import { cookies } from "next/headers";
-import { hashWithSHA512 } from "./crypto-util";
-const SECRET = process.env.CLIENT_SECRET || "";
+import { Crypt } from '@strix/server';
+import { cookies } from 'next/headers';
+import { hashWithSHA512 } from './crypto-util';
+const SECRET = process.env.CLIENT_SECRET || '';
 
 const encryptValue = (value: string): string => {
   return Crypt.AesClient(SECRET).encrypt(value);
@@ -14,7 +14,7 @@ const decryptValue = (encryptedValue: string): string | undefined => {
 export const setSecureCookie = async (
   name: string,
   value: string,
-  options: { days?: number } = {},
+  options: { days?: number } = {}
 ) => {
   const { days = 7 } = options;
   const expires = new Date();
@@ -28,12 +28,12 @@ export const setSecureCookie = async (
     secure: true,
     httpOnly: true,
     expires: expires,
-    sameSite: "strict",
+    sameSite: 'strict',
   });
 };
 
 export const getSecureCookie = async (
-  name: string,
+  name: string
 ): Promise<string | undefined> => {
   const cookieStore = cookies();
   const hashedName = await hashWithSHA512(name);
@@ -44,10 +44,10 @@ export const getSecureCookie = async (
 export const deleteSecureCookie = async (name: string) => {
   const cookieStore = cookies();
   const hashedName = await hashWithSHA512(name);
-  cookieStore.set(hashedName, "", {
+  cookieStore.set(hashedName, '', {
     secure: true,
     httpOnly: true,
     expires: new Date(0),
-    sameSite: "strict",
+    sameSite: 'strict',
   });
 };

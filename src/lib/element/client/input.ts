@@ -4,6 +4,6 @@ export type T_InputSelectItem = {
   disabled?: boolean;
 };
 
-export type T_InputVariant = "primary" | "secondary";
+export type T_InputVariant = 'primary' | 'secondary';
 
-export type T_InputState = "init" | "error";
+export type T_InputState = 'init' | 'error';

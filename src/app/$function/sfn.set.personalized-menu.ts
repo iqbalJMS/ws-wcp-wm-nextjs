@@ -1,14 +1,17 @@
-"use server";
+'use server';
 
-import { getSecureCookie, setSecureCookie } from "@/lib/functions/global/cookies";
-import { generateUniqueKey } from "@/lib/functions/global/key";
-import { Dragon } from "@strix/server";
-import { T_IconList } from "@/app/$action/constants";
+import {
+  getSecureCookie,
+  setSecureCookie,
+} from '@/lib/functions/global/cookies';
+import { generateUniqueKey } from '@/lib/functions/global/key';
+import { Dragon } from '@strix/server';
+import { T_IconList } from '@/app/$action/constants';
 
 export async function SFN_SetPersonalizedMenu(
   type: 'set' | 'get',
   cookiesName: string,
-  data?: T_IconList[],
+  data?: T_IconList[]
 ): Promise<any> {
   switch (type) {
     case 'set':
@@ -23,7 +26,5 @@ export async function SFN_SetPersonalizedMenu(
         return await Dragon.get(keyGet);
       }
       break;
-
   }
-
 }

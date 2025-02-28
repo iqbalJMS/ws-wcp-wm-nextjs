@@ -54,21 +54,21 @@ export function Tabs({
               {item.information && <Tooltip description={item.information} />}
             </div>
             {item.subTitle && (
-                <div
-                  className={[
-                    'text-sm font-medium mdmax:text-xs',
-                    `${
-                      item?.slug === value
-                        ? variant === 'full'
-                          ? 'text-white'
-                          : 'text-bluedark01'
-                        : 'text-gray-500 group-hover/tab:text-bluedark01'
-                    }`,
-                  ].join(' ')}
-                >
-                  {item.subTitle}
-                </div>
-              )}
+              <div
+                className={[
+                  'text-sm font-medium mdmax:text-xs',
+                  `${
+                    item?.slug === value
+                      ? variant === 'full'
+                        ? 'text-white'
+                        : 'text-bluedark01'
+                      : 'text-gray-500 group-hover/tab:text-bluedark01'
+                  }`,
+                ].join(' ')}
+              >
+                {item.subTitle}
+              </div>
+            )}
             {variant === 'border-arrow' && (
               <div
                 className={[
