@@ -38,7 +38,7 @@ export default function CE_CardVariant12({
               <h2 className="text-[#52185A] text-sm">{item?.desc}</h2>
               <div className="pt-8">
                 <Link
-                  href={`/our-story/${item?.nid} ?? '/404`}
+                  href={`/our-story/${item?.nid ?? '/404'}`}
                   className="py-2 px-8 hover:bg-gray-600 duration-300 rounded-full uppercase font-semibold text-white bg-[#080087]"
                 >
                   selengkapnya
