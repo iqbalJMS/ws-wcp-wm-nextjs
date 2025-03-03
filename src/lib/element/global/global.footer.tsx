@@ -70,11 +70,11 @@ function RowElement({
             <h1 className={`text-${theme} text-xl font-bold pb-3`}>
               Hubungi Kami
             </h1>
-            {middleData?.map(({ title, icon, alias }, index) => (
+            {middleData?.map(({ title, icon, relative, alias }, index) => (
               <Link
                 key={index}
                 className="group hover:cursor-pointer flex items-start py-2 "
-                href={`/${alias ?? '/404'}`}
+                href={relative ?? alias}
               >
                 <Image
                   src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon ?? ''}`}
