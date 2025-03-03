@@ -105,8 +105,10 @@ export default function CE_PromoDetailPrivate({
                         <Link
                           href={`https://x.com/intent/tweet?text=${urlLink ?? '/404'}`}
                           target="_blank"
-                        />
-                        <TwitterIcon fill="#A28F52" height={35} width={35} />
+                          rel="noreferrer"
+                        >
+                          <TwitterIcon fill="#A28F52" height={35} width={35} />
+                        </Link>
                       </li>
                       <li>
                         <Link

@@ -106,8 +106,9 @@ export default function CE_PromoDetailPrioritas({
                         <Link
                           href={`https://x.com/intent/tweet?text=${linkUrl ?? '/404'}`}
                           target="_blank"
-                        />
-                        <TwitterIcon fill="#141333" width={35} height={35} />
+                        >
+                          <TwitterIcon fill="#141333" width={35} height={35} />
+                        </Link>
                       </li>
                       <li>
                         <Link
