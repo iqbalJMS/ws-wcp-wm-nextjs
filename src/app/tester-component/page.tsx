@@ -2,7 +2,6 @@
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import React, { useEffect, useState, MouseEvent, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
 
@@ -15,16 +14,38 @@ const getSlideToShow = (screenWidth: number) => {
   }
 };
 
-export default function CE_BannerVariant01({
-  data,
-}: {
-  data: Array<{
-    image: string;
-    title: string;
-    desc: string;
-    button: string;
-  }>;
-}) {
+// {
+//     data,
+//   }: {
+//     data: Array<{
+//       image: string;
+//       title: string;
+//       desc: string;
+//       button: string;
+//     }>;
+//   }
+
+export default function CE_BannerVariant01() {
+  const data = [
+    {
+      image: '@/../../public/images//banner-reksa-dana.jpg',
+      title: 'loremrmmkwnknansadqoihwfqqw 111',
+      desc: 'lqfoqiefhwnfkhoashdoahsohasf',
+      button: 'hehehe',
+    },
+    {
+      image: '@/../../public/images/banner-prioritas.jpg',
+      title: 'loremrmmkwnknansadqoihwfqqw 222',
+      desc: 'lqfoqiefhwnfkhoashdoahsohasf',
+      button: 'hehehe',
+    },
+    {
+      image: '@/../../public/images/banner-new-insight.jpg',
+      title: 'loremrmmkwnknansadqoihwfqqw 333',
+      desc: 'lqfoqiefhwnfkhoashdoahsohasf',
+      button: 'hehehe',
+    },
+  ];
   const [slider, setSlider] = useState(data);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -113,7 +134,7 @@ export default function CE_BannerVariant01({
                     key={index}
                     className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-center bg-cover"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''})`,
+                      backgroundImage: `url(${item.image ?? ''})`,
                       backgroundAttachment: 'fixed',
                     }}
                   >
