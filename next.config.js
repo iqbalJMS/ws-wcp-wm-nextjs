@@ -30,7 +30,7 @@ module.exports = {
       },
       {
         protocol: 'https',
-        hostname: 'cms-drupal.indesc.com',
+        hostname: 'wmg-bri.stg.service-kjt.id',
       },
       {
         protocol: 'http',
