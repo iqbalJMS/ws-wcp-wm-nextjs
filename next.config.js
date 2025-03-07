@@ -33,6 +33,10 @@ module.exports = {
         hostname: 'wmg-bri.stg.service-kjt.id',
       },
       {
+        protocol: 'https',
+        hostname: 'admin-bri-corpsite.stg.service-kjt.id',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
       },
