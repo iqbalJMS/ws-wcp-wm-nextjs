@@ -798,22 +798,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         };
       },
     },
-    // card3: {
-    //   component: CE_CardVariant3,
-    //   props: (_component: T_CardVariant03) => {
-    //     return {
-    //       data: _component?.field_card_items?.map((item) => {
-    //         return {
-    //           image:
-    //             item?.field_image?.[0]?.field_media_image?.[0]?.uri[0]?.url,
-    //           label: item?.field_title?.[0]?.value,
-    //           textbutton: item?.field_content?.[0]?.value,
-    //           link: item?.field_primary_cta[0]?.title,
-    //         };
-    //       }),
-    //     };
-    //   },
-    // },
+
     dropdown_action: {
       component: CE_HelpContent,
       props: (_component: T_DropdownAction) => {
