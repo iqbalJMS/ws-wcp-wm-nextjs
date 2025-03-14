@@ -16,17 +16,21 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'admin-bri-corpsite.dev-kjt.id',
-        pathname: '/**',
-      },
-      {
         protocol: 'http',
         hostname: 'localhost:3000',
       },
       {
         protocol: 'https',
+        hostname: 'admin-bri-corpsite.dev-kjt.id',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'bri-corpsite.dev-kjt.id',
+      },
+      {
+        protocol: 'https',
+        hostname: 'admin-bri-corpsite.stg.service-kjt.id',
       },
       {
         protocol: 'https',
