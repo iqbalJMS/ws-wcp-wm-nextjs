@@ -38,7 +38,7 @@ module.exports = {
       },
       {
         protocol: 'https',
-        hostname: 'admin-bri-corpsite.stg.service-kjt.id',
+        hostname: 'admin-bri-corpsite.dev-kjt.id',
       },
       {
         protocol: 'http',
