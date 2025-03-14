@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import InputText from './input.text';
-import Image from '@/lib/element/global/image';
+
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
+import Image from 'next/image';
 
 export type T_InputTextOnChange = string | number;
 
@@ -95,11 +96,10 @@ export default function InputPhone({
         >
           <div className="flex items-center gap-2">
             <Image
-              src={selectedCountry.flag}
+              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${selectedCountry.flag}`}
               alt="flag"
               width={20}
               height={15}
-              extern
             />
             <span>{selectedCountry.code}</span>
           </div>
@@ -113,11 +113,10 @@ export default function InputPhone({
                 className="flex items-center justify-left gap-2 px-3 py-2 hover:bg-gray-200 cursor-pointer"
               >
                 <Image
-                  src={country.flag}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${country.flag}`}
                   alt={country.code}
                   width={20}
                   height={15}
-                  extern
                 />
                 <span className="font-medium">{country.country}</span>
                 <span className="text-gray-400">{country.code}</span>

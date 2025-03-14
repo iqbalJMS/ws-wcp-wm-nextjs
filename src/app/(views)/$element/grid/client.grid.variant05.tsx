@@ -1,7 +1,7 @@
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
-import Image from '@/lib/element/global/image';
 import Link from '@/lib/element/global/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import Image from 'next/image';
 
 type T_GridVariant05Props = {
   imageContent?: string;
@@ -32,7 +32,7 @@ export default async function CE_GridVariant05({
             <div>
               {imageContent && (
                 <Image
-                  src={imageContent}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent}`}
                   alt="image-list"
                   className="w-full h-auto"
                   width={400}

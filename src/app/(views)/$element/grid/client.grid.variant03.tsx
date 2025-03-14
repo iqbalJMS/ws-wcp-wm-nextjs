@@ -1,4 +1,4 @@
-import Image from '@/lib/element/global/image';
+import Image from 'next/image';
 import Link from 'next/link';
 export default function CE_GridVariant03({
   title,
@@ -31,7 +31,12 @@ export default function CE_GridVariant03({
               className="text-md text-privatecolor hover:underline flex gap-2 items-center mt-auto"
             >
               {imageLink && (
-                <Image src={imageLink} width={20} height={20} alt="img-link" />
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageLink}`}
+                  width={20}
+                  height={20}
+                  alt="img-link"
+                />
               )}
               {textLink}
             </Link>
@@ -40,7 +45,7 @@ export default function CE_GridVariant03({
         <div className="md:w-1/2 w-[350px] mdmax:order-1">
           {imageContent && (
             <Image
-              src={imageContent}
+              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent}`}
               alt={`img-${imageContent}`}
               width={100}
               height={100}

@@ -4,7 +4,7 @@
 'use client';
 import React from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import Image from '@/lib/element/global/image';
+import Image from 'next/image';
 
 export default function CE_TestCard({
   data,
@@ -52,7 +52,7 @@ export default function CE_TestCard({
               className="group w-full h-60 flex flex-col items-center justify-center hover:bg-black hover:rounded-b-xl duration-300"
             >
               <Image
-                src={item?.iconcard}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.iconcard}`}
                 alt={'icon-card'}
                 width={90}
                 height={90}
