@@ -1,9 +1,8 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import Image from '@/lib/element/global/image';
 import { motion, useInView, useAnimation } from 'motion/react';
-
+import Image from 'next/image';
 export default function CE_CardVariant2({
   data,
   desctitle,
@@ -92,7 +91,7 @@ export default function CE_CardVariant2({
                 className="group w-full h-60 flex flex-col items-center justify-center hover:bg-black hover:rounded-xl duration-300"
               >
                 <Image
-                  src={item?.iconcard}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.iconcard}`}
                   alt={'icon-card'}
                   width={70}
                   height={70}
