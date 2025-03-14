@@ -1,6 +1,4 @@
 'use client';
-
-// import Image from '@/lib/element/global/image';
 import Link from '@/lib/element/global/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 

@@ -2,9 +2,9 @@
 
 import React, { useEffect, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import Image from '@/lib/element/global/image';
 import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'motion/react';
+import Image from 'next/image';
 
 export default function CE_TwoColumnPrivate({
   variant,
@@ -98,7 +98,7 @@ export default function CE_TwoColumnPrivate({
                           >
                             <Image
                               className="w-8 h-8 xl:w-10 xl:h-10"
-                              src={item.image}
+                              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image}`}
                               width={1000}
                               height={1000}
                               alt={`image-${item.image}`}
@@ -142,7 +142,7 @@ export default function CE_TwoColumnPrivate({
           >
             {imageContent1 && (
               <Image
-                src={imageContent1}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent1}`}
                 className="w-full h-auto md:w-[50vh] lg:w-full lg:h-auto bg-no-repeat bg-cover rounded-lg"
                 width={1000}
                 height={1000}
@@ -169,7 +169,7 @@ export default function CE_TwoColumnPrivate({
           <div className="mdmax:order-1 md:max-w-[50%] flex items-center">
             {imageContent2 && (
               <Image
-                src={imageContent2}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent2}`}
                 className="w-full h-auto md:w-[50vh] lg:w-full lg:h-auto bg-no-repeat bg-cover rounded-lg"
                 width={1000}
                 height={1000}
@@ -213,7 +213,7 @@ export default function CE_TwoColumnPrivate({
                           >
                             <Image
                               className="w-8 h-8 xl:w-10 xl:h-10"
-                              src={item.image}
+                              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image}`}
                               width={1000}
                               height={1000}
                               alt={`image-${item.image}`}

@@ -2,7 +2,7 @@
 
 import { ChevronRightIcon } from '@/lib/element/global/icons/chevron-right-icon';
 import { ChevronUpIcon } from '@/lib/element/global/icons/chevron-up-icon';
-import Image from '@/lib/element/global/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -107,7 +107,6 @@ export default function CE_InfoSahamMain({
                         <Image
                           src={`images/footers/${icon}.svg`}
                           width={18}
-                          extern={false}
                           height={18}
                           alt={`icon-${icon}`}
                         />

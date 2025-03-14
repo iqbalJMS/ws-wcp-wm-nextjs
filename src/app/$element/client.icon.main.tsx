@@ -1,6 +1,6 @@
 'use client';
 
-import Image from '@/lib/element/global/image';
+import Image from 'next/image';
 import Link from 'next/link';
 type T_IconMenuProps = {
   image: string;
@@ -37,7 +37,7 @@ function CE_IconMenu({
         ].join(' ')}
       >
         <Image
-          extern={variant === 'config' ? false : true}
+          // extern={variant === 'config' ? false : true}
           src={image}
           alt="image"
           width={200}

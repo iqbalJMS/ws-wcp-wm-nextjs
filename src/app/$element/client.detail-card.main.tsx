@@ -1,9 +1,9 @@
 'use client';
 
 import ButtonSecondary from '@/lib/element/global/button.secondary';
-import Image from '@/lib/element/global/image';
 import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import Image from 'next/image';
 
 const CE_DetailCardMain = ({
   card,
@@ -37,8 +37,7 @@ const CE_DetailCardMain = ({
               <div className="px-20 mdmax:px-0 relative">
                 <div className="h-[30rem] mdmax:h-[20rem] relative pb-20 mdmax:pb-0 overflow-hidden">
                   <Image
-                    extern={true}
-                    src={card.image}
+                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${card.image}`}
                     alt="image"
                     width={400}
                     height={400}

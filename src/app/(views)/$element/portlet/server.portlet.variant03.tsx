@@ -3,7 +3,7 @@
 import SE_PortletVariant01Item from './server.portlet.variant01.item';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { T_PortletProps } from '@/app/(views)/$element/types/portlet';
-import Image from '@/lib/element/global/image';
+import Image from 'next/image';
 
 export default async function SE_PortletVariant03({
   headerAlignment,
@@ -36,7 +36,12 @@ export default async function SE_PortletVariant03({
           >
             {imageTitle ? (
               <div className="flex gap-2 items-center">
-                <Image width={20} height={20} src={imageTitle} alt="" />
+                <Image
+                  width={20}
+                  height={20}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageTitle}`}
+                  alt=""
+                />
                 {title && (
                   <div className="font-medium md:text-4xl text-3xl  mb-4">
                     {parseHTMLToReact(title)}
@@ -63,8 +68,7 @@ export default async function SE_PortletVariant03({
                 <div className="flex gap-4 py-12 md:flex-row flex-col">
                   <div className="w-full h-[20rem] rounded-xl overflow-hidden mb-5 inline-block">
                     <Image
-                      extern={true}
-                      src={imageContent}
+                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent}`}
                       alt="image"
                       width={1920}
                       height={1080}
@@ -86,8 +90,7 @@ export default async function SE_PortletVariant03({
                   </div>
                   <div className="w-full h-[20rem] rounded-xl overflow-hidden mb-5 inline-block">
                     <Image
-                      extern={true}
-                      src={imageContent}
+                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent}`}
                       alt="image"
                       width={1920}
                       height={1080}

@@ -1,9 +1,9 @@
 'use client';
 
 import ButtonSecondary from '@/lib/element/global/button.secondary';
-import Image from '@/lib/element/global/image';
 import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import Image from 'next/image';
 
 const CE_PortletMain = ({
   title,
@@ -27,8 +27,7 @@ const CE_PortletMain = ({
           <div className="absolute top-0 left-0 w-full h-full">
             {image && (
               <Image
-                extern={true}
-                src={image}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image}`}
                 alt="image"
                 width={400}
                 height={400}

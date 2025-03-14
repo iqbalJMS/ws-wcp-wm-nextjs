@@ -1,9 +1,9 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from '@/lib/element/global/image';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { motion, useInView, useAnimation } from 'motion/react';
+import Image from 'next/image';
 export default function CE_CardVariant6({
   image,
   label,
@@ -59,7 +59,7 @@ export default function CE_CardVariant6({
             <div className="relative w-full overflow-hidden">
               {image && (
                 <Image
-                  src={image}
+                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image}`}
                   width={1000}
                   height={1000}
                   alt="image dummy"
