@@ -2,7 +2,7 @@
 
 import CE_BannerVariant01 from './client.banner.variant01';
 import { CE_BannerVariant02 } from './client.banner.variant02';
-import { CE_BannerVariant03 } from './client.banner.variant03';
+import CE_BannerVariant03 from './client.banner.variant03';
 
 const CE_BannerMain = ({
   variant,
