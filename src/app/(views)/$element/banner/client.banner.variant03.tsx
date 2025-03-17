@@ -1,6 +1,6 @@
 'use client';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState, MouseEvent, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 const getSlideToShow = (screenWidth: number) => {
@@ -15,7 +15,7 @@ const getSlideToShow = (screenWidth: number) => {
   }
 };
 
-export function CE_BannerVariant03({
+export default function CE_BannerVariant03({
   data,
 }: {
   data: Array<{
@@ -25,6 +25,7 @@ export function CE_BannerVariant03({
     button: string;
   }>;
 }) {
+  const [slider, setSlider] = useState(data);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -34,19 +35,21 @@ export function CE_BannerVariant03({
   const slidesToShow = getSlideToShow(screenWidth);
 
   useEffect(() => {
+    if (currentSlide === slider?.length - 1) {
+      setSlider((currSlider) => [...currSlider, ...data]);
+    }
     const interval = setInterval(() => {
-      setCurrentSlide((prevIndex) =>
-        prevIndex === data?.length - 1 ? 0 : prevIndex + 1
-      );
+      setCurrentSlide((prevIndex) => prevIndex + 1);
     }, 7000);
 
     return () => clearInterval(interval);
-  }, [data?.length]);
+  }, [currentSlide, data, data.length, slider?.length]);
 
   const goToNext = () => {
-    setCurrentSlide((prevIndex) =>
-      prevIndex === data?.length - 1 ? 0 : prevIndex + 1
-    );
+    if (currentSlide === slider?.length - 1) {
+      setSlider((currSlider) => [...currSlider, ...data]);
+    }
+    setCurrentSlide((prevIndex) => prevIndex + 1);
   };
 
   const goToPrevious = () => {
@@ -78,7 +81,6 @@ export function CE_BannerVariant03({
     } else if (translateX < -50) {
       goToNext();
     }
-
     setTranslateX(0); // Reset translate after slide
   };
 
@@ -93,7 +95,7 @@ export function CE_BannerVariant03({
     <>
       <div className="w-full">
         <section className="w-full flex justify-center">
-          <div className="relative overflow-hidden flex justify-center">
+          <div className="w-full relative overflow-hidden flex justify-center">
             <div
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
@@ -105,37 +107,38 @@ export function CE_BannerVariant03({
                 transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
               }}
             >
-              {data.map((item, index) => (
-                <div
-                  key={index}
-                  className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-center bg-cover"
-                  style={{
-                    backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''})`,
-                    backgroundAttachment: 'fixed',
-                    backgroundPosition: 'fixed',
-                  }}
-                >
-                  <div className="bg-prioritycolor opacity-40 w-full h-full absolute z-10"></div>
-                  <div className="text-start w-9/12 lg:w-8/12 2xl:w-6/12 space-y-4 ml-16 lg:-ml-32 2xl:-ml-72 z-20 px-0 xl:px-5 mb-20">
-                    {item?.title && (
-                      <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-white font-poppins">
-                        {parseHTMLToReact(item?.title)}
-                      </h1>
-                    )}
-                    {item?.desc && (
-                      <h2 className="text-sm xl:text-base w-full xl:w-8/12 font-light text-white mb-10 font-poppins">
-                        {parseHTMLToReact(item?.desc)}
-                      </h2>
-                    )}
-                    {item?.button && (
-                      <button className="group relative overflow-hidden bg-privatecolor text-white uppercase font-semibold py-2 px-5 rounded-full">
-                        {item?.button}
-                        <span className="group-hover:bg-white absolute w-full opacity-20 duration-200 z-10 rounded-full py-5 px-5 top-0 left-0"></span>
-                      </button>
-                    )}
+              {slider?.map((item, index: number) => {
+                return (
+                  <div
+                    key={index}
+                    className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-center bg-cover"
+                    style={{
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''})`,
+                      backgroundAttachment: 'fixed',
+                    }}
+                  >
+                    <div className="bg-wmcolor opacity-20 w-full h-full absolute z-10"></div>
+                    <div className="text-start w-9/12 lg:w-9/12 xl:w-8/12 space-y-4 ml-16 lg:ml-0 z-20">
+                      {item?.title && (
+                        <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white font-poppins">
+                          {parseHTMLToReact(item?.title)}
+                        </h1>
+                      )}
+                      {item?.desc && (
+                        <h2 className="text-sm xl:text-base w-full xl:w-8/12 font-light text-white mb-10 font-h2oppins">
+                          {parseHTMLToReact(item?.desc)}
+                        </h2>
+                      )}
+                      {item?.button && (
+                        <button className="group relative overflow-hidden bg-privatecolor text-white uppercase font-semibold py-2 px-5 rounded-full">
+                          {item?.button}
+                          <span className="group-hover:bg-white absolute w-full opacity-20 duration-200 z-10 rounded-full py-5 px-5 top-0 left-0"></span>
+                        </button>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
             <svg
               className="w-full  absolute z-20 top-[55vh] md:top-[80vh]"
@@ -165,7 +168,7 @@ export function CE_BannerVariant03({
                       className={[
                         'w-2 h-2 md:w-[10px] md:h-[10px] rounded-full ',
                         '',
-                        `${bannerIndex === currentSlide ? 'outline outline-1 outline-prioritycolor bg-prioritycolor outline-offset-2 ' : 'bg-white bg-opacity-65 '}`,
+                        `${bannerIndex === currentSlide ? 'outline outline-1 outline-white bg-white outline-offset-2 ' : 'bg-white bg-opacity-65 '}`,
                         'cursor-pointer',
                       ].join(' ')}
                       onClick={() => {
