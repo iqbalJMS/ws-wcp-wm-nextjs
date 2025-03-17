@@ -136,20 +136,22 @@ export default function HomeHeader({
   const currentLanguage = useSearchParams().get('lang');
   const router = useRouter();
   const isScrolling = useScrollActive();
+  const searchParams = useSearchParams();
 
   const [activeSearch, setActiveSearch] = useState(false);
   const [activeMenu, setActiveMenu] = useState(false);
   const [isSelectedMenu, setIsSelectedMenu] = useState<T_Items | null>(null);
 
   const onSwitchLanguages = (language: string) => {
-    if (currentLanguage !== language) {
-      const queryParams = new URLSearchParams({
-        lang: language,
-      }).toString();
+    const current = new URLSearchParams(Array.from(searchParams.entries())); // -> has to use this form
+    current.set('lang', language);
 
-      router.push(`${pathname}?${queryParams}`);
-      router.refresh();
-    }
+    // cast to string
+    const search = current.toString();
+    const query = search ? `?${search}` : '';
+
+    router.push(`${pathname}${query}`);
+    router.refresh();
   };
 
   const generateLinkBottom = (item: T_ResponseGetMainMenuNavbar[number]) => {
