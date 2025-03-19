@@ -10,7 +10,7 @@ const CE_BCInvestasi = ({ currentPage }: { currentPage: string }) => {
     },
     {
       url: '/investasibri',
-      title: 'INVESTASI',
+      title: 'INVESTASIBRI',
     },
   ];
   return (
