@@ -55,13 +55,13 @@ export default function CE_TwoColumnPriority({
 
   return (
     <>
-      <section ref={ref} className="container py-5 px-5 xl:px-20">
+      <section ref={ref} className="py-5 px-5 xl:px-20">
         <div className="flex md:flex-row flex-col justify-center relative">
-          {imageContent1 && (
+          {/* {imageContent1 && (
             <div
               className={`-z-10 bg-${colorTheme} bg-opacity-15 w-5/12 h-40 absolute right-0 top-0 mdmax:-mr-32`}
             ></div>
-          )}
+          )} */}
           <motion.div
             variants={{
               hidden: { opacity: 0, x: -75 },
@@ -161,11 +161,11 @@ export default function CE_TwoColumnPriority({
           transition={{ duration: 0.5, delay: 0.25 }}
           className="flex md:flex-row flex-col justify-center relative"
         >
-          {imageContent2 && (
+          {/* {imageContent2 && (
             <div
               className={`-z-10 bg-${colorTheme} bg-opacity-15 w-5/12 h-40 absolute left-0 top-0 mdmax:-ml-32`}
             ></div>
-          )}
+          )} */}
           <div className="mdmax:order-1 md:max-w-[50%] flex items-center">
             {imageContent2 && (
               <Image
