@@ -2,10 +2,10 @@
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import PlayIcon from '@/lib/element/global/play-icon';
-import Modal from '@/lib/element/global/modal';
 import { useState } from 'react';
 import { motion, useInView, useAnimation } from 'motion/react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import ModalVideo from '@/lib/element/global/modal.video';
 
 export default function CE_VideosCard({
   data,
@@ -22,13 +22,19 @@ export default function CE_VideosCard({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
+  const [modalIndex, setModalIndex] = useState<number | null>(null);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const closeModal = () => {
+    setModalOpen(false);
+    setModalIndex(null);
+  };
 
   useEffect(() => {
     if (isInView) {
       mainControls.start('visible');
     }
   }, [isInView, mainControls]);
-  const [isShowModal, setIsShowModal] = useState<boolean>(false);
 
   let color = '';
 
@@ -59,7 +65,7 @@ export default function CE_VideosCard({
             initial="hidden"
             animate={mainControls}
             transition={{ duration: 0.5, delay: 0.25 }}
-            onClick={() => setIsShowModal(true)}
+            onClick={() => setModalOpen(true)}
             key={index}
             className="group relative w-96 h-max flex flex-col cursor-pointer rounded-lg"
           >
@@ -90,10 +96,50 @@ export default function CE_VideosCard({
             </h1>
           </motion.div>
         ))}
-        <Modal
-          isShow={isShowModal}
-          onCancel={() => setIsShowModal((prev) => !prev)}
-        />
+        {modalOpen && (
+          <ModalVideo>
+            <div
+              id="default-modal"
+              tabIndex={-1}
+              aria-hidden="true"
+              className={
+                !modalOpen
+                  ? 'hidden'
+                  : 'bg-black/70 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-screen md:inset-0 max-h-full'
+              }
+            >
+              <div
+                className="flex justify-center items-center p-5 lg:p-4 w-full h-screen"
+                onClick={() => closeModal()}
+              >
+                <div
+                  data-aos="fade-down"
+                  className="relative w-full md:w-9/12 lg:w-5/12 lg:h-2/3 bg-white  shadow"
+                >
+                  <div className="h-3/4">
+                    <iframe
+                      height="450"
+                      src={data?.[modalIndex as number]?.image}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      className="w-full"
+                    ></iframe>
+                  </div>
+                  <div className="h-auto bg-white p-4 md:p-5 border-t border-gray-200 rounded-b space-y-2">
+                    <h3 className="text-xs lg:text-sm font-light">
+                      {data?.[modalIndex as number]?.date}
+                    </h3>
+                    <h1 className="font-semibold text-lg lg:text-xl pt-2">
+                      {data?.[modalIndex as number]?.title}
+                    </h1>
+                    <h2 className="text-[#555555] font-light text-sm lg:text-base">
+                      {data?.[modalIndex as number]?.link}
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ModalVideo>
+        )}
       </section>
     </div>
   );

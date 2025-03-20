@@ -54,7 +54,7 @@ export default async function page({ params }: { params: { id: string } }) {
             <h1 className="text-4xl text-white font-bold uppercase">
               {getOurstoryData?.title?.[0]?.value}
             </h1>
-            <h2 className="text-sm text-white w-full pt-10">
+            <h2 className="text-sm text-white w-full pt-8 px-5">
               {parseHTMLToReact(getOurstoryData?.field_summary?.[0]?.value)}
             </h2>
           </div>

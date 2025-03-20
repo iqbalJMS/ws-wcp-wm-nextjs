@@ -17,13 +17,13 @@ export default function CE_SearchOutlet({ onChange, variant }: T_SearchProps) {
   }
   return (
     <>
-      <div className="w-full h-60 flex flex-col items-center justify-center ">
+      <div className="w-full h-60 flex flex-col items-center justify-center">
         <section
           className={`uppercase text-2xl lg:text-3xl xl:text-4xl pb-5 text-${colorTheme} font-extrabold`}
         >
           find us
         </section>
-        <section className="w-11/12 md:w-9/12 lg:w-7/12 xl:w-5/12 flex flex-col items-center justify-center space-x-4 px-5 2xl:px-7 py-4 bg-white rounded-3xl md:rounded-full shadow-2xl border border-slate-300">
+        <section className="w-11/12 md:w-9/12 lg:w-7/12 2xl:w-6/12 flex flex-col items-center justify-center space-x-4 px-5 2xl:px-7 py-4 bg-white rounded-3xl md:rounded-full shadow-2xl border border-slate-300">
           <div className="flex items-center justify-center w-full space-x-3">
             <div>
               <Image

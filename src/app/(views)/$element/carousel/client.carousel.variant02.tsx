@@ -5,7 +5,7 @@ import useScreenWidth from '@/lib/hook/useScreenWidth';
 import Link from 'next/link';
 import PlayIcon from '@/lib/element/global/icons/play-icon';
 import LeftArrow from '@/lib/element/global/icons/left-arrow';
-import ModalTester from '@/lib/element/global/modal.tedter';
+import ModalVideo from '@/lib/element/global/modal.video';
 import { motion, useInView, useAnimation } from 'motion/react';
 
 const getSlideToShow = (screenWidth: number) => {
@@ -298,7 +298,7 @@ export default function CE_CarouselVariant2({
         </section>
         {/* Modal */}
         {modalOpen && (
-          <ModalTester>
+          <ModalVideo>
             <div
               id="default-modal"
               tabIndex={-1}
@@ -336,7 +336,7 @@ export default function CE_CarouselVariant2({
                 </div>
               </div>
             </div>
-          </ModalTester>
+          </ModalVideo>
         )}
         <section className="relative w-10/12 lg:w-11/12 xl:w-9/12 overflow-hidden">
           <motion.div

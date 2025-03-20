@@ -48,8 +48,8 @@ const CE_CardGrid7Priority = ({
 
   return (
     <>
-      <div ref={ref} className="container py-10">
-        <div className="flex flex-wrap -mx-10">
+      <div ref={ref} className="py-10">
+        <div className="flex flex-wrap">
           <>
             {dataCard?.map((item, index) => (
               <Link
