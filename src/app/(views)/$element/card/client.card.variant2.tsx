@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import { motion, useInView, useAnimation } from 'motion/react';
+import { useInView, useAnimation } from 'motion/react';
 import Image from 'next/image';
 export default function CE_CardVariant2({
   data,
@@ -35,16 +35,7 @@ export default function CE_CardVariant2({
           ref={ref}
           className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 pb-16"
         >
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, x: -75 },
-              visible: { opacity: 1, x: 0 },
-            }}
-            initial="hidden"
-            animate={mainControls}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="uppercase space-y-2 pb-5"
-          >
+          <div className="uppercase space-y-2 pb-5">
             {subtitle && (
               <h3 className="text-base font-light">
                 {parseHTMLToReact(subtitle)}
@@ -55,23 +46,14 @@ export default function CE_CardVariant2({
                 {parseHTMLToReact(title)}
               </h1>
             )}
-          </motion.div>
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, x: 75 },
-              visible: { opacity: 1, x: 0 },
-            }}
-            initial="hidden"
-            animate={mainControls}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="flex items-end"
-          >
+          </div>
+          <div className="flex items-end">
             {desctitle && (
               <h1 className="text-sm md:text-base ">
                 {parseHTMLToReact(desctitle)}
               </h1>
             )}
-          </motion.div>
+          </div>
         </section>
         <section
           ref={ref}
@@ -79,14 +61,7 @@ export default function CE_CardVariant2({
         >
           {data?.map((item, index) => {
             return (
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, y: 75 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                initial="hidden"
-                animate={mainControls}
-                transition={{ duration: 0.5, delay: 0.25 }}
+              <div
                 key={index}
                 className="group w-full h-60 flex flex-col items-center justify-center hover:bg-black hover:rounded-xl duration-300"
               >
@@ -108,7 +83,7 @@ export default function CE_CardVariant2({
                     {parseHTMLToReact(item?.desccard)}
                   </h2>
                 )}
-              </motion.div>
+              </div>
             );
           })}
         </section>

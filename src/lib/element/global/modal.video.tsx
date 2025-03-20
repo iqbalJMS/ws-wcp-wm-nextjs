@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-const ModalTester = ({ children }: { children: React.ReactNode }) => {
+const ModalVideo = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div>{children}</div>
@@ -9,4 +9,4 @@ const ModalTester = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default ModalTester;
+export default ModalVideo;

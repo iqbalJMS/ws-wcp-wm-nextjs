@@ -65,7 +65,7 @@ export default function CE_PortletVariant02({
               backgroundPosition: 'center',
             }}
           >
-            <div className="absolute w-full h-full flex flex-col pl-12 justify-center items-center">
+            <div className="absolute w-full h-full flex flex-col justify-center items-center">
               <div className="mb-6 max-w-[40.125rem]">
                 {title && (
                   <div className="text-white text-3xl font-semibold mb-3 text-center">

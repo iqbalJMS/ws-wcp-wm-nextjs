@@ -9,7 +9,7 @@ import TwitterIcon from '@/lib/element/global/icons/twitter-icon';
 import FacebookIcon from '@/lib/element/global/icons/facebook-icon';
 import LinkedinIcon from '@/lib/element/global/icons/linkedin-icon';
 import WhatsappIcon from '@/lib/element/global/icons/whatsapp-icon';
-import ModalTester from '@/lib/element/global/modal.tedter';
+import ModalVideo from '@/lib/element/global/modal.video';
 import successIcon from '@/../../public/images/icon-menu/success-filled-svgrepo-com.svg';
 import closeIcon from '@/../../public/images/icon-menu/close-bold-svgrepo-com.svg';
 
@@ -32,7 +32,7 @@ export default function CE_PromoDetailPrioritas({
   lokasi: string;
   nid: number;
 }) {
-  const linkUrl = `https://bri-corpsite.dev-kjt.id/web/wealth-management/promo-detail-prioritas/${nid}`;
+  const linkUrl = `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/web/wealth-management/promo-detail-prioritas/${nid}`;
 
   const elementRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
@@ -71,7 +71,7 @@ export default function CE_PromoDetailPrioritas({
                 className="w-11/12"
               />
             </div>
-            <div className="overflow-hidden w-full h-32 lg:w-full flex flex-col space-y-5 lg:flex-row justify-between items-start px-5">
+            <div className="overflow-hidden w-full h-36 lg:h-32 lg:w-full space-y-5 flex flex-col justify-start lg:flex-row lg:justify-between lg:items-start px-5">
               <h1 className="text-xl font-semibold">{title}</h1>
               <div
                 onClick={() => setActive(!active)}
@@ -241,7 +241,7 @@ export default function CE_PromoDetailPrioritas({
           </div>
         </section>
       </div>
-      <ModalTester>
+      <ModalVideo>
         <div
           className={
             !modalOpen
@@ -276,7 +276,7 @@ export default function CE_PromoDetailPrioritas({
             </div>
           </div>
         </div>
-      </ModalTester>
+      </ModalVideo>
     </>
   );
 }

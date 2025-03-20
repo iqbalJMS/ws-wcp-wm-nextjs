@@ -9,7 +9,7 @@ import TwitterIcon from '@/lib/element/global/icons/twitter-icon';
 import FacebookIcon from '@/lib/element/global/icons/facebook-icon';
 import LinkedinIcon from '@/lib/element/global/icons/linkedin-icon';
 import WhatsappIcon from '@/lib/element/global/icons/whatsapp-icon';
-import ModalTester from '@/lib/element/global/modal.tedter';
+import ModalVideo from '@/lib/element/global/modal.video';
 import successIcon from '@/../../public/images/icon-menu/success-filled-svgrepo-com.svg';
 import closeIcon from '@/../../public/images/icon-menu/close-bold-svgrepo-com.svg';
 
@@ -32,7 +32,7 @@ export default function CE_PromoCardDetailWm({
   lokasi: string;
   nid: number;
 }) {
-  const urlLink = `https://bri-corpsite.dev-kjt.id/web/wealth-management/promo-detail/${nid}`;
+  const urlLink = `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/web/wealth-management/promo-detail/${nid}`;
   const elementRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -70,7 +70,7 @@ export default function CE_PromoCardDetailWm({
                 className="w-11/12"
               />
             </div>
-            <div className="overflow-hidden w-full h-32 lg:w-full flex flex-col space-y-5 lg:flex-row justify-between items-start px-5">
+            <div className="overflow-hidden w-full h-36 lg:h-32 lg:w-full space-y-5 flex flex-col justify-start lg:flex-row lg:justify-between lg:items-start px-5">
               <h1 className="text-xl font-semibold">{title}</h1>
               <div
                 onClick={() => setActive(!active)}
@@ -93,13 +93,13 @@ export default function CE_PromoCardDetailWm({
                   ].join(' ')}
                 >
                   <div
-                    className={`
+                    className={` 
           absolute top-[1%] right-4 rotate-180
           border-l-[0.7rem] border-r-[0.7rem]  
           border-l-transparent border-r-transparent border-white
           h-5 w-5`}
                   />
-                  <div className="w-fit bg-white rounded-3xl px-3">
+                  <div className="w-fit rounded-3xl px-3">
                     <ul className="text-xs flex items-center justify-center text-black space-x-2">
                       <li>
                         <Link
@@ -204,7 +204,7 @@ export default function CE_PromoCardDetailWm({
               </div>
             </div>
           </section>
-          <section className="grid grid-cols-1 sm:flex flex-row ">
+          <section className="grid grid-cols-1 sm:flex flex-row">
             <div className="sm:basis-1/4 px-5 border-b sm:border-b-0 border-[#D6D6D6] sm:w-60">
               <h1 className="font-light">Terms & Condition</h1>
             </div>
@@ -256,7 +256,7 @@ export default function CE_PromoCardDetailWm({
           </div>
         </section>
       </div>
-      <ModalTester>
+      <ModalVideo>
         <div
           className={
             !modalOpen
@@ -291,7 +291,7 @@ export default function CE_PromoCardDetailWm({
             </div>
           </div>
         </div>
-      </ModalTester>
+      </ModalVideo>
     </>
   );
 }
