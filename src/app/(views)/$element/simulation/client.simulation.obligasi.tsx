@@ -122,7 +122,7 @@ export default function CE_SimulationObligasi() {
           }
         />
       </div>
-      <div className="w-96 pt-7">
+      <div className="w-60 pt-7">
         <InputLabel label="Kupon" required>
           <InputText
             rounded="full"
@@ -147,8 +147,9 @@ export default function CE_SimulationObligasi() {
           label="Jangka Waktu"
           slot={
             <div>
-              <div className="mb-5 w-[20%]">
+              <div className="mb-5 w-28">
                 <InputText
+                  className="flex items-center justify-center h-full text-[#505FD3] text-opacity-90 whitespace-nowrap"
                   disabled={formDisabled?.term}
                   rightText="Tahun"
                   value={form?.term}

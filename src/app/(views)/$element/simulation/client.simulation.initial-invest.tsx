@@ -3,7 +3,6 @@
 import InputError from '@/lib/element/global/form/input.error';
 import InputLabel from '@/lib/element/global/form/input.label';
 import InputRadioButton from '@/lib/element/global/form/input.radiobutton';
-// import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import React, { useEffect, useState, useTransition } from 'react';
 import CE_SimulationLabel from './client.simulation.label';
 import InputText from '@/lib/element/global/form/input.text';
@@ -134,9 +133,6 @@ export default function CE_SimultaionInitialInvest() {
   return (
     <>
       <div>
-        {/* <h1 className="text-center text-2xl font-bold tracking-wider py-5">
-          {parseHTMLToReact(item?.content)}
-        </h1> */}
         <div className="container w-full">
           <div className="w-full flex-none mb-6 px-4">
             <InputLabel label="Investasi" required>
@@ -208,8 +204,9 @@ export default function CE_SimultaionInitialInvest() {
                 label="Jangka Waktu"
                 slot={
                   <div>
-                    <div className="mb-5 w-[20%]">
+                    <div className="mb-5 w-28">
                       <InputText
+                        className="flex items-center justify-center h-full text-[#505FD3] text-opacity-90 whitespace-nowrap"
                         disabled={formDisabled?.duration}
                         rightText="Tahun"
                         value={form?.duration}
@@ -238,7 +235,7 @@ export default function CE_SimultaionInitialInvest() {
                 }
               />
             </div>
-            <div className="w-full flex-none mb-6 px-4">
+            <div className="w-full flex-none mb-6 py-2">
               <InputLabel label="Profile Resiko" required>
                 <InputRadioButton
                   key={resetCount}
@@ -280,13 +277,16 @@ export default function CE_SimultaionInitialInvest() {
             </div>
             <div>
               <div className="">
-                <h1 className="text-lg font-semibold">Perkiraan Imbal Hasil</h1>
+                <h1 className="text-xl font-semibold text-[#4A4A4A]">
+                  Perkiraan Imbal Hasil
+                </h1>
                 <h1 className="text-xs leading-5 text-slate-600">
                   min {interestAmountRange?.min}% - max{' '}
                   {interestAmountRange?.max}%
                 </h1>
-                <div className="mb-5 w-[20%]">
+                <div className="mb-5 w-20">
                   <InputText
+                    className="flex items-center justify-center h-full text-[#505FD3] text-opacity-90 whitespace-nowrap"
                     rightText="%"
                     disabled={formDisabled?.interestRate}
                     value={form?.interestRate}
@@ -301,6 +301,8 @@ export default function CE_SimultaionInitialInvest() {
                     step={0.5}
                     value={form?.interestRate}
                     onChange={(value) => onFieldChange('interestRate', value)}
+                    benchMax={interestAmountRange?.max}
+                    benchMin={interestAmountRange?.min}
                   />
                 </div>
                 {formError.interestRate && (

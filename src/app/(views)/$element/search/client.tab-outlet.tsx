@@ -6,9 +6,9 @@ import { Tooltip } from '@/lib/element/global/tooltip';
 
 type T_TabsProps = {
   list: {
-    title: string;
+    type_name: string;
     information?: string;
-    slug: string;
+    type_id: string;
   }[];
   value: string;
   onChange: (_value: string) => void;
@@ -27,11 +27,11 @@ export function CE_TabsOutlet({
           return (
             <div
               key={index}
-              onClick={() => onChange(item.slug)}
+              onClick={() => onChange(item.type_id)}
               className={[
                 `w-40 flex justify-center items-start p-2 border-b cursor-pointer relative  text-center`,
                 variant === 'full' ? 'py-3 ' : 'pb-3 ',
-                item.slug === value
+                item.type_id === value
                   ? variant === 'full'
                     ? 'bg-bluedark01'
                     : ''
@@ -42,7 +42,7 @@ export function CE_TabsOutlet({
                 className={[
                   'w-40 text-xl font-medium flex flex-col justify-center items-center',
                   `${
-                    item.slug === value
+                    item.type_id === value
                       ? variant === 'full'
                         ? 'text-white'
                         : 'text-bluedark01'
@@ -57,7 +57,7 @@ export function CE_TabsOutlet({
                   height={50}
                   className="object-center"
                 />
-                <div className="mr-2 text-sm pt-2">{item.title}</div>
+                <div className="mr-2 text-sm pt-2">{item.type_name}</div>
                 {item.information && <Tooltip description={item.information} />}
               </div>
               {variant === 'border-arrow' && (
@@ -65,7 +65,7 @@ export function CE_TabsOutlet({
                   className={[
                     'absolute bottom-0 left-0',
                     'w-full h-[.2rem] bg-bluedark01',
-                    item.slug === value ? 'visible' : 'invisible',
+                    item.type_id === value ? 'visible' : 'invisible',
                     'group-hover/tab:visible',
                   ].join(' ')}
                 >
@@ -83,7 +83,7 @@ export function CE_TabsOutlet({
                   className={[
                     'absolute bottom-0 left-0',
                     'w-full h-[.2rem] bg-bluedark01',
-                    item.slug === value ? 'visible' : 'invisible',
+                    item.type_id === value ? 'visible' : 'invisible',
                     'group-hover/tab:visible',
                   ].join(' ')}
                 ></div>

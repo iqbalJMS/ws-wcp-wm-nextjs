@@ -3,6 +3,7 @@ export type T_InputTextOnChange = string | number;
 type T_InputTextProps = {
   type?: 'text' | 'password' | 'number';
   value?: T_InputTextOnChange;
+  className?: string;
   placeholder?: string;
   label?: string;
   rightText?: string;
@@ -41,6 +42,7 @@ export default function InputText({
   onChange,
   rightSlot,
   leftSlot,
+  className,
   rounded = 'not-full',
   //eslint-disable-next-line no-unused-vars
   forInputPhone,
@@ -86,18 +88,18 @@ export default function InputText({
         } ${
           state === 'error'
             ? 'border-red-500'
-            : 'border-black border-opacity-10 focus-within:border-blue-01 focus-within:border-opacity-50 focus-within:ring-4 focus-within:ring-light-02 focus-within:ring-opacity-30'
+            : 'border-none focus-within:border-blue-01 focus-within:border-opacity-50 focus-within:ring-4 focus-within:ring-light-02 focus-within:ring-opacity-30'
         } 
         ${rounded === 'full' ? 'rounded-full' : 'rounded-md'}`}
       >
         {leftText ? (
-          <div className="flex pl-4 -mr-2 items-center justify-center h-full text-black02 text-15 leading-15 whitespace-nowrap">
+          <div className="flex pl-4 -mr-2 items-center justify-center h-full text-[#505FD3] text-15 leading-15 whitespace-nowrap">
             {leftText}
           </div>
         ) : null}
 
         {leftSlot ? (
-          <div className="flex h-full text-black02 text-15 leading-15 whitespace-nowrap">
+          <div className="flex h-full text-[#505FD3] text-15 leading-15 whitespace-nowrap">
             {leftSlot}
           </div>
         ) : null}
@@ -105,7 +107,7 @@ export default function InputText({
         <input
           ref={inputRef}
           value={formatModelValue()}
-          className="w-full h-full text-base mdmax:text-sm placeholder:text-black/50 placeholder:font-medium focus:outline-none bg-transparent flex-1 px-4"
+          className="w-full h-full text-base mdmax:text-sm text-[#505FD3] placeholder:text-black/50 placeholder:font-medium focus:outline-none bg-transparent flex-1 px-4"
           disabled={disabled}
           type={type === 'password' ? 'password' : 'text'}
           placeholder={placeholder}
@@ -114,14 +116,10 @@ export default function InputText({
           onInput={handleInput}
         />
 
-        {rightText ? (
-          <div className="flex pr-4 -ml-2 items-center justify-center h-full text-black02 text-opacity-90 text-15 whitespace-nowrap">
-            {rightText}
-          </div>
-        ) : null}
+        {rightText ? <div className={className}>{rightText}</div> : null}
 
         {rightSlot ? (
-          <div className="flex h-full text-black02 text-opacity-90 text-15 whitespace-nowrap">
+          <div className="flex h-full text-[#505FD3] text-opacity-90 text-15 whitespace-nowrap">
             {rightSlot}
           </div>
         ) : null}

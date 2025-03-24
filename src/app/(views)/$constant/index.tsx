@@ -24,6 +24,7 @@ import { T_Map } from './types/widget/map';
 import { T_PromoWidget } from './types/widget/promo';
 import { T_ContentItems } from './types/widget/content-items';
 import { T_Simulation } from './types/widget/simulation';
+import { T_Location } from './types/widget/location';
 
 const SE_SubscriberContent = dynamic(
   () => import('@/app/$element/server.subscriber.content')
@@ -262,8 +263,16 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
     },
     location: {
       component: CE_Location,
-      props: (_component: any) => {
-        return { variant: theme };
+      props: (_component: T_Location) => {
+        return {
+          variant: theme,
+          locationType: _component?.field_bri_location_type?.map((item) => {
+            return {
+              type_id: item?.type_id,
+              type_name: item?.type_name,
+            };
+          }),
+        };
       },
     },
     slider: {
