@@ -19,7 +19,7 @@ const CE_SimulationLabel = ({
   return (
     <div>
       <div className="flex items-center gap-2 mb-2">
-        <div className="text-xl font-semibold text-black ">{label}</div>
+        <div className="text-xl font-semibold text-[#4A4A4A] ">{label}</div>
         {editable && (
           <div
             className="text-black text-opacity-50 cursor-pointer"

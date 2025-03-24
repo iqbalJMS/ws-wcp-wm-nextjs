@@ -59,7 +59,7 @@ const InputRadioButton: React.FC<T_InputRadioButtonProps> = ({
       {list?.map((listItem) => (
         <div key={listItem.value} className="px-2">
           <div
-            className="inline-flex items-center cursor-pointer "
+            className="inline-flex items-center cursor-pointer pt-3 "
             onClick={() => handleClick(listItem.value)}
           >
             <div
