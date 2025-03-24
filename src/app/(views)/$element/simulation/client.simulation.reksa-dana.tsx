@@ -182,15 +182,15 @@ export default function CE_SimulationReksaDana() {
           )}
         </InputLabel>
       </div>
-      <h1 className="text-xl font-semibold text-black pt-5">
+      <h1 className="text-xl font-semibold text-[#4A4A4A] pt-5">
         Perkiraan Nilai Investasi
       </h1>
       <div className="mb-5 w-[20%] pt-2 flex space-x-2 cursor-not-allowed">
-        <h1 className="text-wmcolor ">{interestAmountRange?.min}</h1>
-        <h2 className="text-wmcolor ">%</h2>
+        <h1 className="text-[#505FD3] ">{interestAmountRange?.min}</h1>
+        <h2 className="text-[#505FD3] ">%</h2>
       </div>
-      <h2 className="text-xs w-full">
-        berdasarkan rata-rata kinerja 1 tahun sumber Infovesta, diolah Kantor
+      <h2 className="text-xs text-[#4A4A4A] w-full">
+        *berdasarkan rata-rata kinerja 1 tahun sumber Infovesta, diolah Kantor
       </h2>
       <div className="flex gap-5 mt-10">
         <ButtonSecondary

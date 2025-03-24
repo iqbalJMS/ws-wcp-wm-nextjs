@@ -6,6 +6,8 @@ interface GradientSliderProps {
   max: number;
   step?: number;
   value?: number;
+  benchMin?: number;
+  benchMax?: number;
   onChange?: (_value: number) => void;
 }
 
@@ -15,6 +17,8 @@ const InputSlider: React.FC<GradientSliderProps> = ({
   step = 1,
   value: defaultValue = min,
   onChange,
+  benchMax,
+  benchMin,
 }) => {
   const value = useMemo(() => {
     return defaultValue;
@@ -29,7 +33,7 @@ const InputSlider: React.FC<GradientSliderProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-center w-full bg-bluedark01">
+    <div className="flex flex-col items-center w-full ">
       <input
         type="range"
         min={min}
@@ -37,12 +41,16 @@ const InputSlider: React.FC<GradientSliderProps> = ({
         step={step}
         value={value}
         onChange={handleChange}
+        className="slider"
         style={{
           background: `linear-gradient(90deg, #080087 ${getBackgroundSize()}, #E5E5E5 0%)`,
           cursor: 'pointer',
         }}
       />
-      {/* <span className="mt-2 text-lg">{value}</span> */}
+      <div className="flex justify-between items-center w-full pt-1">
+        {benchMin ? <h1 className="mt-2 text-sm">{benchMin}</h1> : null}
+        {benchMax ? <h1 className="mt-2 text-sm">{benchMax}</h1> : null}
+      </div>
     </div>
   );
 };

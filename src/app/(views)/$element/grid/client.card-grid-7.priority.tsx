@@ -88,12 +88,9 @@ const CE_CardGrid7Priority = ({
                     transition={{ duration: 0.5, delay: 0.55 }}
                   >
                     <div className="text-xs text-black font-semibold uppercase">
-                      <span className="pr-2">
-                        {item?.category ?? 'category'}
-                      </span>{' '}
-                      |
+                      <span className="pr-2">{item?.category ?? ''}</span> |
                       <span className="pl-3">
-                        {formatDate(item?.date ?? 'date')}
+                        {formatDate(item?.date ?? '')}
                       </span>
                     </div>
                     <div

@@ -18,7 +18,13 @@ import CE_SearchOutlet from '@/app/(views)/$element/search/client.search-outlet'
 import { CE_TabsOutlet } from '@/app/(views)/$element/search/client.tab-outlet';
 import Link from 'next/link';
 
-export default function CE_Location({ variant }: { variant: string }) {
+export default function CE_Location({
+  variant,
+  locationType,
+}: {
+  variant: string;
+  locationType: Array<{ type_id: string; type_name: string }>;
+}) {
   const [pending, transiting] = useTransition();
   const [location, setLocation] = useState<T_ResponGetLocation>();
   const { form, validateForm, onFieldChange } = useForm<
@@ -83,13 +89,7 @@ export default function CE_Location({ variant }: { variant: string }) {
       />
       {variant == 'wm-prioritas-main-navigation' ? (
         <CE_TabsOutlet
-          list={[
-            {
-              title: 'SENTRA LAYANAN BRI PRIORITAS',
-              slug: '6762525d2b83df62275f6f62',
-            },
-            { title: 'BRI PRIORITY LOUNGE', slug: '676251ed2b83df62275f6f5d' },
-          ]}
+          list={locationType}
           value={form.tipe}
           onChange={(e) => handleTabChange(e)}
         />
