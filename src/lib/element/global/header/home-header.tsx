@@ -37,7 +37,7 @@ export function LoginButton({
       ref={elementRef}
       className={[
         `${isScrolling ? 'bg-black' : 'bg-white'}`,
-        `${isScrolling ? 'hover:border-blue-800 border-2' : 'hover:bg-bluedark01'}`,
+        `${isScrolling ? 'hover:border-blue-800 border-2' : 'focus:bg-[#080087] hover:bg-[#080087] '}`,
         `text-[#191056] lg:px-6 lg:pr-4 lg:py-2 py-1 px-4 pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
       ].join(' ')}
       onClick={() => setActive(!active)}
@@ -78,9 +78,11 @@ export function LoginButton({
       </div>
       <div
         className={[
-          'absolute w-[20rem] right-0  pt-5',
+          'absolute w-[20rem] right-0 pt-5',
           'transition-all ease-in-out duration-200',
-          active ? 'top-full visible opacity-100' : 'top-0 invisible opacity-0',
+          active
+            ? 'top-full visible opacity-100 '
+            : 'top-0 invisible opacity-0',
         ].join(' ')}
       >
         <div
