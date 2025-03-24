@@ -49,10 +49,10 @@ export default function CE_CardVariant5({
 
   return (
     <>
-      <div className="w-full h-auto flex justify-center py-20">
+      <div className="w-full h-auto flex justify-center py-10">
         <div
           ref={ref}
-          className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:content-center"
+          className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-9/12 grid grid-cols-1 md:grid-cols-2 lg:content-center px-10"
         >
           <motion.div
             variants={{
@@ -62,7 +62,7 @@ export default function CE_CardVariant5({
             initial="hidden"
             animate={mainControls}
             transition={{ duration: 0.5, delay: 0.45 }}
-            className="pb-10 pr-10 lg:pr-0 w-96 md:flex flex-col justify-center"
+            className="pb-10 pr-10 lg:pr-0 w-96 md:flex flex-col justify-center "
           >
             {label && (
               <h1 className="pb-3 text-3xl font-bold uppercase ">
@@ -86,7 +86,7 @@ export default function CE_CardVariant5({
             className="w-full overflow-hidden mdmax:w-full mdmax:flex-none"
           >
             <div
-              className="w-full flex transition-all ease-in-out duration-300 md:space-x-3"
+              className="w-full flex transition-all ease-in-out duration-300 md:space-x-7"
               style={{
                 transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
               }}
