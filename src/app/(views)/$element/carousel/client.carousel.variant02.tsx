@@ -169,7 +169,7 @@ export default function CE_CarouselVariant2({
   return (
     <>
       <div className="w-full h-[80vh] flex flex-col items-center justify-center relative overflow-hidden">
-        <section className="flex justify-between w-11/12 xl:w-8/12  pb-5 md:pb-0">
+        <section className="flex justify-between w-10/12 lg:w-11/12 xl:w-11/12 2xl:w-8/12 pb-5 md:pb-0">
           <div ref={ref}>
             <motion.div
               variants={{
@@ -338,7 +338,7 @@ export default function CE_CarouselVariant2({
             </div>
           </ModalVideo>
         )}
-        <section className="relative w-10/12 lg:w-11/12 xl:w-9/12 overflow-hidden">
+        <section className="relative w-10/12 lg:w-11/12 xl:w-full 2xl:w-9/12 overflow-hidden">
           <motion.div
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}

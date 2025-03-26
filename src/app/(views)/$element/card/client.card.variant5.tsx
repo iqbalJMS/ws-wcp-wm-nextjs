@@ -52,7 +52,7 @@ export default function CE_CardVariant5({
       <div className="w-full h-auto flex justify-center py-10">
         <div
           ref={ref}
-          className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-9/12 grid grid-cols-1 md:grid-cols-2 lg:content-center px-10"
+          className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-full 2xl:w-9/12 grid grid-cols-1 md:grid-cols-2 lg:content-center xl:px-16 2xl:px-10"
         >
           <motion.div
             variants={{

@@ -39,8 +39,8 @@ export default function CE_SearchOutlet({ onChange, variant }: T_SearchProps) {
                 onChange={(e) => onChange(e.target.value)}
                 style={{ outline: 'none' }}
                 type="text"
-                className="w-full py-2"
-                placeholder="Search For Location"
+                className="w-full py-2 border-b-[1px] border-black"
+                placeholder="Search for a location"
               />
             </form>
             <div className="hidden md:flex text-center w-3/12">

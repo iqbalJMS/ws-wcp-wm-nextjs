@@ -48,14 +48,14 @@ const CE_CardGrid7Priority = ({
 
   return (
     <>
-      <div ref={ref} className="py-10">
-        <div className="flex flex-wrap">
+      <div ref={ref} className="w-full py-10 flex justify-center">
+        <div className="w-full xl:w-9/12 flex flex-wrap">
           <>
             {dataCard?.map((item, index) => (
               <Link
                 key={index}
                 href={`/article-detail-priority/${item?.nid ?? '/404'}`}
-                className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
+                className="w-1/2 xl:w-1/3 mdmax:w-full flex-none px-10 mb-10"
               >
                 <div className="group">
                   <motion.div
@@ -66,15 +66,15 @@ const CE_CardGrid7Priority = ({
                     initial="hidden"
                     animate={mainControls}
                     transition={{ duration: 0.5, delay: 0.25 }}
-                    className="w-full h-[20rem] rounded-xl overflow-hidden mb-5"
+                    className="w-full h-60 rounded-xl overflow-hidden mb-5"
                   >
                     {item?.image && (
                       <Image
                         src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
                         alt="image"
-                        width={400}
-                        height={400}
-                        className="w-full h-full object-cover object-bottom group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
+                        width={900}
+                        height={900}
+                        className="w-full h-96 object-cover object-bottom group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
                       />
                     )}
                   </motion.div>
@@ -94,11 +94,11 @@ const CE_CardGrid7Priority = ({
                       </span>
                     </div>
                     <div
-                      className={`text-${theme} line-clamp-2 font-bold text-xl mb-5 pt-3`}
+                      className={`text-${theme} line-clamp-2 leading-6 font-bold text-lg mb-1 pt-3`}
                     >
                       {parseHTMLToReact(item?.title)}
                     </div>
-                    <div className="font-light line-clamp-3">
+                    <div className="font-light line-clamp-3 text-[#BB907C]">
                       {parseHTMLToReact(item?.description)}
                     </div>
                   </motion.div>
