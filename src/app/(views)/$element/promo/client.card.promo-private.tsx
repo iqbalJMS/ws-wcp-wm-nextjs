@@ -301,11 +301,11 @@ export default function CE_CardPromoPrivate({
         <section className="w-full hidden lg:flex justify-center">
           <div className="w-full flex justify-center ">
             <div className="w-fit h-full flex justify-center p-5">
-              <div className="w-full h-full grid grid-cols-4 gap-5">
+              <div className="w-full h-full grid grid-cols-4 gap-10 2xl:gap-5 px-5">
                 {promoList?.map((item, index) => (
                   <div
                     key={index}
-                    className="relative overflow-hidden lg:w-60 lg:h-72 xl:w-80 xl:h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
+                    className="relative overflow-hidden lg:w-60 lg:h-72 xl:w-72 xl:h-64 2xl:h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
                       backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                       backgroundSize: 'cover',
@@ -340,7 +340,7 @@ export default function CE_CardPromoPrivate({
         </section>
 
         {!isLastPage ? (
-          <section className="hidden xl:inline-flex items-center justify-center w-full pt-5">
+          <section className="inline-flex items-center justify-center w-full pt-5">
             <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
             {promoConfig == 'latest_seven' ? (
               <button

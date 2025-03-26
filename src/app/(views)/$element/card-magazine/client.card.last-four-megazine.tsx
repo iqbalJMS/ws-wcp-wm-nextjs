@@ -156,7 +156,7 @@ export default function CE_LastFourMagazine({
           <h1 className={`text-${labelColor} font-semibold text-3xl uppercase`}>
             {heading}
           </h1>
-          <h2 className="text-sm font-light text-center w-11/12 md:w-9/12 xl:w-3/12 pt-3 text-[#4C4C4C]">
+          <h2 className="text-sm font-light text-center w-11/12 md:w-9/12 xl:w-5/12 2xl:w-3/12 pt-3 text-[#4C4C4C]">
             {parseHTMLToReact(subHeading)}
           </h2>
           <Link href={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${''}`} />
@@ -377,9 +377,9 @@ export default function CE_LastFourMagazine({
           initial="hidden"
           animate={mainControls}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="hidden lg:flex w-full h-[60vh] justify-center items-center "
+          className="hidden lg:flex w-full h-[60vh] justify-center items-center"
         >
-          <div className="w-11/12 h-full flex justify-center ">
+          <div className="w-11/12 h-full flex justify-center">
             <div className="w-full h-full flex flex-col ">
               <div className="w-full h-full flex justify-center space-x-4 ">
                 {magazineList?.map((item, index) => (
@@ -433,7 +433,7 @@ export default function CE_LastFourMagazine({
             initial="hidden"
             animate={mainControls}
             transition={{ duration: 0.5, delay: 0.45 }}
-            className="inline-flex items-center justify-center w-full pt-5"
+            className="inline-flex items-center justify-center w-full py-8"
           >
             <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
             <Link

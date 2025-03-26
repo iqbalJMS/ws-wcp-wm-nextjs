@@ -22,7 +22,7 @@ export default function CE_CardVariant12({
         {data?.map((item, index) => (
           <section
             key={index}
-            className="w-[50vh] md:w-[70vh] lg:w-full xl:w-9/12 2xl:w-8/12 lg:flex even:flex-row-reverse "
+            className="w-[50vh] md:w-[70vh] lg:w-full xl:w-full 2xl:w-9/12 lg:flex even:flex-row-reverse "
           >
             <div
               data-aos="fade-left"

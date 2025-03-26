@@ -33,7 +33,7 @@ export default function CE_CardVariant2({
       <div className="w-full h-auto flex flex-col items-center p-5 pb-20">
         <section
           ref={ref}
-          className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 grid grid-cols-1 md:grid-cols-2 pb-16"
+          className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-full 2xl:w-8/12 grid grid-cols-1 md:grid-cols-2 pb-16"
         >
           <div className="uppercase space-y-2 pb-5">
             {subtitle && (
@@ -42,7 +42,7 @@ export default function CE_CardVariant2({
               </h3>
             )}
             {title && (
-              <h1 className="text-4xl lg:text-3xl xl:text-4xl font-bold">
+              <h1 className="text-4xl lg:text-3xl xl:text-4xl font-extrabold">
                 {parseHTMLToReact(title)}
               </h1>
             )}
@@ -57,7 +57,7 @@ export default function CE_CardVariant2({
         </section>
         <section
           ref={ref}
-          className="w-full lg:w-10/12 xl:w-8/12 h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+          className="w-full lg:w-10/12 xl:w-full 2xl:w-8/12 h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
         >
           {data?.map((item, index) => {
             return (

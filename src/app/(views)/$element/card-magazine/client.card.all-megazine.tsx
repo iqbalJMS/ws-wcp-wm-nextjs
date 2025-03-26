@@ -415,7 +415,7 @@ export default function CE_AllMagazine({
                     }
                     target="_blank"
                     key={index}
-                    className="group overflow-hidden w-96 xl:w-80 h-[60vh]"
+                    className="group overflow-hidden w-96 lg:w-60 xl:w-72 2xl:w-80 h-[60vh]"
                   >
                     <div
                       className="w-72 h-[70%] xl:w-80 xl:h-[75%] flex-none flex flex-col justify-end items-start group-hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"

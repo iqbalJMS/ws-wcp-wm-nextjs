@@ -37,7 +37,7 @@ export default function CE_CardVariant6({
       >
         <div
           ref={ref}
-          className="grid grid-cols-1 md:grid-cols-2 md:place-items-center lg:w-11/12 xl:w-9/12 xl:px-8 z-10"
+          className="grid grid-cols-1 md:grid-cols-2 md:place-items-center lg:w-11/12 xl:w-full 2xl:w-9/12 xl:px-8 z-10"
         >
           <motion.div
             variants={{
