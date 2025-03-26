@@ -123,7 +123,7 @@ export default function CE_CardVariant2Prioritas({
           ref={ref}
           className="hidden md:flex justify-center w-full overflow-hidden mdmax:w-full mdmax:flex-none"
         >
-          <div className="w-full lg:w-10/12 xl:w-9/12 flex md:grid grid-cols-3 transition-all ease-in-out duration-300 md:space-x-3">
+          <div className="w-full lg:w-10/12 xl:w-full 2xl:w-8/12 flex md:grid grid-cols-3 transition-all ease-in-out duration-300 md:space-x-3">
             {data?.map(({ label, icon, desc }, index) => {
               return (
                 <motion.div
@@ -147,7 +147,7 @@ export default function CE_CardVariant2Prioritas({
                   />
 
                   {label && (
-                    <h1 className="text-black text-lg font-bold group-hover:text-white pt-7">
+                    <h1 className="text-black text-center text-lg font-bold group-hover:text-white pt-7">
                       {parseHTMLToReact(label)}
                     </h1>
                   )}

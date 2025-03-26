@@ -140,7 +140,7 @@ export default function CE_CardVariant2Private({
             initial="hidden"
             animate={mainControls}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="w-full lg:w-10/12 xl:w-9/12 flex md:grid grid-cols-3 transition-all ease-in-out duration-300 md:space-x-3"
+            className="w-full lg:w-10/12 xl:w-full 2xl:w-8/12 flex md:grid grid-cols-3 transition-all ease-in-out duration-300 md:space-x-3 "
           >
             {data?.map(({ label, icon, desc }, index) => {
               return (
@@ -158,7 +158,7 @@ export default function CE_CardVariant2Private({
                   />
 
                   {label && (
-                    <h1 className="text-black text-lg font-medium group-hover:text-white pt-7">
+                    <h1 className="text-black text-center text-lg font-medium group-hover:text-white pt-7">
                       {parseHTMLToReact(label)}
                     </h1>
                   )}

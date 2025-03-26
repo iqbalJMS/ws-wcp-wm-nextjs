@@ -33,6 +33,7 @@ export default function CE_CardVariant4({
       <div className="relative w-full h-auto flex justify-center p-5 overflow-hidden">
         <section ref={ref} className="w-full lg:w-11/12">
           <motion.div
+            className="w-full"
             variants={{
               hidden: { opacity: 0, y: 75 },
               visible: { opacity: 1, y: 0 },
@@ -55,15 +56,15 @@ export default function CE_CardVariant4({
             initial="hidden"
             animate={mainControls}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="w-full grid grid-cols-1 gap-y-4 place-items-center lg:grid-cols-2 xl:px-48 "
+            className="w-full grid grid-cols-1 gap-y-4 place-items-center lg:grid-cols-2 xl:px-0 2xl:px-48"
           >
             {data?.map((item, index) => (
               <Link
+                className="cursor-pointer group relative w-full md:w-10/12 h-44 lg:h-64 lg:w-full xl:h-60 2xl:h-72 overflow-hidden bg-center"
                 data-aos="fade-right"
                 data-aos-duration="1000"
                 href={`/${item?.link ?? '/404'}`}
                 key={index}
-                className="cursor-pointer group relative w-full md:w-10/12 lg:w-full h-44 lg:h-64 xl:h-72 overflow-hidden bg-center"
               >
                 <div
                   className="flex flex-col justify-between h-64 xl:h-72 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-bottom transition-all ease-in-out transform-gpu delay-75"
