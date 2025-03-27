@@ -26,7 +26,7 @@ export default async function page({ params }: { params: { id: string } }) {
       <PrivateHeader
         headerTop={listHeaderTop}
         headerBottom={listPrivateNavbar}
-        variant={'transparent'}
+        variant={'no-transparent'}
         itemLogin={itemMenuLogin}
         privateLogo={itemPrivateLogo || undefined}
         headerLogo={itemHeaderLogo || undefined}

@@ -17,7 +17,7 @@ export default function Accordion({
   const [accordionOpen, setAccordionOpen] = useState(false);
 
   useEffect(() => {
-    if (isOpen) setAccordionOpen(true);
+    if (isOpen) setAccordionOpen(false);
   }, [isOpen]);
 
   return (

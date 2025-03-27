@@ -405,9 +405,10 @@ export default function CE_AllMagazine({
         >
           <div className="w-full h-full flex justify-center ">
             <div className="w-fit h-full flex justify-center ">
-              <div className="w-full h-full grid grid-cols-4 place-items-center gap-5 ">
+              <div className="w-full h-full grid grid-cols-4 gap-5">
                 {magazineList?.map((item, index) => (
                   <Link
+                    className="group overflow-hidden w-96 lg:w-60 xl:w-72 2xl:w-80 h-[70vh]"
                     href={
                       variant === 'wm-private-main-navigation'
                         ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
@@ -415,14 +416,14 @@ export default function CE_AllMagazine({
                     }
                     target="_blank"
                     key={index}
-                    className="group overflow-hidden w-96 lg:w-60 xl:w-72 2xl:w-80 h-[60vh]"
                   >
                     <div
-                      className="w-72 h-[70%] xl:w-80 xl:h-[75%] flex-none flex flex-col justify-end items-start group-hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
+                      className="w-72 h-[70%] xl:w-80 xl:h-[70%] flex-none flex flex-col justify-end items-start group-hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                       style={{
                         backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
-                        backgroundSize: 'contain',
+                        backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'top',
                       }}
                     ></div>
                     <div
@@ -443,7 +444,12 @@ export default function CE_AllMagazine({
                         </h1>
                       </div>
                       <Link
-                        href={`/magazine-detail/${item?.nid?.[0]?.value ?? '/404'}`}
+                        href={
+                          variant === 'wm-private-main-navigation'
+                            ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
+                            : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
+                        }
+                        target="_blank"
                         className="group text-white uppercase text-sm font-bold flex items-center hover:underline duration-200"
                       >
                         selengkapnya{' '}

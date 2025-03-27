@@ -27,7 +27,7 @@ export default async function page({ params }: { params: { id: string } }) {
         <PriorityHeader
           headerTop={listHeaderTop}
           headerBottom={listPriorityNavbar}
-          variant={'transparent'}
+          variant={'no-transparent'}
           itemLogin={itemMenuLogin}
           headerLogo={itemHeaderLogo || undefined}
           priorityLogo={itemPriorityLogo || undefined}
