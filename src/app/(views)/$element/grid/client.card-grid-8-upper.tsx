@@ -73,7 +73,7 @@ export default function CE_CardVariant8Upper({
                   <h1 className="text-xl lg:text-2xl xl:text-3xl uppercase font-extrabold">
                     {item?.title}
                   </h1>
-                  <h2 className="text-center font-light text-base px-20 md:px-5 xl:px-40">
+                  <h2 className="text-center font-light text-base px-20 md:px-5 xl:px-10 2xl:px-40">
                     {parseHTMLToReact(item?.desc)}
                   </h2>
                   <h2 className="pb-4 underline text-base font-semibold uppercase">
