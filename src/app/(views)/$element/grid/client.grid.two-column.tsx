@@ -52,6 +52,15 @@ const CE_GridMainTwoColumn = ({
           imageContent2={imageContent2}
         />
       )}
+      {variant === 'wm-main-navigation' && (
+        <CE_TwoColumnPriority
+          variant={variant}
+          dataCard1={dataCard1}
+          dataCard2={dataCard2}
+          imageContent1={imageContent1}
+          imageContent2={imageContent2}
+        />
+      )}
     </>
   );
 };

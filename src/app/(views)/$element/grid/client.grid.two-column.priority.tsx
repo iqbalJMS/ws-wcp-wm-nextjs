@@ -40,7 +40,7 @@ export default function CE_TwoColumnPriority({
   if (variant === 'wm-private-main-navigation') {
     colorTheme = 'privatecolor';
   } else {
-    colorTheme = 'prioritycolor';
+    colorTheme = 'wmcolor';
   }
 
   const ref = useRef(null);

@@ -222,7 +222,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .desc-list ul {
-  @apply list-disc pl-10;
+  @apply list-decimal pl-10;
 }
 
 .desc-list ul li {
@@ -248,69 +248,70 @@ input[type='range']::-webkit-slider-thumb {
   @apply p-2 border border-solid border-[#eeeeee];
 }
 
-.body h1,
-.body h2,
-.body h3,
-.body h4,
-.body h5,
-.body h6 {
+.parsehtml h1,
+.parsehtml h2,
+.parsehtml h3,
+.parsehtml h4,
+.parsehtml h5,
+.parsehtml h6 {
   @apply mb-3;
 }
-.body h4,
-.body h5,
-.body h6 {
+.parsehtml h4,
+.parsehtml h5,
+.parsehtml h6 {
   @apply font-semibold;
 }
-.body h2 {
+.parsehtml h2 {
   @apply text-2xl;
 }
 
-.body h3 {
+.parsehtml h3 {
   @apply text-xl;
 }
 
-.body h4 {
+.parsehtml h4 {
   @apply text-lg;
 }
-.body h5 {
+.parsehtml h5 {
   @apply text-base;
 }
-.body h5 {
+.parsehtml h5 {
   @apply text-sm;
 }
 
-.body a {
+.parsehtml a {
   @apply text-blue-01;
 }
-.body p {
+.parsehtml p {
   @apply text-sm mb-3;
 }
-.body ul,
-.body ol {
-  @apply text-sm mb-3 pl-5 font-normal list-disc;
+.parsehtml ul,
+.parsehtml ol {
+  @apply text-sm mb-3 pl-10 font-normal list-disc;
 }
-.body ul li,
-.body ol li {
+
+.parsehtml ul li,
+.parsehtml ol li {
   @apply my-0;
 }
 
-.body .text-align-justify {
+.parsehtml .text-align-justify {
   @apply text-justify;
 }
 
-.body .text-align-right {
+.parsehtml .text-align-right {
   @apply text-right;
 }
-.body .text-align-center {
+.parsehtml .text-align-center {
   @apply text-center;
 }
 
-.body blockquote {
+.parsehtml blockquote {
   @apply border-l border-blue-01 my-3 pl-3 mb-3 py-3;
 }
-.body table {
+.parsehtml table {
   @apply w-full mb-3 border border-black;
 }
-.body table tr td {
+.parsehtml table tr td {
   @apply p-1 border border-black;
 }

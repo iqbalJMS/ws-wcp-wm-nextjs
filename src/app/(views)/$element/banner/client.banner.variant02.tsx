@@ -2,7 +2,6 @@
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import React, { useEffect, useState, MouseEvent, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import Link from 'next/link';
 
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
@@ -16,7 +15,7 @@ const getSlideToShow = (screenWidth: number) => {
   }
 };
 
-export function CE_BannerVariant02({
+export default function CE_BannerVariant02({
   data,
 }: {
   data: Array<{
@@ -24,7 +23,6 @@ export function CE_BannerVariant02({
     title: string;
     desc: string;
     button: string;
-    link: string;
   }>;
 }) {
   const [slider, setSlider] = useState(data);
@@ -42,7 +40,7 @@ export function CE_BannerVariant02({
     }
     const interval = setInterval(() => {
       setCurrentSlide((prevIndex) => prevIndex + 1);
-    }, 20000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, [currentSlide, data, data.length, slider?.length]);
@@ -97,7 +95,7 @@ export function CE_BannerVariant02({
     <>
       <div className="w-full">
         <section className="w-full flex justify-center">
-          <div className="relative overflow-hidden flex justify-center">
+          <div className="w-full relative overflow-hidden flex justify-center">
             <div
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
@@ -109,39 +107,38 @@ export function CE_BannerVariant02({
                 transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
               }}
             >
-              {slider.map((item, index: number) => (
-                <div
-                  key={index}
-                  className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-center bg-cover"
-                  style={{
-                    backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''})`,
-                    backgroundAttachment: 'fixed',
-                  }}
-                >
-                  <div className="bg-black opacity-40 w-full h-full absolute z-10"></div>
-                  <div className="text-start w-9/12 lg:w-8/12 2xl:w-6/12 space-y-4 ml-16 lg:-ml-32 2xl:-ml-72 z-20 px-0 xl:px-5 mb-20 ">
-                    {item?.title && (
-                      <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-white font-poppins">
-                        {parseHTMLToReact(item?.title)}
-                      </h1>
-                    )}
-                    {item?.desc && (
-                      <h2 className="text-sm xl:text-base w-full xl:w-9/12 font-light text-white mb-10 font-poppin pb-10">
-                        {parseHTMLToReact(item?.desc)}
-                      </h2>
-                    )}
-                    {item?.button && (
-                      <Link
-                        href={item?.link ?? '/404'}
-                        className="group relative overflow-hidden bg-privatecolor text-white uppercase font-semibold py-2 px-5 rounded-full"
-                      >
-                        {item?.button}
-                        <span className="group-hover:bg-white absolute w-full opacity-20 duration-200 z-10 rounded-full py-5 px-5 top-0 left-0"></span>
-                      </Link>
-                    )}
+              {slider?.map((item, index: number) => {
+                return (
+                  <div
+                    key={index}
+                    className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-center bg-cover"
+                    style={{
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''})`,
+                      backgroundAttachment: 'fixed',
+                    }}
+                  >
+                    <div className="bg-wmcolor opacity-20 w-full h-full absolute z-10"></div>
+                    <div className="text-start w-9/12 lg:w-9/12 xl:w-8/12 space-y-4 ml-16 lg:ml-0 z-20">
+                      {item?.title && (
+                        <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white font-poppins">
+                          {parseHTMLToReact(item?.title)}
+                        </h1>
+                      )}
+                      {item?.desc && (
+                        <h2 className="text-sm xl:text-base w-full xl:w-8/12 font-light text-white mb-10 font-h2oppins">
+                          {parseHTMLToReact(item?.desc)}
+                        </h2>
+                      )}
+                      {item?.button && (
+                        <button className="group relative overflow-hidden bg-privatecolor text-white uppercase font-semibold py-2 px-5 rounded-full">
+                          {item?.button}
+                          <span className="group-hover:bg-white absolute w-full opacity-20 duration-200 z-10 rounded-full py-5 px-5 top-0 left-0"></span>
+                        </button>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
             <svg
               className="w-full  absolute z-20 top-[55vh] md:top-[80vh]"
@@ -171,7 +168,7 @@ export function CE_BannerVariant02({
                       className={[
                         'w-2 h-2 md:w-[10px] md:h-[10px] rounded-full ',
                         '',
-                        `${bannerIndex === currentSlide ? 'outline outline-1 outline-privatecolor bg-privatecolor outline-offset-2 ' : 'bg-white bg-opacity-65 '}`,
+                        `${bannerIndex === currentSlide ? 'outline outline-1 outline-white bg-white outline-offset-2 ' : 'bg-white bg-opacity-65 '}`,
                         'cursor-pointer',
                       ].join(' ')}
                       onClick={() => {
