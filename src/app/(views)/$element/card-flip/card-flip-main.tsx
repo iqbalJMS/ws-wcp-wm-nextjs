@@ -46,6 +46,16 @@ const CE_CardFlipMain = ({
           variant={variant}
         />
       )}
+      {variant === 'wm-main-navigation' && (
+        <CE_CardVariant15
+          data={data}
+          topTitle={topTitle}
+          subTitle={subTitle}
+          buttonText={buttonText}
+          buttonUri={buttonUri}
+          variant={variant}
+        />
+      )}
     </>
   );
 };

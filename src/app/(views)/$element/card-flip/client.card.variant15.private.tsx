@@ -11,6 +11,7 @@ export default function CE_CardVariant15({
   subTitle,
   buttonText,
   buttonUri,
+  variant,
 }: {
   data: Array<{
     title: string;
@@ -34,6 +35,13 @@ export default function CE_CardVariant15({
       mainControls.start('visible');
     }
   }, [isInView, mainControls]);
+
+  let colorTheme = '';
+  if (variant === 'wm-main-navigation') {
+    colorTheme = 'wmcolor';
+  } else if (variant === 'wm-private-main-navigation') {
+    colorTheme = 'privatecolor';
+  }
   return (
     <>
       <div className="w-full h-auto flex justify-center pt-20 pb-10">
@@ -52,7 +60,9 @@ export default function CE_CardVariant15({
             className="w-full flex flex-col items-center px-16"
           >
             {topTitle && (
-              <h1 className="uppercase text-privatecolor text-2xl md:text-3xl font-bold tracking-wider">
+              <h1
+                className={`uppercase text-${colorTheme} text-2xl md:text-3xl font-bold tracking-wider`}
+              >
                 {parseHTMLToReact(topTitle)}
               </h1>
             )}
@@ -92,7 +102,9 @@ export default function CE_CardVariant15({
             >
               <div className="space-y-2 px-16 md:px-0">
                 {data?.[0]?.title && (
-                  <h3 className="text-privatecolor text-base font-light uppercase">
+                  <h3
+                    className={`text-${colorTheme} text-base font-light uppercase`}
+                  >
                     {parseHTMLToReact(data?.[0]?.title)}
                   </h3>
                 )}
@@ -110,14 +122,14 @@ export default function CE_CardVariant15({
               <div className="pt-8 xl:pt-16 space-x-4">
                 <Link
                   href={`/${buttonUri ?? '/404'}`}
-                  className="uppercase text-base font-semibold bg-privatecolor text-white rounded-full py-2 px-4 hover:bg-gray-500 duration-300"
+                  className={`uppercase text-base font-semibold bg-${colorTheme} text-white rounded-full py-2 px-4 hover:bg-gray-500 duration-300`}
                 >
                   {buttonText}
                 </Link>
                 {topTitle === undefined ? null : (
                   <Link
                     href={'/get-invited-private'}
-                    className="uppercase text-base font-semibold rounded-full py-2 px-4 border-privatecolor border bg-white text-privatecolor hover:bg-privatecolor duration-300 hover:text-white-01"
+                    className={`uppercase text-base font-semibold rounded-full py-2 px-4 border-${colorTheme} border bg-white text-${colorTheme} hover:bg-${colorTheme} duration-300 hover:text-white-01`}
                   >
                     get invited
                   </Link>
