@@ -315,3 +315,11 @@ input[type='range']::-webkit-slider-thumb {
 .parsehtml table tr td {
   @apply p-1 border border-black;
 }
+
+.triangle {
+  width: 1910px;
+  height: 700px;
+  aspect-ratio: 1;
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  background: #3a339f;
+}

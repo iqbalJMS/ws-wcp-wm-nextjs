@@ -35,7 +35,8 @@
     "remarkable": "^2.0.1",
     "sharp": "^0.33.5",
     "tailwind-variants": "^0.2.1",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@types/aos": "^3.0.7",
