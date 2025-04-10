@@ -53,7 +53,7 @@ export default function CE_SimulationObligasi() {
         setResult(data?.data);
         if (button) {
           setIsResult(true);
-          window.scrollTo({ top: 1000, behavior: 'smooth' });
+          window.scrollTo({ top: 5000, behavior: 'smooth' });
         }
       });
     } catch (error) {}
@@ -74,6 +74,7 @@ export default function CE_SimulationObligasi() {
 
   const handleResetForm = () => {
     setIsResult(false);
+    window.scrollTo({ top: 1000, behavior: 'smooth' });
     resetForm();
   };
 
@@ -100,7 +101,7 @@ export default function CE_SimulationObligasi() {
               </div>
               <div>
                 <InputSlider
-                  min={0}
+                  min={1000000}
                   max={995000000000}
                   step={5000000000}
                   value={form?.amount}
@@ -130,7 +131,7 @@ export default function CE_SimulationObligasi() {
             type="text"
             value={form?.couponRate}
             onChange={(value) => onFieldChange('couponRate', +value)}
-            state={'init'}
+            state={'coupon'}
             rightSlot={
               <div className="bg-gray-200 text-gray-500 rounded-e-full flex justify-center items-center w-12">
                 %

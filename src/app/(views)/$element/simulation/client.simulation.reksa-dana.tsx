@@ -52,7 +52,7 @@ export default function CE_SimulationReksaDana() {
         setResult(data?.data);
         if (button) {
           setIsResult(true);
-          window.scrollTo({ top: 1000, behavior: 'smooth' });
+          window.scrollTo({ top: 5000, behavior: 'smooth' });
         }
       });
     } catch (error) {}
@@ -100,6 +100,7 @@ export default function CE_SimulationReksaDana() {
   const handleResetForm = () => {
     handleChangeRisk('MONEY_MARKET');
     setIsResult(false);
+    window.scrollTo({ top: 1000, behavior: 'smooth' });
     resetForm();
   };
 
@@ -126,7 +127,7 @@ export default function CE_SimulationReksaDana() {
               </div>
               <div>
                 <InputSlider
-                  min={0}
+                  min={1000000}
                   max={995000000000}
                   step={5000000000}
                   value={form?.amount}

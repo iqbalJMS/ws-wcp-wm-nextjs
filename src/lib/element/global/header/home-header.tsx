@@ -4,7 +4,7 @@ import useScrollActive from '@/lib/hook/useScroll';
 import { T_ResponseGetTopMenuNavbar } from '@/api/navbar-menu/top-navbar/api.get-top-menu-navbar.type';
 import { T_ResponseGetMenuItemNavbar } from '@/api/navbar-menu/menu-items/api.get-menu-items-navbar.type';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from 'next/link';
 import { CloseIcon } from '@/lib/element/global/icons/close-icon';
@@ -16,8 +16,8 @@ import {
 } from '@/api/navbar-menu/main-navbar/private-navbar/api.get-main-menu-navbar.type';
 import { T_ResponGetHeaderLogo } from '@/api/header-logo/api.get-header-logo.type';
 import { Search } from '@/lib/element/global/global.search';
-import { motion } from 'framer-motion';
 import defaultLogo from '@/../../public/images/wefo-blue-logo.png';
+import { motion, useInView, useAnimation } from 'motion/react';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -29,6 +29,15 @@ export function LoginButton({
   const elementRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
   const isScrolling = useScrollActive();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
 
   useOnClickOutside(elementRef, () => setActive(false));
 
@@ -36,15 +45,15 @@ export function LoginButton({
     <div
       ref={elementRef}
       className={[
-        `${isScrolling ? 'bg-black' : 'bg-white'}`,
-        `${isScrolling ? 'hover:border-blue-800 border-2' : 'focus:bg-[#080087] hover:bg-[#080087] '}`,
+        `${isScrolling ? 'bg-black' : 'bg-white '}`,
+        `${isScrolling ? 'hover:border-blue-800 border-2 border-white' : 'hover:bg-[#080087] focus-within:border-white focus-within:border-2'}`,
         `text-[#191056] lg:px-6 lg:pr-4 lg:py-2 py-1 px-4 pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
       ].join(' ')}
       onClick={() => setActive(!active)}
     >
       <div
         className={[
-          `${isScrolling ? 'text-white text-sm lg:text-base' : 'text-bluedark01 text-sm lg:text-base'}`,
+          `${isScrolling ? 'text-white text-sm lg:text-base z-50' : 'text-bluedark01 text-sm lg:text-base z-50'}`,
           'uppercase font-semibold group-hover:text-white',
         ].join(' ')}
       >
@@ -78,44 +87,44 @@ export function LoginButton({
       </div>
       <div
         className={[
-          'absolute w-[20rem] right-0 pt-5',
-          'transition-all ease-in-out duration-200',
+          'bg-black/60 overflow-y-auto overflow-x-hidden fixed z-40 justify-center items-center w-full h-screen md:inset-0 max-h-full',
           active
             ? 'top-full visible opacity-100 '
             : 'top-0 invisible opacity-0',
         ].join(' ')}
       >
         <div
-          className={`
-          absolute top-[1%] right-4 rotate-180
-          border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] 
-          border-l-transparent border-r-transparent border-white
-          h-5 w-5`}
+          className={`${isScrolling ? 'absolute top-[90px] right-60 rotate-180 border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] border-l-transparent border-r-transparent border-whiteh-5 w-5' : 'absolute top-[110px] right-60 rotate-180 border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] border-l-transparent border-r-transparent border-whiteh-5 w-5'}
+          `}
         />
-        {menuItems?.map((loginItem, index) => {
-          return (
-            <div
-              key={index}
-              className="w-full bg-white mb-2 px-5 py-4 rounded-3xl"
-            >
-              <Link href={loginItem?.uri ?? '/404'} target="_blank">
-                <div
-                  className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
-                >
-                  <div className="mr-2">
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon ?? ''}`}
-                      alt=""
-                      width={30}
-                      height={30}
-                    />
+        <section
+          className={`${isScrolling ? 'w-full absolute top-[88px] right-52 -rotate-180' : 'w-full absolute top-[113px] right-52 -rotate-180'}`}
+        >
+          {menuItems?.map((loginItem, index) => {
+            return (
+              <motion.div
+                key={index}
+                className="w-80 bg-white mb-2 px-5 py-4 rounded-3xl -rotate-180"
+              >
+                <Link href={loginItem?.uri ?? '/404'} target="_blank">
+                  <div
+                    className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
+                  >
+                    <div className="mr-2">
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon ?? ''}`}
+                        alt=""
+                        width={30}
+                        height={30}
+                      />
+                    </div>
+                    <h1>{loginItem.title}</h1>
                   </div>
-                  <h1>{loginItem.title}</h1>
-                </div>
-              </Link>
-            </div>
-          );
-        })}
+                </Link>
+              </motion.div>
+            );
+          })}
+        </section>
       </div>
     </div>
   );
@@ -178,9 +187,9 @@ export default function HomeHeader({
     <>
       <header
         className={[
-          `${isScrolling ? 'bg-white shadow-md' : ''}`,
-          'z-50 fixed w-full ',
-          `${variant === 'transparent' ? '' : 'bg-white'}`,
+          `${isScrolling ? 'bg-white shadow-md z-50' : 'z-50'}`,
+          'fixed w-full z-50 ',
+          `${variant === 'transparent' ? 'z-50' : 'bg-white z-50'}`,
         ].join(' ')}
       >
         <div className="container py-4">
@@ -206,7 +215,7 @@ export default function HomeHeader({
                             height={18}
                             alt={`icon-${header.icon}`}
                             className={[
-                              'w-5 h-5 mr-2 ',
+                              'w-5 h-5 mr-2 z-50',
                               variant === 'no-transparent'
                                 ? ''
                                 : 'filter brightness-0 invert',
@@ -216,7 +225,7 @@ export default function HomeHeader({
                         <div
                           className={[
                             `text-[0.813rem] font-light`,
-                            `${variant === 'transparent' ? 'text-white' : ''}`,
+                            `${variant === 'transparent' ? 'text-white z-50' : 'z-50'}`,
                           ].join(' ')}
                         >
                           {header.title}
@@ -234,7 +243,7 @@ export default function HomeHeader({
                             height={18}
                             alt={`icon-${header.icon}`}
                             className={[
-                              'w-5 h-5 mr-2 ',
+                              'w-5 h-5 mr-2 z-50',
                               variant === 'no-transparent'
                                 ? ''
                                 : 'filter brightness-0 invert',
@@ -244,7 +253,7 @@ export default function HomeHeader({
                         <div
                           className={[
                             `text-[0.813rem] font-light`,
-                            `${variant === 'transparent' ? 'text-white' : ''}`,
+                            `${variant === 'transparent' ? 'text-white z-50' : 'z-50'}`,
                           ].join(' ')}
                         >
                           {header.title}
@@ -266,7 +275,7 @@ export default function HomeHeader({
                   key={label}
                   onClick={() => onSwitchLanguages(label.toLowerCase())}
                   className={[
-                    `text-xs p-1 px-2 rounded-md`,
+                    `text-xs p-1 px-2 rounded-md z-50`,
                     `${variant === 'transparent' ? 'text-white' : ''}`,
                     `${
                       (currentLanguage ?? 'id')?.includes(label.toLowerCase())
@@ -282,7 +291,7 @@ export default function HomeHeader({
           </div>
 
           <div className="lg:hidden items-center justify-between flex">
-            <Link href={'/'} className="w-[12vh] ">
+            <Link href={'/'} className="w-[12vh] bg-red-400">
               {headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]
                 ?.url ? (
                 <Image
@@ -290,7 +299,7 @@ export default function HomeHeader({
                   src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ``}`}
                   width={128}
                   height={53}
-                  className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                  className={`${isScrolling ? '' : variant === 'no-transparent' ? 'z-50' : 'filter brightness-0 invert z-50'} `}
                 />
               ) : (
                 <Image
@@ -298,7 +307,7 @@ export default function HomeHeader({
                   src={defaultLogo}
                   width={128}
                   height={53}
-                  className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                  className={`${isScrolling ? '' : variant === 'no-transparent' ? 'z-50' : 'filter brightness-0 invert z-50'} `}
                 />
               )}
             </Link>
@@ -328,7 +337,7 @@ export default function HomeHeader({
 
           <div className="lg:flex items-center justify-between hidden ">
             <div className="flex-none">
-              <Link className="!text-gray-500 " href="/">
+              <Link className="!text-gray-500 z-50" href="/">
                 {headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]
                   ?.uri?.[0]?.url ? (
                   <Image
@@ -336,7 +345,7 @@ export default function HomeHeader({
                     src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ``}`}
                     width={150}
                     height={60}
-                    className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                    className={`${isScrolling ? 'z-50' : variant === 'no-transparent' ? 'z-50' : 'filter brightness-0 invert z-50'} `}
                   />
                 ) : (
                   <Image
@@ -344,19 +353,19 @@ export default function HomeHeader({
                     src={defaultLogo}
                     width={150}
                     height={60}
-                    className={`${isScrolling ? '' : variant === 'no-transparent' ? '' : 'filter brightness-0 invert'} `}
+                    className={`${isScrolling ? 'z-50' : variant === 'no-transparent' ? 'z-50' : 'filter brightness-0 invert z-50'} `}
                   />
                 )}
               </Link>
             </div>
             <div className="flex-auto">
-              <div className="flex flex-wrap items-center justify-end gap-y-5">
+              <div className="flex flex-wrap items-end justify-end gap-y-5">
                 {headerBottom?.map((item, index) => {
                   return (
                     <div
                       key={index}
                       className={[
-                        'pb-2 border-b-4 border-transparent hover:border-wmcolor mx-5',
+                        'border-b-4 border-transparent hover:border-wmcolor mx-5',
                         item.below?.length ? 'group' : '',
                       ].join(' ')}
                     >
@@ -364,7 +373,7 @@ export default function HomeHeader({
                         href={generateLinkBottom(item ?? '/404')}
                         className={[
                           `text-sm font-normal cursor-pointer uppercase relative `,
-                          `${isScrolling ? 'text-black' : variant === 'transparent' ? 'text-white' : ''}`,
+                          `${isScrolling ? 'text-black z-50' : variant === 'transparent' ? 'text-white z-50' : 'z-50'}`,
                         ].join(' ')}
                       >
                         {item?.title}
@@ -448,7 +457,7 @@ export default function HomeHeader({
                 })}
               </div>
             </div>
-            <div className="pb-2 border-b-4 border-transparent lg:block hidden ml-4">
+            <div className="border-b-4 border-transparent lg:block hidden ml-4">
               <LoginButton menuItems={itemLogin} />
             </div>
           </div>
