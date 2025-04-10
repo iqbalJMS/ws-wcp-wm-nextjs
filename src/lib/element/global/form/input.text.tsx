@@ -9,7 +9,7 @@ type T_InputTextProps = {
   rightText?: string;
   leftText?: string;
   disabled?: boolean;
-  state?: 'init' | 'error';
+  state?: 'init' | 'error' | 'coupon';
   onEnter?: () => void;
   // eslint-disable-next-line no-unused-vars
   onChange?: (value: T_InputTextOnChange) => void;
@@ -86,8 +86,8 @@ export default function InputText({
         className={`relative flex w-full h-12 items-center border overflow-hidden bg-transparent ${
           disabled ? 'bg-gray-500 bg-opacity-5' : 'bg-transparent'
         } ${
-          state === 'error'
-            ? 'border-red-500'
+          state === 'coupon'
+            ? 'border border-gray-400'
             : 'border-none focus-within:border-blue-01 focus-within:border-opacity-50 focus-within:ring-4 focus-within:ring-light-02 focus-within:ring-opacity-30'
         } 
         ${rounded === 'full' ? 'rounded-full' : 'rounded-md'}`}

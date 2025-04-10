@@ -123,6 +123,7 @@ export default function CE_SimultaionInitialInvest() {
     setInvestType('1');
     handleChangeRisk('1');
     setIsResult(false);
+    window.scrollTo({ top: 1000, behavior: 'smooth' });
     resetForm();
   };
 
@@ -174,7 +175,7 @@ export default function CE_SimultaionInitialInvest() {
                     </div>
                     <div>
                       <InputSlider
-                        min={0}
+                        min={1000000}
                         max={995000000000}
                         step={5000000000}
                         value={form?.targetInvestmentValue}
