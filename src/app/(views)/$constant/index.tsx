@@ -1374,8 +1374,8 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: CE_CardOutletMap,
       props: (_component: T_Map) => {
         return {
-          title: _component?.field_bri_location?.[0]?.location_name,
-          linkCta: _component?.field_primary_cta?.[0]?.full_url,
+          title: _component?.location_detail?.name,
+          linkCta: _component?.location_detail?.urlMaps,
           desc: _component?.location_detail?.address,
           image: _component?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
           linkTitle: _component?.field_primary_cta?.[0]?.title,

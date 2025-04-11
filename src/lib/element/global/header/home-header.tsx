@@ -4,7 +4,7 @@ import useScrollActive from '@/lib/hook/useScroll';
 import { T_ResponseGetTopMenuNavbar } from '@/api/navbar-menu/top-navbar/api.get-top-menu-navbar.type';
 import { T_ResponseGetMenuItemNavbar } from '@/api/navbar-menu/menu-items/api.get-menu-items-navbar.type';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from 'next/link';
 import { CloseIcon } from '@/lib/element/global/icons/close-icon';
@@ -87,7 +87,7 @@ export function LoginButton({
       </div>
       <div
         className={[
-          'bg-black/60 overflow-y-auto overflow-x-hidden fixed z-40 justify-center items-center w-full h-screen md:inset-0 max-h-full',
+          'bg-black/60 overflow-y-auto overflow-x-hidden fixed z-10 justify-center items-center w-full h-screen md:inset-0 max-h-full',
           active
             ? 'top-full visible opacity-100 '
             : 'top-0 invisible opacity-0',
@@ -184,12 +184,12 @@ export default function HomeHeader({
   };
 
   return (
-    <>
+    <Fragment>
       <header
         className={[
-          `${isScrolling ? 'bg-white shadow-md z-50' : 'z-50'}`,
+          `${isScrolling ? 'bg-white shadow-md ' : ''}`,
           'fixed w-full z-50 ',
-          `${variant === 'transparent' ? 'z-50' : 'bg-white z-50'}`,
+          `${variant === 'transparent' ? '' : 'bg-white '} `,
         ].join(' ')}
       >
         <div className="container py-4">
@@ -336,7 +336,7 @@ export default function HomeHeader({
           </div>
 
           <div className="lg:flex items-center justify-between hidden ">
-            <div className="flex-none">
+            <div className="flex-none z-50">
               <Link className="!text-gray-500 z-50" href="/">
                 {headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]
                   ?.uri?.[0]?.url ? (
@@ -640,7 +640,7 @@ export default function HomeHeader({
         )}
         <Search active={activeSearch} setActive={setActiveSearch} />
       </header>
-    </>
+    </Fragment>
   );
 }
 
