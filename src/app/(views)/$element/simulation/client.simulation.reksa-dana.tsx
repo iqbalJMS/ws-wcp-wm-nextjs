@@ -100,12 +100,13 @@ export default function CE_SimulationReksaDana() {
   const handleResetForm = () => {
     handleChangeRisk('MONEY_MARKET');
     setIsResult(false);
-    window.scrollTo({ top: 1000, behavior: 'smooth' });
+    window.scrollTo({ top: 900, behavior: 'smooth' });
+
     resetForm();
   };
 
   useEffect(() => {
-    handleResetForm();
+    window.scrollTo(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resetCount]);
 
@@ -152,7 +153,7 @@ export default function CE_SimulationReksaDana() {
       <div className="py-5">
         <InputLabel label="Jenis Reksa Dana" required>
           <InputRadioButton
-            key={resetCount}
+            key={resetCount + 1}
             list={[
               {
                 value: 'MONEY_MARKET',
@@ -202,7 +203,7 @@ export default function CE_SimulationReksaDana() {
           HITUNG
         </ButtonSecondary>
         <ButtonSecondary
-          onClick={() => setResetCount((prev) => prev + 1)}
+          onClick={() => handleResetForm()}
           rounded="full"
           color="gray-100"
           className="bg-gray-100 text-wmcolor border border-wmcolor"
@@ -221,6 +222,7 @@ export default function CE_SimulationReksaDana() {
           onClose={() => {}}
         />
       )}
+      <div className="hidden" onClick={() => setResetCount}></div>
     </>
   );
 }

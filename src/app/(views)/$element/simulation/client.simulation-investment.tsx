@@ -121,12 +121,12 @@ export default function CE_SimulationInvestment() {
     setInvestType('1');
     handleChangeRisk('1');
     setIsResult(false);
-    window.scrollTo({ top: 1000, behavior: 'smooth' });
+    window.scrollTo({ top: 900, behavior: 'smooth' });
     resetForm();
   };
 
   useEffect(() => {
-    handleResetForm();
+    window.scrollTo(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resetCount]);
 
@@ -322,7 +322,7 @@ export default function CE_SimulationInvestment() {
             HITUNG
           </ButtonSecondary>
           <ButtonSecondary
-            onClick={() => setResetCount((prev) => prev + 1)}
+            onClick={() => handleResetForm()}
             rounded="full"
             color="gray-100"
             className="bg-gray-100 text-wmcolor border border-wmcolor"
@@ -342,6 +342,7 @@ export default function CE_SimulationInvestment() {
           />
         )}
       </div>
+      <div className="hidden" onClick={() => setResetCount}></div>
     </>
   );
 }
