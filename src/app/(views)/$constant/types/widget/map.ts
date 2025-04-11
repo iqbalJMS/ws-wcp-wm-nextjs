@@ -49,5 +49,10 @@ export type T_Map = {
   field_primary_cta: Array<{ uri: string; full_url: string; title: string }>;
   location_detail: {
     address: string;
+    urlMaps: string;
+    name: string;
+    id: string;
+    lat: number;
+    long: number;
   };
 };

@@ -4,8 +4,7 @@ import CE_SimulationInvestment from './client.simulation-investment';
 import CE_SimultaionInitialInvest from './client.simulation.initial-invest';
 import CE_SimulationObligasi from './client.simulation.obligasi';
 import CE_SimulationReksaDana from './client.simulation.reksa-dana';
-// import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-
+import ScrollToTopSlug from '@/app/(views)/$element/scroll-to-top-slug';
 export default function TabsCalculator({
   data,
 }: {
@@ -24,6 +23,8 @@ export default function TabsCalculator({
 
   return (
     <>
+      <ScrollToTopSlug />
+
       <div className="w-full rounded-lg shadow-lg flex flex-col justify-center items-center relative overflow-hidden">
         <div className="flex w-11/12 lg:w-9/12 xl:w-5/12 border-b-2 pt-20 border-wmcolor">
           <div

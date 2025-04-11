@@ -26,7 +26,7 @@ import ScrollToTopPriority from '@/lib/element/global/scroll-top/scroll.top-prio
 import { ACT_GetMainMiddleFooter } from './(views)/$action/main-middle-footer/action.get.main-middle-footer';
 import { ACT_GetHeaderLogo } from './(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetHeaderLogoPrivate } from './(views)/$action/header-logo/action.get.header-logo-private';
-
+import ScrollToTop from '@/lib/element/global/scroll-to-top';
 export default async function PageWealth({
   searchParams,
 }: {
@@ -105,6 +105,7 @@ export default async function PageWealth({
       <CE_FloatingMain data={itemMenuFloatNavigation} variant={theme} />
       {components?.map(({ Component, props }, key) => (
         <React.Fragment key={key}>
+          <ScrollToTop />
           <Component {...props} />
         </React.Fragment>
       ))}

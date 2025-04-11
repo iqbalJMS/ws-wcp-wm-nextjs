@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollToTop from '@/lib/element/global/scroll-to-top';
 
 export default async function WmSlugLayout({
   children,
@@ -7,6 +8,7 @@ export default async function WmSlugLayout({
 }>) {
   return (
     <>
+      <ScrollToTop />
       <main>{children}</main>
     </>
   );

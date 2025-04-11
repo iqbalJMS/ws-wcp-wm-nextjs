@@ -31,6 +31,7 @@ import CE_FloatingVariant02 from '@/app/(views)/$element/floating-menu/client.fl
 import { ACT_GetFloatNavPriority } from '@/app/(views)/$action/action.get-float-nav-priority';
 import { ACT_GetFloatNavPrivate } from '@/app/(views)/$action/action.get-float-nav-private';
 import HomeHeader from '@/lib/element/global/header/home-header';
+import ScrollToTopSlug from '@/app/(views)/$element/scroll-to-top-slug';
 
 export default async function PageWealthDetail({
   params: { slug },
@@ -135,6 +136,7 @@ export default async function PageWealthDetail({
 
       {components?.map(({ Component, props }, key) => (
         <React.Fragment key={key}>
+          <ScrollToTopSlug />
           <Component {...props} />
         </React.Fragment>
       ))}
