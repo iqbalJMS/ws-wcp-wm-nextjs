@@ -18,6 +18,8 @@ import InputError from '@/lib/element/global/form/input.error';
 import InputLabel from '@/lib/element/global/form/input.label';
 import InputRadioButton from '@/lib/element/global/form/input.radiobutton';
 import CE_SimulationResultVariant01 from './client.simulation-result';
+import RichTextSimulation from '@/app/(views)/$element/rich-text-simulation';
+
 export default function CE_SimulationInvestment() {
   const [pending, transiting] = useTransition();
   const [isResult, setIsResult] = useState(false);
@@ -55,7 +57,7 @@ export default function CE_SimulationInvestment() {
           setResult(data?.data);
           if (button) {
             setIsResult(true);
-            window.scrollTo({ top: 5000, behavior: 'smooth' });
+            window.scrollTo({ top: 3000, behavior: 'smooth' });
           }
         }
       );
@@ -103,12 +105,12 @@ export default function CE_SimulationInvestment() {
     }
   };
 
-  const DESCRIPTION = {
-    '3': 'Sangat Konservatif Tujuan berinvestasi untuk mendapatkan pertumbuhan nilai investasi. Berinvestasi pada produk dengan risiko sangat rendah. Jangka waktu investasi yang dianjurkan 0-2 tahun Rekomendasi Portofolio Investasi Pendapatan Tetap 30% Deposito/Giro 40% Pasar Uang 30%',
-    '5': 'Konservatif Tujuan berinvestasi untuk mendapatkan pertumbuhan sedang. Berinvestasi pada produk dengan risiko sedang. Jangka waktu investasi yang dianjurkan 2-3 tahun Rekomendasi Portofolio Investasi Pendapatan Tetap 35% Tabungan/Deposito/Giro 20% Pasar Uang 30% Saham 15%',
-    '7': 'Moderat Tujuan berinvestasi untuk mendapatkan pertumbuhan tinggi. Berinvestasi pada produk dengan risiko sedang hingga tinggi. Jangka waktu investasi yang dianjutkan 3-5 tahun Rekomendasi Portofolio Investasi Pendapatan Tetap 35% Tabungan/Deposito/Giro 10% Pasar Uang 25% Saham 30%',
-    '10': 'Agresif Tujuan berinvestasi untuk mendapatkan pertumbuhan pesat. Berinvestasi pada produk dengan risiko yang tinggi. Jangka waktu investasi yang dianjurkan > 5 tahun Rekomendasi Portofolio Investasi Pendapatan Tetap 20% Tabungan/Deposito/Giro 10% Pasar Uang 10% Saham 60%',
-  };
+  // const DESCRIPTION = {
+  //   '3': 'Sangat Konservatif Tujuan berinvestasi untuk mendapatkan pertumbuhan nilai investasi. Berinvestasi pada produk dengan risiko sangat rendah. Jangka waktu investasi yang dianjurkan 0-2 tahun Rekomendasi Portofolio Investasi Pendapatan Tetap 30% Deposito/Giro 40% Pasar Uang 30%',
+  //   '5': 'Konservatif Tujuan berinvestasi untuk mendapatkan pertumbuhan sedang. Berinvestasi pada produk dengan risiko sedang. Jangka waktu investasi yang dianjurkan 2-3 tahun Rekomendasi Portofolio Investasi Pendapatan Tetap 35% Tabungan/Deposito/Giro 20% Pasar Uang 30% Saham 15%',
+  //   '7': 'Moderat Tujuan berinvestasi untuk mendapatkan pertumbuhan tinggi. Berinvestasi pada produk dengan risiko sedang hingga tinggi. Jangka waktu investasi yang dianjutkan 3-5 tahun Rekomendasi Portofolio Investasi Pendapatan Tetap 35% Tabungan/Deposito/Giro 10% Pasar Uang 25% Saham 30%',
+  //   '10': 'Agresif Tujuan berinvestasi untuk mendapatkan pertumbuhan pesat. Berinvestasi pada produk dengan risiko yang tinggi. Jangka waktu investasi yang dianjurkan > 5 tahun Rekomendasi Portofolio Investasi Pendapatan Tetap 20% Tabungan/Deposito/Giro 10% Pasar Uang 10% Saham 60%',
+  // };
 
   type T_InvestType = '1' | '2';
   const [investType, setInvestType] = useState<T_InvestType>('1');
@@ -118,9 +120,9 @@ export default function CE_SimulationInvestment() {
       : result?.periodicInvestmentResult.toString();
 
   const handleResetForm = () => {
-    setInvestType('1');
-    handleChangeRisk('1');
     setIsResult(false);
+    handleChangeRisk('1');
+    setInvestType('1');
     window.scrollTo({ top: 900, behavior: 'smooth' });
     resetForm();
   };
@@ -147,7 +149,7 @@ export default function CE_SimulationInvestment() {
                   title: 'Investasi berkala',
                 },
               ]}
-              value={`1`}
+              value={'1'}
               onChange={(value) => setInvestType(value as T_InvestType)}
             />
 
@@ -256,7 +258,7 @@ export default function CE_SimulationInvestment() {
                     title: 'Agresif',
                   },
                 ]}
-                value={`1`}
+                value={'1'}
                 onChange={(value) => {
                   handleChangeRisk(String(value));
                 }}
@@ -264,14 +266,15 @@ export default function CE_SimulationInvestment() {
 
               <InputError message={''} />
             </InputLabel>
-            <div className="w-96 text-xs leading-5 text-slate-600 pt-3">
-              <h1 className="">
+            <div className="w-96 text-xs leading-5 text-slate-600 pt-3 ">
+              <RichTextSimulation params={interestAmountRange?.min} />
+              {/* <h1 className="">
                 {
                   DESCRIPTION[
                     String(interestAmountRange?.min) as '3' | '5' | '7' | '10'
                   ]
                 }
-              </h1>
+              </h1> */}
             </div>
           </div>
           <div>
@@ -279,7 +282,7 @@ export default function CE_SimulationInvestment() {
               <h1 className="text-xl font-semibold text-[#4A4A4A]">
                 Perkiraan Imbal Hasil
               </h1>
-              <h1 className="text-xs leading-5 text-slate-600">
+              <h1 className="text-xs leading-5 text-[#A9AFD1]">
                 min {interestAmountRange?.min}% - max {interestAmountRange?.max}
                 %
               </h1>

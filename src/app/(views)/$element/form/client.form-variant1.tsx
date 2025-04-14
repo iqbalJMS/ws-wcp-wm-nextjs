@@ -93,7 +93,7 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
             {DATA?.map((item, index) => (
               <div key={index} className="py-2">
                 <input
-                  className="text-white border-2 border-black rounded-full bg-transparent w-full px-5 py-3"
+                  className="text-black border-2 border-black rounded-full bg-transparent w-full px-5 py-3"
                   type={item?.type}
                   id="hello"
                   placeholder={item?.placeholder}
