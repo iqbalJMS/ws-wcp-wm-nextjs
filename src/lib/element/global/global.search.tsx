@@ -114,7 +114,7 @@ export function Search({ active, setActive }: T_SearchProps) {
     <div
       ref={elementRef}
       className={[
-        'fixed  left-0 w-full max-h-screen bg-white z-50 overflow-auto overflow-custom transition-all ease-in-out duration-300',
+        'fixed  left-0 w-full max-h-screen bg-white z-50 overflow-auto overflow-custom overflow-y-visible transition-all ease-in-out duration-300',
         active ? 'top-0' : '-top-full',
       ].join(' ')}
     >
