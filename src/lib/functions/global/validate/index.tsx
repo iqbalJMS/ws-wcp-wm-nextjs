@@ -41,7 +41,7 @@ export const validateMin = (
   label: string = 'Field',
   min: number = 1
 ): string => {
-  return (value || 0) < min ? `${label} tidak boleh kurang dari ${min}` : '';
+  return (value || 0) < min ? `${label} ${min}` : '';
 };
 
 export const validateMax = (
@@ -49,7 +49,7 @@ export const validateMax = (
   label: string = 'Field',
   max: number = 1
 ): string => {
-  return (value || 0) > max ? `${label} tidak boleh kurang dari ${max}` : '';
+  return (value || 0) > max ? `${label} ${max}` : '';
 };
 export const validateMaxMin = (
   value?: number,

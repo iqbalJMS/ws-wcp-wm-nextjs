@@ -87,7 +87,7 @@ export default function InputText({
           disabled ? 'bg-gray-500 bg-opacity-5' : 'bg-transparent'
         } ${
           state === 'coupon'
-            ? 'border border-gray-400'
+            ? 'border'
             : 'border-none focus-within:border-blue-01 focus-within:border-opacity-50 focus-within:ring-4 focus-within:ring-light-02 focus-within:ring-opacity-30'
         } 
         ${rounded === 'full' ? 'rounded-full' : 'rounded-md'}`}
@@ -107,7 +107,7 @@ export default function InputText({
         <input
           ref={inputRef}
           value={formatModelValue()}
-          className="w-full h-full text-base mdmax:text-sm text-[#505FD3] placeholder:text-black/50 placeholder:font-medium focus:outline-none bg-transparent flex-1 px-4"
+          className={className}
           disabled={disabled}
           type={type === 'password' ? 'password' : 'text'}
           placeholder={placeholder}
@@ -127,3 +127,5 @@ export default function InputText({
     </div>
   );
 }
+
+// text-[#505FD3] w-full h-full text-base mdmax:text-sm placeholder:text-black/50 placeholder:font-medium focus:outline-none bg-transparent flex-1 px-4
