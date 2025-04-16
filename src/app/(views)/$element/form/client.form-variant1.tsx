@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useEffect, useState, useTransition } from 'react';
 import { RefreshIcon } from '@/lib/element/global/refresh-icon';
 import { useDictionary } from '@/get-dictionary';
@@ -20,16 +21,37 @@ import {
 } from '@/api/webform/api.post.webform.type';
 import InputError from '@/lib/element/global/form/input.error';
 import DropDown from '@/lib/element/global/dropdown';
+import { ACT_GetProvince } from '@/app/(views)/$action/province/action.get-province';
+import { T_ResponGetProvince } from '@/api/province/api.get-province.type';
+import {
+  // T_LocationRequest,
+  T_ResponGetLocation,
+} from '@/api/location/api.get-location.type';
+import {
+  ACT_GetLocation,
+  // ACT_GetLocationGetInvited,
+} from '@/app/(views)/$action/location/action.get-location';
+// import {
+//   CFN_GetLocation,
+//   CFN_MapToLocationPayload,
+//   CFN_ValidateGetLocationFields,
+// } from '../../$function/cfn.get-location';
 
 type Option = {
   label: string;
+  value: string;
 };
 
 export default function CE_FormVariant1({ variant }: { variant: string }) {
-  const [selected, setSelected] = useState(null as Option | null);
-  const handleSelectedChange = (option: Option) => {
-    setSelected(option);
-  };
+  const [selectedProvince, setSelectedProvince] = useState<Option | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<Option | null>(null);
+
+  const [provinceData, setProvinceData] =
+    useState<T_ResponGetProvince | null>();
+
+  const [locationData, setLocationData] =
+    useState<T_ResponGetLocation | null>();
+
   const [pending, transiting] = useTransition();
   const [isResult, setIsResult] = useState(false);
   const [] = useState({
@@ -131,83 +153,29 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
     textColor = 'white';
   }
 
-  const provinsi = [
-    {
-      label: 'jakarta',
-    },
-    {
-      label: 'Bandung',
-    },
-    {
-      label: 'Surabaya',
-    },
-    {
-      label: 'Padang',
-    },
-    {
-      label: 'Medan',
-    },
-    {
-      label: 'Kupang',
-    },
-    {
-      label: 'jakarta',
-    },
-    {
-      label: 'Bandung',
-    },
-    {
-      label: 'Surabaya',
-    },
-    {
-      label: 'Padang',
-    },
-    {
-      label: 'Medan',
-    },
-    {
-      label: 'Kupang',
-    },
-  ];
+  const getProvince = async () => {
+    // eslint-disable-next-line no-unused-vars
+    const province = await ACT_GetProvince({
+      lang: 'en',
+    });
+    setProvinceData(province);
+  };
 
-  const city = [
-    {
-      label: 'jakarta',
-    },
-    {
-      label: 'Bandung',
-    },
-    {
-      label: 'Surabaya',
-    },
-    {
-      label: 'Padang',
-    },
-    {
-      label: 'Medan',
-    },
-    {
-      label: 'Kupang',
-    },
-    {
-      label: 'jakarta',
-    },
-    {
-      label: 'Bandung',
-    },
-    {
-      label: 'Surabaya',
-    },
-    {
-      label: 'Padang',
-    },
-    {
-      label: 'Medan',
-    },
-    {
-      label: 'Kupang',
-    },
-  ];
+  const getLocation = async (province: string) => {
+    // eslint-disable-next-line no-unused-vars
+    const location = await ACT_GetLocation({
+      limit: '50',
+      name: '',
+      tipe: '',
+      skip: '0',
+      province: province,
+    });
+    setLocationData(location?.data);
+  };
+
+  useEffect(() => {
+    getProvince();
+  }, [form.pilih_lokasi]);
 
   useEffect(() => {}, [result, isResult]);
 
@@ -311,17 +279,30 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
               </div>
               <div className="w-full">
                 <DropDown
-                  options={provinsi}
-                  selected={selected}
-                  onSelectedChanges={handleSelectedChange}
+                  options={
+                    provinceData?.data.map((item) => ({
+                      label: item?.name,
+                      value: item?.uuid,
+                    })) || []
+                  }
+                  selected={selectedProvince}
+                  onSelectedChanges={(value) => {
+                    setSelectedProvince(value);
+                    getLocation(value.value);
+                  }}
                   placeholder="Pilih Provinsi"
                 />
               </div>
               <div className="w-full">
                 <DropDown
-                  options={city}
-                  selected={selected}
-                  onSelectedChanges={handleSelectedChange}
+                  options={
+                    locationData?.data.map((item) => ({
+                      label: item?.name,
+                      value: item?.name,
+                    })) || []
+                  }
+                  selected={selectedLocation}
+                  onSelectedChanges={(value) => setSelectedLocation(value)}
                   placeholder="Pilih Lokasi"
                 />
               </div>
