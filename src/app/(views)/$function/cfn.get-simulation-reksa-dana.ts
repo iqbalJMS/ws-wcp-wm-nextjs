@@ -1,7 +1,10 @@
 'use client';
 
 import { T_PostResponse } from '@/api/common/fetch.type';
-import { validateMaxMin } from '@/lib/functions/global/validate';
+import {
+  validateMaxMin,
+  validateMaxMinVariant,
+} from '@/lib/functions/global/validate';
 import { Call } from '@strix/client';
 import {
   T_SimulationReksaDana,
@@ -37,12 +40,7 @@ export function CFN_ValidateCreateSimulationReksaDanaFields(
 ): string {
   switch (name) {
     case 'amount':
-      return validateMaxMin(
-        value,
-        'Nilai tidak boleh kurang dari 1.000.000 atau tidak boleh lebih besar dari 1.000.000.000.000 ',
-        1000000,
-        1000000000000
-      );
+      return validateMaxMinVariant(value, 1000000, 1000000000000);
     case 'investmentType':
       return validateMaxMin(value, '', 1, 20);
     default:

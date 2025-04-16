@@ -3,7 +3,8 @@
 import { T_PostResponse } from '@/api/common/fetch.type';
 import {
   validateMaxMin,
-  validateMaxMinDuration,
+  validateMaxMinVariant,
+  validateMaxMinVariant2,
 } from '@/lib/functions/global/validate';
 import { Call } from '@strix/client';
 import {
@@ -43,19 +44,9 @@ export function CFN_ValidateCreateSimulationInitialInvestmentFields(
 ): string {
   switch (name) {
     case 'targetInvestmentValue':
-      return validateMaxMin(
-        value,
-        'Nilai tidak boleh kurang dari 1.000.000 atau tidak boleh lebih besar dari 1.000.000.000.000',
-        1000000,
-        1000000000000
-      );
+      return validateMaxMinVariant(value, 1000000, 1000000000000);
     case 'duration':
-      return validateMaxMinDuration(
-        value,
-        'Nilai tidak boleh kurang dari 1 atau tidak boleh lebih besar dari 25',
-        1,
-        25
-      );
+      return validateMaxMinVariant2(value, 1, 25);
     case 'interestRate':
       return validateMaxMin(value, 'Jangka Waktu', 1, 15);
     default:

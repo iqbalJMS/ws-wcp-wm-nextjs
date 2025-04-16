@@ -18,6 +18,7 @@ import {
 } from '@/lib/functions/global/cfn.get.search';
 // import { CFN_GetSearchMenu } from '@/lib/functions/global/cfn.get.search-menu';
 import CE_CardVariant09 from './client.card.variant09';
+import { CloseIcon } from './icons/close-icon';
 type T_SearchProps = {
   active: boolean;
   setActive: (_active: boolean) => void;
@@ -119,19 +120,23 @@ export function Search({ active, setActive }: T_SearchProps) {
       ].join(' ')}
     >
       <div
-        className="absolute top-2 right-4 cursor-pointer flex gap-2 items-center text-sm"
+        className="absolute top-5 right-4 cursor-pointer flex gap-2 items-center text-sm"
         onClick={() => setActive(false)}
       >
-        {/* <CloseIcon className="text-blue-02 cursor-pointer" /> */}
+        <CloseIcon
+          className="rounded-full bg-wmcolor cursor-pointer"
+          width={20}
+          height={20}
+        />
         Tutup
       </div>
-      <div className="py-20 container">
+      <div className="py-32 container">
         <div className="pb-10 border-b border-black">
           <div className="text-center text-2xl mdmax:text-base font-semibold mb-5">
             Temukan yang Anda Butuhkan
           </div>
           <div className="text-center">
-            <div className="border border-black rounded-full inline-flex items-center overflow-hidden px-5 py-2 w-[60%] mdmax:w-full">
+            <div className="border border-black rounded-full inline-flex items-center overflow-hidden px-5 py-2 w-[50%] mdmax:w-full">
               <input
                 type="text"
                 className="focus:outline-none flex-1"
@@ -157,7 +162,7 @@ export function Search({ active, setActive }: T_SearchProps) {
             </div>
           </div>
         </div>
-        <div>
+        <div className="">
           <Tabs
             list={[
               {
