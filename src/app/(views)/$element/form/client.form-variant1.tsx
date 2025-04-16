@@ -1,13 +1,13 @@
 'use client';
 import React, { useEffect, useState, useTransition } from 'react';
-// import { RefreshIcon } from '@/lib/element/global/refresh-icon';
-// import { useDictionary } from '@/get-dictionary';
-// import {
-//   LoadCanvasTemplateNoReload,
-//   loadCaptchaEnginge,
-//   validateCaptcha,
-// } from 'react-simple-captcha';
-// import InputText from '@/lib/element/global/form/input.text';
+import { RefreshIcon } from '@/lib/element/global/refresh-icon';
+import { useDictionary } from '@/get-dictionary';
+import {
+  LoadCanvasTemplateNoReload,
+  loadCaptchaEnginge,
+  validateCaptcha,
+} from 'react-simple-captcha';
+import InputText from '@/lib/element/global/form/input.text';
 import {
   CFN_MapToWebFormPayload,
   CFN_PostWebForm,
@@ -19,8 +19,17 @@ import {
   T_FormResult,
 } from '@/api/webform/api.post.webform.type';
 import InputError from '@/lib/element/global/form/input.error';
+import DropDown from '@/lib/element/global/dropdown';
+
+type Option = {
+  label: string;
+};
 
 export default function CE_FormVariant1({ variant }: { variant: string }) {
+  const [selected, setSelected] = useState(null as Option | null);
+  const handleSelectedChange = (option: Option) => {
+    setSelected(option);
+  };
   const [pending, transiting] = useTransition();
   const [isResult, setIsResult] = useState(false);
   const [] = useState({
@@ -73,37 +82,39 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
     } catch (error) {}
   };
 
-  // const dictionary = useDictionary('id');
-  // const [captcha, setCaptcha] = useState({
-  //   form: '',
-  //   error: '',
-  // });
+  const dictionary = useDictionary('id');
+  const [captcha, setCaptcha] = useState({
+    form: '',
+    error: '',
+  });
 
-  // const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [loading, setLoading] = useState(false);
 
-  // const onSubmit = async (e: Event) => {
-  //   setLoading(true);
+  // eslint-disable-next-line no-unused-vars
+  const onSubmit = async (e: Event) => {
+    setLoading(true);
 
-  //   if (validateCaptcha(captcha.form) == false) {
-  //     e.preventDefault();
-  //     setCaptcha({
-  //       ...captcha,
-  //       error:
-  //         dictionary?.field.track.validateCaptcha || 'Captcha Tidak Sesuai',
-  //     });
-  //     setLoading(false);
-  //     return;
-  //   }
+    if (validateCaptcha(captcha.form) == false) {
+      e.preventDefault();
+      setCaptcha({
+        ...captcha,
+        error:
+          dictionary?.field.track.validateCaptcha || 'Captcha Tidak Sesuai',
+      });
+      setLoading(false);
+      return;
+    }
 
-  //   try {
-  //     // eslint-disable-next-line no-console
-  //     console.log('upload success');
-  //   } catch (error) {
-  //     // eslint-disable-next-line no-console
-  //     console.error('Upload or registration failed', error);
-  //   }
-  //   setLoading(false);
-  // };
+    try {
+      // eslint-disable-next-line no-console
+      console.log('upload success');
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Upload or registration failed', error);
+    }
+    setLoading(false);
+  };
 
   let colorTheme = '';
   if (variant === 'wm-private-main-navigation') {
@@ -119,6 +130,84 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
   } else {
     textColor = 'white';
   }
+
+  const provinsi = [
+    {
+      label: 'jakarta',
+    },
+    {
+      label: 'Bandung',
+    },
+    {
+      label: 'Surabaya',
+    },
+    {
+      label: 'Padang',
+    },
+    {
+      label: 'Medan',
+    },
+    {
+      label: 'Kupang',
+    },
+    {
+      label: 'jakarta',
+    },
+    {
+      label: 'Bandung',
+    },
+    {
+      label: 'Surabaya',
+    },
+    {
+      label: 'Padang',
+    },
+    {
+      label: 'Medan',
+    },
+    {
+      label: 'Kupang',
+    },
+  ];
+
+  const city = [
+    {
+      label: 'jakarta',
+    },
+    {
+      label: 'Bandung',
+    },
+    {
+      label: 'Surabaya',
+    },
+    {
+      label: 'Padang',
+    },
+    {
+      label: 'Medan',
+    },
+    {
+      label: 'Kupang',
+    },
+    {
+      label: 'jakarta',
+    },
+    {
+      label: 'Bandung',
+    },
+    {
+      label: 'Surabaya',
+    },
+    {
+      label: 'Padang',
+    },
+    {
+      label: 'Medan',
+    },
+    {
+      label: 'Kupang',
+    },
+  ];
 
   useEffect(() => {}, [result, isResult]);
 
@@ -220,33 +309,21 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                   />
                 </span>
               </div>
-              <div>
-                <input
-                  className="text-black border-2 border-black rounded-full bg-transparent w-full px-5 py-3"
-                  type="text"
-                  value={form?.pilih_provinsi}
-                  onChange={(value) => onFieldChange('pilih_provinsi', +value)}
+              <div className="w-full">
+                <DropDown
+                  options={provinsi}
+                  selected={selected}
+                  onSelectedChanges={handleSelectedChange}
                   placeholder="Pilih Provinsi"
                 />
-                {formError.pilih_provinsi && (
-                  <div className="mt-5">
-                    <InputError message={formError.pilih_provinsi} />
-                  </div>
-                )}
               </div>
-              <div>
-                <input
-                  className="text-black border-2 border-black rounded-full bg-transparent w-full px-5 py-3"
-                  type="text"
-                  value={form?.pilih_lokasi}
-                  onChange={(value) => onFieldChange('pilih_lokasi', +value)}
+              <div className="w-full">
+                <DropDown
+                  options={city}
+                  selected={selected}
+                  onSelectedChanges={handleSelectedChange}
                   placeholder="Pilih Lokasi"
                 />
-                {formError.pilih_lokasi && (
-                  <div className="mt-5">
-                    <InputError message={formError.pilih_lokasi} />
-                  </div>
-                )}
               </div>
               <div>
                 <h1 className="pb-3 text-black">Saya ingin</h1>
@@ -287,6 +364,34 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                 />
                 <h1 className="text-xs text-red-500 pt-1">Wajib diisi</h1>
               </div>
+              {
+                <div className="flex flex-col items-start space-y-5 py-5">
+                  <div className="flex items-center">
+                    <LoadCanvasTemplateNoReload />
+                    <button type="button" onClick={() => loadCaptchaEnginge(6)}>
+                      <RefreshIcon width={28} height={28} fill="#27AE60" />
+                    </button>
+                  </div>
+                  <div className="px-4 flex-1 border-black">
+                    <InputText
+                      placeholder={
+                        `${dictionary?.field.general.enter} ${dictionary?.field.track.captcha}` ||
+                        'Masukkan Captcha'
+                      }
+                      type="text"
+                      value={captcha.form}
+                      onChange={(value) =>
+                        setCaptcha({
+                          form: value.toString() || '',
+                          error: '',
+                        })
+                      }
+                      state={captcha.error ? 'error' : 'init'}
+                    />
+                    <h1>{captcha.error}</h1>
+                  </div>
+                </div>
+              }
               <button
                 onClick={() => handleSubmit(true)}
                 type="submit"
@@ -475,33 +580,4 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                     </div>
                   )}
                 </div> */
-}
-
-{
-  /* <div className="flex flex-col items-start space-y-5 py-5">
-                <div className="flex items-center">
-                  <LoadCanvasTemplateNoReload />
-                  <button type="button" onClick={() => loadCaptchaEnginge(6)}>
-                    <RefreshIcon width={28} height={28} fill="#27AE60" />
-                  </button>
-                </div>
-                <div className="px-4 flex-1 border-black">
-                <InputText
-                  placeholder={
-                    `${dictionary?.field.general.enter} ${dictionary?.field.track.captcha}` ||
-                    'Masukkan Captcha'
-                    }
-                    type="text"
-                  value={captcha.form}
-                  onChange={(value) =>
-                  setCaptcha({
-                    form: value.toString() || '',
-                    error: '',
-                    })
-                    }
-                    state={captcha.error ? 'error' : 'init'}
-                    />
-                    <h1>{captcha.error}</h1>
-                    </div>
-              </div> */
 }
