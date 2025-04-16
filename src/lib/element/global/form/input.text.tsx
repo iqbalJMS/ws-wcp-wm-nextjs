@@ -84,7 +84,7 @@ export default function InputText({
     <div>
       <div
         className={`relative flex w-full h-12 items-center border overflow-hidden bg-transparent ${
-          disabled ? 'bg-gray-500 bg-opacity-5' : 'bg-transparent'
+          disabled ? 'bg-gray-500' : 'bg-transparent'
         } ${
           state === 'coupon'
             ? 'border'
@@ -107,7 +107,7 @@ export default function InputText({
         <input
           ref={inputRef}
           value={formatModelValue()}
-          className="text-[#505FD3] w-full h-full text-base mdmax:text-sm placeholder:text-black/50 placeholder:font-medium focus:outline-none bg-transparent flex-1 px-4"
+          className="text-[#505FD3] w-full h-full text-base mdmax:text-sm placeholder:text-black/50 placeholder:font-medium focus:outline-none bg-transparent flex-1 px-4 bg-black"
           disabled={disabled}
           type={type === 'password' ? 'password' : 'text'}
           placeholder={placeholder}

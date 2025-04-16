@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 type Option = {
   label: string;
+  value: string;
 };
 
 interface DropDownOptions {

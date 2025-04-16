@@ -299,7 +299,7 @@ export default function HomeHeader({
           </div>
 
           <div className="lg:hidden items-center justify-between flex">
-            <Link href={'/'} className="w-[12vh] bg-red-400">
+            <Link href={'/'} className="w-[12vh]">
               {headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]
                 ?.url ? (
                 <Image
