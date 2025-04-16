@@ -183,6 +183,14 @@ export default function HomeHeader({
     return pathname.includes(url);
   };
 
+  useEffect(() => {
+    if (activeSearch) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [activeSearch]);
+
   return (
     <Fragment>
       <header

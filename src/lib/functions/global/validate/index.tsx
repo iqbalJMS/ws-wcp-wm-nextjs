@@ -41,16 +41,50 @@ export const validateMin = (
   label: string = 'Field',
   min: number = 1
 ): string => {
-  return (value || 0) < min ? `${label} tidak boleh kurang dari ${min}` : '';
+  return (value || 0) < min ? `${label} ${min}` : '';
 };
 
-export const validateMax = (
+export const validateMaxMinVariant = (
   value?: number,
-  label: string = 'Field',
-  max: number = 1
+  min: number = 1,
+  max: number = 10
 ): string => {
-  return (value || 0) > max ? `${label} tidak boleh kurang dari ${max}` : '';
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+    }).format(value);
+  };
+
+  if (!value) return `Nilai tidak boleh kurang dari ${formatCurrency(min)}`;
+
+  if (value < min) {
+    return `Nilai tidak boleh kurang dari ${formatCurrency(min)}`;
+  }
+  if (value > max) {
+    return `Nilai tidak boleh lebih dari ${formatCurrency(max)}`;
+  }
+
+  return '';
 };
+
+export const validateMaxMinVariant2 = (
+  value?: number,
+  min: number = 1,
+  max: number = 10
+): string => {
+  if (!value) return `Nilai tidak boleh kurang dari ${min}`;
+
+  if (value < min) {
+    return `Nilai tidak boleh kurang dari ${min}`;
+  }
+  if (value > max) {
+    return `Nilai tidak boleh lebih dari ${max}`;
+  }
+
+  return '';
+};
+
 export const validateMaxMin = (
   value?: number,
   label: string = 'Field',

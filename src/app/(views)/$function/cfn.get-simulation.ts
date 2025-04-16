@@ -3,8 +3,8 @@
 import { T_PostResponse } from '@/api/common/fetch.type';
 import {
   validateMin,
-  validateMax,
-  validateMaxMinDuration,
+  validateMaxMinVariant,
+  validateMaxMinVariant2,
 } from '@/lib/functions/global/validate';
 /* eslint-disable no-unused-vars */
 
@@ -45,24 +45,9 @@ export function CFN_ValidateCreateSimulationInvestmentFields(
 ): string {
   switch (name) {
     case 'investmentAmount':
-      return validateMin(
-        value,
-        'Nilai tidak boleh kurang dari 1.000.000',
-        1000000
-      );
-    case 'investmentAmount':
-      return validateMax(
-        value,
-        'Nilai tidak boleh lebih besar dari 1.000.000.000.000',
-        1000000000000
-      );
+      return validateMaxMinVariant(value, 1000000, 1000000000000);
     case 'duration':
-      return validateMaxMinDuration(
-        value,
-        'Nilai tidak boleh kurang dari 1 atau tidak boleh lebih besar dari 25',
-        1,
-        25
-      );
+      return validateMaxMinVariant2(value, 1, 25);
     case 'interestRate':
       return validateMin(value, 'rate', 0);
     default:
