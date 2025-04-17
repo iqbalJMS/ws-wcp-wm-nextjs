@@ -1,11 +1,10 @@
 'use client';
 
-import React from 'react';
-import { T_ResponseGetMainFooterMenu } from '@/api/footer/main-footer/api.get-middle-footer.type';
 import { T_ResponseGetBottomLeftFooter } from '@/api/footer/bottom-footer/api.get-bottom-left-footer.type';
 import { T_ResponseGetBottomRightFooter } from '@/api/footer/bottom-footer/api.get-bottom-right-footer.type';
-import Image from 'next/image';
+import { T_ResponseGetMainFooterMenu } from '@/api/footer/main-footer/api.get-middle-footer.type';
 import { T_ResponseGetMainMiddleFooter } from '@/api/footer/middle-main-footer/api.get-main-middle-footer.type';
+import Image from 'next/image';
 import Link from 'next/link';
 
 type T_FooterProps = {
@@ -215,7 +214,7 @@ function TermsAllReservedElement({
   );
 }
 
-export default async function GlobalFooter({
+export default function GlobalFooter({
   main_footer,
   middle_main_footer,
   bottom_left_footer,
