@@ -3,8 +3,10 @@
 import { get } from '@/api/common/fetch';
 import { redirect } from 'next/navigation';
 import { T_PromoRequest } from './api.get-promo.type';
-const user = process.env.DRUPAL_AUTH;
-const pass = process.env.DRUPAL_PASSWORD;
+
+const user = process.env.NEXT_PUBLIC_DRUPAL_AUTH || process.env.DRUPAL_AUTH;
+const pass =
+  process.env.NEXT_PUBLIC_DRUPAL_PASSWORD || process.env.DRUPAL_PASSWORD;
 
 function objectToQueryString(obj: Record<string, string>): string {
   const params = new URLSearchParams(obj);

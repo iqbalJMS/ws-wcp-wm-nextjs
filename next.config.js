@@ -5,10 +5,20 @@ module.exports = {
   basePath: SOURCE_PATH,
   assetPrefix: PUBLIC_SUBDIR,
   reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: SOURCE_PATH,
+        permanent: true,
+        basePath: false,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {
-        source: '/web/wealth-management/:path*',
+        source: `${SOURCE_PATH}/:path*`,
         destination: '/:path*',
       },
     ];

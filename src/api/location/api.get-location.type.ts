@@ -26,8 +26,8 @@ export type T_ResponGetLocation = {
 export type T_LocationRequest = {
   skip: string;
   limit: string;
-  name: string;
-  tipe: string;
+  name?: string;
+  tipe?: string;
   province?: string;
 };
 
