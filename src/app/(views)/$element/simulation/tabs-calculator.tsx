@@ -26,7 +26,7 @@ export default function TabsCalculator({
       <ScrollToTopSlug />
 
       <div className="w-full rounded-lg shadow-lg flex flex-col justify-center items-center relative overflow-hidden">
-        <div className="flex w-11/12 lg:w-9/12 xl:w-5/12 border-b-2 pt-20 border-wmcolor">
+        <div className="flex w-11/12 lg:w-9/12 xl:w-8/12 2xl:w-5/12 border-b-2 pt-20 border-wmcolor">
           <div
             className={
               toggle === 1
@@ -74,7 +74,7 @@ export default function TabsCalculator({
             </h1>
           </div>
         </div>
-        <div className="rounded-b-lg w-11/12 lg:w-9/12 xl:w-5/12 bg-white mb-10 pb-5 shadow-2xl">
+        <div className="rounded-b-lg w-11/12 lg:w-9/12 xl:w-8/12 2xl:w-5/12 bg-white mb-10 pb-5 shadow-2xl">
           <div
             className={
               toggle === 1 ? 'content w-full active-content' : 'content '
