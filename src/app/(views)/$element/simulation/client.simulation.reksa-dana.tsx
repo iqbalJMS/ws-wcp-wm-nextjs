@@ -52,7 +52,7 @@ export default function CE_SimulationReksaDana() {
         setResult(data?.data);
         if (button) {
           setIsResult(true);
-          window.scrollTo({ top: 5000, behavior: 'smooth' });
+          window.scrollTo({ top: 1050, behavior: 'smooth' });
         }
       });
     } catch (error) {}
@@ -129,7 +129,7 @@ export default function CE_SimulationReksaDana() {
               <div>
                 <InputSlider
                   min={1000000}
-                  max={995000000000}
+                  max={1000000000000}
                   step={5000000000}
                   value={form?.amount}
                   onChange={(value) => onFieldChange('amount', value)}

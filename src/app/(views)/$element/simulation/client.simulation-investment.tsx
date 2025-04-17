@@ -57,7 +57,7 @@ export default function CE_SimulationInvestment() {
           setResult(data?.data);
           if (button) {
             setIsResult(true);
-            window.scrollTo({ top: 3000, behavior: 'smooth' });
+            window.scrollTo({ top: 1550, behavior: 'smooth' });
           }
         }
       );
@@ -169,7 +169,7 @@ export default function CE_SimulationInvestment() {
                   <div>
                     <InputSlider
                       min={1000000}
-                      max={995000000000}
+                      max={1000000000000}
                       step={5000000000}
                       value={form?.investmentAmount}
                       onChange={(value) =>
@@ -210,7 +210,7 @@ export default function CE_SimulationInvestment() {
                   </div>
                   <div>
                     <InputSlider
-                      min={0}
+                      min={1}
                       max={25}
                       step={1}
                       value={form?.duration}
