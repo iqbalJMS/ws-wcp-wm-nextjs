@@ -308,6 +308,9 @@ export default function CE_SimultaionInitialInvest() {
                     benchMin={interestAmountRange?.min}
                   />
                 </div>
+                <h1 className="text-xs leading-5 pt-5 text-[#A9AFD1]">
+                  *berdasarkan perhitungan dari BRIA OFORU-Infovesta
+                </h1>
                 {formError.interestRate && (
                   <div className="mt-5">
                     <InputError message={formError.interestRate} />
