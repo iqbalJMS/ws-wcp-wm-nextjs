@@ -1,9 +1,11 @@
 'use server';
+
 import { get } from '@/api/common/fetch';
 import { T_ResponseGetMainFooterMenu } from './api.get-middle-footer.type';
 
-const user = process.env.DRUPAL_AUTH;
-const pass = process.env.DRUPAL_PASSWORD;
+const user = process.env.NEXT_PUBLIC_DRUPAL_AUTH || process.env.DRUPAL_AUTH;
+const pass =
+  process.env.NEXT_PUBLIC_DRUPAL_PASSWORD || process.env.DRUPAL_PASSWORD;
 
 export async function API_GetMainFooterMenu({
   // eslint-disable-next-line no-unused-vars

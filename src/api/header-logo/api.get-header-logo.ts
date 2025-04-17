@@ -1,15 +1,14 @@
 'use server';
+
 import { get } from '@/api/common/fetch';
 import { T_ResponGetHeaderLogo } from './api.get-header-logo.type';
 
-const user = process.env.DRUPAL_AUTH;
-const pass = process.env.DRUPAL_PASSWORD;
+const user = process.env.NEXT_PUBLIC_DRUPAL_AUTH || process.env.DRUPAL_AUTH;
+const pass =
+  process.env.NEXT_PUBLIC_DRUPAL_PASSWORD || process.env.DRUPAL_PASSWORD;
 
-export async function API_GetHeaderLogo({
-  // eslint-disable-next-line no-unused-vars
-  lang,
-}: {
-  lang: string;
+export async function API_GetHeaderLogo(_: {
+  lang?: string;
 }): Promise<T_ResponGetHeaderLogo | null> {
   try {
     const response: T_ResponGetHeaderLogo = await get(
