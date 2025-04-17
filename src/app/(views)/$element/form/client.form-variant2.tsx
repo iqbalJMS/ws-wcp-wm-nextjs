@@ -2,14 +2,25 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { RefreshIcon } from '@/lib/element/global/refresh-icon';
+import DropDown from '@/lib/element/global/dropdown';
+import { ACT_PostWebForm } from '@/app/(views)/$action/webform/action.post-webform';
+import { ACT_GetProvince } from '@/app/(views)/$action/province/action.get-province';
+import { ACT_GetLocation } from '@/app/(views)/$action/location/action.get-location';
+import { T_ResponGetLocation } from '@/api/location/api.get-location.type';
+import { T_ResponGetProvince } from '@/api/province/api.get-province.type';
 import { useDictionary } from '@/get-dictionary';
-// import useForm from '@/lib/hook/useForm';
 import {
   LoadCanvasTemplateNoReload,
   loadCaptchaEnginge,
   validateCaptcha,
 } from 'react-simple-captcha';
-import InputText from '@/lib/element/global/form/input.text';
+import { useRouter } from 'next/navigation';
+import dayjs from 'dayjs';
+
+type Option = {
+  label: string;
+  value: string;
+};
 
 export default function CE_FormVariant2({
   variant,
@@ -18,20 +29,26 @@ export default function CE_FormVariant2({
   variant: string;
   bgImage: string;
 }) {
-  const DATA = [
-    {
-      placeholder: 'Nama Lengkap Anda',
-      type: 'text',
-    },
-    {
-      placeholder: 'Alamat Email Anda',
-      type: 'text',
-    },
-    {
-      placeholder: 'Nomor Telepon Anda (tanpa kode negara atau 0)',
-      type: 'tel',
-    },
-  ];
+  const [selectedProvince, setSelectedProvince] = useState<Option | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<Option | null>(null);
+  const [selectedWantTo, setSelectedWantTo] = useState<Option | null>(null);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [customer, setCustomer] = useState('');
+  const [contactBy, setContactBy] = useState('');
+  const [contactTime, setContactTime] = useState('');
+  const [wantTo, setWantTo] = useState('');
+  const [message, setMessage] = useState('');
+  const [province, setProvince] = useState('');
+  const [location, setLocation] = useState('');
+  const [provinceData, setProvinceData] =
+    useState<T_ResponGetProvince | null>();
+
+  const [locationData, setLocationData] =
+    useState<T_ResponGetLocation | null>();
+
+  const router = useRouter();
 
   const dictionary = useDictionary('id');
   const [captcha, setCaptcha] = useState({
@@ -41,33 +58,54 @@ export default function CE_FormVariant2({
 
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (e: Event) => {
-    setLoading(true);
-
-    if (validateCaptcha(captcha.form) == false) {
-      e.preventDefault();
-      setCaptcha({
-        ...captcha,
-        error:
-          dictionary?.field.track.validateCaptcha || 'Captcha Tidak Sesuai',
-      });
-      setLoading(false);
-      return;
-    }
-
+  const handleSubmit = async () => {
     try {
-      // eslint-disable-next-line no-console
-      console.log('upload success');
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Upload or registration failed', error);
-    }
-    setLoading(false);
+      if (validateCaptcha(captcha.form)) {
+        const result = await ACT_PostWebForm({
+          webform_id: 'get_invited',
+          nama: name,
+          email: email,
+          telepon: phone,
+          apakah_anda_nasabah_bri: customer,
+          metode_kontak: contactBy,
+          waktu_dihubungi: contactTime,
+          saya_ingin: wantTo,
+          pesan: message,
+          pilih_provinsi: province,
+          pilih_lokasi: location,
+        });
+
+        if (result?.sid) {
+          router.refresh();
+        }
+      } else {
+        setCaptcha({
+          form: '',
+          error:
+            dictionary?.field.track.validateCaptcha || 'Captcha Tidak Sesuai',
+        });
+      }
+    } catch (_) {}
+  };
+  const getProvince = async () => {
+    const province = await ACT_GetProvince({ lang: 'en' });
+    setProvinceData(province);
+  };
+
+  const getLocation = async (province: string) => {
+    const location = await ACT_GetLocation({
+      limit: '50',
+      skip: '0',
+      province,
+    });
+    setLocationData(location?.data);
   };
 
   useEffect(() => {
+    getProvince();
     loadCaptchaEnginge(6);
   }, []);
+
   let colorTheme = '';
   if (variant === 'wm-private-main-navigation') {
     colorTheme = 'privatecolor';
@@ -87,155 +125,235 @@ export default function CE_FormVariant2({
       <div className="w-full bg-[#605E68] h-full flex flex-col lg:flex-row-reverse ">
         <div className="w-full h-full">
           <Image
-            className="w-full h-full"
+            className="w-full h-full bg-contain"
             src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''}`}
             alt={''}
             width={10000}
             height={10000}
           />
         </div>
-        <div className="w-full h-full  p-5 py-10 xl:p-10 flex justify-center items-end">
-          <form className="w-9/12 h-full" onSubmit={onSubmit as any}>
+        <div className="w-full h-full p-5 py-10 xl:p-10 flex justify-center items-end">
+          <form className="w-full md:w-11/12 lg:w-9/12 xl:w-10/12">
             <section className="text-white space-y-3 pb-5">
-              <h1 className="text-2xl font-bold">HUBUNGI SAYA</h1>
-              <h2>
-                {loading}
+              <h1 className=" text-white text-2xl font-bold">HUBUNGI SAYA</h1>
+              <h2 className="text-white">
                 Beri tahu kami tentang permintaan Anda agar kami bisa
                 mendapatkan penasihat yang tepat untuk Anda.
               </h2>
             </section>
             <h1 className="text-lg text-white">Data lengkap Anda</h1>
-            {DATA?.map((item, index) => (
-              <div key={index} className="py-2">
-                {/* <h1 className="pb-3 text-white">{item.label ?? ''}</h1> */}
-                <input
-                  className="text-white border-2 border-white rounded-full bg-transparent w-full px-5 py-3"
-                  type={item?.type}
-                  id="hello"
-                  placeholder={item?.placeholder}
-                />
-                <h1 className="text-xs text-white pt-1">Wajib diisi</h1>
-              </div>
-            ))}
+            <div className="py-2">
+              <input
+                className="text-white border-[1px] border-white rounded-2xl bg-transparent w-full px-5 py-3 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
+                type="text"
+                id="hello"
+                placeholder="Nama Lengkap Anda"
+                value={name}
+                onChange={({ target }) => setName(target.value)}
+              />
+              {/* <h1 className="text-xs">Wajib diisi</h1> */}
+            </div>
+            <div className="py-2">
+              <input
+                className="text-white border-[1px] border-white rounded-2xl bg-transparent w-full px-5 py-3 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
+                type="email"
+                value={email}
+                onChange={({ target }) => setEmail(target.value)}
+                placeholder="email"
+              />
+            </div>
+            <div className="py-2">
+              <input
+                className="text-white border-[1px] border-white rounded-2xl bg-transparent w-full px-5 py-3 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
+                type="text"
+                value={phone}
+                onChange={({ target }) => setPhone(target.value)}
+                placeholder="Nomor Telepon Anda (tanpa kode negara atau 0)"
+              />
+            </div>
+
             {/* Input Radio */}
             <section className="text-white flex flex-col space-y-2 pt-5">
-              <h1>Apakah Anda Nasabah BRI?</h1>
+              <h1 className="">Apakah Anda Nasabah BRI?</h1>
               <span className="pt-2">
-                <input type="radio" id="ya" name="nasabah" value="ya" />
+                <input
+                  className="text-white"
+                  type="radio"
+                  id="ya"
+                  name="nasabah"
+                  value="Tidak"
+                  onChange={({ target }) => setCustomer(target.value)}
+                />
                 <label className="pl-2">Tidak</label>
               </span>
               <span>
-                <input type="radio" id="tidak" name="nasabah" value="tidak" />
-                <label className="pl-2">Ya </label>
+                <input
+                  type="radio"
+                  id="tidak"
+                  name="nasabah"
+                  value="Ya"
+                  onChange={({ target }) => setCustomer(target.value)}
+                />
+                <label className="pl-2">Ya</label>
               </span>
             </section>
             <section className="text-white flex flex-col space-y-2 pt-5">
               <h1>Apa metode kontak yang sesuai dengan Anda?</h1>
               <span className="pt-2">
-                <input type="radio" id="huey" name="metode" value="huey" />
+                <input
+                  type="radio"
+                  id="text-me"
+                  name="metode"
+                  value="Hubungi Saya"
+                  onChange={({ target }) => setContactBy(target.value)}
+                />
                 <label className="pl-2">Hubungi Saya</label>
               </span>
               <span>
-                <input type="radio" id="huey" name="metode" value="huey" />
+                <input
+                  type="radio"
+                  id="mail-me"
+                  name="metode"
+                  value="Email Saya"
+                  onChange={({ target }) => setContactBy(target.value)}
+                />
                 <label className="pl-2">Email Saya</label>
               </span>
             </section>
             {/* Input Dropdown */}
-            <section className="pt-5 space-y-5">
-              <div>
-                <h1 className="text-lg text-white">
-                  Kapan anda bisa kami hubungi?
-                </h1>
+            <section className="pt-10 space-y-5">
+              <div className="text-white">
+                <h1 className="text-lg ">Kapan anda bisa kami hubungi?</h1>
                 <span className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-3">
                   <input
-                    className="text-white border-2 border-white rounded-full bg-transparent w-full px-5 py-2"
+                    className=" border-[1px] border-white rounded-2xl bg-transparent w-full px-5 py-2 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
                     type="date"
+                    onChange={({ target }) => {
+                      const picked = (
+                        contactTime ||
+                        dayjs().add(3, 'days').format('YYYY-MM-DD HH:mm:ss')
+                      ).split(' ');
+                      picked[0] = target.value;
+                      setContactTime(picked.join(' '));
+                    }}
                   />
                   <input
-                    className="text-white border-2 border-white rounded-full bg-transparent w-full px-5 py-2"
+                    className=" border-[1px] border-white rounded-2xl bg-transparent w-full px-5 py-2 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
                     type="time"
+                    onChange={({ target }) => {
+                      const picked = (
+                        contactTime ||
+                        dayjs().add(3, 'days').format('YYYY-MM-DD HH:mm:ss')
+                      ).split(' ');
+                      picked[1] = target.value;
+                      setContactTime(picked.join(' '));
+                    }}
                   />
                 </span>
               </div>
-              <div>
-                <input
-                  className="text-white border-2 border-white rounded-full bg-transparent w-full px-5 py-3"
-                  type="text"
-                  id="hello"
+              <div className="w-full">
+                <DropDown
+                  variant={variant}
+                  options={
+                    provinceData?.data.map((item) => ({
+                      label: item?.name,
+                      value: item?.uuid,
+                    })) || []
+                  }
+                  selected={selectedProvince}
+                  onSelectedChanges={(selected) => {
+                    setSelectedProvince(selected);
+                    getLocation(selected.value);
+                    setProvince(selected.label);
+                  }}
                   placeholder="Pilih Provinsi"
                 />
-                <h1 className="text-xs text-white pt-1">Wajib diisi</h1>
               </div>
-              <div>
-                <input
-                  className="text-white border-2 border-white rounded-full bg-transparent w-full px-5 py-3"
-                  type="text"
-                  id="hello"
+              <div className="w-full">
+                <DropDown
+                  variant={variant}
+                  options={
+                    locationData?.data.map((item) => ({
+                      label: item?.name,
+                      value: item?.name,
+                    })) || []
+                  }
+                  selected={selectedLocation}
+                  onSelectedChanges={(selected) => {
+                    setSelectedLocation(selected);
+                    setLocation(selected.label);
+                  }}
                   placeholder="Pilih Lokasi"
                 />
-                <h1 className="text-xs text-white pt-1">Wajib diisi</h1>
               </div>
               <div>
                 <h1 className="pb-3 text-white">Saya ingin</h1>
-                <input
-                  className="text-white border-2 border-white rounded-full bg-transparent w-full px-5 py-3"
-                  type="text"
-                  id="hello"
-                  placeholder="Silakan pilih"
-                />
-                <h1 className="text-xs text-white pt-1">Wajib diisi</h1>
+                <div className="w-full">
+                  <DropDown
+                    variant={variant}
+                    options={[
+                      {
+                        value: 'pendaftaran nasabah BRI Prioritas',
+                        label: 'Pendaftaran Nasabah BRI Prioritas',
+                      },
+                      {
+                        value: 'pendaftaran nasabah BRI Private',
+                        label: 'Pendaftaran Nasabah BRI Private',
+                      },
+                    ]}
+                    selected={selectedWantTo}
+                    onSelectedChanges={(selected) => {
+                      setSelectedWantTo(selected);
+                      setWantTo(selected.value);
+                    }}
+                    placeholder="Pilih Saya Ingin"
+                  />
+                </div>
               </div>
               <div>
                 <h1 className="pb-3 text-white">Tambahan Pesan</h1>
-                <input
-                  className="text-white border-2 border-white rounded-full bg-transparent w-full px-5 py-3"
-                  type=""
-                  id="hello"
-                  placeholder="Tulis pesan anda disini"
+                <textarea
+                  className="text-white border-[1px] border-white rounded-xl bg-transparent w-full px-5 py-3 h-32 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
+                  value={message}
+                  onChange={({ target }) => setMessage(target.value)}
+                  placeholder="Tulis pesan anda disini..."
                 />
-                <h1 className="text-xs text-white pt-1">Wajib diisi</h1>
               </div>
-              <div>
-                <input
-                  className="text-white border-2 border-white rounded-full bg-transparent w-full px-5 py-3"
-                  type=""
-                  id="hello"
-                  placeholder="Verifikasi Captcha"
-                />
-                <h1 className="text-xs text-white pt-1">Wajib diisi</h1>
-              </div>
-              <div className="flex flex-col items-start space-y-5 lg:flex lg:items-start space-x-0">
-                <div className="flex space-x-2">
+              <div className="flex flex-col items-start space-y-5 py-5">
+                <div className="flex items-center">
                   <LoadCanvasTemplateNoReload />
                   <button type="button" onClick={() => loadCaptchaEnginge(6)}>
                     <RefreshIcon width={28} height={28} fill="#27AE60" />
                   </button>
                 </div>
-                <div className="px-0 flex-1">
-                  <InputText
+                <div className="w-full flex-1 border-white pt-5">
+                  <input
+                    className="text-white border-[1px] border-white rounded-2xl bg-transparent w-full md:w-5/12 px-5 py-3 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
                     placeholder={
                       `${dictionary?.field.general.enter} ${dictionary?.field.track.captcha}` ||
-                      'Masukkan Captcha'
+                      'Verifikasi Captcha'
                     }
                     type="text"
                     value={captcha.form}
-                    onChange={(value) =>
+                    onChange={({ target }) =>
                       setCaptcha({
-                        form: value.toString() || '',
+                        form: target.value,
                         error: '',
                       })
                     }
-                    state={captcha.error ? 'error' : 'init'}
                   />
                   <h1>{captcha.error}</h1>
                 </div>
               </div>
-              <button
-                type="submit"
-                className={`bg-${colorTheme} text-${textColor} rounded-full px-5 py-2 uppercase text-white font-bold `}
-              >
-                hubungi saya
-              </button>
+              <div className="w-full flex justify-start items-center">
+                <button
+                  onClick={() => handleSubmit()}
+                  type="button"
+                  className={`bg-${colorTheme} text-${textColor} rounded-full px-5 py-2 uppercase text-white font-bold hover:bg-gray-600`}
+                >
+                  hubungi saya
+                </button>
+              </div>
             </section>
           </form>
         </div>

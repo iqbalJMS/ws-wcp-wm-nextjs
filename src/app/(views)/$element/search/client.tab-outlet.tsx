@@ -10,7 +10,7 @@ type T_TabsProps = {
     information?: string;
     type_id: string;
   }[];
-  value: string;
+  value?: string;
   onChange: (_value: string) => void;
   variant?: 'full' | 'border-arrow' | 'border';
 };
