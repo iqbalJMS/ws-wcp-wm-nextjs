@@ -28,6 +28,7 @@ export type T_LocationRequest = {
   limit: string;
   name: string;
   tipe: string;
+  province?: string;
 };
 
 export type T_LocationRequestPromo = {

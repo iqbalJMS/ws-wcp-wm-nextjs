@@ -191,8 +191,8 @@ export default function CE_SimulationReksaDana() {
         <h1 className="text-[#505FD3] ">{interestAmountRange?.min}</h1>
         <h2 className="text-[#505FD3] ">%</h2>
       </div>
-      <h2 className="text-xs text-[#4A4A4A] w-full">
-        *berdasarkan rata-rata kinerja 1 tahun sumber Infovesta, diolah Kantor
+      <h2 className="text-xs leading-5 text-[#A9AFD1]">
+        *berdasarkan rata-rata kinerja 1 tahun sumber Infovesta, diolah
       </h2>
       <div className="flex gap-5 mt-10">
         <ButtonSecondary

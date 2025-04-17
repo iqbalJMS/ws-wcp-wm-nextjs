@@ -32,6 +32,7 @@ export function CFN_MapToLocationPayload(
     skip: form.skip,
     name: form.name,
     tipe: form.tipe,
+    province: form.province,
   };
 }
 
