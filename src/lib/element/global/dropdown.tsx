@@ -11,6 +11,7 @@ interface DropDownOptions {
   options: Option[];
   placeholder?: string;
   selected: Option | null;
+  variant?: string;
   // eslint-disable-next-line no-unused-vars
   onSelectedChanges: (option: Option) => void;
 }
@@ -20,6 +21,7 @@ const DropDown = ({
   selected,
   onSelectedChanges,
   placeholder,
+  variant,
 }: DropDownOptions) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -43,23 +45,43 @@ const DropDown = ({
     };
   }, []);
 
+  let colorTheme = '';
+  if (variant === 'wm-private-main-navigation') {
+    colorTheme = 'white';
+  } else if (variant === 'wm-prioritas-main-navigation') {
+    colorTheme = 'white';
+  } else {
+    colorTheme = 'black';
+  }
+
+  let textColor = '';
+  if (variant === 'wm-private-main-navigation') {
+    textColor = 'black';
+  } else {
+    textColor = 'white';
+  }
+
   return (
     <div ref={ref}>
       <div className="w-full">
         <div className="relative w-full">
           <div
             onClick={toggleDropdown}
-            className="mt-1 flex w-full cursor-pointer bg-white rounded-full border-2 transition duration-500 ease-in-out hover:bg-black-50 border-black px-5 py-3 text-left focus:outline-none focus:right-0"
+            className={`mt-1 flex w-full cursor-pointer rounded-2xl border-[1px] hover:bg-black-50 border-${colorTheme} px-5 py-3 text-left outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300`}
           >
             <div className="flex justify-between w-full">
               {selected ? (
                 <div className="flex gap-x-2">
-                  <span className="font-normal block truncate">
+                  <span
+                    className={`font-normal block truncate text-${colorTheme}`}
+                  >
                     {selected.label}
                   </span>
                 </div>
               ) : (
-                <span className="font-normal block truncate text-gray-400">
+                <span
+                  className={`font-medium block truncate text-${colorTheme}`}
+                >
                   {placeholder}
                 </span>
               )}
