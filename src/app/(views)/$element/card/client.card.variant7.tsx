@@ -1,22 +1,22 @@
 'use client';
 
-import React, { useState, useTransition, useEffect } from 'react';
-import LocationIcon from '@/lib/element/global/location-icon';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import {
-  T_ResponGetLocation,
   T_LocationRequest,
+  T_ResponGetLocation,
 } from '@/api/location/api.get-location.type';
-import useForm from '@/lib/hook/useForm';
+import CE_SearchOutlet from '@/app/(views)/$element/search/client.search-outlet';
+import { CE_TabsOutlet } from '@/app/(views)/$element/search/client.tab-outlet';
 import {
   CFN_GetLocation,
   CFN_MapToLocationPayload,
   CFN_ValidateGetLocationFields,
 } from '@/app/(views)/$function/cfn.get-location';
+import LocationIcon from '@/lib/element/global/location-icon';
 import Pagination from '@/lib/element/global/pagination';
-import CE_SearchOutlet from '@/app/(views)/$element/search/client.search-outlet';
-import { CE_TabsOutlet } from '@/app/(views)/$element/search/client.tab-outlet';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import useForm from '@/lib/hook/useForm';
 import Link from 'next/link';
+import { useEffect, useState, useTransition } from 'react';
 
 export default function CE_Location({
   variant,
@@ -89,7 +89,7 @@ export default function CE_Location({
       {variant == 'wm-prioritas-main-navigation' ? (
         <CE_TabsOutlet
           list={locationType}
-          value={form.tipe}
+          value={form.tipe || ''}
           onChange={(e) => handleTabChange(e)}
         />
       ) : null}
