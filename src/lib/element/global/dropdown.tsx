@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Option = {
   label: string;
@@ -52,13 +52,6 @@ const DropDown = ({
     colorTheme = 'white';
   } else {
     colorTheme = 'black';
-  }
-
-  let textColor = '';
-  if (variant === 'wm-private-main-navigation') {
-    textColor = 'black';
-  } else {
-    textColor = 'white';
   }
 
   return (
