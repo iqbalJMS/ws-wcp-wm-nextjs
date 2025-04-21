@@ -354,7 +354,7 @@ export default function PriorityHeader({
                   <LoginButton
                     menuItems={itemLogin}
                     isActive={isButtonActive}
-                    setIsActive={setIsButtonActive}
+                    setIsActive={setIsButtonActive || false}
                     refElement={elementRef}
                   />
                 </div>
@@ -524,7 +524,7 @@ export default function PriorityHeader({
               <LoginButton
                 menuItems={itemLogin}
                 isActive={isButtonActive}
-                setIsActive={setIsButtonActive}
+                setIsActive={setIsButtonActive || false}
                 refElement={elementRef}
               />
             </div>

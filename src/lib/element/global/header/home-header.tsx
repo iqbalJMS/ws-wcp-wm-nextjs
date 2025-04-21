@@ -327,7 +327,7 @@ export default function HomeHeader({
                   <LoginButton
                     menuItems={itemLogin}
                     isActive={isButtonActive}
-                    setIsActive={setIsButtonActive}
+                    setIsActive={setIsButtonActive || false}
                     refElement={elementRef}
                   />
                 </div>
@@ -477,7 +477,7 @@ export default function HomeHeader({
                 refElement={elementRef}
                 menuItems={itemLogin}
                 isActive={isButtonActive}
-                setIsActive={setIsButtonActive}
+                setIsActive={setIsButtonActive || false}
               />
             </div>
           </div>
