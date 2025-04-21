@@ -151,12 +151,12 @@ export default function CE_CardPromoWM({
                 <div className="absolute w-full h-80 lg:h-64 bg-black opacity-30 rounded-lg">
                   .
                 </div>
-                <h1 className="pb-4 px-5 z-50 text-white text-base font-medium">
+                <h1 className="pb-4 px-5 z-0 text-white text-base font-medium">
                   {item?.title?.[0]?.value}
                 </h1>
                 <Link
                   href={`/promo-detail/${item?.nid?.[0]?.value ?? '/404'}`}
-                  className="pb-4 px-5 z-50 hover:underline text-white flex items-center"
+                  className="pb-4 px-5 z-0 hover:underline text-white flex items-center"
                 >
                   lihat promo
                   <span className="pl-4">
@@ -255,12 +255,12 @@ export default function CE_CardPromoWM({
                     <div className="absolute w-full h-72 bg-black opacity-30 rounded-lg">
                       .
                     </div>
-                    <h1 className="pb-4 px-2 z-50 text-white text-sm font-medium">
+                    <h1 className="pb-4 px-2 z-0 text-white text-sm font-medium">
                       {item?.title?.[0]?.value}
                     </h1>
                     <Link
                       href={`/promo-detail/${item?.nid?.[0]?.value ?? '/404'}`}
-                      className="pb-4 px-2 z-50 hover:underline text-white flex items-center text-sm"
+                      className="pb-4 px-2 z-0 hover:underline text-white flex items-center text-sm"
                     >
                       lihat promo
                       <span className="pl-4">
@@ -318,12 +318,12 @@ export default function CE_CardPromoWM({
                     <div className="absolute w-full h-full bg-black opacity-20 rounded-lg">
                       .
                     </div>
-                    <h1 className="lg:pb-2 xl:pb-4 px-5 z-50 text-white text-sm font-medium">
+                    <h1 className="lg:pb-2 xl:pb-4 px-5 z-0 text-white text-sm font-medium">
                       {item?.title?.[0]?.value}
                     </h1>
                     <Link
                       href={`/promo-detail/${item?.nid?.[0]?.value ?? '/404'}`}
-                      className="lg:pb-3 xl:pb-8 px-5 z-50 hover:underline text-white flex items-center text-sm"
+                      className="lg:pb-3 xl:pb-8 px-5 z-0 hover:underline text-white flex items-center text-sm"
                     >
                       lihat promo
                       <span className="pl-4">
