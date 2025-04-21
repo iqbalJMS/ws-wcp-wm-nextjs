@@ -22,14 +22,18 @@ import { motion, useInView, useAnimation } from 'motion/react';
 const LIST_LANGUAGES = ['ID', 'EN'];
 
 export function LoginButton({
+  isActive,
+  setIsActive,
   menuItems,
+  refElement,
 }: {
+  isActive: boolean;
+  setIsActive: (val: boolean) => void;
   menuItems: T_ResponseGetMenuItemNavbar;
+  refElement: any;
 }) {
-  const elementRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
-  const isScrolling = useScrollActive();
   const ref = useRef(null);
+  const isScrolling = useScrollActive();
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
 
@@ -39,72 +43,59 @@ export function LoginButton({
     }
   }, [isInView, mainControls]);
 
-  useOnClickOutside(elementRef, () => setActive(false));
-
   return (
-    <div
-      ref={elementRef}
-      className={[
-        `${isScrolling ? 'bg-black' : 'bg-white '}`,
-        `${isScrolling ? 'hover:border-blue-800 border-2 border-white' : 'hover:bg-[#080087] focus-within:border-white focus-within:border-2'}`,
-        `text-[#191056] lg:px-6 lg:pr-4 lg:py-2 py-1 px-4 pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
-      ].join(' ')}
-      onClick={() => setActive(!active)}
-    >
-      <div
+    <div ref={refElement} className="relative">
+      <button
+        onClick={() => setIsActive(!isActive)}
         className={[
-          `${isScrolling ? 'text-white text-sm lg:text-base z-50' : 'text-bluedark01 text-sm lg:text-base z-50'}`,
-          'uppercase font-semibold group-hover:text-white',
+          `${isScrolling ? 'hover:border-blue-800 border-2 border-white' : 'hover:bg-[#080087] focus:bg-[#080087] focus:border-white focus:border-4 focus:text-white'}`,
+          `${isScrolling ? 'bg-black text-white text-sm lg:text-base hover:border-blue-800 border-2 border-white' : 'bg-white text-bluedark01 text-sm lg:text-base'}`,
+          `text-[#191056] lg:px-6 lg:pr-4 lg:py-2 py-1 px-4 pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
+          'uppercase font-semibold group-hover:text-white z-20',
         ].join(' ')}
       >
-        Login
-      </div>
-      <div className="pl-2">
-        <ChevronDown
-          className={[
-            `${isScrolling ? 'hidden' : ''}`,
-            `group-hover:hidden`,
-          ].join(' ')}
-          stroke="#141333"
-          width={30}
-          height={30}
-        />
-        <ChevronDown
-          className={[
-            `${isScrolling ? 'group-hover:hidden' : ''}`,
-            `hidden group-hover:flex`,
-          ].join(' ')}
-          stroke="white"
-          width={30}
-          height={30}
-        />
-        <ChevronDown
-          className={[`${isScrolling ? '' : 'hidden'}`, ,].join(' ')}
-          stroke="white"
-          width={30}
-          height={30}
-        />
-      </div>
-      <div
-        className={[
-          'bg-black/60 overflow-y-auto overflow-x-hidden fixed z-10 justify-center items-center w-full h-screen md:inset-0 max-h-full',
-          active
-            ? 'top-full visible opacity-100 '
-            : 'top-0 invisible opacity-0',
-        ].join(' ')}
-      >
+        <span>Login</span>
+        <div>
+          <ChevronDown
+            className={[
+              `${isScrolling ? 'hidden' : ''}`,
+              `group-hover:hidden group-focus:hidden`,
+            ].join(' ')}
+            stroke="#141333"
+            width={30}
+            height={30}
+          />
+          <ChevronDown
+            className={[
+              `${isScrolling ? 'group-hover:hidden' : 'group-hover:flex group-focus:flex'}`,
+              `hidden `,
+            ].join(' ')}
+            stroke="white"
+            width={30}
+            height={30}
+          />
+          <ChevronDown
+            className={[`${isScrolling ? '' : 'hidden'}`, ,].join(' ')}
+            stroke="white"
+            width={30}
+            height={30}
+          />
+        </div>
+      </button>
+
+      <div className={`${isActive ? 'block' : 'hidden'} `}>
         <div
-          className={`${isScrolling ? 'absolute top-[90px] right-60 rotate-180 border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] border-l-transparent border-r-transparent border-whiteh-5 w-5' : 'absolute top-[110px] right-60 rotate-180 border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] border-l-transparent border-r-transparent border-whiteh-5 w-5'}
+          className={`${isScrolling ? 'absolute top-[80px] right-5 rotate-180 border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] border-l-transparent border-r-transparent border-whiteh-5 w-5' : 'absolute top-[60px] right-5 rotate-180 border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] border-l-transparent border-r-transparent border-whiteh-5 w-5'}
           `}
         />
         <section
-          className={`${isScrolling ? 'w-full absolute top-[88px] right-52 -rotate-180' : 'w-full absolute top-[113px] right-52 -rotate-180'}`}
+          className={`${isScrolling ? 'w-fit absolute top-[88px] right-0' : 'w-fit absolute top-[70px] right-0'}`}
         >
           {menuItems?.map((loginItem, index) => {
             return (
               <motion.div
                 key={index}
-                className="w-80 bg-white mb-2 px-5 py-4 rounded-3xl -rotate-180"
+                className="w-80 bg-white mb-2 px-5 py-4 rounded-3xl"
               >
                 <Link href={loginItem?.uri ?? '/404'} target="_blank">
                   <div
@@ -148,10 +139,12 @@ export default function HomeHeader({
   const router = useRouter();
   const isScrolling = useScrollActive();
   const searchParams = useSearchParams();
+  const elementRef = useRef<HTMLDivElement>(null);
 
   const [activeSearch, setActiveSearch] = useState(false);
   const [activeMenu, setActiveMenu] = useState(false);
   const [isSelectedMenu, setIsSelectedMenu] = useState<T_Items | null>(null);
+  const [isButtonActive, setIsButtonActive] = useState(false);
 
   const onSwitchLanguages = (language: string) => {
     const current = new URLSearchParams(Array.from(searchParams.entries())); // -> has to use this form
@@ -183,6 +176,8 @@ export default function HomeHeader({
     return pathname.includes(url);
   };
 
+  useOnClickOutside(elementRef, () => setIsButtonActive(false));
+
   useEffect(() => {
     if (activeSearch) {
       document.body.style.overflow = 'hidden';
@@ -193,14 +188,21 @@ export default function HomeHeader({
 
   return (
     <Fragment>
+      {/* Overlay */}
+      <div
+        className={
+          isButtonActive
+            ? 'fixed top-0 left-0 bg-black/90 overflow-y-auto overflow-x-hidden justify-center items-center w-full h-screen md:inset-0 max-h-full z-50'
+            : 'hidden'
+        }
+      />
       <header
         className={[
-          `${isScrolling ? 'bg-white shadow-md ' : ''}`,
-          'fixed w-full z-50 ',
-          `${variant === 'transparent' ? '' : 'bg-white '} `,
+          `${isScrolling ? 'bg-white shadow-md' : 'bg-transparent'}`,
+          'fixed left-0 top-0 w-full z-50',
         ].join(' ')}
       >
-        <div className="container py-4">
+        <div className="container py-4 z-50">
           <div
             className={[
               `lg:flex items-center gap-5 justify-end mb-5 hidden`,
@@ -322,7 +324,12 @@ export default function HomeHeader({
             <div>
               <div className="flex items-center gap-2">
                 <div>
-                  <LoginButton menuItems={itemLogin} />
+                  <LoginButton
+                    menuItems={itemLogin}
+                    isActive={isButtonActive}
+                    setIsActive={setIsButtonActive}
+                    refElement={elementRef}
+                  />
                 </div>
                 {!activeMenu && (
                   <div
@@ -343,7 +350,7 @@ export default function HomeHeader({
             </div>
           </div>
 
-          <div className="lg:flex items-center justify-between hidden ">
+          <div className="lg:flex items-center justify-between hidden">
             <div className="flex-none z-50">
               <Link className="!text-gray-500 z-50" href="/">
                 {headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]
@@ -466,7 +473,12 @@ export default function HomeHeader({
               </div>
             </div>
             <div className="border-b-4 border-transparent lg:block hidden ml-4">
-              <LoginButton menuItems={itemLogin} />
+              <LoginButton
+                refElement={elementRef}
+                menuItems={itemLogin}
+                isActive={isButtonActive}
+                setIsActive={setIsButtonActive}
+              />
             </div>
           </div>
         </div>

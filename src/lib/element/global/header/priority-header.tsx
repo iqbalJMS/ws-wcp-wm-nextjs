@@ -4,7 +4,7 @@ import useScrollActive from '@/lib/hook/useScroll';
 import { T_ResponseGetTopMenuNavbar } from '@/api/navbar-menu/top-navbar/api.get-top-menu-navbar.type';
 import { T_ResponseGetMenuItemNavbar } from '@/api/navbar-menu/menu-items/api.get-menu-items-navbar.type';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from 'next/link';
 import { CloseIcon } from '@/lib/element/global/icons/close-icon';
@@ -17,106 +17,107 @@ import {
 import { T_ResponGetHeaderLogo } from '@/api/header-logo/api.get-header-logo.type';
 import { T_ResponGetHeaderLogoPriority } from '@/api/header-logo/header-priority-logo/api.get-header-logo.priority.type';
 import { Search } from '@/lib/element/global/global.search';
-import { motion } from 'framer-motion';
+import { motion, useAnimation, useInView } from 'framer-motion';
 import defaultLogo from '@/../../public/images/wefo-blue-logo.png';
 import prioritasDefaultLogo from '@/../../public/images/bri-prioritas-color-logo.png';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
 export function LoginButton({
+  isActive,
+  setIsActive,
   menuItems,
+  refElement,
 }: {
+  isActive: boolean;
+  setIsActive: (val: boolean) => void;
   menuItems: T_ResponseGetMenuItemNavbar;
+  refElement: any;
 }) {
-  const elementRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
+  const ref = useRef(null);
   const isScrolling = useScrollActive();
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
 
-  useOnClickOutside(elementRef, () => setActive(false));
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+    }
+  }, [isInView, mainControls]);
 
   return (
-    <div
-      ref={elementRef}
-      className={[
-        `${isScrolling ? 'bg-black' : 'bg-white'}`,
-        `${isScrolling ? 'hover:border-prioritycolor border-2' : 'hover:bg-prioritycolor'}`,
-        `text-[#191056] lg:px-6 lg:pr-4 lg:py-2 py-1 px-4 pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
-      ].join(' ')}
-      onClick={() => setActive(!active)}
-    >
-      <div
+    <div ref={refElement} className="relative">
+      <button
+        onClick={() => setIsActive(!isActive)}
         className={[
-          `${isScrolling ? 'text-white text-sm lg:text-base' : 'text-prioritycolor text-sm lg:text-base'}`,
-          'uppercase font-semibold group-hover:text-white',
+          `${isScrolling ? 'hover:border-blue-800 border-2 border-white' : 'hover:bg-[#141333] focus:bg-[#141333] focus:border-white focus:border-4 focus:text-white'}`,
+          `${isScrolling ? 'bg-black text-white text-sm lg:text-base hover:border-blue-800 border-2 border-white' : 'bg-white text-bluedark01 text-sm lg:text-base'}`,
+          `text-[#191056] lg:px-6 lg:pr-4 lg:py-2 py-1 px-4 pr-2 rounded-full inline-flex items-center cursor-pointer relative group hover:text-white duration-300`,
+          'uppercase font-semibold group-hover:text-white z-20',
         ].join(' ')}
       >
-        Login
-      </div>
-      <div className="pl-2">
-        <ChevronDown
-          className={[
-            `${isScrolling ? 'hidden' : ''}`,
-            `group-hover:hidden`,
-          ].join(' ')}
-          stroke="#1C286A"
-          width={30}
-          height={30}
-        />
-        <ChevronDown
-          className={[
-            `${isScrolling ? 'group-hover:hidden' : ''}`,
-            `hidden group-hover:flex`,
-          ].join(' ')}
-          stroke="white"
-          width={30}
-          height={30}
-        />
-        <ChevronDown
-          className={[`${isScrolling ? '' : 'hidden'}`, ,].join(' ')}
-          stroke="white"
-          width={30}
-          height={30}
-        />
-      </div>
-      <div
-        className={[
-          'absolute w-[20rem] right-0  pt-5',
-          'transition-all ease-in-out duration-200',
-          active ? 'top-full visible opacity-100' : 'top-0 invisible opacity-0',
-        ].join(' ')}
-      >
-        <div
-          className={`
-          absolute top-[1%] right-4 rotate-180
-          border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] 
-          border-l-transparent border-r-transparent border-white
-          h-5 w-5`}
-        />
-        {menuItems?.map((loginItem, index) => {
-          return (
-            <div
-              key={index}
-              className="w-full bg-white mb-2 px-5 py-4 rounded-3xl"
-            >
-              <Link href={loginItem?.uri ?? '/404'} target="_blank">
-                <div
-                  className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
-                >
-                  <div className="mr-2">
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon ?? ''}`}
-                      alt=""
-                      width={30}
-                      height={30}
-                    />
-                  </div>
+        <span>Login</span>
+        <div>
+          <ChevronDown
+            className={[
+              `${isScrolling ? 'hidden' : ''}`,
+              `group-hover:hidden group-focus:hidden`,
+            ].join(' ')}
+            stroke="#141333"
+            width={30}
+            height={30}
+          />
+          <ChevronDown
+            className={[
+              `${isScrolling ? 'group-hover:hidden' : 'group-hover:flex group-focus:flex'}`,
+              `hidden `,
+            ].join(' ')}
+            stroke="white"
+            width={30}
+            height={30}
+          />
+          <ChevronDown
+            className={[`${isScrolling ? '' : 'hidden'}`, ,].join(' ')}
+            stroke="white"
+            width={30}
+            height={30}
+          />
+        </div>
+      </button>
 
-                  <div className="">{loginItem.title}</div>
-                </div>
-              </Link>
-            </div>
-          );
-        })}
+      <div className={`${isActive ? 'block' : 'hidden'} `}>
+        <div
+          className={`${isScrolling ? 'absolute top-[80px] right-5 rotate-180 border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] border-l-transparent border-r-transparent border-whiteh-5 w-5' : 'absolute top-[60px] right-5 rotate-180 border-l-[0.7rem] border-r-[0.7rem] border-t-[0.7rem] border-l-transparent border-r-transparent border-whiteh-5 w-5'}
+          `}
+        />
+        <section
+          className={`${isScrolling ? 'w-fit absolute top-[88px] right-0' : 'w-fit absolute top-[70px] right-0'}`}
+        >
+          {menuItems?.map((loginItem, index) => {
+            return (
+              <motion.div
+                key={index}
+                className="w-80 bg-white mb-2 px-5 py-4 rounded-3xl"
+              >
+                <Link href={loginItem?.uri ?? '/404'} target="_blank">
+                  <div
+                    className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
+                  >
+                    <div className="mr-2">
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon ?? ''}`}
+                        alt=""
+                        width={30}
+                        height={30}
+                      />
+                    </div>
+                    <h1>{loginItem.title}</h1>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
+        </section>
       </div>
     </div>
   );
@@ -141,12 +142,13 @@ export default function PriorityHeader({
   const currentLanguage = useSearchParams().get('lang');
   const router = useRouter();
   const isScrolling = useScrollActive();
-
+  const elementRef = useRef<HTMLDivElement>(null);
   const [activeSearch, setActiveSearch] = useState(false);
   const [activeMenu, setActiveMenu] = useState(false);
   const [isSelectedMenu, setIsSelectedMenu] = useState<T_PriorityItems | null>(
     null
   );
+  const [isButtonActive, setIsButtonActive] = useState(false);
 
   const onSwitchLanguages = (language: string) => {
     if (currentLanguage !== language) {
@@ -179,8 +181,25 @@ export default function PriorityHeader({
     return pathname.includes(url);
   };
 
+  useOnClickOutside(elementRef, () => setIsButtonActive(false));
+
+  useEffect(() => {
+    if (activeSearch) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [activeSearch]);
+
   return (
-    <>
+    <Fragment>
+      <div
+        className={
+          isButtonActive
+            ? 'fixed top-0 left-0 bg-black/90 overflow-y-auto overflow-x-hidden justify-center items-center w-full h-screen md:inset-0 max-h-full z-50'
+            : 'hidden'
+        }
+      />
       <header
         className={[
           `${isScrolling ? 'bg-white shadow-md' : ''}`,
@@ -332,7 +351,12 @@ export default function PriorityHeader({
             <div>
               <div className="flex items-center gap-2">
                 <div>
-                  <LoginButton menuItems={itemLogin} />
+                  <LoginButton
+                    menuItems={itemLogin}
+                    isActive={isButtonActive}
+                    setIsActive={setIsButtonActive}
+                    refElement={elementRef}
+                  />
                 </div>
                 {!activeMenu && (
                   <div
@@ -497,7 +521,12 @@ export default function PriorityHeader({
               </div>
             </div>
             <div className="pb-2 border-b-4 border-transparent lg:block hidden ml-4">
-              <LoginButton menuItems={itemLogin} />
+              <LoginButton
+                menuItems={itemLogin}
+                isActive={isButtonActive}
+                setIsActive={setIsButtonActive}
+                refElement={elementRef}
+              />
             </div>
           </div>
         </div>
@@ -679,7 +708,7 @@ export default function PriorityHeader({
         )}
         <Search active={activeSearch} setActive={setActiveSearch} />
       </header>
-    </>
+    </Fragment>
   );
 }
 

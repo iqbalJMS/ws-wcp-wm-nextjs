@@ -4,7 +4,7 @@ import useScrollActive from '@/lib/hook/useScroll';
 import { T_ResponseGetTopMenuNavbar } from '@/api/navbar-menu/top-navbar/api.get-top-menu-navbar.type';
 import { T_ResponseGetMenuItemNavbar } from '@/api/navbar-menu/menu-items/api.get-menu-items-navbar.type';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from 'next/link';
 import { CloseIcon } from '@/lib/element/global/icons/close-icon';
@@ -167,6 +167,14 @@ export default function OurStoryHeader({
   const activeTab = (url: string) => {
     return pathname.includes(url);
   };
+
+  useEffect(() => {
+    if (activeSearch) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [activeSearch]);
 
   return (
     <>
