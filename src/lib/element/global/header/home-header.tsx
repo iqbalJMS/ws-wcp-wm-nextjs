@@ -192,7 +192,7 @@ export default function HomeHeader({
       <div
         className={
           isButtonActive
-            ? 'fixed top-0 left-0 bg-black/90 overflow-y-auto overflow-x-hidden justify-center items-center w-full h-screen md:inset-0 max-h-full z-50'
+            ? 'fixed top-0 left-0 bg-black/60 overflow-y-auto overflow-x-hidden justify-center items-center w-full h-screen md:inset-0 max-h-full z-50'
             : 'hidden'
         }
       />

@@ -5,8 +5,8 @@ import {
   validateBoolean,
   validateEmail,
   validateEmpty,
-  validateName,
   validatePhone,
+  validatePrimaryName,
 } from '@/lib/functions/global/validate';
 /* eslint-disable no-unused-vars */
 
@@ -56,11 +56,11 @@ export function CFN_ValidateCreateWebFormFields(
 ): string {
   switch (name) {
     case 'nama':
-      return validateName(name, 'Input nama Tidak Sesuai');
+      return validatePrimaryName(value);
     case 'email':
-      return validateEmail('Input email tidak sesuai');
+      return validateEmail(value);
     case 'telepon':
-      return validatePhone(value, 'Input nomor telepon Tidak Sesuai');
+      return validatePhone(value);
     case 'apakah_anda_nasabah_bri':
       return validateBoolean(value, 'Harap centang bagian ini');
     case 'metode_kontak':

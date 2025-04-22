@@ -17,11 +17,7 @@ export const validateEmpty = (
   value?: string,
   label: string = 'field'
 ): string => {
-  return isEmpty(value)
-    ? !label
-      ? 'Wajib Diisi'
-      : `${label} tidak boleh kosong`
-    : '';
+  return isEmpty(value) ? (!label ? 'Wajib Diisi' : `Wajib Diisi`) : '';
 };
 
 export const validateText = (
@@ -129,21 +125,23 @@ export const validateName = (name: string, label: string = 'field'): string => {
 
 export const validatePrimaryName = (
   value: string,
-  label: string = 'field'
+  label: string = ''
 ): string => {
   const emptyError = validateEmpty(value, label);
   if (emptyError) return emptyError;
   return !namePrimaryRegex.test(value)
-    ? !label
-      ? `Field tidak valid`
-      : `${label} tidak valid`
+    ? !value
+      ? `${label}`
+      : `Harap masukkan karakter alfabet`
     : '';
 };
 
 export const validateEmail = (email: string): string => {
   const emptyError = validateEmpty(email, 'Email');
   if (emptyError) return emptyError;
-  if (!emailRegex.test(email)) return 'Email tidak valid';
+  if (!emailRegex.test(email))
+    return 'Silakan masukkan alamat email yang berlaku.';
+
   return '';
 };
 
@@ -219,14 +217,11 @@ export const validateSallary = (
   return '';
 };
 
-export const validatePhone = (
-  value: string,
-  label: string = 'field'
-): string => {
+export const validatePhone = (value: string, label: string = ''): string => {
   const emptyError = validateEmpty(value, label);
   if (emptyError) return emptyError;
   if (!phoneNumberRegex.test(value))
-    return `${label} harus terdiri dari 9 - 12 Karakter dan hanya angka`;
+    return `${label} harus terdiri dari 9 - 12 Karakter dan hanya angka saja`;
   return '';
 };
 export const validateHomePhone = (

@@ -23,26 +23,31 @@ import {
   CFN_ValidateCreateWebFormFields,
 } from '@/app/(views)/$function/cfn.post-webform';
 import InputError from '@/lib/element/global/form/input.error';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 type Option = {
   label: string;
   value: string;
 };
 
-export default function CE_FormVariant1({ variant }: { variant: string }) {
+export default function CE_FormVariant1({
+  variant,
+  bgImage,
+  title,
+  subTitle,
+}: {
+  variant: string;
+  bgImage: Array<{ image: string }>;
+  title: string;
+  subTitle: string;
+}) {
   const [selectedProvince, setSelectedProvince] = useState<Option | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<Option | null>(null);
   const [selectedWantTo, setSelectedWantTo] = useState<Option | null>(null);
-  const [name] = useState('');
-  const [email] = useState('');
-  const [phone] = useState('');
-  const [customer] = useState('');
-  const [contactBy] = useState('');
   const [contactTime, setContactTime] = useState('');
-  const [wantTo, setWantTo] = useState('');
-  const [message, setMessage] = useState('');
-  const [province, setProvince] = useState('');
-  const [location, setLocation] = useState('');
+  const [, setWantTo] = useState('');
+  const [, setProvince] = useState('');
+  const [, setLocation] = useState('');
   const [pending] = useTransition();
 
   const { form, formError, validateForm, onFieldChange } = useForm<
@@ -83,16 +88,16 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
       if (validateCaptcha(captcha.form)) {
         const result = await ACT_PostWebForm({
           webform_id: 'get_invited',
-          nama: name,
-          email: email,
-          telepon: phone,
-          apakah_anda_nasabah_bri: customer,
-          metode_kontak: contactBy,
-          waktu_dihubungi: contactTime,
-          saya_ingin: wantTo,
-          pesan: message,
-          pilih_provinsi: province,
-          pilih_lokasi: location,
+          nama: form.nama,
+          email: form.email,
+          telepon: form.telepon,
+          apakah_anda_nasabah_bri: form.apakah_anda_nasabah_bri,
+          metode_kontak: form.metode_kontak,
+          waktu_dihubungi: form.waktu_dihubungi,
+          saya_ingin: form.saya_ingin,
+          pesan: form.pesan,
+          pilih_provinsi: form.pilih_provinsi,
+          pilih_lokasi: form.pilih_lokasi,
         });
 
         if (result?.sid) {
@@ -148,15 +153,25 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
     loadCaptchaEnginge(6);
   }, []);
 
+  const backgroundImg = bgImage
+    ? `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage?.[0]?.image ?? ''}`
+    : '';
   return (
     <div className="w-full h-full flex flex-col lg:flex-row-reverse ">
-      <div className="w-full h-full py-10 flex justify-center items-center px-5">
+      <div
+        style={{
+          backgroundImage: `url(${backgroundImg})`,
+          backgroundRepeat: 'no-repeat',
+        }}
+        className="w-full h-full py-10 flex justify-center items-center px-5"
+      >
         <form className="w-full md:w-11/12 lg:w-9/12 xl:w-5/12">
           <section className="text-white space-y-3 pb-5">
-            <h1 className=" text-black text-2xl font-bold">HUBUNGI SAYA</h1>
+            <h1 className=" text-black text-2xl font-bold">
+              {parseHTMLToReact(title) ?? 'title not found'}
+            </h1>
             <h2 className="text-slate-600">
-              Beri tahu kami tentang permintaan Anda agar kami bisa mendapatkan
-              penasihat yang tepat untuk Anda.
+              {parseHTMLToReact(subTitle) ?? 'subtitle not found'}
             </h2>
           </section>
           <h1 className="text-lg text-slate-900">Data lengkap Anda</h1>
@@ -286,6 +301,7 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                     ).split(' ');
                     picked[0] = target.value;
                     setContactTime(picked.join(' '));
+                    onFieldChange('waktu_dihubungi', picked.join(' '));
                   }}
                 />
                 {formError.waktu_dihubungi && (
@@ -304,6 +320,7 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                     ).split(' ');
                     picked[1] = target.value;
                     setContactTime(picked.join(' '));
+                    onFieldChange('waktu_dihubungi', picked.join(' '));
                   }}
                 />
                 {formError.waktu_dihubungi && (
@@ -326,6 +343,7 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                   setSelectedProvince(selected);
                   getLocation(selected.value);
                   setProvince(selected.label);
+                  onFieldChange('pilih_provinsi', selected.value);
                 }}
                 placeholder="Pilih Provinsi"
               />
@@ -347,6 +365,7 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                 onSelectedChanges={(selected) => {
                   setSelectedLocation(selected);
                   setLocation(selected.label);
+                  onFieldChange('pilih_lokasi', selected.value);
                 }}
                 placeholder="Pilih Lokasi"
               />
@@ -374,6 +393,7 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                   onSelectedChanges={(selected) => {
                     setSelectedWantTo(selected);
                     setWantTo(selected.value);
+                    onFieldChange('saya_ingin', selected.value);
                   }}
                   placeholder="Pilih Saya Ingin"
                 />
@@ -388,8 +408,8 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
               <h1 className="pb-3 text-black">Tambahan Pesan</h1>
               <textarea
                 className="text-black border-[1px] border-black rounded-xl bg-transparent w-full px-5 py-3 h-32 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
-                value={message}
-                onChange={({ target }) => setMessage(target.value)}
+                value={form.pesan}
+                onChange={({ target }) => onFieldChange('pesan', target.value)}
                 placeholder="Tulis pesan anda disini..."
               />
               {formError.pesan && (
