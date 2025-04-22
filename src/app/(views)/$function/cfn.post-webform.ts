@@ -1,9 +1,16 @@
 'use client';
 
 import { T_PostResponse } from '@/api/common/fetch.type';
-import {} from '@/lib/functions/global/validate';
+import {
+  validateBoolean,
+  validateEmail,
+  validateEmpty,
+  validateName,
+  validatePhone,
+} from '@/lib/functions/global/validate';
 /* eslint-disable no-unused-vars */
 
+import * as yup from 'yup';
 import { Arrival, Call, Departure } from '@strix/client';
 
 import {
@@ -49,25 +56,25 @@ export function CFN_ValidateCreateWebFormFields(
 ): string {
   switch (name) {
     case 'nama':
-      return '';
+      return validateName(name, 'Input nama Tidak Sesuai');
     case 'email':
-      return '';
+      return validateEmail('Input email tidak sesuai');
     case 'telepon':
-      return '';
+      return validatePhone(value, 'Input nomor telepon Tidak Sesuai');
     case 'apakah_anda_nasabah_bri':
-      return '';
+      return validateBoolean(value, 'Harap centang bagian ini');
     case 'metode_kontak':
-      return '';
+      return validateBoolean(value, 'Harap centang bagian ini');
     case 'waktu_dihubungi':
-      return '';
+      return validateEmpty(value, 'Wajib di isi');
     case 'saya_ingin':
-      return '';
+      return validateEmpty(value, 'Wajib di isi');
     case 'pesan':
-      return '';
+      return validateEmpty(value, 'Wajib di isi');
     case 'pilih_provinsi':
-      return '';
+      return validateEmpty(value, 'Wajib di isi');
     case 'pilih_lokasi':
-      return '';
+      return validateEmpty(value, 'Wajib di isi');
     case 'webform_id':
       return '';
     default:
