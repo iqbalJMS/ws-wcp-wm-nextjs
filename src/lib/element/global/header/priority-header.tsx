@@ -30,7 +30,7 @@ export function LoginButton({
   refElement,
 }: {
   isActive: boolean;
-  setIsActive: (val: boolean) => void;
+  setIsActive: (_val: boolean) => void;
   menuItems: T_ResponseGetMenuItemNavbar;
   refElement: any;
 }) {
@@ -354,7 +354,7 @@ export default function PriorityHeader({
                   <LoginButton
                     menuItems={itemLogin}
                     isActive={isButtonActive}
-                    setIsActive={setIsButtonActive || false}
+                    setIsActive={setIsButtonActive}
                     refElement={elementRef}
                   />
                 </div>
@@ -524,7 +524,7 @@ export default function PriorityHeader({
               <LoginButton
                 menuItems={itemLogin}
                 isActive={isButtonActive}
-                setIsActive={setIsButtonActive || false}
+                setIsActive={setIsButtonActive}
                 refElement={elementRef}
               />
             </div>

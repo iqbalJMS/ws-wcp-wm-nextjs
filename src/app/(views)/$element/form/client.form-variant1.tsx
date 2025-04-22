@@ -8,14 +8,21 @@ import { ACT_PostWebForm } from '@/app/(views)/$action/webform/action.post-webfo
 import { useDictionary } from '@/get-dictionary';
 import DropDown from '@/lib/element/global/dropdown';
 import { RefreshIcon } from '@/lib/element/global/refresh-icon';
+import useForm from '@/lib/hook/useForm';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import {
   LoadCanvasTemplateNoReload,
   loadCaptchaEnginge,
   validateCaptcha,
 } from 'react-simple-captcha';
+import { T_FormGetInvitedRequest } from '@/api/webform/api.post.webform.type';
+import {
+  CFN_MapToWebFormPayload,
+  CFN_ValidateCreateWebFormFields,
+} from '@/app/(views)/$function/cfn.post-webform';
+import InputError from '@/lib/element/global/form/input.error';
 
 type Option = {
   label: string;
@@ -26,16 +33,37 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
   const [selectedProvince, setSelectedProvince] = useState<Option | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<Option | null>(null);
   const [selectedWantTo, setSelectedWantTo] = useState<Option | null>(null);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [customer, setCustomer] = useState('');
-  const [contactBy, setContactBy] = useState('');
+  const [name] = useState('');
+  const [email] = useState('');
+  const [phone] = useState('');
+  const [customer] = useState('');
+  const [contactBy] = useState('');
   const [contactTime, setContactTime] = useState('');
   const [wantTo, setWantTo] = useState('');
   const [message, setMessage] = useState('');
   const [province, setProvince] = useState('');
   const [location, setLocation] = useState('');
+  const [pending] = useTransition();
+
+  const { form, formError, validateForm, onFieldChange } = useForm<
+    T_FormGetInvitedRequest,
+    T_FormGetInvitedRequest
+  >(
+    CFN_MapToWebFormPayload({
+      webform_id: '',
+      nama: '',
+      email: '',
+      telepon: '',
+      apakah_anda_nasabah_bri: '',
+      metode_kontak: '',
+      waktu_dihubungi: '',
+      saya_ingin: '',
+      pesan: '',
+      pilih_provinsi: '',
+      pilih_lokasi: '',
+    }),
+    CFN_ValidateCreateWebFormFields
+  );
 
   const [provinceData, setProvinceData] =
     useState<T_ResponGetProvince | null>();
@@ -46,6 +74,11 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
   const router = useRouter();
 
   const handleSubmit = async () => {
+    const validate = validateForm();
+
+    if (pending || !validate) {
+      return;
+    }
     try {
       if (validateCaptcha(captcha.form)) {
         const result = await ACT_PostWebForm({
@@ -133,28 +166,43 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
               type="text"
               id="hello"
               placeholder="Nama Lengkap Anda"
-              value={name}
-              onChange={({ target }) => setName(target.value)}
+              value={form.nama}
+              onChange={({ target }) => onFieldChange('nama', target.value)}
             />
-            {/* <h1 className="text-xs">Wajib diisi</h1> */}
+            {formError.nama && (
+              <div className="mt-5">
+                <InputError message={formError.nama} />
+              </div>
+            )}
           </div>
           <div className="py-2">
             <input
               className="text-black border-[1px] border-black rounded-2xl bg-transparent w-full px-5 py-3 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
               type="email"
-              value={email}
-              onChange={({ target }) => setEmail(target.value)}
+              value={form.email}
+              onChange={({ target }) => onFieldChange('email', target.value)}
               placeholder="email"
             />
+            {formError.email && (
+              <div className="mt-5">
+                <InputError message={formError.email} />
+              </div>
+            )}
           </div>
           <div className="py-2">
             <input
               className="text-black border-[1px] border-black rounded-2xl bg-transparent w-full px-5 py-3 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
-              type="text"
-              value={phone}
-              onChange={({ target }) => setPhone(target.value)}
+              type="tel"
+              value={form.telepon}
+              onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
+              onChange={({ target }) => onFieldChange('telepon', target.value)}
               placeholder="Nomor Telepon Anda (tanpa kode negara atau 0)"
             />
+            {formError.telepon && (
+              <div className="mt-5">
+                <InputError message={formError.telepon} />
+              </div>
+            )}
           </div>
 
           {/* Input Radio */}
@@ -167,7 +215,9 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                 id="ya"
                 name="nasabah"
                 value="Tidak"
-                onChange={({ target }) => setCustomer(target.value)}
+                onChange={({ target }) =>
+                  onFieldChange('apakah_anda_nasabah_bri', target.value)
+                }
               />
               <label className="pl-2">Tidak</label>
             </span>
@@ -177,10 +227,17 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                 id="tidak"
                 name="nasabah"
                 value="Ya"
-                onChange={({ target }) => setCustomer(target.value)}
+                onChange={({ target }) =>
+                  onFieldChange('apakah_anda_nasabah_bri', target.value)
+                }
               />
               <label className="pl-2">Ya</label>
             </span>
+            {formError.apakah_anda_nasabah_bri && (
+              <div className="mt-5">
+                <InputError message={formError.apakah_anda_nasabah_bri} />
+              </div>
+            )}
           </section>
           <section className="text-black flex flex-col space-y-2 pt-5">
             <h1>Apa metode kontak yang sesuai dengan Anda?</h1>
@@ -190,7 +247,9 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                 id="text-me"
                 name="metode"
                 value="Hubungi Saya"
-                onChange={({ target }) => setContactBy(target.value)}
+                onChange={({ target }) =>
+                  onFieldChange('metode_kontak', target.value)
+                }
               />
               <label className="pl-2">Hubungi Saya</label>
             </span>
@@ -200,10 +259,17 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                 id="mail-me"
                 name="metode"
                 value="Email Saya"
-                onChange={({ target }) => setContactBy(target.value)}
+                onChange={({ target }) =>
+                  onFieldChange('metode_kontak', target.value)
+                }
               />
               <label className="pl-2">Email Saya</label>
             </span>
+            {formError.metode_kontak && (
+              <div className="mt-5">
+                <InputError message={formError.metode_kontak} />
+              </div>
+            )}
           </section>
           {/* Input Dropdown */}
           <section className="pt-10 space-y-5">
@@ -222,6 +288,12 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                     setContactTime(picked.join(' '));
                   }}
                 />
+                {formError.waktu_dihubungi && (
+                  <div className="mt-5">
+                    <InputError message={formError.waktu_dihubungi} />
+                  </div>
+                )}
+
                 <input
                   className=" border-[1px] border-black rounded-2xl bg-transparent w-full px-5 py-2 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
                   type="time"
@@ -234,6 +306,11 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                     setContactTime(picked.join(' '));
                   }}
                 />
+                {formError.waktu_dihubungi && (
+                  <div className="mt-5">
+                    <InputError message={formError.waktu_dihubungi} />
+                  </div>
+                )}
               </span>
             </div>
             <div className="w-full">
@@ -252,6 +329,11 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                 }}
                 placeholder="Pilih Provinsi"
               />
+              {formError.pilih_provinsi && (
+                <div className="mt-5">
+                  <InputError message={formError.pilih_provinsi} />
+                </div>
+              )}
             </div>
             <div className="w-full">
               <DropDown
@@ -268,6 +350,11 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                 }}
                 placeholder="Pilih Lokasi"
               />
+              {formError.pilih_lokasi && (
+                <div className="mt-5">
+                  <InputError message={formError.pilih_lokasi} />
+                </div>
+              )}
             </div>
             <div>
               <h1 className="pb-3 text-black">Saya ingin</h1>
@@ -290,6 +377,11 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                   }}
                   placeholder="Pilih Saya Ingin"
                 />
+                {formError.saya_ingin && (
+                  <div className="mt-5">
+                    <InputError message={formError.saya_ingin} />
+                  </div>
+                )}
               </div>
             </div>
             <div>
@@ -300,6 +392,11 @@ export default function CE_FormVariant1({ variant }: { variant: string }) {
                 onChange={({ target }) => setMessage(target.value)}
                 placeholder="Tulis pesan anda disini..."
               />
+              {formError.pesan && (
+                <div className="mt-5">
+                  <InputError message={formError.pesan} />
+                </div>
+              )}
             </div>
             <div className="flex flex-col items-start space-y-5 py-5">
               <div className="flex items-center">

@@ -85,7 +85,10 @@ const DropDown = ({
               {options.map((option) => (
                 <li
                   key={option.label}
-                  onClick={() => onSelectedChanges(option)}
+                  onClick={() => {
+                    onSelectedChanges(option);
+                    setIsOpen(false);
+                  }}
                   className={`group hover:bg-blue-700 transition-all flex justify-between cursor-pointer text-gray-900 select-none relative py-2 px-3`}
                 >
                   <div className="flex items-center gap-x-2">
