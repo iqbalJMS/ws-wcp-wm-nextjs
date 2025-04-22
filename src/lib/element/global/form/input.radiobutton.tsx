@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-type T_InputRadioButtonValue = string | string[];
+type T_InputRadioButtonValue = string | string[] | any;
 
 export type T_InputRadioButtonList = {
   value: string;

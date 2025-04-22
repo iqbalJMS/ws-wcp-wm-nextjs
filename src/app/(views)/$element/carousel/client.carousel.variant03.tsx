@@ -6,7 +6,9 @@ import Link from 'next/link';
 import PlayIcon from '@/lib/element/global/icons/play-icon';
 import LeftArrow from '@/lib/element/global/icons/left-arrow';
 import ModalVideo from '@/lib/element/global/modal.video';
-import { motion, useInView, useAnimation } from 'motion/react';
+import { useInView, useAnimation } from 'motion/react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
@@ -165,21 +167,22 @@ export default function CE_CarouselVariant3({
       : 'scale-75 z-0 opacity-80 ';
   };
 
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+    });
+  }, []);
+
   return (
     <>
-      <div className="w-full h-[80vh] flex flex-col items-center justify-center relative overflow-hidden">
+      <div
+        data-aos="fade-up"
+        className="w-full h-[80vh] flex flex-col items-center justify-center relative overflow-hidden"
+      >
         <section className="flex justify-between w-10/12 lg:w-11/12 xl:w-11/12 2xl:w-8/12 pb-5 md:pb-0">
-          <div ref={ref}>
-            <motion.div
-              className="space-y-1"
-              variants={{
-                hidden: { opacity: 0, y: 75 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              initial="hidden"
-              animate={mainControls}
-              transition={{ duration: 0.5, delay: 0.25 }}
-            >
+          <div>
+            <div className="space-y-1">
               <h1 className="text-3xl font-extrabold">{title}</h1>
               <h2 className="font-light text-sm pb-3">{subtitle}</h2>
 
@@ -189,21 +192,12 @@ export default function CE_CarouselVariant3({
               >
                 {titlelink}
               </Link>
-            </motion.div>
+            </div>
           </div>
 
           {/* Button Section */}
-          <div ref={ref} className="">
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 75 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              initial="hidden"
-              animate={mainControls}
-              transition={{ duration: 0.5, delay: 0.45 }}
-              className="hidden md:flex space-x-3"
-            >
+          <div className="">
+            <div className="hidden md:flex space-x-3">
               <button
                 className={[
                   ' p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
@@ -242,19 +236,10 @@ export default function CE_CarouselVariant3({
                   }
                 />
               </button>
-            </motion.div>
+            </div>
 
             {/* button for mobile screen */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 75 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              initial="hidden"
-              animate={mainControls}
-              transition={{ duration: 0.5, delay: 0.45 }}
-              className="flex md:hidden space-x-3"
-            >
+            <div className="flex md:hidden space-x-3">
               <button
                 className={[
                   'lg:hidden p-1 bg-wmcolor text-white hover:bg-gray-500 duration-300 delay-75',
@@ -293,7 +278,7 @@ export default function CE_CarouselVariant3({
                   }
                 />
               </button>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -314,10 +299,7 @@ export default function CE_CarouselVariant3({
                 className="flex justify-center items-center p-5 lg:p-4 w-full h-screen"
                 onClick={() => closeModal()}
               >
-                <div
-                  data-aos="fade-down"
-                  className="relative w-full md:w-9/12 lg:w-5/12 lg:h-2/3 bg-white  shadow"
-                >
+                <div className="relative w-full md:w-9/12 lg:w-5/12 lg:h-2/3 bg-white  shadow">
                   <div className="h-3/4">
                     <iframe
                       height="450"
@@ -344,7 +326,7 @@ export default function CE_CarouselVariant3({
         )}
 
         <section className="relative w-10/12 lg:w-11/12 xl:w-full 2xl:w-9/12 overflow-hidden">
-          <motion.div
+          <div
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
@@ -422,7 +404,7 @@ export default function CE_CarouselVariant3({
                 ) : null}
               </div>
             ))}
-          </motion.div>
+          </div>
         </section>
         <div className="absolute bg-[#DCDCDC] w-10/12 h-60 -z-10 bottom-20 left-0 rounded-r-full"></div>
       </div>

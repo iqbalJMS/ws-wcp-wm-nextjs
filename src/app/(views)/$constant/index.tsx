@@ -30,6 +30,10 @@ const SE_SubscriberContent = dynamic(
   () => import('@/app/$element/server.subscriber.content')
 );
 
+const CE_FormVariant1 = dynamic(
+  () => import('@/app/(views)/$element/form/client.form-variant1')
+);
+
 const CE_PortletHeader = dynamic(
   () => import('@/app/(views)/$element/portlet/client.portlet.header')
 );
@@ -481,7 +485,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             );
           case WIDGET_VARIANT.variant18:
             return <CE_VideosCard data={data} variant={theme} />;
-
+          case WIDGET_VARIANT.variant26:
+            return (
+              <CE_FormVariant1
+                variant={theme}
+                bgImage={bgImage}
+                title={title}
+                subTitle={subTitle}
+              />
+            );
           default:
             return <></>;
         }
@@ -599,6 +611,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           };
         });
 
+        const bgImageForm = _component?.field_image?.map((item) => {
+          return {
+            image: item?.thumbnail?.[0]?.uri?.[0]?.url,
+          };
+        });
+
+        const titleForm = _component?.field_formatted_title?.[0]?.value;
+        const subTitleForm = _component?.field_content?.[0]?.value;
+
         switch (findVariantStyle) {
           case WIDGET_VARIANT.variant01:
             return {
@@ -679,7 +700,13 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               variant: findVariantStyle,
               data: videoCardData,
             };
-
+          case WIDGET_VARIANT.variant26:
+            return {
+              variant: findVariantStyle,
+              bgImage: bgImageForm,
+              title: titleForm,
+              subTitle: subTitleForm,
+            };
           default:
             return {
               title: null,

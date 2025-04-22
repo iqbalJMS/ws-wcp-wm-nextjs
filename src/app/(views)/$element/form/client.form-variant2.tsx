@@ -1,21 +1,28 @@
 'use client';
 import { T_ResponGetLocation } from '@/api/location/api.get-location.type';
 import { T_ResponGetProvince } from '@/api/province/api.get-province.type';
+import { T_FormGetInvitedRequest } from '@/api/webform/api.post.webform.type';
 import { ACT_GetLocation } from '@/app/(views)/$action/location/action.get-location';
 import { ACT_GetProvince } from '@/app/(views)/$action/province/action.get-province';
 import { ACT_PostWebForm } from '@/app/(views)/$action/webform/action.post-webform';
 import { useDictionary } from '@/get-dictionary';
 import DropDown from '@/lib/element/global/dropdown';
 import { RefreshIcon } from '@/lib/element/global/refresh-icon';
+import useForm from '@/lib/hook/useForm';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import {
   LoadCanvasTemplateNoReload,
   loadCaptchaEnginge,
   validateCaptcha,
 } from 'react-simple-captcha';
+import {
+  CFN_MapToWebFormPayload,
+  CFN_ValidateCreateWebFormFields,
+} from '@/app/(views)/$function/cfn.post-webform';
+import InputError from '@/lib/element/global/form/input.error';
 
 type Option = {
   label: string;
@@ -32,16 +39,32 @@ export default function CE_FormVariant2({
   const [selectedProvince, setSelectedProvince] = useState<Option | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<Option | null>(null);
   const [selectedWantTo, setSelectedWantTo] = useState<Option | null>(null);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [customer, setCustomer] = useState('');
-  const [contactBy, setContactBy] = useState('');
   const [contactTime, setContactTime] = useState('');
-  const [wantTo, setWantTo] = useState('');
-  const [message, setMessage] = useState('');
-  const [province, setProvince] = useState('');
-  const [location, setLocation] = useState('');
+  const [, setWantTo] = useState('');
+  const [, setProvince] = useState('');
+  const [, setLocation] = useState('');
+  const [pending] = useTransition();
+
+  const { form, formError, validateForm, onFieldChange } = useForm<
+    T_FormGetInvitedRequest,
+    T_FormGetInvitedRequest
+  >(
+    CFN_MapToWebFormPayload({
+      webform_id: '',
+      nama: '',
+      email: '',
+      telepon: '',
+      apakah_anda_nasabah_bri: '',
+      metode_kontak: '',
+      waktu_dihubungi: '',
+      saya_ingin: '',
+      pesan: '',
+      pilih_provinsi: '',
+      pilih_lokasi: '',
+    }),
+    CFN_ValidateCreateWebFormFields
+  );
+
   const [provinceData, setProvinceData] =
     useState<T_ResponGetProvince | null>();
 
@@ -50,27 +73,26 @@ export default function CE_FormVariant2({
 
   const router = useRouter();
 
-  const dictionary = useDictionary('id');
-  const [captcha, setCaptcha] = useState({
-    form: '',
-    error: '',
-  });
-
   const handleSubmit = async () => {
+    const validate = validateForm();
+
+    if (pending || !validate) {
+      return;
+    }
     try {
       if (validateCaptcha(captcha.form)) {
         const result = await ACT_PostWebForm({
           webform_id: 'get_invited',
-          nama: name,
-          email: email,
-          telepon: phone,
-          apakah_anda_nasabah_bri: customer,
-          metode_kontak: contactBy,
-          waktu_dihubungi: contactTime,
-          saya_ingin: wantTo,
-          pesan: message,
-          pilih_provinsi: province,
-          pilih_lokasi: location,
+          nama: form.nama,
+          email: form.email,
+          telepon: form.telepon,
+          apakah_anda_nasabah_bri: form.apakah_anda_nasabah_bri,
+          metode_kontak: form.metode_kontak,
+          waktu_dihubungi: form.waktu_dihubungi,
+          saya_ingin: form.saya_ingin,
+          pesan: form.pesan,
+          pilih_provinsi: form.pilih_provinsi,
+          pilih_lokasi: form.pilih_lokasi,
         });
 
         if (result?.sid) {
@@ -85,6 +107,28 @@ export default function CE_FormVariant2({
       }
     } catch (_) {}
   };
+
+  const dictionary = useDictionary('id');
+  const [captcha, setCaptcha] = useState({
+    form: '',
+    error: '',
+  });
+
+  let colorTheme = '';
+  if (variant === 'wm-private-main-navigation') {
+    colorTheme = 'privatecolor';
+  } else if (variant === 'wm-prioritas-main-navigation') {
+    colorTheme = 'prioritycolor';
+  } else {
+    colorTheme = 'wmcolor';
+  }
+  let textColor = '';
+  if (variant === 'wm-private-main-navigation') {
+    textColor = 'black';
+  } else {
+    textColor = 'white';
+  }
+
   const getProvince = async () => {
     const province = await ACT_GetProvince({ lang: 'en' });
     setProvinceData(province);
@@ -103,21 +147,6 @@ export default function CE_FormVariant2({
     getProvince();
     loadCaptchaEnginge(6);
   }, []);
-
-  let colorTheme = '';
-  if (variant === 'wm-private-main-navigation') {
-    colorTheme = 'privatecolor';
-  } else if (variant === 'wm-prioritas-main-navigation') {
-    colorTheme = 'prioritycolor';
-  } else {
-    colorTheme = 'wmcolor';
-  }
-  let textColor = '';
-  if (variant === 'wm-private-main-navigation') {
-    textColor = 'black';
-  } else {
-    textColor = 'white';
-  }
   return (
     <div className="w-full bg-[#605E68] h-full flex flex-col lg:flex-row-reverse ">
       <div className="w-full h-full">
@@ -145,28 +174,43 @@ export default function CE_FormVariant2({
               type="text"
               id="hello"
               placeholder="Nama Lengkap Anda"
-              value={name}
-              onChange={({ target }) => setName(target.value)}
+              value={form.nama}
+              onChange={({ target }) => onFieldChange('nama', target.value)}
             />
-            {/* <h1 className="text-xs">Wajib diisi</h1> */}
+            {formError.nama && (
+              <div className="mt-5">
+                <InputError message={formError.nama} />
+              </div>
+            )}
           </div>
           <div className="py-2">
             <input
               className="text-white border-[1px] border-white rounded-2xl bg-transparent w-full px-5 py-3 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
               type="email"
-              value={email}
-              onChange={({ target }) => setEmail(target.value)}
+              value={form.email}
+              onChange={({ target }) => onFieldChange('email', target.value)}
               placeholder="email"
             />
+            {formError.email && (
+              <div className="mt-5">
+                <InputError message={formError.email} />
+              </div>
+            )}
           </div>
           <div className="py-2">
             <input
               className="text-white border-[1px] border-white rounded-2xl bg-transparent w-full px-5 py-3 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
-              type="text"
-              value={phone}
-              onChange={({ target }) => setPhone(target.value)}
+              type="tel"
+              value={form.telepon}
+              onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
+              onChange={({ target }) => onFieldChange('telepon', target.value)}
               placeholder="Nomor Telepon Anda (tanpa kode negara atau 0)"
             />
+            {formError.telepon && (
+              <div className="mt-5">
+                <InputError message={formError.telepon} />
+              </div>
+            )}
           </div>
 
           {/* Input Radio */}
@@ -179,7 +223,9 @@ export default function CE_FormVariant2({
                 id="ya"
                 name="nasabah"
                 value="Tidak"
-                onChange={({ target }) => setCustomer(target.value)}
+                onChange={({ target }) =>
+                  onFieldChange('apakah_anda_nasabah_bri', target.value)
+                }
               />
               <label className="pl-2">Tidak</label>
             </span>
@@ -189,10 +235,17 @@ export default function CE_FormVariant2({
                 id="tidak"
                 name="nasabah"
                 value="Ya"
-                onChange={({ target }) => setCustomer(target.value)}
+                onChange={({ target }) =>
+                  onFieldChange('apakah_anda_nasabah_bri', target.value)
+                }
               />
               <label className="pl-2">Ya</label>
             </span>
+            {formError.apakah_anda_nasabah_bri && (
+              <div className="mt-5">
+                <InputError message={formError.apakah_anda_nasabah_bri} />
+              </div>
+            )}
           </section>
           <section className="text-white flex flex-col space-y-2 pt-5">
             <h1>Apa metode kontak yang sesuai dengan Anda?</h1>
@@ -202,7 +255,9 @@ export default function CE_FormVariant2({
                 id="text-me"
                 name="metode"
                 value="Hubungi Saya"
-                onChange={({ target }) => setContactBy(target.value)}
+                onChange={({ target }) =>
+                  onFieldChange('metode_kontak', target.value)
+                }
               />
               <label className="pl-2">Hubungi Saya</label>
             </span>
@@ -212,10 +267,17 @@ export default function CE_FormVariant2({
                 id="mail-me"
                 name="metode"
                 value="Email Saya"
-                onChange={({ target }) => setContactBy(target.value)}
+                onChange={({ target }) =>
+                  onFieldChange('metode_kontak', target.value)
+                }
               />
               <label className="pl-2">Email Saya</label>
             </span>
+            {formError.metode_kontak && (
+              <div className="mt-5">
+                <InputError message={formError.metode_kontak} />
+              </div>
+            )}
           </section>
           {/* Input Dropdown */}
           <section className="pt-10 space-y-5">
@@ -232,8 +294,14 @@ export default function CE_FormVariant2({
                     ).split(' ');
                     picked[0] = target.value;
                     setContactTime(picked.join(' '));
+                    onFieldChange('waktu_dihubungi', picked.join(' '));
                   }}
                 />
+                {formError.waktu_dihubungi && (
+                  <div className="mt-5">
+                    <InputError message={formError.waktu_dihubungi} />
+                  </div>
+                )}
                 <input
                   className=" border-[1px] border-white rounded-2xl bg-transparent w-full px-5 py-2 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
                   type="time"
@@ -244,8 +312,14 @@ export default function CE_FormVariant2({
                     ).split(' ');
                     picked[1] = target.value;
                     setContactTime(picked.join(' '));
+                    onFieldChange('waktu_dihubungi', picked.join(' '));
                   }}
                 />
+                {formError.waktu_dihubungi && (
+                  <div className="mt-5">
+                    <InputError message={formError.waktu_dihubungi} />
+                  </div>
+                )}
               </span>
             </div>
             <div className="w-full">
@@ -262,9 +336,15 @@ export default function CE_FormVariant2({
                   setSelectedProvince(selected);
                   getLocation(selected.value);
                   setProvince(selected.label);
+                  onFieldChange('pilih_provinsi', selected.value);
                 }}
                 placeholder="Pilih Provinsi"
               />
+              {formError.pilih_provinsi && (
+                <div className="mt-5">
+                  <InputError message={formError.pilih_provinsi} />
+                </div>
+              )}
             </div>
             <div className="w-full">
               <DropDown
@@ -279,9 +359,15 @@ export default function CE_FormVariant2({
                 onSelectedChanges={(selected) => {
                   setSelectedLocation(selected);
                   setLocation(selected.label);
+                  onFieldChange('pilih_lokasi', selected.value);
                 }}
                 placeholder="Pilih Lokasi"
               />
+              {formError.pilih_lokasi && (
+                <div className="mt-5">
+                  <InputError message={formError.pilih_lokasi} />
+                </div>
+              )}
             </div>
             <div>
               <h1 className="pb-3 text-white">Saya ingin</h1>
@@ -302,19 +388,30 @@ export default function CE_FormVariant2({
                   onSelectedChanges={(selected) => {
                     setSelectedWantTo(selected);
                     setWantTo(selected.value);
+                    onFieldChange('saya_ingin', selected.value);
                   }}
                   placeholder="Pilih Saya Ingin"
                 />
+                {formError.saya_ingin && (
+                  <div className="mt-5">
+                    <InputError message={formError.saya_ingin} />
+                  </div>
+                )}
               </div>
             </div>
             <div>
               <h1 className="pb-3 text-white">Tambahan Pesan</h1>
               <textarea
                 className="text-white border-[1px] border-white rounded-xl bg-transparent w-full px-5 py-3 h-32 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
-                value={message}
-                onChange={({ target }) => setMessage(target.value)}
+                value={form.pesan}
+                onChange={({ target }) => onFieldChange('pesan', target.value)}
                 placeholder="Tulis pesan anda disini..."
               />
+              {formError.pesan && (
+                <div className="mt-5">
+                  <InputError message={formError.pesan} />
+                </div>
+              )}
             </div>
             <div className="flex flex-col items-start space-y-5 py-5">
               <div className="flex items-center">
