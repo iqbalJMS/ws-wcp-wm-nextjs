@@ -1,11 +1,12 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import PlayIcon from '@/lib/element/global/play-icon';
 import { useState } from 'react';
-import { motion, useInView, useAnimation } from 'motion/react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import ModalVideo from '@/lib/element/global/modal.video';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function CE_VideosCard({
   data,
@@ -19,11 +20,7 @@ export default function CE_VideosCard({
   }>;
   variant: string;
 }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const mainControls = useAnimation();
   const [modalIndex, setModalIndex] = useState<number | null>(null);
-
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => {
     setModalOpen(false);
@@ -31,10 +28,10 @@ export default function CE_VideosCard({
   };
 
   useEffect(() => {
-    if (isInView) {
-      mainControls.start('visible');
-    }
-  }, [isInView, mainControls]);
+    AOS.init({
+      once: false,
+    });
+  }, []);
 
   let color = '';
 
@@ -52,19 +49,11 @@ export default function CE_VideosCard({
       <h2 className="font-extralight pt-2 pb-16">
         Daftar putar teratas minggu ini
       </h2>
-      <section
-        ref={ref}
-        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10"
-      >
+      <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
         {data?.map((item, index) => (
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            animate={mainControls}
-            transition={{ duration: 0.5, delay: 0.25 }}
+          <div
+            data-aos="fade-up"
+            data-aos-duration="500"
             onClick={() => setModalOpen(true)}
             key={index}
             className="group relative w-96 h-max flex flex-col cursor-pointer rounded-lg"
@@ -94,7 +83,7 @@ export default function CE_VideosCard({
             >
               {item?.title}
             </h1>
-          </motion.div>
+          </div>
         ))}
         {modalOpen && (
           <ModalVideo>

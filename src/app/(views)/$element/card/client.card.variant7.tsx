@@ -17,6 +17,8 @@ import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import useForm from '@/lib/hook/useForm';
 import Link from 'next/link';
 import { useEffect, useState, useTransition } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function CE_Location({
   variant,
@@ -80,6 +82,12 @@ export default function CE_Location({
     colorTheme = 'wmcolor';
   }
 
+  useEffect(() => {
+    AOS.init({
+      once: false,
+    });
+  }, []);
+
   return (
     <>
       <CE_SearchOutlet
@@ -97,6 +105,8 @@ export default function CE_Location({
         <section className="w-full 2xl:w-8/12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-2 place-items-center px-5">
           {location?.data.map((item, index) => (
             <div
+              data-aos="fade-up"
+              data-aos-duration="500"
               key={index}
               className="object h-64 w-full rounded-2xl flex flex-col justify-between p-5 border border-gray-300 shadow-2xl cursor-pointer"
             >
@@ -124,7 +134,11 @@ export default function CE_Location({
             </div>
           ))}
         </section>
-        <section className="w-full 2xl:w-8/12 flex justify-end pt-10 ">
+        <section
+          data-aos="fade-up"
+          data-aos-duration="500"
+          className="w-full 2xl:w-8/12 flex justify-end pt-10 "
+        >
           <Pagination
             currentPage={location?.pagination?.currentPage || 1}
             totalPages={location?.pagination?.totalPages || 0}

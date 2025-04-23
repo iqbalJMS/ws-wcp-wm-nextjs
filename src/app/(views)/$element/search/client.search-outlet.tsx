@@ -1,8 +1,10 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import imageLocation from '@/../../public/images/dummy/location.png';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 type T_SearchProps = {
   onChange: (_value: string) => void;
@@ -15,6 +17,13 @@ export default function CE_SearchOutlet({ onChange, variant }: T_SearchProps) {
   } else {
     colorTheme = 'wmcolor';
   }
+
+  useEffect(() => {
+    AOS.init({
+      once: false,
+    });
+  }, []);
+
   return (
     <>
       <div className="w-full h-60 flex flex-col items-center justify-center">
@@ -23,7 +32,11 @@ export default function CE_SearchOutlet({ onChange, variant }: T_SearchProps) {
         >
           find us
         </section>
-        <section className="w-11/12 md:w-9/12 lg:w-7/12 2xl:w-6/12 flex flex-col items-center justify-center space-x-4 px-5 2xl:px-7 py-4 bg-white rounded-3xl md:rounded-full shadow-2xl border border-slate-300">
+        <section
+          data-aos="fade-up"
+          data-aos-duration="500"
+          className="w-11/12 md:w-9/12 lg:w-7/12 2xl:w-6/12 flex flex-col items-center justify-center space-x-4 px-5 2xl:px-7 py-4 bg-white rounded-3xl md:rounded-full shadow-2xl border border-slate-300"
+        >
           <div className="flex items-center justify-center w-full space-x-3">
             <div>
               <Image

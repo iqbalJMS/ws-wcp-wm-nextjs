@@ -70,7 +70,7 @@ export function CFN_ValidateCreateWebFormFields(
     case 'saya_ingin':
       return validateEmpty(value, 'Wajib di isi');
     case 'pesan':
-      return validateEmpty(value, 'Wajib di isi');
+      return '';
     case 'pilih_provinsi':
       return validateEmpty(value, 'Wajib di isi');
     case 'pilih_lokasi':

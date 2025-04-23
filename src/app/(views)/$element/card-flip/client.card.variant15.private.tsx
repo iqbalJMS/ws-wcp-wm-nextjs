@@ -1,9 +1,10 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import CE_FlipCard from './client.flip.card';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Link from 'next/link';
-import { motion, useInView, useAnimation } from 'motion/react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function CE_CardVariant15({
   data,
@@ -26,15 +27,11 @@ export default function CE_CardVariant15({
   buttonUri: string;
   variant: string;
 }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const mainControls = useAnimation();
-
   useEffect(() => {
-    if (isInView) {
-      mainControls.start('visible');
-    }
-  }, [isInView, mainControls]);
+    AOS.init({
+      once: false,
+    });
+  }, []);
 
   let colorTheme = '';
   if (variant === 'wm-main-navigation') {
@@ -45,18 +42,10 @@ export default function CE_CardVariant15({
   return (
     <>
       <div className="w-full h-auto flex justify-center pt-20 pb-10">
-        <div
-          ref={ref}
-          className=" w-[40rem] h-full md:w-[50rem] xl:w-[60rem] grid grid-cols-1 "
-        >
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            animate={mainControls}
-            transition={{ duration: 0.5, delay: 0.45 }}
+        <div className=" w-[40rem] h-full md:w-[50rem] xl:w-[60rem] grid grid-cols-1 ">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="500"
             className="w-full flex flex-col items-center px-16"
           >
             {topTitle && (
@@ -71,16 +60,11 @@ export default function CE_CardVariant15({
                 {parseHTMLToReact(subTitle)}
               </h2>
             )}
-          </motion.div>
+          </div>
           <section className="grid grid-cols-1 md:grid-cols-2 pt-0 md:pt-16 space-x-0 lg:space-x-16">
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, x: -75 },
-                visible: { opacity: 1, x: 0 },
-              }}
-              initial="hidden"
-              animate={mainControls}
-              transition={{ duration: 0.5, delay: 0.45 }}
+            <div
+              data-aos="fade-right"
+              data-aos-duration="500"
               className="flex justify-center items-start"
             >
               {data && (
@@ -89,15 +73,10 @@ export default function CE_CardVariant15({
                   backImage={data?.[0]?.backImage}
                 />
               )}
-            </motion.div>
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, x: 75 },
-                visible: { opacity: 1, x: 0 },
-              }}
-              initial="hidden"
-              animate={mainControls}
-              transition={{ duration: 0.5, delay: 0.45 }}
+            </div>
+            <div
+              data-aos="fade-left"
+              data-aos-duration="500"
               className="text-center md:text-start pt-0 md:pt-4"
             >
               <div className="space-y-2 px-16 md:px-0">
@@ -135,7 +114,7 @@ export default function CE_CardVariant15({
                   </Link>
                 )}
               </div>
-            </motion.div>
+            </div>
           </section>
         </div>
       </div>

@@ -169,7 +169,7 @@ export default function CE_CarouselVariant3({
 
   useEffect(() => {
     AOS.init({
-      duration: 800,
+      duration: 500,
       once: false,
     });
   }, []);

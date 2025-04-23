@@ -6,7 +6,9 @@ import useScreenWidth from '@/lib/hook/useScreenWidth';
 import { useState } from 'react';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
-import { motion, useInView, useAnimation } from 'motion/react';
+import { useInView, useAnimation } from 'motion/react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function CE_CardVariant2Prioritas({
   data,
@@ -46,6 +48,13 @@ export default function CE_CardVariant2Prioritas({
       mainControls.start('visible');
     }
   }, [isInView, mainControls]);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      once: false,
+    });
+  }, []);
   return (
     <>
       <div
@@ -59,14 +68,8 @@ export default function CE_CardVariant2Prioritas({
           ref={ref}
           className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-8/12 pb-16"
         >
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            animate={mainControls}
-            transition={{ duration: 0.5, delay: 0.25 }}
+          <div
+            data-aos="fade-up"
             className="uppercase space-y-2 pb-5 flex flex-col justify-center items-center"
           >
             {title && (
@@ -75,13 +78,13 @@ export default function CE_CardVariant2Prioritas({
               </h1>
             )}
             <hr className="w-20 md:w-14 h-[2px] mx-5 my-8 bg-black border-0 dark:bg-black" />
-          </motion.div>
+          </div>
         </section>
         <section
           ref={ref}
           className="md:hidden w-full overflow-hidden mdmax:w-full mdmax:flex-none"
         >
-          <motion.div
+          <div
             className="w-full flex md:grid grid-cols-3 transition-all ease-in-out duration-300 md:space-x-3"
             style={{
               transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
@@ -92,7 +95,6 @@ export default function CE_CardVariant2Prioritas({
                 <div
                   key={index}
                   data-aos="fade-up"
-                  data-aos-duration="1000"
                   className="group hover:bg-prioritycolor relative w-full h-60 md:h-80 px-5 overflow-hidden flex-none flex flex-col items-center justify-center hover:bg-gradient-to-b from-prioritycolor to-[#04040A] rounded-xl duration-500 transition-all ease-in-out cursor-pointer"
                 >
                   <Image
@@ -117,7 +119,7 @@ export default function CE_CardVariant2Prioritas({
                 </div>
               );
             })}
-          </motion.div>
+          </div>
         </section>
         <section
           ref={ref}
@@ -126,15 +128,9 @@ export default function CE_CardVariant2Prioritas({
           <div className="w-full lg:w-10/12 xl:w-full 2xl:w-8/12 flex md:grid grid-cols-3 transition-all ease-in-out duration-300 md:space-x-3">
             {data?.map(({ label, icon, desc }, index) => {
               return (
-                <motion.div
+                <div
+                  data-aos="fade-up"
                   key={index}
-                  variants={{
-                    hidden: { opacity: 0, y: 75 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                  initial="hidden"
-                  animate={mainControls}
-                  transition={{ duration: 0.5, delay: 0.25 }}
                   className="group relative w-full xl:w-11/12 h-60 md:h-80 px-5 overflow-hidden flex-none flex flex-col items-center justify-center hover:bg-gradient-to-b from-prioritycolor to-[#04040A] rounded-xl duration-500 transition-all ease-in-out cursor-pointer"
                 >
                   <Image
@@ -156,12 +152,15 @@ export default function CE_CardVariant2Prioritas({
                       {parseHTMLToReact(desc)}
                     </h2>
                   )}
-                </motion.div>
+                </div>
               );
             })}
           </div>
         </section>
-        <div className="md:hidden w-full flex justify-end px-1 py-3 space-x-3">
+        <div
+          data-aos="fade-up"
+          className="md:hidden w-full flex justify-end px-1 py-3 space-x-3"
+        >
           <button
             className={[
               'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white mdmax:',
