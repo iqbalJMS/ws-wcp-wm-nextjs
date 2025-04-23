@@ -35,11 +35,13 @@ export default function CE_FormVariant1({
   bgImage,
   title,
   subTitle,
+  desc,
 }: {
   variant: string;
   bgImage: Array<{ image: string }>;
   title: string;
   subTitle: string;
+  desc: string;
 }) {
   const [selectedProvince, setSelectedProvince] = useState<Option | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<Option | null>(null);
@@ -174,7 +176,9 @@ export default function CE_FormVariant1({
               {parseHTMLToReact(subTitle) ?? 'subtitle not found'}
             </h2>
           </section>
-          <h1 className="text-lg text-slate-900">Data lengkap Anda</h1>
+          <h1 className="text-lg text-slate-900">
+            {parseHTMLToReact(desc) ?? 'desc not found'}
+          </h1>
           <div className="py-2">
             <input
               className="text-black border-[1px] border-black rounded-2xl bg-transparent w-full px-5 py-3 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
@@ -421,7 +425,11 @@ export default function CE_FormVariant1({
             <div className="flex flex-col items-start space-y-5 py-5">
               <div className="flex items-center">
                 <LoadCanvasTemplateNoReload />
-                <button type="button" onClick={() => loadCaptchaEnginge(6)}>
+                <button
+                  className="px-5"
+                  type="button"
+                  onClick={() => loadCaptchaEnginge(6)}
+                >
                   <RefreshIcon width={28} height={28} fill="#27AE60" />
                 </button>
               </div>

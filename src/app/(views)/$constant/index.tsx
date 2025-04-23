@@ -34,6 +34,10 @@ const CE_FormVariant1 = dynamic(
   () => import('@/app/(views)/$element/form/client.form-variant1')
 );
 
+const CE_FormMainVariant2 = dynamic(
+  () => import('@/app/(views)/$element/form/client.form-variant2-main')
+);
+
 const CE_PortletHeader = dynamic(
   () => import('@/app/(views)/$element/portlet/client.portlet.header')
 );
@@ -61,7 +65,7 @@ const CE_BannerMain = dynamic(
   () => import('@/app/(views)/$element/banner/client.banner.main')
 );
 const CE_FormMain = dynamic(
-  () => import('@/app/(views)/$element/form/client.form-main')
+  () => import('@/app/(views)/$element/form/client.form-variant1-main')
 );
 
 const CE_GetInvited = dynamic(
@@ -397,8 +401,6 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: (...props) => {
         const findVariantStyle = props?.[0]?.variant;
         const title = props?.[0]?.title;
-        const subtitle = props?.[0]?.subtitle;
-        const desctitle = props?.[0]?.desctitle;
         const data = props?.[0]?.data;
         const label = props?.[0]?.label;
         const sublabel = props?.[0]?.sublabel;
@@ -408,14 +410,17 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         const bgImage = props?.[0]?.bgImage;
         const buttonText = props?.[0]?.buttonText;
         const subTitle = props?.[0]?.subTitle;
+        const titleCard = props?.[0]?.titleCard;
+        const subTitleCard = props?.[0]?.subTitleCard;
+        const descTitleCard = props?.[0]?.descTitleCard;
 
         switch (findVariantStyle) {
           case WIDGET_VARIANT.variant01:
             return (
               <CE_CardVariant2
-                title={title}
-                subtitle={subtitle}
-                desctitle={desctitle}
+                title={titleCard}
+                subtitle={subTitleCard}
+                desctitle={descTitleCard}
                 data={data}
               />
             );
@@ -492,8 +497,20 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
                 bgImage={bgImage}
                 title={title}
                 subTitle={subTitle}
+                desc={desc}
               />
             );
+          case WIDGET_VARIANT.variant28:
+            return (
+              <CE_FormMainVariant2
+                variant={theme}
+                bgImage={bgImage}
+                title={title}
+                subTitle={subTitle}
+                desc={desc}
+              />
+            );
+
           default:
             return <></>;
         }
@@ -501,23 +518,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       props: (_component: T_Section) => {
         const findVariantStyle =
           _component?.field_web_variant_styles?.[0]?.field_key?.[0]?.value;
-
-        const subtitle = _component?.field_formatted_title?.[0]?.value;
-        const title = _component?.field_column?.[0]?.field_content?.[0]?.value;
-        const desctitle =
-          _component?.field_column?.[1]?.field_content?.[0]?.value;
         const label = _component?.field_formatted_title?.[0]?.value;
         const sublabel = _component?.field_content?.[0]?.value;
-
-        const dataCard = _component?.field_column?.[2]?.field_column?.map(
-          (item) => {
-            return {
-              iconcard: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
-              labelcard: item?.field_title?.[0]?.value,
-              desccard: item?.field_content?.[0]?.value,
-            };
-          }
-        );
+        const dataCard = _component?.field_column?.map((item) => {
+          return {
+            iconcard: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
+            labelcard: item?.field_title?.[0]?.value,
+            desccard: item?.field_content?.[0]?.value,
+          };
+        });
 
         const dataProduk = _component?.field_column.map((item) => {
           return {
@@ -619,14 +628,19 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
 
         const titleForm = _component?.field_formatted_title?.[0]?.value;
         const subTitleForm = _component?.field_content?.[0]?.value;
+        const descForm = _component?.field_note?.[0]?.value;
+
+        const titleCard = _component?.field_formatted_title?.[0]?.value;
+        const subTitleCard = _component?.field_content?.[0]?.value;
+        const descTitleCard = _component?.field_note?.[0]?.value;
 
         switch (findVariantStyle) {
           case WIDGET_VARIANT.variant01:
             return {
               variant: findVariantStyle,
-              title: title,
-              subtitle: subtitle,
-              desctitle: desctitle,
+              titleCard: titleCard,
+              subTitleCard: subTitleCard,
+              descTitleCard: descTitleCard,
               data: dataCard,
             };
           case WIDGET_VARIANT.variant02:
@@ -706,6 +720,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               bgImage: bgImageForm,
               title: titleForm,
               subTitle: subTitleForm,
+              desc: descForm,
+            };
+          case WIDGET_VARIANT.variant28:
+            return {
+              variant: findVariantStyle,
+              bgImage: bgImageForm,
+              title: titleForm,
+              subTitle: subTitleForm,
+              desc: descForm,
             };
           default:
             return {
@@ -1056,7 +1079,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               />
             );
           case WIDGET_VARIANT.variant26:
-            return <CE_FormVariant2 variant={theme} bgImage={propsBgImage} />;
+            return (
+              <CE_FormVariant2
+                variant={theme}
+                bgImage={propsBgImage}
+                title={''}
+                subTitle={''}
+                desc={''}
+              />
+            );
           case WIDGET_VARIANT.variant27:
             return (
               <CE_GetInvited
