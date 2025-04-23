@@ -7,5 +7,5 @@ export const homePhoneNumberRegex = /^\d{9,12}$/;
 export const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const npwpRegex = /^[0-9]+$/;
 export const nikRegex = /^[0-9]+$/;
-export const namePrimaryRegex = /^[A-Za-z\s]{3,14}$/;
+export const namePrimaryRegex = /^[A-Za-z\s]{3,30}$/;
 export const appReqNoRegex = /^[A-Za-z\d\s]{3,18}$/;
