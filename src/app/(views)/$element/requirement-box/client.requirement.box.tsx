@@ -1,5 +1,8 @@
-import React from 'react';
+'use client';
 
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 export default function CE_RequirementBox({
   data,
   variant,
@@ -20,11 +23,23 @@ export default function CE_RequirementBox({
   } else if (variant == 'wm-private-main-navigation') {
     color = 'privatecolor';
   }
+
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      once: false,
+    });
+  }, []);
+
   return (
     <>
       <div className=" w-full pt-10">
         <section className="w-full">
-          <div className="flex flex-col justify-center items-center">
+          <div
+            data-aos="fade up"
+            data-aos-duration="700"
+            className="flex flex-col justify-center items-center"
+          >
             <h1
               className={`w-fit pb-4 text-2xl xl:text-3xl font-bold text-center text-${color} uppercase`}
             >
@@ -34,7 +49,11 @@ export default function CE_RequirementBox({
           </div>
         </section>
         <section className="flex flex-col justify-center items-center py-10 p-5">
-          <div className="w-full md:w-6/12 xl:w-5/12 rounded-xl shadow-xl border p-5 xl:p-10">
+          <div
+            data-aos="fade up"
+            data-aos-duration="500"
+            className="w-full md:w-6/12 xl:w-5/12 rounded-xl shadow-xl border p-5 xl:p-10"
+          >
             {data?.map((item, index) => (
               <div key={index} className="flex">
                 <span className="border-r-[1px] w-5/12 xl:w-4/12 py-5 border-bluedark01 ">

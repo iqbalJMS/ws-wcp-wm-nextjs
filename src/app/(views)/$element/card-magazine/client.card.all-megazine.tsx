@@ -4,7 +4,6 @@ import useScreenWidth from '@/lib/hook/useScreenWidth';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import Link from 'next/link';
-import { motion, useInView, useAnimation } from 'motion/react';
 import {
   T_Magazine,
   T_RequestMagazine,
@@ -15,6 +14,9 @@ import {
   CFN_MapToMagazinePayload,
   CFN_ValidateGetMagazineFields,
 } from '@/app/(views)/$function/cfn.get-magazine';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const getSlideToShow = (screenWidth: number) => {
   if (!screenWidth) return 3;
 
@@ -116,14 +118,12 @@ export default function CE_AllMagazine({
     }
   };
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const mainControls = useAnimation();
 
   useEffect(() => {
-    if (isInView) {
-      mainControls.start('visible');
-    }
-  }, [isInView, mainControls]);
+    AOS.init({
+      once: false,
+    });
+  }, []);
 
   let colorTheme = '';
   if (variant === 'wm-private-main-navigation') {
@@ -153,16 +153,7 @@ export default function CE_AllMagazine({
         className="w-full h-auto flex flex-col items-center justify-center"
       >
         {/* mobile section */}
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 75 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          initial="hidden"
-          animate={mainControls}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="md:hidden lg:hidden relative overflow-hidden mdmax:w-full mdmax:flex-none p-10 mdmax:p-1 justify-center"
-        >
+        <div className="md:hidden lg:hidden relative overflow-hidden mdmax:w-full mdmax:flex-none p-10 mdmax:p-1 justify-center">
           <div
             className="md:w-10/12 lg:w-8/12 flex justify-start transition-all ease-in-out duration-300"
             style={{
@@ -171,6 +162,8 @@ export default function CE_AllMagazine({
           >
             {magazineList?.map((item, index) => (
               <Link
+                data-aos="fade-up"
+                data-aos-duration="500"
                 href={
                   variant == 'wm-private-main-navigation'
                     ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
@@ -229,7 +222,11 @@ export default function CE_AllMagazine({
               </Link>
             ))}
           </div>
-          <div className="md:hidden w-full flex justify-end px-10 py-3 space-x-3 ">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="500"
+            className="md:hidden w-full flex justify-end px-10 py-3 space-x-3 "
+          >
             <button
               className={[
                 'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white mdmax:',
@@ -269,21 +266,16 @@ export default function CE_AllMagazine({
               />
             </button>
           </div>
-        </motion.div>
+        </div>
 
         {/* Tab Section */}
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 75 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          initial="hidden"
-          animate={mainControls}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="w-full hidden md:flex lg:hidden justify-center px-5"
-        >
+        <div className="w-full hidden md:flex lg:hidden justify-center px-5">
           <div className="w-full h-[50vh] flex flex-row justify-center">
-            <div className="basis-20 flex justify-center items-center">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="500"
+              className="basis-20 flex justify-center items-center"
+            >
               <button
                 className={[
                   'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white ',
@@ -312,6 +304,8 @@ export default function CE_AllMagazine({
               >
                 {magazineList?.map((item, index) => (
                   <Link
+                    data-aos="fade-up"
+                    data-aos-duration="500"
                     href={
                       variant == 'wm-private-main-navigation'
                         ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
@@ -367,7 +361,11 @@ export default function CE_AllMagazine({
                 ))}
               </div>
             </div>
-            <div className="basis-20 flex justify-center items-center">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="500"
+              className="basis-20 flex justify-center items-center"
+            >
               <button
                 className={[
                   'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white',
@@ -390,24 +388,17 @@ export default function CE_AllMagazine({
               </button>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Web Section */}
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 75 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          initial="hidden"
-          animate={mainControls}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="hidden lg:flex w-full h-full justify-center items-center "
-        >
+        <div className="hidden lg:flex w-full h-full justify-center items-center ">
           <div className="w-full h-full flex justify-center ">
             <div className="w-fit h-full flex justify-center ">
               <div className="w-full h-full grid grid-cols-4 gap-5">
                 {magazineList?.map((item, index) => (
                   <Link
+                    data-aos="fade-up"
+                    data-aos-duration="500"
                     className="group overflow-hidden w-96 lg:w-60 xl:w-72 2xl:w-80 h-[70vh]"
                     href={
                       variant === 'wm-private-main-navigation'
@@ -468,16 +459,11 @@ export default function CE_AllMagazine({
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
         {!isLastPage ? (
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            animate={mainControls}
-            transition={{ duration: 0.5, delay: 0.45 }}
+          <div
+            data-aos="fade-up"
+            data-aos-duration="500"
             className="hidden lg:inline-flex items-center justify-center w-full pt-5"
           >
             <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
@@ -488,7 +474,7 @@ export default function CE_AllMagazine({
               Muat Lebih Banyak
             </button>
             <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
-          </motion.div>
+          </div>
         ) : null}
       </div>
     </>

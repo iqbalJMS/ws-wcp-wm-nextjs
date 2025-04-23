@@ -6,7 +6,9 @@ import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import ArrowLeftIcon from '@/lib/element/global/icons/arrow-left-icon';
 import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import { motion, useInView, useAnimation } from 'motion/react';
+import { useInView, useAnimation } from 'motion/react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function CE_CardVariant5({
   dataCard,
@@ -47,21 +49,20 @@ export default function CE_CardVariant5({
     }
   }, [isInView, mainControls]);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+    });
+  }, []);
+
   return (
     <>
       <div className="w-full h-auto flex justify-center py-10">
-        <div
-          ref={ref}
-          className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-full 2xl:w-9/12 grid grid-cols-1 md:grid-cols-2 lg:content-center xl:px-16 2xl:px-10"
-        >
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            animate={mainControls}
-            transition={{ duration: 0.5, delay: 0.45 }}
+        <div className="w-full p-5 md:w-11/12 lg:w-10/12 xl:w-full 2xl:w-9/12 grid grid-cols-1 md:grid-cols-2 lg:content-center xl:px-16 2xl:px-10">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="500"
             className="pb-10 pr-10 lg:pr-0 w-96 md:flex flex-col justify-center "
           >
             {label && (
@@ -74,17 +75,8 @@ export default function CE_CardVariant5({
                 {parseHTMLToReact(sublabel)}
               </h2>
             )}
-          </motion.div>
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            animate={mainControls}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="w-full overflow-hidden mdmax:w-full mdmax:flex-none"
-          >
+          </div>
+          <div className="w-full overflow-hidden mdmax:w-full mdmax:flex-none">
             <div
               className="w-full flex transition-all ease-in-out duration-300 md:space-x-7"
               style={{
@@ -93,6 +85,7 @@ export default function CE_CardVariant5({
             >
               {dataCard?.map((item, index) => (
                 <Link
+                  data-aos="fade-up"
                   href={item?.linkCta ?? '/404'}
                   key={index}
                   className="bg-blue-400 relative w-full h-60 md:h-80 overflow-hidden cursor-pointer flex-none md:flex-1 "
@@ -163,7 +156,7 @@ export default function CE_CardVariant5({
                 />
               </button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </>

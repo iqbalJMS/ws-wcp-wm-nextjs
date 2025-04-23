@@ -4,7 +4,9 @@ import Image from 'next/image';
 import ArrowRightIcon from '@/lib/element/global/icons/arrow-rigth-icon';
 import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import { motion, useInView, useAnimation } from 'motion/react';
+import { useInView, useAnimation } from 'motion/react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function CE_CardVariant4({
   data,
@@ -28,36 +30,25 @@ export default function CE_CardVariant4({
     }
   }, [isInView, mainControls]);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      once: false,
+    });
+  }, []);
+
   return (
     <>
       <div className="relative w-full h-auto flex justify-center p-5 overflow-hidden">
-        <section ref={ref} className="w-full lg:w-11/12">
-          <motion.div
-            className="w-full"
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            animate={mainControls}
-            transition={{ duration: 0.5, delay: 0.25 }}
-          >
+        <section className="w-full lg:w-11/12">
+          <div className="w-full">
             {title && (
               <h1 className="text-center pb-20 text-3xl font-semibold uppercase">
                 {parseHTMLToReact(title)}
               </h1>
             )}
-          </motion.div>
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, x: -75 },
-              visible: { opacity: 1, x: 0 },
-            }}
-            initial="hidden"
-            animate={mainControls}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="w-full grid grid-cols-1 gap-y-4 place-items-center lg:grid-cols-2 xl:px-0 2xl:px-48"
-          >
+          </div>
+          <div className="w-full grid grid-cols-1 gap-y-4 place-items-center lg:grid-cols-2 xl:px-0 2xl:px-48">
             {data?.map((item, index) => (
               <Link
                 className="cursor-pointer group relative w-full md:w-10/12 h-44 lg:h-64 lg:w-full xl:h-60 2xl:h-72 overflow-hidden bg-center"
@@ -99,7 +90,7 @@ export default function CE_CardVariant4({
                 </span>
               </Link>
             ))}
-          </motion.div>
+          </div>
         </section>
         <div className="bg-[#DCDCDC] w-[400px] h-[120px] absolute -z-10 bottom-0 left-20"></div>
         <div className="bg-[#DCDCDC] w-[400px] h-[120px] absolute -z-10 top-[116px] right-20"></div>

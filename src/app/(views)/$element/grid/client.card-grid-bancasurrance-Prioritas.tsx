@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useInView, useAnimation } from 'motion/react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const CE_BancasurrancePrioritas = ({
   dataCard,
@@ -16,37 +17,26 @@ const CE_BancasurrancePrioritas = ({
     nid: string;
   }>;
 }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const mainControls = useAnimation();
-
   useEffect(() => {
-    if (isInView) {
-      mainControls.start('visible');
-    }
-  }, [isInView, mainControls]);
+    AOS.init({
+      once: false,
+    });
+  }, []);
 
   return (
     <>
       <div className="container py-10 px-20 mdmax:px-10">
-        <div ref={ref} className="flex flex-wrap -mx-10">
+        <div className="flex flex-wrap -mx-10">
           {dataCard?.map((item, index) => (
             <Link
+              data-aos="fade-up"
+              data-aos-duration="500"
               href={`/bancassurance-detail-prioritas/${item?.nid ?? '/404'}`}
               key={index}
               className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
             >
               <div className="p-3 shadow-xl cursor-pointer group">
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0, y: 75 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                  initial="hidden"
-                  animate={mainControls}
-                  transition={{ duration: 0.5, delay: 0.25 }}
-                  className="group w-full h-72 p-3 overflow-hidden flex justify-center items-center"
-                >
+                <div className="group w-full h-72 p-3 overflow-hidden flex justify-center items-center">
                   {item?.image && (
                     <Image
                       src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
@@ -56,17 +46,8 @@ const CE_BancasurrancePrioritas = ({
                       className="w-full h-96 object-cover object-top group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
                     />
                   )}
-                </motion.div>
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0, y: 75 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                  initial="hidden"
-                  animate={mainControls}
-                  transition={{ duration: 0.5, delay: 0.55 }}
-                  className="p-3"
-                >
+                </div>
+                <div className="p-3">
                   <div className="text-black text-xl font-extrabold uppercase">
                     {item?.title}
                   </div>
@@ -90,7 +71,7 @@ const CE_BancasurrancePrioritas = ({
                       </svg>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </Link>
           ))}

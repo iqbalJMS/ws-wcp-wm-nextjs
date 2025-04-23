@@ -24,6 +24,8 @@ import {
 } from '@/app/(views)/$function/cfn.post-webform';
 import InputError from '@/lib/element/global/form/input.error';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 type Option = {
   label: string;
@@ -153,6 +155,9 @@ export default function CE_FormVariant2({
   useEffect(() => {
     getProvince();
     loadCaptchaEnginge(6);
+    AOS.init({
+      once: false,
+    });
   }, []);
 
   const backgroundImg = bgImage
@@ -170,7 +175,11 @@ export default function CE_FormVariant2({
         />
       </div>
       <div className="w-full h-full p-5 py-10 xl:p-10 flex justify-center items-end">
-        <form className="w-full md:w-11/12 lg:w-9/12 xl:w-10/12">
+        <form
+          data-aos="fade-up"
+          data-aos-duration="500"
+          className="w-full md:w-11/12 lg:w-9/12 xl:w-10/12"
+        >
           <section className="text-white space-y-3 pb-5">
             <h1 className=" text-white text-2xl font-bold">
               {parseHTMLToReact(title) ?? 'title not found'}

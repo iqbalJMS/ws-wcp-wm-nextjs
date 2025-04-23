@@ -11,6 +11,8 @@ import {
   CFN_ValidateGetPromoFields,
 } from '@/app/(views)/$function/cfn.get-promo';
 import { T_Promo, T_PromoRequest } from '@/api/promo/api.get-promo.type';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function CE_CardPromoWM({
   title,
@@ -118,10 +120,20 @@ export default function CE_CardPromoWM({
     textColor = 'white';
   }
 
+  useEffect(() => {
+    AOS.init({
+      once: false,
+    });
+  }, []);
+
   return (
     <>
       <div className="w-full h-auto flex flex-col items-center justify-center pb-20 pt-14">
-        <section className="w-full flex flex-col items-center pb-16">
+        <section
+          data-aos="fade-up"
+          data-aos-duration="800"
+          className="w-full flex flex-col items-center pb-16"
+        >
           <h1 className="text-[#3D3D3D] font-semibold text-3xl uppercase">
             {title ?? 'Promo Terbaru'}
           </h1>
@@ -133,6 +145,8 @@ export default function CE_CardPromoWM({
         {/* mobile section */}
         <section className="md:hidden lg:hidden relative overflow-hidden mdmax:w-full mdmax:flex-none p-10 mdmax:p-1 justify-center">
           <div
+            data-aos="fade-up"
+            data-aos-duration="500"
             className="pl-16 md:pl-0 md:w-10/12 lg:w-8/12 flex -mx-5 transition-all ease-in-out duration-300 space-x-10"
             style={{
               transform: `translateX(-${currentSlide * (180 / slidesToShow)}%)`,
@@ -215,7 +229,11 @@ export default function CE_CardPromoWM({
         {/* Tab Section */}
         <section className="w-full hidden md:flex lg:hidden justify-center">
           <div className="w-11/12 flex flex-row justify-center">
-            <div className="basis-20 flex justify-center items-center">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="500"
+              className="basis-20 flex justify-center items-center"
+            >
               <button
                 className={[
                   'w-12 h-12 mdmax:w-8 mdmax:h-8 text-white ',
@@ -237,6 +255,8 @@ export default function CE_CardPromoWM({
             </div>
             <div className="overflow-hidden basis-full flex justify-center p-5">
               <div
+                data-aos="fade-up"
+                data-aos-duration="500"
                 className="w-full flex -mx-5 transition-all ease-in-out duration-300 space-x-5 "
                 style={{
                   transform: `translateX(-${currentSlide * (150 / slidesToShow)}%)`,
@@ -307,6 +327,8 @@ export default function CE_CardPromoWM({
               <div className="w-full h-full grid grid-cols-4 gap-10 2xl:gap-5 px-5">
                 {promoList?.map((item, index) => (
                   <div
+                    data-aos="fade-up"
+                    data-aos-duration="500"
                     key={index}
                     className="relative overflow-hidden lg:w-60 lg:h-72 xl:w-72 xl:h-64 2xl:h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
@@ -343,7 +365,11 @@ export default function CE_CardPromoWM({
         </section>
 
         {!isLastPage ? (
-          <section className="inline-flex items-center justify-center w-full pt-5">
+          <section
+            data-aos="fade-up"
+            data-aos-duration="300"
+            className="inline-flex items-center justify-center w-full pt-5"
+          >
             <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
             {promoConfig == 'latest_seven' ? (
               <button
@@ -360,7 +386,7 @@ export default function CE_CardPromoWM({
                 lihat semua promo
               </Link>
             ) : null}
-            <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
+            <hr className="w-20 md:w-40 h-px mx-5 my-8ss bg-black border-0 dark:bg-black" />
           </section>
         ) : null}
       </div>
