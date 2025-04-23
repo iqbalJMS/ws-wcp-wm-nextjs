@@ -23,6 +23,7 @@ import {
   CFN_ValidateCreateWebFormFields,
 } from '@/app/(views)/$function/cfn.post-webform';
 import InputError from '@/lib/element/global/form/input.error';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 type Option = {
   label: string;
@@ -32,9 +33,15 @@ type Option = {
 export default function CE_FormVariant2({
   variant,
   bgImage,
+  title,
+  subTitle,
+  desc,
 }: {
   variant: string;
-  bgImage: string;
+  bgImage: Array<{ image: string }>;
+  title: string;
+  subTitle: string;
+  desc: string;
 }) {
   const [selectedProvince, setSelectedProvince] = useState<Option | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<Option | null>(null);
@@ -147,12 +154,16 @@ export default function CE_FormVariant2({
     getProvince();
     loadCaptchaEnginge(6);
   }, []);
+
+  const backgroundImg = bgImage
+    ? `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage?.[0]?.image ?? ''}`
+    : '';
   return (
     <div className="w-full bg-[#605E68] h-full flex flex-col lg:flex-row-reverse ">
       <div className="w-full h-full">
         <Image
           className="w-full h-full bg-contain"
-          src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''}`}
+          src={`${backgroundImg ?? ''}`}
           alt={''}
           width={10000}
           height={10000}
@@ -161,13 +172,16 @@ export default function CE_FormVariant2({
       <div className="w-full h-full p-5 py-10 xl:p-10 flex justify-center items-end">
         <form className="w-full md:w-11/12 lg:w-9/12 xl:w-10/12">
           <section className="text-white space-y-3 pb-5">
-            <h1 className=" text-white text-2xl font-bold">HUBUNGI SAYA</h1>
+            <h1 className=" text-white text-2xl font-bold">
+              {parseHTMLToReact(title) ?? 'title not found'}
+            </h1>
             <h2 className="text-white">
-              Beri tahu kami tentang permintaan Anda agar kami bisa mendapatkan
-              penasihat yang tepat untuk Anda.
+              {parseHTMLToReact(subTitle) ?? 'subtitle not found'}
             </h2>
           </section>
-          <h1 className="text-lg text-white">Data lengkap Anda</h1>
+          <h1 className="text-lg text-white">
+            {parseHTMLToReact(desc) ?? 'desc not found'}
+          </h1>
           <div className="py-2">
             <input
               className="text-white border-[1px] border-white rounded-2xl bg-transparent w-full px-5 py-3 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
@@ -416,7 +430,11 @@ export default function CE_FormVariant2({
             <div className="flex flex-col items-start space-y-5 py-5">
               <div className="flex items-center">
                 <LoadCanvasTemplateNoReload />
-                <button type="button" onClick={() => loadCaptchaEnginge(6)}>
+                <button
+                  className="px-5"
+                  type="button"
+                  onClick={() => loadCaptchaEnginge(6)}
+                >
                   <RefreshIcon width={28} height={28} fill="#27AE60" />
                 </button>
               </div>

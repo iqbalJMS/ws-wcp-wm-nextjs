@@ -112,7 +112,7 @@ type T_FieldColumn = {
   field_container: any[];
   field_formatted_title: any[];
   field_margin_left: any[];
-  field_note: any[];
+  field_note: Array<{ value: string }>;
   field_title_alignment: any[];
   field_web_variant_styles: any[];
   column_count: any[];
@@ -146,7 +146,7 @@ export type T_Section = {
   field_formatted_title: Array<T_FieldContent>;
   field_image: Array<T_FieldImage>;
   field_margin_left: any[];
-  field_note: any[];
+  field_note: Array<{ value: string }>;
   field_primary_cta: Array<{ uri: string; title: string; full_url: string }>;
   field_title_alignment: any[];
   field_web_variant_styles: Array<T_VarianStyles>;
