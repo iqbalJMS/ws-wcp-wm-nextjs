@@ -36,7 +36,6 @@ export function LoginButton({
   const isScrolling = useScrollActive();
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
-
   useEffect(() => {
     if (isInView) {
       mainControls.start('visible');
@@ -98,18 +97,21 @@ export function LoginButton({
                 className="w-80 bg-white mb-2 px-5 py-4 rounded-3xl"
               >
                 <Link href={loginItem?.uri ?? '/404'} target="_blank">
-                  <div
-                    className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
-                  >
+                  <div className={`flex items-center space-x-3 '`}>
                     <div className="mr-2">
                       <Image
                         src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon ?? ''}`}
                         alt=""
                         width={30}
                         height={30}
+                        className="text-wmcolor"
                       />
                     </div>
-                    <h1>{loginItem.title}</h1>
+                    <h1
+                      className={`text-[#${loginItem?.field_theme_color?.[0]?.value}]`}
+                    >
+                      {loginItem?.title}
+                    </h1>
                   </div>
                 </Link>
               </motion.div>

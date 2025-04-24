@@ -1,8 +1,9 @@
 'use client';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Link from 'next/link';
-import React, { useEffect, useRef } from 'react';
-import { motion, useInView, useAnimation } from 'motion/react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function CE_CardVariant8Deeper({
   firstColumn,
@@ -23,33 +24,21 @@ export default function CE_CardVariant8Deeper({
     image: string;
   }>;
 }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const mainControls = useAnimation();
-
   useEffect(() => {
-    if (isInView) {
-      mainControls.start('visible');
-    }
-  }, [isInView, mainControls]);
+    AOS.init({
+      once: false,
+    });
+  }, []);
 
   return (
     <>
       <div className="w-full h-auto flex justify-center items-center py-4 pb-20">
         <div className="w-8/12">
-          <section
-            ref={ref}
-            className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 "
-          >
+          <section className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
             {firstColumn?.map((item, index) => (
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, y: 75 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                initial="hidden"
-                animate={mainControls}
-                transition={{ duration: 0.5, delay: 0.25 }}
+              <div
+                data-aos="fade-up"
+                data-aos-duration="500"
                 style={{
                   backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''})`,
                   backgroundPosition: 'center',
@@ -81,16 +70,12 @@ export default function CE_CardVariant8Deeper({
                   </h2>
                   <hr className="w-16" />
                 </Link>
-              </motion.div>
+              </div>
             ))}
             {secondColumn?.map((item, index) => (
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, y: 75 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                initial="hidden"
-                animate={mainControls}
+              <div
+                data-aos="fade-up"
+                data-aos-duration="500"
                 style={{
                   backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''})`,
                   backgroundPosition: 'center',
@@ -122,7 +107,7 @@ export default function CE_CardVariant8Deeper({
                   </h2>
                   <hr className="w-16" />
                 </Link>
-              </motion.div>
+              </div>
             ))}
           </section>
         </div>

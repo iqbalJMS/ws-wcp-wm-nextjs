@@ -1,8 +1,11 @@
 'use client';
 
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import iconImage from '@/../../public/images/dummy/sentra-layanan-bri-prioritas.png';
 import { Tooltip } from '@/lib/element/global/tooltip';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 type T_TabsProps = {
   list: {
@@ -14,18 +17,27 @@ type T_TabsProps = {
   onChange: (_value: string) => void;
   variant?: 'full' | 'border-arrow' | 'border';
 };
+
 export function CE_TabsOutlet({
   list,
   value,
   onChange,
   variant = 'border',
 }: T_TabsProps) {
+  useEffect(() => {
+    AOS.init({
+      once: false,
+    });
+  }, []);
+
   return (
     <>
       <div className="flex justify-center w-full space-x-2">
         {list.map((item, index) => {
           return (
             <div
+              data-aos="fade-up"
+              data-aos-duration="500"
               key={index}
               onClick={() => onChange(item.type_id)}
               className={[
