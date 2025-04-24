@@ -5,8 +5,8 @@ import {
   validateBoolean,
   validateEmail,
   validateEmpty,
+  validateName,
   validatePhone,
-  validatePrimaryName,
 } from '@/lib/functions/global/validate';
 /* eslint-disable no-unused-vars */
 
@@ -56,7 +56,7 @@ export function CFN_ValidateCreateWebFormFields(
 ): string {
   switch (name) {
     case 'nama':
-      return validatePrimaryName(value);
+      return validateName(value);
     case 'email':
       return validateEmail(value);
     case 'telepon':

@@ -25,7 +25,7 @@ const CE_ObligasiPrivate = ({
 
   return (
     <>
-      <div className="container py-10 px-20 mdmax:px-10">
+      <div className=" container py-10 px-20 mdmax:px-10">
         <div className="flex flex-wrap -mx-10">
           {dataCard?.map((item, index) => (
             <Link

@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useInView, useAnimation } from 'motion/react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const CE_CardGrid5Private = ({
   variant,
@@ -37,38 +38,27 @@ const CE_CardGrid5Private = ({
     });
   };
 
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const mainControls = useAnimation();
-
   useEffect(() => {
-    if (isInView) {
-      mainControls.start('visible');
-    }
-  }, [isInView, mainControls]);
+    AOS.init({
+      once: false,
+    });
+  }, []);
 
   return (
     <>
-      <div ref={ref} className=" py-10">
-        <div className="flex flex-wrap">
+      <div className="py-10 flex justify-center items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-8/12">
           <>
             {dataCard?.map((item, index) => (
               <Link
+                data-aos="fade-up"
+                data-aos-duration="800"
                 key={index}
                 href={`/insight/${item?.nid ?? '/404'}`}
-                className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
+                className="w-full flex-none px-10 mb-10"
               >
                 <div className="group">
-                  <motion.div
-                    variants={{
-                      hidden: { opacity: 0, y: 75 },
-                      visible: { opacity: 1, y: 0 },
-                    }}
-                    initial="hidden"
-                    animate={mainControls}
-                    transition={{ duration: 0.5, delay: 0.25 }}
-                    className="w-full h-[20rem] rounded-xl overflow-hidden mb-5 "
-                  >
+                  <div className="w-full h-[18rem] rounded-xl overflow-hidden mb-5 ">
                     {item?.image && (
                       <Image
                         src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
@@ -78,31 +68,23 @@ const CE_CardGrid5Private = ({
                         className="w-full h-full object-cover object-bottom group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
                       />
                     )}
-                  </motion.div>
-                  <motion.div
-                    variants={{
-                      hidden: { opacity: 0, y: 75 },
-                      visible: { opacity: 1, y: 0 },
-                    }}
-                    initial="hidden"
-                    animate={mainControls}
-                    transition={{ duration: 0.5, delay: 0.55 }}
-                  >
+                  </div>
+                  <div>
                     <div className="text-xs text-black font-semibold uppercase">
                       <span className="pr-2">{item?.category ?? ''}</span> |
                       <span className="pl-3">
-                        {formatDate(item?.date ?? '')}
+                        {formatDate(item?.date ?? '')} hello
                       </span>
                     </div>
                     <div
-                      className={`text-${theme} line-clamp-2 font-bold text-xl mb-5 pt-3`}
+                      className={`text-${theme} line-clamp-2 font-bold text-lg mb-2 pt-3`}
                     >
                       {parseHTMLToReact(item?.title)}
                     </div>
-                    <div className="font-light line-clamp-3">
+                    <div className="font-light line-clamp-3 text-sm">
                       {parseHTMLToReact(item?.description)}
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </Link>
             ))}

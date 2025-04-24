@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Link from 'next/link';
-import { useInView, useAnimation } from 'motion/react';
 import Image from 'next/image';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function CE_TwoColumnPrivate({
   variant,
@@ -43,27 +44,18 @@ export default function CE_TwoColumnPrivate({
     colorTheme = 'prioritycolor';
   }
 
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const mainControls = useAnimation();
-
   useEffect(() => {
-    if (isInView) {
-      mainControls.start('visible');
-    }
-  }, [isInView, mainControls]);
-
+    AOS.init({
+      once: false,
+    });
+  }, []);
   return (
     <>
-      {/* <div>hehe</div> */}
       <div className="py-5 px-5 xl:px-20">
         <div className="flex md:flex-row flex-col justify-center relative">
-          {/* {imageContent1 && (
-            <div
-              className={`-z-10 bg-${colorTheme} bg-opacity-15 w-5/12 h-40 absolute right-0 top-0 mdmax:-mr-32`}
-            ></div>
-          )} */}
           <div
+            data-aos="fade-right"
+            data-aos-duration="500"
             className={`space-y-8 px-5 max-w-lg mdmax:order-2 mt-4 xl:mt-12`}
           >
             {dataCard1?.[0]?.textTitle && (
@@ -124,7 +116,11 @@ export default function CE_TwoColumnPrivate({
                 </div>
               )}
           </div>
-          <div className="mdmax:order-1 md:max-w-[50%] flex items-center">
+          <div
+            data-aos="fade-left"
+            data-aos-duration="500"
+            className="mdmax:order-1 md:max-w-[50%] flex items-center"
+          >
             {imageContent1 && (
               <Image
                 src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent1}`}
@@ -142,7 +138,11 @@ export default function CE_TwoColumnPrivate({
               className={`-z-10 bg-${colorTheme} bg-opacity-15 w-5/12 h-40 absolute left-0 top-0 mdmax:-ml-32`}
             ></div>
           )}
-          <div className="mdmax:order-1 md:max-w-[50%] flex items-center">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="500"
+            className="mdmax:order-1 md:max-w-[50%] flex items-center"
+          >
             {imageContent2 && (
               <Image
                 src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent2}`}
@@ -154,6 +154,8 @@ export default function CE_TwoColumnPrivate({
             )}
           </div>
           <div
+            data-aos="fade-left"
+            data-aos-duration="500"
             className={`space-y-8 pl-10 px-5 max-w-lg mdmax:order-2 mt-4 xl:mt-12`}
           >
             {dataCard2?.[0]?.textTitle && (

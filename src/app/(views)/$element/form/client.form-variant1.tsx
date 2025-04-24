@@ -63,7 +63,7 @@ export default function CE_FormVariant1({
       nama: '',
       email: '',
       telepon: '',
-      apakah_anda_nasabah_bri: '',
+      apakah_anda_nasabah_bri: 'ya',
       metode_kontak: '',
       waktu_dihubungi: '',
       saya_ingin: '',
@@ -160,8 +160,6 @@ export default function CE_FormVariant1({
     });
   }, []);
 
-  // useEffect(() => {}, []);
-
   const backgroundImg = bgImage
     ? `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage?.[0]?.image ?? ''}`
     : '';
@@ -244,7 +242,7 @@ export default function CE_FormVariant1({
                 type="radio"
                 id="ya"
                 name="nasabah"
-                value="Tidak"
+                value={'ya'}
                 onChange={({ target }) =>
                   onFieldChange('apakah_anda_nasabah_bri', target.value)
                 }
@@ -338,11 +336,6 @@ export default function CE_FormVariant1({
                     onFieldChange('waktu_dihubungi', picked.join(' '));
                   }}
                 />
-                {formError.waktu_dihubungi && (
-                  <div className="mt-5">
-                    <InputError message={formError.waktu_dihubungi} />
-                  </div>
-                )}
               </span>
             </div>
             <div className="w-full">

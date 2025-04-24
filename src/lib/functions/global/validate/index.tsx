@@ -116,10 +116,10 @@ export const validateBoolean = (value: boolean, label: string): string => {
   return value ? '' : `${label} Harap centang bagian ini`;
 };
 
-export const validateName = (name: string, label: string = 'field'): string => {
+export const validateName = (name: string, label: string = ''): string => {
   const emptyError = validateEmpty(name, label);
   if (emptyError) return emptyError;
-  if (!nameRegex.test(name)) return `${label} tidak valid`;
+  if (!nameRegex.test(name)) return `Harap masukkan karakter alfabet`;
   return '';
 };
 
