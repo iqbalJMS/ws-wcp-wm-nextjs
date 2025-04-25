@@ -61,10 +61,6 @@ export default function CE_FormVariant1({
     null
   );
   const [contactTime, setContactTime] = useState('');
-  const [, setWantTo] = useState('');
-  const [, setCountry] = useState('');
-  const [, setProvince] = useState('');
-  const [, setLocation] = useState('');
 
   const [pending] = useTransition();
   const NASABAH_CHOICE = [{ value: 'Tidak' }, { value: 'Ya' }];
@@ -89,7 +85,7 @@ export default function CE_FormVariant1({
     }),
     CFN_ValidateCreateWebFormFields
   );
-
+  console.log(form);
   const [provinceData, setProvinceData] =
     useState<T_ResponGetProvince | null>();
 
@@ -100,19 +96,17 @@ export default function CE_FormVariant1({
     const validate = validateForm();
 
     if (pending || !validate) {
+      if (!validateCaptcha(captcha.form)) {
+        setCaptcha({
+          form: '',
+          error: 'Wajib diisi',
+        });
+      }
+
       return;
     }
 
     try {
-      // Cek jika captcha kosong
-      if (captcha.form === null) {
-        setCaptcha({
-          ...captcha,
-          error: 'Wajib diisi',
-        });
-        return;
-      }
-
       if (validateCaptcha(captcha.form)) {
         const result = await ACT_PostWebForm({
           webform_id: 'get_invited',
@@ -259,7 +253,6 @@ export default function CE_FormVariant1({
                 selected={selectCountry}
                 onSelectedChanges={(selected) => {
                   setSelectCountry(selected);
-                  setCountry(selected.value);
                 }}
                 placeholder=""
               />
@@ -388,8 +381,7 @@ export default function CE_FormVariant1({
                 onSelectedChanges={(selected) => {
                   setSelectedProvince(selected);
                   getLocation(selected.value);
-                  setProvince(selected.label);
-                  onFieldChange('pilih_provinsi', selected.value);
+                  onFieldChange('pilih_provinsi', selected.label);
                 }}
                 placeholder="Pilih Provinsi"
               />
@@ -410,7 +402,6 @@ export default function CE_FormVariant1({
                 selected={selectedLocation}
                 onSelectedChanges={(selected) => {
                   setSelectedLocation(selected);
-                  setLocation(selected.label);
                   onFieldChange('pilih_lokasi', selected.value);
                 }}
                 placeholder="Pilih Lokasi"
@@ -438,7 +429,6 @@ export default function CE_FormVariant1({
                   selected={selectedWantTo}
                   onSelectedChanges={(selected) => {
                     setSelectedWantTo(selected);
-                    setWantTo(selected.value);
                     onFieldChange('saya_ingin', selected.value);
                   }}
                   placeholder="Pilih Saya Ingin"
