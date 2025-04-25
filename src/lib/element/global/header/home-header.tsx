@@ -97,7 +97,9 @@ export function LoginButton({
                 className="w-80 bg-white mb-2 px-5 py-4 rounded-3xl"
               >
                 <Link href={loginItem?.uri ?? '/404'} target="_blank">
-                  <div className={`flex items-center space-x-3 '`}>
+                  <div
+                    className={`flex items-center space-x-3 text-[#${loginItem?.field_theme_color?.[0]?.value}]'`}
+                  >
                     <div className="mr-2">
                       <Image
                         src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon ?? ''}`}
@@ -107,11 +109,7 @@ export function LoginButton({
                         className="text-wmcolor"
                       />
                     </div>
-                    <h1
-                      className={`text-[#${loginItem?.field_theme_color?.[0]?.value}]`}
-                    >
-                      {loginItem?.title}
-                    </h1>
+                    <h1 className={``}>{loginItem?.title}</h1>
                   </div>
                 </Link>
               </motion.div>

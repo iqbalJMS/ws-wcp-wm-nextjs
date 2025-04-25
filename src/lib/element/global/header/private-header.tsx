@@ -426,7 +426,7 @@ export default function PrivateHeader({
                     <div
                       key={index}
                       className={[
-                        'pb-2 border-b-4 border-transparent hover:border-privatecolor mx-5',
+                        'pb-2 border-b-4 border-transparent hover:border-privatecolor focus-within:border-privatecolor mx-5',
                         item.below?.length ? 'group' : '',
                       ].join(' ')}
                     >

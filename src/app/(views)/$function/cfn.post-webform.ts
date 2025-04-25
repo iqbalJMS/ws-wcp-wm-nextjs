@@ -2,7 +2,6 @@
 
 import { T_PostResponse } from '@/api/common/fetch.type';
 import {
-  validateBoolean,
   validateEmail,
   validateEmpty,
   validateName,
@@ -11,7 +10,7 @@ import {
 /* eslint-disable no-unused-vars */
 
 import * as yup from 'yup';
-import { Arrival, Call, Departure } from '@strix/client';
+import { Call } from '@strix/client';
 
 import {
   T_FormResult,
@@ -62,9 +61,9 @@ export function CFN_ValidateCreateWebFormFields(
     case 'telepon':
       return validatePhone(value);
     case 'apakah_anda_nasabah_bri':
-      return validateBoolean(value, 'Harap centang bagian ini');
+      return '';
     case 'metode_kontak':
-      return validateBoolean(value, 'Harap centang bagian ini');
+      return '';
     case 'waktu_dihubungi':
       return validateEmpty(value, 'Wajib di isi');
     case 'saya_ingin':
