@@ -85,7 +85,7 @@ export default function CE_FormVariant1({
     }),
     CFN_ValidateCreateWebFormFields
   );
-  console.log(form);
+
   const [provinceData, setProvinceData] =
     useState<T_ResponGetProvince | null>();
 
