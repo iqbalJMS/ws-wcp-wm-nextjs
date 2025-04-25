@@ -26,10 +26,18 @@ import InputError from '@/lib/element/global/form/input.error';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import DropDownTel from '@/lib/element/global/dropdown-tel';
+import countries from './countries.json';
 
 type Option = {
   label: string;
   value: string;
+};
+
+type OptionCountry = {
+  label: string;
+  value: string;
+  image: string;
 };
 
 export default function CE_FormVariant1({
@@ -45,14 +53,22 @@ export default function CE_FormVariant1({
   subTitle: string;
   desc: string;
 }) {
+  const router = useRouter();
   const [selectedProvince, setSelectedProvince] = useState<Option | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<Option | null>(null);
   const [selectedWantTo, setSelectedWantTo] = useState<Option | null>(null);
+  const [selectCountry, setSelectCountry] = useState<OptionCountry | null>(
+    null
+  );
   const [contactTime, setContactTime] = useState('');
   const [, setWantTo] = useState('');
+  const [, setCountry] = useState('');
   const [, setProvince] = useState('');
   const [, setLocation] = useState('');
+
   const [pending] = useTransition();
+  const NASABAH_CHOICE = [{ value: 'Tidak' }, { value: 'Ya' }];
+  const LIST_CONTACT = [{ value: 'Hubungi Saya' }, { value: 'Email Saya' }];
 
   const { form, formError, validateForm, onFieldChange } = useForm<
     T_FormGetInvitedRequest,
@@ -63,8 +79,8 @@ export default function CE_FormVariant1({
       nama: '',
       email: '',
       telepon: '',
-      apakah_anda_nasabah_bri: 'ya',
-      metode_kontak: '',
+      apakah_anda_nasabah_bri: 'Tidak',
+      metode_kontak: 'Hubungi Saya',
       waktu_dihubungi: '',
       saya_ingin: '',
       pesan: '',
@@ -80,15 +96,23 @@ export default function CE_FormVariant1({
   const [locationData, setLocationData] =
     useState<T_ResponGetLocation | null>();
 
-  const router = useRouter();
-
   const handleSubmit = async () => {
     const validate = validateForm();
 
     if (pending || !validate) {
       return;
     }
+
     try {
+      // Cek jika captcha kosong
+      if (captcha.form === null) {
+        setCaptcha({
+          ...captcha,
+          error: 'Wajib diisi',
+        });
+        return;
+      }
+
       if (validateCaptcha(captcha.form)) {
         const result = await ACT_PostWebForm({
           webform_id: 'get_invited',
@@ -114,8 +138,13 @@ export default function CE_FormVariant1({
             dictionary?.field.track.validateCaptcha || 'Captcha Tidak Sesuai',
         });
       }
-    } catch (_) {}
+    } catch (error) {}
   };
+  type T_NasabahType = 'Tidak' | 'Ya';
+  const [nasabahType, setNasabahType] = useState<T_NasabahType>('Tidak');
+
+  type T_MetodeContact = 'Hubungi Saya' | 'Email Saya';
+  const [contact, setContact] = useState<T_MetodeContact>('Hubungi Saya');
 
   const dictionary = useDictionary('id');
   const [captcha, setCaptcha] = useState({
@@ -217,49 +246,64 @@ export default function CE_FormVariant1({
               </div>
             )}
           </div>
-          <div className="py-2">
-            <input
-              className="text-black border-[1px] border-black rounded-2xl bg-transparent w-full px-5 py-3 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
-              type="tel"
-              value={form.telepon}
-              onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
-              onChange={({ target }) => onFieldChange('telepon', target.value)}
-              placeholder="Nomor Telepon Anda (tanpa kode negara atau 0)"
-            />
-            {formError.telepon && (
-              <div className="mt-5">
-                <InputError message={formError.telepon} />
-              </div>
-            )}
+          <div className="border-[1px] border-black rounded-2xl bg-transparent w-full outline-4 outline-offset-5 outline-[#80ACFF] transition-all ease-in-out duration-300 flex">
+            <div className="bg-wmcolor hover:bg-black cursor-pointer w-20 h-full text-white flex justify-center items-center rounded-l-2xl py-2">
+              <DropDownTel
+                options={
+                  countries?.map((item) => ({
+                    label: item?.name,
+                    value: item?.dial_code,
+                    image: item?.flag,
+                  })) || []
+                }
+                selected={selectCountry}
+                onSelectedChanges={(selected) => {
+                  setSelectCountry(selected);
+                  setCountry(selected.value);
+                }}
+                placeholder=""
+              />
+            </div>
+            <div className="w-full">
+              <input
+                className="text-black w-full outline-none py-3 px-3 "
+                type="tel"
+                value={form.telepon}
+                onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
+                onChange={({ target }) =>
+                  onFieldChange('telepon', target.value)
+                }
+                placeholder="Nomor Telepon Anda (tanpa kode negara atau 0)"
+              />
+            </div>
           </div>
+          {formError.telepon && (
+            <div className="mt-5">
+              <InputError message={formError.telepon} />
+            </div>
+          )}
 
           {/* Input Radio */}
           <section className="text-black flex flex-col space-y-2 pt-5">
             <h1 className="">Apakah Anda Nasabah BRI?</h1>
             <span className="pt-2">
-              <input
-                className="text-black"
-                type="radio"
-                id="ya"
-                name="nasabah"
-                value={'ya'}
-                onChange={({ target }) =>
-                  onFieldChange('apakah_anda_nasabah_bri', target.value)
-                }
-              />
-              <label className="pl-2">Tidak</label>
-            </span>
-            <span>
-              <input
-                type="radio"
-                id="tidak"
-                name="nasabah"
-                value="Ya"
-                onChange={({ target }) =>
-                  onFieldChange('apakah_anda_nasabah_bri', target.value)
-                }
-              />
-              <label className="pl-2">Ya</label>
+              {NASABAH_CHOICE?.map((item, index) => (
+                <div key={index}>
+                  <input
+                    className="text-black"
+                    type="radio"
+                    id={item.value}
+                    name="nasabah"
+                    value={item.value}
+                    checked={nasabahType === item?.value}
+                    onChange={({ target }) => {
+                      setNasabahType(target.value as T_NasabahType);
+                      onFieldChange('apakah_anda_nasabah_bri', target.value);
+                    }}
+                  />
+                  <label className="pl-2">{item.value}</label>
+                </div>
+              ))}
             </span>
             {formError.apakah_anda_nasabah_bri && (
               <div className="mt-5">
@@ -270,28 +314,23 @@ export default function CE_FormVariant1({
           <section className="text-black flex flex-col space-y-2 pt-5">
             <h1>Apa metode kontak yang sesuai dengan Anda?</h1>
             <span className="pt-2">
-              <input
-                type="radio"
-                id="text-me"
-                name="metode"
-                value="Hubungi Saya"
-                onChange={({ target }) =>
-                  onFieldChange('metode_kontak', target.value)
-                }
-              />
-              <label className="pl-2">Hubungi Saya</label>
-            </span>
-            <span>
-              <input
-                type="radio"
-                id="mail-me"
-                name="metode"
-                value="Email Saya"
-                onChange={({ target }) =>
-                  onFieldChange('metode_kontak', target.value)
-                }
-              />
-              <label className="pl-2">Email Saya</label>
+              {LIST_CONTACT?.map((item, index) => (
+                <div key={index}>
+                  <input
+                    className="text-black"
+                    type="radio"
+                    id={item.value}
+                    name="metode"
+                    value={item.value}
+                    checked={contact === item?.value}
+                    onChange={({ target }) => {
+                      setContact(target.value as T_MetodeContact);
+                      onFieldChange('metode_kontak', target.value);
+                    }}
+                  />
+                  <label className="pl-2">{item.value}</label>
+                </div>
+              ))}
             </span>
             {formError.metode_kontak && (
               <div className="mt-5">
@@ -317,12 +356,6 @@ export default function CE_FormVariant1({
                     onFieldChange('waktu_dihubungi', picked.join(' '));
                   }}
                 />
-                {formError.waktu_dihubungi && (
-                  <div className="mt-5">
-                    <InputError message={formError.waktu_dihubungi} />
-                  </div>
-                )}
-
                 <input
                   className=" border-[1px] border-black rounded-2xl bg-transparent w-full px-5 py-2 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
                   type="time"
@@ -337,6 +370,11 @@ export default function CE_FormVariant1({
                   }}
                 />
               </span>
+              {formError.waktu_dihubungi && (
+                <div className=" mt-5">
+                  <InputError message={formError.waktu_dihubungi} />
+                </div>
+              )}
             </div>
             <div className="w-full">
               <DropDown
@@ -453,12 +491,14 @@ export default function CE_FormVariant1({
                     })
                   }
                 />
-                <h1>{captcha.error}</h1>
+                <h1 className="text-sm text-red-500 mt-1">{captcha.error}</h1>
               </div>
             </div>
             <div className="w-full flex justify-center items-center">
               <button
-                onClick={() => handleSubmit()}
+                onClick={() => {
+                  handleSubmit();
+                }}
                 type="button"
                 className={`bg-${colorTheme} text-${textColor} rounded-full px-5 py-2 uppercase text-white font-bold hover:bg-gray-600`}
               >
