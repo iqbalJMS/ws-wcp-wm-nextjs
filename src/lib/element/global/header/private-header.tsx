@@ -100,9 +100,7 @@ export function LoginButton({
                 className="w-80 bg-white mb-2 px-5 py-4 rounded-3xl"
               >
                 <Link href={loginItem?.uri ?? '/404'} target="_blank">
-                  <div
-                    className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
-                  >
+                  <div className={`flex items-center space-x-3`}>
                     <div className="mr-2">
                       <Image
                         src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon ?? ''}`}
@@ -111,7 +109,13 @@ export function LoginButton({
                         height={30}
                       />
                     </div>
-                    <h1>{loginItem.title}</h1>
+                    <h1
+                      style={{
+                        color: `#${loginItem?.field_theme_color?.[0]?.value}`,
+                      }}
+                    >
+                      {loginItem.title}
+                    </h1>
                   </div>
                 </Link>
               </motion.div>
@@ -426,7 +430,7 @@ export default function PrivateHeader({
                     <div
                       key={index}
                       className={[
-                        'pb-2 border-b-4 border-transparent hover:border-privatecolor focus-within:border-privatecolor mx-5',
+                        `${pathname === item?.relative ? 'pb-2 border-b-4 border-privatecolor mx-5' : 'pb-2 border-b-4 border-transparent hover:border-privatecolor focus-within:border-privatecolor mx-5'} `,
                         item.below?.length ? 'group' : '',
                       ].join(' ')}
                     >
