@@ -65,17 +65,17 @@ export default async function page({ params }: { params: { id: string } }) {
         </section>
         <CE_BCBrifinePrivate currentPage={getOurstoryData?.title?.[0]?.value} />
         <div className="w-full flex justify-center pb-14 pt-4">
-          <h1 className="text-xl xl:text-3xl text-privatecolor font-bold uppercase text-center">
-            DETAIL PRODUK
-          </h1>
+          {getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value && (
+            <h1 className="text-xl xl:text-3xl text-privatecolor font-bold uppercase text-center">
+              DETAIL PRODUK
+            </h1>
+          )}
         </div>
         <section className="w-full flex flex-col justify-center items-center pb-10">
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
               <CE_AccordionBrifinePrivate
-                renderContent={parseHTMLToReact(
-                  item?.field_content?.[0]?.value
-                )}
+                renderContent={item?.field_content?.[0]?.value}
                 renderTitle={item?.field_title?.[0]?.value}
               />
             </div>
