@@ -3,6 +3,10 @@
 import { get } from '@/api/common/fetch';
 import { redirect } from 'next/navigation';
 
+const user = process.env.NEXT_PUBLIC_DRUPAL_AUTH || process.env.DRUPAL_AUTH;
+const pass =
+  process.env.NEXT_PUBLIC_DRUPAL_PASSWORD || process.env.DRUPAL_PASSWORD;
+
 export async function API_GetDetailPage({
   lang,
   alias = 'node',
@@ -15,7 +19,8 @@ export async function API_GetDetailPage({
   try {
     const isEnglish = lang === 'en' ? '' : '/id';
     const response = await get(
-      `${isEnglish}/${alias}/${nid}?_format=json_recursive`
+      `${isEnglish}/${alias}/${nid}?_format=json_recursive`,
+      { Authorization: `Basic ${btoa(`${user}:${pass}`)}` }
     );
 
     return response;

@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Link from 'next/link';
 import WhatsappIcon from '@/lib/element/global/icons/whatsapp-icon';
 
@@ -33,8 +32,8 @@ const CE_WYSIWSGPrioritas = ({
     <>
       <div className="container py-20">
         <div className="mb-10">
-          <div className="text-sm">{category}</div>
-          <div className="text-xl font-semibold">{title}</div>
+          {category && <div className="text-sm">{category ?? ''}</div>}
+          {title && <div className="text-xl font-semibold">{title ?? ''}</div>}
         </div>
         <div className="px-20 mdmax:px-0">
           <div className="flex items-center mb-5 text-base mdmax:text-sm">
@@ -52,7 +51,7 @@ const CE_WYSIWSGPrioritas = ({
                 />
               </svg>
             </div>
-            {formatDate(date)}
+            {formatDate(date ?? '')}
           </div>
           <div className="h-[40rem] mdmax:h-[20rem] mb-10 flex justify-center items-center ">
             {image && (
@@ -68,7 +67,8 @@ const CE_WYSIWSGPrioritas = ({
             )}
           </div>
           <div className="px-20 mdmax:px-0 mdmax:pr-10 relative">
-            <div className="absolute top-0 right-0 inline-block">
+            {/* hidden for while */}
+            <div className="hidden top-0 right-0">
               <div className="mb-2">
                 <div className="h-16 transform rotate-90 flex items-center justify-center ">
                   Share
@@ -145,9 +145,16 @@ const CE_WYSIWSGPrioritas = ({
                 </Link>
               </div>
             </div>
-            <div className="text-black text-opacity-90 wysiwsg-body text-base">
-              {parseHTMLToReact(body)}
-            </div>
+            {body ? (
+              <div
+                className="text-black text-opacity-90 wysiwsg-body text-base"
+                dangerouslySetInnerHTML={{
+                  __html: body,
+                }}
+              />
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

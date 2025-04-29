@@ -376,17 +376,17 @@ export default function CE_LastFourMagazine({
                     }
                     target="_blank"
                     key={index}
-                    className="group overflow-hidden w-96 xl:w-80 h-[92%]"
+                    className="group overflow-hidden w-96 xl:w-80"
                   >
                     <div
-                      className="w-72 h-[70%] xl:w-80 xl:h-[85%] flex-none flex flex-col justify-end items-start group-hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
+                      className="w-72 h-[70%] xl:w-80 xl:h-[65%] flex-none flex flex-col justify-end items-start group-hover:scale-125 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                       style={{
                         backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
                       }}
                     ></div>
-                    <div className="w-full bg-white h-20 pt-3 relative overflow-hidden">
+                    <div className="w-full bg-white pb-12 relative overflow-hidden">
                       <div className="">
                         <span className="text-xs pr-2 border-r border-black font-light">
                           {item?.title?.[0]?.value}
@@ -413,7 +413,7 @@ export default function CE_LastFourMagazine({
           <div
             data-aos="fade-up"
             data-aos-duration="500"
-            className="inline-flex items-center justify-center w-full py-8"
+            className="inline-flex items-center justify-center w-full py-5"
           >
             <hr className="w-20 md:w-40 h-px mx-5 my-8 bg-black border-0 dark:bg-black" />
             <Link

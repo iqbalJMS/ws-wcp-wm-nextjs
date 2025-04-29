@@ -53,7 +53,7 @@ const CE_CardGrid7Private = ({
                 data-aos="fade-up"
                 data-aos-duration="800"
                 key={index}
-                href={`/article-detail/${item?.nid ?? '/404'}`}
+                href={`/article-detail/${item?.nid}`}
                 className="w-full flex-none px-10 mb-10"
               >
                 <div className="group">
@@ -74,7 +74,8 @@ const CE_CardGrid7Private = ({
                   </div>
                   <div>
                     <div className="text-xs text-black font-semibold uppercase">
-                      <span className="pr-2">{item?.category ?? ''}</span> |
+                      <span className="pr-2">{item?.category ?? ''}</span>
+                      {item?.category && <span>|</span>}
                       <span className="pl-3">
                         {formatDate(item?.date ?? '')}
                       </span>

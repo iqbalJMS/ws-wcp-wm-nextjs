@@ -16,7 +16,6 @@ import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
 import CE_BreadCrumbProgram from '@/app/program-detail/$element/client.breadcrumb.program';
 import Accordion from '@/lib/element/global/accordion';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 export default async function page({
   params,
@@ -38,6 +37,7 @@ export default async function page({
     alias: 'node',
     nid: +params.id,
   });
+
   return (
     <>
       <div>
@@ -57,26 +57,28 @@ export default async function page({
             height={100000}
             className="w-full h-full object-cover object-top"
           />
-          <h1 className="z-10 absolute text-4xl text-white font-bold uppercase">
-            WMFA FESTIVAL MONEY MARKET FUND 2023
-          </h1>
+          {getOurstoryData?.title?.[0]?.value && (
+            <h1 className="z-10 absolute text-4xl text-white font-bold uppercase">
+              {getOurstoryData?.title?.[0]?.value}
+            </h1>
+          )}
         </section>
         <CE_BreadCrumbProgram
           currentPage={getOurstoryData?.title?.[0]?.value}
         />
         <div className="w-full flex justify-center pb-14 pt-4">
-          <h1 className="text-xl xl:text-3xl text-privatecolor font-bold uppercase text-center">
-            {getOurstoryData?.title?.[0]?.value}
-          </h1>
+          {getOurstoryData?.title?.[0]?.value && (
+            <h1 className="text-xl xl:text-3xl text-privatecolor font-bold uppercase text-center">
+              {getOurstoryData?.title?.[0]?.value}
+            </h1>
+          )}
         </div>
         <section className="w-full flex flex-col justify-center items-center pb-10">
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
               <Accordion
                 isOpen={index === 0}
-                renderContent={parseHTMLToReact(
-                  item?.field_content?.[0]?.value
-                )}
+                renderContent={item?.field_content?.[0]?.value}
                 renderTitle={item?.field_title?.[0]?.value}
               />
             </div>

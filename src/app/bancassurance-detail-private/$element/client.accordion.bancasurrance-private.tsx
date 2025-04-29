@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { PlusIcon } from './icons/plus-icon';
-import { MinusIcon } from './icons/minus-icon';
+import { PlusIcon } from '@/lib/element/global/icons/plus-icon';
+import { MinusIcon } from '@/lib/element/global/icons/minus-icon';
 
 type T_AccordionProps = {
   renderContent: string;
@@ -9,7 +9,7 @@ type T_AccordionProps = {
   isOpen?: boolean;
 };
 
-export default function Accordion({
+export default function CE_AccordionBancarsurancePrivate({
   renderContent,
   isOpen,
   renderTitle,
@@ -17,7 +17,7 @@ export default function Accordion({
   const [accordionOpen, setAccordionOpen] = useState(false);
 
   useEffect(() => {
-    if (isOpen) setAccordionOpen(false);
+    if (isOpen) setAccordionOpen(true);
   }, [isOpen]);
 
   return (
@@ -33,7 +33,7 @@ export default function Accordion({
                 className={`${styles.buttonContainer}`}
               >
                 <div className="w-full text-white text-start">
-                  {renderTitle ?? ''}
+                  {renderTitle}
                 </div>
 
                 {accordionOpen ? (
