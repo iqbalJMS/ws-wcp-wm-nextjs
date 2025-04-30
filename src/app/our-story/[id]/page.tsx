@@ -4,7 +4,6 @@ import background from '@/../public/images/dummy/bgOurStory.jpeg';
 import Image from 'next/image';
 import { ACT_GetTopMenuNavbar } from '@/app/(views)/$action/action.get.top-menu-navbar';
 import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import GlobalFooter from '@/lib/element/global/global.footer';
 import { ACT_GetBottomRightFooter } from '@/app/(views)/$action/bottom-footer/action.get.bottom.right.footer';
 import { ACT_GetBottomLeftFooter } from '@/app/(views)/$action/bottom-footer/action.get.bottom.left.footer';
@@ -78,13 +77,16 @@ export default async function page({ params }: { params: { id: string } }) {
                 </h2>
               </div>
             </div>
-            <div className="w-full p-5 h-screen space-y-10 pt-5 ">
+            <div className="w-full p-5 space-y-10 pt-5 ">
               <h1 className="text-lg lg:text-xl font-bold">
                 {getOurstoryData?.body?.[0]?.summary}
               </h1>
-              <h2 className="leading-8 ">
-                {parseHTMLToReact(getOurstoryData?.body?.[0]?.value)}
-              </h2>
+              <div
+                className="leading-8"
+                dangerouslySetInnerHTML={{
+                  __html: getOurstoryData?.body?.[0]?.value,
+                }}
+              />
             </div>
           </div>
         </section>
