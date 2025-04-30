@@ -35,14 +35,14 @@ const CE_WYSIWSGVariant02 = ({
             <div
               className="px-20 mdmax:px-6 py-5 bg-privatecolor text-white text-2xl font-semibold text-center"
               dangerouslySetInnerHTML={{
-                __html: title,
+                __html: title ?? '',
               }}
             />
             <div className="px-20 mdmax:px-6 py-5 wysiwsg-body">
               <div
                 className="text-lg mdmax:text-base text-black text-opacity-60"
                 dangerouslySetInnerHTML={{
-                  __html: body,
+                  __html: body ?? '',
                 }}
               />
             </div>

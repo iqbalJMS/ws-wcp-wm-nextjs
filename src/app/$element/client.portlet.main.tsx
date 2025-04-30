@@ -2,7 +2,6 @@
 
 import ButtonSecondary from '@/lib/element/global/button.secondary';
 import Link from 'next/link';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
 
 const CE_PortletMain = ({
@@ -27,7 +26,7 @@ const CE_PortletMain = ({
           <div className="absolute top-0 left-0 w-full h-full">
             {image && (
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image}`}
+                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image ?? ''}`}
                 alt="image"
                 width={400}
                 height={400}
@@ -39,16 +38,17 @@ const CE_PortletMain = ({
           <div className="z-20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mdmax:w-full">
             <div className="text-center mb-10">
               <div className="text-white text-3xl mb-5 font-semibold">
-                {title}
+                {title ?? ''}
               </div>
-              <div className="text-white text-2xl mdmax:text-lg w-[80%] inline-block">
-                {parseHTMLToReact(description)}
-              </div>
+              <div
+                className="text-white text-2xl mdmax:text-lg w-[80%] inline-block"
+                dangerouslySetInnerHTML={{ __html: description ?? '' }}
+              />
             </div>
             <div className="text-center">
               <Link href={button.link ?? '/404'}>
                 <ButtonSecondary rounded="full" color="privatecolor" size="lg">
-                  {button.text}
+                  {button.text ?? ''}
                 </ButtonSecondary>
               </Link>
             </div>

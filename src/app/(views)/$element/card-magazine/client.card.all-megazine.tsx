@@ -52,7 +52,6 @@ export default function CE_AllMagazine({
   const screenWidth = useScreenWidth();
   const slidesToShow = getSlideToShow(screenWidth);
   const slidesToScroll = 1;
-
   const { form, validateForm, setForm } = useForm<
     T_RequestMagazine,
     T_RequestMagazine
@@ -187,14 +186,14 @@ export default function CE_AllMagazine({
                   >
                     <div className="">
                       <span
-                        className={`group-hover:underline text-${labelColor} text-sm xl:text-base font-extrabold`}
+                        className={`group-hover:underline text-${labelColor} text-sm xl:text-base font-extrabold line-clamp-1`}
                       >
                         {item?.title?.[0]?.value}
                       </span>
                     </div>
                     <div className="pt-2 ">
                       <h1
-                        className={`text-${labelColor} text-sm pr-2 font-light`}
+                        className={`text-${labelColor} text-xs pr-2 font-light`}
                       >
                         {item?.field_text?.[0]?.value}
                       </h1>
@@ -207,7 +206,7 @@ export default function CE_AllMagazine({
                       }
                       className="group text-white uppercase text-sm font-bold flex items-center hover:underline duration-200"
                     >
-                      selengkapnya{' '}
+                      selengkapnya
                       <span>
                         <ArrowRightIcon
                           className="pl-2 group-hover:translate-x-2 duration-200"
@@ -234,7 +233,10 @@ export default function CE_AllMagazine({
                   ? 'text-opacity-10 cursor-default'
                   : 'cursor-pointer',
               ].join(' ')}
-              onClick={prevSlide}
+              onClick={() => {
+                prevSlide();
+                handleLoadMore();
+              }}
             >
               <ArrowLeftIcon
                 width={40}
@@ -252,7 +254,10 @@ export default function CE_AllMagazine({
                   ? 'cursor-pointer'
                   : 'bg-opacity-10 cursor-default',
               ].join(' ')}
-              onClick={nextSlide}
+              onClick={() => {
+                nextSlide();
+                handleLoadMore();
+              }}
             >
               <ArrowRightIcon
                 width={40}
@@ -283,7 +288,10 @@ export default function CE_AllMagazine({
                     ? 'text-opacity-10 cursor-default'
                     : 'cursor-pointer',
                 ].join(' ')}
-                onClick={prevSlide}
+                onClick={() => {
+                  prevSlide();
+                  handleLoadMore();
+                }}
               >
                 <ArrowLeftIcon
                   width={40}
@@ -329,7 +337,7 @@ export default function CE_AllMagazine({
                       >
                         <div className="">
                           <span
-                            className={`group-hover:underline text-${labelColor} text-sm xl:text-base font-extrabold`}
+                            className={`group-hover:underline text-${labelColor} text-sm xl:text-base font-extrabold line-clamp-1`}
                           >
                             {item?.title?.[0]?.value}
                           </span>
@@ -373,7 +381,10 @@ export default function CE_AllMagazine({
                     ? 'cursor-default '
                     : 'bg-opacity-10 cursor-pointer',
                 ].join(' ')}
-                onClick={nextSlide}
+                onClick={() => {
+                  nextSlide();
+                  handleLoadMore();
+                }}
               >
                 <ArrowRightIcon
                   width={40}
@@ -422,7 +433,7 @@ export default function CE_AllMagazine({
                     >
                       <div className="">
                         <span
-                          className={`group-hover:underline text-${labelColor} text-sm xl:text-base font-extrabold`}
+                          className={`group-hover:underline text-${labelColor} text-sm xl:text-base font-extrabold line-clamp-2`}
                         >
                           {item?.title?.[0]?.value}
                         </span>

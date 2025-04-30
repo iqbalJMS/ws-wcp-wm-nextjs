@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import React, { useEffect } from 'react';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -51,12 +50,14 @@ export default function CE_Travel({
           >
             {secondColumnProps?.map((item, index) => (
               <div key={index} className="space-y-5 pt-5">
-                <h1 className={`capitalize text-${theme} text-lg font-bold`}>
-                  {parseHTMLToReact(item?.label)}
-                </h1>
-                <h1 className="capitalize text-prioritycolor text-base">
-                  {parseHTMLToReact(item?.content)}
-                </h1>
+                <h1
+                  className={`capitalize text-${theme} text-lg font-bold`}
+                  dangerouslySetInnerHTML={{ __html: item?.label }}
+                />
+                <h1
+                  className="capitalize text-prioritycolor text-base"
+                  dangerouslySetInnerHTML={{ __html: item?.content }}
+                />
               </div>
             ))}
           </section>

@@ -19,7 +19,7 @@ const CE_WYSIWSGVariant01 = ({
   body: string;
   nid: number;
 }) => {
-  const urlLink = `https://bri-corpsite.dev-kjt.id/web/wealth-management/article-detail/${nid}`;
+  const urlLink = `https://${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/web/wealth-management/article-detail/${nid}`;
 
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
@@ -34,7 +34,11 @@ const CE_WYSIWSGVariant01 = ({
       <div className="container py-20">
         <div className="mb-10">
           {category && <div className="text-sm">{category ?? ''}</div>}
-          {title && <div className="text-xl font-semibold">{title ?? ''}</div>}
+          {title && (
+            <h1 className="text-xl font-semibold w-full line-clamp-2">
+              {title ?? ''}
+            </h1>
+          )}
         </div>
         <div className="px-20 mdmax:px-0">
           <div className="flex items-center mb-5 text-base mdmax:text-sm">
@@ -150,7 +154,7 @@ const CE_WYSIWSGVariant01 = ({
               <div
                 className="text-black text-opacity-90 wysiwsg-body text-base"
                 dangerouslySetInnerHTML={{
-                  __html: body,
+                  __html: body ?? '',
                 }}
               />
             ) : (

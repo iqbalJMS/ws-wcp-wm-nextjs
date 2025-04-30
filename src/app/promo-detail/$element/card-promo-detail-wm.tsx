@@ -71,7 +71,7 @@ export default function CE_PromoCardDetailWm({
               />
             </div>
             <div className="overflow-hidden w-full h-36 lg:h-32 lg:w-full space-y-5 flex flex-col justify-start lg:flex-row lg:justify-between lg:items-start px-5">
-              <h1 className="text-xl font-semibold">{title}</h1>
+              <h1 className="text-xl font-semibold">{title ?? ''}</h1>
               <div
                 onClick={() => setActive(!active)}
                 className=" relative w-52 lg:w-60 flex items-center justify-center py-3 rounded-full uppercase font-bold text-base lg:text-xl text-white bg-[#080087] hover:bg-gray-600 duration-300 cursor-pointer"
@@ -236,23 +236,23 @@ export default function CE_PromoCardDetailWm({
           </div>
           <div className="sm:hidden font-light">
             <h1 className="p-5 border-y border-[#D6D6D6]">Info Merchant</h1>
-            <h2 className="p-5 text-[#1738C1]">{merchant}</h2>
+            <h2 className="p-5 text-[#1738C1]">{merchant ?? ''}</h2>
           </div>
           <div className="hidden sm:flex border-[#D6D6D6] font-light p-5">
             <div className="w-[260px]">
               <h1 className="py-3">Info Merchant</h1>
             </div>
-            <h2 className="pt-3 text-[#1738C1]">{merchant}</h2>
+            <h2 className="pt-3 text-[#1738C1]">{merchant ?? ''}</h2>
           </div>
           <div className="sm:hidden font-light">
             <h1 className="p-5 border-y border-[#D6D6D6]">Lokasi</h1>
-            <h2 className="p-5 text-[#1738C1]">{lokasi}</h2>
+            <h2 className="p-5 text-[#1738C1]">{lokasi ?? ''}</h2>
           </div>
           <div className="hidden sm:flex border-y border-[#D6D6D6] font-light p-5">
             <div className="w-[260px]">
               <h1 className="py-3">Lokasi</h1>
             </div>
-            <h2 className="pt-3 text-[#1738C1]">{lokasi}</h2>
+            <h2 className="pt-3 text-[#1738C1]">{lokasi ?? ''}</h2>
           </div>
         </section>
       </div>

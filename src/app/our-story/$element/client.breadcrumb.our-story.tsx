@@ -51,9 +51,9 @@ const CE_BreadcrumbStory = ({ currentPage }: { currentPage: string }) => {
               </li>
             ))}
             <div className="flex items-center space-x-3 ">
-              <div className="flex items-center">
-                <span className="cursor-default text-wmcolor font-normal hover:text-primary-blue">
-                  {currentPage}
+              <div className="flex items-center w-96">
+                <span className="cursor-default text-wmcolor font-normal hover:text-primary-blue line-clamp-2">
+                  {currentPage ?? ''}
                 </span>
               </div>
             </div>

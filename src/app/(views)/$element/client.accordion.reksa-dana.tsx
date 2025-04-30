@@ -33,7 +33,7 @@ export default function CE_AcordionReksaDana({
               className={`${styles.buttonContainer}`}
             >
               <div className="w-full text-white text-start">
-                {parseHTMLToReact(renderTitle as any)}
+                {parseHTMLToReact((renderTitle as any) ?? '')}
               </div>
 
               {accordionOpen ? (
@@ -58,9 +58,10 @@ export default function CE_AcordionReksaDana({
       <div
         className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100 pt-16 pb-6 py-4 w-full px-5 md:w-9/12 xl:w-5/12' : 'grid-rows-[0fr] opacity-0 py-4 w-full px-5 md:w-9/12 xl:w-5/12'}`}
       >
-        <div className="overflow-hidden accordion-content">
-          {parseHTMLToReact(renderContent as any)}
-        </div>
+        <div
+          className="overflow-hidden accordion-content"
+          dangerouslySetInnerHTML={{ __html: (renderContent as any) ?? '' }}
+        />
       </div>
     </section>
   );

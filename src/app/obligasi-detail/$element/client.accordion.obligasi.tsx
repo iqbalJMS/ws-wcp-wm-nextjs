@@ -22,42 +22,36 @@ export default function CE_AccordionObligasi({
 
   return (
     <section className="flex flex-col mb-4">
-      {renderContent && renderTitle ? (
-        <div
-          className={`shadow-lg rounded-[40px] px-6 py-4 bg-privatecolor relative z-10`}
-        >
+      <div
+        className={`shadow-lg rounded-[40px] px-6 py-4 bg-privatecolor relative z-10`}
+      >
+        <div>
           <div>
-            <div>
-              <button
-                onClick={() => setAccordionOpen(!accordionOpen)}
-                className={`${styles.buttonContainer}`}
-              >
-                <div className="w-full text-white text-start">
-                  {renderTitle}
-                </div>
+            <button
+              onClick={() => setAccordionOpen(!accordionOpen)}
+              className={`${styles.buttonContainer}`}
+            >
+              <div className="w-full text-white text-start">{renderTitle}</div>
 
-                {accordionOpen ? (
-                  <MinusIcon
-                    className="stroke-white-02 fill-white"
-                    width={28}
-                    height={28}
-                    strokeWidth="2"
-                  />
-                ) : (
-                  <PlusIcon
-                    className="stroke-white-02 fill-white"
-                    width={28}
-                    height={28}
-                    strokeWidth="2"
-                  />
-                )}
-              </button>
-            </div>
+              {accordionOpen ? (
+                <MinusIcon
+                  className="stroke-white-02 fill-white"
+                  width={28}
+                  height={28}
+                  strokeWidth="2"
+                />
+              ) : (
+                <PlusIcon
+                  className="stroke-white-02 fill-white"
+                  width={28}
+                  height={28}
+                  strokeWidth="2"
+                />
+              )}
+            </button>
           </div>
         </div>
-      ) : (
-        <></>
-      )}
+      </div>
       <div
         className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100 pt-16 px-16 pb-6' : 'grid-rows-[0fr] opacity-0'}`}
       >

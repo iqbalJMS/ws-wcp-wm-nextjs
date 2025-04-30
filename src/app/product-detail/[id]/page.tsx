@@ -10,7 +10,6 @@ import { ACT_GetMainMenuFooter } from '@/app/(views)/$action/main-footer/action.
 import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-footer/action.get.main-middle-footer';
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
 import CE_AcordionInvestasi from '@/app/product-detail/$element/client.accordion.invest';
 import PriorityHeader from '@/lib/element/global/header/priority-header';
@@ -48,27 +47,29 @@ export default async function page({ params }: { params: { id: string } }) {
         />
         <section className="relative overflow-hidden h-[65vh] lg:mb-[3.125rem] w-full bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full flex justify-center items-center before:bg-gradient-to-b before:from-black before:to-black before:opacity-40 z-0 border-b-[15px] border-[#D2D2D2]">
           <Image
-            src={background}
+            src={background ?? ''}
             alt="bg-image"
             width={100000}
             height={100000}
             className="w-full h-full object-cover object-top"
           />
-          <h1 className="z-10 absolute text-4xl text-white font-bold uppercase">
-            {getOurstoryData?.title?.[0]?.value}
-          </h1>
+          <div className="absolute w-full z-10 flex justify-center">
+            {getOurstoryData?.title?.[0]?.value && (
+              <h1 className="w-9/12 text-2xl text-white text-center font-bold uppercase line-clamp-3">
+                {getOurstoryData?.title?.[0]?.value ?? ''}
+              </h1>
+            )}
+          </div>
         </section>
         <CE_BreadCrumbInvestasi
-          currentPage={getOurstoryData?.title?.[0]?.value}
+          currentPage={getOurstoryData?.title?.[0]?.value ?? ''}
         />
         <section className="w-full flex flex-col justify-center items-center pb-10">
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
               <CE_AcordionInvestasi
-                renderContent={parseHTMLToReact(
-                  item?.field_content?.[0]?.value
-                )}
-                renderTitle={item?.field_title?.[0]?.value}
+                renderContent={item?.field_content?.[0]?.value ?? ''}
+                renderTitle={item?.field_title?.[0]?.value ?? ''}
               />
             </div>
           ))}

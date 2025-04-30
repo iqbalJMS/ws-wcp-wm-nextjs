@@ -56,9 +56,13 @@ export default async function page({ params }: { params: { id: string } }) {
             height={100000}
             className="w-full h-full object-cover object-top"
           />
-          <h1 className="z-10 absolute text-4xl text-white font-bold uppercase">
-            article
-          </h1>
+          <div className="absolute w-full z-10 flex justify-center">
+            {getOurstoryData?.title?.[0]?.value && (
+              <h1 className="w-9/12 text-2xl text-white text-center font-bold uppercase line-clamp-3">
+                {getOurstoryData?.title?.[0]?.value ?? ''}
+              </h1>
+            )}
+          </div>
         </section>
         <CE_BreadCrumbArticlePrivate
           currentPage={getOurstoryData?.title?.[0]?.value ?? ''}

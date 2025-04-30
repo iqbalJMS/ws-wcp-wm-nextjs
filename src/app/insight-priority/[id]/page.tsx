@@ -54,19 +54,23 @@ export default async function page({ params }: { params: { id: string } }) {
             height={100000}
             className="w-full h-full object-cover object-top"
           />
-          <h1 className="z-10 absolute text-4xl text-white font-bold uppercase">
-            wawasan
-          </h1>
+          <div className="z-10 absolute w-full flex justify-center">
+            <h1 className="text-4xl text-white font-bold uppercase">wawasan</h1>
+          </div>
         </div>
 
         <CE_BCInsightPrioritas
-          currentPage={getOurstoryData?.title?.[0]?.value || ''}
+          currentPage={getOurstoryData?.title?.[0]?.value ?? ''}
         />
         <CE_WYSIWSGVariantPriority
-          category={getOurstoryData?.field_items?.[0]?.field_title?.[0]?.value}
-          title={getOurstoryData?.field_summary?.[0]?.value}
-          date={getOurstoryData?.created?.[0]?.value}
-          body={getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value}
+          category={
+            getOurstoryData?.field_items?.[0]?.field_title?.[0]?.value ?? ''
+          }
+          title={getOurstoryData?.field_summary?.[0]?.value ?? ''}
+          date={getOurstoryData?.created?.[0]?.value ?? ''}
+          body={
+            getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value ?? ''
+          }
         />
         <GlobalFooter
           bottom_right_footer={listBottomRightFooter}

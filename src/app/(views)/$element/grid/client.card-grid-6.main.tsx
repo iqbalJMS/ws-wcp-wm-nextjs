@@ -57,10 +57,12 @@ const CE_CardGrid6Main = ({
                   )}
                 </div>
                 <div className="p-5">
-                  <div className={`text-${theme} text-xl font-bold mb-2`}>
+                  <div
+                    className={`text-${theme} text-xl font-bold mb-2 line-clamp-2`}
+                  >
                     {item?.title}
                   </div>
-                  <div className="mb-5 text-slate-600">
+                  <div className="mb-5 text-slate-600 line-clamp-4">
                     {parseHTMLToReact(item?.description)}
                   </div>
                   <div>
