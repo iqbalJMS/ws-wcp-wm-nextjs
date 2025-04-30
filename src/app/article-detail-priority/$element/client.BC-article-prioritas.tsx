@@ -51,9 +51,9 @@ const CE_BCArticlePrioritas = ({ currentPage }: { currentPage: string }) => {
               </li>
             ))}
             <div className="flex items-center space-x-3 ">
-              <div className="flex items-center">
-                <span className="cursor-default text-prioritycolor font-normal hover:text-primary-blue uppercase">
-                  {currentPage}
+              <div className="flex items-center w-96">
+                <span className="cursor-default text-prioritycolor font-normal hover:text-primary-blue uppercase line-clamp-2">
+                  {currentPage ?? ''}
                 </span>
               </div>
             </div>

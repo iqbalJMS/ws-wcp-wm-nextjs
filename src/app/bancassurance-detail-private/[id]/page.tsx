@@ -48,27 +48,25 @@ export default async function page({ params }: { params: { id: string } }) {
         />
         <section className="relative overflow-hidden h-[65vh] lg:mb-[3.125rem] w-full bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full flex justify-center items-center before:bg-gradient-to-b before:from-black before:to-black before:opacity-40 z-0 border-b-[15px] border-[#D2D2D2]">
           <Image
-            src={background}
+            src={background ?? ''}
             alt="bg-image"
             width={100000}
             height={100000}
             className="w-full h-full object-cover object-top"
           />
-          <div className="z-10 absolute text-center ">
-            {getOurstoryData?.title?.[0]?.value && (
-              <h1 className="text-4xl text-white font-bold uppercase">
-                {getOurstoryData?.title?.[0]?.value}
-              </h1>
-            )}
-            {getOurstoryData?.field_summary?.[0]?.value && (
-              <h2 className="text-sm text-white w-11/12 pt-10 ">
-                {parseHTMLToReact(getOurstoryData?.field_summary?.[0]?.value)}
-              </h2>
-            )}
+          <div className="z-10 absolute text-center flex flex-col items-center ">
+            <h1 className="text-4xl text-white font-bold uppercase">
+              {getOurstoryData?.title?.[0]?.value ?? ''}
+            </h1>
+            <div className="text-sm text-white w-10/12 pt-8 px-5 line-clamp-6 ">
+              {parseHTMLToReact(
+                getOurstoryData?.field_summary?.[0]?.processed ?? ''
+              )}
+            </div>
           </div>
         </section>
         <CE_BCBancasurrancePrivate
-          currentPage={getOurstoryData?.title?.[0]?.value}
+          currentPage={getOurstoryData?.title?.[0]?.value ?? ''}
         />
         <div className="w-full flex justify-center pb-14 pt-4">
           {getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value && (
@@ -81,8 +79,8 @@ export default async function page({ params }: { params: { id: string } }) {
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
               <CE_AccordionBancarsurancePrivate
-                renderContent={item?.field_content?.[0]?.value}
-                renderTitle={item?.field_title?.[0]?.value}
+                renderContent={item?.field_content?.[0]?.value ?? ''}
+                renderTitle={item?.field_title?.[0]?.value ?? ''}
               />
             </div>
           ))}

@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import React from 'react';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 export default function CE_Privileges({
   firstColumn,
@@ -41,12 +40,14 @@ export default function CE_Privileges({
           <section className="w-full h-full p-3 flex flex-col justify-center">
             {firstColumn?.map((item, index) => (
               <div key={index} className="space-y-5 pt-5">
-                <h1 className={`capitalize text-${theme} text-lg font-bold`}>
-                  {parseHTMLToReact(item?.label)}
-                </h1>
-                <h1 className="capitalize text-prioritycolor text-base">
-                  {parseHTMLToReact(item?.content)}
-                </h1>
+                <h1
+                  className={`capitalize text-${theme} text-lg font-bold`}
+                  dangerouslySetInnerHTML={{ __html: item?.label ?? '' }}
+                />
+                <h1
+                  className="capitalize text-prioritycolor text-base"
+                  dangerouslySetInnerHTML={{ __html: item?.content ?? '' }}
+                />
               </div>
             ))}
           </section>

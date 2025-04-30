@@ -1,4 +1,3 @@
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import CE_SubscriberForm from './client.subscriber.form';
 
 type T_SubscriberContentProps = {
@@ -24,9 +23,10 @@ export default function SE_SubscriberContent({
             }}
             className="bg-no-repeat w-full h-full absolute mdmax:-left-12 z-[2]"
           />
-          <div className="absolute top-1/3 md:ml-56 ml-28 mt-4 md:text-3xl text-xl md:pr-16">
-            {parseHTMLToReact(description ?? '')}
-          </div>
+          <div
+            className="absolute top-1/3 md:ml-56 ml-28 mt-4 md:text-3xl text-xl md:pr-16"
+            dangerouslySetInnerHTML={{ __html: description ?? '' }}
+          />
         </div>
         <CE_SubscriberForm />
       </div>

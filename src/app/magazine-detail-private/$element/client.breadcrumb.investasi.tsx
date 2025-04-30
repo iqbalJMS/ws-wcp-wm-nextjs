@@ -52,7 +52,7 @@ const CE_BreadCrumbInvestasi = ({ currentPage }: { currentPage: string }) => {
             ))}
             <div className="flex items-center space-x-3 ">
               <div className="flex items-center">
-                <span className="cursor-default text-prioritycolor font-normal hover:text-primary-blue uppercase">
+                <span className="cursor-default text-prioritycolor font-normal hover:text-primary-blue uppercase line-clamp-2">
                   {currentPage}
                 </span>
               </div>

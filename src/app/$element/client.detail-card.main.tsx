@@ -2,7 +2,6 @@
 
 import ButtonSecondary from '@/lib/element/global/button.secondary';
 import Link from 'next/link';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
 
 const CE_DetailCardMain = ({
@@ -54,9 +53,10 @@ const CE_DetailCardMain = ({
                   {card.category}
                 </div>
                 <div className="text-2xl mb-5">{card.title}</div>
-                <div className="text-lg">
-                  {parseHTMLToReact(card.description)}
-                </div>
+                <div
+                  className="text-lg"
+                  dangerouslySetInnerHTML={{ __html: card.description }}
+                />
               </div>
               <div>
                 <Link href={card.button.link ?? 'undefined'}>

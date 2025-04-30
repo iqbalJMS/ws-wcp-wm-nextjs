@@ -49,25 +49,29 @@ export default async function page({ params }: { params: { id: string } }) {
         />
         <div className="relative overflow-hidden h-[65vh] lg:mb-[3.125rem] w-full bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full flex justify-center items-center before:bg-gradient-to-b before:from-black before:to-black before:opacity-40 z-0 border-b-[15px] border-[#D2D2D2]">
           <Image
-            src={background}
+            src={background ?? ''}
             alt="bg-image"
             width={100000}
             height={100000}
             className="w-full h-full object-cover object-top"
           />
-          <h1 className="z-10 absolute text-4xl text-white font-bold uppercase">
-            wawasan
-          </h1>
+          <div className="z-0 absolute w-full flex justify-center">
+            <h1 className="text-4xl text-white font-bold uppercase">wawasan</h1>
+          </div>
         </div>
 
         <CE_BreadCrumbInsightPrivate
-          currentPage={getOurstoryData?.title?.[0]?.value || ''}
+          currentPage={getOurstoryData?.title?.[0]?.value ?? ''}
         />
         <CE_WYSIWSGVariant02
-          category={getOurstoryData?.field_items?.[0]?.field_title?.[0]?.value}
-          title={getOurstoryData?.field_summary?.[0]?.value}
-          date={getOurstoryData?.created?.[0]?.value}
-          body={getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value}
+          category={
+            getOurstoryData?.field_items?.[0]?.field_title?.[0]?.value ?? ''
+          }
+          title={getOurstoryData?.field_summary?.[0]?.value ?? ''}
+          date={getOurstoryData?.created?.[0]?.value ?? ''}
+          body={
+            getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value ?? ''
+          }
         />
         <GlobalFooter
           bottom_right_footer={listBottomRightFooter}

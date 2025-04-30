@@ -1,7 +1,5 @@
 'use client';
 
-// import Image from 'next/image';
-// import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
 
 export function GlobalBanner() {

@@ -33,10 +33,10 @@ const CE_BCBancasurrancePrivate = ({
               <li key={index}>
                 <div className="flex items-center space-x-2">
                   <Link
-                    href={item.url}
+                    href={item.url ?? ''}
                     className="font-light text-base text-[#C0CCE2] hover:text-prioritycolor hover:underline uppercase"
                   >
-                    {item.title}
+                    {item.title ?? ''}
                   </Link>
                   <div className="flex items-center space-x-3 ">
                     <svg
@@ -59,9 +59,9 @@ const CE_BCBancasurrancePrivate = ({
               </li>
             ))}
             <div className="flex items-center space-x-3 ">
-              <div className="flex items-center">
-                <span className="cursor-default text-prioritycolor font-normal hover:text-primary-blue uppercase">
-                  {currentPage}
+              <div className="flex items-center w-96">
+                <span className="cursor-default line-clamp-2 text-prioritycolor font-normal hover:text-primary-blue uppercase">
+                  {currentPage ?? ''}
                 </span>
               </div>
             </div>
