@@ -84,7 +84,7 @@ export default function CE_CarouselVariant2({
     <>
       {bgImage !== undefined ? (
         <div
-          className="w-full h-screen md:h-[70vh] relative overflow-hidden flex"
+          className="w-full h-screen relative overflow-hidden flex"
           style={{
             backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''})`,
             backgroundSize: 'cover',
@@ -99,7 +99,7 @@ export default function CE_CarouselVariant2({
               data-aos-duration="1000"
               className="text-white text-4xl font-bold pb-20"
             >
-              {title}
+              {title ?? ''}
             </h1>
             <section
               data-aos-duration="1000"

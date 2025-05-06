@@ -58,7 +58,11 @@ export default function CE_AccordionBrifinePrivate({
         <div
           className="overflow-hidden accordion-content"
           dangerouslySetInnerHTML={{
-            __html: renderContent ?? '',
+            __html:
+              renderContent.replace(
+                /\/sites\/default/g,
+                `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+              ) ?? '',
           }}
         />
       </div>

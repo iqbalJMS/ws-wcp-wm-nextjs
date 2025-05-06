@@ -104,7 +104,7 @@ export function LoginButton({
                     />
                   </div>
 
-                  <div className="">{loginItem.title}</div>
+                  <div className="">{loginItem.title ?? ''}</div>
                 </div>
               </Link>
             </div>

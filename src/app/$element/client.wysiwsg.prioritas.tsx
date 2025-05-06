@@ -153,7 +153,11 @@ const CE_WYSIWSGPrioritas = ({
               <div
                 className="text-black text-opacity-90 wysiwsg-body text-base"
                 dangerouslySetInnerHTML={{
-                  __html: body ?? '',
+                  __html:
+                    body.replace(
+                      /\/sites\/default/g,
+                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    ) ?? '',
                 }}
               />
             ) : (
