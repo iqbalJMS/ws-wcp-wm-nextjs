@@ -1424,7 +1424,10 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       component: CE_Terms,
       props: (_component: T_RichText) => {
         return {
-          desc: _component?.field_content?.[0]?.value,
+          desc: _component?.field_content?.[0]?.value.replace(
+            /\/sites\/default/g,
+            `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+          ),
         };
       },
     },

@@ -2,7 +2,6 @@
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import ShareIcon from '@/lib/element/global/icons/share-icon';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import Link from 'next/link';
 import TwitterIcon from '@/lib/element/global/icons/twitter-icon';
@@ -71,7 +70,16 @@ export default function CE_PromoDetailPrivate({
               />
             </div>
             <div className="overflow-hidden w-full h-36 lg:h-32 lg:w-full space-y-5 flex flex-col justify-start lg:flex-row lg:justify-between lg:items-start px-5">
-              <h1 className="text-xl font-semibold">{title ?? ''}</h1>
+              <h1
+                className="text-xl font-semibold"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    title.replace(
+                      /\/sites\/default/g,
+                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    ) ?? '',
+                }}
+              />
               <div
                 onClick={() => setActive(!active)}
                 className=" relative w-52 lg:w-60 flex items-center justify-center py-3 rounded-full uppercase font-bold text-base lg:text-xl text-white bg-privatecolor hover:bg-gray-600 duration-300 cursor-pointer"
@@ -194,9 +202,16 @@ export default function CE_PromoDetailPrivate({
               <h1 className="font-light">Terms & Condition</h1>
             </div>
             <div className="sm:basis-4/5 p-5">
-              <div className="text-privatecolor space-y-3 text-sm tracking-wide leading-6">
-                {parseHTMLToReact(terms ?? '')}
-              </div>
+              <div
+                className="text-privatecolor space-y-3 text-sm tracking-wide leading-6"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    terms.replace(
+                      /\/sites\/default/g,
+                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    ) ?? '',
+                }}
+              />
             </div>
           </section>
           <div className="w-full pt-10 font-light">
@@ -221,13 +236,33 @@ export default function CE_PromoDetailPrivate({
           </div>
           <div className="sm:hidden font-light">
             <h1 className="p-5 border-y border-[#D6D6D6]">Info Merchant</h1>
-            <h2 className="p-5 text-privatecolor">{merchant ?? ''}</h2>
+            <h2
+              className="p-5 text-privatecolor"
+              dangerouslySetInnerHTML={{
+                __html:
+                  merchant.replace(
+                    /\/sites\/default/g,
+                    `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                  ) ?? '',
+              }}
+            />
           </div>
           <div className="hidden sm:flex border-[#D6D6D6] font-light p-5">
             <div className="w-[260px]">
               <h1 className="py-3">Info Merchant</h1>
             </div>
-            <h2 className="pt-3 text-privatecolor">{merchant ?? ''}</h2>
+            <div className="w-10/12">
+              <h2
+                className="pt-3 text-privatecolor"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    merchant.replace(
+                      /\/sites\/default/g,
+                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    ) ?? '',
+                }}
+              />
+            </div>
           </div>
           <div className="sm:hidden font-light">
             <h1 className="p-5 border-y border-[#D6D6D6]">Lokasi</h1>

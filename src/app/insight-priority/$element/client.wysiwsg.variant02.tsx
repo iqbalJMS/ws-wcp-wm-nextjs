@@ -1,7 +1,5 @@
 'use client';
 
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-
 const CE_WYSIWSGVariantPriority = ({
   category,
   title,
@@ -29,13 +27,27 @@ const CE_WYSIWSGVariantPriority = ({
             <div className="px-20 mdmax:px-6 py-4 text-prioritycolor">
               {category ?? ''} | {formatDate(date ?? '')}
             </div>
-            <div className="px-20 mdmax:px-6 py-5 bg-[#DBDAE4] text-prioritycolor text-2xl text-center">
-              {parseHTMLToReact(title ?? '')}
-            </div>
+            <div
+              className="px-20 mdmax:px-6 py-5 bg-[#DBDAE4] text-prioritycolor text-2xl text-center"
+              dangerouslySetInnerHTML={{
+                __html:
+                  title.replace(
+                    /\/sites\/default/g,
+                    `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                  ) ?? '',
+              }}
+            />
             <div className="px-20 mdmax:px-6 py-5 wysiwsg-body">
-              <div className="text-lg mdmax:text-base text-black text-opacity-60">
-                {parseHTMLToReact(body ?? '')}
-              </div>
+              <div
+                className="text-lg mdmax:text-base text-black text-opacity-60"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    body.replace(
+                      /\/sites\/default/g,
+                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    ) ?? '',
+                }}
+              />
             </div>
           </div>
         </div>

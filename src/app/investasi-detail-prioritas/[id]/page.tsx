@@ -11,7 +11,6 @@ import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-foote
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import PriorityHeader from '@/lib/element/global/header/priority-header';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 import CE_AccordionInvestasi from '@/app/investasi-detail-prioritas/$element/client.accordion.investasi';
@@ -56,16 +55,28 @@ export default async function page({ params }: { params: { id: string } }) {
           />
           <div className="z-10 absolute text-center ">
             {getOurstoryData?.title?.[0]?.value && (
-              <h1 className="text-4xl text-white font-bold uppercase">
-                {getOurstoryData?.title?.[0]?.value ?? ''}
-              </h1>
+              <h1
+                className="text-4xl text-white font-bold uppercase"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    getOurstoryData?.title?.[0]?.value.replace(
+                      /\/sites\/default/g,
+                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    ) ?? '',
+                }}
+              />
             )}
             {getOurstoryData?.field_summary?.[0]?.value && (
-              <h2 className="text-sm text-white w-full pt-10">
-                {parseHTMLToReact(
-                  getOurstoryData?.field_summary?.[0]?.value ?? ''
-                )}
-              </h2>
+              <h2
+                className="text-sm text-white w-full pt-10"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    getOurstoryData?.field_summary?.[0]?.value.replace(
+                      /\/sites\/default/g,
+                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    ) ?? '',
+                }}
+              />
             )}
           </div>
         </section>

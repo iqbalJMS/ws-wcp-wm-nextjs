@@ -352,7 +352,8 @@ export default function PrivateHeader({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <div>
+                {/* hidden for a while */}
+                <div className="hidden">
                   <LoginButton
                     menuItems={itemLogin}
                     isActive={isButtonActive}
@@ -522,13 +523,16 @@ export default function PrivateHeader({
                 })}
               </div>
             </div>
-            <div className="pb-2 border-b-4 border-transparent lg:block hidden ml-4">
-              <LoginButton
-                menuItems={itemLogin}
-                isActive={isButtonActive}
-                setIsActive={setIsButtonActive}
-                refElement={elementRef}
-              />
+            {/* hidden for a while */}
+            <div className="hidden">
+              <div className="pb-2 border-b-4 border-transparent lg:block hidden ml-4">
+                <LoginButton
+                  menuItems={itemLogin}
+                  isActive={isButtonActive}
+                  setIsActive={setIsButtonActive}
+                  refElement={elementRef}
+                />
+              </div>
             </div>
           </div>
         </div>

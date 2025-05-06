@@ -31,7 +31,9 @@ export default function CE_AccordionObligasi({
               onClick={() => setAccordionOpen(!accordionOpen)}
               className={`${styles.buttonContainer}`}
             >
-              <div className="w-full text-white text-start">{renderTitle}</div>
+              <div className="w-full text-white text-start">
+                {renderTitle ?? ''}
+              </div>
 
               {accordionOpen ? (
                 <MinusIcon
@@ -58,7 +60,11 @@ export default function CE_AccordionObligasi({
         <div
           className="overflow-hidden accordion-content"
           dangerouslySetInnerHTML={{
-            __html: renderContent,
+            __html:
+              renderContent.replace(
+                /\/sites\/default/g,
+                `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+              ) ?? '',
           }}
         />
       </div>

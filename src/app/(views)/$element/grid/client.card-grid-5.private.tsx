@@ -82,7 +82,7 @@ const CE_CardGrid5Private = ({
                       {parseHTMLToReact(item?.title)}
                     </div>
                     <div className="font-light line-clamp-3 text-sm">
-                      {parseHTMLToReact(item?.description)}
+                      {parseHTMLToReact(item?.description ?? '')}
                     </div>
                   </div>
                 </div>

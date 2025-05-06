@@ -73,22 +73,47 @@ export default async function page({ params }: { params: { id: string } }) {
                 />
               </div>
               <div className="w-full pt-10 space-y-4 xl:pl-10">
-                <h1 className="text-3xl md:text-2xl lg:text-3xl font-semibold">
-                  {getOurstoryData?.title?.[0]?.value ?? ''}
-                </h1>
-                <h2 className="w-full text-base xl:text-lg 2xl:w-11/12">
-                  {getOurstoryData?.field_text?.[0]?.value ?? ''}
-                </h2>
+                <h1
+                  className="text-3xl md:text-2xl lg:text-3xl font-semibold"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      getOurstoryData?.title?.[0]?.value.replace(
+                        /\/sites\/default/g,
+                        `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                      ) ?? '',
+                  }}
+                />
+                <h2
+                  className="w-full text-base xl:text-lg 2xl:w-11/12"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      getOurstoryData?.field_text?.[0]?.value.replace(
+                        /\/sites\/default/g,
+                        `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                      ) ?? '',
+                  }}
+                />
               </div>
             </div>
             <div className="w-full p-5 space-y-10 pt-5 ">
-              <h1 className="text-lg lg:text-xl font-bold">
-                {getOurstoryData?.body?.[0]?.summary ?? ''}
-              </h1>
+              <h1
+                className="text-lg lg:text-xl font-bold"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    getOurstoryData?.body?.[0]?.summary.replace(
+                      /\/sites\/default/g,
+                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    ) ?? '',
+                }}
+              />
               <div
                 className="leading-8"
                 dangerouslySetInnerHTML={{
-                  __html: getOurstoryData?.body?.[0]?.value ?? '',
+                  __html:
+                    getOurstoryData?.body?.[0]?.value.replace(
+                      /\/sites\/default/g,
+                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    ) ?? '',
                 }}
               />
             </div>

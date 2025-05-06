@@ -57,7 +57,13 @@ export default function CE_AcordionInvestasi({
       >
         <div
           className="overflow-hidden accordion-content"
-          dangerouslySetInnerHTML={{ __html: renderContent ?? '' }}
+          dangerouslySetInnerHTML={{
+            __html:
+              renderContent.replace(
+                /\/sites\/default/g,
+                `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+              ) ?? '',
+          }}
         />
       </div>
     </section>
