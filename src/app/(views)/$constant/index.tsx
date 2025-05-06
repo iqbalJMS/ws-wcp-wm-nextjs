@@ -615,11 +615,15 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           });
 
         const videoCardData = _component?.field_column?.map((item) => {
+          const youtubeLinks =
+            item?.field_primary_cta?.[0]?.full_url?.split('/') || [];
+
           return {
             image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
-            title: item?.field_title?.[0]?.value,
+            title: item?.field_primary_cta?.[0]?.title,
+            description: item?.field_title?.[0]?.value,
             date: item?.field_content?.[0]?.value,
-            link: item?.field_primary_cta?.[0]?.full_url,
+            link: `https://www.youtube.com/embed/${youtubeLinks[youtubeLinks.length - 1]}`,
           };
         });
 

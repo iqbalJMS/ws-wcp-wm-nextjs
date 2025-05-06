@@ -1,12 +1,11 @@
 'use client';
-import React, { useEffect } from 'react';
-import Image from 'next/image';
-import PlayIcon from '@/lib/element/global/play-icon';
-import { useState } from 'react';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import ModalVideo from '@/lib/element/global/modal.video';
+import PlayIcon from '@/lib/element/global/play-icon';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 export default function CE_VideosCard({
   data,
@@ -15,6 +14,7 @@ export default function CE_VideosCard({
   data: Array<{
     image: string;
     title: string;
+    description: string;
     date: string;
     link: string;
   }>;
@@ -54,7 +54,10 @@ export default function CE_VideosCard({
           <div
             data-aos="fade-up"
             data-aos-duration="500"
-            onClick={() => setModalOpen(true)}
+            onClick={() => {
+              setModalIndex(index);
+              setModalOpen(true);
+            }}
             key={index}
             className="group relative w-96 h-max flex flex-col cursor-pointer rounded-lg"
           >
@@ -108,20 +111,20 @@ export default function CE_VideosCard({
                   <div className="h-3/4">
                     <iframe
                       height="450"
-                      src={data?.[modalIndex as number]?.image}
+                      src={data?.[modalIndex as number]?.link}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       className="w-full"
                     ></iframe>
                   </div>
                   <div className="h-auto bg-white p-4 md:p-5 border-t border-gray-200 rounded-b space-y-2">
                     <h3 className="text-xs lg:text-sm font-light">
-                      {data?.[modalIndex as number]?.date}
+                      {parseHTMLToReact(data?.[modalIndex as number]?.date)}
                     </h3>
                     <h1 className="font-semibold text-lg lg:text-xl pt-2">
                       {data?.[modalIndex as number]?.title}
                     </h1>
                     <h2 className="text-[#555555] font-light text-sm lg:text-base">
-                      {data?.[modalIndex as number]?.link}
+                      {data?.[modalIndex as number]?.description}
                     </h2>
                   </div>
                 </div>
