@@ -1,30 +1,30 @@
 import dynamic from 'next/dynamic';
-import { T_Slider } from './types/widget/slider';
 import { T_ComponentMapWidget, T_Widget } from './types';
-import { T_DropdownAction } from './types/widget/dropdown-action';
-import { T_Subscription } from './types/widget/subscription';
-import { T_ImageSlider } from './types/widget/image-slider';
-import { T_MultiTab } from './types/widget/multi_tab';
-import { T_Header } from './types/widget/header';
-import { WIDGET_VARIANT } from './variables';
-import { T_VideoSlider } from './types/widget/video-slider';
+import { T_Breadcrumb } from './types/widget/breadcrumb';
 import { T_CardVariant04 } from './types/widget/card-variant4';
 import { T_CardVariant05 } from './types/widget/card-variant5';
 import { T_CardVariant06 } from './types/widget/card-variant6';
-import { T_Section } from './types/widget/section';
-import { T_Breadcrumb } from './types/widget/breadcrumb';
-import { T_OurStory } from './types/widget/our-story';
 import { T_CarouselV2 } from './types/widget/carouselV2';
-import { T_TwoColumn } from './types/widget/two-column';
+import { T_ContentItems } from './types/widget/content-items';
 import { T_Insight } from './types/widget/content_type';
+import { T_DropdownAction } from './types/widget/dropdown-action';
 import { T_Magazine } from './types/widget/external_magazine';
+import { T_Header } from './types/widget/header';
+import { T_ImageSlider } from './types/widget/image-slider';
+import { T_Location } from './types/widget/location';
+import { T_Map } from './types/widget/map';
+import { T_MultiTab } from './types/widget/multi_tab';
+import { T_OurStory } from './types/widget/our-story';
+import { T_PromoWidget } from './types/widget/promo';
 import { T_RequirementBox } from './types/widget/requirement-box';
 import { T_RichText } from './types/widget/rich-text';
-import { T_Map } from './types/widget/map';
-import { T_PromoWidget } from './types/widget/promo';
-import { T_ContentItems } from './types/widget/content-items';
+import { T_Section } from './types/widget/section';
 import { T_Simulation } from './types/widget/simulation';
-import { T_Location } from './types/widget/location';
+import { T_Slider } from './types/widget/slider';
+import { T_Subscription } from './types/widget/subscription';
+import { T_TwoColumn } from './types/widget/two-column';
+import { T_VideoSlider } from './types/widget/video-slider';
+import { WIDGET_VARIANT } from './variables';
 
 const SE_SubscriberContent = dynamic(
   () => import('@/app/$element/server.subscriber.content')
@@ -360,13 +360,16 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         );
 
         const dataCarousel = _component?.field_video_items?.map((item) => {
+          const youtubeLinks =
+            item?.field_video?.[0]?.field_media_oembed_video?.[0]?.value?.split(
+              '/'
+            );
           const id = item?.id?.[0]?.value;
           const image = item?.field_image?.[0]?.thumbnail?.[0]?.uri[0]?.url;
           const alt = item?.field_image?.[0]?.thumbnail?.[0]?.filename?.value;
           const label = item?.field_video?.[0]?.name?.[0]?.value;
           const desc = item?.field_title?.[0]?.value;
-          const video =
-            item?.field_video?.[0]?.field_media_oembed_video?.[0]?.value;
+          const video = `https://www.youtube.com/embed/${youtubeLinks[youtubeLinks.length - 1]}`;
           const labelVideo = item?.field_video?.[0]?.name?.[0]?.value;
           const subLabel = item?.field_title?.[0]?.value;
 
