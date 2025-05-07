@@ -16,6 +16,7 @@ import PriorityHeader from '@/lib/element/global/header/priority-header';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 import CE_AccordionBancarsurance from '@/app/bancassurance-detail-prioritas/$element/client.accordion.bancasurrance';
 import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
+import CE_ShareContent from '@/lib/element/global/share-content';
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });
@@ -77,6 +78,9 @@ export default async function page({ params }: { params: { id: string } }) {
         <CE_BCBancasurrancePrioritas
           currentPage={getOurstoryData?.title?.[0]?.value ?? ''}
         />
+        <div className="w-full px-4 lg:px-8 2xl:px-40 flex justify-end ">
+          <CE_ShareContent />
+        </div>
         <div className="w-full flex justify-center pb-14 pt-4">
           {getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value && (
             <h1 className="text-xl xl:text-3xl text-prioritycolor font-bold uppercase text-center">

@@ -2,23 +2,19 @@
 import Link from 'next/link';
 import React from 'react';
 
-const CE_BCBancasurrancePrivate = ({
+const CE_BreadCrumbProgramPrioritas = ({
   currentPage,
 }: {
   currentPage: string;
 }) => {
   const LIST_DATA_BREADCRUMB = [
     {
-      url: '/bri-private',
+      url: '/bri-prioritas',
       title: 'Home',
     },
     {
-      url: '/product',
-      title: 'PRODUK',
-    },
-    {
-      url: '/bancassurance-private',
-      title: 'BANCASSURANCE',
+      url: '/program-prioritas',
+      title: 'Program',
     },
   ];
   return (
@@ -33,10 +29,10 @@ const CE_BCBancasurrancePrivate = ({
               <li key={index}>
                 <div className="flex items-center space-x-2">
                   <Link
-                    href={item.url ?? ''}
-                    className="font-light text-base text-[#C0CCE2] hover:text-privatecolor hover:underline uppercase"
+                    href={item.url}
+                    className="font-light text-base text-[#C0CCE2] hover:text-prioritycolor hover:underline uppercase"
                   >
-                    {item.title ?? ''}
+                    {item.title}
                   </Link>
                   <div className="flex items-center space-x-3 ">
                     <svg
@@ -60,7 +56,7 @@ const CE_BCBancasurrancePrivate = ({
             ))}
             <div className="flex items-center space-x-3 ">
               <div className="flex items-center w-96">
-                <span className="cursor-default line-clamp-2 text-privatecolor font-normal hover:text-primary-blue uppercase">
+                <span className="cursor-default text-prioritycolor font-normal hover:text-primary-blue uppercase line-clamp-2">
                   {currentPage ?? ''}
                 </span>
               </div>
@@ -72,4 +68,4 @@ const CE_BCBancasurrancePrivate = ({
   );
 };
 
-export default CE_BCBancasurrancePrivate;
+export default CE_BreadCrumbProgramPrioritas;

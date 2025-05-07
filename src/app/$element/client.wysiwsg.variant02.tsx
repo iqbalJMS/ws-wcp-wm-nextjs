@@ -1,5 +1,7 @@
 'use client';
 
+import CE_ShareContent from '@/lib/element/global/share-content';
+
 const CE_WYSIWSGVariant02 = ({
   category,
   title,
@@ -23,6 +25,9 @@ const CE_WYSIWSGVariant02 = ({
     <>
       <div className="container py-10">
         <div className="px-20 mdmax:px-0">
+          <div className="w-full p-5 flex justify-end">
+            <CE_ShareContent />
+          </div>
           <div className="bg-black bg-opacity-5">
             {category && date ? (
               <div className="px-20 mdmax:px-6 py-4 text-privatecolor ">

@@ -40,7 +40,7 @@ const CE_CardGrid6Main = ({
             <Link
               data-aos="fade-up"
               data-aos-duration="800"
-              href={`/program-detail/${item?.nid ?? '/404'}`}
+              href={`${variant === 'wm-private-main-navigation' ? `/program-detail/${item?.nid ?? '/404'}` : `/program-detail-prioritas/${item?.nid ?? '/404'}`}`}
               key={index}
               className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
             >

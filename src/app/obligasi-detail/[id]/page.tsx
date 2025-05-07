@@ -17,6 +17,7 @@ import PrivateHeader from '@/lib/element/global/header/private-header';
 import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
 import CE_AccordionObligasi from '@/app/obligasi-detail/$element/client.accordion.obligasi';
 import CE_BCObligasiPrivate from '@/app/obligasi-detail/$element/client.BC-oblogasi-private';
+import CE_ShareContent from '@/lib/element/global/share-content';
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
@@ -72,6 +73,9 @@ export default async function page({ params }: { params: { id: string } }) {
         <CE_BCObligasiPrivate
           currentPage={getOurstoryData?.title?.[0]?.value ?? ''}
         />
+        <div className="w-full px-4 lg:px-8 2xl:px-40 flex justify-end ">
+          <CE_ShareContent />
+        </div>
         <div className="w-full flex justify-center pb-14 pt-4">
           {getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value && (
             <h1 className="text-xl xl:text-3xl text-prioritycolor font-bold uppercase text-center">

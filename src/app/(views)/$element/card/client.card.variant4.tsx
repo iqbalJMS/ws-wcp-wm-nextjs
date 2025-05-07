@@ -70,7 +70,7 @@ export default function CE_CardVariant4({
                     src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.logo ?? ''}`}
                     width={1000}
                     height={1000}
-                    alt="service us logo"
+                    alt="logo"
                     className="absolute w-40 h-8 top-10 left-10 lg:left-16 lg:w-52 lg:h-12"
                   />
                   <ArrowRightIcon
