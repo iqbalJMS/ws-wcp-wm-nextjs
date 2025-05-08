@@ -34,18 +34,18 @@ const CE_CardGrid6Main = ({
   }, []);
   return (
     <>
-      <div className="container py-10 px-20 mdmax:px-10">
-        <div className="flex flex-wrap -mx-10">
+      <div className="container py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  place-content-center">
           {dataCard.map((item, index) => (
             <Link
               data-aos="fade-up"
               data-aos-duration="800"
               href={`${variant === 'wm-private-main-navigation' ? `/program-detail/${item?.nid ?? '/404'}` : `/program-detail-prioritas/${item?.nid ?? '/404'}`}`}
               key={index}
-              className="w-1/3 mdmax:w-full flex-none px-10 mb-10"
+              className=" flex-none mb-1 cursor-default my-10"
             >
-              <div className="bg-white shadow-xl cursor-pointer group">
-                <div className="w-full h-[30rem]  overflow-hidden mb-2">
+              <div className="w-96 overflow-hidden py-5 shadow-xl cursor-pointer group">
+                <div className="w-full h-[30rem] overflow-hidden mb-2">
                   {item?.image && (
                     <Image
                       src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
@@ -56,16 +56,16 @@ const CE_CardGrid6Main = ({
                     />
                   )}
                 </div>
-                <div className="p-5">
+                <div className="p-5 h-64 ">
                   <div
                     className={`text-${theme} text-xl font-bold mb-2 line-clamp-2`}
                   >
                     {item?.title}
                   </div>
-                  <div className="mb-5 text-slate-600 line-clamp-4">
-                    {parseHTMLToReact(item?.description)}
+                  <div className=" text-slate-600 line-clamp-4">
+                    {parseHTMLToReact(item?.description ?? '')}
                   </div>
-                  <div>
+                  <div className="pt-3">
                     <div
                       className={`text-${theme} uppercase text-sm inline-flex items-center justify-center gap-2`}
                     >

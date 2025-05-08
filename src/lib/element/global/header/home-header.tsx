@@ -328,7 +328,7 @@ export default function HomeHeader({
             <div className="">
               <div className="flex items-center gap-2">
                 {/* hidden for a while */}
-                <div className="hidden">
+                <div className="">
                   <LoginButton
                     menuItems={itemLogin}
                     isActive={isButtonActive}
@@ -479,7 +479,7 @@ export default function HomeHeader({
               </div>
             </div>
             {/* hidden for a while */}
-            <div className="hidden">
+            <div className="">
               <div className="border-b-4 border-transparent lg:block hidden ml-4">
                 <LoginButton
                   refElement={elementRef}

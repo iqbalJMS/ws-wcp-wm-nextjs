@@ -49,13 +49,17 @@ export default function CE_SimulationObligasi() {
       return;
     }
     try {
-      CFN_GetSimulationObligasi(transiting, form, (data) => {
-        setResult(data?.data);
-        if (button) {
-          setIsResult(true);
-          window.scrollTo({ top: 1050, behavior: 'smooth' });
+      CFN_GetSimulationObligasi(
+        transiting,
+        { ...form, couponRate: Number(form.couponRate) / 100 },
+        (data) => {
+          setResult(data?.data);
+          if (button) {
+            setIsResult(true);
+            window.scrollTo({ top: 1050, behavior: 'smooth' });
+          }
         }
-      });
+      );
     } catch (error) {}
   };
   useEffect(() => {

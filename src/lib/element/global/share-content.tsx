@@ -38,7 +38,7 @@ export default function CE_ShareContent() {
         <span className="pr-2">
           <ShareIcon className="text-white" width={20} height={20} stroke="" />
         </span>
-        refer a friend
+        Share
         <div
           className={[
             'absolute w-[20rem] -right-24 pt-2',

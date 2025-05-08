@@ -3,7 +3,7 @@ import React from 'react';
 import ScrollToTop from '@/lib/element/global/scroll-to-top';
 
 export const metadata: Metadata = {
-  title: 'Homepage - Wealth Management',
+  title: 'Home - BRI PRIVATE - Bank BRI | Melayani Dengan Setulus Hati',
 };
 
 export default async function WealthLayout({

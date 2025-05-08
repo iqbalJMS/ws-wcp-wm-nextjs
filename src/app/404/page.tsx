@@ -12,7 +12,15 @@ export default async function NotFoundPage() {
   const listHeaderBottom = await ACT_GetMainMenuNavbar({ lang: 'id' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
   return (
-    <>
+    <div>
+      <head>
+        Not found - Bank BRI | Melayani Dengan Setulus Hati
+        <meta
+          property="og:title"
+          content="Not found - Bank BRI | Melayani Dengan Setulus Hati"
+          key="title"
+        />
+      </head>
       <CE_HeaderMagazine
         headerTop={listHeaderTop}
         headerBottom={listHeaderBottom}
@@ -52,6 +60,6 @@ export default async function NotFoundPage() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
