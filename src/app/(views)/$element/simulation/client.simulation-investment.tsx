@@ -41,7 +41,6 @@ export default function CE_SimulationInvestment() {
     }),
     CFN_ValidateCreateSimulationInvestmentFields
   );
-
   const [result, setResult] = useState<T_SimulationInvestment>();
   const handleSubmit = async (button: boolean = true) => {
     const validate = validateForm();
@@ -261,13 +260,6 @@ export default function CE_SimulationInvestment() {
             </InputLabel>
             <div className="w-96 text-xs leading-5 text-slate-600 pt-3 ">
               <RichTextSimulation params={interestAmountRange?.min} />
-              {/* <h1 className="">
-                {
-                  DESCRIPTION[
-                    String(interestAmountRange?.min) as '3' | '5' | '7' | '10'
-                  ]
-                }
-              </h1> */}
             </div>
           </div>
           <div>

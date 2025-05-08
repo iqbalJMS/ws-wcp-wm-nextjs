@@ -113,7 +113,7 @@ export default function CE_BannerVariant01({
                     key={index}
                     className="w-full flex-none flex flex-col items-start md:items-center justify-center bg-center bg-cover"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item.image ?? ''})`,
                       backgroundAttachment: 'fixed',
                     }}
                   >

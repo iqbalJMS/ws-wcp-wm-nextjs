@@ -46,21 +46,21 @@ const CE_CardGrid7Private = ({
   return (
     <>
       <div className="py-10 flex justify-center items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-8/12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-8/12 lg:w-10/12 2xl:w-8/12 gap-10">
           <>
             {dataCard?.map((item, index) => (
               <Link
                 data-aos="fade-up"
                 data-aos-duration="800"
                 key={index}
-                href={`/article-detail/${item?.nid}`}
-                className="w-full flex-none px-10 mb-10"
+                href={`${variant === 'wm-private-main-navigation' ? `/article-detail/${item?.nid}` : `/article-detail-priority/${item?.nid ?? ''}`}`}
+                className="flex-none cursor-default px-10 mb-10 "
               >
-                <div className="group">
+                <div className="w-80 group cursor-pointer p-3 hover:border hover:shadow-lg">
                   <div
                     data-aos="fade-up"
                     data-aos-duration="800"
-                    className="w-full h-[18rem] rounded-xl overflow-hidden mb-5"
+                    className="w-full h-[18rem] rounded-xl overflow-hidden mb-5 "
                   >
                     {item?.image && (
                       <Image
@@ -68,12 +68,12 @@ const CE_CardGrid7Private = ({
                         alt="image"
                         width={400}
                         height={400}
-                        className="w-full h-full object-cover object-bottom group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
+                        className="w-96 h-full object-cover object-bottom group-hover:scale-125 transform scale-100 transition ease-in-out duration-300 rounded-md"
                       />
                     )}
                   </div>
-                  <div>
-                    <div className="text-xs text-black font-semibold uppercase">
+                  <div className="h-40 overflow-hidden pb-5">
+                    <div className="text-[11px] text-black font-semibold uppercase">
                       <span className="pr-2">{item?.category ?? ''}</span>
                       {item?.category && <span>|</span>}
                       <span className="pl-3">
@@ -81,11 +81,11 @@ const CE_CardGrid7Private = ({
                       </span>
                     </div>
                     <div
-                      className={`text-${theme} line-clamp-2 font-bold text-lg mb-2 pt-3`}
+                      className={`text-${theme} line-clamp-2 font-bold text-base mb-2 pt-3 leading-5`}
                     >
                       {parseHTMLToReact(item?.title)}
                     </div>
-                    <div className="font-light line-clamp-3 text-sm">
+                    <div className="font-light line-clamp-3 text-sm text-gray-500">
                       {parseHTMLToReact(item?.description)}
                     </div>
                   </div>
