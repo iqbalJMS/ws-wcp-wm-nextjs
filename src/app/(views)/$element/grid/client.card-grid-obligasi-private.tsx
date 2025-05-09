@@ -45,7 +45,7 @@ const CE_ObligasiPrivate = ({
                     className="w-full h-96 object-cover object-top group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
                   />
                 </div>
-                <div className="p-3">
+                <div className="p-3 h-64">
                   <div className="text-black text-xl font-extrabold uppercase">
                     {item?.title}
                   </div>

@@ -18,6 +18,11 @@ import PriorityHeader from '@/lib/element/global/header/priority-header';
 import AccordionProgram from '@/app/program-detail-prioritas/$element/accordion-program';
 import CE_BreadCrumbProgramPrioritas from '@/app/program-detail-prioritas/$element/client.breadcrumb-program-prioritas';
 
+export async function generateMetadata() {
+  return {
+    title: `Program Prioritas Detail`,
+  };
+}
 export default async function page({
   params,
 }: {

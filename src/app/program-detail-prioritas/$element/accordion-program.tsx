@@ -3,73 +3,72 @@ import { useEffect, useState } from 'react';
 import { PlusIcon } from '@/lib/element/global/icons/plus-icon';
 import { MinusIcon } from '@/lib/element/global/icons/minus-icon';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-
+// import { WIDGET_VARIANT } from '@/app/(views)/$constant/variables';
 type T_AccordionProps = {
   renderContent: string;
   renderTitle: React.ReactNode;
   isOpen?: boolean;
+  // variant?: string;
 };
 
 export default function AccordionProgram({
   renderContent,
   isOpen,
   renderTitle,
+  // variant,
 }: T_AccordionProps) {
   const [accordionOpen, setAccordionOpen] = useState(false);
+  // const variantTable =
+  //   variant === WIDGET_VARIANT.variant29
+  //     ? 'richtext_table_blue_header'
+  //     : 'body';
 
   useEffect(() => {
     if (isOpen) setAccordionOpen(false);
   }, [isOpen]);
-
+  // console.log(variant, variantTable, ' >>>>>>>>.');
   return (
-    <section className="flex flex-col mb-4">
-      <div
-        onClick={() => setAccordionOpen(!accordionOpen)}
-        className={`shadow-lg rounded-[40px] px-6 py-4 bg-prioritycolor relative z-10 cursor-pointer`}
-      >
-        <div>
+    <>
+      <section className="flex flex-col mb-4">
+        <div
+          onClick={() => setAccordionOpen(!accordionOpen)}
+          className={`shadow-lg rounded-[40px] px-6 py-4 bg-prioritycolor relative z-10 cursor-pointer`}
+        >
           <div>
-            <button className={`${styles.buttonContainer}`}>
-              <div className="w-full text-white text-start">
-                {renderTitle ?? ''}
-              </div>
+            <div>
+              <button className={`${styles.buttonContainer}`}>
+                <div className="w-full text-white text-start">
+                  {renderTitle ?? ''}
+                </div>
 
-              {accordionOpen ? (
-                <MinusIcon
-                  className="stroke-white-02 fill-white"
-                  width={28}
-                  height={28}
-                  strokeWidth="2"
-                />
-              ) : (
-                <PlusIcon
-                  className="stroke-white-02 fill-white"
-                  width={28}
-                  height={28}
-                  strokeWidth="2"
-                />
-              )}
-            </button>
+                {accordionOpen ? (
+                  <MinusIcon
+                    className="stroke-white-02 fill-white"
+                    width={28}
+                    height={28}
+                    strokeWidth="2"
+                  />
+                ) : (
+                  <PlusIcon
+                    className="stroke-white-02 fill-white"
+                    width={28}
+                    height={28}
+                    strokeWidth="2"
+                  />
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100 pt-16 px-16 pb-6' : 'grid-rows-[0fr] opacity-0'}`}
-      >
         <div
-          className="overflow-hidden accordion-content"
-          // dangerouslySetInnerHTML={{
-          //   __html:
-          //     renderContent.replace(
-          //       /\/sites\/default/g,
-          //       `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
-          //     ) ?? '',
-          // }}
+          className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100 pt-16 px-16 pb-6' : 'grid-rows-[0fr] opacity-0'}`}
         >
-          {parseHTMLToReact(renderContent)}
+          <div className={`overflow-hidden accordion-content parsehtml`}>
+            {parseHTMLToReact(renderContent)}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

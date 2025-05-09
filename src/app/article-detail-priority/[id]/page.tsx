@@ -17,6 +17,12 @@ import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header
 import CE_BCArticlePrioritas from '@/app/article-detail-priority/$element/client.BC-article-prioritas';
 import CE_WYSIWSGPrioritas from '@/app/$element/client.wysiwsg.prioritas';
 
+export async function generateMetadata() {
+  return {
+    title: `Article Prioritas Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });

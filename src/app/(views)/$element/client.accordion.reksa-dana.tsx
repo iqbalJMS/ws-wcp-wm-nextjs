@@ -16,7 +16,6 @@ export default function CE_AcordionReksaDana({
   renderTitle,
 }: T_AccordionProps) {
   const [accordionOpen, setAccordionOpen] = useState(false);
-
   useEffect(() => {
     if (isOpen) setAccordionOpen(true);
   }, [isOpen]);
@@ -59,7 +58,7 @@ export default function CE_AcordionReksaDana({
         className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100 pt-16 pb-6 py-4 w-full px-5 md:w-9/12 xl:w-5/12' : 'grid-rows-[0fr] opacity-0 py-4 w-full px-5 md:w-9/12 xl:w-5/12'}`}
       >
         <div
-          className="overflow-hidden accordion-content"
+          className="overflow-hidden accordion-content parsehtml"
           dangerouslySetInnerHTML={{ __html: (renderContent as any) ?? '' }}
         />
       </div>

@@ -18,6 +18,12 @@ import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/acti
 import CE_PromoDetailPrivate from '@/app/promo-detail-private/$element/card.promo-detail-private';
 import CE_BCPromoPrivate from '@/app/promo-detail-private/$element/client.BC-promo-private';
 
+export async function generateMetadata() {
+  return {
+    title: `Promo Private Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
 

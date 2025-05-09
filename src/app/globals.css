@@ -305,17 +305,25 @@ input[type='range']::-webkit-slider-thumb {
 .parsehtml .text-align-center {
   @apply text-center;
 }
-
 .parsehtml blockquote {
   @apply border-l border-blue-01 my-3 pl-3 mb-3 py-3;
 }
-.parsehtml table {
-  @apply w-full mb-3 border border-black;
+.parsehtml table thead tr th {
+  border: 2px solid #ffffff;
+  border-left: none;
+  height: 57px;
+  padding: 0 7px;
+  color: white;
+  background-color: #080087;
+  font-size: 12pt;
 }
-.parsehtml table tr td {
-  @apply p-1 border-black border-2;
+.parsehtml table tbody tr td {
+  border: 2px solid #ffffff;
+  height: 59px;
+  padding: 0 7px;
+  background-color: #080087;
+  color: white;
 }
-
 .triangle {
   width: 1910px;
   height: 700px;

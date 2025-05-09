@@ -18,6 +18,12 @@ import CE_WYSIWSGVariantPriority from '@/app/insight-priority/$element/client.wy
 import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
 import CE_BCInsightPrioritas from '@/app/insight-priority/$element/client.BC-insight-prioritas';
 
+export async function generateMetadata() {
+  return {
+    title: `Wawasan Prioritas Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });
