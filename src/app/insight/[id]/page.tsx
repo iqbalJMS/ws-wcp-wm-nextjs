@@ -19,6 +19,12 @@ import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page'
 import CE_WYSIWSGVariant02 from '@/app/$element/client.wysiwsg.variant02';
 import CE_BreadCrumbInsightPrivate from '@/app/insight/$element/client.breadcrumb.insight-private';
 
+export async function generateMetadata() {
+  return {
+    title: `Wawasan Private Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listPrivateNavbar = await ACT_GetPrivateMenuNavbar({ lang: 'id' });

@@ -19,6 +19,11 @@ import CE_AccordionObligasi from '@/app/obligasi-detail/$element/client.accordio
 import CE_BCObligasiPrivate from '@/app/obligasi-detail/$element/client.BC-oblogasi-private';
 import CE_ShareContent from '@/lib/element/global/share-content';
 
+export async function generateMetadata() {
+  return {
+    title: `Obligasi Private Detail`,
+  };
+}
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listPrivateNavbar = await ACT_GetPrivateMenuNavbar({ lang: 'id' });

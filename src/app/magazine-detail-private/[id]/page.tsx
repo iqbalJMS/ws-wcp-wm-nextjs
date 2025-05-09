@@ -9,6 +9,12 @@ import { ACT_GetPrivateMenuNavbar } from '@/app/(views)/$action/private-header/a
 import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 
+export async function generateMetadata() {
+  return {
+    title: `Magazine Private Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });

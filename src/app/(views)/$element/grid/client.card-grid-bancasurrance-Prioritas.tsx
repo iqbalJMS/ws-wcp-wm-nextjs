@@ -47,7 +47,7 @@ const CE_BancasurrancePrioritas = ({
                     />
                   )}
                 </div>
-                <div className="p-3">
+                <div className="p-3 h-64">
                   <div className="text-black text-xl font-extrabold uppercase">
                     {item?.title}
                   </div>

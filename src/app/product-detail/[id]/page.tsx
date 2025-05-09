@@ -17,6 +17,12 @@ import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/act
 import CE_BreadCrumbInvestasi from '@/app/product-detail/$element/client.breadcrumb.investasi';
 import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
 
+export async function generateMetadata() {
+  return {
+    title: `Product Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });

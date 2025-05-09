@@ -9,6 +9,12 @@ import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 
+export async function generateMetadata() {
+  return {
+    title: `Magazine Prioritas Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });

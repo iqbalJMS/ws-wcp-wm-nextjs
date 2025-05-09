@@ -16,6 +16,12 @@ import CE_BCBancasurranceWM from '@/app/bancassurance-detail/$element/client.bre
 import HomeHeader from '@/lib/element/global/header/home-header';
 import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
 
+export async function generateMetadata() {
+  return {
+    title: `Bancasurrance Private Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });

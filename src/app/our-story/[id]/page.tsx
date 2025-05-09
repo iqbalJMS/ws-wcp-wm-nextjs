@@ -15,6 +15,12 @@ import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-ite
 import HomeHeader from '@/lib/element/global/header/home-header';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 
+export async function generateMetadata() {
+  return {
+    title: `Our Story Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listHomeNavbar = await ACT_GetMainMenuNavbar({ lang: 'id' });

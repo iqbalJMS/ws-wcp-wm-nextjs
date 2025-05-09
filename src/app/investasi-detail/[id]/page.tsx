@@ -16,6 +16,12 @@ import CE_AccordionInvestasi from '@/app/investasi-detail/$element/client.accord
 import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
 import HomeHeader from '@/lib/element/global/header/home-header';
 
+export async function generateMetadata() {
+  return {
+    title: `Investasi Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });

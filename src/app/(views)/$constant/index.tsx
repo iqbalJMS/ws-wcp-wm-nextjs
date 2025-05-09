@@ -1450,6 +1450,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         return { variant: theme };
       },
     },
+
     content_type_items: {
       component: CE_AcordionReksaDana,
       props: (_component: T_ContentItems) => {

@@ -18,6 +18,11 @@ import PriorityHeader from '@/lib/element/global/header/priority-header';
 import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 
+export async function generateMetadata() {
+  return {
+    title: `Promo Prioritas Detail`,
+  };
+}
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const itemPriorityLogo = await ACT_GetHeaderLogoPriority({ lang: 'en' });

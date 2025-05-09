@@ -15,6 +15,12 @@ import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-men
 import CE_PromoCardDetailWm from '@/app/promo-detail/$element/card-promo-detail-wm';
 import CE_BreadCrumbPromoWM from '@/app/promo-detail/$element/client.BC-promo-wm';
 
+export async function generateMetadata() {
+  return {
+    title: `Promo Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listHomeNavbar = await ACT_GetMainMenuNavbar({ lang: 'id' });

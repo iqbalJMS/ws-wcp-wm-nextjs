@@ -18,6 +18,12 @@ import CE_BreadCrumbProgram from '@/app/program-detail/$element/client.breadcrum
 import Accordion from '@/lib/element/global/accordion';
 import CE_ShareContent from '@/lib/element/global/share-content';
 
+export async function generateMetadata() {
+  return {
+    title: `Program Private Detail`,
+  };
+}
+
 export default async function page({
   params,
 }: {

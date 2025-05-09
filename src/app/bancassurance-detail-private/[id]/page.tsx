@@ -18,6 +18,12 @@ import CE_BCBancasurrancePrivate from '@/app/bancassurance-detail-private/$eleme
 import CE_AccordionBancarsurancePrivate from '@/app/bancassurance-detail-private/$element/client.accordion.bancasurrance-private';
 import CE_ShareContent from '@/lib/element/global/share-content';
 
+export async function generateMetadata() {
+  return {
+    title: `Bancasurrance Private Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listPrivateNavbar = await ACT_GetPrivateMenuNavbar({ lang: 'id' });

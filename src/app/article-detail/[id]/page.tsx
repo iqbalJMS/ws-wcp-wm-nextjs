@@ -17,6 +17,12 @@ import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page'
 import CE_WYSIWSGVariant01 from '@/app/$element/client.wysiwsg.variant01';
 import CE_BreadCrumbArticlePrivate from '@/app/article-detail/$element/client.breadcrumb.article-private';
 
+export async function generateMetadata() {
+  return {
+    title: `Article Private Detail`,
+  };
+}
+
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listPrivateNavbar = await ACT_GetPrivateMenuNavbar({ lang: 'id' });
