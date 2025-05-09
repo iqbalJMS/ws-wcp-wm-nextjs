@@ -12,8 +12,8 @@ export default function CE_FloatingVariant03({
 }) {
   return (
     <>
-      <div className="fixed top-[20%] right-8 z-30">
-        <div className="transform translate-x-[6rem] hover:translate-x-10 cursor-pointer transition-all ease-in-out duration-300">
+      <div className="fixed top-[20%] -right-7 z-30">
+        <div className="transform translate-x-[6rem] hover:translate-x-0 cursor-pointer transition-all ease-in-out duration-300">
           {data?.map((item, index) => {
             return (
               <div key={index} className="">
@@ -26,8 +26,8 @@ export default function CE_FloatingVariant03({
                       width={9}
                       height={9}
                     />
-                    <div className="text-white text-sm">
-                      {item?.title ?? ''}
+                    <div className="text-wrap text-white text-sm">
+                      {item?.title}
                     </div>
                   </div>
                 </Link>

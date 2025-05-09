@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { PlusIcon } from '@/lib/element/global/icons/plus-icon';
 import { MinusIcon } from '@/lib/element/global/icons/minus-icon';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 type T_AccordionProps = {
   renderContent: string;
@@ -57,14 +58,16 @@ export default function AccordionProgram({
       >
         <div
           className="overflow-hidden accordion-content"
-          dangerouslySetInnerHTML={{
-            __html:
-              renderContent.replace(
-                /\/sites\/default/g,
-                `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
-              ) ?? '',
-          }}
-        />
+          // dangerouslySetInnerHTML={{
+          //   __html:
+          //     renderContent.replace(
+          //       /\/sites\/default/g,
+          //       `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+          //     ) ?? '',
+          // }}
+        >
+          {parseHTMLToReact(renderContent)}
+        </div>
       </div>
     </section>
   );

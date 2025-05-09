@@ -62,11 +62,7 @@ export default function CE_CardVariant15({
             )}
           </div>
           <section className="grid grid-cols-1 md:grid-cols-2 pt-0 md:pt-16 space-x-0 lg:space-x-16">
-            <div
-              data-aos="fade-right"
-              data-aos-duration="500"
-              className="flex justify-center items-start"
-            >
+            <div className="flex justify-center items-start">
               {data && (
                 <CE_FlipCard
                   frontImage={data?.[0]?.frontImage}
