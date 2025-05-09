@@ -12,7 +12,7 @@ export default function CE_FlipCard({
   frontImage: string;
   backImage: string;
 }) {
-  const [flip, setFlip] = useState(true);
+  const [flip, setFlip] = useState(false);
 
   return (
     <>
@@ -22,7 +22,8 @@ export default function CE_FlipCard({
           style={{ perspective: '1000px' }}
         >
           <motion.div
-            className="flip-card-inner hidden md:flex w-[70%] h-[70%] md:w-[90%] md:h-[90%]"
+            className="flip-card-inner md:flex w-[70%] h-[70%] md:w-[90%] md:h-[90%]"
+            initial={false}
             transition={{ duration: 0.7 }}
             animate={{ rotateY: flip ? 180 : 360 }}
             onMouseEnter={() => setFlip(true)}

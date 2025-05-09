@@ -169,7 +169,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .flip-card-inner {
-  transition: transform 0.6s;
+  transition: transform 0.4s;
   transform-style: preserve-3d;
 }
 
@@ -313,7 +313,7 @@ input[type='range']::-webkit-slider-thumb {
   @apply w-full mb-3 border border-black;
 }
 .parsehtml table tr td {
-  @apply p-1 border border-black;
+  @apply p-1 border-black border-2;
 }
 
 .triangle {

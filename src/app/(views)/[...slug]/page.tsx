@@ -33,6 +33,17 @@ import { ACT_GetFloatNavPrivate } from '@/app/(views)/$action/action.get-float-n
 import HomeHeader from '@/lib/element/global/header/home-header';
 import ScrollToTopSlug from '@/app/(views)/$element/scroll-to-top-slug';
 
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props) {
+  const pageTitle = decodeURIComponent(params.slug); // ambil dari slug
+  return {
+    title: `${pageTitle} - Bank BRI | Melayani Dengan Setulus Hati `,
+  };
+}
+
 export default async function PageWealthDetail({
   params: { slug },
   searchParams: { lang },
