@@ -15,6 +15,8 @@ const CE_BancasurrancePrioritas = ({
     image: string;
     description: string;
     nid: string;
+    site: Array<{ value: string }>;
+    category: Array<{ value: string }>;
   }>;
 }) => {
   useEffect(() => {

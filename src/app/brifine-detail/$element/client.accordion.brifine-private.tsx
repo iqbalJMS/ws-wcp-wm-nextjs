@@ -56,7 +56,7 @@ export default function CE_AccordionBrifinePrivate({
         className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100 pt-16 px-16 pb-6' : 'grid-rows-[0fr] opacity-0'}`}
       >
         <div
-          className="overflow-hidden accordion-content"
+          className="overflow-hidden accordion-content parsehtml"
           dangerouslySetInnerHTML={{
             __html:
               renderContent.replace(

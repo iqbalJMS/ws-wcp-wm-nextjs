@@ -45,7 +45,7 @@ const CE_CardGrid7Priority = ({
   return (
     <>
       <div className="py-10 flex justify-center items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-8/12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-8/12 lg:w-10/12 2xl:w-8/12 gap-10">
           <>
             {dataCard?.map((item, index) => (
               <Link
@@ -53,9 +53,9 @@ const CE_CardGrid7Priority = ({
                 data-aos-duration="800"
                 key={index}
                 href={`/article-detail-priority/${item?.nid ?? '/404'}`}
-                className="w-full flex-none px-10 mb-10"
+                className="flex-none cursor-default px-10 mb-10"
               >
-                <div className="group">
+                <div className="w-80 group cursor-pointer p-3 hover:border hover:shadow-lg">
                   <div className="w-full h-[18rem] rounded-xl overflow-hidden mb-5">
                     {item?.image && (
                       <Image
@@ -63,19 +63,19 @@ const CE_CardGrid7Priority = ({
                         alt="image"
                         width={900}
                         height={900}
-                        className="w-full h-96 object-cover object-bottom group-hover:scale-125 transform scale-100 transition ease-in-out duration-300"
+                        className="w-96 h-full object-cover object-bottom group-hover:scale-125 transform scale-100 transition ease-in-out duration-300 rounded-md"
                       />
                     )}
                   </div>
-                  <div>
-                    <div className="text-xs text-black font-semibold uppercase">
+                  <div className="h-40 overflow-hidden pb-5">
+                    <div className="text-[11px] text-black font-semibold uppercase">
                       <span className="pr-2">{item?.category ?? ''}</span> |
                       <span className="pl-3">
                         {formatDate(item?.date ?? '')}
                       </span>
                     </div>
                     <div
-                      className={`text-${theme} line-clamp-2 font-bold text-lg mb-2 pt-3`}
+                      className={`text-${theme} line-clamp-2 font-bold text-base mb-2 pt-3 leading-5`}
                     >
                       {parseHTMLToReact(item?.title)}
                     </div>

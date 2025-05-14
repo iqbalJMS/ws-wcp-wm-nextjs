@@ -1302,7 +1302,6 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return (
               <CE_GridMain
                 data={data}
-                variant={theme}
                 categoryParams={categoryProps}
                 siteParams={siteProps}
               />
