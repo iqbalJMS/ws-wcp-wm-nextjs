@@ -73,7 +73,7 @@ const CE_WYSIWSGPrioritas = ({
             </div>
             {body ? (
               <div
-                className="text-black text-opacity-90 wysiwsg-body text-base"
+                className="text-black text-opacity-90 wysiwsg-body text-base parsehtml"
                 dangerouslySetInnerHTML={{
                   __html:
                     body.replace(

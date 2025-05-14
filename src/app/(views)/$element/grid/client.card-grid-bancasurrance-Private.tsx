@@ -15,6 +15,8 @@ const CE_BancasurrancePrivate = ({
     image: string;
     description: string;
     nid: string;
+    site: Array<{ value: string }>;
+    category: Array<{ value: string }>;
   }>;
 }) => {
   useEffect(() => {
@@ -22,6 +24,7 @@ const CE_BancasurrancePrivate = ({
       once: false,
     });
   }, []);
+
   return (
     <>
       <div className="container py-10 px-20 mdmax:px-10">
@@ -48,7 +51,7 @@ const CE_BancasurrancePrivate = ({
                 </div>
                 <div className="p-3 h-64">
                   <div className="text-black text-xl font-extrabold uppercase">
-                    {item?.title}
+                    {item?.title} helloo
                   </div>
                   <div className="py-5 text-slate-600 line-clamp-3">
                     {parseHTMLToReact(item?.description)}

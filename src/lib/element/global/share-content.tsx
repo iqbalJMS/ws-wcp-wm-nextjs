@@ -33,7 +33,7 @@ export default function CE_ShareContent() {
     <>
       <div
         onClick={() => setActive(!active)}
-        className=" relative w-52 lg:w-60 flex items-center justify-center py-3 rounded-full uppercase font-bold text-base lg:text-xl text-white bg-gray-600 hover:bg-gray-800 duration-300 cursor-pointer"
+        className=" relative px-8 flex items-center justify-center py-3 rounded-full uppercase font-bold text-base lg:text-xl text-white bg-gray-600 hover:bg-gray-800 duration-300 cursor-pointer"
       >
         <span className="pr-2">
           <ShareIcon className="text-white" width={20} height={20} stroke="" />

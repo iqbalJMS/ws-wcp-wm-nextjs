@@ -1,6 +1,5 @@
 import React from 'react';
 
-import background from '@/../public/images/dummy/banner-new-insight.jpg';
 import Image from 'next/image';
 import { ACT_GetTopMenuNavbar } from '@/app/(views)/$action/action.get.top-menu-navbar';
 import GlobalFooter from '@/lib/element/global/global.footer';
@@ -17,7 +16,7 @@ import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page'
 import CE_BreadCrumbProgram from '@/app/program-detail/$element/client.breadcrumb.program';
 import Accordion from '@/lib/element/global/accordion';
 import CE_ShareContent from '@/lib/element/global/share-content';
-
+import noImage from '@/../public/images/no-image.png';
 export async function generateMetadata() {
   return {
     title: `Program Private Detail`,
@@ -45,6 +44,10 @@ export default async function page({
     nid: +params.id,
   });
 
+  const bgImage =
+    getOurstoryData?.field_components?.[0]?.field_image?.[0]?.thumbnail?.[0]
+      ?.uri?.[0]?.url;
+
   return (
     <>
       <div>
@@ -57,13 +60,24 @@ export default async function page({
           headerLogo={itemHeaderLogo || undefined}
         />
         <section className="relative overflow-hidden h-[65vh] lg:mb-[3.125rem] w-full bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full flex justify-center items-center before:bg-gradient-to-b before:from-black before:to-black before:opacity-40 z-0 border-b-[15px] border-[#D2D2D2]">
-          <Image
-            src={background ?? ''}
-            alt="bg-image"
-            width={100000}
-            height={100000}
-            className="w-full h-full object-cover object-top"
-          />
+          {bgImage ? (
+            <Image
+              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''}`}
+              alt="bg-image"
+              width={100000}
+              height={100000}
+              className="w-full h-full object-cover object-top"
+            />
+          ) : (
+            <Image
+              src={noImage}
+              alt="bg-image"
+              width={100000}
+              height={100000}
+              className="w-full h-full object-cover object-top"
+            />
+          )}
+
           <div className="absolute w-full z-10 flex justify-center">
             {getOurstoryData?.title?.[0]?.value && (
               <h1 className="w-9/12 text-2xl text-white text-center font-bold uppercase line-clamp-3">

@@ -350,14 +350,3 @@ input[type='range']::-webkit-slider-thumb {
   clip-path: polygon(0 100%, 100% 0, 100% 100%);
   background: #3a339f;
 }
-
-/* '<img src="/sites/default/files/inline-images/WhatsApp%20Image%202025-05-09%20at%2014.18.37.jpeg" 
-data-entity-uuid="b4597f68-965f-4f7e-8139-06ab4bbd8ea9" data-entity-type="file" alt="table-image" width="612" height="150">
-
-<p>&nbsp;</p>
-
-<table><tbody><tr><td>
-<p class="text-align-center">test</p>
-</td>
-
-<td><p class="text-align-center">test</p></td><td><p class="text-align-center">test</p></td></tr><tr><td><p class="text-align-center">lorem ipsum dolor</p></td><td><p class="text-align-center">lorem ipsum dolor</p></td><td><p class="text-align-center">lorem ipsum dolor</p></td></tr></tbody></table><table><caption>helloo</caption><tbody><tr><td>1</td><td>2</td><td>3</td></tr><tr><td>4</td><td>5</td><td>6</td></tr><tr><td>7</td><td>8</td><td>9</td></tr></tbody></table><p>&lt;table&gt; &lt;tr&gt;&lt;th&gt;Table header&lt;/th&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;Table cell&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt;</p>' */

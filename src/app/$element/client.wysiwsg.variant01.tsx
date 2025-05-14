@@ -68,12 +68,12 @@ const CE_WYSIWSGVariant01 = ({
           </div>
           <div className="px-20 mdmax:px-0 mdmax:pr-10 relative">
             {/* hidden for while */}
-            <div className="w-full flex justify-end ">
+            <div className="w-full flex justify-end pb-14 ">
               <CE_ShareContent />
             </div>
             {body ? (
               <div
-                className="text-black text-opacity-90 wysiwsg-body text-base"
+                className="text-black text-opacity-90 wysiwsg-body text-base parsehtml"
                 dangerouslySetInnerHTML={{
                   __html:
                     body.replace(

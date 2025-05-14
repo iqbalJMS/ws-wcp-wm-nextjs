@@ -49,7 +49,7 @@ const CE_WYSIWSGVariant02 = ({
             />
             <div className="px-20 mdmax:px-6 py-5 wysiwsg-body">
               <div
-                className="text-lg mdmax:text-base text-black text-opacity-60"
+                className="text-lg mdmax:text-base text-black text-opacity-60 parsehtml"
                 dangerouslySetInnerHTML={{
                   __html:
                     body.replace(
