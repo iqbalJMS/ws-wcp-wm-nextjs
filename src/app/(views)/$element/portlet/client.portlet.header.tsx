@@ -19,7 +19,7 @@ export default function CE_PortletHeader({
           <div
             className="relative h-[65vh] lg:mb-[3.125rem] w-full overflow-hidden bg-cover bg-fixed before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-gradient-to-b before:from-black before:to-black before:opacity-40"
             style={{
-              backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? '/images/no-image.png'})`,
+              backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${bgImage ?? '/images/no-image.png'})`,
               backgroundSize: 'cover',
               backgroundPosition: 'top',
             }}

@@ -17,7 +17,7 @@ export default function CE_GridVariant04({
   bgImage?: string;
 }) {
   const backgroundImg = bgImage
-    ? `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage}`
+    ? `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${bgImage}`
     : '';
 
   const ref = useRef(null);
@@ -82,7 +82,7 @@ export default function CE_GridVariant04({
               >
                 <div className="w-[160px] h-[160px] hover:border-[.3rem] hover:border-solid hover:border-privatecolor rounded-full transition-all duration-300">
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''}`}
+                    src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item.image ?? ''}`}
                     alt={`img-${index}`}
                     width={100}
                     height={100}

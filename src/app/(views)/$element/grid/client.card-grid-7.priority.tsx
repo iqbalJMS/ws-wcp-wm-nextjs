@@ -59,7 +59,7 @@ const CE_CardGrid7Priority = ({
                   <div className="w-full h-[18rem] rounded-xl overflow-hidden mb-5">
                     {item?.image && (
                       <Image
-                        src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
+                        src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.image ?? ''}`}
                         alt="image"
                         width={900}
                         height={900}

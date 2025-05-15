@@ -52,7 +52,7 @@ export default function CE_CardVariant2Detail({
       <div
         className="w-full h-auto flex flex-col items-center justify-center p-5 pb-10"
         style={{
-          backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${bgImage ?? ''})`,
           backgroundPosition: 'center',
         }}
       >
@@ -83,13 +83,6 @@ export default function CE_CardVariant2Detail({
           className="md:hidden w-full overflow-hidden mdmax:w-full mdmax:flex-none"
         >
           <motion.div
-            // variants={{
-            //   hidden: { opacity: 0, y: 75 },
-            //   visible: { opacity: 1, y: 0 },
-            // }}
-            // initial="hidden"
-            // animate={mainControls}
-            // transition={{ duration: 0.5, delay: 0.25 }}
             className="w-full flex md:grid grid-cols-3 transition-all ease-in-out duration-300 md:space-x-3"
             style={{
               transform: `translateX(-${currentSlide * (200 / slidesToShow)}%)`,
@@ -99,15 +92,13 @@ export default function CE_CardVariant2Detail({
               return (
                 <div
                   key={index}
-                  // data-aos="fade-up"
-                  // data-aos-duration="1000"
                   className="group hover:bg-prioritycolor relative w-full h-60 md:h-80 px-5 overflow-hidden flex-none flex flex-col items-center justify-center hover:bg-gradient-to-b from-prioritycolor to-[#04040A] rounded-xl duration-500 transition-all ease-in-out cursor-pointer"
                 >
                   <Image
                     alt={'icon-card'}
                     width={70}
                     height={70}
-                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon ?? ''}`}
+                    src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${icon ?? ''}`}
                     color="black"
                     className="group-hover:invert group-hover:brightness-[.90]"
                   />
@@ -149,7 +140,7 @@ export default function CE_CardVariant2Detail({
                     alt={'icon-card'}
                     width={70}
                     height={70}
-                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon ?? ''}`}
+                    src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${icon ?? ''}`}
                     color="black"
                     className="group-hover:invert group-hover:brightness-50"
                   />

@@ -153,7 +153,9 @@ export default function CE_LastFourMagazine({
           <h2 className="text-sm font-light text-center w-11/12 md:w-9/12 xl:w-5/12 2xl:w-3/12 pt-3 text-[#4C4C4C]">
             {parseHTMLToReact(subHeading)}
           </h2>
-          <Link href={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${''}`} />
+          <Link
+            href={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${''}`}
+          />
         </div>
 
         {/* mobile section */}
@@ -181,7 +183,7 @@ export default function CE_LastFourMagazine({
                   <div
                     className="w-72 h-96 flex-none flex flex-col justify-end items-start hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -304,7 +306,7 @@ export default function CE_LastFourMagazine({
                       <div
                         className="w-full h-full hover:scale-150 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                         style={{
-                          backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
+                          backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                           backgroundSize: 'contain',
                           backgroundRepeat: 'no-repeat',
                         }}
@@ -381,7 +383,7 @@ export default function CE_LastFourMagazine({
                     <div
                       className="w-72 h-[70%] xl:w-80 xl:h-[65%] flex-none flex flex-col justify-end items-start group-hover:scale-125 duration-300 bg-center transition-all ease-in-out transform-gpu delay-100"
                       style={{
-                        backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
+                        backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
                       }}

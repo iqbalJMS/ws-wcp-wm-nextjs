@@ -16,7 +16,7 @@ export default async function SE_PortletVariant03({
   imageTitle,
 }: Omit<T_PortletProps, 'variant'>) {
   const backgroundImg = bgImage
-    ? `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage}`
+    ? `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${bgImage}`
     : '';
   return (
     <>
@@ -39,7 +39,7 @@ export default async function SE_PortletVariant03({
                 <Image
                   width={20}
                   height={20}
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageTitle}`}
+                  src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${imageTitle}`}
                   alt=""
                 />
                 {title && (
@@ -68,7 +68,7 @@ export default async function SE_PortletVariant03({
                 <div className="flex gap-4 py-12 md:flex-row flex-col">
                   <div className="w-full h-[20rem] rounded-xl overflow-hidden mb-5 inline-block">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent}`}
+                      src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${imageContent}`}
                       alt="image"
                       width={1920}
                       height={1080}
@@ -90,7 +90,7 @@ export default async function SE_PortletVariant03({
                   </div>
                   <div className="w-full h-[20rem] rounded-xl overflow-hidden mb-5 inline-block">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent}`}
+                      src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${imageContent}`}
                       alt="image"
                       width={1920}
                       height={1080}

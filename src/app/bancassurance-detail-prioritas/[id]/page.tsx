@@ -11,7 +11,6 @@ import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-foote
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
-import CE_BCBancasurrancePrioritas from '@/app/bancassurance-detail-prioritas/$element/client.BC-bancasurrance-prioritas';
 import PriorityHeader from '@/lib/element/global/header/priority-header';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
 import CE_AccordionBancarsurance from '@/app/bancassurance-detail-prioritas/$element/client.accordion.bancasurrance';
@@ -67,31 +66,19 @@ export default async function page({ params }: { params: { id: string } }) {
                   {getOurstoryData?.title?.[0]?.value ?? ''}
                 </h1>
               )}
-              {getOurstoryData?.field_summary?.[0]?.value && (
-                <h2
-                  className="text-sm text-white w-10/12 line-clamp-5 pt-10"
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      getOurstoryData?.field_summary?.[0]?.value.replace(
-                        /\/sites\/default/g,
-                        `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
-                      ) ?? '',
-                  }}
-                />
-              )}
             </div>
           </div>
         </section>
-        <CE_BCBancasurrancePrioritas
-          currentPage={getOurstoryData?.title?.[0]?.value ?? ''}
-        />
-        <div className="w-full px-4 lg:px-8 2xl:px-40 flex justify-end ">
+        <div
+          className="w-full px-4 py-6
+         lg:px-8 2xl:px-40 flex justify-end "
+        >
           <CE_ShareContent />
         </div>
         <div className="w-full flex justify-center pb-14 pt-4">
           {getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value && (
             <h1 className="text-xl xl:text-3xl text-prioritycolor font-bold uppercase text-center">
-              rincian produk
+              product details
             </h1>
           )}
         </div>
@@ -99,7 +86,7 @@ export default async function page({ params }: { params: { id: string } }) {
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
               <CE_AccordionBancarsurance
-                renderContent={item?.field_content?.[0]?.value ?? ''}
+                renderContent={item?.field_content?.[0]?.processed ?? ''}
                 renderTitle={item?.field_title?.[0]?.value ?? ''}
               />
             </div>

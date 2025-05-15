@@ -89,7 +89,7 @@ export default async function page({
         <CE_BreadCrumbProgram
           currentPage={getOurstoryData?.title?.[0]?.value ?? ''}
         />
-        <div className="w-full px-4 lg:px-8 2xl:px-40 flex justify-end ">
+        <div className="w-full px-4 py-6 lg:px-8 2xl:px-40 flex justify-end ">
           <CE_ShareContent />
         </div>
         <div className="w-full flex justify-center pb-14 pt-4">
@@ -106,7 +106,7 @@ export default async function page({
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
               <Accordion
                 isOpen={index === 0}
-                renderContent={item?.field_content?.[0]?.value ?? ''}
+                renderContent={item?.field_content?.[0]?.processed ?? ''}
                 renderTitle={item?.field_title?.[0]?.value ?? ''}
               />
             </div>

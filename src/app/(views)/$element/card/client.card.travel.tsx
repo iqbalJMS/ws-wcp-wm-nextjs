@@ -36,7 +36,7 @@ export default function CE_Travel({
             className="w-full h-full flex items-center justify-center"
           >
             <Image
-              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${firstColumnProps?.[0]?.image ?? '/images/no-images.png'}`}
+              src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${firstColumnProps?.[0]?.image ?? '/images/no-images.png'}`}
               alt={''}
               width={500}
               height={500}

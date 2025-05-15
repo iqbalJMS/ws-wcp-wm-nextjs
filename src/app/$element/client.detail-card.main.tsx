@@ -36,7 +36,7 @@ const CE_DetailCardMain = ({
               <div className="px-20 mdmax:px-0 relative">
                 <div className="h-[30rem] mdmax:h-[20rem] relative pb-20 mdmax:pb-0 overflow-hidden">
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${card.image}`}
+                    src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${card.image}`}
                     alt="image"
                     width={400}
                     height={400}

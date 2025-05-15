@@ -57,7 +57,7 @@ const CE_WYSIWSGPrioritas = ({
             {image && (
               <div className="h-full">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image ?? ''}`}
+                  src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${image ?? ''}`}
                   alt="image"
                   width={400}
                   height={400}

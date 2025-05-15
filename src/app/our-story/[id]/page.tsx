@@ -14,6 +14,7 @@ import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-foote
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
 import HomeHeader from '@/lib/element/global/header/home-header';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
+import CE_ShareContent from '@/lib/element/global/share-content';
 
 export async function generateMetadata() {
   return {
@@ -40,7 +41,7 @@ export default async function page({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className="w-full">
+      <div className="">
         <HomeHeader
           headerTop={listHeaderTop}
           headerBottom={listHomeNavbar}
@@ -66,6 +67,9 @@ export default async function page({ params }: { params: { id: string } }) {
         </div>
 
         <CE_BreadcrumbStory currentPage={getOurstoryData?.title?.[0]?.value} />
+        <div className="w-full px-4 pb-8 lg:px-8 2xl:px-52 flex justify-end ">
+          <CE_ShareContent />
+        </div>
         <section className="w-full flex justify-center">
           <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12 flex flex-col items-center ">
             <div className="w-full p-5 flex flex-col md:flex-row ">

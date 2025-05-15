@@ -84,7 +84,7 @@ export default function CE_TwoColumnPrivate({
                           >
                             <Image
                               className="w-8 h-8 xl:w-10 xl:h-10"
-                              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image}`}
+                              src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item.image}`}
                               width={1000}
                               height={1000}
                               alt={`image-${item.image}`}
@@ -123,7 +123,7 @@ export default function CE_TwoColumnPrivate({
           >
             {imageContent1 && (
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent1}`}
+                src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${imageContent1}`}
                 className="w-full h-auto md:w-[50vh] lg:w-full lg:h-auto bg-no-repeat bg-cover rounded-lg"
                 width={1000}
                 height={1000}
@@ -145,7 +145,7 @@ export default function CE_TwoColumnPrivate({
           >
             {imageContent2 && (
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent2}`}
+                src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${imageContent2}`}
                 className="w-full h-auto md:w-[50vh] lg:w-full lg:h-auto bg-no-repeat bg-cover rounded-lg"
                 width={1000}
                 height={1000}
@@ -184,7 +184,7 @@ export default function CE_TwoColumnPrivate({
                           >
                             <Image
                               className="w-8 h-8 xl:w-10 xl:h-10"
-                              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image}`}
+                              src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item.image}`}
                               width={1000}
                               height={1000}
                               alt={`image-${item.image}`}

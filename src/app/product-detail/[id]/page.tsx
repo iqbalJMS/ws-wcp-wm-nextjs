@@ -14,8 +14,8 @@ import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page'
 import CE_AcordionInvestasi from '@/app/product-detail/$element/client.accordion.invest';
 import PriorityHeader from '@/lib/element/global/header/priority-header';
 import { ACT_GetHeaderLogoPriority } from '@/app/(views)/$action/header-logo/action.get.header-logo-priority';
-import CE_BreadCrumbInvestasi from '@/app/product-detail/$element/client.breadcrumb.investasi';
 import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
+import CE_ShareContent from '@/lib/element/global/share-content';
 
 export async function generateMetadata() {
   return {
@@ -67,14 +67,14 @@ export default async function page({ params }: { params: { id: string } }) {
             )}
           </div>
         </section>
-        <CE_BreadCrumbInvestasi
-          currentPage={getOurstoryData?.title?.[0]?.value ?? ''}
-        />
+        <div className="w-full px-4 py-6 lg:px-8 2xl:px-40 flex justify-end ">
+          <CE_ShareContent />
+        </div>
         <section className="w-full flex flex-col justify-center items-center pb-10">
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
               <CE_AcordionInvestasi
-                renderContent={item?.field_content?.[0]?.value ?? ''}
+                renderContent={item?.field_content?.[0]?.processed ?? ''}
                 renderTitle={item?.field_title?.[0]?.value ?? ''}
               />
             </div>

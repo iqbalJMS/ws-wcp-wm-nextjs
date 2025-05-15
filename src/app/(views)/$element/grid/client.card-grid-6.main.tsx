@@ -48,7 +48,7 @@ const CE_CardGrid6Main = ({
                 <div className="w-full h-[30rem] overflow-hidden mb-2">
                   {item?.image && (
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
+                      src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.image ?? ''}`}
                       alt="image"
                       width={400}
                       height={400}

@@ -184,7 +184,7 @@ export default function CE_FormVariant2({
   }, []);
 
   const backgroundImg = bgImage
-    ? `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage?.[0]?.image ?? ''}`
+    ? `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${bgImage?.[0]?.image ?? ''}`
     : '';
   return (
     <div className="w-full bg-[#605E68] h-full flex flex-col lg:flex-row-reverse ">
