@@ -28,7 +28,7 @@ export default function CE_CardOutletMap({
               </h1>
             </div>
             <div className="pb-24 pt-5 xl:pt-8">
-              <h1 className="text-base xl:text-base w-64">{desc}</h1>
+              <h1 className="text-base xl:text-base w-64">{desc ?? ''}</h1>
             </div>
             <div className="flex items-center">
               <LocationIcon
@@ -47,7 +47,7 @@ export default function CE_CardOutletMap({
           </section>
           <section className=" w-full h-80">
             <Image
-              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image ?? ''}`}
+              src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${image ?? ''}`}
               alt={''}
               width={500}
               height={500}

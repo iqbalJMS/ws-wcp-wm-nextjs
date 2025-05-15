@@ -11,10 +11,10 @@ import { ACT_GetMainMiddleFooter } from '@/app/(views)/$action/main-middle-foote
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
-import CE_BCInvestasi from '@/app/investasi-detail/$element/client.breadcrumb.investasi';
 import CE_AccordionInvestasi from '@/app/investasi-detail/$element/client.accordion.investasi';
-import { ACT_GetPriorityMenuNavbar } from '@/app/(views)/$action/priority-header/action.get.priority-menu-navbar';
 import HomeHeader from '@/lib/element/global/header/home-header';
+import CE_ShareContent from '@/lib/element/global/share-content';
+import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
 
 export async function generateMetadata() {
   return {
@@ -24,14 +24,13 @@ export async function generateMetadata() {
 
 export default async function page({ params }: { params: { id: string } }) {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
-  const listPriorityNavbar = await ACT_GetPriorityMenuNavbar({ lang: 'id' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
   const itemHeaderLogo = await ACT_GetHeaderLogo({ lang: 'en' });
   const listBottomRightFooter = await ACT_GetBottomRightFooter({ lang: 'en' });
   const listBottomLeftFooter = await ACT_GetBottomLeftFooter({ lang: 'en' });
   const itemMainFooter = await ACT_GetMainMenuFooter({ lang: 'en' });
   const itemMiddleMainFooter = await ACT_GetMainMiddleFooter({ lang: 'en' });
-
+  const listHomeNavbar = await ACT_GetMainMenuNavbar({ lang: 'id' });
   const getOurstoryData = await ACT_GetDetailPage({
     lang: 'en',
     alias: 'node',
@@ -43,7 +42,7 @@ export default async function page({ params }: { params: { id: string } }) {
       <div>
         <HomeHeader
           headerTop={listHeaderTop}
-          headerBottom={listPriorityNavbar}
+          headerBottom={listHomeNavbar}
           variant={'transparent'}
           itemLogin={itemMenuLogin}
           headerLogo={itemHeaderLogo || undefined}
@@ -62,21 +61,22 @@ export default async function page({ params }: { params: { id: string } }) {
             </h1>
           </div>
         </section>
-        <CE_BCInvestasi
-          currentPage={getOurstoryData?.title?.[0]?.value ?? ''}
-        />
+
         <div className="w-full flex justify-center pb-14 pt-4">
           {getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value && (
             <h1 className="text-xl xl:text-3xl text-prioritycolor font-bold uppercase text-center">
-              rincian produk
+              product details
             </h1>
           )}
+        </div>
+        <div className="w-full px-4 py-6 lg:px-8 2xl:px-52 flex justify-end ">
+          <CE_ShareContent />
         </div>
         <section className="w-full flex flex-col justify-center items-center pb-10">
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
               <CE_AccordionInvestasi
-                renderContent={item?.field_content?.[0]?.value ?? ''}
+                renderContent={item?.field_content?.[0]?.processed ?? ''}
                 renderTitle={item?.field_title?.[0]?.value ?? ''}
               />
             </div>

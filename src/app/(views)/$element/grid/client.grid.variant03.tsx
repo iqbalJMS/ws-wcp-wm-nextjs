@@ -32,7 +32,7 @@ export default function CE_GridVariant03({
             >
               {imageLink && (
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageLink}`}
+                  src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${imageLink}`}
                   width={20}
                   height={20}
                   alt="img-link"
@@ -45,7 +45,7 @@ export default function CE_GridVariant03({
         <div className="md:w-1/2 w-[350px] mdmax:order-1">
           {imageContent && (
             <Image
-              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent}`}
+              src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${imageContent}`}
               alt={`img-${imageContent}`}
               width={100}
               height={100}

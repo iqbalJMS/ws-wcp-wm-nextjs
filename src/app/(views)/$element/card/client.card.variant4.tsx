@@ -60,14 +60,14 @@ export default function CE_CardVariant4({
                 <div
                   className="flex flex-col justify-between h-64 xl:h-72 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-bottom transition-all ease-in-out transform-gpu delay-75"
                   style={{
-                    backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''})`,
+                    backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.image ?? ''})`,
                   }}
                 >
                   <div className="w-full h-full bg-black opacity-50"></div>
                 </div>
                 <div className="flex justify-between">
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.logo ?? ''}`}
+                    src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.logo ?? ''}`}
                     width={1000}
                     height={1000}
                     alt="logo"

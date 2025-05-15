@@ -39,7 +39,7 @@ const CE_BrifinePrivate = ({
                 <div className="group w-full h-72 p-3 overflow-hidden flex justify-center items-center">
                   {item?.image && (
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
+                      src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.image ?? ''}`}
                       alt="image"
                       width={700}
                       height={700}

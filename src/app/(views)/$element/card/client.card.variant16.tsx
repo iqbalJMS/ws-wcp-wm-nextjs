@@ -74,7 +74,7 @@ export default function CE_CardVariant16({
               key={index}
               className="group w-96 h-80 md:w-80 md:h-72 lg:w-full xl:w-96 2xl:w-full overflow-hidden z-0 rounded-xl"
               style={{
-                backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''})`,
+                backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.image ?? ''})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
               }}

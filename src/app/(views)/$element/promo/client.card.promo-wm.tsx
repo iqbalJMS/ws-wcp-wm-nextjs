@@ -157,7 +157,7 @@ export default function CE_CardPromoWM({
                 key={index}
                 className="relative w-1/4 mdmax:w-11/12 h-80 lg:h-64 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                 style={{
-                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                 }}
@@ -267,7 +267,7 @@ export default function CE_CardPromoWM({
                     key={index}
                     className="relative w-[32%] h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
@@ -332,7 +332,7 @@ export default function CE_CardPromoWM({
                     key={index}
                     className="relative overflow-hidden lg:w-60 lg:h-72 xl:w-72 xl:h-64 2xl:h-72 flex-none rounded-lg flex flex-col justify-end items-start bg-center"
                     style={{
-                      backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.field_promo_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}

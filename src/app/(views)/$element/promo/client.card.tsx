@@ -15,7 +15,7 @@ export default function CE_Card(props: T_CardProps) {
   const { className, content, idx } = props;
 
   const modifiedSrc = !!props.content.img
-    ? `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/${props.content.img}`
+    ? `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/${props.content.img}`
     : '';
 
   return (

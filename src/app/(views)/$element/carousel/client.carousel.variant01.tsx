@@ -368,7 +368,7 @@ export default function CE_CarouselVariant1({
                     <div
                       className="group flex flex-col justify-between w-full h-96 bg-no-repeat bg-cover hover:scale-125 duration-300 bg-center transition-all ease-in-out transform-gpu delay-75 "
                       style={{
-                        backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${slide.image})`,
+                        backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${slide.image})`,
                       }}
                     >
                       <div className=" w-full h-full bg-gradient-to-b from-transparent to-black"></div>
@@ -394,7 +394,7 @@ export default function CE_CarouselVariant1({
                     <div
                       className="group flex flex-col justify-between w-full h-96 bg-no-repeat bg-cover delay-75 "
                       style={{
-                        backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${slide.image})`,
+                        backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${slide.image})`,
                       }}
                     >
                       <div className="flex md:hidden w-full h-full bg-gradient-to-b from-transparent to-black"></div>

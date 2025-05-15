@@ -12,11 +12,9 @@ import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-ite
 import { ACT_GetPrivateMenuNavbar } from '@/app/(views)/$action/private-header/action.get.private-menu-navbar';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import { ACT_GetDetailPage } from '@/app/(views)/$action/action.get.detail.page';
-import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import PrivateHeader from '@/lib/element/global/header/private-header';
 import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
 import CE_AccordionObligasi from '@/app/obligasi-detail/$element/client.accordion.obligasi';
-import CE_BCObligasiPrivate from '@/app/obligasi-detail/$element/client.BC-oblogasi-private';
 import CE_ShareContent from '@/lib/element/global/share-content';
 
 export async function generateMetadata() {
@@ -66,25 +64,15 @@ export default async function page({ params }: { params: { id: string } }) {
                 {getOurstoryData?.title?.[0]?.value ?? ''}
               </h1>
             )}
-            {getOurstoryData?.field_summary?.[0]?.value && (
-              <h2 className="text-sm text-white w-full pt-10">
-                {parseHTMLToReact(
-                  getOurstoryData?.field_summary?.[0]?.value ?? ''
-                )}
-              </h2>
-            )}
           </div>
         </section>
-        <CE_BCObligasiPrivate
-          currentPage={getOurstoryData?.title?.[0]?.value ?? ''}
-        />
-        <div className="w-full px-4 lg:px-8 2xl:px-40 flex justify-end ">
+        <div className="w-full px-4 py-6 lg:px-8 2xl:px-40 flex justify-end ">
           <CE_ShareContent />
         </div>
         <div className="w-full flex justify-center pb-14 pt-4">
           {getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value && (
             <h1 className="text-xl xl:text-3xl text-prioritycolor font-bold uppercase text-center">
-              rincian produk
+              product details
             </h1>
           )}
         </div>
@@ -92,7 +80,7 @@ export default async function page({ params }: { params: { id: string } }) {
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
               <CE_AccordionObligasi
-                renderContent={item?.field_content?.[0]?.value ?? ''}
+                renderContent={item?.field_content?.[0]?.processed ?? ''}
                 renderTitle={item?.field_title?.[0]?.value ?? ''}
               />
             </div>

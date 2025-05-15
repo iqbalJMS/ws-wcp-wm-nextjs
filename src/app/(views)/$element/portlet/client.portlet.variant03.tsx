@@ -20,7 +20,7 @@ export default function CE_PortletVariant03({
           <div
             className=" h-[50vh] lg:mb-[3.125rem] w-full bg-cover "
             style={{
-              backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''})`,
+              backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${bgImage ?? ''})`,
               backgroundSize: 'cover',
               backgroundPosition: 'top',
             }}

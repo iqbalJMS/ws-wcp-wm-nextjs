@@ -63,7 +63,7 @@ export default function CE_VideosCard({
           >
             <picture className=" relative overflow-hidden rounded-lg ">
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
+                src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.image ?? ''}`}
                 width={1000}
                 height={1000}
                 alt="img dummy"

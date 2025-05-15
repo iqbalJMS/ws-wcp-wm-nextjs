@@ -32,7 +32,7 @@ export default async function CE_GridVariant05({
             <div>
               {imageContent && (
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${imageContent}`}
+                  src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${imageContent}`}
                   alt="image-list"
                   className="w-full h-auto"
                   width={400}

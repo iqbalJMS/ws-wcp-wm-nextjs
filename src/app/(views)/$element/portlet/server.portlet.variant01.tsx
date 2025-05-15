@@ -15,7 +15,7 @@ export default async function SE_PortletVariant01({
   navigationLink,
 }: Omit<T_PortletProps, 'variant'>) {
   const backgroundImg = bgImage
-    ? `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage}`
+    ? `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${bgImage}`
     : '';
   return (
     <section

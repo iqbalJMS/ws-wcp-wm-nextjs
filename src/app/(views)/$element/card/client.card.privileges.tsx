@@ -30,7 +30,7 @@ export default function CE_Privileges({
         <div className="w-11/12 lg:w-9/12 xl:w-8/12 2xl:w-6/12 flex flex-col md:flex-row-reverse ">
           <section className="w-full h-full flex items-center justify-center">
             <Image
-              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${secondColumn?.[0]?.image ?? '/images/no-images.png'}`}
+              src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${secondColumn?.[0]?.image ?? '/images/no-images.png'}`}
               alt={''}
               width={500}
               height={500}

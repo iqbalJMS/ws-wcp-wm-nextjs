@@ -74,7 +74,7 @@ export default function CE_CardVariant2({
                 className="group w-full h-60 flex flex-col items-center justify-center hover:bg-black hover:rounded-xl duration-300"
               >
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.iconcard}`}
+                  src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.iconcard}`}
                   alt={'icon-card'}
                   width={70}
                   height={70}

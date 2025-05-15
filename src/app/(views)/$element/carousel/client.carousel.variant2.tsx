@@ -86,7 +86,7 @@ export default function CE_CarouselVariant2({
         <div
           className="w-full h-screen relative overflow-hidden flex"
           style={{
-            backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''})`,
+            backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${bgImage ?? ''})`,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundAttachment: 'fixed',
@@ -145,7 +145,7 @@ export default function CE_CarouselVariant2({
                         className="relative w-full h-full flex-none flex flex-col md:flex-row items-center bg-white scroll-pb-5 px-10 md:px-0 md:space-x-3"
                       >
                         <Image
-                          src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
+                          src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.image ?? ''}`}
                           alt="testimoni image"
                           width={2000}
                           height={2000}
@@ -249,7 +249,7 @@ export default function CE_CarouselVariant2({
                           className="relative w-full h-full flex-none flex flex-col md:flex-row items-center bg-white scroll-pb-5 px-10 md:px-0 md:space-x-3"
                         >
                           <Image
-                            src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
+                            src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.image ?? ''}`}
                             alt="testimoni image"
                             width={2000}
                             height={2000}

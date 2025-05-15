@@ -23,7 +23,7 @@ export function CE_ContentGridMain({ data }: T_ContentGridMainProps) {
                   {dataItem.image && (
                     <div className="w-[40%] mdmax:w-full h-[30rem] mdmax:h-[20rem] flex-none mr-10 bg-black bg-opacity-10">
                       <Image
-                        src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${dataItem.image}`}
+                        src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${dataItem.image}`}
                         alt="image"
                         width={400}
                         height={400}

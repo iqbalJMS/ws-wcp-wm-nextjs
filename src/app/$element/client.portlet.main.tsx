@@ -26,7 +26,7 @@ const CE_PortletMain = ({
           <div className="absolute top-0 left-0 w-full h-full">
             {image && (
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image ?? ''}`}
+                src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${image ?? ''}`}
                 alt="image"
                 width={400}
                 height={400}

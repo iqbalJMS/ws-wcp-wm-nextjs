@@ -44,7 +44,7 @@ export default function CE_MenuGrid({
   };
 
   const backgroundImg = bgImage
-    ? `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage}`
+    ? `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${bgImage}`
     : '';
 
   return (

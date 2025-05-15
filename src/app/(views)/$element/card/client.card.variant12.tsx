@@ -52,7 +52,7 @@ export default function CE_CardVariant12({
             >
               {item?.image ? (
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.image ?? ''}`}
+                  src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.image ?? ''}`}
                   width={10000}
                   height={10000}
                   alt="image"

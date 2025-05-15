@@ -10,7 +10,7 @@ export default function SE_SubscriberContent({
   description,
 }: T_SubscriberContentProps) {
   const backgroundImg = bgImage
-    ? `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''}`
+    ? `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${bgImage ?? ''}`
     : '';
   return (
     <section className="py-24">

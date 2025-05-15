@@ -103,7 +103,7 @@ export default async function page({
             <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
               <AccordionProgram
                 isOpen={index === 0}
-                renderContent={item?.field_content?.[0]?.value ?? ''}
+                renderContent={item?.field_content?.[0]?.processed ?? ''}
                 renderTitle={item?.field_title?.[0]?.value ?? ''}
               />
             </div>

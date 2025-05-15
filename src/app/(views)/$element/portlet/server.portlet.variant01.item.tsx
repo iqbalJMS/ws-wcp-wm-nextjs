@@ -11,7 +11,7 @@ export default async function SE_PortletVariant01Item({
     <div className="flex gap-4">
       <div className="md:w-1/4">
         <Image
-          src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${list_item.image}`}
+          src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${list_item.image}`}
           alt="image"
           width={0}
           height={0}

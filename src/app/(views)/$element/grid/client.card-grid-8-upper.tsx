@@ -40,7 +40,7 @@ export default function CE_CardVariant8Upper({
                 data-aos="fade-up"
                 data-aos-duration="500"
                 style={{
-                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''})`,
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item.image ?? ''})`,
                   backgroundPosition: 'center',
                   backgroundSize: 'cover',
                 }}
@@ -77,7 +77,7 @@ export default function CE_CardVariant8Upper({
                 data-aos="fade-up"
                 data-aos-duration="500"
                 style={{
-                  backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item.image ?? ''})`,
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item.image ?? ''})`,
                   backgroundPosition: 'center',
                 }}
                 key={index}

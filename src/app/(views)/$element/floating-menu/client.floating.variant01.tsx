@@ -22,7 +22,7 @@ export default function CE_FloatingVariant01({
                   <div className="flex items-center bg-[#444444] hover:bg-wmcolor px-3 lg:p-3 lg:px-4 border-b-2 border-white ">
                     <Image
                       className="text-white w-5 h-5 mr-5"
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${item?.icon ?? ''}`}
+                      src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${item?.icon ?? ''}`}
                       alt={'icon float navigation'}
                       width={9}
                       height={9}

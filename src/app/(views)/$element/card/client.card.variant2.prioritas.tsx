@@ -60,7 +60,7 @@ export default function CE_CardVariant2Prioritas({
       <div
         className="w-full h-auto flex flex-col items-center justify-center p-5 pb-10"
         style={{
-          backgroundImage: `url(${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${bgImage ?? ''})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${bgImage ?? ''})`,
           backgroundPosition: 'center',
         }}
       >
@@ -101,7 +101,7 @@ export default function CE_CardVariant2Prioritas({
                     alt={'icon-card'}
                     width={70}
                     height={70}
-                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon ?? ''}`}
+                    src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${icon ?? ''}`}
                     color="black"
                     className="group-hover:invert group-hover:brightness-[12.90]"
                   />
@@ -137,7 +137,7 @@ export default function CE_CardVariant2Prioritas({
                     alt={'icon-card'}
                     width={70}
                     height={70}
-                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon ?? ''}`}
+                    src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${icon ?? ''}`}
                     color="black"
                     className="group-hover:invert group-hover:brightness-50"
                   />

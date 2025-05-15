@@ -324,7 +324,7 @@ input[type='range']::-webkit-slider-thumb {
   font-size: 12pt;
 }
 .parsehtml table tbody tr td {
-  border: 2px solid #ffffff;
+  border: 1px solid black;
   height: 59px;
   padding: 0 7px;
   background-color: white;
@@ -343,6 +343,12 @@ input[type='range']::-webkit-slider-thumb {
   font-size: 16px;
   color: white;
 }
+
+.parsehtml img {
+  width: 150px;
+  height: 150px;
+}
+
 .triangle {
   width: 1910px;
   height: 700px;

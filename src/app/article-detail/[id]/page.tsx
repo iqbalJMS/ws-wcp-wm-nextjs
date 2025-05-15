@@ -58,7 +58,7 @@ export default async function page({ params }: { params: { id: string } }) {
         <section className="relative overflow-hidden h-[65vh] lg:mb-[3.125rem] w-full bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full flex justify-center items-center before:bg-gradient-to-b before:from-black before:to-black before:opacity-40 z-0 border-b-[15px] border-[#D2D2D2]">
           {headerImage ? (
             <Image
-              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerImage ?? ''}`}
+              src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${headerImage ?? ''}`}
               alt="bg-image"
               width={100000}
               height={100000}
@@ -91,7 +91,7 @@ export default async function page({ params }: { params: { id: string } }) {
           title={getOurstoryData?.title?.[0]?.value ?? ''}
           date={getOurstoryData?.created?.[0]?.value ?? ''}
           image={imageArticle ?? ''}
-          body={getOurstoryData?.body?.[0]?.value ?? ''}
+          body={getOurstoryData?.body?.[0]?.processed ?? ''}
         />
         <GlobalFooter
           bottom_right_footer={listBottomRightFooter}

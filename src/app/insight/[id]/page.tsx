@@ -76,7 +76,8 @@ export default async function page({ params }: { params: { id: string } }) {
           title={getOurstoryData?.field_summary?.[0]?.value ?? ''}
           date={getOurstoryData?.created?.[0]?.value ?? ''}
           body={
-            getOurstoryData?.field_items?.[0]?.field_content?.[0]?.value ?? ''
+            getOurstoryData?.field_items?.[0]?.field_content?.[0]?.processed ??
+            ''
           }
         />
         <GlobalFooter
