@@ -38,7 +38,7 @@ const CE_WYSIWSGVariantPriority = ({
                 __html:
                   title.replace(
                     /\/sites\/default/g,
-                    `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                   ) ?? '',
               }}
             />
@@ -50,7 +50,7 @@ const CE_WYSIWSGVariantPriority = ({
                   __html:
                     body.replace(
                       /\/sites\/default/g,
-                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                      `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                     ) ?? '',
                 }}
               />

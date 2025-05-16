@@ -8,25 +8,18 @@ type T_AccordionProps = {
   renderContent: string;
   renderTitle: React.ReactNode;
   isOpen?: boolean;
-  // variant?: string;
 };
 
 export default function AccordionProgram({
   renderContent,
   isOpen,
   renderTitle,
-  // variant,
 }: T_AccordionProps) {
   const [accordionOpen, setAccordionOpen] = useState(false);
-  // const variantTable =
-  //   variant === WIDGET_VARIANT.variant29
-  //     ? 'richtext_table_blue_header'
-  //     : 'body';
 
   useEffect(() => {
     if (isOpen) setAccordionOpen(false);
   }, [isOpen]);
-  // console.log(variant, variantTable, ' >>>>>>>>.');
   return (
     <>
       <section className="flex flex-col mb-4">
@@ -64,7 +57,11 @@ export default function AccordionProgram({
           className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100 pt-16 px-16 pb-6' : 'grid-rows-[0fr] opacity-0'}`}
         >
           <div className={`overflow-hidden accordion-content parsehtml`}>
-            {parseHTMLToReact(renderContent)}
+            {parseHTMLToReact(
+              renderContent,
+              'overflow-hidden accordion-content parsehtml',
+              true
+            )}
           </div>
         </div>
       </section>

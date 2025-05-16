@@ -36,7 +36,7 @@ export default function CE_PromoDetailPrioritas({
           <section className="w-full grid grid-cols-1 place-items-start space-y-5 pb-12">
             <div className="w-full flex justify-center md:flex-none lg:w-8/12">
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${image ?? ''}`}
+                src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${image ?? ''}`}
                 width={1000}
                 height={1000}
                 alt="image bri prioritas"
@@ -50,7 +50,7 @@ export default function CE_PromoDetailPrioritas({
                   __html:
                     title.replace(
                       /\/sites\/default/g,
-                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                      `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                     ) ?? '',
                 }}
               />
@@ -68,7 +68,7 @@ export default function CE_PromoDetailPrioritas({
                   __html:
                     terms.replace(
                       /\/sites\/default/g,
-                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                      `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                     ) ?? '',
                 }}
               />
@@ -102,7 +102,7 @@ export default function CE_PromoDetailPrioritas({
                 __html:
                   merchant.replace(
                     /\/sites\/default/g,
-                    `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                   ) ?? '',
               }}
             />
@@ -118,7 +118,7 @@ export default function CE_PromoDetailPrioritas({
                   __html:
                     merchant.replace(
                       /\/sites\/default/g,
-                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                      `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                     ) ?? '',
                 }}
               />
@@ -132,7 +132,7 @@ export default function CE_PromoDetailPrioritas({
                 __html:
                   lokasi.replace(
                     /\/sites\/default/g,
-                    `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                   ) ?? '',
               }}
             />
@@ -147,7 +147,7 @@ export default function CE_PromoDetailPrioritas({
                 __html:
                   lokasi.replace(
                     /\/sites\/default/g,
-                    `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                    `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                   ) ?? '',
               }}
             />
