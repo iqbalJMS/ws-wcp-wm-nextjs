@@ -52,7 +52,7 @@ module.exports = {
       },
       {
         protocol: 'http',
-        hostname: 'http://ms-wcp-aether-drupal:5000',
+        hostname: 'ms-wcp-aether-drupal:5000',
       },
       {
         protocol: 'http',
