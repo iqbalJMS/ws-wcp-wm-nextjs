@@ -2,10 +2,10 @@
 import { useEffect, useState } from 'react';
 import { PlusIcon } from './icons/plus-icon';
 import { MinusIcon } from './icons/minus-icon';
-
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 type T_AccordionProps = {
   renderContent: string;
-  renderTitle: React.ReactNode;
+  renderTitle: string;
   isOpen?: boolean;
 };
 
@@ -30,7 +30,7 @@ export default function Accordion({
           <div>
             <button className={`${styles.buttonContainer}`}>
               <div className="w-full text-white text-start">
-                {renderTitle ?? ''}
+                {parseHTMLToReact(renderTitle)}
               </div>
 
               {accordionOpen ? (
@@ -55,16 +55,11 @@ export default function Accordion({
       <div
         className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100 pt-16 px-16 pb-6' : 'grid-rows-[0fr] opacity-0'}`}
       >
-        <div
-          className="overflow-hidden accordion-content parsehtml"
-          dangerouslySetInnerHTML={{
-            __html:
-              renderContent.replace(
-                /\/sites\/default/g,
-                `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
-              ) ?? '',
-          }}
-        />
+        {parseHTMLToReact(
+          renderContent,
+          'overflow-hidden accordion-content parsehtml',
+          true
+        )}
       </div>
     </section>
   );

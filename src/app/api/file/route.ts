@@ -26,9 +26,9 @@ export async function GET(request: NextRequest) {
         },
       });
     } else {
-      return new Response('Invalid path', { status: 404 });
+      return new Response('Invalid path', { status: 200 });
     }
   } catch (error) {
-    return new Response('File not found or unable to read', { status: 404 });
+    return new Response('File not found or unable to read', { status: 200 });
   }
 }

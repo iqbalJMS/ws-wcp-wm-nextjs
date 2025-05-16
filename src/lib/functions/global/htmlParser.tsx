@@ -1,62 +1,23 @@
-import React from 'react';
+export const BASE_URL =
+  process.env.SELF_BASE_URL || process.env.NEXT_PUBLIC_SELF_BASE_URL || '';
 
-export function parseHTMLToReact(htmlString: string): React.ReactNode {
+const bodyRender = (body: string) =>
+  body.replaceAll(
+    '/sites/default/files/',
+    `${BASE_URL}/api/file/?path=/sites/default/files/`
+  );
+
+export function parseHTMLToReact(
+  htmlString: string,
+  className = '',
+  hasBaseUrl = false
+): React.ReactNode {
   return (
     <div
+      className={className}
       dangerouslySetInnerHTML={{
-        __html:
-          htmlString?.replace(
-            /\/sites\/default/g,
-            `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
-          ) ?? '',
+        __html: !hasBaseUrl ? htmlString : bodyRender(htmlString),
       }}
     />
   );
 }
-// import React from 'react';
-// export const BASE_URL =
-//   process.env.SELF_BASE_URL || process.env.NEXT_PUBLIC_SELF_BASE_URL || '';
-
-// const possibleDomains =
-//   process.env.DOMAINS || process.env.NEXT_PUBLIC_DOMAINS || '';
-
-// const bodyRender = (body: string) => {
-//   let rendered = body;
-//   const domains = possibleDomains.split(',') || [];
-
-//   domains.forEach((url) => {
-//     if (!url) {
-//       rendered = rendered.replaceAll(
-//         '/sites/default/files/',
-//         `${BASE_URL}/api/files/?path=/sites/default/files/`
-//       );
-//     } else {
-//       rendered = rendered.replaceAll(
-//         `${url}/sites/default/files/`,
-//         `${BASE_URL}/api/files/?path=/sites/default/files/`
-//       );
-//     }
-//   });
-
-//   if (domains.length === 0) {
-//     rendered = rendered.replaceAll(
-//       '/sites/default/files/',
-//       `${BASE_URL}/api/files/?path=/sites/default/files/`
-//     );
-//   }
-
-//   return rendered;
-// };
-
-// export function parseHTMLToReact(
-//   htmlString: string,
-//   hasBaseUrl = false
-// ): React.ReactNode {
-//   return (
-//     <div
-//       dangerouslySetInnerHTML={{
-//         __html: !hasBaseUrl ? htmlString : bodyRender(htmlString),
-//       }}
-//     />
-//   );
-// }
