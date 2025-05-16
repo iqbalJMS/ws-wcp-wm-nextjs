@@ -1,6 +1,5 @@
 import React from 'react';
 
-import background from '@/../public/images/dummy/bgOurStory.jpeg';
 import Image from 'next/image';
 import { ACT_GetTopMenuNavbar } from '@/app/(views)/$action/action.get.top-menu-navbar';
 import { ACT_GetMainMenuNavbar } from '@/app/(views)/$action/action.get.main-menu-navbar';
@@ -15,6 +14,7 @@ import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-ite
 import HomeHeader from '@/lib/element/global/header/home-header';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import CE_ShareContent from '@/lib/element/global/share-content';
+import noImage from '@/../public/images/no-image.png';
 
 export async function generateMetadata() {
   return {
@@ -38,7 +38,9 @@ export default async function page({ params }: { params: { id: string } }) {
   });
   const dataImage =
     getOurstoryData?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url;
-
+  const headerImage =
+    getOurstoryData?.field_header_image_story?.[0]?.thumbnail?.[0]?.uri?.[0]
+      ?.url;
   return (
     <>
       <div className="">
@@ -50,13 +52,23 @@ export default async function page({ params }: { params: { id: string } }) {
           headerLogo={itemHeaderLogo || undefined}
         />
         <div className="relative overflow-hidden h-[65vh] lg:mb-[3.125rem] w-full bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full flex justify-center items-center before:bg-gradient-to-b before:from-black before:to-black before:opacity-40 z-0 border-b-[15px] border-[#D2D2D2]">
-          <Image
-            src={background}
-            alt="bg-image"
-            width={100000}
-            height={100000}
-            className="w-full h-full object-cover object-top"
-          />
+          {headerImage ? (
+            <Image
+              src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${headerImage ?? ''}`}
+              alt="bg-image"
+              width={100000}
+              height={100000}
+              className="w-full h-full object-cover object-top"
+            />
+          ) : (
+            <Image
+              src={noImage}
+              alt="bg-image"
+              width={100000}
+              height={100000}
+              className="w-full h-full object-cover object-top"
+            />
+          )}
           <div className="absolute w-full z-10 flex justify-center">
             {getOurstoryData?.title?.[0]?.value && (
               <h1 className="w-9/12 text-2xl text-white text-center font-bold uppercase line-clamp-3">
@@ -75,7 +87,7 @@ export default async function page({ params }: { params: { id: string } }) {
             <div className="w-full p-5 flex flex-col md:flex-row ">
               <div className="w-full md:w-10/12 xl:w-9/12 2xl:w-7/12 md:pr-5">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${dataImage ?? ''}`}
+                  src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${dataImage ?? ''}`}
                   width={1000}
                   height={1000}
                   alt="image profile"
@@ -89,7 +101,7 @@ export default async function page({ params }: { params: { id: string } }) {
                     __html:
                       getOurstoryData?.title?.[0]?.value.replace(
                         /\/sites\/default/g,
-                        `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                        `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                       ) ?? '',
                   }}
                 />
@@ -99,7 +111,7 @@ export default async function page({ params }: { params: { id: string } }) {
                     __html:
                       getOurstoryData?.field_text?.[0]?.value.replace(
                         /\/sites\/default/g,
-                        `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                        `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                       ) ?? '',
                   }}
                 />
@@ -112,7 +124,7 @@ export default async function page({ params }: { params: { id: string } }) {
                   __html:
                     getOurstoryData?.body?.[0]?.summary.replace(
                       /\/sites\/default/g,
-                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                      `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                     ) ?? '',
                 }}
               />
@@ -122,7 +134,7 @@ export default async function page({ params }: { params: { id: string } }) {
                   __html:
                     getOurstoryData?.body?.[0]?.value.replace(
                       /\/sites\/default/g,
-                      `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+                      `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                     ) ?? '',
                 }}
               />

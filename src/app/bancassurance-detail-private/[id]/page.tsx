@@ -1,6 +1,5 @@
 import React from 'react';
 
-import background from '@/../public/images/dummy/banner-investment-detail.jpg';
 import Image from 'next/image';
 import { ACT_GetTopMenuNavbar } from '@/app/(views)/$action/action.get.top-menu-navbar';
 import GlobalFooter from '@/lib/element/global/global.footer';
@@ -16,6 +15,7 @@ import PrivateHeader from '@/lib/element/global/header/private-header';
 import { ACT_GetHeaderLogoPrivate } from '@/app/(views)/$action/header-logo/action.get.header-logo-private';
 import CE_AccordionBancarsurancePrivate from '@/app/bancassurance-detail-private/$element/client.accordion.bancasurrance-private';
 import CE_ShareContent from '@/lib/element/global/share-content';
+import noImage from '@/../public/images/no-image.png';
 
 export async function generateMetadata() {
   return {
@@ -40,6 +40,9 @@ export default async function page({ params }: { params: { id: string } }) {
     nid: +params.id,
   });
 
+  const headerImage =
+    getOurstoryData?.field_header_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url;
+
   return (
     <>
       <div>
@@ -52,13 +55,23 @@ export default async function page({ params }: { params: { id: string } }) {
           privateLogo={itemPriorityLogo || undefined}
         />
         <section className="relative overflow-hidden h-[65vh] lg:mb-[3.125rem] w-full bg-cover before:absolute before:left-0 before:top-0 before:w-full before:h-full flex justify-center items-center before:bg-gradient-to-b before:from-black before:to-black before:opacity-40 z-0 border-b-[15px] border-[#D2D2D2]">
-          <Image
-            src={background ?? ''}
-            alt="bg-image"
-            width={100000}
-            height={100000}
-            className="w-full h-full object-cover object-top"
-          />
+          {headerImage ? (
+            <Image
+              src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${headerImage ?? ''}`}
+              alt="bg-image"
+              width={100000}
+              height={100000}
+              className="w-full h-full object-cover object-top"
+            />
+          ) : (
+            <Image
+              src={noImage}
+              alt="bg-image"
+              width={100000}
+              height={100000}
+              className="w-full h-full object-cover object-top"
+            />
+          )}
           <div className="z-10 absolute text-center flex flex-col items-center ">
             <h1 className="text-4xl text-white font-bold uppercase">
               {getOurstoryData?.title?.[0]?.value ?? ''}

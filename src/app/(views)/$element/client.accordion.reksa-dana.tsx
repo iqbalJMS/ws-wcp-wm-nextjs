@@ -5,7 +5,7 @@ import { MinusIcon } from '@/lib/element/global/icons/minus-icon';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 type T_AccordionProps = {
-  renderContent: React.ReactNode;
+  renderContent: string;
   renderTitle: React.ReactNode;
   isOpen?: boolean;
 };
@@ -57,10 +57,11 @@ export default function CE_AcordionReksaDana({
       <div
         className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100 pt-16 pb-6 py-4 w-full px-5 md:w-9/12 xl:w-5/12' : 'grid-rows-[0fr] opacity-0 py-4 w-full px-5 md:w-9/12 xl:w-5/12'}`}
       >
-        <div
-          className="overflow-hidden accordion-content parsehtml"
-          dangerouslySetInnerHTML={{ __html: (renderContent as any) ?? '' }}
-        />
+        {parseHTMLToReact(
+          renderContent,
+          'overflow-hidden accordion-content parsehtml',
+          true
+        )}
       </div>
     </section>
   );
