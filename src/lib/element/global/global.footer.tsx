@@ -51,7 +51,7 @@ function RowElement({
             </div>
             <div className="flex items-start pt-2">
               <Image
-                src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${data?.field_company_address_icon?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
+                src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${data?.field_company_address_icon?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ''}`}
                 width={30}
                 height={30}
                 alt=""
@@ -76,7 +76,7 @@ function RowElement({
                 href={relative ?? alias}
               >
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon ?? ''}`}
+                  src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${icon ?? ''}`}
                   width={20}
                   height={20}
                   alt=""
@@ -196,7 +196,7 @@ function TermsAllReservedElement({
                     >
                       {icon && (
                         <Image
-                          src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${icon ?? ''}`}
+                          src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${icon ?? ''}`}
                           width={16}
                           height={16}
                           alt={title}

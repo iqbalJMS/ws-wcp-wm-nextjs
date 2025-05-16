@@ -96,7 +96,7 @@ export default function InputPhone({
         >
           <div className="flex items-center gap-2">
             <Image
-              src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${selectedCountry.flag}`}
+              src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${selectedCountry.flag}`}
               alt="flag"
               width={20}
               height={15}
@@ -113,7 +113,7 @@ export default function InputPhone({
                 className="flex items-center justify-left gap-2 px-3 py-2 hover:bg-gray-200 cursor-pointer"
               >
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${country.flag}`}
+                  src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${country.flag}`}
                   alt={country.code}
                   width={20}
                   height={15}

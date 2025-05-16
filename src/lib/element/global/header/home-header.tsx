@@ -100,7 +100,7 @@ export function LoginButton({
                   <div className={`flex items-center space-x-3'`}>
                     <div className="mr-2">
                       <Image
-                        src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon ?? ''}`}
+                        src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${loginItem?.icon ?? ''}`}
                         alt=""
                         width={30}
                         height={30}
@@ -224,7 +224,7 @@ export default function HomeHeader({
                       >
                         {header.icon && (
                           <Image
-                            src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${header?.icon ?? ''}`}
+                            src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${header?.icon ?? ''}`}
                             width={18}
                             height={18}
                             alt={`icon-${header.icon}`}
@@ -252,7 +252,7 @@ export default function HomeHeader({
                       >
                         {header.icon && (
                           <Image
-                            src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${header?.icon ?? ''}`}
+                            src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${header?.icon ?? ''}`}
                             width={18}
                             height={18}
                             alt={`icon-${header.icon}`}
@@ -310,7 +310,7 @@ export default function HomeHeader({
                 ?.url ? (
                 <Image
                   alt="logo-bri"
-                  src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ``}`}
+                  src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ``}`}
                   width={128}
                   height={53}
                   className={`${isScrolling ? '' : variant === 'no-transparent' ? 'z-50' : 'filter brightness-0 invert z-50'} `}
@@ -362,7 +362,7 @@ export default function HomeHeader({
                   ?.uri?.[0]?.url ? (
                   <Image
                     alt="logo-bri"
-                    src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ``}`}
+                    src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${headerLogo?.field_logo_alternative?.[0]?.thumbnail?.[0]?.uri?.[0]?.url ?? ``}`}
                     width={150}
                     height={60}
                     className={`${isScrolling ? 'z-50' : variant === 'no-transparent' ? 'z-50' : 'filter brightness-0 invert z-50'} `}
