@@ -345,8 +345,8 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .parsehtml img {
-  width: 150px;
-  height: 150px;
+  width: 80%;
+  max-width: 90%;
 }
 
 .triangle {

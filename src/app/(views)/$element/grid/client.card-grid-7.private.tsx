@@ -3,9 +3,9 @@
 import React, { useEffect } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
-import Link from 'next/link';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import router from 'next/router';
 
 const CE_CardGrid7Private = ({
   dataCard,
@@ -49,11 +49,13 @@ const CE_CardGrid7Private = ({
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-8/12 lg:w-10/12 2xl:w-8/12 gap-10">
           <>
             {dataCard?.map((item, index) => (
-              <Link
+              <div
+                onClick={() =>
+                  router.push(`/article-detail/${item?.nid} ?? '/404'}`)
+                }
                 data-aos="fade-up"
                 data-aos-duration="800"
                 key={index}
-                href={`${variant === 'wm-private-main-navigation' ? `/article-detail/${item?.nid}` : `/article-detail-priority/${item?.nid ?? ''}`}`}
                 className="flex-none cursor-default px-10 mb-10 "
               >
                 <div className="w-80 group cursor-pointer p-3 hover:border hover:shadow-lg">
@@ -90,7 +92,7 @@ const CE_CardGrid7Private = ({
                     </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </>
         </div>

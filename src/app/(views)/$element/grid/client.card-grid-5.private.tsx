@@ -28,7 +28,6 @@ const CE_CardGrid5Private = ({
   } else if (variant == 'wm-prioritas-main-navigation') {
     theme = 'prioritycolor';
   }
-
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-GB', {
@@ -73,7 +72,7 @@ const CE_CardGrid5Private = ({
                     <div className="text-xs text-black font-semibold uppercase">
                       <span className="pr-2">{item?.category ?? ''}</span> |
                       <span className="pl-3">
-                        {formatDate(item?.date ?? '')} hello
+                        {formatDate(item?.date ?? '')}
                       </span>
                     </div>
                     <div
