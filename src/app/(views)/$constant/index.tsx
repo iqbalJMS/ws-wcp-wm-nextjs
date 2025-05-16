@@ -1432,7 +1432,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
         return {
           desc: _component?.field_content?.[0]?.value.replace(
             /\/sites\/default/g,
-            `${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}/sites/default`
+            `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
           ),
         };
       },
