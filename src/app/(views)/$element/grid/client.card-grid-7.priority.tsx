@@ -3,9 +3,9 @@
 import React, { useEffect } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import Image from 'next/image';
-import Link from 'next/link';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import router from 'next/router';
 
 const CE_CardGrid7Priority = ({
   dataCard,
@@ -48,11 +48,13 @@ const CE_CardGrid7Priority = ({
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-8/12 lg:w-10/12 2xl:w-8/12 gap-10">
           <>
             {dataCard?.map((item, index) => (
-              <Link
+              <div
+                onClick={() =>
+                  router.push(`/article-detail-priority/${item?.nid ?? '/404'}`)
+                }
                 data-aos="fade-up"
                 data-aos-duration="800"
                 key={index}
-                href={`/article-detail-priority/${item?.nid ?? '/404'}`}
                 className="flex-none cursor-default px-10 mb-10"
               >
                 <div className="w-80 group cursor-pointer p-3 hover:border hover:shadow-lg">
@@ -77,14 +79,14 @@ const CE_CardGrid7Priority = ({
                     <div
                       className={`text-${theme} line-clamp-2 font-bold text-base mb-2 pt-3 leading-5`}
                     >
-                      {parseHTMLToReact(item?.title)}
+                      {parseHTMLToReact(item?.title ?? '')}
                     </div>
                     <div className="font-light line-clamp-3 text-sm text-[#BB907C]">
-                      {parseHTMLToReact(item?.description)}
+                      {parseHTMLToReact(item?.description ?? '')}
                     </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </>
         </div>

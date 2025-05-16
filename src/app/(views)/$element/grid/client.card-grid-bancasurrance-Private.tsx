@@ -51,7 +51,7 @@ const CE_BancasurrancePrivate = ({
                 </div>
                 <div className="p-3 h-64">
                   <div className="text-black text-xl font-extrabold uppercase">
-                    {item?.title} helloo
+                    {item?.title}
                   </div>
                   <div className="py-5 text-slate-600 line-clamp-3">
                     {parseHTMLToReact(item?.description)}

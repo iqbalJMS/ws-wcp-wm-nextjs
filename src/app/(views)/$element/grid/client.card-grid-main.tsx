@@ -26,8 +26,8 @@ const CE_GridMain = ({
 }) => {
   const listProduct = data.filter(
     (item) =>
-      item.site?.[0]?.value === siteParams &&
-      item?.category?.[0]?.value === categoryParams
+      item.site?.find(({ value }) => value === siteParams) &&
+      item.category?.find(({ value }) => value === categoryParams)
   );
 
   return (

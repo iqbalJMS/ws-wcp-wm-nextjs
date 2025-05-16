@@ -58,8 +58,8 @@ export default function CE_ShareContent() {
                   rel="noreferrer"
                 >
                   <TwitterIcon
-                    fill="#4B5563"
-                    className=""
+                    fill="#ffffff"
+                    className="bg-[#4B5563] rounded-full p-1"
                     height={35}
                     width={35}
                   />

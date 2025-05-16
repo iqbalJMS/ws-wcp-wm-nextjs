@@ -814,7 +814,6 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
       },
     },
 
-    // {Card Variant 4}
     card4: {
       component: CE_CardVariant4,
       props: (_component: T_CardVariant04) => {
