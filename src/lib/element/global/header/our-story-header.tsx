@@ -101,7 +101,7 @@ export function LoginButton({
                 >
                   <div className="mr-2">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${loginItem?.icon ?? ''}`}
+                      src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${loginItem?.icon ?? ''}`}
                       alt=""
                       width={30}
                       height={30}
@@ -203,7 +203,7 @@ export default function OurStoryHeader({
                       >
                         {header.icon && (
                           <Image
-                            src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${header?.icon ?? ''}`}
+                            src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${header?.icon ?? ''}`}
                             width={18}
                             height={18}
                             alt={`icon-${header.icon}`}
@@ -231,7 +231,7 @@ export default function OurStoryHeader({
                       >
                         {header.icon && (
                           <Image
-                            src={`${process.env.NEXT_PUBLIC_DRUPAL_ENDPOINT}${header?.icon ?? ''}`}
+                            src={`${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=${header?.icon ?? ''}`}
                             width={18}
                             height={18}
                             alt={`icon-${header.icon}`}

@@ -51,6 +51,10 @@ module.exports = {
         hostname: 'admin-bri-corpsite.dev-kjt.id',
       },
       {
+        protocol: 'https',
+        hostname: 'http://ms-wcp-aether-drupal:5000',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
       },

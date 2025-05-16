@@ -178,7 +178,7 @@ export default function CE_CarouselVariant3({
     <>
       <div
         data-aos="fade-up"
-        className="w-full h-[80vh] flex flex-col items-center justify-center relative overflow-hidden"
+        className="w-full h-[80vh] flex flex-col items-center justify-center relative overflow-hidden bg-red-500"
       >
         <section className="flex justify-between w-10/12 lg:w-11/12 xl:w-11/12 2xl:w-8/12 pb-5 md:pb-0">
           <div>
