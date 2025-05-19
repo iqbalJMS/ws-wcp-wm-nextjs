@@ -55,7 +55,7 @@ export default async function page({ params }: { params: { id: string } }) {
               alt="bg-image"
               width={100000}
               height={100000}
-              className="w-full h-full object-cover object-top"
+              className="w-full h-[600px] object-cover object-top"
             />
           ) : (
             <Image
@@ -63,7 +63,7 @@ export default async function page({ params }: { params: { id: string } }) {
               alt="bg-image"
               width={100000}
               height={100000}
-              className="w-full h-full object-cover object-top"
+              className="w-full h-[600px] object-cover object-top"
             />
           )}
           <div className="w-10/12 z-10 absolute text-center flex justify-center">
@@ -85,7 +85,10 @@ export default async function page({ params }: { params: { id: string } }) {
         </div>
         <section className="w-full flex flex-col justify-center items-center pb-10">
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
-            <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
+            <div
+              key={index}
+              className="w-full px-5 md:w-9/12 xl:w-10/12 2xl:w-6/12"
+            >
               <CE_AccordionInvestasi
                 renderContent={item?.field_content?.[0]?.processed ?? ''}
                 renderTitle={item?.field_title?.[0]?.value ?? ''}

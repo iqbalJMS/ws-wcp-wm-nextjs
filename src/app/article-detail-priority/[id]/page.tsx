@@ -63,7 +63,7 @@ export default async function page({ params }: { params: { id: string } }) {
               alt="bg-image"
               width={100000}
               height={100000}
-              className="w-full h-full object-cover object-top"
+              className="w-full h-[600px] object-cover object-top"
             />
           ) : (
             <Image
@@ -71,7 +71,7 @@ export default async function page({ params }: { params: { id: string } }) {
               alt="bg-image"
               width={100000}
               height={100000}
-              className="w-full h-full object-cover object-top"
+              className="w-full h-[600px] object-cover object-top"
             />
           )}
           <div className="absolute w-full z-10 flex justify-center">

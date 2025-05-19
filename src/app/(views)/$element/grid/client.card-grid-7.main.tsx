@@ -1,7 +1,7 @@
 'use client';
 
-import CE_CardGrid7Priority from './client.card-grid-7.priority';
-import CE_CardGrid7Private from './client.card-grid-7.private';
+import CE_CardGrid7Priority from '@/app/(views)/$element/grid/client.card-grid-7.priority';
+import CE_CardGrid7Private from '@/app/(views)/$element/grid/client.card-grid-7.private';
 
 const CE_GridCard7Main = ({
   variant,
