@@ -1289,7 +1289,13 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           case WIDGET_VARIANT.variant12:
             return <CE_CardGrid6Main dataCard={data} variant={theme} />;
           case WIDGET_VARIANT.variant11:
-            return <CE_GridCard7Main dataCard={data} variant={theme} />;
+            return (
+              <CE_GridCard7Main
+                dataCard={data}
+                variant={theme}
+                siteParams={siteProps}
+              />
+            );
           case 'product':
             return (
               <CE_GridMain
@@ -1332,6 +1338,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             description: item?.body?.[0]?.value,
             image: item?.field_image?.[0]?.thumbnail?.[0]?.uri?.[0]?.url,
             nid: item?.nid?.[0]?.value,
+            site: item?.field_site_id?.[0]?.name,
           };
         });
 
@@ -1366,7 +1373,6 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
 
         const categoryData = _component?.field_category_product?.[0]?.value;
         const siteData = _component?.field_site?.[0]?.value;
-
         switch (findEntityBundle) {
           case WIDGET_VARIANT.variant10:
             return {
@@ -1382,6 +1388,7 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
             return {
               entity: findEntityBundle,
               data: dataGridV7,
+              siteProps: siteData,
             };
           case 'location':
             return {
