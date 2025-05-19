@@ -64,7 +64,7 @@ export default async function page({
               alt="bg-image"
               width={100000}
               height={100000}
-              className="w-full h-full object-cover object-top"
+              className="w-full h-[600px] object-cover object-top"
             />
           ) : (
             <Image
@@ -72,7 +72,7 @@ export default async function page({
               alt="bg-image"
               width={100000}
               height={100000}
-              className="w-full h-full object-cover object-top"
+              className="w-full h-[600px] object-cover object-top"
             />
           )}
           <div className="absolute w-full z-10 flex justify-center">
@@ -100,7 +100,10 @@ export default async function page({
         </div>
         <section className="w-full flex flex-col justify-center items-center pb-10">
           {getOurstoryData?.field_items?.map((item: any, index: number) => (
-            <div key={index} className=" w-full px-5 md:w-9/12 xl:w-5/12">
+            <div
+              key={index}
+              className="w-full px-5 md:w-9/12 xl:w-10/12 2xl:w-6/12"
+            >
               <AccordionProgram
                 isOpen={index === 0}
                 renderContent={item?.field_content?.[0]?.processed ?? ''}

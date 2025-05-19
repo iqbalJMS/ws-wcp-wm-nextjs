@@ -298,7 +298,6 @@ input[type='range']::-webkit-slider-thumb {
 .parsehtml .text-align-justify {
   @apply text-justify;
 }
-
 .parsehtml .text-align-right {
   @apply text-right;
 }
@@ -310,8 +309,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .parsehtml table {
-  display: flex;
-  justify-content: center;
+  @apply flex justify-center w-full;
 }
 
 .parsehtml table thead tr th {
