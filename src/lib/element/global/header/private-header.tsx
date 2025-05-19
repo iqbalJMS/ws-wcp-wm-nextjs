@@ -353,14 +353,16 @@ export default function PrivateHeader({
             <div>
               <div className="flex items-center gap-2">
                 {/* hidden for a while */}
-                <div className="">
-                  <LoginButton
-                    menuItems={itemLogin}
-                    isActive={isButtonActive}
-                    setIsActive={setIsButtonActive}
-                    refElement={elementRef}
-                  />
-                </div>
+                {!!itemLogin.length && (
+                  <div className="">
+                    <LoginButton
+                      menuItems={itemLogin}
+                      isActive={isButtonActive}
+                      setIsActive={setIsButtonActive}
+                      refElement={elementRef}
+                    />
+                  </div>
+                )}
                 {!activeMenu && (
                   <div
                     onClick={() => setActiveMenu(true)}
@@ -525,14 +527,16 @@ export default function PrivateHeader({
             </div>
             {/* hidden for a while */}
             <div className="">
-              <div className="pb-2 border-b-4 border-transparent lg:block hidden ml-4">
-                <LoginButton
-                  menuItems={itemLogin}
-                  isActive={isButtonActive}
-                  setIsActive={setIsButtonActive}
-                  refElement={elementRef}
-                />
-              </div>
+              {!!itemLogin.length && (
+                <div className="border-b-4 border-transparent lg:block hidden ml-4">
+                  <LoginButton
+                    refElement={elementRef}
+                    menuItems={itemLogin}
+                    isActive={isButtonActive}
+                    setIsActive={setIsButtonActive}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
