@@ -22,7 +22,7 @@ export default function CE_ShareContent() {
   };
   const pathname = usePathname();
 
-  const urlLink = `${process.env.NEXT_PUBLIC_BASE_URL}/web/wealth-management${pathname}`;
+  const urlLink = `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/web/wealth-management${pathname}`;
 
   setTimeout(() => {
     closeModal();
