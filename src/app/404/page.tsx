@@ -7,20 +7,17 @@ import CE_HeaderMagazine from '@/app/magazine/$element/client.header.magazine';
 import LogoNotFound from '@/../../public/images/not-found.png';
 import { ACT_GetMenuItemNavbar } from '@/app/(views)/$action/action.get-menu-item-navbar';
 
+export async function generateMetadata() {
+  return {
+    title: `Not Found - Bank BRI | Melayani Dengan Setulus Hati`,
+  };
+}
 export default async function NotFoundPage() {
   const listHeaderTop = await ACT_GetTopMenuNavbar({ lang: 'en' });
   const listHeaderBottom = await ACT_GetMainMenuNavbar({ lang: 'id' });
   const itemMenuLogin = await ACT_GetMenuItemNavbar({ lang: 'en' });
   return (
     <div>
-      <head>
-        Not found - Bank BRI | Melayani Dengan Setulus Hati
-        <meta
-          property="og:title"
-          content="Not found - Bank BRI | Melayani Dengan Setulus Hati"
-          key="title"
-        />
-      </head>
       <CE_HeaderMagazine
         headerTop={listHeaderTop}
         headerBottom={listHeaderBottom}
