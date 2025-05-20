@@ -109,3 +109,16 @@ export default async function page({ params }: { params: { id: string } }) {
     </>
   );
 }
+
+// '<p>Program Asuransi yang memberikan manfaat perlindungan terhadap Jiwa (Meninggal Dunia) atau mengidap penyakit kritis dengan manfaat pengembalian premi di akhir masa asuransi.</p>
+// \n
+
+//   < article class="media media--type-document media--view-mode-default" >\n  \n      \n < div class="field field--name-field-media-file field--type-file field--label-visually_hidden" >\n < div class="field__label visually-hidden" > File</ >\n < div class="field__item" >\n < span class="file file--mime-application-pdf file--application-pdf" ><a href="/sites/default/files/documents/Resume%20Iqbal%20%28%20CV%20%29.pdf" type="application/pdf">Resume Iqbal ( CV ).pdf</a> <span class="file__size">(204.19 KB)</span></ >\n</div >\n          </div >\n\n  </article >
+
+// \n
+
+//   <table>\n<thead>\n<tr>\n < th > <strong>Cara Bayar</strong></ >\n < th > <strong>Premi Total Berkala</strong></ >\n < th > <strong>Premi Total Berkala</strong></ >\n < th > <strong>Premi Topup Berkala</strong></ >\n</tr >\n</thead >\n<tbody>\n<tr>\n < td > Tahunan</ >\n < td > 3.000.000</ >\n < td > 2.400.000</td >\n < td > 600.000</ >\n</tr >\n<tr>\n < td > Semesteran</ >\n < td > 1.500.000</ >\n < td > 1.200.000</ >\n < td > 300.000</ >\n</tr >\n<tr>\n < td > Triwulanan</ >\n < td > 750.000</ >\n < td > 600.000</ >\n < td > 150.000</ >\n</tr >\n<tr>\n < td > Bulan</ >\n < td > 250.000</ >\n < td > 200.000</ >\n < td > 50.000</ >\n</tr >\n</tbody >\n</table >
+
+// \n
+
+//   <table>\n<tbody>\n<tr>\n < td > <strong>Cara Bayar</strong></ >\n < td > <strong>Premi Total Berkala</strong></ >\n < td > <strong>Premi Total Berkala</strong></ >\n < td > <strong>Premi Topup Berkala</strong></ >\n</tr >\n<tr>\n < td > Tahunan</ >\n < td > 3.000.000</ >\n < td > 2.400.000</ >\n < td > 600.000</ >\n</tr >\n<tr>\n < td > Semesteran</ >\n < td > 1.500.000</ >\n < td > 1.200.000</ >\n < td > 300.000</ >\n</tr >\n<tr>\n < td > Triwulanan</ >\n < td > 750.000</ >\n < td > 600.000</ >\n < td > 150.000</ >\n</tr >\n<tr>\n < td > Bulan</ >\n < td > 250.000</ >\n < td > 200.000</ >\n < td > 50.000</ >\n</tr >\n</tbody >\n</table >\n'

@@ -12,7 +12,7 @@ export default function CE_FloatingVariant03({
 }) {
   return (
     <>
-      <div className="fixed top-[20%] -right-7 z-30">
+      <div className="fixed top-[20%] -right-2 z-30">
         <div className="transform translate-x-[6rem] hover:translate-x-0 cursor-pointer transition-all ease-in-out duration-300">
           {data?.map((item, index) => {
             return (
