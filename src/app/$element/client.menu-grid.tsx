@@ -112,15 +112,7 @@ export default function CE_MenuGrid({
                       }
                     />
                   )}
-                  <h2
-                    className={`font-bold text-base group-hover:text-white mb-2 ${
-                      variant === 'wm-private'
-                        ? 'text-black'
-                        : variant === 'wm-prioritas'
-                          ? 'text-black'
-                          : 'text-black'
-                    }`}
-                  >
+                  <h2 className="font-bold text-base group-hover:text-white mb-2 text-black">
                     {item.label}
                   </h2>
                   <h2 className="text-xs font-light group-hover:text-white text-center">
