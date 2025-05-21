@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import { useEffect, useRef, useState } from 'react';
-import sanitizeUrl from '@/lib/element/global/sanitizeUrl';
+import sanitizeUrl from '@/lib/functions/global/sanitizeUrl';
 
 const CE_ImageSliderMain = () => {
   const data = [

@@ -1,4 +1,4 @@
-import DOMPurify from 'dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 
 const sanitizeUrl = (url: string) => {
   // Check if the URL starts with http or https

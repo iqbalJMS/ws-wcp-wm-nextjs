@@ -19,7 +19,7 @@ import Link from 'next/link';
 import { useEffect, useState, useTransition } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import sanitizeUrl from '@/lib/element/global/sanitizeUrl';
+import sanitizeUrl from '@/lib/functions/global/sanitizeUrl';
 
 export default function CE_Location({
   variant,

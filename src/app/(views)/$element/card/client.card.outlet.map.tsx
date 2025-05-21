@@ -3,7 +3,7 @@ import React from 'react';
 import LocationIcon from '@/lib/element/global/location-icon';
 import Link from 'next/link';
 import Image from 'next/image';
-import sanitizeUrl from '@/lib/element/global/sanitizeUrl';
+import sanitizeUrl from '@/lib/functions/global/sanitizeUrl';
 
 export default function CE_CardOutletMap({
   image,

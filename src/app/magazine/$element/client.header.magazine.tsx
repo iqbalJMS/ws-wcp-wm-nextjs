@@ -14,7 +14,7 @@ import { T_ResponseGetMainMenuNavbar } from '@/api/navbar-menu/main-navbar/priva
 import { T_ResponseGetMenuItemNavbar } from '@/api/navbar-menu/menu-items/api.get-menu-items-navbar.type';
 import ChevronDown from '@/lib/element/global/icons/chevron-button-navbar';
 import { Search } from '@/lib/element/global/global.search';
-import sanitizeUrl from '@/lib/element/global/sanitizeUrl';
+import sanitizeUrl from '@/lib/functions/global/sanitizeUrl';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 

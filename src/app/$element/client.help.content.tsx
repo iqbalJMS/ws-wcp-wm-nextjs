@@ -6,7 +6,7 @@ import React, { useRef } from 'react';
 import SE_HelpSectionSelect from './server.help.select';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import { T_InputSelectItem } from '@/lib/element/client/input';
-import sanitizeUrl from '@/lib/element/global/sanitizeUrl';
+import sanitizeUrl from '@/lib/functions/global/sanitizeUrl';
 type T_HelpContentProps = {
   listItems: T_InputSelectItem[];
   title: string;

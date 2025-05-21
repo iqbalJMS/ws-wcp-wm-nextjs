@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
-import { useState } from 'react';
+import sanitizeUrl from '@/lib/functions/global/sanitizeUrl';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import Image from 'next/image';
-import sanitizeUrl from './sanitizeUrl';
+import Link from 'next/link';
+import { useState } from 'react';
 
 export function CarouselVariant1() {
   const [currentSlide, setCurrentSlide] = useState(0);
