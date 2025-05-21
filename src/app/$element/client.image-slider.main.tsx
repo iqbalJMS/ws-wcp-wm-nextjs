@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import { useEffect, useRef, useState } from 'react';
+import sanitizeUrl from '@/lib/element/global/sanitizeUrl';
 
 const CE_ImageSliderMain = () => {
   const data = [
@@ -109,7 +110,7 @@ const CE_ImageSliderMain = () => {
               style={{ minWidth: `${100 / slidesToShow}%` }}
             >
               <div className="w-full h-40 mdmax:h-[5rem] border-[.12rem] border-transparent hover:border-orange-01 overflow-hidden rounded-md">
-                <Link href={slide.btnText ?? 'undefined'} target="_blank">
+                <Link href={sanitizeUrl(slide.btnText)}>
                   <Image
                     src={slide.imgUrl}
                     width={400}

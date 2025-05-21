@@ -5,6 +5,7 @@ import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 import { useState } from 'react';
 import useScreenWidth from '@/lib/hook/useScreenWidth';
 import Image from 'next/image';
+import sanitizeUrl from './sanitizeUrl';
 
 export function CarouselVariant1() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -99,7 +100,7 @@ export function CarouselVariant1() {
                   key={index}
                   className="w-1/4 bg-blue-200 mdmax:w-1/2 flex-none px-2"
                 >
-                  <Link href={dataItem.text ?? '/404'} target="_blank">
+                  <Link href={sanitizeUrl(dataItem.text)} target="_blank">
                     <div className="p-4 mdmax:p-2 shadow-lg">
                       <div className="w-full h-[12rem] mb-2">
                         <Image

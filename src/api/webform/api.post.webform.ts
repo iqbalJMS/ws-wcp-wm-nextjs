@@ -2,9 +2,8 @@
 
 import { T_FormGetInvitedRequest } from './api.post.webform.type';
 
-const user = process.env.NEXT_PUBLIC_DRUPAL_AUTH || process.env.DRUPAL_AUTH;
-const pass =
-  process.env.NEXT_PUBLIC_DRUPAL_PASSWORD || process.env.DRUPAL_PASSWORD;
+const account = process.env.DRUPAL_AUTH;
+const code = process.env.DRUPAL_PASSWORD;
 
 const token = async () => {
   try {
@@ -34,7 +33,7 @@ export async function API_PostWebForm(
           body: JSON.stringify(request),
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Basic ${btoa(`${user}:${pass}`)}`,
+            Authorization: `Basic ${btoa(`${account}:${code}`)}`,
             'X-CSRF-Token': xcsrf,
           },
         }

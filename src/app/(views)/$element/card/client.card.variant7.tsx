@@ -19,6 +19,7 @@ import Link from 'next/link';
 import { useEffect, useState, useTransition } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import sanitizeUrl from '@/lib/element/global/sanitizeUrl';
 
 export default function CE_Location({
   variant,
@@ -121,16 +122,21 @@ export default function CE_Location({
                 </h2>
                 <h3 className="text-sm ">{item.phone}</h3>
               </div>
-              <div className="flex items-center space-x-3">
-                <LocationIcon className="" width={20} stroke="#070059" />
-                <Link
-                  target="_blank"
-                  href={`${item?.urlMaps}`}
-                  className="text-[#3E4182] text-base hover:underline"
-                >
-                  Lihat di Peta
-                </Link>
-              </div>
+              {item?.urlMaps ? (
+                <div className="flex items-center space-x-3">
+                  <LocationIcon className="" width={20} stroke="#070059" />
+                  <Link
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href={sanitizeUrl(item?.urlMaps)}
+                    className="text-[#3E4182] text-base hover:underline"
+                  >
+                    Lihat di Peta
+                  </Link>
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
           ))}
         </section>

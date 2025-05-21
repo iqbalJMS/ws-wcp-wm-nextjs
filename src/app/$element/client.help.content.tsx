@@ -6,7 +6,7 @@ import React, { useRef } from 'react';
 import SE_HelpSectionSelect from './server.help.select';
 import useOnClickOutside from '@/lib/hook/useOnClickOutside';
 import { T_InputSelectItem } from '@/lib/element/client/input';
-
+import sanitizeUrl from '@/lib/element/global/sanitizeUrl';
 type T_HelpContentProps = {
   listItems: T_InputSelectItem[];
   title: string;
@@ -51,7 +51,7 @@ export default function CE_HelpContent({
             </div>
           </div>
           <div className="relative z-10">
-            <Link href={selectedItem.value ?? 'undefined'}>
+            <Link href={sanitizeUrl(selectedItem.value)}>
               <button
                 disabled={isOpen}
                 className={`font-normal text-sm text-white rounded-full md:py-4 py-2 px-6 w-full ${
