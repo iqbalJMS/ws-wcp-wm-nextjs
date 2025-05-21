@@ -10,10 +10,7 @@ export function CE_ContentGridMain({ data }: T_ContentGridMainProps) {
         <div className="container">
           <div>
             {data.map((dataItem, index) => (
-              <div
-                key={index}
-                className={['mb-10', dataItem.image ? '' : ''].join(' ')}
-              >
+              <div key={index} className="mb-10">
                 <div
                   className={[
                     '',

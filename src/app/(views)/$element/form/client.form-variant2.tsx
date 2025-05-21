@@ -273,6 +273,11 @@ export default function CE_FormVariant2({
               />
             </div>
           </div>
+          {formError.telepon && (
+            <div className="mt-5">
+              <InputError message={formError.telepon} />
+            </div>
+          )}
 
           {/* Input Radio */}
           <section className="text-white flex flex-col space-y-2 pt-5">

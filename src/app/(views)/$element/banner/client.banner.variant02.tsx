@@ -4,12 +4,8 @@ import React, { useEffect, useState, MouseEvent, useRef } from 'react';
 import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 const getSlideToShow = (screenWidth: number) => {
-  if (!screenWidth) return 3;
-
-  if (screenWidth > 1200) {
-    return 2;
-  } else if (screenWidth <= 1200 && screenWidth >= 768) {
-    return 2;
+  if (!screenWidth) {
+    return 3;
   } else {
     return 2;
   }

@@ -369,7 +369,10 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
           const alt = item?.field_image?.[0]?.thumbnail?.[0]?.filename?.value;
           const label = item?.field_video?.[0]?.name?.[0]?.value;
           const desc = item?.field_title?.[0]?.value;
-          const video = `https://www.youtube.com/embed/${youtubeLinks[youtubeLinks.length - 1]}`;
+          const video =
+            youtubeLinks?.length >= 0
+              ? `https://www.youtube.com/embed/${youtubeLinks[youtubeLinks.length - 1]}`
+              : '';
           const labelVideo = item?.field_video?.[0]?.name?.[0]?.value;
           const subLabel = item?.field_title?.[0]?.value;
 

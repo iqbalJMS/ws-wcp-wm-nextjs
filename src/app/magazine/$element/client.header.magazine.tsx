@@ -309,7 +309,7 @@ export default function CE_HeaderMagazine({
                   src={LogoWefo}
                   width={128}
                   height={53}
-                  className={`${isScrolling ? '' : ''} cursor-pointer`}
+                  className="cursor-pointer"
                 />
               </Link>
               <div className="mdmax:w-full">

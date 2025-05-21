@@ -90,14 +90,7 @@ export default function CE_CardVariant15Priority({
                 )}
               </div>
               <div className="pt-8 xl:pt-16 space-x-4">
-                {pathName === '/debit-detail-prioritas' ? (
-                  <Link
-                    href={`${buttonUri ?? '/404'}`}
-                    className="uppercase bg-prioritycolor text-base font-semibold bg-prtext-prioritycolor text-white rounded-full py-2 px-4 hover:bg-gray-500 duration-300"
-                  >
-                    {buttonText}
-                  </Link>
-                ) : (
+                {pathName === '/debit-detail-prioritas' && (
                   <Link
                     href={`${buttonUri ?? '/404'}`}
                     className="uppercase bg-prioritycolor text-base font-semibold bg-prtext-prioritycolor text-white rounded-full py-2 px-4 hover:bg-gray-500 duration-300"
