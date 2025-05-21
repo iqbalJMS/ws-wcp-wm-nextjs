@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 export const BASE_URL =
   process.env.SELF_BASE_URL || process.env.NEXT_PUBLIC_SELF_BASE_URL || '';
 
@@ -16,7 +18,9 @@ export function parseHTMLToReact(
     <div
       className={className}
       dangerouslySetInnerHTML={{
-        __html: !hasBaseUrl ? htmlString : bodyRender(htmlString),
+        __html: DOMPurify.sanitize(
+          !hasBaseUrl ? htmlString : bodyRender(htmlString)
+        ),
       }}
     />
   );
