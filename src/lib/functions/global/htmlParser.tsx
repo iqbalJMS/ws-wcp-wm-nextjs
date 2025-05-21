@@ -1,4 +1,4 @@
-import DOMPurify from 'dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 
 export const BASE_URL =
   process.env.SELF_BASE_URL || process.env.NEXT_PUBLIC_SELF_BASE_URL || '';
