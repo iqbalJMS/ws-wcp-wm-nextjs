@@ -111,7 +111,7 @@ type T_content_type = {
   field_article_category: Array<{ name: Array<{ value: string }> }>;
   field_hero_image: any[];
   field_image: Array<T_FieldImage>;
-  field_site_id: any[];
+  field_site_id: Array<{ name: Array<{ value: string }> }>;
   field_summary: Array<{ value: string }>;
   field_items: Array<{ field_title: Array<{ value: string }> }>;
   field_phone: Array<{ value: string }>;

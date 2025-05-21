@@ -54,11 +54,11 @@ export default function CE_AccordionBancarsurance({
         </div>
       </div>
       <div
-        className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100 pt-16 px-16 pb-6' : 'grid-rows-[0fr] opacity-0'}`}
+        className={`${styles.renderContent} ${accordionOpen ? 'grid-rows-[1fr] opacity-100 pt-16 px-16 pb-6 w-full' : 'grid-rows-[0fr] opacity-0'}`}
       >
         {parseHTMLToReact(
           renderContent,
-          'overflow-hidden accordion-content parsehtml',
+          'overflow-hidden accordion-content parsehtml w-full',
           true
         )}
       </div>
@@ -69,5 +69,5 @@ export default function CE_AccordionBancarsurance({
 const styles = {
   buttonContainer: 'flex items-center w-full',
   renderContent:
-    'grid overflow-hidden transition-all duration-500 ease-in-out rounded-b-[40px] bg-[#EEEE] -mt-10 py-6 px-16',
+    'grid overflow-hidden transition-all duration-500 ease-in-out rounded-b-[40px] bg-[#EEEE] -mt-10 py-6 px-0 lg:px-5',
 };
