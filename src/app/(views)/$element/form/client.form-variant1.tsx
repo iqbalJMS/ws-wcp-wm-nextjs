@@ -469,8 +469,9 @@ export default function CE_FormVariant1({
                 <input
                   className="text-black border-[1px] border-black rounded-2xl bg-transparent w-full md:w-5/12 px-5 py-3 outline-4 outline-offset-4 outline-[#80ACFF] transition-all ease-in-out duration-300"
                   placeholder={
-                    `${dictionary?.field.general.enter} ${dictionary?.field.track.captcha}` ||
-                    'Verifikasi Captcha'
+                    dictionary?.field
+                      ? `${dictionary?.field.general.enter} ${dictionary?.field.track.captcha}`
+                      : 'Verifikasi Captcha'
                   }
                   type="text"
                   value={captcha.form}
