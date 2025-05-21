@@ -14,6 +14,7 @@ import { T_ResponseGetMainMenuNavbar } from '@/api/navbar-menu/main-navbar/priva
 import { T_ResponseGetMenuItemNavbar } from '@/api/navbar-menu/menu-items/api.get-menu-items-navbar.type';
 import ChevronDown from '@/lib/element/global/icons/chevron-button-navbar';
 import { Search } from '@/lib/element/global/global.search';
+import sanitizeUrl from '@/lib/element/global/sanitizeUrl';
 
 const LIST_LANGUAGES = ['ID', 'EN'];
 
@@ -91,7 +92,11 @@ export function LoginButton({
               key={index}
               className="w-full bg-white mb-2 px-5 py-4 rounded-3xl"
             >
-              <Link href={loginItem?.uri ?? '/404'} target="_blank">
+              <Link
+                href={sanitizeUrl(loginItem?.uri)}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 <div
                   className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
                 >

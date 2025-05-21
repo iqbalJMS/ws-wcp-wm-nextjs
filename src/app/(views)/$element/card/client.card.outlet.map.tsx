@@ -3,6 +3,7 @@ import React from 'react';
 import LocationIcon from '@/lib/element/global/location-icon';
 import Link from 'next/link';
 import Image from 'next/image';
+import sanitizeUrl from '@/lib/element/global/sanitizeUrl';
 
 export default function CE_CardOutletMap({
   image,
@@ -37,8 +38,9 @@ export default function CE_CardOutletMap({
                 width={20}
               />
               <Link
+                rel="noopener noreferrer"
                 target="_blank"
-                href={linkCta ?? '/404'}
+                href={sanitizeUrl(linkCta)}
                 className="pl-1 capitalize hover:underline text-privatecolor text-sm"
               >
                 {linkTitle}

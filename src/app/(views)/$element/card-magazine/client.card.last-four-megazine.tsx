@@ -171,6 +171,7 @@ export default function CE_LastFourMagazine({
                     ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
                     : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
                 }
+                rel="noopener noreferrer"
                 target="_blank"
                 key={index}
                 className="relative w-full h-[500px]  flex-none rounded-lg flex flex-col justify-center items-center bg-center overflow-hidden p-3"
@@ -294,6 +295,7 @@ export default function CE_LastFourMagazine({
                         ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
                         : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
                     }
+                    rel="noopener noreferrer"
                     target="_blank"
                     key={index}
                     className="group relative overflow-hidden w-[48%] h-[450px] flex-none flex flex-col justify-center items-center bg-center cursor-pointer"
@@ -372,6 +374,7 @@ export default function CE_LastFourMagazine({
                         ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
                         : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
                     }
+                    rel="noopener noreferrer"
                     target="_blank"
                     key={index}
                     className="group overflow-hidden w-96 xl:w-80"
