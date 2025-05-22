@@ -100,33 +100,63 @@ export function CarouselVariant1() {
                   key={index}
                   className="w-1/4 bg-blue-200 mdmax:w-1/2 flex-none px-2"
                 >
-                  <Link
-                    href={sanitizeUrl(dataItem.text)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <div className="p-4 mdmax:p-2 shadow-lg">
-                      <div className="w-full h-[12rem] mb-2">
-                        <Image
-                          src={dataItem.imgUrl}
-                          alt="image"
-                          width={400}
-                          height={400}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div>
-                        <div className=" text-red-01 font-semibold mb-2">
-                          {parseHTMLToReact(dataItem.label)}
+                  {sanitizeUrl(dataItem.text) === '#' ? (
+                    <a
+                      href={sanitizeUrl(dataItem.text)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <div className="p-4 mdmax:p-2 shadow-lg">
+                        <div className="w-full h-[12rem] mb-2">
+                          <Image
+                            src={dataItem.imgUrl}
+                            alt="image"
+                            width={400}
+                            height={400}
+                            className="w-full h-full object-cover"
+                          />
                         </div>
-                        {dataItem.text && (
-                          <div className="text-xs h-[4rem] overflow-auto">
-                            {parseHTMLToReact(dataItem.text)}
+                        <div>
+                          <div className=" text-red-01 font-semibold mb-2">
+                            {parseHTMLToReact(dataItem.label)}
                           </div>
-                        )}
+                          {dataItem.text && (
+                            <div className="text-xs h-[4rem] overflow-auto">
+                              {parseHTMLToReact(dataItem.text)}
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </Link>
+                    </a>
+                  ) : (
+                    <Link
+                      href={sanitizeUrl(dataItem.text)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <div className="p-4 mdmax:p-2 shadow-lg">
+                        <div className="w-full h-[12rem] mb-2">
+                          <Image
+                            src={dataItem.imgUrl}
+                            alt="image"
+                            width={400}
+                            height={400}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className=" text-red-01 font-semibold mb-2">
+                            {parseHTMLToReact(dataItem.label)}
+                          </div>
+                          {dataItem.text && (
+                            <div className="text-xs h-[4rem] overflow-auto">
+                              {parseHTMLToReact(dataItem.text)}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>

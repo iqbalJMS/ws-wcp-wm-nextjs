@@ -29,7 +29,6 @@ const VideoPlayerVariant1: React.FC<VideoPlayerVariant1Props> = ({
           src={`https://www.youtube.com/embed/${videoId}`}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          sandbox="allow-same-origin allow-scripts allow-presentation allow-popups"
           allowFullScreen
         />
       </div>
@@ -92,7 +91,6 @@ const VideoPlayerVariant2: React.FC<CompanyProfileProps> = ({
               src={`https://www.youtube.com/embed/${videoUrl}?autoplay=1`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              sandbox="allow-same-origin allow-scripts allow-presentation allow-popups"
               allowFullScreen
             ></iframe>
           )}
