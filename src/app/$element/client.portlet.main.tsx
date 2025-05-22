@@ -3,6 +3,7 @@
 import ButtonSecondary from '@/lib/element/global/button.secondary';
 import Link from 'next/link';
 import Image from 'next/image';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 const CE_PortletMain = ({
   title,
@@ -40,10 +41,12 @@ const CE_PortletMain = ({
               <div className="text-white text-3xl mb-5 font-semibold">
                 {title ?? ''}
               </div>
-              <div
-                className="text-white text-2xl mdmax:text-lg w-[80%] inline-block"
-                dangerouslySetInnerHTML={{ __html: description ?? '' }}
-              />
+              <div>
+                {parseHTMLToReact(
+                  description ?? '',
+                  'text-white text-2xl mdmax:text-lg w-[80%] inline-block'
+                )}
+              </div>
             </div>
             <div className="text-center">
               <Link href={button.link ?? '/404'}>

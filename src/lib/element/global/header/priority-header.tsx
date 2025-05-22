@@ -99,7 +99,11 @@ export function LoginButton({
                 key={index}
                 className="w-80 bg-white mb-2 px-5 py-4 rounded-3xl"
               >
-                <Link href={loginItem?.uri ?? '/404'} target="_blank">
+                <Link
+                  href={loginItem?.uri ?? '/404'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <div className={`flex items-center space-x-3`}>
                     <div className="mr-2">
                       <Image

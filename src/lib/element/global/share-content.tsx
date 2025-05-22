@@ -55,7 +55,7 @@ export default function CE_ShareContent() {
                 <Link
                   href={`https://x.com/intent/tweet?text=${urlLink ?? '/404'}`}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                 >
                   <TwitterIcon
                     fill="#ffffff"
@@ -69,6 +69,7 @@ export default function CE_ShareContent() {
                 <Link
                   href={`https://www.facebook.com/sharer/sharer.php?&quote=${urlLink ?? '/404'}`}
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FacebookIcon
                     className=""
@@ -82,6 +83,7 @@ export default function CE_ShareContent() {
                 <Link
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${urlLink ?? '/404'}`}
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <LinkedinIcon
                     className=""
@@ -95,6 +97,7 @@ export default function CE_ShareContent() {
                 <Link
                   href={`https://web.whatsapp.com/send?text=${urlLink ?? '/404'}`}
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <WhatsappIcon
                     className="bg-[#4B5563] rounded-full p-[3px]"

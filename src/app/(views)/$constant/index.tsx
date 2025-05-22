@@ -616,7 +616,6 @@ export const COMPONENT_MAP_WIDGET = (key: T_Widget, theme: string): any => {
               desc: item?.field_title?.[0]?.value,
             };
           });
-
         const videoCardData = _component?.field_column?.map((item) => {
           const youtubeLinks =
             item?.field_primary_cta?.[0]?.full_url?.split('/') || [];

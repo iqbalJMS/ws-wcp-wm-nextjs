@@ -100,7 +100,11 @@ export function CarouselVariant1() {
                   key={index}
                   className="w-1/4 bg-blue-200 mdmax:w-1/2 flex-none px-2"
                 >
-                  <Link href={sanitizeUrl(dataItem.text)} target="_blank">
+                  <Link
+                    href={sanitizeUrl(dataItem.text)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <div className="p-4 mdmax:p-2 shadow-lg">
                       <div className="w-full h-[12rem] mb-2">
                         <Image

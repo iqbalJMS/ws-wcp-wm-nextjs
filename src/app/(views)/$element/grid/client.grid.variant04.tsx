@@ -75,8 +75,6 @@ export default function CE_GridVariant04({
             data.length > 0 &&
             data.map((item, index) => (
               <div
-                data-aos="fade-up"
-                data-aos-duration="1000"
                 className="flex flex-col items-center mx-6 basis-[12%]"
                 key={index}
               >

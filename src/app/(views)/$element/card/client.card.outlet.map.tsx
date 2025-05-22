@@ -38,9 +38,9 @@ export default function CE_CardOutletMap({
                 width={20}
               />
               <Link
-                rel="noopener noreferrer"
-                target="_blank"
                 href={sanitizeUrl(linkCta)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="pl-1 capitalize hover:underline text-privatecolor text-sm"
               >
                 {linkTitle}

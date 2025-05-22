@@ -29,10 +29,10 @@ export default function CE_PortletVariant03({
             <div className="w-full flex justify-center">
               <div className="w-8/12 mt-20">
                 <Link
-                  rel="noopener noreferrer"
                   className="bg-white text-sm duration-150 hover:bg-prioritycolor font-medium rounded-full px-5 py-3 cursor-pointer text-blue hover:text-white uppercase"
                   href={sanitizeUrl(buttonLink)}
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {buttonText}
                 </Link>
