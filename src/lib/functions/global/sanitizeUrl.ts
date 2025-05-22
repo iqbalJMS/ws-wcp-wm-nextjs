@@ -1,9 +1,17 @@
-import DOMPurify from 'isomorphic-dompurify';
+const sanitizeUrl = (url: string): string => {
+  try {
+    const parsed = new URL(url);
+    const allowedProtocols = ['http:', 'https:'];
 
-const sanitizeUrl = (url: string) => {
-  // Check if the URL starts with http or https
-  const isValidUrl = /^(http|https):\/\//i.test(url);
-  return isValidUrl ? DOMPurify.sanitize(url) : '#'; // Return a safe fallback if invalid
+    if (allowedProtocols.includes(parsed.protocol)) {
+      return parsed.toString(); // Safe
+    }
+  } catch (err) {
+    return '#';
+    // Invalid URL
+  }
+
+  return '#'; // Safe fallback
 };
 
 export default sanitizeUrl;

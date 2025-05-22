@@ -3,6 +3,8 @@
 import ButtonSecondary from '@/lib/element/global/button.secondary';
 import Link from 'next/link';
 import Image from 'next/image';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
+import sanitizeUrl from '@/lib/functions/global/sanitizeUrl';
 
 const CE_DetailCardMain = ({
   card,
@@ -53,13 +55,10 @@ const CE_DetailCardMain = ({
                   {card.category}
                 </div>
                 <div className="text-2xl mb-5">{card.title}</div>
-                <div
-                  className="text-lg"
-                  dangerouslySetInnerHTML={{ __html: card.description }}
-                />
+                <div>{parseHTMLToReact(card.description, 'text-lg')}</div>
               </div>
               <div>
-                <Link href={card.button.link ?? 'undefined'}>
+                <Link href={sanitizeUrl(card.button.link)}>
                   <ButtonSecondary rounded="full" color="privatecolor">
                     {card.button.text}
                   </ButtonSecondary>

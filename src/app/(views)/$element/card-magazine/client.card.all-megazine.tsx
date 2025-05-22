@@ -164,8 +164,8 @@ export default function CE_AllMagazine({
                     ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
                     : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
                 }
-                rel="noopener noreferrer"
                 target="_blank"
+                rel="noopener noreferrer"
                 key={index}
                 className="relative w-full h-[500px]  flex-none rounded-lg flex flex-col justify-center items-center bg-center overflow-hidden p-3"
               >
@@ -316,8 +316,8 @@ export default function CE_AllMagazine({
                         ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
                         : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
                     }
-                    rel="noopener noreferrer"
                     target="_blank"
+                    rel="noopener noreferrer"
                     key={index}
                     className="group relative overflow-hidden w-[48%] h-[450px] flex-none flex flex-col justify-center items-center bg-center cursor-pointer"
                   >
@@ -414,8 +414,8 @@ export default function CE_AllMagazine({
                         ? `/magazine-detail-private/${item?.nid?.[0]?.value ?? '/404'}`
                         : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
                     }
-                    rel="noopener noreferrer"
                     target="_blank"
+                    rel="noopener noreferrer"
                     key={index}
                   >
                     <div
@@ -451,6 +451,7 @@ export default function CE_AllMagazine({
                             : `/magazine-detail-prioritas/${item?.nid?.[0]?.value ?? '/404'}`
                         }
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="group text-white uppercase text-sm font-bold flex items-center hover:underline duration-200"
                       >
                         selengkapnya{' '}

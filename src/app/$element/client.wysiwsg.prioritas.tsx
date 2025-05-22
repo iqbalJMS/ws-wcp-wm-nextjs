@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import CE_ShareContent from '@/lib/element/global/share-content';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 const CE_WYSIWSGPrioritas = ({
   category,
@@ -81,7 +82,13 @@ const CE_WYSIWSGPrioritas = ({
                       `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
                     ) ?? '',
                 }}
-              />
+              >
+                {parseHTMLToReact(
+                  body ?? '',
+                  'text-black text-opacity-90 wysiwsg-body text-base parsehtml',
+                  true
+                )}
+              </div>
             ) : (
               <></>
             )}

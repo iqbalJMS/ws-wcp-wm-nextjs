@@ -94,8 +94,8 @@ export function LoginButton({
             >
               <Link
                 href={sanitizeUrl(loginItem?.uri)}
-                rel="noopener noreferrer"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <div
                   className={`flex items-center space-x-3 ${loginItem?.field_theme_color?.[0]?.value == 'orange' ? 'text-green-300' : 'text-orange-400'}`}
