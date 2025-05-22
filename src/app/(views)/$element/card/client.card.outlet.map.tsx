@@ -37,14 +37,20 @@ export default function CE_CardOutletMap({
                 stroke="#A28F52"
                 width={20}
               />
-              <Link
-                href={sanitizeUrl(linkCta)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pl-1 capitalize hover:underline text-privatecolor text-sm"
-              >
-                {linkTitle}
-              </Link>
+              {sanitizeUrl(linkCta) === '#' ? (
+                <a className="pl-1 capitalize hover:underline text-privatecolor text-sm">
+                  {linkTitle ?? ''}
+                </a>
+              ) : (
+                <Link
+                  href={sanitizeUrl(linkCta)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pl-1 capitalize hover:underline text-privatecolor text-sm"
+                >
+                  {linkTitle ?? ''}
+                </Link>
+              )}
             </div>
           </section>
           <section className=" w-full h-80">

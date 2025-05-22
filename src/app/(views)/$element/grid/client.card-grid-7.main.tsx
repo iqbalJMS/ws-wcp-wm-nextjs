@@ -35,5 +35,4 @@ const CE_GridCard7Main = ({
     </>
   );
 };
-
 export default CE_GridCard7Main;

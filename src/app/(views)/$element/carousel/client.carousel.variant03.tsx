@@ -306,7 +306,6 @@ export default function CE_CarouselVariant3({
                       src={data?.[modalIndex as number]?.video}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       className="w-full"
-                      sandbox="allow-same-origin allow-scripts allow-presentation allow-popups"
                     ></iframe>
                   </div>
                   <div className="h-auto bg-white p-4 md:p-5 border-t border-gray-200 rounded-b space-y-2">

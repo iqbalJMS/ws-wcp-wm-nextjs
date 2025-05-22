@@ -51,16 +51,29 @@ export default function CE_HelpContent({
             </div>
           </div>
           <div className="relative z-10">
-            <Link href={sanitizeUrl(selectedItem.value)}>
-              <button
-                disabled={isOpen}
-                className={`font-normal text-sm text-white rounded-full md:py-4 py-2 px-6 w-full ${
-                  isOpen ? 'bg-gray-400' : 'bg-orange-400 hover:bg-orange-500'
-                }`}
-              >
-                BANTUAN
-              </button>
-            </Link>
+            {sanitizeUrl(selectedItem?.value) === '#' ? (
+              <a className="text-[#3E4182] text-base hover:underline">
+                <button
+                  disabled={isOpen}
+                  className={`font-normal text-sm text-white rounded-full md:py-4 py-2 px-6 w-full ${
+                    isOpen ? 'bg-gray-400' : 'bg-orange-400 hover:bg-orange-500'
+                  }`}
+                >
+                  BANTUAN
+                </button>
+              </a>
+            ) : (
+              <Link href={sanitizeUrl(selectedItem.value)}>
+                <button
+                  disabled={isOpen}
+                  className={`font-normal text-sm text-white rounded-full md:py-4 py-2 px-6 w-full ${
+                    isOpen ? 'bg-gray-400' : 'bg-orange-400 hover:bg-orange-500'
+                  }`}
+                >
+                  BANTUAN
+                </button>
+              </Link>
+            )}
           </div>
         </div>
         <SE_HelpSectionSelect

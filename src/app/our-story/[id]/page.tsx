@@ -15,6 +15,7 @@ import HomeHeader from '@/lib/element/global/header/home-header';
 import { ACT_GetHeaderLogo } from '@/app/(views)/$action/header-logo/action.get.header-logo';
 import CE_ShareContent from '@/lib/element/global/share-content';
 import noImage from '@/../public/images/no-image.png';
+import { parseHTMLToReact } from '@/lib/functions/global/htmlParser';
 
 export async function generateMetadata() {
   return {
@@ -95,49 +96,33 @@ export default async function page({ params }: { params: { id: string } }) {
                 />
               </div>
               <div className="w-full pt-10 space-y-4 xl:pl-10">
-                <h1
-                  className="text-3xl md:text-2xl lg:text-3xl font-semibold"
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      getOurstoryData?.title?.[0]?.value.replace(
-                        /\/sites\/default/g,
-                        `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
-                      ) ?? '',
-                  }}
-                />
-                <h2
-                  className="w-full text-base xl:text-lg 2xl:w-11/12"
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      getOurstoryData?.field_text?.[0]?.value.replace(
-                        /\/sites\/default/g,
-                        `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
-                      ) ?? '',
-                  }}
-                />
+                <h1 className="text-3xl md:text-2xl lg:text-3xl font-semibold">
+                  {parseHTMLToReact(
+                    getOurstoryData?.title?.[0]?.value,
+                    '',
+                    true
+                  )}
+                </h1>
+                <h2 className="w-full text-base xl:text-lg 2xl:w-11/12">
+                  {parseHTMLToReact(
+                    getOurstoryData?.field_text?.[0]?.value,
+                    '',
+                    true
+                  )}
+                </h2>
               </div>
             </div>
             <div className="w-full p-5 space-y-10 pt-5 ">
-              <h1
-                className="text-lg lg:text-xl font-bold"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    getOurstoryData?.body?.[0]?.summary.replace(
-                      /\/sites\/default/g,
-                      `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
-                    ) ?? '',
-                }}
-              />
-              <div
-                className="leading-8"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    getOurstoryData?.body?.[0]?.value.replace(
-                      /\/sites\/default/g,
-                      `${process.env.NEXT_PUBLIC_SELF_BASE_URL}/api/file/?path=/sites/default`
-                    ) ?? '',
-                }}
-              />
+              <h1 className="text-lg lg:text-xl font-bold">
+                {parseHTMLToReact(
+                  getOurstoryData?.body?.[0]?.summary,
+                  '',
+                  true
+                )}
+              </h1>
+              <div className="leading-8">
+                {parseHTMLToReact(getOurstoryData?.body?.[0]?.value, '', true)}
+              </div>
             </div>
           </div>
         </section>

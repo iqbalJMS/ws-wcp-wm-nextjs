@@ -44,7 +44,6 @@ export default async function page({ params }: { params: { id: string } }) {
                   top: 130,
                 }}
                 src={item?.field_link?.[0]?.uri}
-                sandbox="allow-same-origin allow-scripts allow-presentation allow-popups"
               ></iframe>
             </div>
           </section>

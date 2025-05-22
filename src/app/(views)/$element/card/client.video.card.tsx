@@ -113,7 +113,6 @@ export default function CE_VideosCard({
                       height="450"
                       src={data?.[modalIndex as number]?.link}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      sandbox="allow-same-origin allow-scripts allow-presentation allow-popups"
                       className="w-full"
                     ></iframe>
                   </div>

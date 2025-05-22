@@ -88,7 +88,6 @@ export default function CE_Location({
       once: false,
     });
   }, []);
-
   return (
     <>
       <CE_SearchOutlet
@@ -125,14 +124,20 @@ export default function CE_Location({
               {item?.urlMaps ? (
                 <div className="flex items-center space-x-3">
                   <LocationIcon className="" width={20} stroke="#070059" />
-                  <Link
-                    href={sanitizeUrl(item?.urlMaps)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#3E4182] text-base hover:underline"
-                  >
-                    Lihat di Peta
-                  </Link>
+                  {sanitizeUrl(item?.urlMaps) === '#' ? (
+                    <a className="text-[#3E4182] text-base hover:underline">
+                      Lihat di Peta
+                    </a>
+                  ) : (
+                    <Link
+                      href={sanitizeUrl(item?.urlMaps)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#3E4182] text-base hover:underline"
+                    >
+                      Lihat di Peta
+                    </Link>
+                  )}
                 </div>
               ) : (
                 <></>
